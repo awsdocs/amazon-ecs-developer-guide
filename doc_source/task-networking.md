@@ -1,0 +1,40 @@
+# Task Networking with the `awsvpc` Network Mode<a name="task-networking"></a>
+
+The task networking features provided by the `awsvpc` network mode give Amazon ECS tasks the same networking properties as Amazon EC2 instances\. When you use the `awsvpc` network mode in your task definitions, every task that is launched from that task definition gets its own elastic network interface, a primary private IP address, and an internal DNS hostname\. The task networking feature simplifies container networking and gives you more control over how containerized applications communicate with each other and other services within your VPCs\.
+
+Task networking also provides greater security for your containers by allowing you to use security groups and network monitoring tools at a more granular level within ECS tasks\. Because each task gets its own elastic network interface, you can also take advantage of other Amazon EC2 networking features like VPC Flow Logs so that you can monitor traffic to and from your tasks\. Additionally, containers that belong to the same task can communicate over the `localhost` interface\. A task can only have one elastic network interface associated with it at a given time\. 
+
+To use task networking, specify the `awsvpc` network mode in your task definition\. Then, when you run a task or create a service, specify a network configuration that includes the subnets in which to place your tasks and the security groups to attach to its associated elastic network interface\. The tasks are placed on valid container instances in those subnets and the specified security groups are associated with the elastic network interface that is provisioned for the task\.
+
+The elastic network interface that is created for your task is fully managed by Amazon ECS\. Amazon ECS creates the elastic network interface and attaches it to the container instance with the specified security group\. The task sends and receives network traffic on the elastic network interface in the same way that Amazon EC2 instances do with their primary network interfaces\. These elastic network interfaces are visible in the Amazon EC2 console for your account, but they cannot be detached manually or modified by your account\. This is to prevent accidental deletion of an elastic network interface that is associated with a running task\. You can view the elastic network interface attachment information for tasks in the Amazon ECS console or with the [DescribeTasks](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) API operation\. When the task stops or if the service is scaled down, the elastic network interface is released\.
+
+## Enabling Task Networking<a name="enable-task-networking"></a>
+
+Your ECS container instances require at least version 1\.15\.0 of the container agent to enable task networking\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using the Amazon ECS\-optimized AMI, your instance needs at least version 1\.15\.0\-4 of the `ecs-init` package\. If your container instances are launched from version 2017\.09\.a or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-Optimized AMI](ecs-optimized_AMI.md)\.
+
+**Important**  
+Currently, only the Amazon ECS\-optimized AMI, or other Amazon Linux variants with the `ecs-init` package, support task networking\.
+
+To use task networking, your task definitions must specify the `awsvpc` network mode\. For more information, see [Network Mode](task_definition_parameters.md#network_mode)\. When you run tasks or create services using a task definition that specifies the `awsvpc` network mode, you specify a network configuration that contains the VPC subnets to be considered for placement and the security groups to attach to the task's elastic network interface\.
+
+Tasks and services that use the `awsvpc` network mode require the Amazon ECS service\-linked role to provide Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster, or if you create or update a service in the AWS Management Console\. For more information, see [Using Service\-Linked Roles for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command:
+
+```
+aws iam [create\-service\-linked\-role](http://docs.aws.amazon.com/cli/latest/reference/iam/create-service-linked-role.html) --aws-service-name ecs.amazonaws.com
+```
+
+## Task Networking Considerations<a name="task-networking-considerations"></a>
+
+There are several things to consider when using task networking\.
+
++ The `awsvpc` network mode does not provide task elastic network interfaces with public IP addresses\. To access the internet, tasks must be launched in a private subnet that is configured to use a NAT gateway\. For more information, see [NAT Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html) in the *Amazon VPC User Guide*\. Inbound network access must be from within the VPC using the private IP address or DNS hostname, or routed through a load balancer from within the VPC\. Tasks launched within public subnets do not have outbound network access\.
+
++ Currently, only the Amazon ECS\-optimized AMI, or other Amazon Linux variants with the `ecs-init` package, support task networking\. Your Amazon ECS container instances require at least version 1\.15\.0 of the container agent to enable task networking\. We recommend using the latest container agent version\.
+
++ Each task that uses the `awsvpc` network mode receives its own elastic network interface, which is attached to the container instance that hosts it\. EC2 instances have a limit to the number of elastic network interfaces that can be attached to them, and the primary network interface counts as one\. For example, a `c4.large` instance may have up to three elastic network interfaces attached to it\. The primary network adapter for the instance counts as one, so you can attach two more elastic network interfaces to the instance\. Because each `awsvpc` task requires an elastic network interface, you can only run two such tasks on this instance type\. For more information about how many elastic network interfaces are supported per instance type, see [IP Addresses Per Network Interface Per Instance Type](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI) in the *Amazon EC2 User Guide for Linux Instances*\.
+
++ Amazon ECS only accounts for the elastic network interfaces that it attaches to your container instances for you\. If you have attached elastic network interfaces to your container instances manually, then Amazon ECS could try to place a task on an instance without sufficient available network adapter attachments\. In this case, the task would time out, move from `PROVISIONING` to `DEPROVISIONING`, and then to `STOPPED`\. We recommend that you do not attach elastic network interfaces to your container instances manually\.
+
++ Container instances must be registered with the `ecs.capability.task-eni` to be considered for placement of tasks with the `awsvpc` network mode\. Container instances running version 1\.15\.0\-4 or later of `ecs-init` are registered with this attribute\.
+
++ The elastic network interfaces that are created and attached to your container instances cannot be detached manually or modified by your account\. This is to prevent the accidental deletion of an elastic network interface that is associated with a running task\. To release the elastic network interfaces for a task, stop the task\.
