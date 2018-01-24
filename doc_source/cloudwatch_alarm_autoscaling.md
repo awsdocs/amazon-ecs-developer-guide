@@ -49,7 +49,7 @@ For this tutorial, you create an alarm on the cluster `MemoryReservation` metric
 
 ## Step 2: Create a Launch Configuration for an Auto Scaling Group<a name="create-as-group"></a>
 
-Now that you have enabled CloudWatch metrics and created an alarm based on one of those metrics, you can create a launch configuration and an Auto Scaling group for your cluster\. For more information and other configuration options, see the [Auto Scaling User Guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/)\.
+Now that you have enabled CloudWatch metrics and created an alarm based on one of those metrics, you can create a launch configuration and an Auto Scaling group for your cluster\. For more information and other configuration options, see the [Amazon EC2 Auto Scaling User Guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/)\.
 
 **To create an Auto Scaling launch configuration**
 
@@ -65,14 +65,14 @@ Now that you have enabled CloudWatch metrics and created an alarm based on one o
 
 1. Choose the ECS\-optimized AMI for your Auto Scaling group\.
 
-   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2017\.09\.f\-amazon\-ecs\-optimized** AMI\.
+   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2017\.09\.g\-amazon\-ecs\-optimized** AMI\.
 
    The current Amazon ECS\-optimized Linux AMI IDs by region are listed below for reference\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch_alarm_autoscaling.html)
 
 1. On the **Choose Instance Type** step of the **Create Auto Scaling Group** wizard, choose an instance type for your Auto Scaling group and choose **Next: Configure details**\.
 
-1. On the **Configure details** step of the **Create Auto Scaling Group** wizard, enter the following information\. The other fields are optional\. For more information, see [Creating Launch Configurations](http://docs.aws.amazon.com/autoscaling/latest/userguide/WorkingWithLaunchConfig.html) in the *Auto Scaling User Guide*\.
+1. On the **Configure details** step of the **Create Auto Scaling Group** wizard, enter the following information\. The other fields are optional\. For more information, see [Creating Launch Configurations](http://docs.aws.amazon.com/autoscaling/latest/userguide/WorkingWithLaunchConfig.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
    + **Name:** Enter a name for your launch configuration\.
 

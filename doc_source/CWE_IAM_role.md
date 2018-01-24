@@ -2,7 +2,7 @@
 
 Before you can use Amazon ECS scheduled tasks with CloudWatch Events rules and targets, the CloudWatch Events service needs permission to run Amazon ECS tasks on your behalf\. These permissions are provided by the CloudWatch Events IAM role \(`ecsEventsRole`\)\.
 
-The CloudWatch Events role is created for you in the AWS Management Console when you configure a scheduled task\. For more information, see [Scheduled Tasks \(`cron`\)](scheduled_tasks.md)\.
+The CloudWatch Events role is automatically created for you in the AWS Management Console when you configure a scheduled task\. For more information, see [Scheduled Tasks \(`cron`\)](scheduled_tasks.md)\.
 
 The `AmazonEC2ContainerServiceEventsRole` policy is shown below\.
 
@@ -22,3 +22,111 @@ The `AmazonEC2ContainerServiceEventsRole` policy is shown below\.
     ]
 }
 ```
+
+If your scheduled tasks require the use of the task execution role then you need to add this additional permission to the CloudWatch IAM role\. For more information about task execution role, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+
+**Note**  
+Specify the full ARN of your task execution role\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": [
+                "arn:aws:iam::<aws_account_id>:role/<ecsTaskExecutionRole_name>"
+            ]
+        }
+    ]
+}
+```
+
+You can use the following procedure to check that your account already has the CloudWatch Events IAM role, and manually create it if needed\.
+
+**To check for the CloudWatch Events IAM role in the IAM console**
+
+1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. In the navigation pane, choose **Roles**\.
+
+1. Search the list of roles for `ecsEventsRole`\. If the role does not exist, use the next procedure to create the role\. If the role does exist, select the role to view the attached policies\.
+
+1. Choose **Permissions**\.
+
+1. In the **Managed Policies** section, ensure that the **AmazonEC2ContainerServiceEventsRole** managed policy is attached to the role\. If the policy is attached, your Amazon ECS service role is properly configured\. If not, follow the substeps below to attach the policy\.
+
+   1. Choose **Attach Policy**\.
+
+   1. For **Filter**, type `AmazonEC2ContainerServiceEventsRole` to narrow the available policies to attach\.
+
+   1. Select the box to the left of the **AmazonEC2ContainerServiceEventsRole** policy and choose **Attach Policy**\.
+
+1. Choose **Trust Relationships**, **Edit Trust Relationship**\.
+
+1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, copy the policy into the **Policy Document** window and choose **Update Trust Policy**\.
+
+   ```
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Action": [
+                   "ecs:RunTask"
+               ],
+               "Resource": [
+                   "*"
+               ]
+           }
+       ]
+   }
+   ```
+
+**To create an IAM role for CloudWatch Events**
+
+1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. In the navigation pane, choose **Roles** and then choose **Create role**\. 
+
+1. In the **Select type of trusted entity** section, choose **Elastic Container Service**\. For **Select your use case** choose **Elastic Container Service Task**\. Choose **Next: Permissions**\.
+
+1. In the **Attach permissions policy** section, select the **AmazonEC2ContainerServiceEventsRole** policy and then choose **Next: Review**\.
+
+1. For **Role name**, type `ecsEventsRole` to name the role, optionally enter a description, and then choose **Create role**\.
+
+1. Review your role information and choose **Create Role**\. 
+
+**To add permissions for the task execution role to the CloudWatch Events IAM role**
+
+1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. In the navigation pane, choose **Policies**, **Create policy**\.
+
+1. Choose **JSON**, paste the following policy, and then choose **Review policy**:
+
+   ```
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Action": "iam:PassRole",
+               "Resource": [
+                   "arn:aws:iam::<aws_account_id>:role/<ecsTaskExecutionRole_name>"
+               ]
+           }
+       ]
+   }
+   ```
+
+1. For **Name**, type `AmazonECSEventsTaskExecutionRole`, optionally enter a description, and then choose **Create policy**\.
+
+1. In the navigation pane, choose **Roles**\.
+
+1. Search the list of roles for `ecsEventsRole` and select the role to view the attached policies\.
+
+1. Choose **Attach policy**\.
+
+1. In the **Attach policy** section, select the **AmazonECSEventsTaskExecutionRole** policy and choose **Attach policy**\.

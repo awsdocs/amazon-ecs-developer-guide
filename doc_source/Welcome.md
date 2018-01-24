@@ -88,7 +88,7 @@ Amazon ECS can be used along with the following AWS services:
 **AWS Identity and Access Management**  
 IAM is a web service that helps you securely control access to AWS resources for your users\. Use IAM to control who can use your AWS resources \(authentication\) and what resources they can use in which ways \(authorization\)\. In Amazon ECS, IAM can be used to control access at the container instance level using IAM roles, and at the task level using IAM task roles\. For more information, see [Amazon ECS IAM Policies, Roles, and Permissions](IAM_policies.md)\.
 
-**Auto Scaling**  
+**Amazon EC2 Auto Scaling**  
 Auto Scaling is a web service that enables you to automatically scale out or in your tasks based on user\-defined policies, health status checks, and schedules\. You can use Auto Scaling with a Fargate task within a service to scale in response to a number of metrics or with a EC2 task to scale the container instances within your cluster\. For more information, see [Tutorial: Scaling Container Instances with CloudWatch Alarms](cloudwatch_alarm_autoscaling.md)\.
 
 **Elastic Load Balancing**  

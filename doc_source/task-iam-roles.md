@@ -137,33 +137,7 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
 
 Support for IAM roles for tasks was added to the AWS SDKs on July 13th, 2016, so the containers in your tasks must use an AWS SDK version that was created on or after that date\. AWS SDKs that are included in Linux distribution package managers may not be new enough to support this feature\.
 
-To ensure that you are using a supported SDK, follow the installation instructions for your preferred SDK at [Tools for Amazon Web Services](https://aws.amazon.com/tools/) when you are building your containers\.
-
-The following AWS SDK versions and above support IAM roles for tasks:
-
-+ AWS CLI: 1\.10\.47
-
-+ C\+\+: 0\.12\.19
-
-+ CoreCLR: 3\.2\.6\-beta
-
-+ Go: 1\.2\.5
-
-+ Java: 1\.11\.16
-
-+ \.NET: 3\.1\.6
-
-+ Node\.js: 2\.4\.7
-
-+ PHP: 3\.18\.28
-
-+ Python \(`botocore`\): 1\.4\.37
-
-+ Python \(Boto3\): 1\.4\.0
-**Note**  
-The `botocore` module provides the low\-level core functionality for Boto3, and each version of Boto3 supports a range of `botocore` module versions\. For Boto3 support of IAM roles for tasks, you must ensure that your underlying `botocore` module is at least the minimum version shown above\.
-
-+ Ruby: 2\.3\.22
+To ensure that you are using a supported SDK, follow the installation instructions for your preferred SDK at [Tools for Amazon Web Services](https://aws.amazon.com/tools/) when you are building your containers to get the latest version\.
 
 ## Specifying an IAM Role for your Tasks<a name="specify-task-iam-roles"></a>
 

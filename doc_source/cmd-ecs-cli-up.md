@@ -11,7 +11,7 @@ Some features described may only be available with the latest version of the ECS
 
 ## Syntax<a name="cmd-ecs-cli-up-syntax"></a>
 
-**ecs\-cli up \[\-\-verbose\] \[\-\-capability\-iam | `--instance-role instance-profile-name`\] \[\-\-keypair *keypair\_name*\] \[`--size n`\] \[`--azs availability_zone_1,availability_zone_2`\] \[\-\-security\-group *security\_group\_id*\[,*security\_group\_id*\[,\.\.\.\]\]\] \[`--cidr ip_range`\] \[`--port port_number`\] \[`--subnets subnet_1,subnet_2`\] \[`--vpc vpc_id`\] \[\-\-instance\-type *instance\_type*\] \[\-\-image\-id *ami\_id*\] \[\-\-launch\-type *launch\_type*\] \[\-\-no\-associate\-public\-ip\-address\] \[\-\-force\] \[\-\-cluster *cluster\_name*\] \[\-\-region *region*\] \[\-\-help\]** 
+**ecs\-cli up \[\-\-verbose\] \[\-\-capability\-iam | `--instance-role instance-profile-name`\] \[\-\-keypair *keypair\_name*\] \[`--size n`\] \[`--azs availability_zone_1,availability_zone_2`\] \[\-\-security\-group *security\_group\_id*\[,*security\_group\_id*\[,\.\.\.\]\]\] \[`--cidr ip_range`\] \[`--port port_number`\] \[`--subnets subnet_1,subnet_2`\] \[`--vpc vpc_id`\] \[\-\-instance\-type *instance\_type*\] \[\-\-image\-id *ami\_id*\] \[\-\-launch\-type *launch\_type*\] \[\-\-no\-associate\-public\-ip\-address\] \[\-\-force\] \[\-\-cluster *cluster\_name*\] \[\-\-region *region*\] \[\-\-empty\] \[\-\-help\]** 
 
 ## Options<a name="cmd-ecs-cli-up-options"></a>
 
@@ -39,6 +39,7 @@ Some features described may only be available with the latest version of the ECS
 |  `--cluster-config cluster_config_name`  |  Specifies the name of the ECS cluster configuration to use\. Defaults to the cluster configuration set as the default\. Type: String Required: No  | 
 |  `--ecs-profile ecs_profile`  |  Specifies the name of the ECS profile configuration to use\. Defaults to the profile configured using the configure profile command\. Type: String Required: No  | 
 |  `--aws-profile aws_profile`  |  Specifies the AWS profile to use\. Enables you to use the AWS credentials from an existing named profile in `~/.aws/credentials`\. Type: String Required: No  | 
+|  `--empty, -e`  |  Specifies that an ECS cluster will be created with no resources\. If other flags are also specified that would create resources, they are ignored and a warning will be displayed\. Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
 
 ## Examples<a name="cmd-ecs-cli-up-examples"></a>
@@ -54,7 +55,7 @@ ecs-cli up --keypair keypair_name --capability-iam --size 4 --instance-type c4.l
 Output:
 
 ```
-INFO[0000] Created cluster                               cluster=ecs-cli
+INFO[0000] Created cluster                               cluster=ecs-cli-ec2-demo
 INFO[0000] Waiting for your cluster resources to be created
 INFO[0001] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
 INFO[0061] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
@@ -78,13 +79,28 @@ ecs-cli up --launch-type FARGATE --capability-iam
 Output:
 
 ```
-INFO[0001] Created cluster                               cluster=ecs-cli-demo region=us-west-2
+INFO[0001] Created cluster                               cluster=ecs-cli-fargate-demo region=us-west-2
 INFO[0003] Waiting for your cluster resources to be created... 
 INFO[0003] Cloudformation stack status                   stackStatus="CREATE_IN_PROGRESS"
 INFO[0066] Waiting for your cluster resources to be created... 
 INFO[0066] Cloudformation stack status                   stackStatus="CREATE_IN_PROGRESS"
-Cluster creation succeeded.
 VPC created: vpc-abcd1234
 Subnets created: subnet-abcd1234
 Subnets created: subnet-dcba4321
+Cluster creation succeeded.
+```
+
+### Creating an Empty Cluster<a name="cmd-ecs-cli-up-example-3"></a>
+
+This example brings up an empty cluster named `ecs-cli-empty-demo` with no resources\.
+
+```
+ecs-cli up --empty --cluster ecs-cli-empty-demo
+```
+
+Output:
+
+```
+INFO[0000] Created cluster                               cluster=ecs-cli-empty-demo region=us-east-1
+Cluster creation succeeded.
 ```

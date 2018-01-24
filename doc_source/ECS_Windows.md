@@ -28,5 +28,3 @@ Here are some things you should know about Windows containers and Amazon ECS\.
 + The IAM roles for tasks feature uses a credential proxy to provide credentials to the containers\. This credential proxy occupies port 80 on the container instance, so if you use IAM roles for tasks, port 80 is not available for tasks\. For web service containers, you can use an Application Load Balancer and dynamic port mapping to provide standard HTTP port 80 connections to your containers\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
 
 + The Windows server Docker images are large \(9 GiB\), so your container instances require more storage space than Linux container instances, which typically have smaller image sizes\.
-
-+ Container instances can take up to 15 minutes to download and extract the Windows server Docker images the first time they use them\. This time can be doubled if you enable IAM roles for tasks\.

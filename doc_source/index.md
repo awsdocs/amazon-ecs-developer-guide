@@ -168,4 +168,5 @@ Amazon's trademarks and trade dress may not be used in
    + [Windows Task Definitions](windows_task_definitions.md)
    + [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)
    + [Pushing Windows Images to Amazon ECR](windows_ecr.md)
++ [Document History](document_history.md)
 + [AWS Glossary](glossary.md)
