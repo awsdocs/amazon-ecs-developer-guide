@@ -1,4 +1,4 @@
-## Amazon Ecs Developer Guide
+## Amazon ECS Developer Guide
 
 The open source version of the Amazon ECS developer guide. You can submit feedback & requests for changes by submitting issues in this repo or by making proposed changes & submitting a pull request.
 
