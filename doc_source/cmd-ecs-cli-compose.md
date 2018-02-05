@@ -88,6 +88,9 @@ For more information about Docker compose file syntax, see the [Compose file ref
 **Note**  
 Ensure you are using the latest version of the Amazon ECS CLI to use all configuration options\.
 
+**Important**  
+Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+
 ## Using Amazon ECS Parameters<a name="cmd-ecs-cli-compose-ecsparams"></a>
 
 Since there are certain fields in an Amazon ECS task definition that do not correspond to fields in a Docker compose file, you can specify those values using the `--ecs-params` flag\. By default, the command looks for an ECS params file in the current directory, called `ecs-params.yml`\. Currently, the file supports the follow schema:

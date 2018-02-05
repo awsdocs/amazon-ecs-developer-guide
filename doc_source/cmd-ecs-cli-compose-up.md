@@ -4,6 +4,9 @@
 
 Creates an Amazon ECS task definition from your compose file, if one does not already exist, and runs one instance of that task on your cluster\.
 
+**Important**  
+Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+
 ## Syntax<a name="cmd-ecs-cli-compose-up-syntax"></a>
 
 **ecs\-cli compose \[\-\-verbose\] \[\-\-file *compose\-file*\] \[\-\-project\-name *project\-name*\] up \[*arguments*\] \[\-\-help\]** 
@@ -23,6 +26,8 @@ Creates an Amazon ECS task definition from your compose file, if one does not al
 |  `--ecs-profile ecs_profile`  |  Specifies the name of the ECS profile configuration to use\. Defaults to the profile configured using the configure profile command\. Type: String Required: No  | 
 |  `--aws-profile aws_profile`  |  Specifies the AWS profile to use\. Enables you to use the AWS credentials from an existing named profile in `~/.aws/credentials`\. Type: String Required: No  | 
 |  `--cluster-config cluster_config_name`  |  Specifies the name of the ECS cluster configuration to use\. Defaults to the cluster configuration set as the default\. Type: String Required: No  | 
+| \-\-launch\-type launch\_type | Specifies the launch type to use\. Available options are FARGATE or EC2\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\. This overrides the default launch type stored in your cluster configuration\. Type: StringRequired: No | 
+|  `--create-log-groups`  |  Creates the CloudWatch log groups specified in your compose file\(s\)\. Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
 
 ## Examples<a name="cmd-ecs-cli-compose-up-examples"></a>

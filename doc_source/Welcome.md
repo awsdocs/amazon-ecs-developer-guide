@@ -22,7 +22,7 @@ The following sections dive into these individual elements of the Amazon ECS arc
 
 To deploy applications on Amazon ECS, your application components must be architected to run in *containers*\. A Docker container is a standardized unit of software development, containing everything that your software application needs to run: code, runtime, system tools, system libraries, etc\. Containers are created from a read\-only template called an *image*\.
 
-Images are typically built from a Dockerfile, a plain text file that specifies all of the components that are included in the container\. These images are then stored in a *registry* from which they can be downloaded and run on your cluster\. For more information about container technology, see [Docker Basics](docker-basics.md)\.
+Images are typically built from a Dockerfile, a plain text file that specifies all of the components that are included in the container\. These images are then stored in a *registry* from which they can be downloaded and run on your cluster\. For more information about container technology, see [Docker Basics for Amazon ECS](docker-basics.md)\.
 
 **Note**  
 The Fargate launch type only supports using container images hosted in Amazon ECR or publicly on Docker Hub\. Private repositories are currently only supported using the EC2 launch type\.

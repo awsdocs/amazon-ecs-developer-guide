@@ -49,7 +49,10 @@ You can launch Windows container instance using the AWS Management Console, as d
 
 1. On the **Choose an Amazon Machine Image \(AMI\)** page, choose **Community AMIs**\.
 
-1. Type **ECS\_Optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **** AMI\. 
+1. Type **ECS\_Optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2018\.01\.10** AMI\. 
+
+   The current Amazon ECS\-optimized Windows AMI IDs by region are listed below for reference\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_Windows_getting_started.html)
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.
 
@@ -76,7 +79,7 @@ The `-EnableTaskIAMRole` option is required to enable IAM roles for tasks\. For 
 
 1. Choose **Next: Add Storage**\.
 
-1. On the **Add Storage** page, configure the storage for your container instance\. The Windows OS and container images are quite large \(approximately 9 GiB for the Windows server core base layers\), and just a few images and containers quickly fill up the default 50 GiB volume size for the \. A larger root volume size \(for example, 200 GiB\) allows for more containers and images on your instance\.
+1. On the **Add Storage** page, configure the storage for your container instance\. The Windows OS and container images are quite large \(approximately 9 GiB for the Windows server core base layers\), and just a few images and containers quickly fill up the default 50 GiB volume size for the Amazon ECS\-optimized Windows AMI\. A larger root volume size \(for example, 200 GiB\) allows for more containers and images on your instance\.
 
    You can optionally increase or decrease the volume size for your instance to meet your application needs\.
 

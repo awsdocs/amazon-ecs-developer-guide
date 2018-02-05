@@ -1,4 +1,4 @@
-# Docker Basics<a name="docker-basics"></a>
+# Docker Basics for Amazon ECS<a name="docker-basics"></a>
 
 Docker is a technology that allows you to build, run, test, and deploy distributed applications that are based on Linux containers\. Amazon ECS uses Docker images in task definitions to launch containers on EC2 instances in your clusters\. For Amazon ECS product details, featured customer case studies, and FAQs, see the [Amazon Elastic Container Service product detail pages](http://aws.amazon.com/ecs)\.
 
@@ -49,7 +49,7 @@ You don't even need a local development system to use Docker\. If you are using 
    sudo usermod -a -G docker ec2-user
    ```
 
-1. Log out and log back in again to pick up the new `docker` group permissions\.
+1. Log out and log back in again to pick up the new `docker` group permissions\. You can accomplish this by closing your current SSH terminal window and reconnecting to your instance in a new one\. Your new SSH session will have the appropriate `docker` group permissions\.
 
 1. Verify that the `ec2-user` can run Docker commands without `sudo`\.
 

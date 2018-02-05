@@ -16,7 +16,7 @@ Amazon's trademarks and trade dress may not be used in
 ## Contents
 + [What is Amazon Elastic Container Service?](Welcome.md)
 + [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)
-+ [Docker Basics](docker-basics.md)
++ [Docker Basics for Amazon ECS](docker-basics.md)
 + [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)
 + [Cleaning Up your Amazon ECS Resources](ECS_CleaningUp.md)
 + [Amazon ECS Clusters](ECS_clusters.md)

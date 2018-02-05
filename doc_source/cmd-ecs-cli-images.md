@@ -4,6 +4,9 @@
 
 List images in an Amazon ECR registry or repository\.
 
+**Important**  
+Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+
 ## Syntax<a name="cmd-ecs-cli-images-syntax"></a>
 
 **ecs\-cli images \[\-\-registry\-id *registry\_id*\] \[\-\-tagged|\-\-untagged\] \[\-\-region *region*\] \[*ECR\_REPOSITORY*\] \[\-\-help\]** 

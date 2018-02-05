@@ -4,6 +4,9 @@
 
 Pushes an image to an Amazon ECR repository\.
 
+**Important**  
+Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+
 ## Syntax<a name="cmd-ecs-cli-push-syntax"></a>
 
 **ecs\-cli push \[\-\-registry\-id *registry\_id*\] \[\-\-region *region*\] *ECR\_REPOSITORY*\[:*TAG*\] \[\-\-help\]**
