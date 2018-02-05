@@ -4,9 +4,6 @@
 
 Retrieves container logs from CloudWatch Logs\. Only valid for tasks that use the `awslogs` driver and have a log stream prefix specified\.
 
-**Important**  
-Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
-
 ## Syntax<a name="cmd-ecs-cli-logs-syntax"></a>
 
 **ecs\-cli logs \-\-task\-id *task\_id* \[\-\-task\-def *task\_definition*\] \[\-\-follow\] \[\-\-filter\-pattern *search\_string*\] \[\-\-since *n\_minutes*\] \[\-\-start\-time *2006\-01\-02T15:04:05\+07:00*\] \[\-\-end\-time *2006\-01\-02T15:04:05\+07:00*\] \[\-\-timestamps\] \[\-\-help\]** 

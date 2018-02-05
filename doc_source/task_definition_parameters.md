@@ -27,7 +27,7 @@ When you register a task definition, you give it a family, which is similar to a
 Type: string  
 Required: no  
 When you register a task definition, you can provide a task role for an IAM role that allows the containers in the task permission to call the AWS APIs that are specified in its associated policies on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  
-IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the Amazon ECS\-optimized Windows AMI\. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)\.
+IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the \. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)\.
 
 ## Network Mode<a name="network_mode"></a>
 
@@ -233,7 +233,6 @@ The value of the environment variable\.
 Type: Boolean  
 Required: no  
 When this parameter is true, networking is disabled within the container\. This parameter maps to `NetworkDisabled` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/)\.  
-This parameter is not supported for Windows containers\.
 
 ```
 "disableNetworking": true|false
@@ -243,7 +242,6 @@ This parameter is not supported for Windows containers\.
 Type: string array  
 Required: no  
 The `link` parameter allows containers to communicate with each other without the need for port mappings\. Only supported if the network mode of a task definition is set to `bridge`\. The `name:internalName` construct is analogous to `name:alias` in Docker links\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. For more information about linking Docker containers, go to [https://docs\.docker\.com/engine/userguide/networking/default\_network/dockerlinks/](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/)\. This parameter maps to `Links` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/) and the `--link` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers\.
 Containers that are collocated on a single container instance may be able to communicate with each other without requiring links or host port mappings\. Network isolation is achieved on the container instance using security groups and VPC settings\.
 
 ```
@@ -263,7 +261,6 @@ The hostname to use for your container\. This parameter maps to `Hostname` in th
 Type: string array  
 Required: no  
 A list of DNS servers that are presented to the container\. This parameter maps to `Dns` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/) and the `--dns` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers\.
 
 ```
 "dnsServers": ["string", ...]
@@ -273,7 +270,6 @@ This parameter is not supported for Windows containers\.
 Type: string array  
 Required: no  
 A list of DNS search domains that are presented to the container\. This parameter maps to `DnsSearch` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/) and the `--dns-search` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers\.
 
 ```
 "dnsSearchDomains": ["string", ...]
@@ -284,7 +280,6 @@ Type: object array
 Required: no  
 A list of hostnames and IP address mappings to append to the `/etc/hosts` file on the container\.   
 This parameter maps to `ExtraHosts` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/) and the `--add-host` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers\.
 
 ```
 "extraHosts": [
@@ -310,7 +305,6 @@ The IP address to use in the `/etc/hosts` entry\.
 Type: Boolean  
 Required: no  
 When this parameter is true, the container is given read\-only access to its root file system\. This parameter maps to `ReadonlyRootfs` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/) and the `--read-only` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers\.
 
 ```
 "readonlyRootFilesystem": true|false
@@ -404,7 +398,6 @@ Type: Boolean
 Required: no  
 When this parameter is true, the container is given elevated privileges on the host container instance \(similar to the `root` user\)\.   
 This parameter maps to `Privileged` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/) and the `--privileged` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
 
 ```
 "privileged": true|false
@@ -414,7 +407,6 @@ This parameter is not supported for Windows containers or tasks using the Fargat
 Type: string  
 Required: no  
 The user name to use inside the container\. This parameter maps to `User` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/) and the `--user` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers\.
 
 ```
 "user": "string"
@@ -425,7 +417,6 @@ Type: string array
 Required: no  
 A list of strings to provide custom labels for SELinux and AppArmor multi\-level security systems\.   
 This parameter maps to `SecurityOpt` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/) and the `--security-opt` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
 
 ```
 "dockerSecurityOptions": ["string", ...]
@@ -490,7 +481,6 @@ Type: object array
 Required: no  
 A list of `ulimits` to set in the container\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.   
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
-This parameter is not supported for Windows containers\.
 
 ```
 "ulimits": [
@@ -612,7 +602,6 @@ The following parameter is allowed in a container definition:
 `cpu`  
 Type: string  
 Required: no  
-This parameter is not supported for Windows containers\.
 The number of CPU units used by the task\. It can be expressed as an integer using CPU units, for example `1024`, or as a string using vCPUs, for example `1 vCPU` or `1 vcpu`, in a task definition but will be converted to an integer indicating the CPU units when the task definition is registered\.  
 If using the EC2 launch type, this field is optional\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
 If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
@@ -621,7 +610,6 @@ If using the Fargate launch type, this field is required and you must use one of
 `memory`  
 Type: string  
 Required: no  
-This parameter is not supported for Windows containers\.
 The amount of memory \(in MiB\) used by the task\. It can be expressed as an integer using MiB, for example `1024`, or as a string using GB, for example `1GB` or `1 GB`, in a task definition but will be converted to an integer indicating the MiB when the task definition is registered\.  
 If using the EC2 launch type, this field is optional\.  
 If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      

@@ -4,9 +4,6 @@
 
 Configures the AWS region to use, resource creation prefixes, and the Amazon ECS cluster name to use with the Amazon ECS CLI\. Stores a single named cluster configuration in the `~/.ecs/config` file\. The first cluster configuration that is created is set as the default\.
 
-**Important**  
-Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
-
 ### Working with Multiple Cluster Configurations<a name="ECS_CLI_multiple_cluster_configurations"></a>
 
 The following should be noted when using multiple cluster configurations:

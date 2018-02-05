@@ -100,7 +100,7 @@ The Amazon ECS instance role is automatically created for you in the console fir
 
 1. Choose the **EC2 Container Service** use case and then **Next: Permissions**\.
 
-1. In the **Attached permissions policy** section, select **AmazonEC2ContainerServiceRole** and then choose **Next: Review**\.
+1. In the **Attached permissions policy** section, select **AmazonEC2ContainerServiceforEC2Role** and then choose **Next: Review**\.
 
 1. For **Role name**, type `ecsInstanceRole` and optionally you can enter a description\.
 

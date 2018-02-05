@@ -64,7 +64,7 @@ If your service's task definition uses the `awsvpc` network mode, you must confi
 
 **To configure VPC and security group settings for your service**
 
-1. For **Cluster VPC**, if you selected the EC2 launch type, choose the VPC in which your container instances reside\. If you selected the Fargate launch type, select the VPC that the Fargate tasks should use use\.
+1. For **Cluster VPC**, if you selected the EC2 launch type, choose the VPC in which your container instances reside\. If you selected the Fargate launch type, select the VPC that the Fargate tasks should use\. Ensure that the VPC you choose was not configured to require dedicated hardware tenancy as that is not supported by Fargate tasks\.
 
 1. For **Subnets**, choose the available subnets for your service task placement\.
 **Important**  

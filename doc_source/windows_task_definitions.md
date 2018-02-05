@@ -8,7 +8,7 @@ The following matrix explains which parameters are not supported or behave diffe
 
 `taskRoleArn`  
 Supported: Yes  
-IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the Amazon ECS\-optimized Windows AMI\. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)\.
+IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the \. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)\.
 
 `networkMode`  
 Supported: No  

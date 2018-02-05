@@ -41,7 +41,7 @@ If you do not have a running cluster to capture events from, follow the steps in
 
    This is a simple Python 2\.7 function that prints the event sent by Amazon ECS\. If everything is configured correctly, at the end of this tutorial, you see the event details appear in the CloudWatch Logs log stream associated with this Lambda function\.
 
-1. In the **Function code** section, edit the value of **Handler** to be **eventstream\-handler**\.
+1. In the **Function code** section, edit the value of **Handler** to be **eventstream\-handler\.lambda\_handler**\.
 
 1. Choose **Save**\.
 

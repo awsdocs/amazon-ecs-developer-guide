@@ -30,7 +30,10 @@ This feature is disabled by default\. You can enable container metadata at the c
 **Note**  
 The minimum Amazon ECS container agent version to support this feature is 1\.15\.0\.
 
-If the `ECS_ENABLE_CONTAINER_METADATA` is set to `true` when the agent starts, metadata files are created for any already running ECS containers and any future containers started by ECS\.
+If the `ECS_ENABLE_CONTAINER_METADATA` is set to `true` when the agent starts, metadata files are created for any future containers started by ECS\.
+
+**Note**  
+The Amazon ECS container agent cannot create metadata files for containers that were created before the `ECS_ENABLE_CONTAINER_METADATA` container agent variable was set to `true`\. To ensure that all containers receive metadata files, you should set this agent variable at container instance launch time\.
 
 ## Container Metadata File Locations<a name="metadata-file-locations"></a>
 

@@ -1,8 +1,8 @@
 # Windows Containers<a name="ECS_Windows"></a>
 
-Amazon ECS now supports Windows containers on container instances that are launched with the Amazon ECS\-optimized Windows AMI\. 
+Amazon ECS now supports Windows containers on container instances that are launched with the \. 
 
-Windows container instances use their own version of the Amazon ECS container agent\. On the Amazon ECS\-optimized Windows AMI, the Amazon ECS container agent runs as a service on the host\. Unlike the Linux platform, the agent does not run inside a container because it uses the host's registry and the named pipe at `\\.\pipe\docker_engine` to communicate with the Docker daemon\.
+Windows container instances use their own version of the Amazon ECS container agent\. On the , the Amazon ECS container agent runs as a service on the host\. Unlike the Linux platform, the agent does not run inside a container because it uses the host's registry and the named pipe at `\\.\pipe\docker_engine` to communicate with the Docker daemon\.
 
 The source code for the Amazon ECS container agent is [available on GitHub](https://github.com/aws/amazon-ecs-agent)\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently provide support for running modified copies of this software\. You can view open issues for Amazon ECS and Windows on our [GitHub issues page](https://github.com/aws/amazon-ecs-agent/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aopen%20label%3Aos/windows)\.
 

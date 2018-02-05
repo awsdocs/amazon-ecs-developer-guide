@@ -11,9 +11,6 @@ The ecs\-cli down command attempts to delete the cluster specified in `~/.ecs/co
 
 If you have remaining services or container instances in your cluster that you would like to remove, you can follow the procedures in [Cleaning Up your Amazon ECS Resources](ECS_CleaningUp.md) to remove them and then delete your cluster\.
 
-**Important**  
-Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
-
 ## Syntax<a name="cmd-ecs-cli-down-syntax"></a>
 
 **ecs\-cli down \[\-\-force\] \[\-\-cluster *cluster\_name*\] \[\-\-region *region*\] \[\-\-help\]** 

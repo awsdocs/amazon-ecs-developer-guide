@@ -4,9 +4,6 @@
 
 Pull an image from an Amazon ECR repository\.
 
-**Important**  
-Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
-
 ## Syntax<a name="cmd-ecs-cli-pull-syntax"></a>
 
 **ecs\-cli pull \[\-\-registry\-id *registry\_id*\] \[\-\-region *region*\] *ECR\_REPOSITORY*\[:*TAG*|@*DIGEST*\] \[\-\-help\]** 

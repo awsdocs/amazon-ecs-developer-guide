@@ -16,12 +16,9 @@ The Amazon ECS\-optimized AMI comes prepackaged with the Amazon ECS container ag
 As new Amazon ECS\-optimized AMIs and Amazon ECS agent versions are released, older versions are still available for launch in Amazon EC2\. However, we encourage you to update to the latest version of the Amazon ECS agent and to keep your container instance software up to date\. If you request support for an older version of the Amazon ECS agent through AWS Support, you may be asked to move to the latest version as a part of the support process\.
 
 
-| Amazon ECS\-optimized Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| Amazon ECS\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
-| 2017\.09\.g | 1\.16\.2 | 17\.09\.1\-ce | 1\.16\.2\-1 | 
-| 2017\.09\.f | 1\.16\.1 | 17\.06\.2\-ce | 1\.16\.1\-1 | 
-| 2017\.09\.e | 1\.16\.1 | 17\.06\.2\-ce | 1\.16\.1\-1 | 
-| 2017\.09\.d | 1\.16\.0 | 17\.06\.2\-ce | 1\.16\.0\-1 | 
+| 2017\.09\.d | 1\.6\.0 | 17\.06\.2\-ce | 1\.16\.0\-1 | 
 | 2017\.09\.c | 1\.15\.2 | 17\.06\.2\-ce | 1\.15\.1\-1 | 
 | 2017\.09\.b | 1\.15\.1 | 17\.06\.2\-ce | 1\.15\.1\-1 | 
 | 2017\.09\.a | 1\.15\.0 | 17\.06\.2\-ce | 1\.15\.0\-4 | 

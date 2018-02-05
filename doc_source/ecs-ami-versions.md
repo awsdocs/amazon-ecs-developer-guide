@@ -5,12 +5,9 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 We always recommend using the latest version of the Amazon ECS\-optimized AMI\. For more information, see [How to Launch the Latest Amazon ECS\-Optimized AMI](ecs-optimized_AMI_launch_latest.md)\.
 
 
-| Amazon ECS\-optimized Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| Amazon ECS\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
-| 2017\.09\.g | 1\.16\.2 | 17\.09\.1\-ce | 1\.16\.2\-1 | 
-| 2017\.09\.f | 1\.16\.1 | 17\.06\.2\-ce | 1\.16\.1\-1 | 
-| 2017\.09\.e | 1\.16\.1 | 17\.06\.2\-ce | 1\.16\.1\-1 | 
-| 2017\.09\.d | 1\.16\.0 | 17\.06\.2\-ce | 1\.16\.0\-1 | 
+| 2017\.09\.d | 1\.6\.0 | 17\.06\.2\-ce | 1\.16\.0\-1 | 
 | 2017\.09\.c | 1\.15\.2 | 17\.06\.2\-ce | 1\.15\.1\-1 | 
 | 2017\.09\.b | 1\.15\.1 | 17\.06\.2\-ce | 1\.15\.1\-1 | 
 | 2017\.09\.a | 1\.15\.0 | 17\.06\.2\-ce | 1\.15\.0\-4 | 

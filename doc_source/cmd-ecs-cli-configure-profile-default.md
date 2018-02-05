@@ -4,9 +4,6 @@
 
 Sets the Amazon ECS profile to be read from by default\.
 
-**Important**  
-Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
-
 ## Syntax<a name="cmd-ecs-cli-configure-profile-default-syntax"></a>
 
 **ecs\-cli configure profile default \-\-profile\-name *profile\_name***
