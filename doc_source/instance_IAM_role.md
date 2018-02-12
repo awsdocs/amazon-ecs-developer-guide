@@ -96,9 +96,9 @@ The Amazon ECS instance role is automatically created for you in the console fir
 
 1. In the navigation pane, choose **Roles** and then choose **Create role**\.
 
-1. Choose the **AWS service** role type, and then choose **EC2 Container Service**\.
+1. Choose the **AWS service** role type, and then choose **Elastic Container Service**\.
 
-1. Choose the **EC2 Container Service** use case and then **Next: Permissions**\.
+1. Choose the **Elastic Container Service** use case and then **Next: Permissions**\.
 
 1. In the **Attached permissions policy** section, select **AmazonEC2ContainerServiceforEC2Role** and then choose **Next: Review**\.
 

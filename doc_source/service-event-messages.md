@@ -60,6 +60,6 @@ This service is registered with a load balancer and the load balancer health che
 
 ### \(service *service\-name*\) is unable to consistently start tasks successfully\.<a name="service-event-messages-4"></a>
 
-This service contains tasks that have failed to start after consecutive attempts\. At this point, the service scheduler begins to incrementally back off on launching more tasks\. You should troubleshoot why your tasks are failing to launch\. For more information, see [Checking Stopped Tasks for Errors](stopped-task-errors.md)\.
+This service contains tasks that have failed to start after consecutive attempts\. At this point, the service scheduler begins to incrementally increase the time between retries\. You should troubleshoot why your tasks are failing to launch\. For more information, see [Service Throttle Logic](service-throttle-logic.md)\.
 
 After the service is updated, for example with an updated task definition, the service scheduler resumes normal behavior\.

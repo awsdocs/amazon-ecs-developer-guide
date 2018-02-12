@@ -54,7 +54,7 @@ The Amazon ECS container agent is included in the Amazon ECS\-optimized AMI and 
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.16.2 (998c9b5)"
+     "Version": "Amazon ECS Agent - v1.17.0 (761937f7)"
    }
    ```
 

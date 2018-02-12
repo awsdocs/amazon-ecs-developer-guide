@@ -9,5 +9,6 @@ The source code for the Amazon ECS CLI is [available on GitHub](https://github.c
 + [Installing the Amazon ECS CLI](ECS_CLI_installation.md)
 + [Configuring the Amazon ECS CLI](ECS_CLI_Configuration.md)
 + [Migrating Configuration Files](ECS_CLI_migrating_config_files.md)
-+ [Amazon ECS CLI Tutorial](ECS_CLI_tutorial.md)
++ [Tutorial: Creating a Cluster with a Fargate Task Using the ECS CLI](ECS_CLI_tutorial_fargate.md)
++ [Tutorial: Creating a Cluster with an EC2 Task Using the ECS CLI](ECS_CLI_tutorial_EC2.md)
 + [Amazon ECS Command Line Reference](ECS_CLI_reference.md)

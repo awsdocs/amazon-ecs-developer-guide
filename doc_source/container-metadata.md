@@ -1,4 +1,4 @@
-# Amazon ECS Container Metadata<a name="container-metadata"></a>
+# Amazon ECS Container Metadata File<a name="container-metadata"></a>
 
 Beginning with version 1\.15\.0 of the Amazon ECS container agent, various container metadata is available within ECS task containers\. By enabling this feature, you can query the information about a task, container, and container instance from within the container or from the container instance by reading the metadata file for each container\. The metadata file is created on the host instance and mounted in the container as a Docker volume\.
 

@@ -74,9 +74,9 @@ The `ec2:AuthorizeSecurityGroupIngress` rule is reserved for future use\. Amazon
 
 1. In the navigation pane, choose **Roles** and then choose **Create role**\. 
 
-1. In the **Select type of trusted entity** section, choose **EC2 Container Service**\.
+1. In the **Select type of trusted entity** section, choose **Elastic Container Service**\.
 
-1. In the **Select your use case** section, choose **EC2 Container Service** and then choose **Next: Permissions**\.
+1. In the **Select your use case** section, choose **Elastic Container Service** and then choose **Next: Permissions**\.
 
 1. In the **Attached permissions policy** section, select the **AmazonEC2ContainerServiceRole** policy and then choose **Next: Review**\.
 

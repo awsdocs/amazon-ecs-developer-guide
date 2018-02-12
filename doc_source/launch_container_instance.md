@@ -16,7 +16,7 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 **Note**  
 For Amazon ECS\-specific CoreOS installation instructions, see [https://coreos\.com/docs/running\-coreos/cloud\-providers/ecs/](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
-   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2017\.09\.g\-amazon\-ecs\-optimized** AMI\. 
+   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2017\.09\.h\-amazon\-ecs\-optimized** AMI\. 
 
    The current Amazon ECS–optimized AMI IDs by region are listed below for reference\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)

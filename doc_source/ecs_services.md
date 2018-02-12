@@ -12,12 +12,13 @@ In addition to maintaining the desired count of tasks in your service, you can o
 + [Creating a Service](create-service.md)
 + [Updating a Service](update-service.md)
 + [Deleting a Service](delete-service.md)
++ [Service Throttle Logic](service-throttle-logic.md)
 
 ## Service Concepts<a name="service_concepts"></a>
 
 + If a task in a service stops, the task is killed and a new task is launched\. This process continues until your service reaches the number of desired running tasks\.
 
-+ The service scheduler includes logic that throttles how often tasks are restarted if they repeatedly fail to launch\. If a task is stopped without having entered a `RUNNING` state, determined by the task having a `startedAt` time stamp, the service scheduler starts to incrementally slow down the launch attempts and will emit a service event message\. This behavior prevents unnecessary resources from being used for failed tasks, giving you a chance to resolve the issue\. After the service is updated, the service scheduler resumes normal behavior\. For more information, see [Service Event Messages](service-event-messages.md)\.
++ The service scheduler includes logic that throttles how often tasks are restarted if they repeatedly fail to start\. If a task is stopped without having entered a `RUNNING` state, determined by the task having a `startedAt` time stamp, the service scheduler starts to incrementally slow down the launch attempts and will emit a service event message\. This behavior prevents unnecessary resources from being used for failed tasks, giving you a chance to resolve the issue\. After the service is updated, the service scheduler resumes normal behavior\. For more information, see [Service Throttle Logic](service-throttle-logic.md) and [Service Event Messages](service-event-messages.md)\.
 
 + You can optionally run your service behind a load balancer\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
 

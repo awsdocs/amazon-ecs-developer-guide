@@ -72,9 +72,9 @@ The Amazon ECS task execution role is automatically created for you in the conso
 
 1. In the navigation pane, choose **Roles** and then choose **Create role**\. 
 
-1. In the **Select type of trusted entity** section, choose **EC2 Container Service**\.
+1. In the **Select type of trusted entity** section, choose **Elastic Container Service**\.
 
-1. For **Select your use case**, choose **EC2 Container Service Task**, then choose **Next: Permissions**\.
+1. For **Select your use case**, choose **Elastic Container Service Task**, then choose **Next: Permissions**\.
 
 1. In the **Attach permissions policy** section, search for **AmazonECSTaskExecutionRolePolicy** and select the policy and choose **Next: Review**\.
 

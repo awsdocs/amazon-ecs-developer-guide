@@ -10,7 +10,7 @@ When you attach a policy to a user or group of users, it allows or denies the us
 
 1. In the navigation pane, choose **Policies**, **Create policy**\. 
 
-1. On the **Visual editor** tab, choose **Choose a Service** and select **EC2 Container Service**\.
+1. On the **Visual editor** tab, choose **Choose a Service** and select **Elastic Container Service**\.
 
 1. Choose **Select actions** and then choose the actions to add to the policy\. For example policies, see [Amazon ECS IAM Policy Examples](IAMPolicyExamples.md)\.
 

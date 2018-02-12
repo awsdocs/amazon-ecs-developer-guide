@@ -14,6 +14,7 @@ The Amazon ECS container agent is installed on the AWS\-managed infrastructure u
 + [Amazon ECS Container Agent Configuration](ecs-agent-config.md)
 + [Automated Task and Image Cleanup](automated_image_cleanup.md)
 + [Private Registry Authentication](private-auth.md)
-+ [Amazon ECS Container Metadata](container-metadata.md)
++ [Amazon ECS Container Metadata File](container-metadata.md)
++ [Amazon ECS Task Metadata Endpoint](task-metadata-endpoint.md)
 + [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)
 + [HTTP Proxy Configuration](http_proxy_config.md)
