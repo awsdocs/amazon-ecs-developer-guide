@@ -1,6 +1,6 @@
 # Amazon ECS Clusters<a name="ECS_clusters"></a>
 
-An Amazon ECS cluster is a logical grouping of tasks or services\. When you first use Amazon ECS, a default cluster is created for you, but you can create multiple clusters in an account to keep your resources separate\.
+An Amazon ECS cluster is a logical grouping of tasks or services\. If you are running tasks or services that use the EC2 launch type, a cluster is also a grouping of container instances\. When you first use Amazon ECS, a default cluster is created for you, but you can create multiple clusters in an account to keep your resources separate\.
 
 
 + [Cluster Concepts](#cluster_concepts)

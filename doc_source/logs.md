@@ -31,20 +31,19 @@ Output:
 
 ## Amazon ECS `ecs-init` Log<a name="ecs-init-logs"></a>
 
-The `ecs-init` process stores logs at `/var/log/ecs/ecs-init.log.timestamp`\.
+The `ecs-init` process stores logs at `/var/log/ecs/ecs-init.log`\.
 
 ```
-cat /var/log/ecs/ecs-init.log.2015-04-22-20
+cat /var/log/ecs/ecs-init.log
 ```
 
 Output:
 
 ```
-2015-04-22T20:51:45Z [INFO] pre-start
-2015-04-22T20:51:45Z [INFO] Loading Amazon EC2 Container Service Agent into Docker
-2015-04-22T20:51:46Z [INFO] start
-2015-04-22T20:51:46Z [INFO] No existing agent container to remove.
-2015-04-22T20:51:46Z [INFO] Starting Amazon EC2 Container Service Agent
+2018-02-16T18:13:54Z [INFO] pre-start
+2018-02-16T18:13:56Z [INFO] start
+2018-02-16T18:13:56Z [INFO] No existing agent container to remove.
+2018-02-16T18:13:56Z [INFO] Starting Amazon Elastic Container Service Agent
 ```
 
 ## IAM Roles for Tasks Credential Audit Log<a name="task_iam_roles-logs"></a>

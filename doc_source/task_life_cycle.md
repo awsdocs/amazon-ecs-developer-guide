@@ -1,4 +1,4 @@
-# Task Life Cycle<a name="task_life_cycle"></a>
+# Task Lifecycle<a name="task_life_cycle"></a>
 
 When a task is started on a container instance, either manually or as part of a service, it can pass through several states before it finishes on its own or is stopped manually\. Some tasks are meant to run as batch jobs that naturally progress through from `PENDING` to `RUNNING` to `STOPPED`\. Other tasks, which can be part of a service, are meant to continue running indefinitely, or to be scaled up and down as needed\.
 
@@ -6,4 +6,4 @@ When task status changes are requested, such as stopping a task or updating the 
 
 ![\[Task Life Cycle\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/task-lifecycle.png)
 
-The center path shows the natural progression of a batch job that stops on its own\. A persistent task that is not meant to finish would also be on the center path, but it would stop at the `RUNNING:RUNNING` stage\. The paths to the right show what happens at a given state if an API call reaches the agent to stop the task or a container instance\. The paths to the left show what happens if the container instance a task is running on is removed, whether by forcefully deregistering it or by terminating the instance\.
+The center path shows the natural progression of a batch job that stops on its own\. A persistent task that is not meant to finish would also be on the center path, but it would stop at the `RUNNING:RUNNING` stage\. The paths to the right show what happens at a given state if an API call reaches the agent to stop the task or a container instance\. The paths to the left show what happens if the container instance on which a task is running is removed, whether by forcefully deregistering it or by terminating the instance\.

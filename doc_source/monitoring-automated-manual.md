@@ -10,7 +10,7 @@ You can use the following automated monitoring tools to watch Amazon ECS and rep
 
   You can use CloudWatch alarms to scale in and scale out the container instances based on CloudWatch metrics, such as cluster memory reservation\. For more information, see [Tutorial: Scaling Container Instances with CloudWatch Alarms](cloudwatch_alarm_autoscaling.md)
 
-+ Amazon CloudWatch Logs – Monitor, store, and access the log files from the containers in your Amazon ECS tasks by specifying the `awslogs` log driver in your task definitions\. This method for accessing logs must be used for tasks using the Fargate launch type, but also works with tasks using the EC2 launch tyep\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.
++ Amazon CloudWatch Logs – Monitor, store, and access the log files from the containers in your Amazon ECS tasks by specifying the `awslogs` log driver in your task definitions\. This method for accessing logs must be used for tasks using the Fargate launch type, but also works with tasks using the EC2 launch type\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.
 
   You can also monitor, store, and access the operating system and Amazon ECS container agent log files from your Amazon ECS container instances\. This method for accessing logs can be used for containers using the EC2 launch type\. For more information, see [Using CloudWatch Logs with Container Instances](using_cloudwatch_logs.md)\. 
 

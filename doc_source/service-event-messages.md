@@ -35,7 +35,8 @@ Not enough ports
 If your task uses fixed host port mapping \(for example, your task uses port 80 on the host for a web server\), you must have at least one container instance per task, because only one container can use a single host port at a time\. You should add container instances to your cluster or reduce your number of desired tasks\.
 
 Not enough memory  
-If your task definition specifies 1000 MiB of memory, and the container instances in your cluster each have 1024 MiB of memory, you can only run one copy of this task per container instance\. You can experiment with less memory in your task definition so that you could launch more than one task per container instance, or launch more container instances into your cluster\.
+If your task definition specifies 1000 MiB of memory, and the container instances in your cluster each have 1024 MiB of memory, you can only run one copy of this task per container instance\. You can experiment with less memory in your task definition so that you could launch more than one task per container instance, or launch more container instances into your cluster\.  
+If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.
 
 Not enough CPU  
 A container instance has 1,024 CPU units for every CPU core\. If your task definition specifies 1,000 CPU units, and the container instances in your cluster each have 1,024 CPU units, you can only run one copy of this task per container instance\. You can experiment with fewer CPU units in your task definition so that you could launch more than one task per container instance, or launch more container instances into your cluster\.

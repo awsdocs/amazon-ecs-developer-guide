@@ -114,7 +114,7 @@ The following JSON response is for a single\-container task\.
 {
   "Cluster": "default",
   "TaskARN": "arn:aws:ecs:us-west-2:012345678910:task/9781c248-0edd-4cdb-9a93-f63cb662a5d3",
-  "Family": "ngingx",
+  "Family": "nginx",
   "Revision": "5",
   "DesiredStatus": "RUNNING",
   "KnownStatus": "RUNNING",
@@ -122,14 +122,14 @@ The following JSON response is for a single\-container task\.
     {
       "DockerId": "731a0d6a3b4210e2448339bc7015aaa79bfe4fa256384f4102db86ef94cbbc4c",
       "Name": "~internal~ecs~pause",
-      "DockerName": "ecs-ngingx-5-internalecspause-acc699c0cbf2d6d11700",
+      "DockerName": "ecs-nginx-5-internalecspause-acc699c0cbf2d6d11700",
       "Image": "amazon/amazon-ecs-pause:0.1.0",
       "ImageID": "",
       "Labels": {
         "com.amazonaws.ecs.cluster": "default",
         "com.amazonaws.ecs.container-name": "~internal~ecs~pause",
         "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:012345678910:task/9781c248-0edd-4cdb-9a93-f63cb662a5d3",
-        "com.amazonaws.ecs.task-definition-family": "ngingx",
+        "com.amazonaws.ecs.task-definition-family": "nginx",
         "com.amazonaws.ecs.task-definition-version": "5"
       },
       "DesiredStatus": "RESOURCES_PROVISIONED",
@@ -153,14 +153,14 @@ The following JSON response is for a single\-container task\.
     {
       "DockerId": "43481a6ce4842eec8fe72fc28500c6b52edcc0917f105b83379f88cac1ff3946",
       "Name": "nginx-curl",
-      "DockerName": "ecs-ngingx-5-nginx-curl-ccccb9f49db0dfe0d901",
+      "DockerName": "ecs-nginx-5-nginx-curl-ccccb9f49db0dfe0d901",
       "Image": "nrdlngr/nginx-curl",
       "ImageID": "sha256:2e00ae64383cfc865ba0a2ba37f61b50a120d2d9378559dcd458dc0de47bc165",
       "Labels": {
         "com.amazonaws.ecs.cluster": "default",
         "com.amazonaws.ecs.container-name": "nginx-curl",
         "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:012345678910:task/9781c248-0edd-4cdb-9a93-f63cb662a5d3",
-        "com.amazonaws.ecs.task-definition-family": "ngingx",
+        "com.amazonaws.ecs.task-definition-family": "nginx",
         "com.amazonaws.ecs.task-definition-version": "5"
       },
       "DesiredStatus": "RUNNING",

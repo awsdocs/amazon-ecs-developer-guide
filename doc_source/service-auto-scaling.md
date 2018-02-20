@@ -12,9 +12,6 @@ Service Auto Scaling is not currently available in the ECS console in the follow
 
 | Region Name | Region | 
 | --- | --- | 
-| Asia Pacific \(Mumbai\) | ap\-south\-1 | 
-| South America \(Sao Paulo\) | sa\-east\-1 | 
-| EU \(Paris\) | eu\-west\-3 | 
 | China \(Beijing\) | cn\-north\-1 | 
 
 Amazon ECS Service Auto Scaling supports the following types of scaling policies:

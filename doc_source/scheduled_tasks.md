@@ -4,6 +4,9 @@ You can run Amazon ECS tasks on a `cron`\-like schedule using CloudWatch Events 
 
 If you have tasks to run at set intervals in your cluster, such as a backup operation or a log scan, you can use the Amazon ECS console to create a CloudWatch Events rule that runs one or more tasks in your cluster at the specified times\. Your scheduled event rule can be set to either a specific interval \(run every *N* minutes, hours, or days\), or for more complicated scheduling, you can use a `cron` expression\. For more information, see [Schedule Expressions for Rules](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) in the *Amazon CloudWatch Events User Guide*\.
 
+**Note**  
+Task definitions that use the `awsvpc` network mode are not supported for scheduled tasks\.
+
 **Creating a scheduled task**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
@@ -27,12 +30,16 @@ If you have tasks to run at set intervals in your cluster, such as a backup oper
    1. For **Target ID**, enter a unique identifier for your target\. Up to 64 letters, numbers, periods, hyphens, and underscores are allowed\.
 
    1. For **Task definition**, choose the family and revision \(family:revision\) of the task definition to run for this target\.
+**Note**  
+Task definitions that use the `awsvpc` network mode are not supported for scheduled tasks\.
 
    1. For **Number of tasks**, enter the number of instantiations of the specified task definition to run on your cluster when the rule executes\.
 
-   1. \(Optional\) For **Task role override**, choose the IAM role to use for the task in your target, instead of the task definition default\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\. Only roles with the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
+   1. \(Optional\) For **Task role override**, choose the IAM role to use for the task in your target, instead of the task definition default\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\. Only roles with the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\. You must add `iam:PassRole` permissions for any task role overrides to the CloudWatch IAM role\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 
    1. For **CloudWatch Events IAM role for this target**, choose an existing CloudWatch Events service role \(`ecsEventsRole`\) that you may have already created\. Or, choose **Create new role** to create the required IAM role that allows CloudWatch Events to make calls to Amazon ECS to run tasks on your behalf\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
+**Important**  
+If your scheduled tasks require the use of the task execution role, or if they use a task role override, then you must add `iam:PassRole` permissions for your task execution role and/or task role override to the CloudWatch IAM role\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 
    1. \(Optional\) In the **Container overrides** section, you can expand individual containers and override the command and/or environment variables for that container that are defined in the task definition\.
 

@@ -110,7 +110,7 @@ If ten tasks are running on this cluster that each consume 1,024 CPU units and 2
 
 ## Service Utilization<a name="service_utilization"></a>
 
-Service utilization is measured as the percentage of CPU and memory that is used by the Amazon ECS tasks that belong to a service on a cluster when compared to the CPU and memory that is defined in the service's task definition\. This metric is compatible with services with tasks using both the Standard and Fargate launch types\.
+Service utilization is measured as the percentage of CPU and memory that is used by the Amazon ECS tasks that belong to a service on a cluster when compared to the CPU and memory that is specified in the service's task definition\. This metric is compatible with services with tasks using both the Standard and Fargate launch types\.
 
 ```
                                       (Total CPU units used by tasks in service) x 100

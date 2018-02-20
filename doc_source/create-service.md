@@ -72,7 +72,7 @@ Only private subnets are supported for the `awsvpc` network mode\. Because tasks
 
 1. For **Security groups**, a security group has been created for your service's tasks, which allows HTTP traffic from the internet \(0\.0\.0\.0/0\)\. To edit the name or the rules of this security group, or to choose an existing security group, choose **Edit** and then modify your security group settings\.
 
-1. For **Auto\-assign Public IP**, choose whether to have your tasks receive a public IP address\.
+1. For **Auto\-assign Public IP**, choose whether to have your tasks receive a public IP address\. If you are using Fargate tasks, a public IP address needs to be assigned to the task's elastic network interface, with a route to the internet, or a NAT gateway that can route requests to the internet, in order for the task to pull container images\.
 
 ### \(Optional\) Health Check Grace Period<a name="service-health-check-grace-period"></a>
 
@@ -161,7 +161,15 @@ If you choose to use an existing `ecsServiceRole` IAM role, you must verify that
 
 ## \(Optional\) Configuring Your Service to Use Service Auto Scaling<a name="service-configure-auto-scaling"></a>
 
-Your Amazon ECS service can optionally be configured to use Auto Scaling to adjust its desired count up or down in response to CloudWatch alarms\. For more information, see [Service Auto Scaling](service-auto-scaling.md)\.
+Your Amazon ECS service can optionally be configured to use Auto Scaling to adjust its desired count up or down in response to CloudWatch alarms\. 
+
+Amazon ECS Service Auto Scaling supports the following types of scaling policies:
+
++ [Target Tracking Scaling Policies](service-autoscaling-targettracking.md)—Increase or decrease  the number of tasks that your service runs based on a target value for a specific metric\. This is similar to the way that your thermostat maintains the temperature of your home\. You select temperature and the thermostat does the rest\.
+
++ [Step Scaling Policies](service-autoscaling-stepscaling.md)—Increase or decrease the number of tasks that your service runs based on a set of scaling adjustments, known as step adjustments, which vary based on the size of the alarm breach\.
+
+For more information, see [Service Auto Scaling](service-auto-scaling.md)\.
 
 **To configure basic Service Auto Scaling parameters**
 
@@ -177,11 +185,35 @@ Your Amazon ECS service can optionally be configured to use Auto Scaling to adju
 
 1. For **IAM role for Service Auto Scaling**, choose an IAM role to authorize the Application Auto Scaling service to adjust your service's desired count on your behalf\. If you have not previously created such a role, choose **Create new role** and the role is created for you\. For future reference, the role that is created for you is called `ecsAutoscaleRole`\. For more information, see [Amazon ECS Service Auto Scaling IAM Role](autoscale_IAM_role.md)\.
 
-**To configure scaling policies for your service**
+1. The following procedures provide steps for creating either target tracking or step scaling policies for your service\. Choose your desired scaling policy type\.
 
-These steps help you create scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. You can create a **Scale out** alarm to increase the desired count of your service, and a **Scale in** alarm to decrease the desired count of your service\.
+**To configure target tracking scaling policies for your service**
 
-1. For **Policy name**, enter a descriptive name for your policy, or use the default policy name that is already entered\.
+These steps help you create target tracking scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. You can create a scale\-out alarm to increase the desired count of your service, and a scale in alarm to decrease the desired count of your service\.
+
+1. For **Scaling policy type**, choose **Target tracking**\.
+
+1. For **Policy name**, enter a descriptive name for your policy\.
+
+1. For **ECS service metric**, choose the metric you want to track\.
+
+1. For **Target value**, enter the metric value you want the policy to maintain\.
+
+1. For **Scale\-out cooldown period**, enter the amount of time, in seconds, after a scale\-out activity completes before another scale\-out activity can start\. During this time, resources that have been launched do not contribute to the Auto Scaling group metrics\.
+
+1. For **Scale\-in cooldown period**, enter the amount of time, in seconds, after a scale in activity completes before another scale in activity can start\. During this time, resources that have been launched do not contribute to the Auto Scaling group metrics\.
+
+1. \(Optional\) Choose **Disable scale\-in**, if you wish to disable the scale\-in actions for this policy\. This allows you to create a separate scaling policy for scale\-in later if you would like\.
+
+1. Choose **Next step**\.
+
+**To configure step scaling policies for your service**
+
+These steps help you create step scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. You can create a **Scale out** alarm to increase the desired count of your service, and a **Scale in** alarm to decrease the desired count of your service\.
+
+1. For **Scaling policy type**, choose **Step scaling**\.
+
+1. For **Policy name**, enter a descriptive name for your policy\.
 
 1. For **Execute policy when**, select the CloudWatch alarm that you want to use to scale your service up or down\.
 
@@ -221,6 +253,8 @@ These steps help you create scaling policies and CloudWatch alarms that can be u
 1. For **Cooldown period**, enter the number of seconds between scaling actions\.
 
 1. Repeat [[ERROR] BAD/MISSING LINK TEXT](#policy-name-step) through [[ERROR] BAD/MISSING LINK TEXT](#cooldown-period-step) for the **Scale in** policy and choose **Save** to save your Service Auto Scaling configuration\.
+
+1. Choose **Next step**\.
 
 ## Review and Create Your Service<a name="create-service-review"></a>
 

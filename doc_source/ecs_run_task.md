@@ -22,23 +22,23 @@ To keep a specified number of tasks running or to place your tasks behind a load
 
 1. For **Cluster**, choose the cluster to use\. For **Number of tasks**, type the number of tasks to launch with this task definition\. For **Task Group**, type the name of the task group\.
 
-1. For **Cluster VPC**, choose the VPC that your tasks will use\. Ensure that the VPC you choose was not configured to require dedicated hardware tenancy as that is not supported by Fargate tasks\.
+1. For **Cluster VPC**, choose the VPC for your tasks to use\. Ensure that the VPC that you choose is not configured to require dedicated hardware tenancy, as that is not supported by Fargate tasks\.
 
 1. For **Subnets**, choose the available subnets for your task\.
 
 1. For **Security groups**, a security group has been created for your task that allows HTTP traffic from the internet \(0\.0\.0\.0/0\)\. To edit the name or the rules of this security group, or to choose an existing security group, choose **Edit** and then modify your security group settings\.
 
-1. For **Auto\-assign public IP**, choose **ENABLED** if you want the ENI attached to the Fargate task to be assigned a public IP\. This is required if your task needs outbound network access, for example to pull an image\. If outbound network access is not required then you can choose **DISABLED**\.
+1. For **Auto\-assign public IP**, choose **ENABLED** if you want the elastic network interface attached to the Fargate task to be assigned a public IP address\. This is required if your task needs outbound network access, for example to pull an image\. If outbound network access is not required, then you can choose **DISABLED**\.
 
 1. \(Optional\) To send command or environment variable overrides to one or more containers in your task definition, or to specify an IAM role task override, choose **Advanced Options** and complete the following steps:
 
    1. For **Task Role Override**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
-      Note that only roles with the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
+      Only roles with the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
    1. For **Task Execution Role Override**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
-      Note that only roles with the **Amazon EC2 Container Service Task Execution Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
+      Only roles with the **Amazon EC2 Container Service Task Execution Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
    1. For **Container Overrides**, choose a container to which to send a command or environment variable override\.
 
@@ -111,11 +111,11 @@ Only private subnets are supported for the `awsvpc` network mode\. Because tasks
 
    1. For **Task Role Override**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
-      Note that only roles with the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
+      Only roles with the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
    1. For **Task Execution Role Override**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
-      Note that only roles with the **Amazon EC2 Container Service Task Execution Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
+      Only roles with the **Amazon EC2 Container Service Task Execution Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
    1. For **Container Overrides**, choose a container to which to send a command or environment variable override\.
 

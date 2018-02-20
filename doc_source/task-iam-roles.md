@@ -85,6 +85,9 @@ You must create an IAM policy for your tasks to use that specifies the permissio
 
 You must also create a role for your tasks to use before you can specify it in your task definitions\. You can create the role using the **Amazon Elastic Container Service Task Role** service role in the IAM console\. Then you can attach your specific IAM policy to the role that gives the containers in your task the permissions you desire\. The procedures below describe how to do this\.
 
+**Note**  
+To view the trust relationship for this role, see [**Amazon Elastic Container Service Task Role**](task_IAM_role.md)\.
+
 If you have multiple task definitions or services that require IAM permissions, you should consider creating a role for each specific task definition or service with the minimum required permissions for the tasks to operate so that you can minimize the access that you provide for each task\. 
 
 **To create an IAM policy for your tasks**
@@ -128,6 +131,8 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
 1. In the navigation pane, choose **Roles** and then choose **Create New Role**\. 
 
 1. In the **Select Role Type** section, choose **Select** next to the **Amazon Elastic Container Service Task Role ** service role\.
+**Note**  
+To view the trust relationship for this role, see [**Amazon Elastic Container Service Task Role**](task_IAM_role.md)\.
 
 1. In the **Attach Policy** section, select the policy you want to use for your tasks \(in this example `AmazonECSTaskS3BucketPolicy`, and then choose **Next Step**\.
 
