@@ -28,7 +28,7 @@ The `AmazonECSTaskExecutionRolePolicy` policy is shown below\.
 }
 ```
 
-The Amazon ECS task execution role is automatically created for you in the console first\-run experience; however, you should manually attach the managed IAM policy for tasks to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS task execution role and to attach the managed IAM policy if needed\.
+The Amazon ECS task execution role is automatically created for you in the console first\-run experience; however, you should manually attach the managed IAM policy for tasks to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS task execution role and to attach the managed IAM policy if needed\.<a name="procedure_check_execution_role"></a>
 
 **To check for the `ecsTaskExecutionRole` in the IAM console**
 

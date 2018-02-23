@@ -50,7 +50,7 @@ If you omit the `ecs:CreateCluster` line, the Amazon ECS container agent will no
 
 The `ecs:Poll` line in the above policy is used to grant the agent permission to connect with the Amazon ECS service to report status and get commands\.
 
-The Amazon ECS instance role is automatically created for you in the console first\-run experience; however, you should manually attach the managed IAM policy for container instances to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS instance role and to attach the managed IAM policy if needed\.
+The Amazon ECS instance role is automatically created for you in the console first\-run experience; however, you should manually attach the managed IAM policy for container instances to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS instance role and to attach the managed IAM policy if needed\.<a name="procedure_check_instance_role"></a>
 
 **To check for the `ecsInstanceRole` in the IAM console**
 

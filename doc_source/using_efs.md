@@ -165,7 +165,7 @@ You can use an Amazon EC2 user data script to bootstrap an Amazon ECS–optimize
 
 1. Follow the container instance launch instructions at [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
 
-1. On [[ERROR] BAD/MISSING LINK TEXT](launch_container_instance.md#instance-launch-user-data-step), pass the following user data to configure your instance\. If you are not using the `default` cluster, be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name\.
+1. On [Step 7](launch_container_instance.md#instance-launch-user-data-step), pass the following user data to configure your instance\. If you are not using the `default` cluster, be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name\.
 
    ```
    Content-Type: multipart/mixed; boundary="==BOUNDARY=="

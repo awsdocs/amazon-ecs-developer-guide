@@ -51,7 +51,7 @@ After you have attached the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRol
 
 **To manually install the SSM agent on existing Amazon ECS\-optimized AMI container instances**
 
-1. Connect to your container instance\.
+1. [Connect to your container instance\.](instance-connect.md)
 
 1. Install the SSM agent RPM\. The SSM agent is available in all regions that Amazon ECS is available in, and each region has its own region\-specific download URL; the example command below works for all regions that Amazon ECS supports, but you can avoid cross\-region data transfer costs for the RPM download by substituting the region of your container instance\.
 
@@ -61,7 +61,7 @@ After you have attached the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRol
 
 **To install the SSM agent on new instance launches with Amazon EC2 user data**
 
-+ Launch one or more container instances by following the procedure in [Launching an Amazon ECS Container Instance](launch_container_instance.md), but in [[ERROR] BAD/MISSING LINK TEXT](launch_container_instance.md#instance-launch-user-data-step), copy and paste the user data script below into the **User data** field\. You can also add the commands from this user data script to another existing script that you may have to perform other tasks, such as setting the cluster name for the instance to register into\.
++ Launch one or more container instances by following the procedure in [Launching an Amazon ECS Container Instance](launch_container_instance.md), but in [Step 7](launch_container_instance.md#instance-launch-user-data-step), copy and paste the user data script below into the **User data** field\. You can also add the commands from this user data script to another existing script that you may have to perform other tasks, such as setting the cluster name for the instance to register into\.
 **Note**  
 The user data script below installs the jq JSON parser and uses that to determine the region of the container instance\. Then it downloads and installs the SSM agent\.
 
@@ -89,7 +89,7 @@ For more information about Run Command, see [Manage Amazon EC2 Instances Remotel
 
 One of the most common use cases for Run Command on Amazon ECS container instances is to update the instance software on your entire fleet of container instances at once, simultaneously\.
 
-1. Attach the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRole`\.
+1. [Attach the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRole`\.](#run_command_iam_policy)
 
 1. Install the SSM agent on your container instances\. For more information, see [Installing the SSM Agent on the Amazon ECS\-optimized AMI](#install_ssm_agent)\.
 

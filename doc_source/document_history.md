@@ -9,6 +9,7 @@ The following table describes the important changes to the documentation since t
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+|  AWS Fargate  |  2014\-11\-13  |  Added overview for Amazon ECS with AWS Fargate\. For more information, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\.  | 22 February 2018 | 
 |  Amazon ECS Task Metadata Endpoint  |  2014\-11\-13  |  Beginning with version 1\.17\.0 of the Amazon ECS container agent, various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) are available to tasks that use the `awsvpc` network mode at an HTTP endpoint that is provided by the Amazon ECS container agent\. For more information, see [Amazon ECS Task Metadata Endpoint](task-metadata-endpoint.md)\.  | 8 February 2018 | 
 |  Amazon ECS Service Auto Scaling using target tracking policies  |  2014\-11\-13  |  Added support for ECS Service Auto Scaling using target tracking policies in the Amazon ECS console\. For more information, see [Target Tracking Scaling Policies](service-autoscaling-targettracking.md)\.  | 8 February 2018 | 
 |  Amazon ECS CLI v1\.3\.0   |  2014\-11\-13  |  New version of the Amazon ECS CLI released, which added the following functionality: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html) For more information about the updated ECS CLI syntax, see [Amazon ECS Command Line Reference](ECS_CLI_reference.md)\.  | 19 January 2018 | 

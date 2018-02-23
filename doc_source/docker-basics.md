@@ -101,7 +101,7 @@ Amazon ECS task definitions use Docker images to launch containers on the contai
 
    This Dockerfile uses the Ubuntu 12\.04 image\. The `RUN` instructions update the package caches, install some software packages for the web server, and then write the "Hello World\!" content to the web server's document root\. The `EXPOSE` instruction exposes port 80 on the container, and the `CMD` instruction starts the web server\.
 
-1. Build the Docker image from your Dockerfile\.
+1. <a name="sample-docker-build-step"></a>Build the Docker image from your Dockerfile\.
 **Note**  
 Some versions of Docker may require the full path to your Dockerfile in the following command, instead of the relative path shown below\.
 

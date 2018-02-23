@@ -25,9 +25,9 @@ If you stop or terminate a container instance with running tasks, then the tasks
 Container instance deregistration forced by user  
 If you force the deregistration of a container instance with running tasks, then the tasks are given this stopped reason\.  
 Essential container in task exited  
-Containers marked as `essential` in task definitions cause a task to stop if they exit or die\. When an essential container exiting is the cause of a stopped task, the [[ERROR] BAD/MISSING LINK TEXT](#status-reason-step) can provide more diagnostic information as to why the container stopped\.
+Containers marked as `essential` in task definitions cause a task to stop if they exit or die\. When an essential container exiting is the cause of a stopped task, the [Step 6](#status-reason-step) can provide more diagnostic information as to why the container stopped\.
 
-1. If you have a container that has stopped, expand the container and inspect the **Status reason** row to see what caused the task state to change\.  
+1. <a name="status-reason-step"></a>If you have a container that has stopped, expand the container and inspect the **Status reason** row to see what caused the task state to change\.  
 ![\[Stopped container error\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/stopped_container_status_reason.png)
 
    In the previous example, the container image name cannot be found\. This can happen if you misspell the image name\.

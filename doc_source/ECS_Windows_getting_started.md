@@ -49,7 +49,7 @@ You can launch Windows container instance using the AWS Management Console, as d
 
 1. On the **Choose an Amazon Machine Image \(AMI\)** page, choose **Community AMIs**\.
 
-1. Type **ECS\_Optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2018\.01\.10** AMI\. 
+1. Type **ECS\_Optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2018\.02\.21** AMI\. 
 
    The current Amazon ECS\-optimized Windows AMI IDs by region are listed below for reference\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_Windows_getting_started.html)
@@ -66,7 +66,7 @@ Container instances need external network access to communicate with the Amazon 
 **Important**  
 If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent will not connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
-1. Expand the **Advanced Details** section and paste the provided user data PowerShell script into the **User data** field\. By default, this script registers your container instance into the `windows` cluster that you created earlier\. To launch into another cluster instead of `windows`, replace the red text in the script below with the name of your cluster\.
+1. <a name="windows-instance-launch-user-data-step"></a>Expand the **Advanced Details** section and paste the provided user data PowerShell script into the **User data** field\. By default, this script registers your container instance into the `windows` cluster that you created earlier\. To launch into another cluster instead of `windows`, replace the red text in the script below with the name of your cluster\.
 **Note**  
 The `-EnableTaskIAMRole` option is required to enable IAM roles for tasks\. For more information, see [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)\.
 

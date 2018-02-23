@@ -150,7 +150,7 @@ If the previous command does not return the `ECS_DATADIR` environment variable, 
    ecs start/running, process 2959
    ```
 
-1. \(Optional\) You can verify that the agent is running and see some information about your new container instance by querying the agent introspection API operation\. For more information, see [[ERROR] BAD/MISSING LINK TEXT](ecs-agent-introspection.md)\.
+1. \(Optional\) You can verify that the agent is running and see some information about your new container instance by querying the agent introspection API operation\. For more information, see [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)\.
 
    ```
    curl http://localhost:51678/v1/metadata
@@ -162,6 +162,6 @@ If the previous command does not return the `ECS_DATADIR` environment variable, 
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.17.0 (761937f7)"
+     "Version": "Amazon ECS Agent - v1.17.1 (c051f10b)"
    }
    ```

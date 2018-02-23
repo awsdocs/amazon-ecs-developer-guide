@@ -16,7 +16,7 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 **Note**  
 For Amazon ECS\-specific CoreOS installation instructions, see [https://coreos\.com/docs/running\-coreos/cloud\-providers/ecs/](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
-   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2017\.09\.h\-amazon\-ecs\-optimized** AMI\. 
+   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2017\.09\.i\-amazon\-ecs\-optimized** AMI\. 
 
    The current Amazon ECS–optimized AMI IDs by region are listed below for reference\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
@@ -45,7 +45,7 @@ Container instances need external network access to communicate with the Amazon 
 **Important**  
 If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent cannot connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
-   1. \(Optional\) Configure your Amazon ECS container instance with user data, such as the agent environment variables from [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\. Amazon EC2 user data scripts are executed only one time, when the instance is first launched\.
+   1. <a name="instance-launch-user-data-step"></a>\(Optional\) Configure your Amazon ECS container instance with user data, such as the agent environment variables from [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\. Amazon EC2 user data scripts are executed only one time, when the instance is first launched\.
 
       By default, your container instance launches into your default cluster\. To launch into a non\-default cluster, choose the **Advanced Details** list\. Then, paste the following script into the **User data** field, replacing *your\_cluster\_name* with the name of your cluster\.
 

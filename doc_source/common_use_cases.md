@@ -47,7 +47,7 @@ Service discovery is a key component of most distributed systems and service\-or
 
 ### Authorization and Secrets Management<a name="microservices_secrets"></a>
 
-Managing secrets, such as database credentials for an application, has always been a challenging issue\. The [Managing Secrets for Amazon ECS Applications Using Parameter Store and IAM Roles for Tasks](http://aws.amazon.com/blogs/compute/managing-secrets-for-amazon-ecs-applications-using-parameter-store-and-iam-roles-for-tasks/) post focuses on how to integrate the IAM roles for tasks functionality of Amazon ECS with the AWS Systems Manager parameter store\. Parameter store provides a centralized store to manage your configuration data, whether it's plaintext data such as database strings or secrets such as passwords, encrypted through AWS Key Management Service\.
+Managing secrets, such as database credentials for an application, has always been a challenging issue\. The [Managing Secrets for Amazon ECS Applications Using Parameter Store and IAM Roles for Tasks](http://aws.amazon.com/blogs/compute/managing-secrets-for-amazon-ecs-applications-using-parameter-store-and-iam-roles-for-tasks/) post focuses on how to integrate the [IAM roles for tasks](task-iam-roles.md) functionality of Amazon ECS with the AWS Systems Manager parameter store\. Parameter store provides a centralized store to manage your configuration data, whether it's plaintext data such as database strings or secrets such as passwords, encrypted through AWS Key Management Service\.
 
 ### Logging<a name="microservices_logging"></a>
 

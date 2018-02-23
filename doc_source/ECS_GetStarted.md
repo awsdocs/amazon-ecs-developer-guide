@@ -5,7 +5,7 @@ Let's get started with Amazon Elastic Container Service \(Amazon ECS\) by creati
 The Amazon ECS first run wizard will guide you through the process to get started\. The wizard gives you the option of creating a cluster and launching our sample web application, or if you already have a Docker image you would like to launch in Amazon ECS, you can create a task definition with that image and use that for your cluster instead\.
 
 **Important**  
-Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard](IAMPolicyExamples.md#first-run-permissions) IAM policy example\.
+Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard](IAMPolicyExamples.md#first-run-permissions) IAM policy example\.<a name="first-run-create-task-def"></a>
 
 **Step 1: Create a container and task definition**
 

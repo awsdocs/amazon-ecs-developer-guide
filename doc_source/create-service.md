@@ -34,7 +34,7 @@ This procedure covers creating a service with the basic service definition param
 
    + **Number of tasks**, type the number of tasks to launch and maintain on your cluster\.
 **Note**  
-If your launch type is `EC2`, and your task definition uses static host port mappings on your container instances, then you need at least one container instance with the specified port available in your cluster for each task in your service\. This restriction does not apply if your task definition uses dynamic host port mappings with the `bridge` network mode\. For more information, see portMappings\.
+If your launch type is `EC2`, and your task definition uses static host port mappings on your container instances, then you need at least one container instance with the specified port available in your cluster for each task in your service\. This restriction does not apply if your task definition uses dynamic host port mappings with the `bridge` network mode\. For more information, see [portMappings](task_definition_parameters.md#ContainerDefinition-portMappings)\.
 
    + **Minimum healthy percent**: Specify a lower limit on the number of your service's tasks that must remain in the `RUNNING` state during a deployment, as a percentage of the service's desired number of tasks \(rounded up to the nearest integer\)\. For example, if your service has a desired number of four tasks and a minimum healthy percent of 50%, the scheduler may stop two existing tasks to free up cluster capacity before starting two new tasks\. Tasks for services that do not use a load balancer are considered healthy if they are in the `RUNNING` state\. Tasks for services that do use a load balancer are considered healthy if they are in the `RUNNING` state and when the container instance on which it is hosted is reported as healthy by the load balancer\. The default value for the minimum healthy percent is 50% in the console, and 100% with the AWS CLI or SDKs\.
 
@@ -60,7 +60,7 @@ If your launch type is `EC2`, and your task definition uses static host port map
 
 ### VPC and Security Groups<a name="service-awsvpc"></a>
 
-If your service's task definition uses the `awsvpc` network mode, you must configure a VPC, subnet, and security group settings for your service\. For more information, see [[ERROR] BAD/MISSING LINK TEXT](task-networking.md)\.
+If your service's task definition uses the `awsvpc` network mode, you must configure a VPC, subnet, and security group settings for your service\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
 
 **To configure VPC and security group settings for your service**
 
@@ -111,7 +111,7 @@ If you choose to use an existing `ecsServiceRole` IAM role, you must verify that
 
 1. For **ELB Name**, choose the name of the load balancer to use with your service\. Only load balancers that correspond to the load balancer type you selected earlier are visible here\.
 
-1. The next step depends on the load balancer type for your service\. If you've chosen an Application Load Balancer, follow the steps in [To configure an Application Load Balancer](#create-service-configure-alb)\. If you've chosen a Network Load Balancer, follow the steps in [To configure a Network Load Balancer](#create-service-configure-nlb)\. If you've chosen a Classic Load Balancer, follow the steps in [To configure a Classic Load Balancer](#create-service-configure-clb)\.
+1. The next step depends on the load balancer type for your service\. If you've chosen an Application Load Balancer, follow the steps in [To configure an Application Load Balancer](#create-service-configure-alb)\. If you've chosen a Network Load Balancer, follow the steps in [To configure a Network Load Balancer](#create-service-configure-nlb)\. If you've chosen a Classic Load Balancer, follow the steps in [To configure a Classic Load Balancer](#create-service-configure-clb)\.<a name="create-service-configure-alb"></a>
 
 **To configure an Application Load Balancer**
 
@@ -131,7 +131,7 @@ If you choose to use an existing `ecsServiceRole` IAM role, you must verify that
 
    + For **Health check path**, enter the path to which the load balancer should send health check pings\.
 
-1. When you are finished configuring your Application Load Balancer, choose **Next step**\.
+1. When you are finished configuring your Application Load Balancer, choose **Next step**\.<a name="create-service-configure-nlb"></a>
 
 **To configure a Network Load Balancer**
 
@@ -149,7 +149,7 @@ If you choose to use an existing `ecsServiceRole` IAM role, you must verify that
 
    + For **Health check path**, enter the path to which the load balancer should send health check pings\.
 
-1. When you are finished configuring your Network Load Balancer, choose **Next Step**\.
+1. When you are finished configuring your Network Load Balancer, choose **Next Step**\.<a name="create-service-configure-clb"></a>
 
 **To configure a Classic Load Balancer**
 
@@ -211,7 +211,7 @@ These steps help you create target tracking scaling policies and CloudWatch alar
 
 These steps help you create step scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. You can create a **Scale out** alarm to increase the desired count of your service, and a **Scale in** alarm to decrease the desired count of your service\.
 
-1. For **Scaling policy type**, choose **Step scaling**\.
+1. <a name="policy-name-step"></a>For **Scaling policy type**, choose **Step scaling**\.
 
 1. For **Policy name**, enter a descriptive name for your policy\.
 
@@ -235,7 +235,7 @@ These steps help you create step scaling policies and CloudWatch alarms that can
 
    1. Choose **Save** to save your alarm\.
 
-1. For **Scaling action**, enter the following information to configure how your service responds to the alarm:
+1. <a name="scaling-action-step-adjustment"></a>For **Scaling action**, enter the following information to configure how your service responds to the alarm:
 
    + Choose whether to add to, subtract from, or set a specific desired count for your service\.
 
@@ -246,13 +246,13 @@ These steps help you create step scaling policies and CloudWatch alarms that can
    + Enter the lower boundary of your step scaling adjustment\. By default, for your first scaling action, this value is the metric amount where your alarm is triggered\. For example, the following scaling action adds 100% of the existing desired count when the CPU utilization is greater than 75%\.  
 ![\[Scaling activity example\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/scaling-activity.png)
 
-1. \(Optional\) You can repeat [[ERROR] BAD/MISSING LINK TEXT](#scaling-action-step-adjustment) to configure multiple scaling actions for a single alarm \(for example, to add one task if CPU utilization is between 75\-85%, and to add two tasks if CPU utilization is greater than 85%\)\.
+1. \(Optional\) You can repeat [Step 5](#scaling-action-step-adjustment) to configure multiple scaling actions for a single alarm \(for example, to add one task if CPU utilization is between 75\-85%, and to add two tasks if CPU utilization is greater than 85%\)\.
 
 1. \(Optional\) If you chose to add or subtract a percentage of the existing desired count, enter a minimum increment value for **Add tasks in increments of *N* task\(s\)**\.
 
-1. For **Cooldown period**, enter the number of seconds between scaling actions\.
+1. <a name="cooldown-period-step"></a>For **Cooldown period**, enter the number of seconds between scaling actions\.
 
-1. Repeat [[ERROR] BAD/MISSING LINK TEXT](#policy-name-step) through [[ERROR] BAD/MISSING LINK TEXT](#cooldown-period-step) for the **Scale in** policy and choose **Save** to save your Service Auto Scaling configuration\.
+1. Repeat [Step 1](#policy-name-step) through [Step 8](#cooldown-period-step) for the **Scale in** policy and choose **Save** to save your Service Auto Scaling configuration\.
 
 1. Choose **Next step**\.
 

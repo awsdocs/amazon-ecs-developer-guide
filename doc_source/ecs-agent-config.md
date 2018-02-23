@@ -180,7 +180,7 @@ Example Values: `5`
 Default Value: `5`  
 The maximum number of images to delete in a single automated image cleanup cycle\. If set to less than 1, the value is ignored\.
 
-`ECS_INSTANCE_ATTRIBUTES`  
+`ECS_INSTANCE_ATTRIBUTES`  <a name="ecs-instance-attributes"></a>
 Example Values: `{"custom attribute": "custom_attribute_value"}`  
 Default Value: Null  
 A list of custom attributes, in JSON form, to apply to your container instances\. Using this attribute at instance registration adds the custom attributes, allowing you to skip the manual method of adding custom attributes via the AWS Management Console\.  
@@ -235,7 +235,7 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
 
 1. Complete the above procedures in this section to allow read\-only Amazon S3 access to your container instances and store an `ecs.config` file in a private Amazon S3 bucket\.
 
-1. Launch new container instances by following the steps in [Launching an Amazon ECS Container Instance](launch_container_instance.md)\. In [[ERROR] BAD/MISSING LINK TEXT](launch_container_instance.md#instance-launch-user-data-step), use the following example script that installs the AWS CLI and copies your configuration file to `/etc/ecs/ecs.config`\.
+1. Launch new container instances by following the steps in [Launching an Amazon ECS Container Instance](launch_container_instance.md)\. In [Step 7](launch_container_instance.md#instance-launch-user-data-step), use the following example script that installs the AWS CLI and copies your configuration file to `/etc/ecs/ecs.config`\.
 
    ```
    #!/bin/bash

@@ -1,4 +1,4 @@
-# AWS CLI Walkthrough with a Fargate Task<a name="ECS_AWSCLI_Fargate"></a>
+# Tutorial: Creating a Cluster with a Fargate Task Using the AWS CLI<a name="ECS_AWSCLI_Fargate"></a>
 
 The following steps will help you set up a cluster, register a task definition, run a task, and perform other common scenarios in Amazon ECS with the AWS CLI\. Ensure you are using the latest version of the AWS CLI\. For more information on how to upgrade to the latest version, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 

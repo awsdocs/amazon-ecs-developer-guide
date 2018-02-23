@@ -37,7 +37,7 @@ You can apply custom attributes to your container instances\. For example, you c
 
 ## Adding an Attribute<a name="add-attribute"></a>
 
-You can add custom attributes at instance registration time using the container agent or manually, using the AWS Management Console\. For more information about using the container agent, see Amazon ECS Container Agent Configuration Parameters\.
+You can add custom attributes at instance registration time using the container agent or manually, using the AWS Management Console\. For more information about using the container agent, see [Amazon ECS Container Agent Configuration Parameters](ecs-agent-config.md#ecs-instance-attributes)\.
 
 **To add custom attributes using the console**
 

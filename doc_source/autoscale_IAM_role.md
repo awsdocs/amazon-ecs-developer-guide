@@ -3,7 +3,7 @@
 Before you can use Service Auto Scaling with Amazon ECS, the Application Auto Scaling service needs permission to describe your CloudWatch alarms and registered services, as well as permission to update your Amazon ECS service's desired count on your behalf\. These permissions are provided by the Service Auto Scaling IAM role \(`ecsAutoscaleRole`\)\.
 
 **Note**  
-IAM users also require permissions to use Service Auto Scaling; these permissions are described in [Service Auto Scaling Required IAM Permissions](service-autoscaling-stepscaling.md#auto-scaling-IAM)\. If an IAM user has the required permissions to use Service Auto Scaling in the Amazon ECS console, create IAM roles, and attach IAM role policies to them, then that user can create this role automatically as part of the Amazon ECS console create service or update service workflows, and then use the role for any other service later \(in the console or with the CLI/SDKs\)\.
+IAM users also require permissions to use Service Auto Scaling; these permissions are described in [Service Auto Scaling Required IAM Permissions](service-autoscaling-stepscaling.md#auto-scaling-IAM)\. If an IAM user has the required permissions to use Service Auto Scaling in the Amazon ECS console, create IAM roles, and attach IAM role policies to them, then that user can create this role automatically as part of the Amazon ECS console [create service](create-service.md#create-service.title) or [update service](update-service.md) workflows, and then use the role for any other service later \(in the console or with the CLI/SDKs\)\.
 
 You can use the following procedure to check and see if your account already has Service Auto Scaling\.
 

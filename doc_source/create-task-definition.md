@@ -38,7 +38,8 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
 1. For **Task execution IAM role**, either select your task execution role or select **Create new role** so the console can create one for you\.
 
-1. For **Task size**, choose a value for **Task memory \(GB\)** and **Task CPU \(vCPU\)**\.
+1. For **Task size**, choose a value for **Task memory \(GB\)** and **Task CPU \(vCPU\)**\. The table below shows the valid combinations\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-task-definition.html)
 
 1. For each container in your task definition, complete the following steps\.
 

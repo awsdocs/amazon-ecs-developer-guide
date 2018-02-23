@@ -9,7 +9,7 @@ If you are using the Amazon ECS\-optimized AMI, you have several options to get 
 + Update the container agent with the `UpdateContainerAgent` API operation, either through the console or with the AWS CLI or AWS SDKs\. For more information, see [Updating the Amazon ECS Container Agent with the `UpdateContainerAgent` API Operation](#agent-update-api)\.
 
 **Note**  
-Agent updates do not apply to Windows container instances\. We recommend that you launch new container instances to update the agent version in your Windows clusters\.
+Agent updates do not apply to Windows container instances\. We recommend that you launch new container instances to update the agent version in your Windows clusters\.<a name="procedure_update_ecs-init"></a>
 
 **To update the `ecs-init` package on the Amazon ECS\-optimized AMI**
 
@@ -46,7 +46,7 @@ The agent has begun downloading the agent update\. If the agent cannot download 
 The agent download has completed and the agent contents have been verified\.
 
 `UPDATING`  
-The `ecs-init` service is restarted and it picks up the new agent version\. If the agent is for some reason unable to restart, the update transitions to the `FAILED` state; otherwise, the agent signals Amazon ECS that the update is complete\.
+The `ecs-init` service is restarted and it picks up the new agent version\. If the agent is for some reason unable to restart, the update transitions to the `FAILED` state; otherwise, the agent signals Amazon ECS that the update is complete\.<a name="procedure-ecs-ami-update"></a>
 
 **To update the Amazon ECS container agent on the Amazon ECS\-optimized AMI in the console**
 **Note**  
@@ -60,7 +60,7 @@ Agent updates do not apply to Windows container instances\. We recommend that yo
 
 1. Select the container instance to update\.
 
-1. On the **Container Instance** page, choose **Update agent**\.
+1. On the **Container Instance** page, choose **Update agent**\.<a name="procedure-ecs-ami-update-cli"></a>
 
 **To update the Amazon ECS container agent on the Amazon ECS\-optimized AMI with the AWS CLI**
 **Note**  

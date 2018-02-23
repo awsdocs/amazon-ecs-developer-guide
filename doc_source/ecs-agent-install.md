@@ -42,7 +42,7 @@ The Amazon ECS container agent is included in the Amazon ECS\-optimized AMI and 
    ecs start/running, process 2804
    ```
 
-1. \(Optional\) You can verify that the agent is running and see some information about your new container instance with the agent introspection API\. For more information, see [[ERROR] BAD/MISSING LINK TEXT](ecs-agent-introspection.md)\.
+1. \(Optional\) You can verify that the agent is running and see some information about your new container instance with the agent introspection API\. For more information, see [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)\.
 
    ```
    [ec2-user ~]$ curl http://localhost:51678/v1/metadata
@@ -54,7 +54,7 @@ The Amazon ECS container agent is included in the Amazon ECS\-optimized AMI and 
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.17.0 (761937f7)"
+     "Version": "Amazon ECS Agent - v1.17.1 (c051f10b)"
    }
    ```
 
