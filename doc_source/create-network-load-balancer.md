@@ -6,7 +6,7 @@ This section walks you through the process of creating a Network Load Balancer i
 
 First, provide some basic configuration information for your load balancer, such as a name, a network, and a listener\.
 
-A *listener* is a process that checks for connection requests\. It is configured with a protocol and port for the frontend \(client to load balancer\) connections, and a protocol and port for the backend \(load balancer to backend instance\) connections\. In this example, you configure a listener that accepts HTTP requests on port 80 and sends them to the containers in your tasks on port 80 using HTTP\.
+A *listener* is a process that checks for connection requests\. It is configured with a protocol and port for the frontend \(client to load balancer\) connections, and a protocol and port for the backend \(load balancer to backend instance\) connections\. In this example, you configure an Internet\-facing load balancer in the selected network with a listener that receives TCP traffic on port 80\.
 
 **To define your load balancer**
 
@@ -30,7 +30,7 @@ A *listener* is a process that checks for connection requests\. It is configured
 **Note**  
 If you plan on routing traffic to more than one target group, see [ListenerRules](http://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-listeners.html) for details on how to add host or path\-based rules\.
 
-   1. For **Availability Zones**, select the VPC that you used for your EC2 instances\. For each Availability that you used to launch your EC2 instances, select an Availability Zone and then select the public subnet for that Availability Zone\. To associate an Elastic IP address with the subnet, select it from **Elastic IP**\.
+   1. For **Availability Zones**, select the VPC that you used for your Amazon EC2 instances\. For each Availability Zone that you used to launch your Amazon EC2 instances, select an Availability Zone and then select the public subnet for that Availability Zone\. To associate an Elastic IP address with the subnet, select it from **Elastic IP**\.
 
    1. Choose **Next: Configure Routing**\.
 

@@ -27,7 +27,15 @@ Tasks that use the Fargate launch type do not support all of the task definition
 
 The following task definition parameters are not valid in Fargate tasks:
 
++ `disableNetworking`
+
++ `dnsSearchDomain`
+
++ `dnsServers`
+
 + `dockerSecurityOptions`
+
++ `extraHosts`
 
 + `links`
 

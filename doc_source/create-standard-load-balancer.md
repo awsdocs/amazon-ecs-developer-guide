@@ -2,7 +2,7 @@
 
 This section walks you through the process of creating a Classic Load Balancer in the AWS Management Console\.
 
-Note that you can create your Classic Load Balancer for use with EC2\-Classic or a VPC\. Some of the tasks described in these procedures apply only to load balancers in a VPC\.
+You can create your Classic Load Balancer for use with EC2\-Classic or a VPC\. Some of the tasks described in these procedures apply only to load balancers in a VPC\.
 
 ## Define Your Load Balancer<a name="define-load-balancer"></a>
 
@@ -50,7 +50,7 @@ If you selected EC2\-Classic as your network, you do not see this page in the wi
 
 1. Enter a name and description for your security group, or leave the default name and description\. This new security group contains a rule that allows traffic to the port that you configured your load balancer to use\. If you specified a different port for the health checks, you must choose **Add Rule** to add a rule that allows inbound traffic to that port as well\.
 **Note**  
-You should also assign this security group to container instances in your service, or another security group with the same rules\.  
+Also assign this security group to container instances in your service, or another security group with the same rules\.  
 ![\[Select security groups\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/AddInstanceVPC_SGroups.png)
 
 1. Choose **Next: Configure Security Settings** to go to the next page in the wizard\.
@@ -95,7 +95,7 @@ Your load balancer distributes traffic between the instances that are registered
 
 ## Tag Your Load Balancer \(Optional\)<a name="elb-add-tags"></a>
 
-You can tag your load balancer, or continue to the next step\. You can tag your load balancer later on; for more information, see [Tag Your Classic Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html) in the *User Guide for Classic Load Balancers*\.
+You can tag your load balancer, or continue to the next step\. You can tag your load balancer later on\. For more information, see [Tag Your Classic Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html) in the *User Guide for Classic Load Balancers*\.
 
 **To add tags to your load balancer**
 
@@ -111,7 +111,7 @@ Before you create the load balancer, review the settings that you selected\. Aft
 
 **To finish creating your load balancer**
 
-1. On the **Review** page, check your settings\. If you need to make changes to the initial settings, choose the corresponding edit link\.
+1. On the **Review** page, check your settings\. To make changes to the initial settings, choose the corresponding edit link\.
 
 1. Choose **Create** to create your load balancer\.
 

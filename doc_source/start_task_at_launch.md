@@ -43,7 +43,7 @@ The Amazon EC2 user data script in the following procedure uses the Amazon ECS i
 
 1. Launch one or more container instances by following the procedure in [Launching an Amazon ECS Container Instance](launch_container_instance.md), but in [Step 7](launch_container_instance.md#instance-launch-user-data-step)\. Then, copy and paste the MIME multi\-part user data script below into the **User data** field\. Substitute *your\_cluster\_name* with the cluster for the container instance to register into and *my\_task\_def* with the task definition to run on the instance at launch\.
 **Note**  
-The MIME mult\-ipart content below uses a shell script to set configuration values and install packages\. It also uses an Upstart job to start the task after the ecs service is running and the introspection API is available\.
+The MIME multi\-part content below uses a shell script to set configuration values and install packages\. It also uses an Upstart job to start the task after the ecs service is running and the introspection API is available\.
 
    ```
    Content-Type: multipart/mixed; boundary="==BOUNDARY=="

@@ -8,7 +8,7 @@ If tasks for an ECS service repeatedly fail to enter the `RUNNING` state \(progr
 (service service-name) is unable to consistently start tasks successfully. 
 ```
 
-Amazon ECS does not ever stop a failing service from retrying, nor does it attempt to modify it in any other than increasing the time between restarts\. The service throttle logic does not provide any user\-tunable parameters\.
+Amazon ECS does not ever stop a failing service from retrying, nor does it attempt to modify it in any way other than increasing the time between restarts\. The service throttle logic does not provide any user\-tunable parameters\.
 
 If you update your service to use a new task definition, your service returns to a normal, non\-throttled state immediately\. For more information, see [Updating a Service](update-service.md)\.
 

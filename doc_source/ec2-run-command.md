@@ -43,7 +43,7 @@ Before you can send commands to your container instances with Run Command, you m
 
 1. For **Filter**, type **AmazonEC2RoleforSSM** to narrow the available policies to attach\.
 
-1. Select the check box for **AmazonEC2RoleforSSM** policy and choose **Attach Policy**\.
+1. Select the check box for the **AmazonEC2RoleforSSM** policy and choose **Attach Policy**\.
 
 ## Installing the SSM Agent on the Amazon ECS\-optimized AMI<a name="install_ssm_agent"></a>
 

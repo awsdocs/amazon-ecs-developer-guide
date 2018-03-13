@@ -249,7 +249,7 @@ New instance launches may take a few minutes to send data to CloudWatch Logs\.
 
 ## Configuring CloudWatch Logs at Launch with User Data<a name="cwlogs_user_data"></a>
 
-When you launch an Amazon ECS container instance in Amazon EC2, you have the option of passing user data to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts\. You can pass several types of user data to instances, including shell scripts, `cloud-init` directives, and Upstart jobs\. You can also pass this data into the launch wizard as plain text, as a file \(this is useful for launching instances via the command line tools\), or as base64\-encoded text \(for API calls\)\.
+When you launch an Amazon ECS container instance in Amazon EC2, you have the option of passing user data to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts\. You can pass several types of user data to instances, including shell scripts, `cloud-init` directives, and Upstart jobs\. You can also pass this data into the launch wizard as plaintext, as a file \(this is useful for launching instances via the command line tools\), or as base64\-encoded text \(for API calls\)\.
 
 The example user data block below performs the following tasks:
 
@@ -355,4 +355,4 @@ end script
 --==BOUNDARY==--
 ```
 
-If you have created the `ECS-CloudWatchLogs` policy and attached it to your `ecsInstanceRole` as described in [CloudWatch Logs IAM Policy](#cwl_iam_policy), then you can add the above user data block to any container instances that you launch manually, or you can add it to an Auto Scaling launch configuration, and your container instances that are launched with this user data will begin sending their log data to CloudWatch Logs as soon as they launch\. For more information, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
+If you have created the `ECS-CloudWatchLogs` policy and attached it to your `ecsInstanceRole` as described in [CloudWatch Logs IAM Policy](#cwl_iam_policy), then you can add the above user data block to any container instances that you launch manually\. You can also add it to an Auto Scaling launch configuration\. Your container instances that are launched with this user data begin sending their log data to CloudWatch Logs as soon as they launch\. For more information, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.

@@ -54,7 +54,7 @@ The Amazon ECS container agent is included in the Amazon ECS\-optimized AMI and 
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.17.1 (c051f10b)"
+     "Version": "Amazon ECS Agent - v1.17.2 (edc3e260)"
    }
    ```
 
@@ -64,7 +64,7 @@ The Amazon ECS container agent is included in the Amazon ECS\-optimized AMI and 
 
 1. Connect to your instance\.
 
-1. Install Docker on your instance\. Amazon ECS requires a minimum Docker version of 1\.5\.0 \(version 17\.09\.1\-ce is recommended\), and the default Docker versions in many system package managers, such as yum or apt\-get do not meet this minimum requirement\. For information about installing the latest Docker version on your particular Linux distribution, see [https://docs\.docker\.com/engine/installation/](https://docs.docker.com/engine/installation/)\.
+1. Install Docker on your instance\. Amazon ECS requires a minimum Docker version of 1\.5\.0 \(version 17\.12\.0\-ce is recommended\), and the default Docker versions in many system package managers, such as yum or apt\-get do not meet this minimum requirement\. For information about installing the latest Docker version on your particular Linux distribution, see [https://docs\.docker\.com/engine/installation/](https://docs.docker.com/engine/installation/)\.
 **Note**  
 The Amazon Linux AMI always includes the recommended version of Docker for use with Amazon ECS\. You can install Docker on Amazon Linux with the sudo yum install docker \-y command\.
 

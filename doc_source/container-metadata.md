@@ -71,6 +71,9 @@ However, for easy access, the container metadata file location is set to the `EC
 
 The following information is stored in the container metadata JSON file\.
 
+`Cluster`  
+The name of the cluster that the container's task is running on\.
+
 `ContainerInstanceARN`  
 The full Amazon Resource Name \(ARN\) of the host container instance\.
 
@@ -118,6 +121,7 @@ The following example shows a container metadata file in the `READY` status\.
 
 ```
 {
+	"Cluster": "default",
 	"ContainerInstanceARN": "arn:aws:ecs:us-west-2:012345678910:container-instance/1f73d099-b914-411c-a9ff-81633b7741dd",
 	"TaskARN": "arn:aws:ecs:us-west-2:012345678910:task/2b88376d-aba3-4950-9ddf-bcb0f388a40c",
 	"ContainerID": "98e44444008169587b826b4cd76c6732e5899747e753af1e19a35db64f9e9c32",
@@ -150,6 +154,7 @@ The following example shows a container metadata file that has not yet reached t
 
 ```
 {
+    "Cluster": "default",
     "ContainerInstanceARN": "arn:aws:ecs:us-west-2:012345678910:container-instance/1f73d099-b914-411c-a9ff-81633b7741dd",
     "TaskARN": "arn:aws:ecs:us-west-2:012345678910:task/d90675f8-1a98-444b-805b-3d9cabb6fcd4",
     "ContainerName": "metadata"

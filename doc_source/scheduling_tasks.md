@@ -22,4 +22,10 @@ Custom schedulers are only compatible with tasks using the EC2 launch type\. If 
 **Task Placement**  
 The `RunTask` and `CreateService` actions enable you to specify task placement constraints and task placement strategies to customize how Amazon ECS places your tasks\. For more information, see [Amazon ECS Task Placement](task-placement.md)\.
 
-Contents
+
++ [Running Tasks](ecs_run_task.md)
++ [Task Placement](task-placement.md)
++ [Scheduled Tasks \(`cron`\)](scheduled_tasks.md)
++ [Task Lifecycle](task_life_cycle.md)
++ [Task Retirement](task-retirement.md)
++ [Creating a Scheduled Task Using the AWS CLI](scheduled_tasks_cli_tutorial.md)

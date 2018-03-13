@@ -25,7 +25,7 @@ If you terminate a running container instance with a connected Amazon ECS contai
 1. On the **Cluster : *name*** page, choose **ECS Instances**\.  
 ![\[ECS Instances Tab\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ECS_Instances_tab.png)
 
-1. Choose the container instance ID that to deregister\.
+1. Choose the container instance ID to deregister\.
 
 1. On the **Container Instance : *id*** page, choose **Deregister**\.
 

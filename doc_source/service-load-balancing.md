@@ -4,13 +4,13 @@ Your Amazon ECS service can optionally be configured to use Elastic Load Balanci
 
 Elastic Load Balancing supports the following types of load balancers: Application Load Balancers, Network Load Balancers, and Classic Load Balancers, and Amazon ECS services can use either type of load balancer\. Application Load Balancers are used to route HTTP/HTTPS \(or Layer 7\) traffic\. Network Load Balancers and Classic Load Balancers are used to route TCP \(or Layer 4\) traffic\. For more information, see [Load Balancer Types](load-balancer-types.md)\.
 
-Application Load Balancers offer several features that make them particularly attractive for use with Amazon ECS services:
+Application Load Balancers offer several features that make them attractive for use with Amazon ECS services:
 
 + Application Load Balancers allow containers to use dynamic host port mapping \(so that multiple tasks from the same service are allowed per container instance\)\.
 
 + Application Load Balancers support path\-based routing and priority rules \(so that multiple services can use the same listener port on a single Application Load Balancer\)\.
 
-We recommend that you use Application Load Balancers for your Amazon ECS services so that you can take advantage of these latest features, unless your service requires a feature that is only available with Network Load Balancers or Classic Load Balancers \. For more information about Elastic Load Balancing and the differences between the load balancer types, see the [Elastic Load Balancing User Guide](http://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
+We recommend that you use Application Load Balancers for your Amazon ECS services so that you can take advantage of these latest features, unless your service requires a feature that is only available with Network Load Balancers or Classic Load Balancers\. For more information about Elastic Load Balancing and the differences between the load balancer types, see the [Elastic Load Balancing User Guide](http://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
 
 **Note**  
 Currently, Amazon ECS services can only specify a single load balancer or target group\. If your service requires access to multiple load balanced ports \(for example, port 80 and port 443 for an HTTP/HTTPS service\), you must use a Classic Load Balancer with multiple listeners\. To use an Application Load Balancer, separate the single HTTP/HTTPS service into two services, where each handles requests for different ports\. Then, each service could use a different target group behind a single Application Load Balancer\.

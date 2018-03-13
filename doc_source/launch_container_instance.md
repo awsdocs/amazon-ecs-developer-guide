@@ -16,7 +16,7 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 **Note**  
 For Amazon ECS\-specific CoreOS installation instructions, see [https://coreos\.com/docs/running\-coreos/cloud\-providers/ecs/](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
-   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2017\.09\.i\-amazon\-ecs\-optimized** AMI\. 
+   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2017\.09\.j\-amazon\-ecs\-optimized** AMI\. 
 
    The current Amazon ECS–optimized AMI IDs by region are listed below for reference\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
@@ -29,17 +29,17 @@ For Amazon ECS\-specific CoreOS installation instructions, see [https://coreos\.
 
    1. Set the **Number of instances** field depending on how many container instances you want to add to your cluster\.
 
-   1. \(Optional\) If you want to use Spot Instances, set the **Purchasing option** field by selecting the checkbox next to **Request Spot Instances**\. You will also need to set the other fields related to Spot Instances\. See [Spot Instance Requests](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html) for more details\.
+   1. \(Optional\) To use Spot Instances, for **Purchasing option**, select the check box next to **Request Spot Instances**\. You also need to set the other fields related to Spot Instances\. For more information, see [Spot Instance Requests](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html)\.
 **Note**  
 If you are using Spot Instances and see a `Not available` message, you may need to choose a different instance type\.
 
-   1. For **Network**, choose the VPC to launch your container instance into\.
+   1. For **Network**, choose the VPC into which to launch your container instance\.
 
    1. For **Subnet**, choose a subnet to use, or keep the default option to choose the default subnet in any Availability Zone\.
 
-   1. Set the **Auto\-assign Public IP** field depending on whether you want your instance to be accessible from the public Internet\. If your instance should be accessible from the Internet, verify that the **Auto\-assign Public IP** field is set to **Enable**\. If your instance should not be accessible from the Internet, set this field to **Disable**\.
+   1. Set the **Auto\-assign Public IP** field depending on whether you want your instance to be accessible from the public internet\. If your instance should be accessible from the internet, verify that the **Auto\-assign Public IP** field is set to **Enable**\. If not, set this field to **Disable**\.
 **Note**  
-Container instances need external network access to communicate with the Amazon ECS service endpoint, so if your container instances do not have public IP addresses, then they must use network address translation \(NAT\) to provide this access\. For more information, see [NAT Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html) in the *Amazon VPC User Guide* and [HTTP Proxy Configuration](http_proxy_config.md) in this guide\. For help creating a VPC, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)
+Container instances need external network access to communicate with the Amazon ECS service endpoint, so if your container instances do not have public IP addresses, then they must use network address translation \(NAT\) to provide this access\. For more information, see [NAT Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html) in the *Amazon VPC User Guide* and [HTTP Proxy Configuration](http_proxy_config.md) in this guide\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)
 
    1. Select the `ecsInstanceRole` **IAM role** value that you created for your container instances in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 **Important**  

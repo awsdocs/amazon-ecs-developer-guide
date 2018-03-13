@@ -4,15 +4,17 @@ The following table describes the important changes to the documentation since t
 
 +  **Current API version:** 2014\-11\-13
 
-+  **Latest documentation update:** February 8, 2018
++  **Latest documentation update:** March 09, 2018
 
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+|  Amazon ECS CLI v1\.4\.0  |  2014\-11\-13  |  New version of the Amazon ECS CLI released, which added the following functionality: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html) For more information about the updated ECS CLI syntax, see [Amazon ECS Command Line Reference](ECS_CLI_reference.md)\.  | 09 March 2018 | 
+|  Container Health Checks  |  2014\-11\-13  |  Added support for Docker health checks in container definitions\. For more information, see [Health Check](task_definition_parameters.md#container_definition_healthcheck)\.  | 08 March 2018 | 
 |  AWS Fargate  |  2014\-11\-13  |  Added overview for Amazon ECS with AWS Fargate\. For more information, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\.  | 22 February 2018 | 
 |  Amazon ECS Task Metadata Endpoint  |  2014\-11\-13  |  Beginning with version 1\.17\.0 of the Amazon ECS container agent, various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) are available to tasks that use the `awsvpc` network mode at an HTTP endpoint that is provided by the Amazon ECS container agent\. For more information, see [Amazon ECS Task Metadata Endpoint](task-metadata-endpoint.md)\.  | 8 February 2018 | 
-|  Amazon ECS Service Auto Scaling using target tracking policies  |  2014\-11\-13  |  Added support for ECS Service Auto Scaling using target tracking policies in the Amazon ECS console\. For more information, see [Target Tracking Scaling Policies](service-autoscaling-targettracking.md)\.  | 8 February 2018 | 
-|  Amazon ECS CLI v1\.3\.0   |  2014\-11\-13  |  New version of the Amazon ECS CLI released, which added the following functionality: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html) For more information about the updated ECS CLI syntax, see [Amazon ECS Command Line Reference](ECS_CLI_reference.md)\.  | 19 January 2018 | 
+|  Amazon ECS Service Auto Scaling using target tracking policies  |  2014\-11\-13  |  Added support for ECS Service Auto Scaling using target tracking policies in the Amazon ECS console\. For more information, see [Target Tracking Scaling Policies](service-autoscaling-targettracking.md)\. Removed the previous tutorial for step scaling in the ECS first run wizard\. This was replaced with the new tutorial for target tracking\.  | 8 February 2018 | 
+|  Amazon ECS CLI v1\.3\.0  |  2014\-11\-13  |  New version of the Amazon ECS CLI released, which added the following functionality: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html) For more information about the updated ECS CLI syntax, see [Amazon ECS Command Line Reference](ECS_CLI_reference.md)\.  | 19 January 2018 | 
 |  Docker 17\.09 support  | 2014\-11\-13 |  Added support for Docker 17\.09\. For more information, see [Amazon ECS\-Optimized AMI](ecs-optimized_AMI.md)\.  |  18 January 2018  | 
 |  Elastic Load Balancing health check initialization wait period  | 2014\-11\-13 |  Added ability to specify a wait period for health checks\. For more information, see [\(Optional\) Health Check Grace Period](create-service.md#service-health-check-grace-period)\.  |  27 December 2017  | 
 |  New service scheduler behavior  |  2014\-11\-13  |  Updated information about the behavior for service tasks that fail to launch\. Documented new service event message that triggers when a service task has consecutive failures\. For more information about this updated behavior, see [Service Concepts](ecs_services.md#service_concepts)\.  | 11 January 2018 | 

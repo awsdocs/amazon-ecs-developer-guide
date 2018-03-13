@@ -9,9 +9,9 @@ Some features described may only be available with the latest version of the ECS
 
 You can configure your AWS credentials in several ways:
 
-+ You can set the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables\. When you run ecs\-cli configure profile, the values of those variables are stored in the Amazon ECS CLI configuration file\.
++ You can set the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_SESSION_TOKEN` environment variables\. When you run ecs\-cli configure profile, the values of those variables are stored in the Amazon ECS CLI configuration file\.
 
-+ You can pass credentials directly on the command line with the `--access-key` and `--secret-key` options\. 
++ You can pass credentials directly on the command line with the `--access-key`, `--secret-key`, and `--session-token` options\. 
 
 + You can provide the name of a new profile with the `--profile-name` flag\. If a profile name is not provided, then the profile is named `default`\.
 
@@ -31,7 +31,7 @@ The following should be noted when using multiple profiles:
 
 ## Syntax<a name="cmd-ecs-cli-configure-profile-syntax"></a>
 
-**ecs\-cli configure profile \-\-profile\-name *profile\_name* \-\-access\-key *aws\_access\_key\_id* \-\-secret\-key *aws\_secret\_access\_key*** 
+**ecs\-cli configure profile \-\-profile\-name *profile\_name* \-\-access\-key *aws\_access\_key\_id* \-\-secret\-key *aws\_secret\_access\_key* \[\-\-session\-token *token*\]** 
 
 ## Options<a name="cmd-ecs-cli-configure-profile-options"></a>
 
@@ -41,16 +41,31 @@ The following should be noted when using multiple profiles:
 |  `--profile-name profile_name`  |  Specifies the name of this ECS profile\. This is the name that can be referenced in commands using the `--ecs-profile` flag\. If this option is omitted, then the name is set to `default`\. Type: String Required: Yes  | 
 |  `--access-key aws_access_key_id`  |  Specifies the AWS access key to use\. If the `AWS_ACCESS_KEY_ID` environment variable is set when ecs\-cli configure profile is run, then the AWS access key ID is set to the value of that environment variable\. Type: String Required: Yes  | 
 |  `--secret-key aws_secret_access_key`  |  Specifies the AWS secret key to use\. If the `AWS_SECRET_ACCESS_KEY` environment variable is set when ecs\-cli configure profile is run, then the AWS secret access key is set to the value of that environment variable\. Type: String Required: Yes  | 
+| \-\-session\-token token |  Specifies the AWS session token to use\. If the `AWS_SESSION_TOKEN` environment variable if it is set when ecs\-cli configure profile is run, then the AWS session token is set to the value of that environment variable\. For more information about using a session token for temporary access, see [Requesting Temporary Security Credentials](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html)\. Type: String Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
 
 ## Examples<a name="cmd-ecs-cli-configure-profile-examples"></a>
 
-### Example<a name="cmd-ecs-cli-configure-profile-example-1"></a>
+### Example 1<a name="cmd-ecs-cli-configure-profile-example-1"></a>
 
 This example configures the Amazon ECS CLI to create and use a profile named `default` with a set of access keys\.
 
 ```
 ecs-cli configure profile --profile-name default --access-key $AWS_ACCESS_KEY_ID --secret-key $AWS_SECRET_ACCESS_KEY
+```
+
+Output:
+
+```
+INFO[0000] Saved ECS CLI profile configuration default.
+```
+
+### Example 2<a name="cmd-ecs-cli-configure-profile-example-2"></a>
+
+This example configures the Amazon ECS CLI to create and use a profile named `default` with a set of access keys and an AWS session token\.
+
+```
+ecs-cli configure profile --profile-name default --access-key $AWS_ACCESS_KEY_ID --secret-key $AWS_SECRET_ACCESS_KEY --session-token $AWS_SESSION_TOKEN
 ```
 
 Output:
