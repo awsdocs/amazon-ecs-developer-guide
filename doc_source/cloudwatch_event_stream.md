@@ -8,7 +8,7 @@ Events from Amazon ECS Event Stream are ensured to be delivered at least one tim
 
 Events are relatively ordered, so that you can easily tell when an event occurred in relation to other events\.
 
-
+**Topics**
 + [Amazon ECS Events](ecs_cwe_events.md)
 + [Handling Events](ecs_cwet_handling.md)
 + [Tutorial: Listening for Amazon ECS CloudWatch Events](ecs_cwet.md)

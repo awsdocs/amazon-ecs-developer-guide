@@ -7,7 +7,7 @@ The source code for the Amazon ECS container agent is [available on GitHub](http
 **Note**  
 The Amazon ECS container agent is installed on the AWS\-managed infrastructure used for tasks using the Fargate launch type\. No additional configuration is needed so this topic does not apply if you are only using tasks with the Fargate launch type\.
 
-
+**Topics**
 + [Installing the Amazon ECS Container Agent](ecs-agent-install.md)
 + [Amazon ECS Container Agent Versions](container_agent_versions.md)
 + [Updating the Amazon ECS Container Agent](ecs-agent-update.md)

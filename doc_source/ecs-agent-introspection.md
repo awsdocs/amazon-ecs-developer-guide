@@ -53,9 +53,7 @@ Output:
 ```
 
 You can view information for a particular task that is running on a container instance\. To specify a specific task or container, append one of the following to the request:
-
 + The task ARN \(`?taskarn=task_arn`\)
-
 + The Docker ID for a container \(`?dockerid=docker_id`\)
 
  To get task information with a container's Docker ID, log in to your container instance via SSH and run the following command\.

@@ -3,15 +3,10 @@
 If you are having trouble configuring IAM roles for tasks in your cluster, you can try this known good configuration to help debug your own configuration\.
 
 The following procedure helps you to:
-
 + Create a CloudWatch Logs log group to store your test logs
-
 + Create a task IAM role that has full Amazon ECS permissions
-
 + Register a task definition with a known good AWS CLI configuration that is compatible with IAM roles for tasks
-
 + Run a task from that task definition to test your container instance support for IAM roles for tasks
-
 + View the container logs from that task in CloudWatch Logs to verify that it works
 
 **To test IAM roles for tasks with a known good configuration**

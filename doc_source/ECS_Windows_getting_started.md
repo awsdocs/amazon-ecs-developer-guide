@@ -2,7 +2,7 @@
 
 This tutorial walks you through manually getting Windows containers running on Amazon ECS\. You create a cluster for your Windows container instances, launch one or more container instances into your cluster, register a task definition that uses a Windows container image, create a service that uses that task definition, and then view the sample web page that the container runs\.
 
-
+**Topics**
 + [Step 1: Create a Windows Cluster](#create_windows_cluster)
 + [Step 2: Launching a Windows Container Instance into your Cluster](#launch_windows_container_instance)
 + [Step 3: Register a Windows Task Definition](#register_windows_task_def)
@@ -28,7 +28,6 @@ You should create a new cluster for your Windows containers\. Linux container in
 1. Choose **Create an empty cluster**, **Create**\.
 
 **To create a cluster with the AWS CLI**
-
 + You can create a cluster using the AWS CLI with the following command:
 
   ```
@@ -172,15 +171,11 @@ After you have registered your task definition, you can place tasks in your clus
 1. On the **Task Definition: windows\-simple\-iis** registration confirmation page, choose **Actions**, **Create Service**\.
 
 1. On the **Create Service** page, enter the following information and then choose **Create service**\.
-
    + **Cluster:** windows 
-
    + **Number of tasks:** 1
-
    + **Service name:** windows\-simple\-iis
 
 **To create a service from your task definition with the AWS CLI**
-
 + Using the AWS CLI, run the following command to create your service\.
 
   ```

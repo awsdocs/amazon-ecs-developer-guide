@@ -42,7 +42,7 @@ If your container instance is using at least version 1\.11\.0 of the container a
 
 Each time the credential provider is used, the request is logged locally on the host container instance at `/var/log/ecs/audit.log.YYYY-MM-DD-HH`\. For more information, see [IAM Roles for Tasks Credential Audit Log](logs.md#task_iam_roles-logs)\.
 
-
+**Topics**
 + [Benefits of Using IAM Roles for Tasks](#task_im_roles_benefits)
 + [Enabling Task IAM Roles on your Container Instances](#enable_task_iam_roles)
 + [Creating an IAM Role and Policy for your Tasks](#create_task_iam_policy_and_role)
@@ -50,11 +50,8 @@ Each time the credential provider is used, the request is logged locally on the 
 + [Specifying an IAM Role for your Tasks](#specify-task-iam-roles)
 
 ## Benefits of Using IAM Roles for Tasks<a name="task_im_roles_benefits"></a>
-
 + **Credential Isolation:** A container can only retrieve credentials for the IAM role that is defined in the task definition to which it belongs; a container never has access to credentials that are intended for another container that belongs to another task\.
-
 + **Authorization:** Unauthorized containers cannot access IAM role credentials defined for other tasks\.
-
 + **Auditability:** Access and event logging is available through CloudTrail to ensure retrospective auditing\. Task credentials have a context of `taskArn` that is attached to the session, so CloudTrail logs show which task is using which role\.
 
 ## Enabling Task IAM Roles on your Container Instances<a name="enable_task_iam_roles"></a>
@@ -147,11 +144,9 @@ To ensure that you are using a supported SDK, follow the installation instructio
 ## Specifying an IAM Role for your Tasks<a name="specify-task-iam-roles"></a>
 
 After you have created a role and attached a policy to that role, you can run tasks that assume the role\. You have several options to do this:
-
 + Specify an IAM role for your tasks in the task definition\. You can create a new task definition or a new revision of an existing task definition and specify the role you created previously\. If you use the console to create your task definition, choose your IAM role in the **Task Role** field\. If you use the AWS CLI or SDKs, specify your task role ARN using the `taskRoleArn` parameter\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
 **Note**  
 This option is required if you want to use IAM task roles in an Amazon ECS service\.
-
 + Specify an IAM task role override when running a task\. You can specify an IAM task role override when running a task\. If you use the console to run your task, choose **Advanced Options** and then choose your IAM role in the **Task Role** field\. If you use the AWS CLI or SDKs, specify your task role ARN using the `taskRoleArn` parameter in the `overrides` JSON object\. For more information, see [Running Tasks](ecs_run_task.md)\. 
 
 **Note**  

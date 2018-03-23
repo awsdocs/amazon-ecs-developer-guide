@@ -9,9 +9,7 @@ To keep a specified number of tasks running or to place your tasks behind a load
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Task Definitions** and select the task definition to run\.
-
    + To run the latest revision of a task definition shown here, select the box to the left of the task definition to run\.
-
    + To run an earlier revision of a task definition shown here, select the task definition to view all active revisions, then select the revision to run\.
 
 1. Choose **Actions**, **Run Task**\.
@@ -41,7 +39,6 @@ To keep a specified number of tasks running or to place your tasks behind a load
       Only roles with the **Amazon EC2 Container Service Task Execution Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
    1. For **Container Overrides**, choose a container to which to send a command or environment variable override\.
-
       + **For a command override:** For **Command override**, type the command override to send\. If your container definition does not specify an `ENTRYPOINT`, the format should be a comma\-separated list of non\-quoted strings\. For example:
 
         ```
@@ -53,7 +50,6 @@ To keep a specified number of tasks running or to place your tasks behind a load
         ```
         while true; do echo $DATE > /var/www/html/index.html; sleep 1; done
         ```
-
       + **For environment variable overrides:** Choose **Add Environment Variable**\. For **Key**, type the name of your environment variable\. For **Value**, type a string value for your environment value \(without surrounding quotes\)\.  
 ![\[Environment variable override\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/env_var.png)
 
@@ -72,9 +68,7 @@ If your task moves from `PENDING` to `STOPPED`, or if it displays a `PENDING` st
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Task Definitions** and select the task definition to run\.
-
    + To run the latest revision of a task definition shown here, select the box to the left of the task definition to run\.
-
    + To run an earlier revision of a task definition shown here, select the task definition to view all active revisions, then select the revision to run\.
 
 1. Choose **Actions**, **Run Task**\.
@@ -94,15 +88,10 @@ Only private subnets are supported for the `awsvpc` network mode\. Because tasks
    1. For **Security groups**, a security group has been created for your task that allows HTTP traffic from the internet \(0\.0\.0\.0/0\)\. To edit the name or the rules of this security group, or to choose an existing security group, choose **Edit** and then modify your security group settings\.
 
 1. \(Optional\) For **Task Placement**, you can specify how tasks are placed using task placement strategies and constraints\. Choose from the following options:
-
    + **AZ Balanced Spread** \- distribute tasks across Availability Zones and across container instances in the Availability Zone\.
-
    + **AZ Balanced BinPack** \- distribute tasks across Availability Zones and across container instances with the least available memory\.
-
    + **BinPack** \- distribute tasks based on the least available amount of CPU or memory\.
-
    + **One Task Per Host** \- place, at most, one task from the service on each container instance\.
-
    + **Custom** \- define your own task placement strategy\. See [Amazon ECS Task Placement](task-placement.md) for examples\.
 
     For more information, see [Amazon ECS Task Placement](task-placement.md)\.
@@ -118,7 +107,6 @@ Only private subnets are supported for the `awsvpc` network mode\. Because tasks
       Only roles with the **Amazon EC2 Container Service Task Execution Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
    1. For **Container Overrides**, choose a container to which to send a command or environment variable override\.
-
       + **For a command override:** For **Command override**, type the command override to send\. If your container definition does not specify an `ENTRYPOINT`, the format should be a comma\-separated list of non\-quoted strings\. For example:
 
         ```
@@ -130,7 +118,6 @@ Only private subnets are supported for the `awsvpc` network mode\. Because tasks
         ```
         while true; do echo $DATE > /var/www/html/index.html; sleep 1; done
         ```
-
       + **For environment variable overrides:** Choose **Add Environment Variable**\. For **Key**, type the name of your environment variable\. For **Value**, type a string value for your environment value \(without surrounding quotes\)\.  
 ![\[Environment variable override\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/env_var.png)
 

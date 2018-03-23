@@ -11,7 +11,7 @@ Some features described may only be available with the latest version of the ECS
 
 ## Syntax<a name="cmd-ecs-cli-up-syntax"></a>
 
-**ecs\-cli up \[\-\-verbose\] \[\-\-capability\-iam | `--instance-role instance-profile-name`\] \[\-\-keypair *keypair\_name*\] \[`--size n`\] \[`--azs availability_zone_1,availability_zone_2`\] \[\-\-security\-group *security\_group\_id*\[,*security\_group\_id*\[,\.\.\.\]\]\] \[`--cidr ip_range`\] \[`--port port_number`\] \[`--subnets subnet_1,subnet_2`\] \[`--vpc vpc_id`\] \[\-\-instance\-type *instance\_type*\] \[\-\-image\-id *ami\_id*\] \[\-\-launch\-type *launch\_type*\] \[\-\-no\-associate\-public\-ip\-address\] \[\-\-force\] \[\-\-cluster *cluster\_name*\] \[\-\-region *region*\] \[\-\-empty\] \[\-\-help\]** 
+**ecs\-cli up \[\-\-verbose\] \[\-\-capability\-iam \| `--instance-role instance-profile-name`\] \[\-\-keypair *keypair\_name*\] \[`--size n`\] \[`--azs availability_zone_1,availability_zone_2`\] \[\-\-security\-group *security\_group\_id*\[,*security\_group\_id*\[,\.\.\.\]\]\] \[`--cidr ip_range`\] \[`--port port_number`\] \[`--subnets subnet_1,subnet_2`\] \[`--vpc vpc_id`\] \[\-\-instance\-type *instance\_type*\] \[\-\-image\-id *ami\_id*\] \[\-\-launch\-type *launch\_type*\] \[\-\-no\-associate\-public\-ip\-address\] \[\-\-force\] \[\-\-cluster *cluster\_name*\] \[\-\-region *region*\] \[\-\-empty\] \[\-\-help\]** 
 
 ## Options<a name="cmd-ecs-cli-up-options"></a>
 

@@ -33,7 +33,7 @@ Output:
 ```
 
 **Important**  
-Newer versions of Docker create a configuration file as shown above with an outer `auths` object\. The Amazon ECS agent only supports `dockercfg` authentication data that is in the below format, without the `auths` object\. If you have the jq utility installed, you can extract this data with the following command: cat \~/\.docker/config\.json | jq \.auths
+Newer versions of Docker create a configuration file as shown above with an outer `auths` object\. The Amazon ECS agent only supports `dockercfg` authentication data that is in the below format, without the `auths` object\. If you have the jq utility installed, you can extract this data with the following command: cat \~/\.docker/config\.json \| jq \.auths
 
 ```
 cat ~/.docker/config.json | jq .auths

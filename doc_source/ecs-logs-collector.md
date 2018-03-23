@@ -1,11 +1,8 @@
 # Amazon ECS Logs Collector<a name="ecs-logs-collector"></a>
 
 If you are unsure how to collect all of the various logs on your container instances, you can use the Amazon ECS logs collector, which is [available on GitHub](https://github.com/awslabs/ecs-logs-collector)\. The script collects general operating system logs as well as Docker and Amazon ECS container agent logs, which can be helpful for troubleshooting AWS Support cases\. It then compresses and archives the collected information into a single file that can easily be shared for diagnostic purposes\. It also supports enabling debug mode for the Docker daemon and the Amazon ECS container agent on Amazon Linux variants, such as the Amazon ECS\-optimized AMI\. Currently, the Amazon ECS logs collector supports the following operating systems:
-
 + Amazon Linux
-
 + Red Hat Enterprise Linux 7
-
 + Debian 8
 
 **Note**  

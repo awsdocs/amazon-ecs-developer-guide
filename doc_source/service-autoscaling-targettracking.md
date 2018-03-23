@@ -11,17 +11,11 @@ Do not edit or delete the CloudWatch alarms that Amazon ECS manages for a target
 ## Considerations<a name="targettracking-considerations"></a>
 
 Keep the following considerations in mind when creating a target tracking scaling policy:
-
 + A target tracking scaling policy assumes that it should perform scale out when the specified metric is above the target value\. You cannot use a target tracking scaling policy to scale out when the specified metric is below the target value\.
-
 + A target tracking scaling policy does not perform scaling when the specified metric has insufficient data\. It does not perform scale in because it does not interpret insufficient data as low utilization\. To scale in when a metric has insufficient data, create a step scaling policy and have an alarm invoke the scaling policy when it changes to the `INSUFFICIENT_DATA` state\.
-
 + You may see gaps between the target value and the actual metric data points\. This is because Application Auto Scaling always acts conservatively by rounding up or down when it determines how much capacity to add or remove\. This prevents it from adding insufficient capacity or removing too much capacity\. However, for a scalable target with small capacity, the actual metric data points might seem far from the target value\. For a scalable target with larger capacity, adding or removing capacity causes less of a gap between the target value and the actual metric data points\.
-
 + We recommend that you scale based on metrics with a 1\-minute frequency because that ensures a faster response to utilization changes\. Scaling on metrics with a 5\-minute frequency can result in slower response time and scaling on stale metric data\.
-
 + To ensure application availability, Application Auto Scaling scales out proportionally to the metric as fast as it can, but scales in more gradually\.
-
 + Do not edit or delete the CloudWatch alarms that Application Auto Scaling manages for a target tracking scaling policy\. Application Auto Scaling deletes the alarms automatically when you delete the scaling policy\.
 
 ## Tutorial: Service Auto Scaling with Target Tracking<a name="targettracking-tutorial"></a>
@@ -32,7 +26,7 @@ Amazon ECS publishes CloudWatch metrics with your service’s average CPU and me
 
 In this tutorial, you create a cluster and a service \(that runs behind an Elastic Load Balancing load balancer\) using the Amazon ECS first run wizard\. Then you configure Service Auto Scaling on the service with CloudWatch alarms that use the `CPUUtilization` metric to scale your service up or down, depending on the current application load\. 
 
-When the CPU utilization of your service rises above 75% \(meaning that more than 75% of the CPU that is reserved for the service is being used\), the scale\-out alarm triggers Service Auto Scaling to add another task to your service to help out with the increased load\. Conversely, when the CPU utilization of your service drops below 25%, the scale in alarm triggers a decrease in the service's desired count to free up those cluster resources for other tasks and services\.
+When the CPU utilization of your service rises above 75% \(meaning that more than 75% of the CPU that is reserved for the service is being used\), the scale\-out alarm triggers Service Auto Scaling to add another task to your service to help out with the increased load\. Conversely, when the CPU utilization of your service drops below 75%, the scale in alarm triggers a decrease in the service's desired count to free up those cluster resources for other tasks and services\.
 
 ### Prerequisites<a name="tt-prereqs"></a>
 

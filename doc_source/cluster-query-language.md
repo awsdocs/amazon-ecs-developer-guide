@@ -69,11 +69,8 @@ The matches and not\_matches operators expect an argument that conforms to the J
 **Compound Expressions**
 
 You can combine expressions using the following Boolean operators:
-
 + &&, and
-
-+ ||, or
-
++ \|\|, or
 + \!, not
 
 You can specify precedence using parentheses:

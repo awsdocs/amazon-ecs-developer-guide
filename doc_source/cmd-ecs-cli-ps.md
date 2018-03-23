@@ -5,11 +5,8 @@
 Lists all running containers in your ECS cluster\.
 
 The IP address displayed by the Amazon ECS CLI depends heavily upon how you have configured your task and cluster:
-
 + For tasks using the EC2 launch type without task networking ‐ the IP address shown is the public IP address of the Amazon EC2 instance running your task, or the instances private IP if it lacks a public IP address\.
-
 + For tasks using the EC2 launch type with task networking ‐ the ECS CLI only shows a private IP address obtained from the network interfaces section of the Describe Task output for the task\.
-
 + For tasks using the Fargate launch type ‐ the Amazon ECS CLI returns the public IP assigned to the elastic network instance attached to the Fargate task\. If the elastic network instance lacks a public IP, then the Amazon ECS CLI falls back to the private IP obtained from the network interfaces section of the Describe Task output\.
 
 ## Syntax<a name="cmd-ecs-cli-ps-syntax"></a>

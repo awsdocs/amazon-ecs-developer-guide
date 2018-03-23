@@ -6,7 +6,7 @@ If your container instance was launched with the Amazon ECS\-optimized AMI, you 
 
 If you are manually starting the Amazon ECS container agent \(for non\-Amazon ECS\-optimized AMIs\), you can use these environment variables in the docker run command that you use to start the agent with the syntax `--env=VARIABLE_NAME=VARIABLE_VALUE`\. For sensitive information, such as authentication credentials for private repositories, you should store your agent environment variables in a file and pass them all at one time with the `--env-file path_to_env_file` option\.
 
-
+**Topics**
 + [Available Parameters](#ecs-agent-availparam)
 + [Storing Container Instance Configuration in Amazon S3](#ecs-config-s3)
 
@@ -21,7 +21,7 @@ The cluster that this agent should check into\. If this value is undefined, then
 
 `ECS_RESERVED_PORTS`  
 Example Values: `[22, 80, 5000, 8080]`  
-Default Value: `[22, 2375, 2376, 51678]`  
+Default Value: `[22, 2375, 2376, 51678, 51679]`  
 An array of ports that should be marked as unavailable for scheduling on this container instance\.
 
 `ECS_RESERVED_PORTS_UDP`  
@@ -36,9 +36,7 @@ Required for private registry authentication\. This is the type of authenticatio
 
 `ECS_ENGINE_AUTH_DATA`  
 Example Values:   
-
 + `ECS_ENGINE_AUTH_TYPE=dockercfg`: `{"https://index.docker.io/v1/":{"auth":"zq212MzEXAMPLE7o6T25Dk0i","email":"email@example.com"}}`
-
 + `ECS_ENGINE_AUTH_TYPE=docker`: `{"https://index.docker.io/v1/":{"username":"my_name","password":"my_password","email":"email@example.com"}}`
 Default Value: Null  
 Required for private registry authentication\. If `ECS_ENGINE_AUTH_TYPE=dockercfg`, then the `ECS_ENGINE_AUTH_DATA` value should be the contents of a Docker configuration file \(`~/.dockercfg` or `~/.docker/config.json`\) created by running docker login\. If `ECS_ENGINE_AUTH_TYPE=docker`, then the `ECS_ENGINE_AUTH_DATA` value should be a JSON representation of the registry server to authenticate against, as well as the authentication parameters required by that registry \(such as user name, password, and email address for that account\)\. For more information, see [Authentication Formats](private-auth.md#docker-auth-formats)\.
@@ -143,9 +141,7 @@ The hostname \(or IP address\) and port number of an HTTP proxy to use for the E
 
 `NO_PROXY`  
 Example Values:   
-
 + Linux: `169.254.169.254,169.254.170.2,/var/run/docker.sock`
-
 + Windows: `169.254.169.254,169.254.170.2,\\.\pipe\docker_engine`
 Default Value: Null  
 The HTTP traffic that should not be forwarded to the specified `HTTP_PROXY`\. You must specify `169.254.169.254,/var/run/docker.sock` to filter EC2 instance metadata and Docker daemon traffic from the proxy\. For more information, see [HTTP Proxy Configuration](http_proxy_config.md)\.

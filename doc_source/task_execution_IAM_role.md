@@ -1,9 +1,7 @@
 # Amazon ECS Task Execution IAM Role<a name="task_execution_IAM_role"></a>
 
 The Amazon ECS container agent makes calls to the Amazon ECS API actions on your behalf, so it requires an IAM policy and role for the service to know that the agent belongs to you\. The following actions are covered by the task execution role:
-
 + Calls to Amazon ECR to pull the container image
-
 + Calls to CloudWatch to store container application logs
 
 The `AmazonECSTaskExecutionRolePolicy` policy is shown below\.

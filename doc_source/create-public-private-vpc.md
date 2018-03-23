@@ -4,7 +4,7 @@ Container instances in your clusters need external network access to communicate
 
 This tutorial guides you through creating a VPC with two public subnets and two private subnets, which are provided with internet access through a NAT gateway\.
 
-
+**Topics**
 + [Step 1: Create an Elastic IP Address for Your NAT Gateway](#create-EIP)
 + [Step 2: Run the VPC Wizard](#run-VPC-wizard)
 + [Step 3: Create Additional Subnets](#create-add-subnets)
@@ -87,13 +87,8 @@ The wizard creates a VPC with a single public and a single private subnet in a s
 ## Next Steps<a name="vpc-next-steps"></a>
 
 After you have created your VPC, you should consider the following next steps:
-
 + Create security groups for your public and private resources if they require inbound network access\. For more information, see [Working with Security Groups](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html#WorkingWithSecurityGroups) in the *Amazon VPC User Guide*\.
-
 + Create Amazon ECS clusters in your private or public subnets\. For more information, see [Creating a Cluster](create_cluster.md)\. If you use the cluster creation wizard in the Amazon ECS console, you can specify the VPC that you just created and the public or private subnets in which to launch your instances, depending on your use case\.
-
   + To make your containers directly accessible from the internet, launch instances into your *public* subnets\. Be sure to configure your container instance security groups appropriately\.
-
   + To avoid making containers directly accessible from the internet, launch instances into your *private* subnets\.
-
 + Create a load balancer in your public subnets that can route traffic to services in your public or private subnets\. For more information, see [Service Load Balancing](service-load-balancing.md)\.

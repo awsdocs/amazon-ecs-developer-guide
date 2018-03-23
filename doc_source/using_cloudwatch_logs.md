@@ -4,7 +4,7 @@ You can configure your container instances to send log information to CloudWatch
 
 To send container logs from your tasks to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\. For more information on CloudWatch Logs, see [Monitoring Log Files](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch User Guide*\.
 
-
+**Topics**
 + [CloudWatch Logs IAM Policy](#cwl_iam_policy)
 + [Installing the CloudWatch Logs Agent](#installing_cwl_agent)
 + [Configuring and Starting the CloudWatch Logs Agent](#configure_cwl_agent)
@@ -21,35 +21,33 @@ Before your container instances can send log data to CloudWatch Logs, you must c
 
 1. In the navigation pane, choose **Policies**\. 
 
-1. Choose **Create Policy**\.
+1. Choose **Create policy**\.
 
-1. On the **Create Policy** page, choose **Create Your Own Policy**\.
+1. On the **Create policy** page, choose the **JSON** tab and enter the following policy:
 
-1. On the **Review Policy** page, enter the following information and choose **Create Policy**\.
+   ```
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Action": [
+                   "logs:CreateLogGroup",
+                   "logs:CreateLogStream",
+                   "logs:PutLogEvents",
+                   "logs:DescribeLogStreams"
+               ],
+               "Resource": [
+                   "arn:aws:logs:*:*:*"
+               ]
+           }
+       ]
+   }
+   ```
 
-   1. In the **Policy Name** field, enter `ECS-CloudWatchLogs`\.
+1. Choose **Review policy**\.
 
-   1. In the **Policy Document** field, paste the following policy\.
-
-      ```
-      {
-          "Version": "2012-10-17",
-          "Statement": [
-              {
-                  "Effect": "Allow",
-                  "Action": [
-                      "logs:CreateLogGroup",
-                      "logs:CreateLogStream",
-                      "logs:PutLogEvents",
-                      "logs:DescribeLogStreams"
-                  ],
-                  "Resource": [
-                      "arn:aws:logs:*:*:*"
-                  ]
-              }
-          ]
-      }
-      ```
+1. On the **Review policy** page, enter `ECS-CloudWatchLogs` for the **Name** and then choose **Create policy**\.
 
 **To attach the `ECS-CloudWatchLogs` policy to your `ecsInstanceRole`**
 
@@ -59,13 +57,11 @@ Before your container instances can send log data to CloudWatch Logs, you must c
 
 1. Choose `ecsInstanceRole`\. If the role does not exist, follow the procedures in [Amazon ECS Container Instance IAM Role](instance_IAM_role.md) to create the role\.
 
-1. Choose the **Permissions** tab\.
-
-1. In the **Managed Policies** section, choose **Attach Policy**\.
+1. Choose the **Permissions** tab, then **Attach policy**\.
 
 1. In the **Filter** box, type **ECS\-CloudWatchLogs** to narrow the available policies to attach\.
 
-1. Check the box to the left of the **ECS\-CloudWatchLogs** policy and choose **Attach Policy**\.
+1. Check the box to the left of the **ECS\-CloudWatchLogs** policy and choose **Attach policy**\.
 
 ## Installing the CloudWatch Logs Agent<a name="installing_cwl_agent"></a>
 
@@ -75,7 +71,6 @@ After you have added the `ECS-CloudWatchLogs` policy to your `ecsInstanceRole`, 
 This procedure was written for the Amazon ECS\-optimized AMI, and may not work on other operating systems\. For information on installing the agent on other operating systems, see [Getting Started with CloudWatch Logs](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CWL_GettingStarted.html) in the *Amazon CloudWatch User Guide*\.
 
 **To install the CloudWatch Logs agent**
-
 + Run the following command to install the CloudWatch Logs agent\.
 
   ```
@@ -252,17 +247,11 @@ New instance launches may take a few minutes to send data to CloudWatch Logs\.
 When you launch an Amazon ECS container instance in Amazon EC2, you have the option of passing user data to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts\. You can pass several types of user data to instances, including shell scripts, `cloud-init` directives, and Upstart jobs\. You can also pass this data into the launch wizard as plaintext, as a file \(this is useful for launching instances via the command line tools\), or as base64\-encoded text \(for API calls\)\.
 
 The example user data block below performs the following tasks:
-
 + Installs the `awslogs` package, which contains the CloudWatch Logs agent
-
 + Installs the jq JSON query utility
-
 + Writes the configuration file for the CloudWatch Logs agent and configures the region to send data to \(the region that the container instance is located\)
-
 + Gets the cluster name and container instance ID after the Amazon ECS container agent starts and then writes those values to the CloudWatch Logs agent configuration file log streams
-
 + Starts the CloudWatch Logs agent
-
 + Configures the CloudWatch Logs agent to start at every system boot
 
 ```

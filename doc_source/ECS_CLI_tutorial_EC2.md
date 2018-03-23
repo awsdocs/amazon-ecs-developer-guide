@@ -5,11 +5,8 @@ This tutorial shows you how to set up a cluster and deploy a task using the EC2 
 ## Prerequisites<a name="ECS_CLI_EC2_prerequisites"></a>
 
 It is expected that you have completed the following prerequisites before continuing on:
-
 + Set up an AWS account
-
 + Installed the ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)
-
 + Installed and configured the AWS CLI\. For more information, see [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)
 
 ## Step 1: Configure the ECS CLI<a name="ECS_CLI_tutorial_configure"></a>
@@ -51,69 +48,39 @@ This command may take a few minutes to complete as your resources are created\. 
 For this step, create a simple Docker compose file that creates a WordPress application consisting of a web server and a MySQL database\. At this time, the Amazon ECS CLI supports [Docker compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1 and 2\.
 
 The following parameters are supported in compose files for the Amazon ECS CLI: 
-
 + `cap_add` \(Not valid for tasks using the Fargate launch type\)
-
 + `cap_drop` \(Not valid for tasks using the Fargate launch type\)
-
 + `command`
-
 + `cpu_shares`
-
 + `dns`
-
 + `dns_search`
-
 + `entrypoint`
-
 + `environment`: If an environment variable value is not specified in the compose file, but it exists in the shell environment, the shell environment variable value is passed to the task definition that is created for any associated tasks or services\.
 **Important**  
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.
-
 + `env_file`
 **Important**  
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.
-
 + `extra_hosts`
-
 + `hostname`
-
 + `image`
-
 + `labels`
-
 + `links` \(Not valid for tasks using the Fargate launch type\)
-
 + `log_driver` \(Compose file version 1 only\)
-
 + `log_opt` \(Compose file version 1 only\)
-
 + `logging` \(Compose file version 2 only\)
-
   + `driver`
-
   + `options`
-
 + `mem_limit` \(in bytes\)
-
 + `mem_reservation` \(in bytes\)
-
 + `ports`
-
 + `privileged` \(Not valid for tasks using the Fargate launch type\)
-
 + `read_only`
-
 + `security_opt`
-
 + `ulimits`
-
 + `user`
-
 + `volumes`
-
 + `volumes_from`
-
 + `working_dir`
 
 **Important**  

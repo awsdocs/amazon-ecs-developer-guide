@@ -116,10 +116,7 @@ In addition to using the AWS CLI to access Amazon ECS resources, you can use the
 
 **AWS SDKs**  
 We also provide SDKs that enable you to access Amazon ECS from a variety of programming languages\. The SDKs automatically take care of tasks such as:  
-
 + Cryptographically signing your service requests
-
 + Retrying requests
-
 + Handling error responses
 For more information about available SDKs, see [Tools for Amazon Web Services](https://aws.amazon.com/tools/)\.

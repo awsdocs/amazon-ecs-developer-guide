@@ -19,7 +19,7 @@ When Amazon ECS places tasks, it uses the following process to select container 
 
 1. Select the instances for task placement\.
 
-
+**Topics**
 + [Amazon ECS Task Placement Strategies](task-placement-strategies.md)
 + [Amazon ECS Task Placement Constraints](task-placement-constraints.md)
 + [Cluster Query Language](cluster-query-language.md)

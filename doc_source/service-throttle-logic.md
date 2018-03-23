@@ -13,11 +13,8 @@ Amazon ECS does not ever stop a failing service from retrying, nor does it attem
 If you update your service to use a new task definition, your service returns to a normal, non\-throttled state immediately\. For more information, see [Updating a Service](update-service.md)\.
 
 The following are some common causes that trigger this logic:
-
 + A lack of resources with which to host your task, such as ports, memory, or CPU units in your cluster\. In this case, you also see the [insufficient resource service event message](service-event-messages.md#service-event-messages-1)\.
-
 + The Amazon ECS container agent is unable to pull your task Docker image\. This could be due to a bad container image name, image, or tag, or a lack of private registry authentication or permissions\. In this case, you also see `CannotPullContainerError` in your [stopped task errors](stopped-task-errors.md)\.
-
 + Insufficient disk space on your container instance to create the container\. In this case, you also see `CannotCreateContainerError` in your [stopped task errors](stopped-task-errors.md)\. For more information, see [`CannotCreateContainerError: API error (500): devmapper`](CannotCreateContainerError.md)\.
 
 **Important**  

@@ -1,11 +1,8 @@
 # Connect to Your Container Instance<a name="instance-connect"></a>
 
 To perform basic administrative tasks on your instance, such as updating or installing software or accessing diagnostic logs, connect to the instance using SSH\. To connect to your instance using SSH, your container instances must meet the following prerequisites:
-
 + Your container instances need external network access to connect using SSH\. If your container instances are running in a private VPC, they need an SSH bastion instance to provide this access\. For more information, see the [Securely connect to Linux instances running in a private Amazon VPC](http://aws.amazon.com/blogs/security/securely-connect-to-linux-instances-running-in-a-private-amazon-vpc/) blog post\.
-
 + Your container instances must have been launched with a valid Amazon EC2 key pair\. Amazon ECS container instances have no password, and you use a key pair to log in using SSH\. If you did not specify a key pair when you launched your instance, there is no way to connect to the instance\.
-
 + 
 
   SSH uses port 22 for communication\. Port 22 must be open in your container instance security group for you to connect to your instance using SSH\.

@@ -4,7 +4,7 @@ You can configure the containers in your tasks to send log information to CloudW
 
 To send system logs from your Amazon ECS container instances to CloudWatch Logs, see [Using CloudWatch Logs with Container Instances](using_cloudwatch_logs.md)\. For more information about CloudWatch Logs, see [Monitoring Log Files](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch User Guide*\.
 
-
+**Topics**
 + [Enabling the awslogs Log Driver for Your Containers](#enable_awslogs)
 + [Creating Your Log Groups](#create_awslogs_loggroups)
 + [Available awslogs Log Driver Options](#create_awslogs_logdriver_options)

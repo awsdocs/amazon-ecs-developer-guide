@@ -18,13 +18,9 @@ If you are troubleshooting a problem with a service, the first place you should 
 ## Service Event Messages<a name="service-event-messages-list"></a>
 
 The following are examples of service event messages you may see in the console:
-
 + [\(service *service\-name*\) was unable to place a task because the resources could not be found\.](#service-event-messages-1)
-
 + [\(service *service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* encountered error "AGENT"\.](#service-event-messages-2)
-
 + [\(service *service\-name*\) \(instance *instance\-id*\) is unhealthy in \(elb *elb\-name*\) due to \(reason Instance has failed at least the UnhealthyThreshold number of health checks consecutively\.\)](#service-event-messages-3)
-
 + [\(service *service\-name*\) is unable to consistently start tasks successfully\.](#service-event-messages-4)
 
 ### \(service *service\-name*\) was unable to place a task because the resources could not be found\.<a name="service-event-messages-1"></a>

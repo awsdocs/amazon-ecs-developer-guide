@@ -9,7 +9,7 @@ Some features described may only be available with the latest version of the ECS
 
 ## Syntax<a name="cmd-ecs-cli-pull-syntax"></a>
 
-**ecs\-cli pull \[\-\-registry\-id *registry\_id*\] \[\-\-region *region*\] *ECR\_REPOSITORY*\[:*TAG*|@*DIGEST*\] \[\-\-help\]** 
+**ecs\-cli pull \[\-\-registry\-id *registry\_id*\] \[\-\-region *region*\] *ECR\_REPOSITORY*\[:*TAG*\|@*DIGEST*\] \[\-\-help\]** 
 
 ## Options<a name="cmd-ecs-cli-pull-options"></a>
 

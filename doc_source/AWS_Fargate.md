@@ -14,11 +14,8 @@ AWS Fargate with Amazon ECS is currently only available in the following region:
 | US East \(N\. Virginia\) | us\-east\-1 | 
 
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
-
 + [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)
-
 + [Tutorial: Creating a Cluster with a Fargate Task Using the AWS CLI](ECS_AWSCLI_Fargate.md)
-
 + [Tutorial: Creating a Cluster with a Fargate Task Using the ECS CLI](ECS_CLI_tutorial_fargate.md)
 
 ## Task Definitions<a name="fargate-task-defs"></a>
@@ -26,33 +23,20 @@ The following walkthroughs help you get started using AWS Fargate with Amazon EC
 Tasks that use the Fargate launch type do not support all of the task definition parameters that are available\. Some parameters are not supported at all, and others behave differently for Fargate tasks\.
 
 The following task definition parameters are not valid in Fargate tasks:
-
 + `disableNetworking`
-
 + `dnsSearchDomain`
-
 + `dnsServers`
-
 + `dockerSecurityOptions`
-
 + `extraHosts`
-
 + `links`
-
 + `host` and `sourcePath`
-
 + `linuxParameters`
-
 + `placementConstraints`
-
 + `privileged`
 
 To ensure that your task definition validates for use with the Fargate launch type, you can specify the following when you register the task definition: 
-
 + In the AWS Management Console, for the **Requires capabilities** field, specify `FARGATE`\.
-
 + In the AWS CLI, specify the `--requires-compatibilities` option\.
-
 + In the API, specify the `requiresCapabilities` flag\. 
 
 ### Network Mode<a name="fargate-tasks-networkmode"></a>
@@ -143,9 +127,7 @@ The following is an example task definition using the Fargate launch type that s
 ### Task Storage<a name="fargate-tasks-storage"></a>
 
 When provisioned, each Fargate task receives the following storage\. Task storage is ephemeral\. After a Fargate task stops, the storage is deleted\.
-
 + 10 GB of Docker layer storage
-
 + An additional 4 GB for volume mounts\. This can be mounted and shared among containers using the `volumes`, `mountPoints` and `volumesFrom` parameters in the task definition\.
 **Note**  
 The `host` and `sourcePath` parameters are not supported\.

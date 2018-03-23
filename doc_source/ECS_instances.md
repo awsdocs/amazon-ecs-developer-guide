@@ -5,7 +5,7 @@ An Amazon ECS container instance is an Amazon EC2 instance that is running the A
 **Note**  
 Tasks using the Fargate launch type are deployed onto infrastructure managed by AWS, so this topic does not apply\.
 
-
+**Topics**
 + [Container Instance Concepts](#container_instance_concepts)
 + [Container Instance Lifecycle](#container_instance_life_cycle)
 + [Check the Instance Role for Your Account](#check-instance-role)
@@ -22,23 +22,14 @@ Tasks using the Fargate launch type are deployed onto infrastructure managed by 
 + [Deregister a Container Instance](deregister_container_instance.md)
 
 ## Container Instance Concepts<a name="container_instance_concepts"></a>
-
 + Your container instance must be running the Amazon ECS container agent to register into one of your clusters\. If you are using the Amazon ECS\-optimized AMI, the agent is already installed\. To use a different operating system, install the agent\. For more information, see [Amazon ECS Container Agent](ECS_agent.md)\.
-
 + Because the Amazon ECS container agent makes calls to Amazon ECS on your behalf, you must launch container instances with an IAM role that authenticates to your account and provides the required resource permissions\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
-
 + If any of the containers associated with your tasks require external connectivity, you can map their network ports to ports on the host Amazon ECS container instance so they are reachable from the internet\. Your container instance security group must allow inbound access to the ports you want to expose\. For more information, see [Create a Security Group](http://docs.aws.amazon.com/AmazonVPC/latest/GettingStartedGuide/getting-started-create-security-group.html) in the [Amazon VPC Getting Started Guide](http://docs.aws.amazon.com/AmazonVPC/latest/GettingStartedGuide/)\.
-
 + We strongly recommend launching your container instances inside a VPC, because Amazon VPC delivers more control over your network and offers more extensive configuration capabilities\. For more information, see [Amazon EC2 and Amazon Virtual Private Cloud](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html) in the *Amazon EC2 User Guide for Linux Instances*\.
-
 + Container instances need external network access to communicate with the Amazon ECS service endpoint, so if your container instances do not have public IP addresses, then they must use network address translation \(NAT\) to provide this access\. For more information, see [NAT Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html) in the *Amazon VPC User Guide* and [HTTP Proxy Configuration](http_proxy_config.md) in this guide\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)
-
 + The type of EC2 instance that you choose for your container instances determines the resources available in your cluster\. Amazon EC2 provides different instance types, each with different CPU, memory, storage, and networking capacity that you can use to run your tasks\. For more information, see [Amazon EC2 Instances](https://aws.amazon.com/ec2/instance-types/)\.
-
 + Because each container instance has unique state information that is stored locally on the container instance and within Amazon ECS:
-
   + You should not deregister an instance from one cluster and re\-register it into another\. To relocate container instance resources, we recommend that you terminate container instances from one cluster and launch new container instances with the latest Amazon ECS\-optimized AMI in the new cluster\. For more information, see [Terminate Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances* and [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
-
   +  You cannot stop a container instance and change its instance type\. Instead, we recommend that you terminate the container instance and launch a new container instance with the desired instance size and the latest Amazon ECS\-optimized AMI in your desired cluster\. For more information, see [Terminate Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances* and [Launching an Amazon ECS Container Instance](launch_container_instance.md) in this guide\.
 
 ## Container Instance Lifecycle<a name="container_instance_life_cycle"></a>

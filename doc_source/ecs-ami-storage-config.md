@@ -15,7 +15,6 @@ The docker\-storage\-setup utility configures the LVM volume group and logical v
 Earlier Amazon ECS\-optimized AMI versions \(`2015.09.d` to `2016.03.a`\) create a logical volume that uses 40% of the available storage in the volume group\. When the logical volume becomes 60% full, the logical volume is increased in size by 20%\.
 
 **To determine the available storage for Docker**
-
 + You can use the LVM commands, vgs and lvs, or the docker info command to view available storage for Docker\.
 **Note**  
 The LVM command output displays storage values in GiB \(2^30 bytes\), and docker info displays storage values in GB \(10^9 bytes\)\.

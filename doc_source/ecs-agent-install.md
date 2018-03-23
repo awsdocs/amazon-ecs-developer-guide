@@ -105,13 +105,11 @@ The Amazon Linux AMI always includes the recommended version of Docker for use w
    ```
 
 1. Write the new iptables configuration to your operating system\-specific location\.
-
    + For Debian/Ubuntu: 
 
      ```
      sudo sh -c 'iptables-save > /etc/iptables/rules.v4'
      ```
-
    + For CentOS/RHEL: 
 
      ```

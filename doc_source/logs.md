@@ -51,23 +51,14 @@ Output:
 When the credential provider for the IAM role is used to provide credentials to tasks, these requests are logged in `/var/log/ecs/audit.log.YYYY-MM-DD-HH`\.
 
 The log entry format is as follows:
-
 + Time stamp
-
 + HTTP response code
-
 + IP address and port number of request origin
-
 + Relative URI of the credential provider
-
 + The user agent that made the request
-
 + The ARN of the task to which the requesting container belongs
-
 + The `GetCredentials` API name and version number
-
 + The name of the Amazon ECS cluster to which the container instance is registered
-
 + The container instance ARN
 
 An example log entry is shown below:

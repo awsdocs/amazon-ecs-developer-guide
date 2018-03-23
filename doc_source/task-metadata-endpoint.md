@@ -9,7 +9,7 @@ All containers belonging to tasks that are launched with the `awsvpc` network mo
 
 For information about a sample Go application that queries the metadata and stats API endpoints, see [https://github\.com/aws/amazon\-ecs\-agent/blob/2bf4348a0ff89e23be4e82a6c5ff28edf777092c/misc/taskmetadata\-validator/taskmetadata\-validator\.go](https://github.com/aws/amazon-ecs-agent/blob/2bf4348a0ff89e23be4e82a6c5ff28edf777092c/misc/taskmetadata-validator/taskmetadata-validator.go)\.
 
-
+**Topics**
 + [Enabling Task Metadata](#enable-task-metadata-endpoint)
 + [Task Metadata Endpoint Paths](#task-metadata-endpoint-paths)
 + [Task Metadata JSON Response](#task-metadata-response)

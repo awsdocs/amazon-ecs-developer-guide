@@ -4,6 +4,9 @@ You can update a running service to change the number of tasks that are maintain
 
 If you have updated the Docker image of your application, you can create a new task definition with that image and deploy it to your service\. The service scheduler uses the minimum healthy percent and maximum percent parameters \(in the service's deployment configuration\) to determine the deployment strategy\.
 
+**Note**  
+If your updated Docker image uses the same tag as what is in the existing task definition for your service \(for example, `my_image:latest`\), you do not need to create a new revision of your task definition\. You can update the service using the procedure below, keep the current settings for your service, and select **Force new deployment**\. The new tasks launched by the deployment pull the current image/tag combination from your repository when they start\.
+
 The minimum healthy percent represents a lower limit on the number of your service's tasks that must remain in the `RUNNING` state during a deployment, as a percentage of the desired number of tasks \(rounded up to the nearest integer\)\. This parameter enables you to deploy without using additional cluster capacity\. For example, if your service has a desired number of four tasks and a minimum healthy percent of 50%, the scheduler may stop two existing tasks to free up cluster capacity before starting two new tasks\. Tasks for services that *do not* use a load balancer are considered healthy if they are in the `RUNNING` state; tasks for services that *do* use a load balancer are considered healthy if they are in the `RUNNING` state and the container instance on which it is hosted is reported as healthy by the load balancer\. The default value for minimum healthy percent is 50% in the console and 100% for the AWS CLI, the AWS SDKs, and the APIs\.
 
 The maximum percent parameter represents an upper limit on the number of your service's tasks that are allowed in the `RUNNING` or `PENDING` state during a deployment, as a percentage of the desired number of tasks \(rounded down to the nearest integer\)\. This parameter enables you to define the deployment batch size\. For example, if your service has a desired number of four tasks and a maximum percent value of 200%, the scheduler may start four new tasks before stopping the four older tasks \(provided that the cluster resources required to do this are available\)\. The default value for maximum percent is 200%\.
@@ -31,6 +34,8 @@ Amazon ECS does not automatically update the security groups associated with Ela
 1. Check the box to the left of the service to update and choose **Update**\.
 
 1. On the **Configure service** page, your service information is pre\-populated\. Change the task definition, deployment configuration, or number of desired tasks \(or any combination of these\) and choose **Next step**\.
+**Note**  
+If you want your service to use a newly updated Docker image with the same tag as what is in the existing task definition \(for example, `my_image:latest`\), keep the current settings for your service and select **Force new deployment**\. The new tasks launched by the deployment pull the current image/tag combination from your repository when they start\.
 
 1. On the **Configure network** page, your network information is pre\-populated\. Change the health check grace period \(if desired\) and choose **Next step**\.
 

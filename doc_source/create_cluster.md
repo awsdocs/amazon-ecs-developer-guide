@@ -17,11 +17,8 @@ Do not attempt to modify the underlying resources directly after they are create
 1. On the **Clusters** page, choose **Create Cluster**\.
 
 1. For **Select cluster compatibility**, choose one of the following and then choose **Next Step**:
-
    + **Networking only**–This choice takes you through the options to launch a cluster of tasks using the Fargate launch type\. The Fargate launch type allows you to run your containerized applications without the need to provision and manage the backend infrastructure\. Register your task definition and Fargate launches the container for you\.
-
    + **EC2 Linux \+ Networking**–This choice takes you through the choices to launch a cluster of tasks using the EC2 launch type using Linux containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\.
-
    + **EC2 Windows \+ Networking** – This choice takes you through the choices to launch a cluster of tasks using the EC2 launch type using Windows containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\. For more information, see [Windows Containers](ECS_Windows.md)\.
 
 If you chose the **Networking only** cluster template, do the following, otherwise skip to the next section:
@@ -47,9 +44,7 @@ If you chose the **EC2 Linux \+ Networking** or **EC2 Windows \+ Networking** te
 1. \(Optional\) If you wish to create a cluster with no resources, choose **Create an empty cluster**, **Create**\.
 
 1. For **Provisioning model**, choose one of the following:
-
    + **On\-Demand Instance**–With On\-Demand Instances, you pay for compute capacity by the hour with no long\-term commitments or upfront payments\.
-
    + **Spot**–Spot Instances allow you to bid on spare Amazon EC2 computing capacity for up to 90% off the On\-Demand price\. For more information, see [Spot Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide//using-spot-instances.html)\.
 **Note**  
 Spot Instances are subject to possible interruptions\. We recommend that you avoid Spot Instances for applications that can't be interrupted\. For more information, see [Spot Instance Interruptions](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide//spot-interruptions.html)\.

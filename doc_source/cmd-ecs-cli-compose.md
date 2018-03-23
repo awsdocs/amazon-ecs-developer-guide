@@ -15,69 +15,39 @@ The ecs\-cli compose command uses a project name with the task definitions and s
 The Amazon ECS CLI can only manage tasks, services, and container instances that were created with the CLI\. To manage tasks, services, and container instances that were not created by the Amazon ECS CLI, use the AWS Command Line Interface or the AWS Management Console\.
 
 The following parameters are supported in compose files for the Amazon ECS CLI: 
-
 + `cap_add` \(Not valid for tasks using the Fargate launch type\)
-
 + `cap_drop` \(Not valid for tasks using the Fargate launch type\)
-
 + `command`
-
 + `cpu_shares`
-
 + `dns`
-
 + `dns_search`
-
 + `entrypoint`
-
 + `environment`: If an environment variable value is not specified in the compose file, but it exists in the shell environment, the shell environment variable value is passed to the task definition that is created for any associated tasks or services\.
 **Important**  
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.
-
 + `env_file`
 **Important**  
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.
-
 + `extra_hosts`
-
 + `hostname`
-
 + `image`
-
 + `labels`
-
 + `links` \(Not valid for tasks using the Fargate launch type\)
-
 + `log_driver` \(Compose file version 1 only\)
-
 + `log_opt` \(Compose file version 1 only\)
-
 + `logging` \(Compose file version 2 only\)
-
   + `driver`
-
   + `options`
-
 + `mem_limit` \(in bytes\)
-
 + `mem_reservation` \(in bytes\)
-
 + `ports`
-
 + `privileged` \(Not valid for tasks using the Fargate launch type\)
-
 + `read_only`
-
 + `security_opt`
-
 + `ulimits`
-
 + `user`
-
 + `volumes`
-
 + `volumes_from`
-
 + `working_dir`
 
 **Important**  
@@ -120,28 +90,19 @@ run_params:
 ```
 
 The fields listed under `task_definition` correspond to fields to be included in your Amazon ECS task definition\. The following are descriptions for each:
-
 + `ecs_network_mode` ‐ Corresponds to networkMode in an ECS task definition\. Supported values are `none`, `bridge`, `host`, or `awsvpc`\. If not specified, this defaults to `bridge`\. If you are using task networking, this field must be set to `awsvpc`\. For more information, see [Network Mode](task_definition_parameters.md#network_mode)\.
-
 + `task_role_arn` ‐ the name or full ARN of an IAM role to be associated with the task\. For more information, see [Task Role](task_definition_parameters.md#task_role_arn)\.
-
 + `task_execution_role` ‐ the name or full ARN of the task execution role\. This is a required field if you want your tasks to be able to store container application logs in CloudWatch or allow your tasks to pull container images from Amazon ECR\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
-
 + `task_size` ‐ the CPU and memory values for the task\. If using the EC2 launch type, this field is optional and any value can be used\. If using the Fargate launch type, this field is required and you must use one of the following sets of values for the `cpu` and `memory` parameters\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cmd-ecs-cli-compose.html)
 
   For more information, see [Task Size](task_definition_parameters.md#task_size)\.
-
 + `services` ‐ corresponds to the services listed in your Docker compose file, with `service_name` matching the name of the container to run\. Its fields are merged into a container definition\. The only field you can specify on it is `essential`\. If not specified, the value for `essential` defaults to `true`\.
 
 The fields listed under `run_params` are for values needed as options to API calls not specifically related to a task definition, such as `compose up` \(RunTask\) and `compose service up` \(CreateService\)\. Currently, the only supported parameter under `run_params` is `network_configuration`, which is a required parameter to use task networking\. It is required when using tasks with the Fargate launch type\.
-
 + `network_configuration` ‐ required field if you specified `awsvpc` for `ecs_network_mode`\. It uses one nested parameter, `awsvpc_configuration`, which has the following subfields:
-
   + `subnets` ‐ list of subnet IDs used to associate with your tasks\. The listed subnets must be in the same VPC and Availability Zone as the instances on which to launch your tasks\.
-
   + `security_groups` ‐ list of security group IDs to associate with your tasks\. The listed security must be in the same VPC as the instances on which to launch your tasks\.
-
   + `assign_public_ip` ‐ supported values for this field are `ENABLED` or `DISABLED`\. This field is only used for tasks using the Fargate launch type\. If this field is present in tasks using task networking with the EC2 launch type, the request fails\.
 
 ## Syntax<a name="cmd-ecs-cli-compose-syntax"></a>

@@ -10,13 +10,9 @@ Some features described may only be available with the latest version of the ECS
 ### Working with Multiple Cluster Configurations<a name="ECS_CLI_multiple_cluster_configurations"></a>
 
 The following should be noted when using multiple cluster configurations:
-
 + Multiple cluster configurations may be stored, but one is always the default\.
-
 + The first cluster configuration that is stored is set as the default\.
-
 + Use the `ecs-cli configure default` command to change which cluster configuration is set as the default\. For more information, see [ecs\-cli configure default](cmd-ecs-cli-configure-default.md)
-
 + A non\-default cluster configuration can be referenced in a command by using the `--cluster-config` flag\.
 
 For more information, see [ecs\-cli configure default](cmd-ecs-cli-configure-default.md)\.

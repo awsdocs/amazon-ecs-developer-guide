@@ -13,34 +13,45 @@ For information about other services that support service\-linked roles, see [AW
 Amazon ECS uses the service\-linked role named **AWSServiceRoleForECS** – Role to enable Amazon ECS to manage your cluster\.\.
 
 The AWSServiceRoleForECS service\-linked role trusts the following services to assume the role:
-
 + `ecs.amazonaws.com`
 
 The role permissions policy allows Amazon ECS to complete the following actions on the specified resources:
 
-+ `ec2:AttachNetworkInterface` on all AWS resources that the API operation supports
-
-+ `ec2:CreateNetworkInterface` on all AWS resources that the API operation supports
-
-+ `ec2:CreateNetworkInterfacePermission` on all AWS resources that the API operation supports
-
-+ `ec2:DeleteNetworkInterface` on all AWS resources that the API operation supports
-
-+ `ec2:DeleteNetworkInterfacePermission` on all AWS resources that the API operation supports
-
-+ `ec2:Describe*` on all AWS resources that descriptive Amazon EC2 API operations support
-
-+ `ec2:DetachNetworkInterface` on all AWS resources that the API operation supports
-
-+ `elasticloadbalancing:DeregisterInstancesFromLoadBalancer` on all AWS resources that the API operation supports
-
-+ `elasticloadbalancing:DeregisterTargets` on all AWS resources that the API operation supports
-
-+ `elasticloadbalancing:Describe*` on all AWS resources that descriptive Elastic Load Balancing API operations support
-
-+ `elasticloadbalancing:RegisterInstancesWithLoadBalancer` on all AWS resources that the API operation supports
-
-+ `elasticloadbalancing:RegisterTargets` on all AWS resources that the API operation supports
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:AttachNetworkInterface",
+                "ec2:CreateNetworkInterface",
+                "ec2:CreateNetworkInterfacePermission",
+                "ec2:DeleteNetworkInterface",
+                "ec2:DeleteNetworkInterfacePermission",
+                "ec2:Describe*",
+                "ec2:DetachNetworkInterface",
+                "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+                "elasticloadbalancing:DeregisterTargets",
+                "elasticloadbalancing:Describe*",
+                "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+                "elasticloadbalancing:RegisterTargets",
+                "route53:ChangeResourceRecordSets",
+                "route53:CreateHealthCheck",
+                "route53:DeleteHealthCheck",
+                "route53:Get*",
+                "route53:List*",
+                "route53:UpdateHealthCheck",
+                "servicediscovery:DeregisterInstance",
+                "servicediscovery:Get*",
+                "servicediscovery:List*",
+                "servicediscovery:RegisterInstance"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
 
 You must configure permissions to allow an IAM entity \(such as a user, group, or role\) to create, edit, or delete a service\-linked role\.
 
@@ -157,13 +168,10 @@ You can use the IAM console to delete a service\-linked role\.
 1. In the confirmation dialog box, review the service last accessed data, which shows when each of the selected roles last accessed an AWS service\. This helps you to confirm whether the role is currently active\. If you want to proceed, choose **Yes, Delete** to submit the service\-linked role for deletion\.
 
 1. Watch the IAM console notifications to monitor the progress of the service\-linked role deletion\. Because the IAM service\-linked role deletion is asynchronous, after you submit the role for deletion, the deletion task can succeed or fail\. 
-
    + If the task succeeds, then the role is removed from the list and a notification of success appears at the top of the page\.
-
    + If the task fails, you can choose **View details** or **View Resources** from the notifications to learn why the deletion failed\. If the deletion fails because the role is using the service's resources, then the notification includes a list of resources, if the service returns that information\. You can then [clean up the resources](http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#service-linked-role-review-before-delete) and submit the deletion again\.
 **Note**  
 You might have to repeat this process several times, depending on the information that the service returns\. For example, your service\-linked role might use six resources and your service might return information about five of them\. If you clean up the five resources and submit the role for deletion again, the deletion fails and the service reports the one remaining resource\. A service might return all of the resources, a few of them, or it might not report any resources\.
-
    + If the task fails and the notification does not include a list of resources, then the service might not return that information\. To learn how to clean up the resources for that service, see [AWS Services That Work with IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html)\. Find your service in the table, and choose the **Yes** link to view the service\-linked role documentation for that service\.
 
 ### Deleting a Service\-Linked Role in IAM \(AWS CLI\)<a name="delete-service-linked-role-iam-cli"></a>

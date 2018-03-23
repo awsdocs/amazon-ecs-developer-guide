@@ -9,7 +9,5 @@ The following is a list of the platform versions currently available:
 ## Available Platform Versions<a name="available_pv"></a>
 
 Fargate Platform Version‐1\.0\.0  
-
 + Based on Amazon Linux 2017\.09
-
 + Initial release

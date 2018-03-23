@@ -18,28 +18,15 @@ The Amazon EC2 user data script in the following procedure uses the Amazon ECS i
 
    1. Choose the `ecsInstanceRole`\. If the role does not exist, use the procedure in [Amazon ECS Container Instance IAM Role](instance_IAM_role.md) to create the role and return to this procedure\. If the role does exist, select the role to view the attached policies\.
 
-   1. In the **Inline Policies** section, choose **Create Role Policy**\.
+   1. In the **Permissions** tab, choose **Add inline policy**\.
 
-   1. On the **Set Permissions** page, choose **Custom Policy**, **Select**\.
+   1. For **Service**, choose **Choose a service** and then **Elastic Container Service**\.
 
-   1. For **Policy Name**, enter `StartTask`\.
+   1. For **Actions**, choose **Select actions**, type **StartTask** in the search field, and then select **StartTask**\.
 
-   1. For **Policy Document**, copy and paste the following policy and choose **Apply Policy**\.
+   1. For **Resources**, select **All resources**, and then choose **Review policy**\.
 
-      ```
-      {
-        "Version": "2012-10-17",
-        "Statement": [
-          {
-            "Effect": "Allow",
-            "Action": [
-              "ecs:StartTask"
-            ],
-            "Resource": "*"
-          }
-        ]
-      }
-      ```
+   1. On the **Review policy** page, enter a name for your policy, such as `ecs-start-task` and choose **Create policy**\.
 
 1. Launch one or more container instances by following the procedure in [Launching an Amazon ECS Container Instance](launch_container_instance.md), but in [Step 7](launch_container_instance.md#instance-launch-user-data-step)\. Then, copy and paste the MIME multi\-part user data script below into the **User data** field\. Substitute *your\_cluster\_name* with the cluster for the container instance to register into and *my\_task\_def* with the task definition to run on the instance at launch\.
 **Note**  

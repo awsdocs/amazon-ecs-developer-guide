@@ -4,7 +4,7 @@ Task definitions are split into separate parts: the task family, the IAM task ro
 
 The family and container definitions are required in a task definition, while task role, network mode, volumes, task placement constraints, and launch type are optional\.
 
-
+**Topics**
 + [Family](#family)
 + [Task Role](#task_role_arn)
 + [Task Execution Role](#execution_role_arn)
@@ -53,7 +53,7 @@ Docker for Windows uses different network modes than Docker for Linux\. When you
 
 When you register a task definition, you must specify a list of container definitions that are passed to the Docker daemon on a container instance\. The following parameters are allowed in a container definition\.
 
-
+**Topics**
 + [Standard Container Definition Parameters](#standard_container_definition_params)
 + [Advanced Container Definition Parameters](#advanced_container_definition_params)
 
@@ -70,17 +70,11 @@ The name of a container\. Up to 255 letters \(uppercase and lowercase\), numbers
 Type: string  
 Required: yes  
 The image used to start a container\. This string is passed directly to the Docker daemon\. Images in the Docker Hub registry are available by default\. You can also specify other repositories with either `repository-url/image:tag` or `repository-url/image@digest`\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, underscores, colons, periods, forward slashes, and number signs are allowed\. This parameter maps to `Image` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `IMAGE` parameter of [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-
 + When a new task starts, the Amazon ECS container agent pulls the latest version of the specified image and tag for the container to use\. However, subsequent updates to a repository image are not propagated to already running tasks\.
-
 + The Fargate launch type only supports images in Amazon ECR or public repositories in Docker Hub\.
-
 + Images in Amazon ECR repositories can be specified by using either the full `registry/repository:tag` or `registry/repository@digest` naming convention\. For example, `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app:latest` or `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app@sha256:94afd1f2e64d908bc90dbca0035a5b567EXAMPLE`
-
 + Images in official repositories on Docker Hub use a single name \(for example, `ubuntu` or `mongo`\)\.
-
 + Images in other repositories on Docker Hub are qualified with an organization name \(for example, `amazon/amazon-ecs-agent`\)\.
-
 + Images in other online repositories are qualified further by a domain name \(for example, `quay.io/assemblyline/ubuntu`\)\.
 
 `memory`  
@@ -108,11 +102,8 @@ For task definitions that use the `awsvpc` network mode, you should only specify
 Port mappings on Windows use the `NetNAT` gateway address rather than `localhost`\. There is no loopback for port mappings on Windows, so you cannot access a container's mapped port from the host itself\.   
 This parameter maps to `PortBindings` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--publish` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. If the network mode of a task definition is set to `host`, then host ports must either be undefined or they must match the container port in the port mapping\.  
 After a task reaches the `RUNNING` status, manual and automatic host and container port assignments are visible in the following locations:  
-
 + Console: The **Network Bindings** section of a container description for a selected task\.
-
 + AWS CLI: The `networkBindings` section of the describe\-tasks command output\.
-
 + API: The `DescribeTasks` response\.  
 `containerPort`  
 Type: integer  
@@ -159,7 +150,7 @@ If you want an automatically assigned host port, use the following syntax:
 
 The following advanced container definition parameters provide extended capabilities to the [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/) command that is used to launch containers on your Amazon ECS container instances\.
 
-
+**Topics**
 + [Health Check](#container_definition_healthcheck)
 + [Environment](#container_definition_environment)
 + [Network Settings](#container_definition_network)
@@ -167,6 +158,7 @@ The following advanced container definition parameters provide extended capabili
 + [Security](#container_definition_security)
 + [Resource Limits](#container_definition_limits)
 + [Docker Labels](#container_definition_labels)
++ [Linux Parameters](#container_definition_linuxparameters)
 
 #### Health Check<a name="container_definition_healthcheck"></a>
 
@@ -198,12 +190,10 @@ Type: integer
 Required: no  
 The number of `cpu` units to reserve for the container\. This parameter maps to `CpuShares` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--cpu-shares` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This field is optional for tasks using the Fargate launch type, and the only requirement is that the total amount of CPU reserved for all containers within a task be lower than the task\-level `cpu` value\.  
-You can determine the number of CPU units that are available per Amazon EC2 instance type by multiplying by the vCPUs listed for that instance type on the [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) detail page\.
+You can determine the number of CPU units that are available per Amazon EC2 instance type by multiplying the number of vCPUs listed for that instance type on the [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) detail page by 1,024\.
 Linux containers share unallocated CPU units with other containers on the container instance with the same ratio as their allocated amount\. For example, if you run a single\-container task on a single\-core instance type with 512 CPU units specified for that container, and that is the only task running on the container instance, that container could use the full 1,024 CPU unit share at any given time\. However, if you launched another copy of the same task on that container instance, each task would be guaranteed a minimum of 512 CPU units when needed, and each container could float to higher CPU usage if the other container was not using it, but if both tasks were 100% active all of the time, they would be limited to 512 CPU units\.  
 On Linux container instances, the Docker daemon on the container instance uses the CPU value to calculate the relative CPU share ratios for running containers\. For more information, see [CPU share constraint](https://docs.docker.com/engine/reference/run/#cpu-share-constraint) in the Docker documentation\. The minimum valid CPU share value that the Linux kernel allows is 2\. However, the CPU parameter is not required, and you can use CPU values below 2 in your container definitions\. For CPU values below 2 \(including null\), the behavior varies based on your Amazon ECS container agent version:  
-
 + **Agent versions <= 1\.1\.0:** Null and zero CPU values are passed to Docker as 0, which Docker then converts to 1,024 CPU shares\. CPU values of 1 are passed to Docker as 1, which the Linux kernel converts to 2 CPU shares\.
-
 + **Agent versions >= 1\.2\.0:** Null, zero, and CPU values of 1 are passed to Docker as 2\.
 On Windows container instances, the CPU limit is enforced as an absolute limit, or a quota\. Windows containers only have access to the specified amount of CPU that is described in the task definition\.
 
@@ -428,7 +418,7 @@ Valid values: `"json-file" | "syslog" | "journald" | "gelf" | "fluentd" | "awslo
 Required: yes, when `logConfiguration` is used  
 The log driver to use for the container\. The valid values listed earlier are log drivers that the Amazon ECS container agent can communicate with by default\.   
 If using the Fargate launch type, the only supported value is `awslogs`\.  
-If you have a custom driver that is not listed earlier that you would like to work with the Amazon ECS container agent, you can fork the Amazon ECS container agent project that is [available on GitHub](https://github.com/aws/amazon-ecs-agent) and customize it to work with that driver\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently support running modified copies of this software\.
+If you have a custom driver that is not listed earlier that you would like to work with the Amazon ECS container agent, you can fork the Amazon ECS container agent project that is [available on GitHub](https://github.com/aws/amazon-ecs-agent) and customize it to work with that driver\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently provide support for running modified copies of this software\.
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 `options`  
 Type: string to string map  
@@ -470,6 +460,54 @@ This parameter is not supported for Windows containers or tasks using the Fargat
 "dockerSecurityOptions": ["string", ...]
 ```
 The Amazon ECS container agent running on a container instance must register with the `ECS_SELINUX_CAPABLE=true` or `ECS_APPARMOR_CAPABLE=true` environment variables before containers placed on that instance can use these security options\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+
+#### Resource Limits<a name="container_definition_limits"></a>
+
+`ulimits`  
+Type: object array  
+Required: no  
+A list of `ulimits` to set in the container\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.   
+This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
+This parameter is not supported for Windows containers\.
+
+```
+"ulimits": [
+      {
+        "name": "core"|"cpu"|"data"|"fsize"|"locks"|"memlock"|"msgqueue"|"nice"|"nofile"|"nproc"|"rss"|"rtprio"|"rttime"|"sigpending"|"stack",
+        "softLimit": integer,
+        "hardLimit": integer
+      }
+      ...
+    ]
+```  
+`name`  
+Type: string  
+Valid values: `"core" | "cpu" | "data" | "fsize" | "locks" | "memlock" | "msgqueue" | "nice" | "nofile" | "nproc" | "rss" | "rtprio" | "rttime" | "sigpending" | "stack"`  
+Required: yes, when `ulimits` are used  
+The `type` of the `ulimit`\.  
+`hardLimit`  
+Type: integer  
+Required: yes, when `ulimits` are used  
+The hard limit for the `ulimit` type\.  
+`softLimit`  
+Type: integer  
+Required: yes, when `ulimits` are used  
+The soft limit for the `ulimit` type\.
+
+#### Docker Labels<a name="container_definition_labels"></a>
+
+`dockerLabels`  
+Type: string to string map  
+Required: no  
+A key/value map of labels to add to the container\. This parameter maps to `Labels` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--label` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.   
+This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
+
+```
+"dockerLabels": {"string": "string"
+      ...}
+```
+
+#### Linux Parameters<a name="container_definition_linuxparameters"></a>
 
 `linuxParameters`  
 Type: [LinuxParameters](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LinuxParameters.html) object  
@@ -517,56 +555,32 @@ Required: No
 `permissions`  
 The explicit permissions to provide to the container for the device\. By default, the container can `read`, `write`, and `mknod` the device\.  
 Type: Array of strings  
-Valid Values: `read` | `write` | `mknod`  
+Valid Values: `read` \| `write` \| `mknod`  
 `initProcessEnabled`  
 Run an `init` process inside the container that forwards signals and reaps processes\. This parameter maps to the `--init` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
-This parameter requires version 1\.25 of the Docker Remote API or greater on your container instance\.
-
-#### Resource Limits<a name="container_definition_limits"></a>
-
-`ulimits`  
-Type: object array  
-Required: no  
-A list of `ulimits` to set in the container\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.   
-This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
-This parameter is not supported for Windows containers\.
-
-```
-"ulimits": [
-      {
-        "name": "core"|"cpu"|"data"|"fsize"|"locks"|"memlock"|"msgqueue"|"nice"|"nofile"|"nproc"|"rss"|"rtprio"|"rttime"|"sigpending"|"stack",
-        "softLimit": integer,
-        "hardLimit": integer
-      }
-      ...
-    ]
-```  
-`name`  
-Type: string  
-Valid values: `"core" | "cpu" | "data" | "fsize" | "locks" | "memlock" | "msgqueue" | "nice" | "nofile" | "nproc" | "rss" | "rtprio" | "rttime" | "sigpending" | "stack"`  
-Required: yes, when `ulimits` are used  
-The `type` of the `ulimit`\.  
-`hardLimit`  
-Type: integer  
-Required: yes, when `ulimits` are used  
-The hard limit for the `ulimit` type\.  
-`softLimit`  
-Type: integer  
-Required: yes, when `ulimits` are used  
-The soft limit for the `ulimit` type\.
-
-#### Docker Labels<a name="container_definition_labels"></a>
-
-`dockerLabels`  
-Type: string to string map  
-Required: no  
-A key/value map of labels to add to the container\. This parameter maps to `Labels` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--label` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.   
-This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
-
-```
-"dockerLabels": {"string": "string"
-      ...}
-```
+This parameter requires version 1\.25 of the Docker Remote API or greater on your container instance\.  
+`sharedMemorySize`  
+The value for the size of the `/dev/shm` volume\. This parameter maps to the `--shm-size` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
+If you are using tasks that use the Fargate launch type, the `sharedMemorySize` parameter is not supported\.
+Type: Integer  
+`tmpfs`  
+The container path, mount options, and size of the tmpfs mount\. This parameter maps to the `--tmpfs` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
+If you are using tasks that use the Fargate launch type, the `tmpfs` parameter is not supported\.
+Type: Array of [Tmpfs](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Tmpfs.html) objects  
+Required: No    
+`containerPath`  
+The absolute file path where the tmpfs volume will be mounted\.  
+Type: String  
+Required: Yes  
+`mountOptions`  
+The list of tmpfs volume mount options\.  
+Type: Array of strings  
+Required: No  
+Valid Values: `"defaults" | "ro" | "rw" | "suid" | "nosuid" | "dev" | "nodev" | "exec" | "noexec" | "sync" | "async" | "dirsync" | "remount" | "mand" | "nomand" | "atime" | "noatime" | "diratime" | "nodiratime" | "bind" | "rbind" | "unbindable" | "runbindable" | "private" | "rprivate" | "shared" | "rshared" | "slave" | "rslave" | "relatime" | "norelatime" | "strictatime" | "nostrictatime"`  
+`size`  
+The size of the tmpfs volume\.  
+Type: Integer  
+Required: Yes
 
 ## Volumes<a name="volumes"></a>
 

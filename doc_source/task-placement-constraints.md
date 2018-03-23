@@ -143,11 +143,8 @@ When you launch a task using the `RunTask` or `StartTask` action, you can specif
 For tasks launched by the service scheduler, the task group name is the name of the service \(for example, service:my\-service\-name\)\.
 
 **Limits**
-
 + A task group name must be 255 characters or less\.
-
 + Each task can be in exactly one group\.
-
 + After launching a task, you cannot modify its task group\.
 
 ## Example Constraints<a name="constraint-examples"></a>

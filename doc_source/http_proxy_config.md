@@ -2,7 +2,7 @@
 
 You can configure your Amazon ECS container instances to use an HTTP proxy for both the Amazon ECS container agent and the Docker daemon\. This is useful if your container instances do not have external network access through an Amazon VPC internet gateway, NAT gateway, or instance\. The process differs for Linux and Windows instances, so be sure to read the appropriate section below for your application\.
 
-
+**Topics**
 + [Linux Container Instance Configuration](#linux-proxy)
 + [Windows Container Instance Configuration](#windows-proxy)
 

@@ -9,7 +9,7 @@ Some features described may only be available with the latest version of the ECS
 
 ## Syntax<a name="cmd-ecs-cli-images-syntax"></a>
 
-**ecs\-cli images \[\-\-registry\-id *registry\_id*\] \[\-\-tagged|\-\-untagged\] \[\-\-region *region*\] \[*ECR\_REPOSITORY*\] \[\-\-help\]** 
+**ecs\-cli images \[\-\-registry\-id *registry\_id*\] \[\-\-tagged\|\-\-untagged\] \[\-\-region *region*\] \[*ECR\_REPOSITORY*\] \[\-\-help\]** 
 
 ## Options<a name="cmd-ecs-cli-images-options"></a>
 

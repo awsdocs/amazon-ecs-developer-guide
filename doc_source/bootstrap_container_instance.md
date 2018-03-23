@@ -6,7 +6,7 @@ You can pass multiple types of user data to Amazon EC2, including cloud boothook
 
 You can pass this user data into the Amazon EC2 launch wizard in [Step 7](launch_container_instance.md#instance-launch-user-data-step) of [Launching an Amazon ECS Container Instance](launch_container_instance.md)\. 
 
-
+**Topics**
 + [Amazon ECS Container Agent](#bootstrap_container_agent)
 + [Docker Daemon](#bootstrap_docker_daemon)
 + [cloud\-init\-per Utility](#cloud-init-per)
@@ -71,11 +71,8 @@ cloud-init-per frequency name cmd [ arg1 [ arg2 [ ... ] ]
 
 `frequency`  
 How often the boothook should run\.   
-
 + Specify `once` to never run again, even with a new instance ID\.
-
 + Specify `instance` to run on the first boot for each new instance launch\. For example, if you create an AMI from the instance after the boothook has run, it still runs again on subsequent instances launched from that AMI\.
-
 + Specify `always` to run at every boot\.
 
 `name`  
@@ -108,19 +105,12 @@ Output:
 You can combine multiple user data blocks together into a single user data block called a MIME multi\-part file\. For example, you might want to combine a cloud boothook that configures the Docker daemon with a user data shell script that writes configuration information for the Amazon ECS container agent\. 
 
 A MIME multi\-part file consists of the following components:
-
 + The content type and part boundary declaration: `Content-Type: multipart/mixed; boundary="==BOUNDARY=="`
-
 + The MIME version declaration: `MIME-Version: 1.0`
-
 + One or more user data blocks, which contain the following components:
-
   + The opening boundary, which signals the beginning of a user data block: `--==BOUNDARY==`
-
   + The content type declaration for the block \(for the list of content types, see the [Cloud\-Init documentation](https://cloudinit.readthedocs.io/en/latest/topics/format.html)\): `Content-Type: text/cloud-boothook; charset="us-ascii"`
-
   + The content of the user data, for example, a list of shell commands or `cloud-init` directives
-
 + The closing boundary, which signals the end of the MIME multi\-part file: `--==BOUNDARY==--`
 
 **Example MIME multi\-part file**  

@@ -69,18 +69,17 @@ You can use the following procedure to check that your account already has the C
 
    ```
    {
-       "Version": "2012-10-17",
-       "Statement": [
-           {
-               "Effect": "Allow",
-               "Action": [
-                   "ecs:RunTask"
-               ],
-               "Resource": [
-                   "*"
-               ]
-           }
-       ]
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Sid": "",
+         "Effect": "Allow",
+         "Principal": {
+           "Service": "events.amazonaws.com"
+         },
+         "Action": "sts:AssumeRole"
+       }
+     ]
    }
    ```
 

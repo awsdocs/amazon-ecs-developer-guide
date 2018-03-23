@@ -12,7 +12,7 @@ An IAM policy must grant or deny permission to use one or more Amazon ECS action
 
 Amazon ECS partially supports resource\-level permissions\. This means that for some Amazon ECS API actions, you cannot specify which resource a user is allowed to work with for that action; instead, you have to allow users to work with all resources for that action\. 
 
-
+**Topics**
 + [Policy Structure](iam-policy-structure.md)
 + [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)
 + [Creating Amazon ECS IAM Policies](ECS_IAM_user_policies.md)

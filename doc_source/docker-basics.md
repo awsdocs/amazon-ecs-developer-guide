@@ -4,7 +4,7 @@ Docker is a technology that allows you to build, run, test, and deploy distribut
 
 The documentation in this guide assumes that readers possess a basic understanding of what Docker is and how it works\. For more information about Docker, see [What is Docker?](http://aws.amazon.com/docker/) and the [Docker overview](https://docs.docker.com/engine/docker-overview/)\.
 
-
+**Topics**
 + [Installing Docker](#install_docker)
 + [Create a Docker Image](#docker-basics-create-image)
 + [\(Optional\) Push your image to Amazon Elastic Container Registry](#use-ecr)
@@ -131,11 +131,8 @@ Some versions of Docker may require the full path to your Dockerfile in the foll
 Output from the Apache web server is displayed in the terminal window\. You can ignore the "`Could not reliably determine the server's fully qualified domain name`" message\.
 
 1. Open a browser and point to the server that is running Docker and hosting your container\.
-
    + If you are using an EC2 instance, this is the **Public DNS** value for the server, which is the same address you use to connect to the instance with SSH\. Make sure that the security group for your instance allows inbound traffic on port 80\.
-
    + If you are running Docker locally, point your browser to [http://localhost/](http://localhost/)\.
-
    + If you are using docker\-machine on a Windows or Mac computer, find the IP address of the VirtualBox VM that is hosting Docker with the docker\-machine ip command, substituting *machine\-name* with the name of the docker machine you are using\.
 
      ```
@@ -247,7 +244,6 @@ This section requires the AWS CLI\. If you do not have the AWS CLI installed on 
 **To run a task with the `hello-world` task definition**
 **Important**  
 Before you can run tasks in Amazon ECS, you need to launch container instances into a default cluster\. For more information about how to set up and launch container instances, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)\.
-
 + Use the following AWS CLI command to run a task with the `hello-world` task definition\.
 
   ```

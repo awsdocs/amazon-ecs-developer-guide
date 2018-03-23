@@ -15,69 +15,39 @@ The ecs\-cli compose service command uses a project name with the task definitio
 The Amazon ECS CLI can only manage tasks, services, and container instances that were created with the CLI\. To manage tasks, services, and container instances that were not created by the Amazon ECS CLI, use the AWS Command Line Interface or the AWS Management Console\.
 
 The following parameters are supported in compose files for the Amazon ECS CLI: 
-
 + `cap_add` \(Not valid for tasks using the Fargate launch type\)
-
 + `cap_drop` \(Not valid for tasks using the Fargate launch type\)
-
 + `command`
-
 + `cpu_shares`
-
 + `dns`
-
 + `dns_search`
-
 + `entrypoint`
-
 + `environment`: If an environment variable value is not specified in the compose file, but it exists in the shell environment, the shell environment variable value is passed to the task definition that is created for any associated tasks or services\.
 **Important**  
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.
-
 + `env_file`
 **Important**  
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.
-
 + `extra_hosts`
-
 + `hostname`
-
 + `image`
-
 + `labels`
-
 + `links` \(Not valid for tasks using the Fargate launch type\)
-
 + `log_driver` \(Compose file version 1 only\)
-
 + `log_opt` \(Compose file version 1 only\)
-
 + `logging` \(Compose file version 2 only\)
-
   + `driver`
-
   + `options`
-
 + `mem_limit` \(in bytes\)
-
 + `mem_reservation` \(in bytes\)
-
 + `ports`
-
 + `privileged` \(Not valid for tasks using the Fargate launch type\)
-
 + `read_only`
-
 + `security_opt`
-
 + `ulimits`
-
 + `user`
-
 + `volumes`
-
 + `volumes_from`
-
 + `working_dir`
 
 **Important**  
@@ -113,14 +83,12 @@ Some features described may only be available with the latest version of the ECS
 
 The ecs\-cli compose service command supports the following subcommands and arguments:
 
-create \[\-\-deployment\-max\-percent *n*\] \[\-\-deployment\-min\-healthy\-percent *n*\] \[\-\-load\-balancer\-name *value*|\-\-target\-group\-arn *value*\] \[\-\-container\-name *value*\] \[\-\-container\-port *value*\] \[\-\-role *value*\] \[\-\-launch\-type *launch\_type*\] \[\-\-health\-check\-grace\-period *integer*\] \[\-\-create\-log\-groups\]  
+create \[\-\-deployment\-max\-percent *n*\] \[\-\-deployment\-min\-healthy\-percent *n*\] \[\-\-load\-balancer\-name *value*\|\-\-target\-group\-arn *value*\] \[\-\-container\-name *value*\] \[\-\-container\-port *value*\] \[\-\-role *value*\] \[\-\-launch\-type *launch\_type*\] \[\-\-health\-check\-grace\-period *integer*\] \[\-\-create\-log\-groups\]  
 Creates an ECS service from your compose file\. The service is created with a desired count of `0`, so no containers are started by this command\.  
 The `--deployment-max-percent` option specifies the upper limit \(as a percentage of the service's `desiredCount`\) of the number of running tasks that can be running in a service during a deployment \(the default value is `200`\)\. The `--deployment-min-healthy-percent` option specifies the lower limit \(as a percentage of the service's desiredCount\) of the number of running tasks that must remain running and healthy in a service during a deployment \(the default value is `100`\)\. For more information, see [maximumPercent](service_definition_parameters.md#maximumPercent) and [minimumHealthyPercent](service_definition_parameters.md#minimumHealthyPercent)\.  
 You can optionally run your service behind a load balancer\. The load balancer distributes traffic across the tasks that are associated with the service\. For more information, see [Service Load Balancing](service-load-balancing.md)\. After you create a service, the load balancer name or target group ARN, container name, and container port specified in the service definition are immutable\.  
 You must create your load balancer resources in the before you can configure a service to use them\. Your load balancer resources should reside in the same VPC as your container instances and they should be configured to use the same subnets\. You must also add a security group rule to your container instance security group that allows inbound traffic from your load balancer\. For more information, see [Creating a Load Balancer](create-load-balancer.md)\. 
-
 + To configure your service to use an existing Elastic Load Balancing Classic Load Balancer, you must specify the load balancer name, the container name \(as it appears in a container definition\), and the container port to access from the load balancer\. When a task from this service is placed on a container instance, the container instance is registered with the load balancer specified here\.
-
 + To configure your service to use an existing Elastic Load Balancing Application Load Balancer, you must specify the load balancer target group ARN, the container name \(as it appears in a container definition\), and the container port to access from the load balancer\. When a task from this service is placed on a container instance, the container instance and port combination is registered as a target in the target group specified here\.
 The `--health-check-grace-period` option specifies the period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks after a task has first started\. This is only valid if your service is configured to use a load balancer\. If your tasks take a while to start and respond to ELB health checks, you can specify a health check grace period of up to 1,800 seconds during which the ECS service scheduler will ignore ELB health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\.
 
@@ -130,7 +98,7 @@ The `--timeout` option specifies the timeout value in minutes \(decimals support
 The `--create-log-groups` option will create the CloudWatch log groups specified in your compose file\.  
 The `--force-deployment` option, if included, will force a new deployment of the service\.
 
-up \[\-\-deployment\-max\-percent *n*\] \[\-\-deployment\-min\-healthy\-percent *n*\] \[\-\-load\-balancer\-name *value*|\-\-target\-group\-arn *value*\] \[\-\-container\-name *value*\] \[\-\-container\-port *value*\] \[\-\-role *value*\] \[\-\-timeout *value*\] \[\-\-launch\-type *launch\_type*\] \[\-\-health\-check\-grace\-period *integer*\] \[\-\-create\-log\-groups\] \[\-\-force\-deployment\]  
+up \[\-\-deployment\-max\-percent *n*\] \[\-\-deployment\-min\-healthy\-percent *n*\] \[\-\-load\-balancer\-name *value*\|\-\-target\-group\-arn *value*\] \[\-\-container\-name *value*\] \[\-\-container\-port *value*\] \[\-\-role *value*\] \[\-\-timeout *value*\] \[\-\-launch\-type *launch\_type*\] \[\-\-health\-check\-grace\-period *integer*\] \[\-\-create\-log\-groups\] \[\-\-force\-deployment\]  
 Creates an ECS service from your compose file \(if it does not already exist\) and runs one instance of that task on your cluster \(a combination of create and start\)\. This command updates the desired count of the service to `1`\.   
 The `--deployment-max-percent` option specifies the upper limit \(as a percentage of the service's `desiredCount`\) of the number of running tasks that can be running in a service during a deployment \(the default value is `200`\)\. The `--deployment-min-healthy-percent` option specifies the lower limit \(as a percentage of the service's desiredCount\) of the number of running tasks that must remain running and healthy in a service during a deployment \(the default value is `100`\)\. For more information, see [maximumPercent](service_definition_parameters.md#maximumPercent) and [minimumHealthyPercent](service_definition_parameters.md#minimumHealthyPercent)\.  
 The `--timeout` option specifies the timeout value in minutes \(decimals supported\) to wait for the running task count to change\. If the running task count has not changed for the specified period of time, then the CLI times out and returns an error\. Setting the timeout to 0 will cause the command to return without checking for success\. The default timeout value is 5 minutes\.  
@@ -139,9 +107,7 @@ The `--create-log-groups` option will create the CloudWatch log groups specified
 The `--force-deployment` option, if included, will force a new deployment of the service\.  
 You can optionally run your service behind a load balancer\. The load balancer distributes traffic across the tasks that are associated with the service\. For more information, see [Service Load Balancing](service-load-balancing.md)\. After you create a service, the load balancer name or target group ARN, container name, and container port specified in the service definition are immutable\.  
 You must create your load balancer resources in the before you can configure a service to use them\. Your load balancer resources should reside in the same VPC as your container instances and they should be configured to use the same subnets\. You must also add a security group rule to your container instance security group that allows inbound traffic from your load balancer\. For more information, see [Creating a Load Balancer](create-load-balancer.md)\. 
-
 + To configure your service to use an existing Elastic Load Balancing Classic Load Balancer, you must specify the load balancer name, the container name \(as it appears in a container definition\), and the container port to access from the load balancer\. When a task from this service is placed on a container instance, the container instance is registered with the load balancer specified here\.
-
 + To configure your service to use an existing Elastic Load Balancing Application Load Balancer, you must specify the load balancer target group ARN, the container name \(as it appears in a container definition\), and the container port to access from the load balancer\. When a task from this service is placed on a container instance, the container instance and port combination is registered as a target in the target group specified here\.
 
 ps, list  
