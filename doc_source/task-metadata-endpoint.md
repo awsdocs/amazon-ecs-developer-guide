@@ -3,7 +3,7 @@
 Beginning with version 1\.17\.0 of the Amazon ECS container agent, various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) are available to tasks that use the `awsvpc` network mode at an HTTP endpoint that is provided by the Amazon ECS container agent\.
 
 **Note**  
-The task metadata endpoint is not yet supported for Fargate tasks\.
+The task metadata endpoint is supported for Fargate tasks if using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
 
 All containers belonging to tasks that are launched with the `awsvpc` network mode receive a local IPv4 address within a predefined link\-local address range\. When a container queries the metadata endpoint, the Amazon ECS container agent can determine which task the container belongs to based on its unique IP address, and metadata and stats for that task are returned\.
 

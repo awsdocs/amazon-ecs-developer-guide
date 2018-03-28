@@ -109,15 +109,15 @@ After a task reaches the `RUNNING` status, manual and automatic host and contain
 Type: integer  
 Required: yes, when `portMappings` are used  
 The port number on the container that is bound to the user\-specified or automatically assigned host port\.  
-If using containers in a task with the Fargate, exposed ports should be specified using `containerPort`\.  
+If using containers in a task with the Fargate launch type, exposed ports should be specified using `containerPort`\.  
 If using containers in a task with the EC2 launch type and you specify a container port and not a host port, your container automatically receives a host port in the ephemeral port range \(for more information, see `hostPort`\)\. Port mappings that are automatically assigned in this way do not count toward the 100 reserved ports limit of a container instance\.  
 `hostPort`  
 Type: integer  
 Required: no  
 The port number on the container instance to reserve for your container\.  
-If using containers in a task with the Fargate, the `hostPort` can either be left blank or be the same value as `containerPort`\.  
+If using containers in a task with the Fargate launch type, the `hostPort` can either be left blank or be the same value as `containerPort`\.  
 If using containers in a task with the EC2 launch type, you can specify a non\-reserved host port for your container port mapping \(this is referred to as *static* host port mapping\), or you can omit the `hostPort` \(or set it to `0`\) while specifying a `containerPort` and your container automatically receives a port \(this is referred to as *dynamic* host port mapping\) in the ephemeral port range for your container instance operating system and Docker version\.  
-The default ephemeral port range is 49153–65535, and this range is used for Docker versions prior to 1\.6\.0\. For Docker version 1\.6\.0 and later, the Docker daemon tries to read the ephemeral port range from `/proc/sys/net/ipv4/ip_local_port_range` \(which is 32768–61000 on the latest Amazon ECS\-optimized AMI\); if this kernel parameter is unavailable, the default ephemeral port range is used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below 32768 are outside of the ephemeral port range\.  
+The default ephemeral port range is `49153–65535`, and this range is used for Docker versions prior to 1\.6\.0\. For Docker version 1\.6\.0 and later, the Docker daemon tries to read the ephemeral port range from `/proc/sys/net/ipv4/ip_local_port_range` \(which is 32768–61000 on the latest Amazon ECS\-optimized AMI\); if this kernel parameter is unavailable, the default ephemeral port range is used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below 32768 are outside of the ephemeral port range\.  
 The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376, and the Amazon ECS container agent port 51678\. Any host port that was previously user\-specified for a running task is also reserved while the task is running \(after a task stops, the host port is released\)\. The current reserved ports are displayed in the `remainingResources` of describe\-container\-instances output, and a container instance may have up to 100 reserved ports at a time, including the default reserved ports \(automatically assigned ports do not count toward the 100 reserved ports limit\)\.  
 `protocol`  
 Type: string  
@@ -166,7 +166,8 @@ The following advanced container definition parameters provide extended capabili
 The health check command and associated configuration parameters for the container\. This parameter maps to `HealthCheck` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `HEALTHCHECK` parameter of [docker run](https://docs.docker.com/engine/reference/run/)\.   
 The Amazon ECS container agent only monitors and reports on the health checks specified in the task definition\. Amazon ECS does not monitor Docker health checks that are embedded in a container image and not specified in the container definition\. Health check parameters that are specified in a container definition override any Docker health checks that exist in the container image\.
 Task health is reported by the `healthStatus` of the task, which is determined by the health of the essential containers in the task\. If all essential containers in the task are reporting as `HEALTHY`, then the task status also reports as `HEALTHY`\. If any essential containers in the task are reporting as `UNHEALTHY` or `UNKNOWN`, then the task status also reports as `UNHEALTHY` or `UNKNOWN`, accordingly\. If a service's task reports as unhealthy, it is removed from a service and replaced\.  
-Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.  
+Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+Container health checks are supported for Fargate tasks if using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.  
 `command`  
 A string array representing the command that the container runs to determine if it is healthy\. The string array must start with `CMD` to execute the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. For example:  
 
@@ -283,6 +284,7 @@ Containers that are collocated on a single container instance may be able to com
 Type: string  
 Required: no  
 The hostname to use for your container\. This parameter maps to `Hostname` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--hostname` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The `hostname` parameter is not supported if using the `awsvpc` networkMode\.
 
 ```
 "hostname": "string"
@@ -560,11 +562,11 @@ Valid Values: `read` \| `write` \| `mknod`
 Run an `init` process inside the container that forwards signals and reaps processes\. This parameter maps to the `--init` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
 This parameter requires version 1\.25 of the Docker Remote API or greater on your container instance\.  
 `sharedMemorySize`  
-The value for the size of the `/dev/shm` volume\. This parameter maps to the `--shm-size` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
+The value for the size \(in MiB\) of the `/dev/shm` volume\. This parameter maps to the `--shm-size` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
 If you are using tasks that use the Fargate launch type, the `sharedMemorySize` parameter is not supported\.
 Type: Integer  
 `tmpfs`  
-The container path, mount options, and size of the tmpfs mount\. This parameter maps to the `--tmpfs` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
+The container path, mount options, and size \(in MiB\) of the tmpfs mount\. This parameter maps to the `--tmpfs` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
 If you are using tasks that use the Fargate launch type, the `tmpfs` parameter is not supported\.
 Type: Array of [Tmpfs](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Tmpfs.html) objects  
 Required: No    
@@ -578,7 +580,7 @@ Type: Array of strings
 Required: No  
 Valid Values: `"defaults" | "ro" | "rw" | "suid" | "nosuid" | "dev" | "nodev" | "exec" | "noexec" | "sync" | "async" | "dirsync" | "remount" | "mand" | "nomand" | "atime" | "noatime" | "diratime" | "nodiratime" | "bind" | "rbind" | "unbindable" | "runbindable" | "private" | "rprivate" | "shared" | "rshared" | "slave" | "rslave" | "relatime" | "norelatime" | "strictatime" | "nostrictatime"`  
 `size`  
-The size of the tmpfs volume\.  
+The size \(in MiB\) of the tmpfs volume\.  
 Type: Integer  
 Required: Yes
 

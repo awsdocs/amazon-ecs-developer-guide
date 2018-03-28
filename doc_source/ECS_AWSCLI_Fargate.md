@@ -18,9 +18,11 @@ The following steps will help you set up a cluster, register a task definition, 
 
 ## Prerequisites<a name="AWSCLI_prereq"></a>
 
-Before you begin, be sure that you are using the latest version of the AWS CLI\. For more information about installing or upgrading your AWS CLI, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
-
-Ensure you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard](IAMPolicyExamples.md#first-run-permissions) IAM policy example\.
+This tutorial assumes the following prerequisites have been completed:
++ The latest version of the AWS CLI is installed and configured\. For more information about installing or upgrading your AWS CLI, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
++ The steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
++ Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard](IAMPolicyExamples.md#first-run-permissions) IAM policy example\.
++ You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 
 ## Step 1: \(Optional\) Create a Cluster<a name="AWSCLI_create_cluster"></a>
 

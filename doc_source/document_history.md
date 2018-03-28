@@ -2,11 +2,12 @@
 
 The following table describes the important changes to the documentation since the last release of Amazon ECS\. We also update the documentation frequently to address the feedback that you send us\.
 +  **Current API version:** 2014\-11\-13
-+  **Latest documentation update:** March 22, 2018
++  **Latest documentation update:** March 26, 2018
 
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+|  AWS Fargate Platform Version  |  2014\-11\-13  |  New AWS Fargate platform version released, which contains: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html) For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.  | 26 March 2018 | 
 |  Amazon ECS Service Discovery  |  2014\-11\-13  |  Added integration with Route 53 to support Amazon ECS service discovery\. For more information, see [Service Discovery](service-discovery.md)\.  | 22 March 2018 | 
 |  Amazon ECS CLI v1\.4\.2  |  2014\-11\-13  |  New version of the Amazon ECS CLI released, which added the following functionality: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html) For more information about the updated ECS CLI syntax, see [Amazon ECS Command Line Reference](ECS_CLI_reference.md)\.  | 20 March 2018 | 
 |  Docker shm\-size and tmpfs support  |  2014\-11\-13  | Added support for the Docker shm\-size and tmpfs parameters in Amazon ECS task definitions\.For more information about the updated ECS CLI syntax, see [Linux Parameters](task_definition_parameters.md#container_definition_linuxparameters)\. | 20 March 2018 | 

@@ -25,7 +25,7 @@ Service discovery consists of the following components:
 + **Service discovery namespace**: A logical group of services that share the same domain name, such as example\.com\. You need one namespace per Route 53 hosted zone and per VPC\. If you are using service discovery from the Amazon ECS console, the workflow creates one private namespace per ECS cluster\. 
 + **Service discovery service**: Exists within the service discovery namespace and consists of the service name and DNS configuration for the namespace\. It provides the following core component:
   + **Service directory**: Allows you to look up a service via DNS or Route 53 auto naming APIs and get back one or more available endpoints that can be used to connect to the service\.
-+ **Health checks**: Perform periodic container\-level health checks\. If an endpoint does not pass the health check, it is removed from DNS routing and marked as unhealthy\.
++ **Health checks**: Perform periodic container\-level health checks\. If an endpoint does not pass the health check, it is removed from DNS routing and marked as unhealthy\. For more information, see [How Amazon Route 53 Checks the Health of Your Resources](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/welcome-health-checks.html)\.
 
 ## Service Discovery Considerations<a name="service-discovery-considerations"></a>
 
@@ -43,7 +43,7 @@ The following should be considered when using service discovery:
 + Existing ECS services that have service discovery configured cannot be updated to change the service discovery configuration\.
 
 **Note**  
-Service discovery is not supported yet for services that contain Fargate tasks\. This support will be added in an upcoming Fargate platform version\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
+Service discovery is supported for Fargate tasks if using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
 
 ## Service Discovery Pricing<a name="service-discovery-pricing"></a>
 
@@ -55,14 +55,23 @@ Amazon ECS performs container level health checks and exposes this to Route 53 
 
 Service discovery has been integrated into the Create Service wizard in the Amazon ECS console\. For more information, see [Creating a Service](create-service.md)\.
 
-The following is a tutorial showing how to create an ECS service using service discovery and the AWS CLI:
+The following tutorial shows how to create an ECS service using a Fargate task that uses service discovery with the AWS CLI\.
+
+**Note**  
+Fargate tasks are only supported in the US East \(N\. Virginia\) region\.
+
+This tutorial assumes the following prerequisites have been completed:
++ The latest version of the AWS CLI is installed and configured\. For more information about installing or upgrading your AWS CLI, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
++ The steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
++ Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard](IAMPolicyExamples.md#first-run-permissions) IAM policy example\.
++ You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 
 **To create a service using service discovery and the AWS CLI**
 
-1. Create a private namespace within an existing VPC:
+1. Create a private namespace named `staging` within an existing VPC:
 
    ```
-   aws servicediscovery create-private-dns-namespace --name cli-tutorial --vpc "vpc-abcd1234"
+   aws servicediscovery create-private-dns-namespace --name staging --vpc vpc-abcd1234 --region us-east-1
    ```
 
    Output:
@@ -76,7 +85,7 @@ The following is a tutorial showing how to create an ECS service using service d
 1. Using the `OperationId` from the previous output, verify that the private namespace was created successfully\.
 
    ```
-   aws servicediscovery get-operation --operation-id "h2qe3s6dxftvvt7riu6lfy2f6c3jlhf4-je6chs2e"
+   aws servicediscovery get-operation --operation-id h2qe3s6dxftvvt7riu6lfy2f6c3jlhf4-je6chs2e
    ```
 
    Output:
@@ -96,10 +105,10 @@ The following is a tutorial showing how to create an ECS service using service d
    }
    ```
 
-1. Create a service discovery service using the private namespace ID\.
+1. Create a service discovery service named `myapplication`\.
 
    ```
-   aws servicediscovery create-service --name ecs-service-discovery --dns-config "NamespaceId="ns-uejictsjen2i4eeg",DnsRecords=[{Type="A",TTL="300"}]" --health-check-custom-config "FailureThreshold=1"
+   aws servicediscovery create-service --name myapplication --dns-config NamespaceId="ns-uejictsjen2i4eeg",DnsRecords=[{Type="A",TTL="300"}] --health-check-custom-config FailureThreshold=1 --region us-east-1
    ```
 
    Output:
@@ -109,7 +118,7 @@ The following is a tutorial showing how to create an ECS service using service d
        "Service": {
            "Id": "srv-utcrh6wavdkggqtk",
            "Arn": "arn:aws:servicediscovery:region:aws_account_id:service/srv-utcrh6wavdkggqtk",
-           "Name": "clitesting",
+           "Name": "myapplication",
            "DnsConfig": {
                "NamespaceId": "ns-uejictsjen2i4eeg",
                "DnsRecords": [
@@ -127,10 +136,79 @@ The following is a tutorial showing how to create an ECS service using service d
    }
    ```
 
-1. Create a file named `service-discovery.json` with the contents of the ECS service that you are going to create\. In this example, you use a task definition named `first-run-task-definition` and create a service using EC2 tasks\. An `awsvpcConfiguration` is required\. For more information about creating a EC2 task, including creating a task definition, see [Using the AWS CLI with Amazon ECS](ECS_AWSCLI.md)\.
+1. Create an ECS cluster named `staging` to use\.
+
+   ```
+   aws ecs create-cluster --cluster-name staging --region us-east-1
+   ```
+
+   Output:
 
    ```
    {
+       "cluster": {
+           "clusterArn": "arn:aws:ecs:us-east-1:809632081692:cluster/staging",
+           "clusterName": "staging",
+           "status": "ACTIVE",
+           "registeredContainerInstancesCount": 0,
+           "runningTasksCount": 0,
+           "pendingTasksCount": 0,
+           "activeServicesCount": 0,
+           "statistics": []
+       }
+   }
+   ```
+
+1. Register a task definition that is compatible with Fargate\. It will require the use of the `awsvpc` network mode\. The following is the example task definition used for this tutorial\.
+
+   Create a file named `fargate-task.json` with the contents of the following task definition:
+
+   ```
+   {
+       "taskDefinition": {
+           "family": "first-run-task-definition",
+           "networkMode": "awsvpc",
+           "containerDefinitions": [
+               {
+                   "name": "sample-app",
+                   "image": "httpd:2.4",
+                   "portMappings": [
+                       {
+                           "containerPort": 80,
+                           "hostPort": 80,
+                           "protocol": "tcp"
+                       }
+                   ],
+                   "essential": true,
+                   "entryPoint": [
+                       "sh",
+                       "-c"
+                   ],
+                   "command": [
+                       "/bin/sh -c \"echo '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p> </div></body></html>' >  /usr/local/apache2/htdocs/index.html && httpd-foreground\""
+                   ],
+               }
+           ],
+           "requiresCompatibilities": [
+               "FARGATE"
+           ],
+           "cpu": "256",
+           "memory": "512"
+       }
+   }
+   ```
+
+   Register the task definition using the `fargate-task.json` file you created\.
+
+   ```
+   aws ecs register-task-definition --cli-input-json file://fargate-task.json --region us-east-1
+   ```
+
+1. Create a file named `ecs-service-discovery.json` with the contents of the ECS service that you are going to create\. This example uses the task definition created in the previous step\. An `awsvpcConfiguration` is required because the example task definition uses the `awsvpc` network mode\.
+
+   ```
+   {
+       "cluster": "staging",
        "serviceName": "ecs-service-discovery",
        "taskDefinition": "first-run-task-definition",
        "serviceRegistries": [
@@ -138,6 +216,8 @@ The following is a tutorial showing how to create an ECS service using service d
              "registryArn": "arn:aws:servicediscovery:region:aws_account_id:service/srv-utcrh6wavdkggqtk"
           }
        ],
+       "launchType": "FARGATE",
+       "platformVersion": "1.1.0",
        "networkConfiguration": {
           "awsvpcConfiguration": {
              "assignPublicIp": "ENABLED",
@@ -149,10 +229,80 @@ The following is a tutorial showing how to create an ECS service using service d
    }
    ```
 
-1. Create your ECS service using service discovery:
+1. Create your ECS service, specifying the Fargate launch type and the `1.1.0` platform version, which will use service discovery\.
 
    ```
-   aws ecs create-service --service-name ecs-service-discovery --launch-type EC2 --cli-input-json file://ecs-service-discovery.json
+   aws ecs create-service --cli-input-json file://ecs-service-discovery.json --region us-east-1
+   ```
+
+   Output:
+
+   ```
+   {
+       "service": {
+           "serviceArn": "arn:aws:ecs:region:aws_account_id:service/ecs-service-discovery",
+           "serviceName": "ecs-service-discovery",
+           "clusterArn": "arn:aws:ecs:region:aws_account_id:cluster/default",
+           "loadBalancers": [],
+           "serviceRegistries": [
+               {
+                   "registryArn": "arn:aws:servicediscovery:region:aws_account_id:service/srv-utcrh6wavdkggqtk"
+               }
+           ],
+           "status": "ACTIVE",
+           "desiredCount": 1,
+           "runningCount": 0,
+           "pendingCount": 0,
+           "launchType": "FARGATE",
+           "platformVersion": "1.1.0",
+           "taskDefinition": "arn:aws:ecs:region:aws_account_id:task-definition/first-run-task-definition:4",
+           "deploymentConfiguration": {
+               "maximumPercent": 200,
+               "minimumHealthyPercent": 100
+           },
+           "deployments": [
+               {
+                   "id": "ecs-svc/9223370516993140842",
+                   "status": "PRIMARY",
+                   "taskDefinition": "arn:aws:ecs:region:aws_account_id:task-definition/first-run-task-definition:4",
+                   "desiredCount": 1,
+                   "pendingCount": 0,
+                   "runningCount": 0,
+                   "createdAt": 1519861634.965,
+                   "updatedAt": 1519861634.965,
+                   "launchType": "FARGATE",
+                   "platformVersion": "1.1.0",
+                   "networkConfiguration": {
+                       "awsvpcConfiguration": {
+                           "subnets": [
+                               "subnet-abcd1234"
+                           ],
+                           "securityGroups": [
+                               "sg-abcd1234"
+                           ],
+                           "assignPublicIp": "ENABLED"
+                       }
+                   }
+               }
+           ],
+           "roleArn": "arn:aws:iam::aws_account_id:role/ECSServiceLinkedRole",
+           "events": [],
+           "createdAt": 1519861634.965,
+           "placementConstraints": [],
+           "placementStrategy": [],
+           "networkConfiguration": {
+               "awsvpcConfiguration": {
+                   "subnets": [
+                       "subnet-abcd1234"
+                   ],
+                   "securityGroups": [
+                       "sg-abcd1234"
+                   ],
+                   "assignPublicIp": "ENABLED"
+               }
+           }
+       }
+   }
    ```
 
 You can then verify that everything has been created properly and query your DNS information\.
@@ -164,7 +314,7 @@ Once service discovery is configured, you can query it using either the Route 5
 1. After the ECS service is created and at least one task is successfully running, you can then list the service discovery instances to confirm that it is set up:
 
    ```
-   aws servicediscovery list-instances --service-id "srv-utcrh6wavdkggqtk"
+   aws servicediscovery list-instances --service-id srv-utcrh6wavdkggqtk --region us-east-1
    ```
 
    Output:
@@ -187,7 +337,7 @@ Once service discovery is configured, you can query it using either the Route 5
    First, get information about your namespace, which includes the Route 53 hosted zone ID:
 
    ```
-   aws servicediscovery get-namespace --id "ns-ltr6u2zk2fvhjieu"
+   aws servicediscovery get-namespace --id ns-ltr6u2zk2fvhjieu --region us-east-1
    ```
 
    Output:
@@ -213,7 +363,7 @@ Once service discovery is configured, you can query it using either the Route 5
    Then, get the resource record set for the hosted zone:
 
    ```
-   aws route53 list-resource-record-sets --hosted-zone-id "Z35JQ4ZFDRYPLV"
+   aws route53 list-resource-record-sets --hosted-zone-id Z35JQ4ZFDRYPLV --region us-east-1
    ```
 
    Output:
@@ -222,7 +372,7 @@ Once service discovery is configured, you can query it using either the Route 5
    {
        "ResourceRecordSets": [
            {
-               "Name": "cli-tutorial.",
+               "Name": "staging.",
                "Type": "NS",
                "TTL": 172800,
                "ResourceRecords": [
@@ -241,7 +391,7 @@ Once service discovery is configured, you can query it using either the Route 5
                ]
            },
            {
-               "Name": "cli-tutorial.",
+               "Name": "staging.",
                "Type": "SOA",
                "TTL": 900,
                "ResourceRecords": [
@@ -251,7 +401,7 @@ Once service discovery is configured, you can query it using either the Route 5
                ]
            },
            {
-               "Name": "ecs-service-discovery.cli-tutorial.",
+               "Name": "myapplication.staging.",
                "Type": "A",
                "SetIdentifier": "16becc26-8558-4af1-9fbd-f81be062a266",
                "MultiValueAnswer": true,
@@ -269,7 +419,7 @@ Once service discovery is configured, you can query it using either the Route 5
 1. <a name="service-discovery-query"></a>You can also query the DNS using `dig` from an instance within your VPC with the following command:
 
    ```
-   dig +short ecs-service-discovery.cli-tutorial
+   dig +short myapplication.staging
    ```
 
    Output:
