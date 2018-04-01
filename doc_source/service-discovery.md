@@ -337,7 +337,7 @@ Once service discovery is configured, you can query it using either the Route 5
    First, get information about your namespace, which includes the Route 53 hosted zone ID:
 
    ```
-   aws servicediscovery get-namespace --id ns-ltr6u2zk2fvhjieu --region us-east-1
+   aws servicediscovery get-namespace --id ns-uejictsjen2i4eeg --region us-east-1
    ```
 
    Output:
