@@ -76,7 +76,7 @@ For more information about using the `awslogs` log driver in task definitions to
 
 ### Amazon ECS Task Execution IAM Role<a name="fargate-tasks-iam"></a>
 
-There is an optional task execution IAM role that you can specify with Fargate tto allow your Fargate tasks to make API calls to Amazon ECR\. The API calls pull container images as well as call CloudWatch to store container application logs\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+There is an optional task execution IAM role that you can specify with Fargate to allow your Fargate tasks to make API calls to Amazon ECR\. The API calls pull container images as well as call CloudWatch to store container application logs\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
 ### Example Task Definition<a name="fargate-tasks-example"></a>
 
