@@ -627,7 +627,7 @@ If the `host` parameter contains a `sourcePath` file location, then the data vol
 
 When you register a task definition, you can provide task placement constraints that customize how Amazon ECS places tasks\.
 
-If you are using the Fargate launch type, task placement contraints are not supported\.
+If you are using the Fargate launch type, task placement contraints are not supported\. By default Fargate tasks are spread across availability zones\.
 
 For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS Task Placement Constraints](task-placement-constraints.md)\.
 

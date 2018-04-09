@@ -17,7 +17,7 @@ Some features described may only be available with the latest version of the ECS
 | Name | Description | 
 | --- | --- | 
 |  `--cluster, -c cluster_name`  |  Specifies the ECS cluster name to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
-|  `--region, -r region`  |  Specifies the AWS region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
+|  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
 |  `--task-id task_id`  |  Prints the logs for this ECS task\. Type: String Required: Yes  | 
 |  `--task-def task_definition`  |  Specifies the name or full Amazon Resource Name \(ARN\) of the ECS task definition associated with the task ID\. This is only needed if the task has been stopped\. Type: String Required: No  | 
 |  `--follow`  |  Specifies if the logs should be streamed\. Required: No  | 
