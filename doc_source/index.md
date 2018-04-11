@@ -28,6 +28,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Amazon ECS Container Instances](ECS_instances.md)
    + [Container Instance AMIs](container_instance_AMIs.md)
       + [Amazon ECS-Optimized AMI](ecs-optimized_AMI.md)
+         + [Retrieving the Amazon ECS-optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)
          + [How to Launch the Latest Amazon ECS-Optimized AMI](ecs-optimized_AMI_launch_latest.md)
          + [Amazon ECS-Optimized AMI Versions](ecs-ami-versions.md)
          + [Storage Configuration](ecs-ami-storage-config.md)

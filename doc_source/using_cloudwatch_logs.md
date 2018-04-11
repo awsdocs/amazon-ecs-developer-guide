@@ -2,7 +2,7 @@
 
 You can configure your container instances to send log information to CloudWatch Logs\. This enables you to view different logs from your container instances in one convenient location\. This topic helps you get started using CloudWatch Logs on your container instances that were launched with the Amazon ECS\-optimized AMI\.
 
-To send container logs from your tasks to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\. For more information on CloudWatch Logs, see [Monitoring Log Files](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch User Guide*\.
+For information about sending container logs from your tasks to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\. For more information about CloudWatch Logs, see [Monitoring Log Files](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch User Guide*\.
 
 **Topics**
 + [CloudWatch Logs IAM Policy](#cwl_iam_policy)
@@ -68,7 +68,7 @@ Before your container instances can send log data to CloudWatch Logs, you must c
 After you have added the `ECS-CloudWatchLogs` policy to your `ecsInstanceRole`, you can install the CloudWatch Logs agent on your container instances\.
 
 **Note**  
-This procedure was written for the Amazon ECS\-optimized AMI, and may not work on other operating systems\. For information on installing the agent on other operating systems, see [Getting Started with CloudWatch Logs](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CWL_GettingStarted.html) in the *Amazon CloudWatch User Guide*\.
+This procedure was written for the Amazon ECS\-optimized AMI, and may not work on other operating systems\. For information about installing the agent on other operating systems, see [Getting Started with CloudWatch Logs](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CWL_GettingStarted.html) in the *Amazon CloudWatch User Guide*\.
 
 **To install the CloudWatch Logs agent**
 + Run the following command to install the CloudWatch Logs agent\.

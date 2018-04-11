@@ -40,6 +40,7 @@ This managed policy provides administrative access to Amazon ECS resources and e
                 "cloudformation:DescribeStack*",
                 "cloudformation:UpdateStack",
                 "cloudwatch:DescribeAlarms",
+                "cloudwatch:DeleteAlarms",
                 "cloudwatch:GetMetricStatistics",
                 "cloudwatch:PutMetricAlarm",
                 "ec2:AssociateRouteTable",
@@ -85,11 +86,33 @@ This managed policy provides administrative access to Amazon ECS resources and e
                 "iam:ListRoles",
                 "logs:CreateLogGroup",
                 "logs:DescribeLogGroups",
-                "logs:FilterLogEvents"
+                "logs:FilterLogEvents",
+                "route53:GetHostedZone",
+                "route53:ListHostedZonesByName",
+                "route53:CreateHostedZone",
+                "route53:DeleteHostedZone",
+                "route53:GetHealthCheck",
+                "servicediscovery:CreatePrivateDnsNamespace",
+                "servicediscovery:CreateService",
+                "servicediscovery:GetNamespace",
+                "servicediscovery:GetOperation",
+                "servicediscovery:GetService",
+                "servicediscovery:ListNamespaces",
+                "servicediscovery:ListServices",
+                "servicediscovery:UpdateService"
             ],
             "Resource": [
                 "*"
             ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParametersByPath",
+                "ssm:GetParameters",
+                "ssm:GetParameter"
+            ],
+            "Resource": "arn:aws:ssm:*:*:parameter/aws/service/ecs*"
         },
         {
             "Effect": "Allow",
@@ -128,7 +151,10 @@ This managed policy provides administrative access to Amazon ECS resources and e
             ],
             "Condition": {
                 "StringLike": {
-                    "iam:PassedToService": ["ec2.amazonaws.com", "ec2.amazonaws.com.cn"]
+                    "iam:PassedToService": [
+                        "ec2.amazonaws.com",
+                        "ec2.amazonaws.com.cn"
+                    ]
                 }
             }
         },
@@ -140,7 +166,10 @@ This managed policy provides administrative access to Amazon ECS resources and e
             ],
             "Condition": {
                 "StringLike": {
-                    "iam:PassedToService": ["application-autoscaling.amazonaws.com", "application-autoscaling.amazonaws.com.cn"]
+                    "iam:PassedToService": [
+                        "application-autoscaling.amazonaws.com",
+                        "application-autoscaling.amazonaws.com.cn"
+                    ]
                 }
             }
         },
@@ -150,7 +179,12 @@ This managed policy provides administrative access to Amazon ECS resources and e
             "Resource": "*",
             "Condition": {
                 "StringLike": {
-                    "iam:AWSServiceName": ["ecs.amazonaws.com", "spot.amazonaws.com", "spotfleet.amazonaws.com"]
+                    "iam:AWSServiceName": [
+                        "ecs.amazonaws.com",
+                        "spot.amazonaws.com",
+                        "spotfleet.amazonaws.com",
+                        "ecs.application-autoscaling.amazonaws.com"
+                    ]
                 }
             }
         }

@@ -14,12 +14,18 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 
 1. Choose an AMI for your container instance\. You can choose the Amazon ECS\-optimized AMI, or another operating system, such as CoreOS or Ubuntu\. If you do not choose the Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS Container Agent](ecs-agent-install.md)\.
 **Note**  
-For Amazon ECS\-specific CoreOS installation instructions, see [https://coreos\.com/docs/running\-coreos/cloud\-providers/ecs/](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
+For more information about Amazon ECS\-specific CoreOS installation instructions, see [Running CoreOS Container Linux with AWS EC2 Container Service](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
-   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2017\.09\.l\-amazon\-ecs\-optimized** AMI\. 
+   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2017\.09\.k\-amazon\-ecs\-optimized** AMI\. 
 
    The current Amazon ECS–optimized AMI IDs by region are listed below for reference\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
+**Note**  
+The current Amazon ECS\-optimized AMI can be retrieved using the AWS CLI with the following command:  
+
+   ```
+   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended
+   ```
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.
 

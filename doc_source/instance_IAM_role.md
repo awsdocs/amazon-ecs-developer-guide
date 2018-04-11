@@ -46,7 +46,7 @@ The `AmazonEC2ContainerServiceforEC2Role` policy is shown below\.
 
 **Note**  
 The `ecs:CreateCluster` line in the above policy is optional, provided that the cluster you intend to register your container instance into already exists\. If the cluster does not already exist, the agent must have permission to create it, or you can create the cluster with the create\-cluster command prior to launching your container instance\.  
-If you omit the `ecs:CreateCluster` line, the Amazon ECS container agent can not create clusters, including the default cluster\.
+If you omit the `ecs:CreateCluster` line, the Amazon ECS container agent will not be able to create clusters, including the default cluster\.
 
 The `ecs:Poll` line in the above policy is used to grant the agent permission to connect with the Amazon ECS service to report status and get commands\.
 
