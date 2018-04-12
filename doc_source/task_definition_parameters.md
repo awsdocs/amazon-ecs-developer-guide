@@ -169,10 +169,10 @@ Task health is reported by the `healthStatus` of the task, which is determined b
 Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 Container health checks are supported for Fargate tasks if using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.  
 `command`  
-A string array representing the command that the container runs to determine if it is healthy\. The string array must start with `CMD` to execute the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. For example:  
+A string array representing the command that the container runs to determine if it is healthy\. The string array must start with `CMD` to execute the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. In the console, example input for a health check could be:  
 
 ```
-[ "CMD-SHELL", "curl -f http://localhost/ || exit 1" ]
+CMD-SHELL, curl -f http://localhost/ || exit 1
 ```
 An exit code of 0 indicates success, and a non\-zero exit code indicates failure\. For more information, see `HealthCheck` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/)\.  
 `interval`  
