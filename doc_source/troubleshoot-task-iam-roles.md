@@ -29,9 +29,9 @@ The following procedure helps you to:
 
    1. In the navigation pane, choose **Roles**, **Create role**\. 
 
-   1. For **Select type of trusted entity**, choose **EC2 Container Service**\.
+   1. For **Select type of trusted entity**, choose **Elastic Container Service**\.
 
-   1. For **Select your use case**, choose **EC2 Container Service Task**, **Next: Permissions**\.
+   1. For **Select your use case**, choose **Elastic Container Service Task**, **Next: Permissions**\.
 
    1. On the **Attached permissions policy** page, choose **AmazonEC2ContainerServiceFullAccess**, **Next: Review**\.
 
