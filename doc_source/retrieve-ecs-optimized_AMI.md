@@ -115,3 +115,41 @@ Retrieve the Amazon ECS\-optimized AMI metadata with the SSM GetParametersByPath
 ```
 aws ssm get-parameters-by-path --path /aws/service/ecs/optimized-ami/amazon-linux/ --region us-east-1
 ```
+
+**To retrieve the Amazon ECS\-optimized AMI ID by using the jq tool**
+
+You can retrieve the Amazon ECS\-optimized AMI ID by parsing the output of the parameter store\. The following method uses the jq tool\.
+
+1. Download and install the jq tool from [github](https://stedolan.github.io/jq/)\.
+
+1. Using the jq tool, the following AWS CLI command will parse the JSON output to provide the Amazon ECS\-optimized AMI ID\.
+
+   ```
+   aws ssm get-parameter --name /aws/service/ecs/optimized-ami/amazon-linux/recommended --region us-east-1 --query 'Parameter.Value' | jq 'fromjson.image_id'
+   ```
+
+**To retrieve the Amazon ECS\-optimized AMI ID by using the AWS SDK for Python**
+
+You can retrieve the Amazon ECS\-optimized AMI ID by parsing the output of the parameter store\. The following method uses the AWS SDK for Python\.
+
+1. Create a file named `ecsami.py` with the contents of the following python script\. Replace the `parameter_name` and `aws_region` parameters as necessary\.
+
+   ```
+   #!/usr/bin/env python
+   import json
+   import botocore.session
+   
+   parameter_name = '/aws/service/ecs/optimized-ami/amazon-linux/recommended'
+   aws_region = 'us-east-1'
+   
+   session = botocore.session.Session()
+   client = session.create_client(service_name='ssm', region_name=aws_region)
+   ami_id = json.loads(client.get_parameter(Name=parameter_name)['Parameter']['Value'])['image_id']
+   print(ami_id)
+   ```
+
+1. Run the python script\.
+
+   ```
+   python ecsami.py
+   ```

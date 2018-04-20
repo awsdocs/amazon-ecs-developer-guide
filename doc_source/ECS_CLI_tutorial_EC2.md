@@ -77,6 +77,8 @@ We do not recommend using plaintext environment variables for sensitive informat
 + `privileged` \(Not valid for tasks using the Fargate launch type\)
 + `read_only`
 + `security_opt`
++ `shm_size` \(Not valid for tasks using the Fargate launch type\)
++ `tmpfs` \(Not valid for tasks using the Fargate launch type\)
 + `ulimits`
 + `user`
 + `volumes`

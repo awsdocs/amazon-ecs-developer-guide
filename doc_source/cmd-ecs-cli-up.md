@@ -4,7 +4,7 @@
 
 Creates the ECS cluster \(if it does not already exist\) and the AWS resources required to set up the cluster\.
 
-This command creates a new AWS CloudFormation stack called `amazon-ecs-cli-setup-cluster_name`\. You can view the progress of the stack creation in the AWS Management Console\.
+This command creates a new AWS CloudFormation stack called `amazon-ecs-cli-setup-cluster_name`\. You can view the progress of the stack creation in the AWS Management Console\. 
 
 **Important**  
 Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
@@ -29,13 +29,13 @@ Some features described may only be available with the latest version of the ECS
 |  `--subnets subnet_1,subnet_2`  |  Specifies a comma\-separated list of existing VPC subnet IDs in which to launch your container instances\. Type: String Required: This option is required if you specify a VPC with the `--vpc` option\.  | 
 |  `--vpc vpc_id`  |  Specifies the ID of an existing VPC in which to launch your container instances\. If you specify a VPC ID, you must specify a list of existing subnets in that VPC with the `--subnets` option\. If you do not specify a VPC ID, a new VPC is created with two subnets\. Type: String Required: No  | 
 |  `--instance-type instance_type`  |  Specifies the EC2 instance type for your container instances\. This option is only used if using tasks with the EC2 launch type\. For more information on EC2 instance types, see [Amazon EC2 Instances](https://aws.amazon.com/ec2/instance-types/)\. Type: String Default: `t2.micro` Required: No  | 
-|  `--image-id ami_id`  |  Specifies the Amazon EC2 AMI ID to use for your container instances\. This option is only used if using tasks with the EC2 launch type\. Type: String Default: The latest Amazon ECS–optimized AMI for the specified region\. Required: No  | 
+|  `--image-id ami_id`  |  Specifies the Amazon EC2 AMI ID to use for your container instances\. This option is only used if using tasks with the EC2 launch type\.  If no AMI ID is specified, the ECS CLI automatically retrieves the latest stable Amazon ECS\-optimized AMI by querying the SSM Parameter Store API during the cluster resource creation process\. This requires the user account that you are using to have the required SSM permissions\. For more information, see [Retrieving the Amazon ECS\-optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)\.  Type: String Default: The latest stable Amazon ECS–optimized AMI for the specified region\. Required: No  | 
 |  `--no-associate-public-ip-address`  |  Do not assign public IP addresses to new instances in this VPC\. Unless this option is specified, new instances in this VPC receive an automatically assigned public IP address\. This option is only used if using tasks with the EC2 launch type\. Required: No  | 
 |  `--force, -f`  |  Forces the recreation of any existing resources that match your current configuration\. This option is useful for cleaning up stale resources from previous failed attempts\. Required: No  | 
 |  `--instance-role, -f instance-profile-name`  |  Specifies a custom IAM instance profile name for instances in your cluster\. This option is only used if using tasks with the EC2 launch type\. This parameter is required if you do not specify the `--capability-iam` option\. You cannot specify both options\. Required: No  | 
 | \-\-launch\-type launch\_type | Specifies the launch type to use\. Available options are FARGATE or EC2\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\. This overrides the default launch type stored in your cluster configuration\. Type: StringRequired: No | 
 |  `--cluster, -c cluster_name`  |  Specifies the ECS cluster name to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
-|  `--region, -r region`  |  Specifies the AWS region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
+|  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
 |  `--cluster-config cluster_config_name`  |  Specifies the name of the ECS cluster configuration to use\. Defaults to the cluster configuration set as the default\. Type: String Required: No  | 
 |  `--ecs-profile ecs_profile`  |  Specifies the name of the ECS profile configuration to use\. Defaults to the profile configured using the configure profile command\. Type: String Required: No  | 
 |  `--aws-profile aws_profile`  |  Specifies the AWS profile to use\. Enables you to use the AWS credentials from an existing named profile in `~/.aws/credentials`\. Type: String Required: No  | 
@@ -49,12 +49,13 @@ Some features described may only be available with the latest version of the ECS
 This example brings up a cluster of four `c4.large` instances and configures them to use the EC2 key pair called `id_rsa`\.
 
 ```
-ecs-cli up --keypair keypair_name --capability-iam --size 4 --instance-type c4.large
+ecs-cli up --keypair keypair_name --capability-iam --size 4 --instance-type c4.large --launch-type EC2
 ```
 
 Output:
 
 ```
+INFO[0001] Using recommended Amazon Linux AMI with ECS Agent 1.17.3 and Docker version 17.12.1-ce
 INFO[0000] Created cluster                               cluster=ecs-cli-ec2-demo
 INFO[0000] Waiting for your cluster resources to be created
 INFO[0001] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
