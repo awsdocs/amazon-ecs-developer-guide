@@ -43,7 +43,7 @@ To ensure that your task definition validates for use with the Fargate launch ty
 
 Fargate task definitions require that the network mode is set to `awsvpc`\. The `awsvpc` network mode provides each task with its own elastic network interface\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
 
-A network configuration is also required when creating the service\. For more information, see [Task Networking](#fargate-tasks-services-networking)\.
+A network configuration is also required when creating a service or manually running tasks\. For more information, see [Task Networking](#fargate-tasks-services-networking)\.
 
 ### Task CPU and Memory<a name="fargate-tasks-size"></a>
 
@@ -189,6 +189,8 @@ The following is an example of the networkConfiguration section for a Fargate se
       }
    },
 ```
+
+Services with tasks that use the `awsvpc` network mode \(for example, those with the Fargate launch type\) only support Application Load Balancers and Network Load Balancers; Classic Load Balancers are not supported\. Also, when you create any target groups for these services, you must choose `ip` as the target type, not `instance`, because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
 
 ## Clusters<a name="fargate-clusters"></a>
 

@@ -81,6 +81,10 @@ In this section, you create a target group for your load balancer and the health
 
 1. Set **Protocol** and **Port** as needed\.
 
+1. For **Target type**, choose whether to register your targets with an instance ID or an IP address\.
+**Important**  
+If your service's task definition uses the `awsvpc` network mode \(which is required for the Fargate launch type\), you must choose `ip` as the target type, not `instance`, because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
+
 1. For **Health checks**, keep the default health check settings\.
 
 1. Choose **Next: Register Targets**\.

@@ -107,6 +107,8 @@ If you choose to use an existing `ecsServiceRole` IAM role, you must verify that
 1. For **Listener port**, choose the listener port and protocol of the listener that you created in [Creating an Application Load Balancer](create-application-load-balancer.md) \(if applicable\), or choose **create new** to create a new listener and then enter a port number and choose a port protocol in **Listener protocol**\.
 
 1. For **Target group name**, choose the target group that you created in [Creating an Application Load Balancer](create-application-load-balancer.md) \(if applicable\), or choose **create new** to create a new target group\.
+**Important**  
+If your service's task definition uses the `awsvpc` network mode \(which is required for the Fargate launch type\), your target group must use `ip` as the target type, not `instance`, because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
 
 1. \(Optional\) If you chose to create a new target group, complete the following fields as follows:
    + For **Target group name**, enter a name for your target group\.
@@ -123,6 +125,8 @@ If you choose to use an existing `ecsServiceRole` IAM role, you must verify that
 1. For **Listener port**, choose the listener port and protocol of the listener that you created in [Creating an Application Load Balancer](create-application-load-balancer.md) \(if applicable\), or choose **create new** to create a new listener and then enter a port number and choose a port protocol in **Listener protocol**\.
 
 1. For **Target group name**, choose the target group that you created in [Creating an Application Load Balancer](create-application-load-balancer.md) \(if applicable\), or choose **create new** to create a new target group\.
+**Important**  
+If your service's task definition uses the `awsvpc` network mode \(which is required for the Fargate launch type\), your target group must use `ip` as the target type, not `instance`, because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
 
 1. \(Optional\) If you chose to create a new target group, complete the following fields as follows:
    + For **Target group name**, enter a name for your target group\.
