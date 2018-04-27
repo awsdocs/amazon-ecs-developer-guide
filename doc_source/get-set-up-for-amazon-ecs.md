@@ -106,7 +106,7 @@ The Amazon ECS instance and service roles are automatically created for you in t
 
 For Amazon ECS, a key pair is only needed if you intend on using the EC2 launch type\.
 
-AWS uses public\-key cryptography to secure the login information for your instance\. A Linux instance, such as an Amazon ECS container instance, has no password to use for SSH access; you use a key pair to log in to your instance securely\. You specify the name of the key pair when you launch your container instance, then provide the private key when you log in using SSH\. 
+AWS uses public\-key cryptography to secure the login information for your instance\. A Linux instance, such as an Amazon ECS container instance, has no password to use for SSH access; you use a key pair to log in to your instance securely\. You specify the name of the key pair when you launch your container instance, then provide the private key when you log in using SSH\.
 
 If you haven't created a key pair already, you can create one using the Amazon EC2 console\. Note that if you plan to launch instances in multiple regions, you'll need to create a key pair in each region\. For more information about regions, see [Regions and Availability Zones](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
@@ -114,13 +114,17 @@ If you haven't created a key pair already, you can create one using the Amazon E
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select a region for the key pair\. You can select any region that's available to you, regardless of your location: however, key pairs are specific to a region\. For example, if you plan to launch an instance in the US East \(Ohio\) region, you must create a key pair for the instance in the same region\.
+1. From the navigation bar, select a region for the key pair\. You can select any region that's available to you, regardless of your location\. However, key pairs are specific to a region; for example, if you plan to launch a container instance in the US East \(Ohio\) Region, you must create a key pair for the instance in the US East \(Ohio\) Region\.  
+![\[Select a region\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/EC2_select_region.png)
 
-1. Choose **Key Pairs** in the navigation pane\.
+1. In the navigation pane, under **NETWORK & SECURITY**, choose **Key Pairs**\.
+**Tip**  
+The navigation pane is on the left side of the console\. If you do not see the pane, it might be minimized; choose the arrow to expand the pane\. You may have to scroll down to see the **Key Pairs** link\.  
+![\[Open the key pairs page\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/key-pairs.png)
 
 1. Choose **Create Key Pair**\.
 
-1. Enter a name for the new key pair in the **Key pair name** field of the **Create Key Pair** dialog box, and then choose **Create**\. Choose a name that is easy for you to remember, such as your IAM user name, followed by `-key-pair`, plus the region name\. For example, *me*\-key\-pair\-*useast2*\.
+1. Enter a name for the new key pair in the **Key pair name** field of the **Create Key Pair** dialog box, and then choose **Create**\. Use a name that is easy for you to remember, such as your IAM user name, followed by `-key-pair`, plus the region name\. For example, *me*\-key\-pair\-*useast2*\.
 
 1. The private key file is automatically downloaded by your browser\. The base file name is the name you specified as the name of your key pair, and the file name extension is `.pem`\. Save the private key file in a safe place\.
 **Important**  
@@ -129,25 +133,25 @@ This is the only chance for you to save the private key file\. You'll need to pr
 1. If you will use an SSH client on a Mac or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
 
    ```
-   $ chmod 400 your_user_name-key-pair-region_name.pem
+   chmod 400 your_user_name-key-pair-region_name.pem
    ```
 
 For more information, see [Amazon EC2 Key Pairs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **To connect to your instance using your key pair**  
-To connect to your Linux instance from a computer running Mac or Linux, specify the `.pem` file to your SSH client with the `-i` option and the path to your private key\. To connect to your Linux instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you'll need to install it and use the following procedure to convert the `.pem` file to a `.ppk` file\.<a name="prepare-for-putty"></a>
+To connect to your Linux instance from a computer running Mac or Linux, you'll specify the `.pem` file to your SSH client with the `-i` option and the path to your private key\. To connect to your Linux instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you'll need to install it and use the following procedure to convert the `.pem` file to a `.ppk` file\.<a name="prepare-for-putty"></a>
 
 **\(Optional\) To prepare to connect to a Linux instance from Windows using PuTTY**
 
 1. Download and install PuTTY from [ http://www\.chiark\.greenend\.org\.uk/\~sgtatham/putty/](http://www.chiark.greenend.org.uk/~sgtatham/putty/)\. Be sure to install the entire suite\.
 
-1. Start PuTTYgen \(for example, from the **Start** menu, choose **All Programs, PuTTY, and PuTTYgen**\)\.
+1. Start PuTTYgen \(for example, from the **Start** menu, choose **All Programs > PuTTY > PuTTYgen**\)\.
 
-1. Under **Type of key to generate**, choose **SSH\-2 RSA**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/puttygen-key-type.png)
+1. Under **Type of key to generate**, choose **RSA**\.  
+![\[SSH-2 RSA key in PuTTYgen\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/puttygen-key-type.png)
 
-1. Choose **Load**\. By default, PuTTYgen displays only files with the extension `.ppk`\. To locate your `.pem` file, choose the option to display files of all types\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/puttygen-load-key.png)
+1. Choose **Load**\. By default, PuTTYgen displays only files with the extension `.ppk`\. To locate your `.pem` file, select the option to display files of all types\.  
+![\[Select all file types\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/puttygen-load-key.png)
 
 1. Select the private key file that you created in the previous procedure and choose **Open**\. Choose **OK** to dismiss the confirmation dialog box\.
 

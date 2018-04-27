@@ -2,11 +2,12 @@
 
 The following table describes the important changes to the documentation since the last release of Amazon ECS\. We also update the documentation frequently to address the feedback that you send us\.
 +  **Current API version:** 2014\-11\-13
-+  **Latest documentation update:** April 10th, 2018
++  **Latest documentation update:** April 26th, 2018
 
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
+|  AWS Fargate region expansion  |  2014\-11\-13  |  AWS Fargate with Amazon ECS has expanded to the US East \(Ohio\), US West \(Oregon\), and EU West \(Ireland\) regions\. For more information, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\.  | 26 April 2018 | 
 |  Amazon ECS CLI v1\.5\.0  |  2014\-11\-13  |  New version of the Amazon ECS CLI released, which added the following functionality: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html) For more information about the updated ECS CLI syntax, see [Amazon ECS Command Line Reference](ECS_CLI_reference.md)\.  | 19 April 2018 | 
 |  Amazon ECS\-optimized AMI Metadata Retrieval  |  2014\-11\-13  |  Added ability to programatically retrieve Amazon ECS\-optimized AMI metadata using the SSM Parameter Store API\. For more information, see [Retrieving the Amazon ECS\-optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)\.  | 10 April 2018 | 
 |  Amazon ECS CLI download verification  |  2014\-11\-13  |  Added new PGP signature method for verifying the Amazon ECS CLI installation file\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.  | 5 April 2018 | 

@@ -64,7 +64,7 @@ Only private subnets are supported for the `awsvpc` network mode\. Because tasks
 
 ### \(Optional\) Health Check Grace Period<a name="service-health-check-grace-period"></a>
 
-If your service's tasks take a while to start and respond to Elastic Load Balancing health checks, you can specify a health check grace period of up to 1,800 seconds during which the ECS service scheduler ignores health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\. This is only valid if your service is configured to use a load balancer\.
+If your service's tasks take a while to start and respond to Elastic Load Balancing health checks, you can specify a health check grace period of up to 7,200 seconds during which the ECS service scheduler ignores health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\. This is only valid if your service is configured to use a load balancer\.
 + **Health check grace period**: Enter the period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks after a task has first started\.
 
 ### \(Optional\) Configuring Your Service to Use a Load Balancer<a name="service-configure-load-balancing"></a>
@@ -108,7 +108,7 @@ If you choose to use an existing `ecsServiceRole` IAM role, you must verify that
 
 1. For **Target group name**, choose the target group that you created in [Creating an Application Load Balancer](create-application-load-balancer.md) \(if applicable\), or choose **create new** to create a new target group\.
 **Important**  
-If your service's task definition uses the `awsvpc` network mode \(which is required for the Fargate launch type\), your target group must use `ip` as the target type, not `instance`, because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
+If your service's task definition uses the `awsvpc` network mode \(which is required for the Fargate launch type\), your target group must use `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
 
 1. \(Optional\) If you chose to create a new target group, complete the following fields as follows:
    + For **Target group name**, enter a name for your target group\.
@@ -126,7 +126,7 @@ If your service's task definition uses the `awsvpc` network mode \(which is requ
 
 1. For **Target group name**, choose the target group that you created in [Creating an Application Load Balancer](create-application-load-balancer.md) \(if applicable\), or choose **create new** to create a new target group\.
 **Important**  
-If your service's task definition uses the `awsvpc` network mode \(which is required for the Fargate launch type\), your target group must use `ip` as the target type, not `instance`, because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
+If your service's task definition uses the `awsvpc` network mode \(which is required for the Fargate launch type\), your target group must use `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
 
 1. \(Optional\) If you chose to create a new target group, complete the following fields as follows:
    + For **Target group name**, enter a name for your target group\.

@@ -48,7 +48,7 @@ You register targets, such as Amazon EC2 instances, with a target group\. The ta
 
 1. For **Target type**, choose whether to register your targets with an instance ID or an IP address\.
 **Important**  
-If your service's task definition uses the `awsvpc` network mode \(which is required for the Fargate launch type\), you must choose `ip` as the target type, not `instance`, because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
+If your service's task definition uses the `awsvpc` network mode \(which is required for the Fargate launch type\), you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
 
 1. For **Health checks**, keep the default health check settings\.
 

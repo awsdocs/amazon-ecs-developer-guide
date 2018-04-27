@@ -18,7 +18,6 @@ As new Amazon ECS\-optimized AMIs and Amazon ECS agent versions are released, ol
 
 | Amazon ECS\-optimized Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
-| 2017\.09\.l | 1\.17\.3 | 17\.12\.1\-ce | 1\.17\.3\-1 | 
 | 2017\.09\.k | 1\.17\.2 | 17\.12\.0\-ce | 1\.17\.2\-1 | 
 | 2017\.09\.j | 1\.17\.2 | 17\.12\.0\-ce | 1\.17\.2\-1 | 
 | 2017\.09\.i | 1\.17\.1 | 17\.09\.1\-ce | 1\.17\.1\-1 | 

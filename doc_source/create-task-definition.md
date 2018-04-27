@@ -11,6 +11,8 @@ You can define multiple containers and data volumes in a task definition\. For m
 1. In the navigation pane, choose **Task Definitions**\.
 
 1. On the **Task Definitions** page, choose **Create new Task Definition**\.
+**Important**  
+If you are creating a task definition in a region that Fargate is not currently supported, skip to the [EC2 launch type](#ec2-task-def) steps\.
 
 1. On the **Select compatibilities** page, select the launch type that your task should use and choose **Next step**\.
 **Note**  
