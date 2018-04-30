@@ -26,7 +26,7 @@ The ECS CLI requires credentials in order to make API requests on your behalf\. 
 1. Create a profile using your access key and secret key:
 
    ```
-   ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET_ACCESS_KEY --profile-name  ec2-tutorial
+   ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET_ACCESS_KEY --profile-name ec2-tutorial
    ```
 **Note**  
 If this is the first time you are configuring the ECS CLI these configurations will be marked as default\. If this is not your first time configuring the ECS CLI, see [ecs\-cli configure default](cmd-ecs-cli-configure-default.md) and [ecs\-cli configure profile default](cmd-ecs-cli-configure-profile-default.md) to set this as the default configuration and profile\.
@@ -38,7 +38,7 @@ The first action you should take is to create a cluster of Amazon ECS container 
 By default, the security group created for your container instances opens port 80 for inbound traffic\. You can use the `--port` option to specify a different port to open, or if you have more complicated security group requirements, you can specify an existing security group to use with the `--security-group` option\.
 
 ```
-ecs-cli up --keypair id_rsa --capability-iam --size 2 --instance-type t2.medium
+ecs-cli up --keypair id_rsa --capability-iam --size 2 --instance-type t2.medium --cluster-config ec2-tutorial
 ```
 
 This command may take a few minutes to complete as your resources are created\. Now that you have a cluster, you can create a Docker compose file and deploy it\.
@@ -128,7 +128,7 @@ services:
 After you create the compose file, you can deploy it to your cluster with the ecs\-cli compose up command\. By default, the command looks for a file called `docker-compose.yml` in the current directory, but you can specify a different file with the `--file` option\. By default, the resources created by this command have the current directory in the title, but you can override that with the `--project-name project_name` option\. The `--create-log-groups` option will create the CloudWatch log groups for the container logs\.
 
 ```
-ecs-cli compose --file hello-world.yml up --create-log-groups
+ecs-cli compose --file hello-world.yml up --create-log-groups --cluster-config ec2-tutorial
 ```
 
 ## Step 5: View the Running Containers on a Cluster<a name="ECS_CLI_tutorial_ps"></a>
@@ -152,13 +152,13 @@ In the above example, you can see the `wordpress` and `mysql` containers from yo
 You can scale your task count up so you could have more instances of your application with the ecs\-cli compose scale command\. In this example, you can increase the count of your application to two\.
 
 ```
-ecs-cli compose --file hello-world.yml scale 2
+ecs-cli compose --file hello-world.yml scale 2 --cluster-config ec2-tutorial
 ```
 
 Now you should see two more containers in your cluster\.
 
 ```
-ecs-cli ps
+ecs-cli ps --cluster-config ec2-tutorial
 ```
 
 Output:
@@ -178,13 +178,13 @@ Now that you know that your containers work properly, you can make sure that the
 Before starting your service, stop the containers from your compose file with the ecs\-cli compose down command so that you have an empty cluster to work with\.
 
 ```
-ecs-cli compose --file hello-world.yml down
+ecs-cli compose --file hello-world.yml down --cluster-config ec2-tutorial
 ```
 
 Now you can create your service\.
 
 ```
-ecs-cli compose --file hello-world.yml service up
+ecs-cli compose --file hello-world.yml service up --cluster-config ec2-tutorial
 ```
 
 Output:
@@ -202,7 +202,7 @@ INFO[0000] Using ECS task definition                     TaskDefinition=ecscompo
 When you are done with this tutorial, you should clean up your resources so they do not incur any more charges\. First, delete the service so that it stops the existing containers and does not try to run any more tasks\.
 
 ```
-ecs-cli compose --file hello-world.yml service rm
+ecs-cli compose --file hello-world.yml service rm --cluster-config ec2-tutorial
 ```
 
 Output:
@@ -218,7 +218,7 @@ INFO[0000] Updated ECS service successfully              desiredCount=0 serviceN
 Now, take down your cluster, which cleans up the resources that you created earlier with ecs\-cli up\.
 
 ```
-ecs-cli down --force
+ecs-cli down --force --cluster-config ec2-tutorial
 ```
 
 Output:

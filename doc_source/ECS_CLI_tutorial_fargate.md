@@ -138,7 +138,7 @@ The `assign_public_ip` and `task_size` parameters are only valid for a Fargate t
 After you create the compose file, you can deploy it to your cluster with ecs\-cli compose service up\. By default, the command looks for files called `docker-compose.yml` and `ecs-params.yml` in the current directory; you can specify a different docker compose file with the `--file` option, and a different ECS Params file with the `--ecs-params` option\. By default, the resources created by this command have the current directory in their titles, but you can override that with the `--project-name` option\. The `--create-log-groups` option will create the CloudWatch log groups for the container logs\.
 
 ```
-ecs-cli compose --project-name tutorial service up --create-log-groups
+ecs-cli compose --project-name tutorial service up --create-log-groups --cluster-config tutorial
 ```
 
 ## Step 6: View the Running Containers on a Cluster<a name="ECS_CLI_tutorial_fargate_view"></a>
@@ -146,7 +146,7 @@ ecs-cli compose --project-name tutorial service up --create-log-groups
 After you deploy the compose file, you can view the containers that are running in the service with ecs\-cli compose service ps\.
 
 ```
-ecs-cli compose --project-name tutorial service ps
+ecs-cli compose --project-name tutorial service ps --cluster-config tutorial
 ```
 
 Output:
@@ -165,7 +165,7 @@ In the above example, you can see the `wordpress` container from your compose fi
 View the logs for the task:
 
 ```
-ecs-cli logs --task-id a06a6642-12c5-4006-b1d1-033994580605 --follow
+ecs-cli logs --task-id a06a6642-12c5-4006-b1d1-033994580605 --follow --cluster-config tutorial
 ```
 
 **Note**  
@@ -176,13 +176,13 @@ The `--follow` option tells the ECS CLI to continously poll for logs\.
 You can scale up your task count to increase the number of instances of your application with ecs\-cli compose service scale\. In this example, the running count of the application is increased to two\.
 
 ```
-ecs-cli compose --project-name tutorial service scale 2
+ecs-cli compose --project-name tutorial service scale 2 --cluster-config tutorial
 ```
 
 Now you should see two more containers in your cluster:
 
 ```
-ecs-cli compose --project-name tutorial service ps
+ecs-cli compose --project-name tutorial service ps --cluster-config tutorial
 ```
 
 Output:
@@ -200,11 +200,11 @@ a06a6642-12c5-4006-b1d1-033994580/wordpress  RUNNING  54.146.193.73:80->80/tcp  
 When you are done with this tutorial, you should clean up your resources so they do not incur any more charges\. First, delete the service so that it stops the existing containers and does not try to run any more tasks\.
 
 ```
-ecs-cli compose --project-name tutorial service down
+ecs-cli compose --project-name tutorial service down --cluster-config tutorial
 ```
 
 Now, take down your cluster, which cleans up the resources that you created earlier with ecs\-cli up\.
 
 ```
-ecs-cli down --force
+ecs-cli down --force --cluster-config tutorial
 ```

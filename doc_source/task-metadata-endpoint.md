@@ -180,6 +180,7 @@ The following JSON response is for a single\-container task\.
           ]
         }
       ]
+    }
   ],
   "PullStartedAt": "2018-02-01T20:55:09.372495529Z",
   "PullStoppedAt": "2018-02-01T20:55:10.552018345Z"

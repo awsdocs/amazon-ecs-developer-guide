@@ -169,20 +169,17 @@ Task health is reported by the `healthStatus` of the task, which is determined b
 Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 Container health checks are supported for Fargate tasks if using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.  
 `command`  
-A string array representing the command that the container runs to determine if it is healthy\. The string array must start with `CMD` to execute the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. 
-
+A string array representing the command that the container runs to determine if it is healthy\. The string array must start with `CMD` to execute the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\.   
 In the console, example input for a health check could be:  
 
 ```
 CMD-SHELL, curl -f http://localhost/ || exit 1
 ```
-
-Similarly, in the console JSON panel, the AWS CLI, or the APIs, example input for a health check could be:
+Similarly, in the console JSON panel, the AWS CLI, or the APIs, example input for a health check could be:  
 
 ```
 [ "CMD-SHELL", "curl -f http://localhost/ || exit 1" ]
 ```
-
 An exit code of 0 indicates success, and a non\-zero exit code indicates failure\. For more information, see `HealthCheck` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/)\.  
 `interval`  
 The time period in seconds between each health check execution\. You may specify between 5 and 300 seconds\. The default value is 30 seconds\.  
@@ -204,7 +201,7 @@ You can determine the number of CPU units that are available per Amazon EC2 inst
 Linux containers share unallocated CPU units with other containers on the container instance with the same ratio as their allocated amount\. For example, if you run a single\-container task on a single\-core instance type with 512 CPU units specified for that container, and that is the only task running on the container instance, that container could use the full 1,024 CPU unit share at any given time\. However, if you launched another copy of the same task on that container instance, each task would be guaranteed a minimum of 512 CPU units when needed, and each container could float to higher CPU usage if the other container was not using it, but if both tasks were 100% active all of the time, they would be limited to 512 CPU units\.  
 On Linux container instances, the Docker daemon on the container instance uses the CPU value to calculate the relative CPU share ratios for running containers\. For more information, see [CPU share constraint](https://docs.docker.com/engine/reference/run/#cpu-share-constraint) in the Docker documentation\. The minimum valid CPU share value that the Linux kernel allows is 2\. However, the CPU parameter is not required, and you can use CPU values below 2 in your container definitions\. For CPU values below 2 \(including null\), the behavior varies based on your Amazon ECS container agent version:  
 + **Agent versions <= 1\.1\.0:** Null and zero CPU values are passed to Docker as 0, which Docker then converts to 1,024 CPU shares\. CPU values of 1 are passed to Docker as 1, which the Linux kernel converts to 2 CPU shares\.
-+ **Agent versions >= 1\.2\.0:** Null, zero, and CPU values of 1 are passed to Docker as 2\.
++ **Agent versions >= 1\.2\.0:** Null, zero, and CPU values of 1 are passed to Docker as 2 CPU shares\.
 On Windows container instances, the CPU limit is enforced as an absolute limit, or a quota\. Windows containers only have access to the specified amount of CPU that is described in the task definition\.
 
 `essential`  
