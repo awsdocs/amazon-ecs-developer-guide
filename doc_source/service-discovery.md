@@ -58,7 +58,7 @@ Service discovery has been integrated into the Create Service wizard in the Amaz
 The following tutorial shows how to create an ECS service using a Fargate task that uses service discovery with the AWS CLI\.
 
 **Note**  
-Fargate tasks are only supported in the US East \(N\. Virginia\) region\.
+Fargate tasks are only supported in the US East \(N\. Virginia\), US East \(Ohio\), US West \(Oregon\), and EU \(Ireland\) regions\.
 
 This tutorial assumes the following prerequisites have been completed:
 + The latest version of the AWS CLI is installed and configured\. For more information about installing or upgrading your AWS CLI, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
