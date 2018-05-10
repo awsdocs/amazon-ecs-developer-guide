@@ -50,8 +50,8 @@ The following is an example of a simple task definition containing a single cont
         "FARGATE"
     ],
     "networkMode": "awsvpc",
-    "memory": "100",
-    "cpu": "99",
+    "memory": "512",
+    "cpu": "256",
 }
 ```
 
