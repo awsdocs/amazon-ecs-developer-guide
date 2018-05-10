@@ -159,6 +159,12 @@ Default value on Linux: `30s`
 Default value on Windows: `30s`  
 Time duration to wait from when a task is stopped before its containers are forcefully killed if they do not exit normally on their own\.
 
+`ECS_CONTAINER_START_TIMEOUT`  
+Example values: `10m` \(Valid time units are "ns", "us" \(or "µs"\), "ms", "s", "m", and "h"\.\)  
+Default value on Linux: `3m`  
+Default value on Windows: `8m`  
+Time duration to wait before giving up on starting a container\.
+
 `HTTP_PROXY`  
 Example values: `10.0.0.131:3128`  
 Default value on Linux: Null  

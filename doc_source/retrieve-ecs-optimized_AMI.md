@@ -1,6 +1,6 @@
 # Retrieving the Amazon ECS\-optimized AMI Metadata<a name="retrieve-ecs-optimized_AMI"></a>
 
-The AMI ID, image name, container agent version, and runtime version for an Amazon ECS\-optimized AMI can be programmatically retrieved by querying the SSM Parameter Store API\. For more information about the SSM Parameter Store API, see [GetParameters](http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameters.html) and [GetParametersByPath](http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html)\.
+The AMI ID, image name, operating system, container agent version, and runtime version for an Amazon ECS\-optimized AMI can be programmatically retrieved by querying the SSM Parameter Store API\. For more information about the SSM Parameter Store API, see [GetParameters](http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameters.html) and [GetParametersByPath](http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html)\.
 
 **Note**  
 Your user account must have the following IAM permissions to retrieve the Amazon ECS\-optimized AMI metadata\. These permissions have been added to the `AmazonECS_FullAccess` IAM policy\.  
@@ -26,6 +26,33 @@ The following parameter name format retrieves the metadata of the latest stable 
 /aws/service/ecs/optimized-ami/amazon-linux/recommended
 ```
 
+The following is an example of the JSON object that is returned for the parameter value\.
+
+```
+{
+    "schema_version": 1,
+    "image_id": "ami-aff65ad2",
+    "image_name": "amzn-ami-2017.09.l-amazon-ecs-optimized",
+    "os": "Amazon Linux",
+    "ecs_agent_version": "1.17.3",
+    "ecs_runtime_version": "Docker version 17.12.1-ce"
+}
+```
+
+Each of the fields in the output above are available to be queried as sub\-parameters\. Construct the parameter path for a sub\-parameter by appending the sub\-parameter name to the path for the selected AMI\. The following sub\-parameters are available:
++ `schema_version`
++ `image_id`
++ `image_name`
++ `os`
++ `ecs_agent_version`
++ `ecs_runtime_version`
+
+The following parameter name format retrieves the image ID of the latest stable Linux Amazon ECS\-optimized AMI by using the sub\-parameter `image_id`\.
+
+```
+/aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id
+```
+
 The following parameter name format retrieves the metadata of a specific Amazon ECS\-optimized AMI version by specifying the AMI name\.
 + Linux Amazon ECS\-optimized AMI metadata:
 
@@ -41,22 +68,8 @@ The following parameter name format retrieves the metadata of a specific Amazon 
 **Note**  
 Only Amazon ECS\-optimized AMI versions `amzn-ami-2017.09.l-amazon-ecs-optimized` \(Linux\) and `Windows_Server-2016-English-Full-ECS_Optimized-2018.03.26` \(Windows\) and later can be retrieved\. For more information, see [Amazon ECS\-Optimized AMI Versions](ecs-ami-versions.md)\.
 
-The following is an example of the JSON object that is returned for the parameter value\.
-
-```
-{
-    "schema_version": 1,
-    "image_id": "ami-aff65ad2",
-    "image_name": "amzn-ami-2017.09.l-amazon-ecs-optimized",
-    "os": "Amazon Linux",
-    "ecs_agent_version": "1.17.3",
-    "ecs_runtime_version": "Docker version 17.12.1-ce"
-}
-```
-
-**To retrieve the metadata of the latest stable Amazon ECS\-optimized AMI**
-
-You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI with the following AWS CLI command\.
+**Example retrieving the metadata of the latest stable Amazon ECS\-optimized AMI**  
+You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI with the following AWS CLI command\.  
 + **For the Linux Amazon ECS\-optimized AMIs:**
 
   ```
@@ -100,56 +113,69 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   }
   ```
 
-**To retrieve the metadata of a specific Amazon ECS\-optimized AMI version**
-
-Retrieve the metadata of a specific Amazon ECS\-optimized AMI version using the AWS CLI with the following AWS CLI command\. Replace the AMI name with the name of the Amazon ECS\-optimized AMI to retrieve\. For more information about the available versions, see [Amazon ECS\-Optimized AMI Versions](ecs-ami-versions.md)\.
+**Example retrieving the metadata of a specific Amazon ECS\-optimized AMI version**  
+Retrieve the metadata of a specific Amazon ECS\-optimized AMI version using the AWS CLI with the following AWS CLI command\. Replace the AMI name with the name of the Amazon ECS\-optimized AMI to retrieve\. For more information about the available versions, see [Amazon ECS\-Optimized AMI Versions](ecs-ami-versions.md)\.  
 
 ```
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/amzn-ami-2017.09.l-amazon-ecs-optimized --region us-east-1
 ```
 
-**To retrieve the Amazon ECS\-optimized AMI metadata using the SSM GetParametersByPath API**
-
-Retrieve the Amazon ECS\-optimized AMI metadata with the SSM GetParametersByPath API using the AWS CLI with the following command\.
+**Example retrieving the Amazon ECS\-optimized AMI metadata using the SSM GetParametersByPath API**  
+Retrieve the Amazon ECS\-optimized AMI metadata with the SSM GetParametersByPath API using the AWS CLI with the following command\.  
 
 ```
 aws ssm get-parameters-by-path --path /aws/service/ecs/optimized-ami/amazon-linux/ --region us-east-1
 ```
 
-**To retrieve the Amazon ECS\-optimized AMI ID by using the jq tool**
+**Example retrieving the image ID of the latest recommended Amazon ECS\-optimized AMI**  
+You can retrieve the image ID of the latest recommended Amazon ECS\-optimized AMI ID by using the sub\-parameter `image_id`\.  
 
-You can retrieve the Amazon ECS\-optimized AMI ID by parsing the output of the parameter store\. The following method uses the jq tool\.
+```
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id --region us-east-1
+```
+Output:  
 
-1. Download and install the jq tool from [github](https://stedolan.github.io/jq/)\.
+```
+{
+    "Parameters": [
+        {
+            "Name": "/aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id",
+            "Type": "String",
+            "Value": "ami-f9ac2f86",
+            "Version": 1
+        }
+    ],
+    "InvalidParameters": []
+}
+```
+To retrieve the `image_id` value only, you can query the specific parameter value; for example:  
 
-1. Using the jq tool, the following AWS CLI command will parse the JSON output to provide the Amazon ECS\-optimized AMI ID\.
+```
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id --region us-east-1 --query "Parameters[0].Value"
+```
+Output:  
 
-   ```
-   aws ssm get-parameter --name /aws/service/ecs/optimized-ami/amazon-linux/recommended --region us-east-1 --query 'Parameter.Value' | jq 'fromjson.image_id'
-   ```
+```
+"ami-f9ac2f86"
+```
 
-**To retrieve the Amazon ECS\-optimized AMI ID by using the AWS SDK for Python**
+**Example using the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template**  
+You can retrieve the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template by referencing the SSM parameter store name; for example:  
+Linux:  
 
-You can retrieve the Amazon ECS\-optimized AMI ID by parsing the output of the parameter store\. The following method uses the AWS SDK for Python\.
+```
+Parameters:
+  ECSAMI:
+    Description: AMI ID
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id
+```
+Windows:  
 
-1. Create a file named `ecsami.py` with the contents of the following python script\. Replace the `parameter_name` and `aws_region` parameters as necessary\.
-
-   ```
-   #!/usr/bin/env python
-   import json
-   import botocore.session
-   
-   parameter_name = '/aws/service/ecs/optimized-ami/amazon-linux/recommended'
-   aws_region = 'us-east-1'
-   
-   session = botocore.session.Session()
-   client = session.create_client(service_name='ssm', region_name=aws_region)
-   ami_id = json.loads(client.get_parameter(Name=parameter_name)['Parameter']['Value'])['image_id']
-   print(ami_id)
-   ```
-
-1. Run the python script\.
-
-   ```
-   python ecsami.py
-   ```
+```
+Parameters:
+  ECSAMI:
+    Description: AMI ID
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended/image_id
+```
