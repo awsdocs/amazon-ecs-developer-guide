@@ -167,7 +167,7 @@ Linux:
 Parameters:
   ECSAMI:
     Description: AMI ID
-    Type: AWS::SSM::Parameter::Value<String>
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
     Default: /aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id
 ```
 Windows:  
@@ -176,6 +176,6 @@ Windows:
 Parameters:
   ECSAMI:
     Description: AMI ID
-    Type: AWS::SSM::Parameter::Value<String>
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
     Default: /aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended/image_id
 ```
