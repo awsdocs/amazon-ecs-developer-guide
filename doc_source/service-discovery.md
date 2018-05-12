@@ -116,7 +116,7 @@ This tutorial assumes the following prerequisites have been completed:
 1. Create a service discovery service named `myapplication`\.
 
    ```
-   aws servicediscovery create-service --name myapplication --dns-config NamespaceId="ns-uejictsjen2i4eeg",DnsRecords=[{Type="A",TTL="300"}] --health-check-custom-config FailureThreshold=1 --region us-east-1
+   aws servicediscovery create-service --name myapplication --dns-config 'NamespaceId="ns-uejictsjen2i4eeg",DnsRecords=[{Type="A",TTL="300"}]' --health-check-custom-config FailureThreshold=1 --region us-east-1
    ```
 
    Output:
