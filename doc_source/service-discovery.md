@@ -173,7 +173,6 @@ This tutorial assumes the following prerequisites have been completed:
 
    ```
    {
-       "taskDefinition": {
            "family": "first-run-task-definition",
            "networkMode": "awsvpc",
            "containerDefinitions": [
@@ -202,7 +201,6 @@ This tutorial assumes the following prerequisites have been completed:
            ],
            "cpu": "256",
            "memory": "512"
-       }
    }
    ```
 
