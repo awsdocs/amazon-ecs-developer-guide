@@ -7,18 +7,20 @@ Manage Amazon ECS tasks with docker\-compose\-style commands on an ECS cluster\.
 **Note**  
 To create Amazon ECS services with the Amazon ECS CLI, see [ecs\-cli compose service](cmd-ecs-cli-compose-service.md)\.
 
-The ecs\-cli compose command works with a Docker compose file to create task definitions and manage tasks\. At this time, the latest version of the Amazon ECS CLI supports [Docker compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1 and 2\. By default, the command looks for a compose file in the current directory, called `docker-compose.yml`\. However, you can also specify a different file name or path to a compose file with the `--file` option\. This is especially useful for managing tasks and services from multiple compose files at a time with the Amazon ECS CLI\.
+The ecs\-cli compose command works with a Docker compose file to create task definitions and manage tasks\. At this time, the latest version of the Amazon ECS CLI supports [Docker compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1, 2, and 3\. By default, the command looks for a compose file in the current directory, named `docker-compose.yml`\. However, you can also specify a different file name or path to a compose file with the `--file` option\. This is especially useful for managing tasks and services from multiple compose files at a time with the Amazon ECS CLI\.
 
 The ecs\-cli compose command uses a project name with the task definitions and services it creates\. When the CLI creates a task definition from a compose file, the task definition is called `project-name`\. When the CLI creates a service from a compose file, the service is called `service-project-name`\. By default, the project name is the name of the current working directory\. However, you can also specify your own project name with the `--project-name` option\.
 
 **Note**  
 The Amazon ECS CLI can only manage tasks, services, and container instances that were created with the CLI\. To manage tasks, services, and container instances that were not created by the Amazon ECS CLI, use the AWS Command Line Interface or the AWS Management Console\.
 
-The following parameters are supported in compose files for the Amazon ECS CLI: 
+The following parameters are supported in compose files for the Amazon ECS CLI:
 + `cap_add` \(Not valid for tasks using the Fargate launch type\)
 + `cap_drop` \(Not valid for tasks using the Fargate launch type\)
 + `command`
 + `cpu_shares`
+**Note**  
+If you are using the Compose version 3 format, `cpu_shares` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](#cmd-ecs-cli-compose-ecsparams)\.
 + `dns`
 + `dns_search`
 + `entrypoint`
@@ -35,37 +37,40 @@ We do not recommend using plaintext environment variables for sensitive informat
 + `links` \(Not valid for tasks using the Fargate launch type\)
 + `log_driver` \(Compose file version 1 only\)
 + `log_opt` \(Compose file version 1 only\)
-+ `logging` \(Compose file version 2 only\)
++ `logging` \(Compose file version 2 and 3\)
   + `driver`
   + `options`
 + `mem_limit` \(in bytes\)
+**Note**  
+If you are using the Compose version 3 format, `mem_limit` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](#cmd-ecs-cli-compose-ecsparams)\.
 + `mem_reservation` \(in bytes\)
+**Note**  
+If you are using the Compose version 3 format, `mem_reservation` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](#cmd-ecs-cli-compose-ecsparams)\.
 + `ports`
 + `privileged` \(Not valid for tasks using the Fargate launch type\)
 + `read_only`
 + `security_opt`
-+ `shm_size` \(Not valid for tasks using the Fargate launch type\)
++ `shm_size` \(Compose file version 1 and 2 only and not valid for tasks using the Fargate launch type\)
 + `tmpfs` \(Not valid for tasks using the Fargate launch type\)
 + `ulimits`
 + `user`
 + `volumes`
-+ `volumes_from`
++ `volumes_from` \(Compose file version 1 and 2 only\)
 + `working_dir`
 
 **Important**  
 The `build` directive is not supported at this time\.
 
-For more information about Docker compose file syntax, see the [Compose file reference](https://docs.docker.com/compose/compose-file/#/compose-file-reference) in the Docker documentation\. 
-
-**Note**  
-Ensure that you are using the latest version of the Amazon ECS CLI to use all configuration options\.
+For more information about Docker compose file syntax, see the [Compose file reference](https://docs.docker.com/compose/compose-file/#/compose-file-reference) in the Docker documentation\.
 
 **Important**  
 Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Using Amazon ECS Parameters<a name="cmd-ecs-cli-compose-ecsparams"></a>
 
-Since there are certain fields in an Amazon ECS task definition that do not correspond to fields in a Docker compose file, you can specify those values using the `--ecs-params` flag\. By default, the command looks for an ECS params file in the current directory, called `ecs-params.yml`\. Currently, the file supports the follow schema:
+Since there are certain fields in an Amazon ECS task definition that do not correspond to fields in a Docker compose file, you can specify those values using the `--ecs-params` flag\. By default, the command looks for an ECS parameters file in the current directory named `ecs-params.yml`\. However, you can also specify a different file name or path to an ECS parameters file with the `--ecs-params` option\.
+
+Currently, the file supports the follow schema:
 
 ```
 version: 1
@@ -79,6 +84,9 @@ task_definition:
   services:
     <service_name>:
       essential: boolean
+      cpu_shares: integer
+      mem_limit: integer
+      mem_reservation: integer
 run_params:
   network_configuration:
     awsvpc_configuration:
@@ -92,14 +100,14 @@ run_params:
 ```
 
 The fields listed under `task_definition` correspond to fields to be included in your Amazon ECS task definition\. The following are descriptions for each:
-+ `ecs_network_mode` ‐ Corresponds to networkMode in an ECS task definition\. Supported values are `none`, `bridge`, `host`, or `awsvpc`\. If not specified, this defaults to `bridge`\. If you are using task networking, this field must be set to `awsvpc`\. For more information, see [Network Mode](task_definition_parameters.md#network_mode)\.
++ `ecs_network_mode` ‐ Corresponds to `networkMode` in an ECS task definition\. Supported values are `none`, `bridge`, `host`, or `awsvpc`\. If not specified, this defaults to `bridge`\. If you are using task networking, this field must be set to `awsvpc`\. For more information, see [Network Mode](task_definition_parameters.md#network_mode)\.
 + `task_role_arn` ‐ the name or full ARN of an IAM role to be associated with the task\. For more information, see [Task Role](task_definition_parameters.md#task_role_arn)\.
 + `task_execution_role` ‐ the name or full ARN of the task execution role\. This is a required field if you want your tasks to be able to store container application logs in CloudWatch or allow your tasks to pull container images from Amazon ECR\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 + `task_size` ‐ the CPU and memory values for the task\. If using the EC2 launch type, this field is optional and any value can be used\. If using the Fargate launch type, this field is required and you must use one of the following sets of values for the `cpu` and `memory` parameters\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cmd-ecs-cli-compose.html)
 
   For more information, see [Task Size](task_definition_parameters.md#task_size)\.
-+ `services` ‐ corresponds to the services listed in your Docker compose file, with `service_name` matching the name of the container to run\. Its fields are merged into a container definition\. The only field you can specify on it is `essential`\. If not specified, the value for `essential` defaults to `true`\.
++ `services` ‐ corresponds to the services listed in your Docker compose file, with `service_name` matching the name of the container to run\. Its fields are merged into a container definition\. If the `essential` field is not specified, the value defaults to `true`\. If you are using Docker compose version 3, the `cpu_shares`, `mem_limit`, and `mem_reservation` fields are optional and must be specified in the ECS params file rather than the compose file\. In Docker compose version 2, the `cpu_shares`, `mem_limit`, and `mem_reservation` fields can be specified in either the compose or ECS params file\. If they are specified in the ECS params file, the values will override values present in the compose file\.
 
 The fields listed under `run_params` are for values needed as options to API calls not specifically related to a task definition, such as `compose up` \(RunTask\) and `compose service up` \(CreateService\)\. Currently, the only supported parameter under `run_params` is `network_configuration`, which is a required parameter to use task networking\. It is required when using tasks with the Fargate launch type\.
 + `network_configuration` ‐ required field if you specified `awsvpc` for `ecs_network_mode`\. It uses one nested parameter, `awsvpc_configuration`, which has the following subfields:

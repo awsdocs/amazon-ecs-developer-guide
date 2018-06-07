@@ -34,18 +34,44 @@ Some features described may only be available with the latest version of the ECS
 
 ### Run a Task<a name="cmd-ecs-cli-compose-start-example-1"></a>
 
-This example creates a task definition from the `hello-world.yml` compose file and then runs a single task using that task definition\.
+This example creates a task definition from the `hello-world.yml` compose file\. Additional ECS parameters are specified for task networking configuration for the Fargate launch type\. Then a single task is run using that task definition\.
 
-Example ecs\-params\.yml file:
+Example Docker Compose file, named `hello-world.yml`:
+
+```
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: tutorial
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: nginx
+```
+
+Example ECS parameters file, named `ecs-params.yml`:
 
 ```
 version: 1
 task_definition:
-  ecs_network_mode: host
-  task_role_arn: myCustomRole
-  services:
-    my_service:
-      essential: false
+  task_execution_role: ecsTaskExecutionRole
+  ecs_network_mode: awsvpc
+  task_size:
+    mem_limit: 0.5GB
+    cpu_limit: 256
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - subnet-abcd1234
+        - subnet-dbca4321
+      security_groups:
+        - sg-abcd1234
+      assign_public_ip: ENABLED
 ```
 
 Command:

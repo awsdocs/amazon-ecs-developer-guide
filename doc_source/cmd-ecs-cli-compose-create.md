@@ -51,22 +51,39 @@ INFO[0000] Using ECS task definition                     TaskDefinition=ecscompo
 
 ### Register a Task Definition Using the EC2 Launch Type Without Task Networking<a name="cmd-ecs-cli-compose-create-example-2"></a>
 
-This example creates a task definition with the project name `hello-world` from the `hello-world.yml` compose file with additional ECS parameters specified\.
+This example creates a task definition with the project name `hello-world` from the `hello-world.yml` compose file\. Additional ECS parameters specified for the container size parameters\.
 
-Example ecs\-params\.yml file:
+Example Docker Compose file, named `hello-world.yml`:
+
+```
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: /ecs/cli/tutorial
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: nginx
+```
+
+Example ECS parameters file, named `ecs-params.yml`:
 
 ```
 version: 1
 task_definition:
-  ecs_network_mode: host
-  task_role_arn: myCustomRole
   services:
-    my_service:
-      essential: false
+    nginx:
+      cpu_shares: 256
+      mem_limit: 0.5GB
+      mem_reservation: 0.5GB
 ```
 
 ```
-ecs-cli compose --project-name hello-world --file hello-world.yml --ecs-params ecs-params.yml create --launch-type EC2
+ecs-cli compose --project-name hello-world --file hello-world.yml --ecs-params ecs-params.yml --region us-east-1 create --launch-type EC2
 ```
 
 Output:
@@ -75,19 +92,37 @@ Output:
 INFO[0000] Using ECS task definition                     TaskDefinition=ecscompose-hello-world:5
 ```
 
-### Register a Task Definition Using the EC2 Launch Type With Task Networking<a name="cmd-ecs-cli-compose-create-example-3"></a>
+### Register a Task Definition Using the Fargate Launch Type<a name="cmd-ecs-cli-compose-create-example-3"></a>
 
-This example creates a task definition with the project name `hello-world` from the `hello-world.yml` compose file\. Additional ECS parameters are specified for task and network configuration for the EC2 launch type\. Then one instance of the task is run using the EC2 launch type\.
+This example creates a task definition with the project name `hello-world` from the `hello-world.yml` compose file\. Additional ECS parameters are specified for task networking configuration for the Fargate launch type\. Then one instance of the task is run\.
 
-Example ECS params file:
+Example Docker Compose file, named `hello-world.yml`:
+
+```
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: tutorial
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: nginx
+```
+
+Example ECS parameters file, named `ecs-params.yml`:
 
 ```
 version: 1
 task_definition:
+  task_execution_role: ecsTaskExecutionRole
   ecs_network_mode: awsvpc
-  services:
-    my_service:
-      essential: false
+  task_size:
+    mem_limit: 0.5GB
+    cpu_limit: 256
 run_params:
   network_configuration:
     awsvpc_configuration:
@@ -96,13 +131,13 @@ run_params:
         - subnet-dbca4321
       security_groups:
         - sg-abcd1234
-        - sg-dbca4321
+      assign_public_ip: ENABLED
 ```
 
 Command:
 
 ```
-ecs-cli compose --project-name hello-world --file hello-world.yml --ecs-params ecs-params.yml create --launch-type EC2
+ecs-cli compose --project-name hello-world --file hello-world.yml --ecs-params ecs-params.yml --region us-east-1 create --launch-type FARGATE
 ```
 
 Output:

@@ -16,7 +16,7 @@ Some features described may only be available with the latest version of the ECS
 
 | Name | Description | 
 | --- | --- | 
-|  `--registry-id registry_id`  |  Specifies the ECR registry with which to list images\. By default, images are listed for the current AWS account\. Required: No  | 
+|  `--registry-id registry_id`  |  Specifies the Amazon ECR registry with which to list images\. By default, images are listed for the current AWS account\. Required: No  | 
 |  `--tagged`  |  Filters the result to show only tagged images\. Required: No  | 
 |  `--untagged`  |  Filters the result to show only untagged images\. Required: No  | 
 |  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
@@ -29,7 +29,7 @@ Some features described may only be available with the latest version of the ECS
 
 ### Example 1<a name="cmd-ecs-cli-images-example-1"></a>
 
-This example lists all of the images in an ECR registry\.
+This example lists all of the images in an Amazon ECR registry\.
 
 ```
 ecs-cli images
@@ -54,7 +54,7 @@ awsbatch/fetch_and_run   latest              sha256:543800007416d0ccff4f63643bb1
 
 ### Example 2<a name="cmd-ecs-cli-images-example-2"></a>
 
-This example lists all of the images in a specific ECR repository\.
+This example lists all of the images in a specific Amazon ECR repository\.
 
 ```
 ecs-cli images ubuntu
@@ -73,7 +73,7 @@ ubuntu              precise             sha256:b38267a51fb4460699bc2bcdbb53d42fe
 
 ### Example 3<a name="cmd-ecs-cli-images-example-3"></a>
 
-This example lists all of the untagged images in an ECR registry\.
+This example lists all of the untagged images in an Amazon ECR registry\.
 
 ```
 ecs-cli images --untagged

@@ -1,6 +1,6 @@
 # Migrating Configuration Files<a name="ECS_CLI_migrating_config_files"></a>
 
-The process of configuring the Amazon ECS CLI has changed significantly in the latest version \(v1\.0\.0\) to allow the addition of new features\. A migration command has been introduced that converts an older \(v0\.6\.6 and older\) configuration file to the current format\. The old configuration files are deprecated, we recommend converting your configuration to the newest format to take advantage of the new features\. The configuration\-related changes and new features introduced in v1\.0\.0 in the new YAML formatted configuration files include:
+The process of configuring the Amazon ECS CLI has changed significantly in the latest version \(v1\.0\.0\) to allow the addition of new features\. A migration command has been introduced that converts an older \(v0\.6\.6 and older\) configuration file to the current format\. The old configuration files are deprecated, so we recommend converting your configuration to the newest format to take advantage of the new features\. The configuration\-related changes and new features introduced in v1\.0\.0 in the new YAML formatted configuration files include:
 + Splitting up of credential and cluster\-related configuration information into two separate files\. Credential information is stored in `~/.ecs/credentials` and cluster configuration information is stored in `~/.ecs/config`\.
 + The configuration files are formatted in YAML\.
 + Support for storing multiple named configurations\.

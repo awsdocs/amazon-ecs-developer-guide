@@ -35,7 +35,7 @@ Some features described may only be available with the latest version of the ECS
 This example scales the current cluster to two container instances\.
 
 ```
-ecs-cli scale --capability-iam --size 2
+ecs-cli scale --size 2 --capability-iam
 ```
 
 Output:

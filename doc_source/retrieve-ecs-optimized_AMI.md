@@ -68,7 +68,7 @@ The following parameter name format retrieves the metadata of a specific Amazon 
 **Note**  
 Only Amazon ECS\-optimized AMI versions `amzn-ami-2017.09.l-amazon-ecs-optimized` \(Linux\) and `Windows_Server-2016-English-Full-ECS_Optimized-2018.03.26` \(Windows\) and later can be retrieved\. For more information, see [Amazon ECS\-Optimized AMI Versions](ecs-ami-versions.md)\.
 
-**Example retrieving the metadata of the latest stable Amazon ECS\-optimized AMI**  
+**Example Retrieving the metadata of the latest stable Amazon ECS\-optimized AMI**  
 You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI with the following AWS CLI command\.  
 + **For the Linux Amazon ECS\-optimized AMIs:**
 
@@ -112,22 +112,35 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
       "InvalidParameters": []
   }
   ```
++ **For the Windows Amazon ECS\-optimized AMI: using AWS PowerShell**
 
-**Example retrieving the metadata of a specific Amazon ECS\-optimized AMI version**  
+  ```
+  Get-SSMParameter -Name /aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended/image_id -region us-east-1
+  ```
+
+  Output:
+
+  ```
+  Name                                                                                 Type   Value        Version
+  ----                                                                                 ----   -----        -------
+  /aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended/image_id String ami-4734a738 3
+  ```
+
+**Example Retrieving the metadata of a specific Amazon ECS\-optimized AMI version**  
 Retrieve the metadata of a specific Amazon ECS\-optimized AMI version using the AWS CLI with the following AWS CLI command\. Replace the AMI name with the name of the Amazon ECS\-optimized AMI to retrieve\. For more information about the available versions, see [Amazon ECS\-Optimized AMI Versions](ecs-ami-versions.md)\.  
 
 ```
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/amzn-ami-2017.09.l-amazon-ecs-optimized --region us-east-1
 ```
 
-**Example retrieving the Amazon ECS\-optimized AMI metadata using the SSM GetParametersByPath API**  
+**Example Retrieving the Amazon ECS\-optimized AMI metadata using the SSM GetParametersByPath API**  
 Retrieve the Amazon ECS\-optimized AMI metadata with the SSM GetParametersByPath API using the AWS CLI with the following command\.  
 
 ```
 aws ssm get-parameters-by-path --path /aws/service/ecs/optimized-ami/amazon-linux/ --region us-east-1
 ```
 
-**Example retrieving the image ID of the latest recommended Amazon ECS\-optimized AMI**  
+**Example Retrieving the image ID of the latest recommended Amazon ECS\-optimized AMI**  
 You can retrieve the image ID of the latest recommended Amazon ECS\-optimized AMI ID by using the sub\-parameter `image_id`\.  
 
 ```
@@ -159,7 +172,7 @@ Output:
 "ami-f9ac2f86"
 ```
 
-**Example using the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template**  
+**Example Using the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template**  
 You can retrieve the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template by referencing the SSM parameter store name; for example:  
 Linux:  
 

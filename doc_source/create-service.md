@@ -145,7 +145,7 @@ If your service's task definition uses the `awsvpc` network mode \(which is requ
 
 ## \(Optional\) Configuring Your Service to Use Service Discovery<a name="service-configure-servicediscovery"></a>
 
-Your Amazon ECS service can optionally enable service discovery integration, which allows your service to be discoverable via DNS\.
+Your Amazon ECS service can optionally enable service discovery integration, which allows your service to be discoverable via DNS\. For more information, see [Service Discovery](service-discovery.md)\.
 
 **To configure service discovery**
 
@@ -153,19 +153,19 @@ Your Amazon ECS service can optionally enable service discovery integration, whi
 
 1. On the **Configure network** page, select **Enable service discovery integration**\.
 
-1. For **Namespace**, select an existing Amazon Route 53 namespace, if you have one, otherwise select **create new private namespace**\.
+1. For **Namespace**, select an existing Amazon Route 53 namespace, if you have one, otherwise select **create new private namespace**\.
 
-1. If creating a new namespace, for **Namespace name** enter a descriptive name for your namespace\. This will be the name used for the Amazon Route 53 hosted zone\.
+1. If creating a new namespace, for **Namespace name** enter a descriptive name for your namespace\. This is the name used for the Amazon Route 53 hosted zone\.
 
 1. For **Configure service discovery service**, select to either create a new service discovery service or select an existing one\.
 
-1. If creating a new service discovery service, for **Service discovery name** enter a descriptive name for your service discovery service\. This will be used as the prefix for the DNS records that will be created\.
+1. If creating a new service discovery service, for **Service discovery name** enter a descriptive name for your service discovery service\. This is used as the prefix for the DNS records to be created\.
 
-1. Select **Enable ECS task health propagation** if you want health checks enabled for your service discovery\.
+1. Select **Enable ECS task health propagation** if you want health checks enabled for your service discovery service\.
 
-1. For **DNS record type**, select the DNS record type you wish to create for your service\. Amazon ECS service discovery only supports A and SRV records at this time\. For more information about these record types, see [DnsRecord](http://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_DnsRecord.html)\.
-
-1. If specifying a SRV record, for **Port** enter the port that the service can be found on\.
+1. For **DNS record type**, select the DNS record type to create for your service\. Amazon ECS service discovery only supports A and SRV records, depending on the network mode that your task definition specifies\. For more information about these record types, see [DnsRecord](http://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_DnsRecord.html)\.
+   + If the task definition that your service task specifies uses the `bridge` or `host` network mode, only type SRV records are supported\. Choose a container name and port combination to associate with the record\.
+   + If the task definition that your service task specifies uses the `awsvpc` network mode, select either the A or SRV record type\. If the type A DNS record is selected, skip to the next step\. If the type SRV is selected, specify either the port that the service can be found on or a container name and port combination to associate with the record\.
 
 1. For **TTL**, enter the resource record cache time to live \(TTL\), in seconds\. This value determines how long a record set is cached by DNS resolvers and by web browsers\.
 
@@ -189,7 +189,7 @@ For more information, see [Service Auto Scaling](service-auto-scaling.md)\.
 
 1. For **Minimum number of tasks**, enter the lower limit of the number of tasks for Service Auto Scaling to use\. Your service's desired count is not automatically adjusted below this amount\.
 
-1. For **Desired number of tasks**, this field is pre\-populated with the value you entered earlier\. You can change your service's desired count at this time, but this value must be between the minimum and maximum number of tasks specified on this page\.
+1. For **Desired number of tasks**, this field is pre\-populated with the value that you entered earlier\. You can change your service's desired count at this time, but this value must be between the minimum and maximum number of tasks specified on this page\.
 
 1. For **Maximum number of tasks**, enter the upper limit of the number of tasks for Service Auto Scaling to use\. Your service's desired count is not automatically adjusted above this amount\.
 
@@ -199,7 +199,7 @@ For more information, see [Service Auto Scaling](service-auto-scaling.md)\.
 
 **To configure target tracking scaling policies for your service**
 
-These steps help you create target tracking scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. You can create a scale\-out alarm to increase the desired count of your service, and a scale in alarm to decrease the desired count of your service\.
+These steps help you create target tracking scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. You can create a scale\-out alarm to increase the desired count of your service, and a scale\-in alarm to decrease the desired count of your service\.
 
 1. For **Scaling policy type**, choose **Target tracking**\.
 

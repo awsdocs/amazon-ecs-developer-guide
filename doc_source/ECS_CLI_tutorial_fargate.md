@@ -6,16 +6,16 @@ This tutorial shows you how to set up a cluster and deploy a task using the Farg
 
 It is expected that you have completed the following prerequisites before continuing on:
 + Set up an AWS account
-+ Installed the ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)
++ Installed the ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 + Installed and configured the AWS CLI\. For more information, see [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)
 
 ## Step 1: Create the Task Execution IAM Role<a name="ECS_CLI_tutorial_fargate_iam_role"></a>
 
-Amazon ECS needs permissions so that your Fargate task will be able to store logs in CloudWatch\. This permission is covered by the task execution IAM role\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+Amazon ECS needs permissions so that your Fargate task can store logs in CloudWatch\. This permission is covered by the task execution IAM role\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
-**Create the Task Execution IAM Role**
+**To create the task execution IAM role using the AWS CLI**
 
-1. Create a file named `execution-assume-role.json` with the following contents:
+1. Create a file named `task-execution-assume-role.json` with the following contents:
 
    ```
    {
@@ -33,23 +33,23 @@ Amazon ECS needs permissions so that your Fargate task will be able to store log
    }
    ```
 
-1. Using the AWS CLI, create the task execution role:
+1. Create the task execution role:
 
    ```
-   aws iam --region us-east-1 create-role --role-name ecsExecutionRole --assume-role-policy-document file://execution-assume-role.json
+   aws iam --region us-east-1 create-role --role-name ecsTaskExecutionRole --assume-role-policy-document file://task-execution-assume-role.json
    ```
 
-1. Using the AWS CLI, attach the task execution role policy:
+1. Attach the task execution role policy:
 
    ```
-   aws iam --region us-east-1 attach-role-policy --role-name ecsExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+   aws iam --region us-east-1 attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
    ```
 
 ## Step 2: Configure the ECS CLI<a name="ECS_CLI_tutorial_fargate_configure"></a>
 
-The ECS CLI requires credentials in order to make API requests on your behalf\. It can pull credentials from environment variables, an AWS profile, or an Amazon ECS profile\. For more information see [Configuring the Amazon ECS CLI](ECS_CLI_Configuration.md)\.
+The ECS CLI requires credentials in order to make API requests on your behalf\. It can pull credentials from environment variables, an AWS profile, or an Amazon ECS profile\. For more information, see [Configuring the Amazon ECS CLI](ECS_CLI_Configuration.md)\.
 
-**Create an ECS CLI Configuration**
+**To create an ECS CLI configuration**
 
 1. Create a cluster configuration, which defines the AWS region to use, resource creation prefixes, and the cluster name to use with the Amazon ECS CLI:
 
@@ -63,39 +63,40 @@ The ECS CLI requires credentials in order to make API requests on your behalf\. 
    ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET_ACCESS_KEY --profile-name tutorial
    ```
 **Note**  
-If this is the first time you are configuring the ECS CLI these configurations will be marked as default\. If this is not your first time configuring the ECS CLI, see [ecs\-cli configure default](cmd-ecs-cli-configure-default.md) and [ecs\-cli configure profile default](cmd-ecs-cli-configure-profile-default.md) to set this as the default configuration and profile\.
+If this is the first time that you are configuring the ECS CLI, these configurations are marked as default\. If this is not your first time configuring the ECS CLI, see [ecs\-cli configure default](cmd-ecs-cli-configure-default.md) and [ecs\-cli configure profile default](cmd-ecs-cli-configure-profile-default.md) to set this as the default configuration and profile\.
 
 ## Step 3: Create a Cluster and Security Group<a name="ECS_CLI_tutorial_fargate_cluster"></a>
 
-Create an Amazon ECS cluster with the ecs\-cli up command\. Since you specified Fargate as your default launch type in the cluster configuration, this command will create an empty cluster and a VPC configured with two public subnets\.
+**To create an ECS cluster and security group**
 
-```
-ecs-cli up
-```
+1. Create an Amazon ECS cluster with the ecs\-cli up command\. Because you specified Fargate as your default launch type in the cluster configuration, this command creates an empty cluster and a VPC configured with two public subnets\.
 
+   ```
+   ecs-cli up
+   ```
 **Note**  
-This command may take a few minutes to complete as your resources are created\. Take note of the VPC and subnet IDs that are created as they will be used later\.
+This command may take a few minutes to complete as your resources are created\. Take note of the VPC and subnet IDs that are created as they are used later\.
 
-Using the AWS CLI create a security group using the VPC ID from the previous output:
+1. Using the AWS CLI, create a security group using the VPC ID from the previous output:
 
-```
-aws ec2 create-security-group --group-name "my-sg" --description "My security group" --vpc-id "VPC_ID"
-```
+   ```
+   aws ec2 create-security-group --group-name "my-sg" --description "My security group" --vpc-id "VPC_ID"
+   ```
 
-Using AWS CLI, add a security group rule to allow inbound access on port 80:
+1. Using AWS CLI, add a security group rule to allow inbound access on port 80:
 
-```
-aws ec2 authorize-security-group-ingress --group-id "security_group_id" --protocol tcp --port 80 --cidr 0.0.0.0/0
-```
+   ```
+   aws ec2 authorize-security-group-ingress --group-id "security_group_id" --protocol tcp --port 80 --cidr 0.0.0.0/0
+   ```
 
 ## Step 4: Create a Compose File<a name="ECS_CLI_tutorial_fargate_compose_create"></a>
 
-For this step, create a simple Docker compose file that creates a WordPress application\. At this time, the Amazon ECS CLI supports [Docker compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1 and 2\.
+For this step, create a simple Docker compose file that creates a WordPress application\. At this time, the Amazon ECS CLI supports [Docker compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1, 2, and 3\. This tutorial uses Docker compose v3\.
 
-Here is the compose file, which you can call `docker-compose.yml`\. The `wordpress` container exposes port 80 for inbound traffic to the web server\. It also configures container logs to go to the CloudWatch log group created earlier\. This is the recommended best practice for Fargate tasks\.
+Here is the compose file, which you can name `docker-compose.yml`\. The `wordpress` container exposes port 80 for inbound traffic to the web server\. It also configures container logs to go to the CloudWatch log group created earlier\. This is the recommended best practice for Fargate tasks\.
 
 ```
-version: '2'
+version: '3'
 services:
   wordpress:
     image: wordpress
@@ -109,12 +110,12 @@ services:
         awslogs-stream-prefix: wordpress
 ```
 
-In addition to the Docker compose information, there are some Amazon ECS specific parameters you need to specify for the service\. Using the VPC, subnet, and security group IDs from the previous step, create a file named `ecs-params.yml` with the following content:
+In addition to the Docker compose information, there are some parameters specific to Amazon ECS that you must specify for the service\. Using the VPC, subnet, and security group IDs from the previous step, create a file named `ecs-params.yml` with the following content:
 
 ```
 version: 1
 task_definition:
-  task_execution_role: ecsExecutionRole
+  task_execution_role: ecsTaskExecutionRole
   ecs_network_mode: awsvpc
   task_size:
     mem_limit: 0.5GB
@@ -131,11 +132,11 @@ run_params:
 ```
 
 **Note**  
-The `assign_public_ip` and `task_size` parameters are only valid for a Fargate task\. This task definition will fail if the launch type is changed to EC2\.
+The `assign_public_ip` and `task_size` parameters are only valid for a Fargate task\. This task definition fails if the launch type is changed to EC2\.
 
 ## Step 5: Deploy the Compose File to a Cluster<a name="ECS_CLI_tutorial_fargate_compose_deploy"></a>
 
-After you create the compose file, you can deploy it to your cluster with ecs\-cli compose service up\. By default, the command looks for files called `docker-compose.yml` and `ecs-params.yml` in the current directory; you can specify a different docker compose file with the `--file` option, and a different ECS Params file with the `--ecs-params` option\. By default, the resources created by this command have the current directory in their titles, but you can override that with the `--project-name` option\. The `--create-log-groups` option will create the CloudWatch log groups for the container logs\.
+After you create the compose file, you can deploy it to your cluster with ecs\-cli compose service up\. By default, the command looks for files called `docker-compose.yml` and `ecs-params.yml` in the current directory; you can specify a different docker compose file with the `--file` option, and a different ECS Params file with the `--ecs-params` option\. By default, the resources created by this command have the current directory in their titles, but you can override that with the `--project-name` option\. The `--create-log-groups` option creates the CloudWatch log groups for the container logs\.
 
 ```
 ecs-cli compose --project-name tutorial service up --create-log-groups --cluster-config tutorial
@@ -158,7 +159,7 @@ Name                                            State    Ports TaskDefinition
 a06a6642-12c5-4006-b1d1-033994580605/wordpress  RUNNING  54.146.193.73:80->80/tcp  tutorial:9
 ```
 
-In the above example, you can see the `wordpress` container from your compose file, and also the IP address and port of the web server\. If you point your web browser at that address, you should see the WordPress installation wizard\. Also in the output is the `task-id` of the container\. Copy the task ID; you will use it in the next step\.
+In the above example, you can see the `wordpress` container from your compose file, and also the IP address and port of the web server\. If you point your web browser at that address, you should see the WordPress installation wizard\. Also in the output is the `task-id` value for the container\. Copy the task ID as you use it in the next step\.
 
 ## Step 7: View the Container Logs<a name="ECS_CLI_tutorial_fargate_view_running"></a>
 
@@ -169,7 +170,7 @@ ecs-cli logs --task-id a06a6642-12c5-4006-b1d1-033994580605 --follow --cluster-c
 ```
 
 **Note**  
-The `--follow` option tells the ECS CLI to continously poll for logs\.
+The `--follow` option tells the ECS CLI to continuously poll for logs\.
 
 ## Step 8: Scale the Tasks on the Cluster<a name="ECS_CLI_tutorial_fargate_scale"></a>
 

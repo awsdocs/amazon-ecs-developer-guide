@@ -2,12 +2,15 @@
 
 The following table describes the important changes to the documentation since the last release of Amazon ECS\. We also update the documentation frequently to address the feedback that you send us\.
 +  **Current API version:** 2014\-11\-13
-+  **Latest documentation update:** May 9th, 2018
++  **Latest documentation update:** June 5th, 2018
 
 
 | Feature | API Version | Description | Release Date | 
 | --- | --- | --- | --- | 
-|  Added Support for Additional Amazon ECS\-optimized AMI Metadata Parameters  |  2014\-11\-13  |  Added sub\-parameters that allow you to programatically retrieve the Amazon ECS\-optimized AMI ID, image name, operating system, container agent version, and runtime version by querying metadata using the SSM Parameter Store API\. For more information, see [Retrieving the Amazon ECS\-optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)\.  | 9 May 2018 | 
+|  Amazon ECS CLI v1\.6\.0  |  2014\-11\-13  |  New version of the Amazon ECS CLI released, which added the following functionality: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html)  | 5 June 2018 | 
+|  Amazon ECS container agent v1\.18\.0  |  2014\-11\-13  |  New version of the Amazon ECS container agent released, which added the following functionality: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html) For more information, see [amazon\-ecs\-agent github](https://github.com/aws/amazon-ecs-agent/blob/master/CHANGELOG.md)\.  | 24 May 2018 | 
+|  Added Support for `bridge` and `host` Network Modes When Configuring Service Discovery  |  2014\-11\-13  |  Added support for configuring service discovery for Amazon ECS services using task definitions that specify the `bridge` or `host` network modes\. For more information, see [Service Discovery](service-discovery.md)\.  | 22 May 2018 | 
+|  Added support for additional Amazon ECS\-optimized AMI metadata parameters  |  2014\-11\-13  |  Added subparameters that allow you to programatically retrieve the Amazon ECS\-optimized AMI ID, image name, operating system, container agent version, and runtime version\. Query the metadata using the SSM Parameter Store API\. For more information, see [Retrieving the Amazon ECS\-optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)\.  | 9 May 2018 | 
 |  AWS Fargate region expansion  |  2014\-11\-13  |  AWS Fargate with Amazon ECS has expanded to the US East \(Ohio\), US West \(Oregon\), and EU West \(Ireland\) regions\. For more information, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\.  | 26 April 2018 | 
 |  Amazon ECS CLI v1\.5\.0  |  2014\-11\-13  |  New version of the Amazon ECS CLI released, which added the following functionality: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html) For more information about the updated ECS CLI syntax, see [Amazon ECS Command Line Reference](ECS_CLI_reference.md)\.  | 19 April 2018 | 
 |  Amazon ECS\-optimized AMI Metadata Retrieval  |  2014\-11\-13  |  Added ability to programatically retrieve Amazon ECS\-optimized AMI metadata using the SSM Parameter Store API\. For more information, see [Retrieving the Amazon ECS\-optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)\.  | 10 April 2018 | 

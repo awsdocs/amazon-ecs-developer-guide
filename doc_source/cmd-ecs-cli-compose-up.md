@@ -36,7 +36,24 @@ Some features described may only be available with the latest version of the ECS
 
 This example creates a task definition with the project name `hello-world` from the `hello-world.yml` compose file\. Additional ECS parameters are specified for task and network configuration for the Fargate launch type\. Then one instance of the task is run using the Fargate launch type\.
 
-Example ECS params file:
+Example Docker Compose file, named `hello-world.yml`:
+
+```
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: tutorial
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: nginx
+```
+
+Example ECS parameters file, named `ecs-params.yml`:
 
 ```
 version: 1
@@ -47,9 +64,8 @@ task_definition:
     cpu_limit: 512
     mem_limit: 2GB
   services:
-    my_service:
-      essential: false
-
+    nginx:
+      essential: true
 run_params:
   network_configuration:
     awsvpc_configuration:

@@ -40,10 +40,10 @@ Ensure that you are using the latest version of the Amazon ECS CLI to use all co
 
 ### Example<a name="cmd-ecs-cli-configure-example-1"></a>
 
-This example configures the Amazon ECS CLI to create a cluster configuration named `ecs-cli-demo`, which uses `FARGATE` as the default launch type for cluster `ecs-cli-demo` in the `us-west-2` region\.
+This example configures the Amazon ECS CLI to create a cluster configuration named `ecs-cli-demo`, which uses `FARGATE` as the default launch type for cluster `ecs-cli-demo` in the `us-east-1` region\.
 
 ```
-ecs-cli configure --region us-west-2 --cluster ecs-cli-demo --default-launch-type FARGATE --config-name ecs-cli-demo
+ecs-cli configure --region us-east-1 --cluster ecs-cli-demo --default-launch-type FARGATE --config-name ecs-cli-demo
 ```
 
 Output:
@@ -60,6 +60,6 @@ default: fargate
 clusters:
   ecs-cli-demo:
     cluster: ecs-cli-demo
-    region: us-west-2
+    region: us-east-1
     default_launch_type: "FARGATE"
 ```

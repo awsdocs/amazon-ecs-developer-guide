@@ -15,9 +15,15 @@ A service definition defines which task definition to use with your service, how
             "containerPort": 0
         }
     ],
+    "serviceRegistries": [
+        {
+            "registryArn": "",
+            "port": 0
+        }
+    ],
     "desiredCount": 0,
     "clientToken": "",
-    "launchType": "FARGATE",
+    "launchType": "EC2",
     "platformVersion": "",
     "role": "",
     "deploymentConfiguration": {
@@ -44,7 +50,7 @@ A service definition defines which task definition to use with your service, how
             "securityGroups": [
                 ""
             ],
-            "assignPublicIp": "ENABLED"
+            "assignPublicIp": "DISABLED"
         }
     },
     "healthCheckGracePeriodSeconds": 0
@@ -82,6 +88,9 @@ The name of the container \(as it appears in a container definition\) to associa
 `containerPort`  
 The port on the container to associate with the load balancer\. This port must correspond to a `containerPort` in the service's task definition\. Your container instances must allow ingress traffic on the `hostPort` of the port mapping\.
 
+`serviceRegistries`  
+The details of the service discovery configuration for your service\. For more information, see [Service Discovery](service-discovery.md)\.
+
 `desiredCount`  
 The number of instantiations of the specified task definition to place and keep running on your cluster\.
 
@@ -93,7 +102,8 @@ The launch type on which to run your service\. If one is not specified, `EC2` is
 
 `platformVersion`  
 The platform version on which to run your service\. If one is not specified, the latest version \(`LATEST`\) is used by default\.  
-AWS Fargate platform versions are used to refer to a specific runtime environment for the Fargate task infrastructure\. When specifying the `LATEST` platform version when running a task or creating a service, you get the most current platform version available for your tasks\. When you scale up your service, those tasks receive the platform version that was specified on the service's current deployment\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
+AWS Fargate platform versions are used to refer to a specific runtime environment for the Fargate task infrastructure\. When specifying the `LATEST` platform version when running a task or creating a service, you get the most current platform version available for your tasks\. When you scale up your service, those tasks receive the platform version that was specified on the service's current deployment\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.  
+Platform versions are not specified for tasks using the EC2 launch type\.
 
 `role`  
 The name or full Amazon Resource Name \(ARN\) of the IAM role that allows Amazon ECS to make calls to your load balancer on your behalf\. This parameter is required if you are using a load balancer with your service\. If you specify the `role` parameter, you must also specify a load balancer object with the `loadBalancers` parameter\.  

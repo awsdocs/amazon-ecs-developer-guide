@@ -1,6 +1,9 @@
 # Amazon ECS Container Instance IAM Role<a name="instance_IAM_role"></a>
 
-The Amazon ECS container agent makes calls to the Amazon ECS API on your behalf\. Container instances that run the agent require an IAM policy and role for the service to know that the agent belongs to you\. Before you can launch container instances and register them into a cluster, you must create an IAM role for those container instances to use when they are launched\. This requirement applies to container instances launched with the Amazon ECS\-optimized AMI provided by Amazon, or with any other instances that you intend to run the agent on\. This role only applies if you are using the EC2 launch type\.
+The Amazon ECS container agent makes calls to the Amazon ECS API on your behalf\. Container instances that run the agent require an IAM policy and role for the service to know that the agent belongs to you\. Before you can launch container instances and register them into a cluster, you must create an IAM role for those container instances to use when they are launched\. This requirement applies to container instances launched with the Amazon ECS\-optimized AMI provided by Amazon, or with any other instances that you intend to run the agent on\.
+
+**Important**  
+This role only applies if you are using the EC2 launch type\.
 
 **Important**  
 Containers that are running on your container instances have access to all of the permissions that are supplied to the container instance role through [instance metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)\. We recommend that you limit the permissions in your container instance role to the minimal list of permissions provided in the managed `AmazonEC2ContainerServiceforEC2Role` policy shown below\. If the containers in your tasks need extra permissions that are not listed here, we recommend providing those tasks with their own IAM roles\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  

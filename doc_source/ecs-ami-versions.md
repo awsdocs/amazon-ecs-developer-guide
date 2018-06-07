@@ -13,6 +13,7 @@ We always recommend using the latest version of the Amazon ECS\-optimized AMI\. 
 
 | Amazon ECS\-optimized Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 2018\.03\.a | 1\.18\.0 | 17\.12\.1\-ce | 1\.18\.0\-1 | 
 | 2017\.09\.l | 1\.17\.3 | 17\.12\.1\-ce | 1\.17\.3\-1 | 
 | 2017\.09\.k | 1\.17\.2 | 17\.12\.0\-ce | 1\.17\.2\-1 | 
 | 2017\.09\.j | 1\.17\.2 | 17\.12\.0\-ce | 1\.17\.2\-1 | 

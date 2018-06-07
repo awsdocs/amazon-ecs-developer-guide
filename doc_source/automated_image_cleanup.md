@@ -1,6 +1,9 @@
 # Automated Task and Image Cleanup<a name="automated_image_cleanup"></a>
 
-Each time a task is placed on a container instance, the Amazon ECS container agent checks to see if the images referenced in the task are the most recent of the specified tag in the repository\. If not, it pulls the images from their respective repositories\. If you frequently update the images in your tasks and services, your container instance storage can quickly fill up with Docker images that you are no longer using and will likely never use again\. For example, you may use a continuous integration and continuous deployment \(CI/CD\) pipeline\.
+Each time a task is placed on a container instance, the Amazon ECS container agent checks to see if the images referenced in the task are the most recent of the specified tag in the repository\. If not, the default behavior allows the agent to pull the images from their respective repositories\. If you frequently update the images in your tasks and services, your container instance storage can quickly fill up with Docker images that you are no longer using and may never use again\. For example, you may use a continuous integration and continuous deployment \(CI/CD\) pipeline\.
+
+**Note**  
+The Amazon ECS agent image pull behavior can be customized using the `ECS_IMAGE_PULL_BEHAVIOR` parameter\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 
 Likewise, containers that belong to stopped tasks can also consume container instance storage with log information, data volumes, and other artifacts\. These artifacts are useful for debugging containers that have stopped unexpectedly, but most of this storage can be safely freed up after a period of time\. 
 

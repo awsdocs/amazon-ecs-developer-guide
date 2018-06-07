@@ -90,6 +90,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Target Tracking Scaling Policies](service-autoscaling-targettracking.md)
       + [Step Scaling Policies](service-autoscaling-stepscaling.md)
    + [Service Discovery](service-discovery.md)
+      + [Tutorial: Creating a Service Using Service Discovery](create-service-discovery.md)
    + [Creating a Service](create-service.md)
    + [Updating a Service](update-service.md)
    + [Deleting a Service](delete-service.md)

@@ -27,7 +27,7 @@ Some features described may only be available with the latest version of the ECS
 
 ### Example 1<a name="cmd-ecs-cli-push-example1"></a>
 
-This example pushes a local image called `ubuntu` to an ECR repository with the same name\.
+This example pushes a local image called `ubuntu` to an Amazon ECR repository with the same name\.
 
 ```
 ecs-cli push ubuntu

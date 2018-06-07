@@ -14,11 +14,13 @@ The ecs\-cli compose service command uses a project name with the task definitio
 **Note**  
 The Amazon ECS CLI can only manage tasks, services, and container instances that were created with the CLI\. To manage tasks, services, and container instances that were not created by the Amazon ECS CLI, use the AWS Command Line Interface or the AWS Management Console\.
 
-The following parameters are supported in compose files for the Amazon ECS CLI: 
+The following parameters are supported in compose files for the Amazon ECS CLI:
 + `cap_add` \(Not valid for tasks using the Fargate launch type\)
 + `cap_drop` \(Not valid for tasks using the Fargate launch type\)
 + `command`
 + `cpu_shares`
+**Note**  
+If you are using the Compose version 3 format, `cpu_shares` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\.
 + `dns`
 + `dns_search`
 + `entrypoint`
@@ -35,27 +37,31 @@ We do not recommend using plaintext environment variables for sensitive informat
 + `links` \(Not valid for tasks using the Fargate launch type\)
 + `log_driver` \(Compose file version 1 only\)
 + `log_opt` \(Compose file version 1 only\)
-+ `logging` \(Compose file version 2 only\)
++ `logging` \(Compose file version 2 and 3\)
   + `driver`
   + `options`
 + `mem_limit` \(in bytes\)
+**Note**  
+If you are using the Compose version 3 format, `mem_limit` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\.
 + `mem_reservation` \(in bytes\)
+**Note**  
+If you are using the Compose version 3 format, `mem_reservation` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\.
 + `ports`
 + `privileged` \(Not valid for tasks using the Fargate launch type\)
 + `read_only`
 + `security_opt`
-+ `shm_size` \(Not valid for tasks using the Fargate launch type\)
++ `shm_size` \(Compose file version 1 and 2 only and not valid for tasks using the Fargate launch type\)
 + `tmpfs` \(Not valid for tasks using the Fargate launch type\)
 + `ulimits`
 + `user`
 + `volumes`
-+ `volumes_from`
++ `volumes_from` \(Compose file version 1 and 2 only\)
 + `working_dir`
 
 **Important**  
 The `build` directive is not supported at this time\.
 
-For more information about Docker compose file syntax, see the [Compose file reference](https://docs.docker.com/compose/compose-file/#/compose-file-reference) in the Docker documentation\. 
+For more information about Docker compose file syntax, see the [Compose file reference](https://docs.docker.com/compose/compose-file/#/compose-file-reference) in the Docker documentation\.
 
 **Important**  
 Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
@@ -172,7 +178,7 @@ INFO[0075] ECS Service has reached a stable state        desiredCount=2 runningC
 
 ### Example 3<a name="cmd-ecs-cli-compose-service-example-3"></a>
 
-This example scales the service created by the `hello-world` project to a desired count of 0 and then deletes the service\.
+This example scales the service created by the `hello-world` project to a desired count of `0` and then deletes the service\.
 
 ```
 ecs-cli compose --project-name hello-world --file hello-world.yml service rm

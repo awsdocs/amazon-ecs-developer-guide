@@ -50,7 +50,7 @@ Required for private registry authentication\. If `ECS_ENGINE_AUTH_TYPE=dockercf
 Example values: `us-east-1`  
 Default value on Linux: Taken from EC2 instance metadata\.  
 Default value on Windows: Taken from EC2 instance metadata\.  
-The region to be used in API requests as well as to infer the correct back end host\.
+The region to be used in API requests as well as to infer the correct back\-end host\.
 
 `AWS_ACCESS_KEY_ID`  
 Example values: `AKIAIOSFODNN7EXAMPLE`  
@@ -85,7 +85,7 @@ The level to log at on `stdout`\.
 Example values: `/ecs-agent.log`  
 Default value on Linux: Null  
 Default value on Windows: Null  
-The path to output full debugging information to\. If blank, no logs are recorded\. If this value is set, logs at the debug level \(regardless of `ECS_LOGLEVEL`\) are written to that file\.
+The path to output full debugging information to\. If blank, no logs are recorded\. If this value is set, it logs at the debug level \(regardless of `ECS_LOGLEVEL`\) are written to that file\.
 
 `ECS_CHECKPOINT`  
 Example values: `true | false`  
@@ -215,12 +215,22 @@ Default value on Linux: `5`
 Default value on Windows: `5`  
 The maximum number of images to delete in a single automated image cleanup cycle\. If set to less than 1, the value is ignored\.
 
+`ECS_IMAGE_PULL_BEHAVIOR`  
+Example values: `default | always | once | prefer-cached`  
+Default value on Linux: `default`  
+Default value on Windows: `default`  
+The behavior used to customize the pull image process for your container instances\. The following describes the optional behaviors:  
++ If `default` is specified, the image is pulled remotely\. If the image pull fails, then the container uses the cached image on the instance\.
++ If `always` is specified, the image is always pulled remotely\. If the image pull fails, then the task fails\. This option ensures that the latest version of the image is always pulled\. Any cached images are ignored and are subject to the automated image cleanup process\.
++ If `once` is specified, the image is pulled remotely if it has not been pulled before or if the image was removed by the automated image cleanup process\. Otherwise, the cached image on the instance is used\. This ensures that no unnecessary image pulls are attempted\.
++ If `prefer-cached` is specified, the image is pulled remotely if there is no cached image\. Otherwise, the cached image on the instance is used\. Automated image cleanup is disabled for the container to ensure that the cached image is not removed\.
+
 `ECS_INSTANCE_ATTRIBUTES`  <a name="ecs-instance-attributes"></a>
 Example values: `{"custom attribute": "custom_attribute_value"}`  
 Default value on Linux: Null  
 Default value on Windows: Null  
 A list of custom attributes, in JSON form, to apply to your container instances\. Using this attribute at instance registration adds the custom attributes, allowing you to skip the manual method of adding custom attributes via the AWS Management Console\.  
-Attributes added will not apply to container instances that are already registered\. To add custom attributes to already registered container instances, see [Adding an Attribute](task-placement-constraints.md#add-attribute)\.
+Attributes added do not apply to container instances that are already registered\. To add custom attributes to already registered container instances, see [Adding an Attribute](task-placement-constraints.md#add-attribute)\.
 For information about custom attributes to use, see [Attributes](task-placement-constraints.md#attributes)\.  
 An invalid JSON value for this variable causes the agent to exit with a code of `5`\. A message appears in the agent logs\. If the JSON value is valid but there is an issue detected when validating the attribute \(for example if the value is too long or contains invalid characters\), then the container instance registration happens but the agent exits with a code of `5` and a message is written to the agent logs\. For information about how to locate the agent logs, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\.
 
@@ -228,7 +238,7 @@ An invalid JSON value for this variable causes the agent to exit with a code of 
 Example values: `true | false`  
 Default value on Linux: `false`  
 Default value on Windows: Not applicable  
-Whether to enable task networking for task to be launched with its own network interface\.
+Whether to enable task networking for tasks to be launched with their own network interface\.
 
 `ECS_CNI_PLUGINS_PATH`  
 Example values: `/ecs/cni`  
@@ -246,7 +256,7 @@ Whether to block access to [Instance Metadata](http://docs.aws.amazon.com/AWSEC2
 Example values: `["10.0.15.0/24"]`  
 Default value on Linux: `[]`  
 Default value on Windows: Not applicable  
-In `awsvpc` network mode, traffic to these prefixes will be routed via the host bridge instead of the task ENI\.
+In `awsvpc` network mode, traffic to these prefixes is routed via the host bridge instead of the task elastic network interface\.
 
 `ECS_ENABLE_CONTAINER_METADATA`  
 Example values: `true`  
@@ -264,7 +274,7 @@ The source directory on the host from which `ECS_DATADIR` is mounted\. We use th
 Example values: `true | false`  
 Default value on Linux: `true`  
 Default value on Windows: `false`  
-Whether to enable task\-level cpu and memory limits\.
+Whether to enable task\-level CPU and memory limits\.
 
 `ECS_CGROUP_PATH`  
 Example values: `/sys/fs/cgroup`  
@@ -276,13 +286,13 @@ The root cgroup path that is expected by the ECS agent\. This is the path that a
 Example values: `true | false`  
 Default value on Linux: Not applicable  
 Default value on Windows: `false`  
-When `true`, ECS will allow CPU unbounded \(CPU=`0`\) tasks to run along with CPU bounded tasks in Windows\.
+When `true`, ECS allows CPU\-unbounded \(CPU=`0`\) tasks to run along with CPU\-bounded tasks in Windows\.
 
 `ECS_TASK_METADATA_RPS_LIMIT`  
 Example values: `100,150`  
 Default value on Linux: `40,60`  
 Default value on Windows: `40,60`  
-Comma separated integer values for steady state and burst throttle limits for task metadata endpoint\.
+Comma\-separated integer values for steady state and burst throttle limits for the task metadata endpoint\.
 
 ## Storing Container Instance Configuration in Amazon S3<a name="ecs-config-s3"></a>
 
@@ -296,7 +306,7 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
 
 1. In the navigation pane, choose **Roles**\. 
 
-1. Choose the IAM role you use for your container instances \(this role is likely titled `ecsInstanceRole`\)\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+1. Choose the IAM role to use for your container instances \(this role is likely titled `ecsInstanceRole`\)\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
 1. Under **Managed Policies**, choose **Attach Policy**\.
 
@@ -315,11 +325,11 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
 
 1. To store your configuration file, create a private bucket in Amazon S3\. For more information, see [Create a Bucket](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) in the *Amazon Simple Storage Service Getting Started Guide*\. 
 
-1. Upload the `ecs.config` file to your Amazon S3 bucket\. For more information, see [Add an Object to a Bucket](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/PuttingAnObjectInABucket.html) in the *Amazon Simple Storage Service Getting Started Guide*\.
+1. Upload the `ecs.config` file to your S3 bucket\. For more information, see [Add an Object to a Bucket](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/PuttingAnObjectInABucket.html) in the *Amazon Simple Storage Service Getting Started Guide*\.
 
 **To load an `ecs.config` file from Amazon S3 at launch**
 
-1. Complete the above procedures in this section to allow read\-only Amazon S3 access to your container instances and store an `ecs.config` file in a private Amazon S3 bucket\.
+1. Complete the above procedures in this section to allow read\-only Amazon S3 access to your container instances and store an `ecs.config` file in a private S3 bucket\.
 
 1. Launch new container instances by following the steps in [Launching an Amazon ECS Container Instance](launch_container_instance.md)\. In [Step 7](launch_container_instance.md#instance-launch-user-data-step), use the following example script that installs the AWS CLI and copies your configuration file to `/etc/ecs/ecs.config`\.
 

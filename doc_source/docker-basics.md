@@ -188,7 +188,7 @@ The get\-login command is available in the AWS CLI starting with version 1\.9\.1
 
 1. Run the docker login command that was returned in the previous step\. This command provides an authorization token that is valid for 12 hours\.
 **Important**  
-When you execute this docker login command, the command string can be visible by other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way and use them to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
+When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way and use them to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
 
 1. Push the image to Amazon ECR with the `repositoryUri` value from the earlier step\.
 
