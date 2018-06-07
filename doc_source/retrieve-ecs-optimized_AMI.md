@@ -112,14 +112,15 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
       "InvalidParameters": []
   }
   ```
-+ **For the Windows Amazon ECS\-optimized AMI: using AWS PowerShell**
+
++ **For the Windows Amazon ECS\-optimized AMI using AWS PowerShell:**
 
   ```
-  Get-SSMParameter -Name /aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended/image_id -region us-east-1
+   Get-SSMParameter -Name /aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended/image_id -region us-east-1
   ```
-
+  
   Output:
-
+  
   ```
   Name                                                                                 Type   Value        Version
   ----                                                                                 ----   -----        -------
