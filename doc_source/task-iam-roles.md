@@ -81,7 +81,7 @@ You must save these iptables rules on your container instance for them to surviv
 
 You must create an IAM policy for your tasks to use that specifies the permissions that you would like the containers in your tasks to have\. You have several ways to create a new IAM permission policy\. You can copy a complete AWS managed policy that already does some of what you're looking for and then customize it to your specific requirements\. For more information, see [Creating a New Policy](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the *IAM User Guide*\.
 
-You must also create a role for your tasks to use before you can specify it in your task definitions\. You can create the role using the **Amazon Elastic Container Service Task Role** service role in the IAM console\. Then you can attach your specific IAM policy to the role that gives the containers in your task the permissions you desire\. The procedures below describe how to do this\.
+You must also create a role for your tasks to use before you can specify it in your task definitions\. You can create the role using the **AmazonECSTaskExecutionRolePolicy** service role in the IAM console\. Then you can attach your specific IAM policy to the role that gives the containers in your task the permissions you desire\. The procedures below describe how to do this\.
 
 **Note**  
 To view the trust relationship for this role, see [**Amazon Elastic Container Service Task Role**](task_IAM_role.md)\.
@@ -128,7 +128,7 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
 
 1. In the navigation pane, choose **Roles** and then choose **Create New Role**\. 
 
-1. In the **Select Role Type** section, choose **Select** next to the **Amazon Elastic Container Service Task Role ** service role\.
+1. In the **Select Role Type** section, choose **Select** next to the **AmazonECSTaskExecutionRolePolicy** service role\.
 **Note**  
 To view the trust relationship for this role, see [**Amazon Elastic Container Service Task Role**](task_IAM_role.md)\.
 
