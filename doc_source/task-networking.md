@@ -13,7 +13,7 @@ The elastic network interface that is created for your task is fully managed by 
 Your ECS container instances require at least version 1\.15\.0 of the container agent to enable task networking\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using the Amazon ECS\-optimized AMI, your instance needs at least version 1\.15\.0\-4 of the `ecs-init` package\. If your container instances are launched from version 2017\.09\.a or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-Optimized AMI](ecs-optimized_AMI.md)\.
 
 **Important**  
-Currently, only the Amazon ECS\-optimized AMI, or other Amazon Linux variants with the `ecs-init` package, support task networking\.
+Currently, only the Amazon Linux ECS\-optimized AMI, or other Amazon Linux variants with the `ecs-init` package, support task networking\.
 
 To use task networking, your task definitions must specify the `awsvpc` network mode\. For more information, see [Network Mode](task_definition_parameters.md#network_mode)\. When you run tasks or create services using a task definition that specifies the `awsvpc` network mode, you specify a network configuration that contains the VPC subnets to be considered for placement and the security groups to attach to the task's elastic network interface\.
 
