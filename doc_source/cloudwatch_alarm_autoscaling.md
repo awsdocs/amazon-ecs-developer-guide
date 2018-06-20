@@ -87,7 +87,7 @@ Now that you have enabled CloudWatch metrics and created an alarm based on one o
 
 1. Select a private key to use for connecting to your instances with SSH and choose **Create launch configuration** to finish and move on to creating an Auto Scaling group with your new launch configuration\.
 
-## Step 3: Create an Auto Scaling Group for your Cluster<a name="w3ab1c31c21c21c15"></a>
+## Step 3: Create an Auto Scaling Group for your Cluster<a name="create-as-group-cluster"></a>
 
 After the launch configuration is complete, continue with the following procedure to create an Auto Scaling group that uses your launch configuration\.
 
@@ -113,13 +113,13 @@ If you configure your Auto Scaling group to remove container instances, any task
 
 1. Choose **Review** to review your Auto Scaling group and then choose **Create Auto Scaling Group** to finish\.
 
-## Step 4: Verify and Test your Auto Scaling Group<a name="w3ab1c31c21c21c17"></a>
+## Step 4: Verify and Test your Auto Scaling Group<a name="verify-as-group"></a>
 
 Now that you've created your Auto Scaling group, you should be able to see your instances launching in the Amazon EC2 console **Instances** page\. These instances should register into your Amazon ECS cluster as well after they launch\.
 
 To test that your Auto Scaling group is configured properly, you can create some tasks that consume a considerable amount of memory and start launching them into your cluster\. After your cluster exceeds the 75% memory reservation from the CloudWatch alarm for the specified number of periods, you should see a new instance launch in the EC2 console\.
 
-## Step 5: Cleaning Up<a name="w3ab1c31c21c21c19"></a>
+## Step 5: Cleaning Up<a name="cleanup-as"></a>
 
 When you have completed this tutorial, you may choose to keep your Auto Scaling group and Amazon EC2 instances in service for your cluster\. However, if you are not actively using these resources, you should consider cleaning them up so your account does not incur unnecessary charges\. You can delete your Auto Scaling group to terminate the Amazon EC2 instances within it, but your launch configuration remains intact and you can create a new Auto Scaling group with it later if you choose\.
 

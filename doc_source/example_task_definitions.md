@@ -5,7 +5,7 @@ Below are some task definition examples that you can use to start creating your 
 **Topics**
 
 **Example Example: WordPress and MySQL**  <a name="example_task_definition-wordpress"></a>
-The following example specifies a WordPress container and a MySQL container that are linked together\. These WordPress container exposes the container port 80 on the host port 80\. The security group on the container instance would need to open port 80 in order for this WordPress installation to be accessible from a web browser\.  
+The following example specifies a WordPress container and a MySQL container that are linked together\. This WordPress container exposes the container port 80 on the host port 80\. The security group on the container instance would need to open port 80 in order for this WordPress installation to be accessible from a web browser\.  
 For more information about the WordPress container, go to the official WordPress Docker Hub repository at [https://registry\.hub\.docker\.com/\_/wordpress/](https://registry.hub.docker.com/_/wordpress/)\. For more information about the MySQL container, go to the official MySQL Docker Hub repository at [https://registry\.hub\.docker\.com/\_/mysql/](https://registry.hub.docker.com/_/mysql/)\.  
 
 ```

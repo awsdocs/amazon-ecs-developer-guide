@@ -18,12 +18,14 @@ A service definition defines which task definition to use with your service, how
     "serviceRegistries": [
         {
             "registryArn": "",
-            "port": 0
+            "port": 0,
+            "containerName": "",
+            "containerPort": 0
         }
     ],
     "desiredCount": 0,
     "clientToken": "",
-    "launchType": "EC2",
+    "launchType": "FARGATE",
     "platformVersion": "",
     "role": "",
     "deploymentConfiguration": {
@@ -38,7 +40,7 @@ A service definition defines which task definition to use with your service, how
     ],
     "placementStrategy": [
         {
-            "type": "binpack",
+            "type": "spread",
             "field": ""
         }
     ],
@@ -53,7 +55,8 @@ A service definition defines which task definition to use with your service, how
             "assignPublicIp": "DISABLED"
         }
     },
-    "healthCheckGracePeriodSeconds": 0
+    "healthCheckGracePeriodSeconds": 0,
+    "schedulingStrategy": "REPLICA"
 }
 ```
 
@@ -71,6 +74,14 @@ The short name or full Amazon Resource Name \(ARN\) of the cluster on which to r
 
 `serviceName`  
 The name of your service\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. Service names must be unique within a cluster, but you can have similarly named services in multiple clusters within a region or across multiple regions\.
+
+`schedulingStrategy`  
+The scheduling strategy to use\. For more information, see [Service Scheduler Concepts](ecs_services.md#service_scheduler)\.  
+There are two service scheduler strategies available:  
++ `REPLICA`—The replica scheduling strategy places and maintains the desired number of tasks across your cluster\. By default, the service scheduler spreads tasks across Availability Zones\. You can use task placement strategies and constraints to customize task placement decisions\. For more information, see [Replica](ecs_services.md#service_scheduler_replica)\.
++ `DAEMON`—The daemon scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints that you specify in your cluster\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\. For more information, see [Daemon](ecs_services.md#service_scheduler_daemon)\.
+**Note**  
+Fargate tasks do not support the `DAEMON` scheduling strategy\.
 
 `taskDefinition`  
 The `family` and `revision` \(`family:revision`\) or full ARN of the task definition to run in your service\. If a `revision` is not specified, the latest `ACTIVE` revision is used\.
@@ -112,10 +123,11 @@ If your specified role has a path other than `/`, then you must either specify t
 `deploymentConfiguration`  
 Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping and starting tasks\.    
 `maximumPercent`  <a name="maximumPercent"></a>
-The `maximumPercent` parameter represents an upper limit on the number of your service's tasks that are allowed in the `RUNNING` or `PENDING` state during a deployment, as a percentage of the `desiredCount` \(rounded down to the nearest integer\)\. This parameter enables you to define the deployment batch size\. For example, if your service has a `desiredCount` of four tasks and a `maximumPercent` value of 200%, the scheduler may start four new tasks before stopping the four older tasks \(provided that the cluster resources required to do this are available\)\. The default value for `maximumPercent` is 200%\.  
+The `maximumPercent` parameter represents an upper limit on the number of your service's tasks that are allowed in the `RUNNING` or `PENDING` state during a deployment, as a percentage of the `desiredCount` \(rounded down to the nearest integer\)\. This parameter enables you to define the deployment batch size\. For example, if your replica service has a `desiredCount` of four tasks and a `maximumPercent` value of 200%, the scheduler may start four new tasks before stopping the four older tasks \(provided that the cluster resources required to do this are available\)\. The default value for a replica service for `maximumPercent` is 200%\.  
+If you are using a daemon service type, the `maximumPercent` should remain at 100%, which is the default value\.  
 The maximum number of tasks during a deployment is the `desiredCount` multiplied by the `maximumPercent`/100, rounded down to the nearest integer value\.  
 `minimumHealthyPercent`  <a name="minimumHealthyPercent"></a>
-The `minimumHealthyPercent` represents a lower limit on the number of your service's tasks that must remain in the `RUNNING` state during a deployment, as a percentage of the `desiredCount` \(rounded up to the nearest integer\)\. This parameter enables you to deploy without using additional cluster capacity\. For example, if your service has a `desiredCount` of four tasks and a `minimumHealthyPercent` of 50%, the scheduler may stop two existing tasks to free up cluster capacity before starting two new tasks\. Tasks for services that *do not* use a load balancer are considered healthy if they are in the `RUNNING` state\. Tasks for services that *do* use a load balancer are considered healthy if they are in the `RUNNING` state and the container instance on which the load balancer is hosted is reported as healthy\. The default value for `minimumHealthyPercent` is 50% in the console and 100% for the AWS CLI, the AWS SDKs, and the APIs\.  
+The `minimumHealthyPercent` represents a lower limit on the number of your service's tasks that must remain in the `RUNNING` state during a deployment, as a percentage of the `desiredCount` \(rounded up to the nearest integer\)\. This parameter enables you to deploy without using additional cluster capacity\. For example, if your service has a `desiredCount` of four tasks and a `minimumHealthyPercent` of 50%, the scheduler may stop two existing tasks to free up cluster capacity before starting two new tasks\. Tasks for services that *do not* use a load balancer are considered healthy if they are in the `RUNNING` state\. Tasks for services that *do* use a load balancer are considered healthy if they are in the `RUNNING` state and the container instance on which the load balancer is hosted is reported as healthy\. The default value for a replica service for `minimumHealthyPercent` is 50% in the AWS Management Console and 100% for the AWS CLI, the AWS SDKs, and the APIs\. The default value for a daemon service for `minimumHealthyPercent` is 0% for the AWS CLI, the AWS SDKs, and the APIs and 50% for the AWS Management Console\.  
 The minimum number of healthy tasks during a deployment is the `desiredCount` multiplied by the `minimumHealthyPercent`/100, rounded up to the nearest integer value\.
 
 `placementConstraints`  

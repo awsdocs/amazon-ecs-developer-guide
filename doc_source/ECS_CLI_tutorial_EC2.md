@@ -169,7 +169,7 @@ task_definition:
     wordpress:
       cpu_shares: 100
       mem_limit: 524288000
-    mysql
+    mysql:
       cpu_shares: 100
       mem_limit: 524288000
 ```

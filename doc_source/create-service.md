@@ -23,17 +23,18 @@ This procedure covers creating a service with the basic service definition param
 1. Review the task definition, and choose **Actions**, **Create Service**\.
 
 1. On the **Configure service** page, fill out the following parameters accordingly:
-   + **Launch type**: Choose whether your service should run tasks on Fargate infrastructure, or Amazon EC2 container instances that you maintain\.
+   + **Launch type**: Choose whether your service should run tasks on Fargate infrastructure, or Amazon EC2 container instances that you maintain\. For more information, see [Amazon ECS Launch Types](launch_types.md)\. 
    + **Platform version**: If you selected the Fargate launch type, then select the platform version to use\.
    + **Cluster**: Select the cluster in which to create your service\.
    + **Service name**: Type a unique name for your service\.
-   + **Number of tasks**, type the number of tasks to launch and maintain on your cluster\.
+   + **Service type**: Select a scheduling strategy for your service\. For more information, see [Service Scheduler Concepts](ecs_services.md#service_scheduler)\.
+   + **Number of tasks**: If you selected the replica service type, type the number of tasks to launch and maintain on your cluster\.
 **Note**  
 If your launch type is `EC2`, and your task definition uses static host port mappings on your container instances, then you need at least one container instance with the specified port available in your cluster for each task in your service\. This restriction does not apply if your task definition uses dynamic host port mappings with the `bridge` network mode\. For more information, see [portMappings](task_definition_parameters.md#ContainerDefinition-portMappings)\.
    + **Minimum healthy percent**: Specify a lower limit on the number of your service's tasks that must remain in the `RUNNING` state during a deployment, as a percentage of the service's desired number of tasks \(rounded up to the nearest integer\)\. For example, if your service has a desired number of four tasks and a minimum healthy percent of 50%, the scheduler may stop two existing tasks to free up cluster capacity before starting two new tasks\. Tasks for services that do not use a load balancer are considered healthy if they are in the `RUNNING` state\. Tasks for services that do use a load balancer are considered healthy if they are in the `RUNNING` state and when the container instance on which it is hosted is reported as healthy by the load balancer\. The default value for the minimum healthy percent is 50% in the console, and 100% with the AWS CLI or SDKs\.
    + **Maximum percent**: Specify an upper limit on the number of your service's tasks that are allowed in the `RUNNING` or `PENDING` state during a deployment, as a percentage of the service's desired number of tasks \(rounded down to the nearest integer\)\. For example, if your service has a desired number of four tasks and a maximum percent value of 200%, the scheduler may start four new tasks before stopping the four older tasks \(provided that the cluster resources required to do this are available\)\. The default value for maximum percent is 200%\.
 
-1. \(Optional\) If you selected the EC2 launch type, for **Task Placement**, you can specify how tasks are placed using task placement strategies and constraints\. Choose from the following options:
+1. \(Optional\) If you selected the EC2 launch type and the replica service type, for **Task Placement**, you can specify how tasks are placed using task placement strategies and constraints\. Choose from the following options:
    + **AZ Balanced Spread** \- distribute tasks across Availability Zones and across container instances in the Availability Zone\.
    + **AZ Balanced BinPack** \- distribute tasks across Availability Zones and across container instances with the least available memory\.
    + **BinPack** \- distribute tasks based on the least available amount of CPU or memory\.
