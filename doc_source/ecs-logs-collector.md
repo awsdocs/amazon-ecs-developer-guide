@@ -4,11 +4,13 @@ If you are unsure how to collect all of the various logs on your container insta
 + Amazon Linux
 + Red Hat Enterprise Linux 7
 + Debian 8
++ Ubuntu 14.04
++ Windows 2016
 
 **Note**  
-The source code for the Amazon ECS logs collector is [available on GitHub](https://github.com/awslabs/ecs-logs-collector)\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently support running modified copies of this software\.
+The source code for the Amazon ECS logs collector is available in GitHub [Linux](https://github.com/awslabs/ecs-logs-collector) [Windows](https://github.com/awslabs/aws-ecs-logs-collector-for-windows)\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently support running modified copies of this software\.
 
-**To download and run the Amazon ECS logs collector**
+**To download and run the Amazon ECS logs collector in Linux**
 
 1. Connect to your container instance\. For more information, see [Connect to Your Container Instance](instance-connect.md)\.
 
@@ -25,5 +27,23 @@ To enable debug mode for the Docker daemon and the Amazon ECS container agent, a
    ```
    [ec2-user ~]$ sudo bash ./ecs-logs-collector.sh
    ```
+
+**Run the Amazon ECS logs collector in Windows**
+
+**Usage**
+
+The script can be used in normal(Brief) or debug mode. Run this script as an elevated user:
+
+**Normal Mode:**
+
+```
+.\ecs-logs-collector.ps1
+```
+
+**Debug Mode: (Note that running in debug mode restarts Docker and the Amazon ECS agent)**
+
+```
+.\ecs-logs-collector.ps1 -RunMode debug
+```
 
 After you have run the script, you can examine the collected logs in the `collect` folder that the script created\. The `collect.tgz` file is a compressed archive of all of the logs, which you can share with AWS Support for diagnostic help\.
