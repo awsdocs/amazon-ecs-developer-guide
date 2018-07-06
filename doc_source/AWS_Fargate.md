@@ -38,9 +38,9 @@ The following task definition parameters are not valid in Fargate tasks:
 + `privileged`
 
 To ensure that your task definition validates for use with the Fargate launch type, you can specify the following when you register the task definition: 
-+ In the AWS Management Console, for the **Requires capabilities** field, specify `FARGATE`\.
++ In the AWS Management Console, for the **Requires Compatibilities** field, specify `FARGATE`\.
 + In the AWS CLI, specify the `--requires-compatibilities` option\.
-+ In the API, specify the `requiresCapabilities` flag\. 
++ In the API, specify the `requiresCompatibilities` flag\. 
 
 ### Network Mode<a name="fargate-tasks-networkmode"></a>
 
