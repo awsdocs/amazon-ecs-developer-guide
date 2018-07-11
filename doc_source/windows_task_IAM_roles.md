@@ -33,7 +33,7 @@ Before containers can access the credential proxy on the container instance to g
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-$gateway = (Get-WMIObject -Class Win32_IP4RouteTable | Where { $_.Destination -eq '0.0.0.0' -and $_.Mask -eq '0.0.0.0' } | Sort-Object Metric1 | Select NextHop).NextHop
+$gateway = (Get-NetRoute | Where { $_.DestinationPrefix -eq '0.0.0.0/0'} | Sort-Object RouteMetric | Select NextHop).NextHop
 $ifIndex = (Get-NetAdapter -InterfaceDescription "Hyper-V Virtual Ethernet*" | Sort-Object | Select ifIndex).ifIndex
 New-NetRoute -DestinationPrefix 169.254.170.2/32 -InterfaceIndex $ifIndex -NextHop $gateway
 ```
