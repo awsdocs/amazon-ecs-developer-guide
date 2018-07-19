@@ -199,7 +199,7 @@ If you want to create an Amazon ECR repository in the first run wizard, tag and 
 
 ## Clusters<a name="IAM_cluster_policies"></a>
 
-The following IAM policy allows permission to create and list clusters\. The `CreateCluster` and `ListClusters` actions do not accept any resources, so the resource definition is set to `*` for all resources\.
+The following IAM policy allows permission to create and list clusters\. The `CreateCluster` and `ListClusters` actions do not accept cluster ARN specific values in resources, so the resource definition is set to `*` for all resources\.
 
 ```
 {
