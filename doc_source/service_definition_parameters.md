@@ -25,7 +25,7 @@ A service definition defines which task definition to use with your service, how
     ],
     "desiredCount": 0,
     "clientToken": "",
-    "launchType": "FARGATE",
+    "launchType": "EC2",
     "platformVersion": "",
     "role": "",
     "deploymentConfiguration": {
@@ -34,13 +34,13 @@ A service definition defines which task definition to use with your service, how
     },
     "placementConstraints": [
         {
-            "type": "distinctInstance",
+            "type": "memberOf",
             "expression": ""
         }
     ],
     "placementStrategy": [
         {
-            "type": "spread",
+            "type": "random",
             "field": ""
         }
     ],
@@ -52,7 +52,7 @@ A service definition defines which task definition to use with your service, how
             "securityGroups": [
                 ""
             ],
-            "assignPublicIp": "DISABLED"
+            "assignPublicIp": "ENABLED"
         }
     },
     "healthCheckGracePeriodSeconds": 0,
@@ -70,18 +70,10 @@ aws ecs create-service --generate-cli-skeleton
 You can specify the following parameters in a service definition\.
 
 `cluster`  
-The short name or full Amazon Resource Name \(ARN\) of the cluster on which to run your service\. If you do not specify a cluster, the default cluster is assumed\.
+The short name or full Amazon Resource Name \(ARN\) of the cluster on which to run your service\. If you do not specify a cluster, the `default` cluster is assumed\.
 
 `serviceName`  
 The name of your service\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. Service names must be unique within a cluster, but you can have similarly named services in multiple clusters within a region or across multiple regions\.
-
-`schedulingStrategy`  
-The scheduling strategy to use\. For more information, see [Service Scheduler Concepts](ecs_services.md#service_scheduler)\.  
-There are two service scheduler strategies available:  
-+ `REPLICA`—The replica scheduling strategy places and maintains the desired number of tasks across your cluster\. By default, the service scheduler spreads tasks across Availability Zones\. You can use task placement strategies and constraints to customize task placement decisions\. For more information, see [Replica](ecs_services.md#service_scheduler_replica)\.
-+ `DAEMON`—The daemon scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints that you specify in your cluster\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\. For more information, see [Daemon](ecs_services.md#service_scheduler_daemon)\.
-**Note**  
-Fargate tasks do not support the `DAEMON` scheduling strategy\.
 
 `taskDefinition`  
 The `family` and `revision` \(`family:revision`\) or full ARN of the task definition to run in your service\. If a `revision` is not specified, the latest `ACTIVE` revision is used\.
@@ -100,7 +92,15 @@ The name of the container \(as it appears in a container definition\) to associa
 The port on the container to associate with the load balancer\. This port must correspond to a `containerPort` in the service's task definition\. Your container instances must allow ingress traffic on the `hostPort` of the port mapping\.
 
 `serviceRegistries`  
-The details of the service discovery configuration for your service\. For more information, see [Service Discovery](service-discovery.md)\.
+The details of the service discovery configuration for your service\. For more information, see [Service Discovery](service-discovery.md)\.    
+`registryArn`  
+The Amazon Resource Name \(ARN\) of the service registry\. The currently supported service registry is Amazon Route 53 Auto Naming\. For more information, see [Service](http://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_Service.html)\.   
+`port`  
+The port value used if your service discovery service specified an SRV record\. This field is required if both the `awsvpc` network mode and SRV records are used\.  
+`containerName`  
+The container name value, already specified in the task definition, to be used for your service discovery service\. If the task definition that your service task specifies uses the `bridge` or `host` network mode, you must specify a `containerName` and `containerPort` combination from the task definition\. If the task definition that your service task specifies uses the `code ` network mode and a type SRV DNS record is used, you must specify either a `containerName` and `containerPort` combination or a `port` value, but not both\.  
+`containerPort`  
+The port value, already specified in the task definition, to be used for your service discovery service\. If the task definition your service task specifies uses the `bridge` or `host` network mode, you must specify a `containerName` and `containerPort` combination from the task definition\. If the task definition your service task specifies uses the `awsvpc` network mode and a type SRV DNS record is used, you must specify either a `containerName` and `containerPort` combination or a `port` value, but not both\.
 
 `desiredCount`  
 The number of instantiations of the specified task definition to place and keep running on your cluster\.
@@ -131,10 +131,18 @@ The `minimumHealthyPercent` represents a lower limit on the number of your servi
 The minimum number of healthy tasks during a deployment is the `desiredCount` multiplied by the `minimumHealthyPercent`/100, rounded up to the nearest integer value\.
 
 `placementConstraints`  
-An array of placement constraint objects to use for tasks in your service\. You can specify a maximum of 10 constraints per task \(this limit includes constraints in the task definition and those specified at run time\)\. If you are using the Fargate launch type, task placement constraints are not supported\.
+An array of placement constraint objects to use for tasks in your service\. You can specify a maximum of 10 constraints per task \(this limit includes constraints in the task definition and those specified at run time\)\. If you are using the Fargate launch type, task placement constraints are not supported\.    
+`type`  
+The type of constraint\. Use `distinctInstance` to ensure that each task in a particular group is running on a different container instance\. Use `memberOf` to restrict the selection to a group of valid candidates\. The value `distinctInstance` is not supported in task definitions\.  
+`expression`  
+A cluster query language expression to apply to the constraint\. Note you cannot specify an expression if the constraint type is `distinctInstance`\. For more information, see [Cluster Query Language](cluster-query-language.md)\.
 
 `placementStrategy`  
-The placement strategy objects to use for tasks in your service\. You can specify a maximum of four strategy rules per service\. 
+The placement strategy objects to use for tasks in your service\. You can specify a maximum of four strategy rules per service\.    
+`type`  
+The type of placement strategy\. The `random` placement strategy randomly places tasks on available candidates\. The `spread` placement strategy spreads placement across available candidates evenly based on the `field` parameter\. The `binpack` strategy places tasks on available candidates that have the least available amount of the resource that is specified with the `field` parameter\. For example, if you binpack on memory, a task is placed on the instance with the least amount of remaining memory \(but still enough to run the task\)\.  
+`field`  
+The field to apply the placement strategy against\. For the `spread` placement strategy, valid values are `instanceId` \(or `host`, which has the same effect\), or any platform or custom attribute that is applied to a container instance, such as `attribute:ecs.availability-zone`\. For the `binpack` placement strategy, valid values are `cpu` and `memory`\. For the `random` placement strategy, this field is not used\.
 
 `networkConfiguration`  
 The network configuration for the service\. This parameter is required for task definitions that use the `awsvpc` network mode to receive their own Elastic Network Interface, and it is not supported for other network modes\. If using the Fargate launch type, the `awsvpc` network mode is required\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.    
@@ -143,7 +151,17 @@ An object representing the subnets and security groups for a task or service\.
 `subnets`  
 The subnets associated with the task or service\.  
 `securityGroups`  
-The security groups associated with the task or service\. If you do not specify a security group, the default security group for the VPC is used\.
+The security groups associated with the task or service\. If you do not specify a security group, the default security group for the VPC is used\.  
+`assignPublicIP`  
+Whether the task's elastic network interface receives a public IP address\.
 
 `healthCheckGracePeriodSeconds`  
 The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks after a task has first started\. This is only valid if your service is configured to use a load balancer\. If your service's tasks take a while to start and respond to health checks, you can specify a health check grace period of up to 7,200 seconds during which the ECS service scheduler ignores the health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\.
+
+`schedulingStrategy`  
+The scheduling strategy to use\. For more information, see [Service Scheduler Concepts](ecs_services.md#service_scheduler)\.  
+There are two service scheduler strategies available:  
++ `REPLICA`—The replica scheduling strategy places and maintains the desired number of tasks across your cluster\. By default, the service scheduler spreads tasks across Availability Zones\. You can use task placement strategies and constraints to customize task placement decisions\. For more information, see [Replica](ecs_services.md#service_scheduler_replica)\.
++ `DAEMON`—The daemon scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints that you specify in your cluster\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\. For more information, see [Daemon](ecs_services.md#service_scheduler_daemon)\.
+**Note**  
+Fargate tasks do not support the `DAEMON` scheduling strategy\.

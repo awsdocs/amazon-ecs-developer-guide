@@ -157,7 +157,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Tutorial: Using Amazon EFS File Systems with Amazon ECS](using_efs.md)
 + [Tutorial: Continuous Deployment with AWS CodePipeline](ecs-cd-pipeline.md)
 + [Amazon ECS Service Limits](service_limits.md)
-+ [Logging Amazon ECS API Calls By Using AWS CloudTrail](logging-using-cloudtrail.md)
++ [Logging Amazon ECS API Calls with AWS CloudTrail](logging-using-cloudtrail.md)
 + [Amazon ECS Troubleshooting](troubleshooting.md)
    + [Checking Stopped Tasks for Errors](stopped-task-errors.md)
    + [Service Event Messages](service-event-messages.md)

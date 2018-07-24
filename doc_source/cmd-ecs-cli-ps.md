@@ -38,9 +38,9 @@ ecs-cli ps
 Output:
 
 ```
-Name                                            State    Ports                     TaskDefinition
-595deba7-16a1-4aaf-9b27-e152eba03ccc/wordpress  RUNNING  52.33.62.24:80->80/tcp    ecscompose-hello-world:3
-595deba7-16a1-4aaf-9b27-e152eba03ccc/mysql      RUNNING                            ecscompose-hello-world:3
-7fc0a2a4-9202-47d2-8b06-4463286b63de/mysql      RUNNING                            ecscompose-hello-world:3
-7fc0a2a4-9202-47d2-8b06-4463286b63de/wordpress  RUNNING  52.32.232.166:80->80/tcp  ecscompose-hello-world:3
+Name                                             State    Ports                      TaskDefinition       Health
+afd7f8a0-3813-4e1a-9d9e-ca7e9d1fcfbb/wordpress   RUNNING  36.253.177.221:80->80/tcp  compose3:7           HEALTHY
+dca67e02-68ca-4507-b194-a47239b5e7a9/wordpress   RUNNING  37.234.146.14:80->80/tcp   healthcheck:3        UNKNOWN
+dca67e02-68ca-4507-b194-a47239b5e7a9/redis       RUNNING                             healthcheck:3        HEALTHY
+feb6e10e-3385-4c9b-a6cb-787cc8e90dda/sample-app  RUNNING  54.229.211.206:80->80/tcp  tutorial-task-def:1  UNKNOWN
 ```

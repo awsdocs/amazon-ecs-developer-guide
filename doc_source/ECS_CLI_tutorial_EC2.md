@@ -54,6 +54,7 @@ The following parameters are supported in compose files for the Amazon ECS CLI:
 + `cpu_shares`
 **Note**  
 If you are using the Compose version 3 format, `cpu_shares` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\.
++ `devices` \(Not valid for tasks using the Fargate launch type\)
 + `dns`
 + `dns_search`
 + `entrypoint`
@@ -64,6 +65,9 @@ We do not recommend using plaintext environment variables for sensitive informat
 **Important**  
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.
 + `extra_hosts`
++ `healthcheck` \(Compose file version 3 only\)
+**Note**  
+The `start_period` field is not supported using the compose file\. To specify a `start_period`, use the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\.
 + `hostname`
 + `image`
 + `labels`

@@ -80,10 +80,19 @@ The following procedure creates a log group in the CloudWatch console\.
 
 ## Available awslogs Log Driver Options<a name="create_awslogs_logdriver_options"></a>
 
-The `awslogs` log driver supports the following options in Amazon ECS task definitions\.
+The `awslogs` log driver supports the following options in Amazon ECS task definitions\. For more information, see [CloudWatch Logs logging driver](https://docs.docker.com/config/containers/logging/awslogs/)\.
 
-**Note**  
-Although there are more options available for the `awslogs` log driver in the [Docker documentation](https://docs.docker.com/engine/admin/logging/awslogs/), not all of those options are supported in Amazon ECS yet\.
+`awslogs-create-group`  
+Required: No  
+Specify whether you want the log group automatically created\. If this option is not specified, it defaults to `false`\.  
+Your IAM policy must include the `logs:CreateLogGroup` permission before you attempt to use `awslogs-create-group`\.
+
+`awslogs-datetime-format`  
+Required: No  
+This option defines a multiline start pattern in Python `strftime` format\. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern\. Thus the matched line is the delimiter between log messages\.  
+One example of a use case for using this format is for parsing output such as a stack dump, which might otherwise be logged in multiple entries\. The correct pattern allows it to be captured in a single entry\.  
+This option always takes precedence if both awslogs\-datetime\-format and awslogs\-multiline\-pattern are configured\.  
+Multiline logging performs regular expression parsing and matching of all log messages, which may have a negative impact on logging performance\.
 
 `awslogs-region`  
 Required: Yes  
@@ -93,8 +102,14 @@ Specify the region to which the `awslogs` log driver should send your Docker log
 Required: Yes  
 You must specify a log group to which the `awslogs` log driver will send its log streams\. For more information, see [Creating Your Log Groups](#create_awslogs_loggroups)\.
 
+`awslogs-multiline-pattern`  
+Required: No  
+This option defines a multiline start pattern using a regular expression\. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern\. Thus the matched line is the delimiter between log messages\.  
+This option is ignored if `awslogs-datetime-format` is also configured\.  
+Multiline logging performs regular expression parsing and matching of all log messages\. This may have a negative impact on logging performance\.
+
 `awslogs-stream-prefix`  
-Required: No, unless using the Fargate launch type in which case it is required\.  
+Required: Optional for EC2 launch type, required for Fargate launch type\.  
 The `awslogs-stream-prefix` option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs\. If you specify a prefix with this option, then the log stream takes the following format:  
 
 ```

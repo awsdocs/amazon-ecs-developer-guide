@@ -65,7 +65,7 @@ The Amazon ECS task scheduler is responsible for placing tasks within your clust
 
 ### Clusters<a name="welcome-clusters"></a>
 
-When you run tasks using Amazon ECS, you place them on a *cluster*, which is a logical grouping of resources\. If you use the Fargate launch type with tasks within your cluster, Amazon ECS manages your cluster resources\. If you use the EC2 launch type, then your clusters will be a group of container instances you manage\. Amazon ECS downloads your container images from a registry that you specify, and runs those images within your cluster\.
+When you run tasks using Amazon ECS, you place them on a *cluster*, which is a logical grouping of resources\. If you use the Fargate launch type with tasks within your cluster, Amazon ECS manages your cluster resources\. If you use the EC2 launch type, then your clusters will be a group of container instances you manage\. An Amazon ECS container instance is an Amazon EC2 instance that is running the Amazon ECS container agent\. Amazon ECS downloads your container images from a registry that you specify, and runs those images within your cluster\.
 
 For more information about creating clusters, see [Amazon ECS Clusters](ECS_clusters.md)\. If you are using the EC2 launch type, you can read about creating container instances at [Amazon ECS Container Instances](ECS_instances.md)\.
 
