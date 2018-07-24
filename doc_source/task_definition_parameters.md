@@ -658,8 +658,9 @@ When you register a task definition, you specify the launch type that you will b
 The following parameter is allowed in a task definition:
 
 `requiresCompatibilities`  
-Type: string  
-Required: no  
+Type: string array
+Required: no
+Valid values: `"EC2" | "FARGATE"`
 The launch type the task is using\. This will enable a check to ensure that all of the parameters used in the task definition meet the requirements of the launch type\.  
 Valid values are `FARGATE` and `EC2`\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
 
