@@ -25,11 +25,7 @@ You can check the version of the container agent that is running on your contain
 1. Note the **Agent version** column for your container instances\. If you are using an outdated agent version on any of your container instances, the console alerts you with a message and flags the outdated agent version\.  
 ![\[Container instance agent version\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/cluster_container_instance_tab.png)
 
-<<<<<<< HEAD
    If your agent version is 1\.19\.1, you are running the latest container agent\. If your agent version is below 1\.19\.1, you can update your container agent with the following procedures:
-=======
-   If your agent version is 1\.19\.0, you are running the latest container agent\. If your agent version is below 1\.19\.0, you can update your container agent with the following procedures:
->>>>>>> 674707ca5af33aacc808f1a019859ba993c8b0a0
    + If your container instance is running the Amazon ECS\-optimized AMI, see [Updating the Amazon ECS Container Agent on the Amazon ECS\-Optimized AMI](agent-update-ecs-ami.md)\.
    + If your container instance is not running the Amazon ECS\-optimized AMI, see [Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-optimized AMIs\)](manually_update_agent.md)\.
 **Important**  
@@ -53,11 +49,7 @@ You can also use the Amazon ECS container agent introspection API to check the a
    {
        "Cluster": "default",
        "ContainerInstanceArn": "arn:aws:ecs:us-west-2:<aws_account_id>:container-instance/4d3910c1-27c8-410c-b1df-f5d06fab4305",
-<<<<<<< HEAD
        "Version": "Amazon ECS Agent - v1.19.1 (13a0fabe)"
-=======
-       "Version": "Amazon ECS Agent - v1.19.0 (3631cb9d)"
->>>>>>> 674707ca5af33aacc808f1a019859ba993c8b0a0
    }
    ```
 **Note**  
