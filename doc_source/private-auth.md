@@ -165,6 +165,10 @@ If the previous command does not return the `ECS_DATADIR` environment variable, 
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
+<<<<<<< HEAD
      "Version": "Amazon ECS Agent - v1.19.1 (13a0fabe)"
+=======
+     "Version": "Amazon ECS Agent - v1.19.0 (3631cb9d)"
+>>>>>>> 674707ca5af33aacc808f1a019859ba993c8b0a0
    }
    ```
