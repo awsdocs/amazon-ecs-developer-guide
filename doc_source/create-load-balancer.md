@@ -2,7 +2,7 @@
 
 This section provides a hands\-on introduction to using Elastic Load Balancing through the AWS Management Console to use with your Amazon ECS services\. In this section, you create an external load balancer that receives public network traffic and routes it to your Amazon ECS container instances\.
 
-Elastic Load Balancing supports the following types of load balancers: Application Load Balancers, Network Load Balancers, and Classic Load Balancers, and Amazon ECS services can use either type of load balancer\. Application Load Balancers are used to route HTTP/HTTPS traffic\. Network Load Balancers and Classic Load Balancers are used to route TCP or Layer 7 traffic\.
+Elastic Load Balancing supports the following types of load balancers: Application Load Balancers, Network Load Balancers, and Classic Load Balancers, and Amazon ECS services can use either type of load balancer\. Application Load Balancers are used to route HTTP/HTTPS traffic\. Network Load Balancers and Classic Load Balancers are used to route TCP or Layer 4 traffic\.
 
 Application Load Balancers offer several features that make them attractive for use with Amazon ECS services:
 + Application Load Balancers allow containers to use dynamic host port mapping \(so that multiple tasks from the same service are allowed per container instance\)\.

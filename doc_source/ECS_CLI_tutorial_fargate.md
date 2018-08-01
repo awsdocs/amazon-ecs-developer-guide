@@ -131,9 +131,6 @@ run_params:
       assign_public_ip: ENABLED
 ```
 
-**Note**  
-The `assign_public_ip` and `task_size` parameters are only valid for a Fargate task\. This task definition fails if the launch type is changed to EC2\.
-
 ## Step 5: Deploy the Compose File to a Cluster<a name="ECS_CLI_tutorial_fargate_compose_deploy"></a>
 
 After you create the compose file, you can deploy it to your cluster with ecs\-cli compose service up\. By default, the command looks for files called `docker-compose.yml` and `ecs-params.yml` in the current directory; you can specify a different docker compose file with the `--file` option, and a different ECS Params file with the `--ecs-params` option\. By default, the resources created by this command have the current directory in their titles, but you can override that with the `--project-name` option\. The `--create-log-groups` option creates the CloudWatch log groups for the container logs\.

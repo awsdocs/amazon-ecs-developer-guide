@@ -1,6 +1,6 @@
 # Private Registry Authentication<a name="private-auth"></a>
 
-The Amazon ECS container agent can authenticate with private registries, including Docker Hub, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\. 
+The Amazon ECS container agent can authenticate with private registries, including Docker Hub, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\.
 
 The agent looks for two environment variables when it launches: `ECS_ENGINE_AUTH_TYPE`, which specifies the type of authentication data that is being sent, and `ECS_ENGINE_AUTH_DATA`, which contains the actual authentication credentials\.
 
@@ -8,6 +8,9 @@ The Amazon ECS\-optimized AMI scans the `/etc/ecs/ecs.config` file for these var
 
 **Important**  
 We do not recommend that you inject these authentication environment variables at instance launch time with Amazon EC2 user data or pass them with the `--env` option to the docker run command\. These methods are not appropriate for sensitive data like authentication credentials\. To safely add authentication credentials to your container instances, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
+
+**Note**  
+This feature is only available if using the EC2 launch type\.
 
 ## Authentication Formats<a name="docker-auth-formats"></a>
 
@@ -162,6 +165,6 @@ If the previous command does not return the `ECS_DATADIR` environment variable, 
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.18.0 (c0defea9)"
+     "Version": "Amazon ECS Agent - v1.19.1 (13a0fabe)"
    }
    ```

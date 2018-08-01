@@ -16,7 +16,7 @@ Some features described may only be available with the latest version of the ECS
 
 | Name | Description | 
 | --- | --- | 
-|  `--registry-id registry_id`  |  Specifies the ECR registry ID to which to push the image\. By default, images are pushed to the current AWS account\. Required: No  | 
+|  `--registry-id registry_id`  |  Specifies the Amazon ECR registry ID to which to push the image\. By default, images are pushed to the current AWS account\. Required: No  | 
 |  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
 |  `--ecs-profile ecs_profile`  |  Specifies the name of the ECS profile configuration to use\. Defaults to the profile configured using the configure profile command\. Type: String Required: No  | 
 |  `--aws-profile aws_profile`  |  Specifies the AWS profile to use\. Enables you to use the AWS credentials from an existing named profile in `~/.aws/credentials`\. Type: String Required: No  | 

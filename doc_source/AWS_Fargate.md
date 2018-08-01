@@ -14,7 +14,11 @@ AWS Fargate with Amazon ECS is currently only available in the following regions
 | US East \(N\. Virginia\) | us\-east\-1 | 
 | US East \(Ohio\) | us\-east\-2 | 
 | US West \(Oregon\) | us\-west\-2 | 
-| EU West \(Ireland\) | eu\-west\-1 | 
+| EU \(Ireland\) | eu\-west\-1 | 
+| EU \(Frankfurt\) | eu\-central\-1 | 
+| Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
+| Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
+| Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
 
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
 + [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)
@@ -38,9 +42,9 @@ The following task definition parameters are not valid in Fargate tasks:
 + `privileged`
 
 To ensure that your task definition validates for use with the Fargate launch type, you can specify the following when you register the task definition: 
-+ In the AWS Management Console, for the **Requires capabilities** field, specify `FARGATE`\.
++ In the AWS Management Console, for the **Requires Compatibilities** field, specify `FARGATE`\.
 + In the AWS CLI, specify the `--requires-compatibilities` option\.
-+ In the API, specify the `requiresCapabilities` flag\. 
++ In the API, specify the `requiresCompatibilities` flag\. 
 
 ### Network Mode<a name="fargate-tasks-networkmode"></a>
 
@@ -188,7 +192,7 @@ The following is an example of the networkConfiguration section for a Fargate se
       "awsvpcConfiguration": { 
          "assignPublicIp": "ENABLED",
          "securityGroups": [ "sg-12345678" ],
-         "subnets": [ "subnet-12345678, subnet-87654321" ]
+         "subnets": [ "subnet-12345678" ]
       }
    },
 ```

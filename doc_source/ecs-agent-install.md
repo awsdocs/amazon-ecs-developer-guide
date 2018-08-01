@@ -60,7 +60,7 @@ To install the Amazon ECS container agent on an Amazon Linux EC2 instance using 
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.18.0 (c0defea9)"
+     "Version": "Amazon ECS Agent - v1.19.1 (13a0fabe)"
    }
    ```
 
@@ -97,7 +97,7 @@ The latest Amazon ECS container agent files, by region, are listed below for ref
 
 1. Connect to your instance\.
 
-1. Install Docker on your instance\. Amazon ECS requires a minimum Docker version of 1\.9\.0 \(version 17\.12\.1\-ce is recommended\), and the default Docker versions in many system package managers, such as yum or apt\-get do not meet this minimum requirement\. For information about installing the latest Docker version on your particular Linux distribution, see [https://docs\.docker\.com/engine/installation/](https://docs.docker.com/engine/installation/)\.
+1. Install Docker on your instance\. Amazon ECS requires a minimum Docker version of 1\.9\.0 \(version 18\.03\.1\-ce is recommended\), and the default Docker versions in many system package managers, such as yum or apt\-get do not meet this minimum requirement\. For information about installing the latest Docker version on your particular Linux distribution, see [https://docs\.docker\.com/engine/installation/](https://docs.docker.com/engine/installation/)\.
 **Note**  
 The Amazon Linux AMI always includes the recommended version of Docker for use with Amazon ECS\. You can install Docker on Amazon Linux with the sudo yum install docker \-y command\.
 

@@ -43,7 +43,7 @@ The first run wizard comes preloaded with a service definition, and you can see 
 
 1. In the **Security Group** field, specify a range of IPv4 addresses to allow inbound traffic from, in CIDR block notation\. For example, `203.0.113.0/24`\.
 
-1. \(Optional\) You can choose to use an Application Load Balancer with your service\. When a task is launched from a service that is configured to use a load balancer, the task is launched on is registered with the load balancer and traffic from the load balancer is distributed across the instances in the load balancer\. For more details, see [Introduction to Application Load Balancers](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)\.
+1. \(Optional\) You can choose to use an Application Load Balancer with your service\. When a task is launched from a service that is configured to use a load balancer, the task is registered with the load balancer and traffic from the load balancer is distributed across the instances in the load balancer\. For more details, see [Introduction to Application Load Balancers](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)\.
 **Important**  
 Application Load Balancers do incur cost while they exist in your AWS resources\. For more information on Application Load Balancer pricing, see [Application Load Balancer Pricing](http://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/pricing/)\.
 

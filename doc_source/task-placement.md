@@ -20,7 +20,7 @@ When Amazon ECS places tasks, it uses the following process to select container 
 1. Select the instances for task placement\.
 
 **Note**  
-Task placement contraints are not supported for Fargate tasks\. By default Fargate tasks are spread across availability zones\.
+Task placement constraints are not supported for Fargate tasks\. By default, Fargate tasks are spread across availability zones\.
 
 **Topics**
 + [Amazon ECS Task Placement Strategies](task-placement-strategies.md)

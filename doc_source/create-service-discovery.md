@@ -13,7 +13,11 @@ Fargate tasks are only supported in the following regions:
 | US East \(N\. Virginia\) | us\-east\-1 | 
 | US East \(Ohio\) | us\-east\-2 | 
 | US West \(Oregon\) | us\-west\-2 | 
-| EU West \(Ireland\) | eu\-west\-1 | 
+| EU \(Ireland\) | eu\-west\-1 | 
+| EU \(Frankfurt\) | eu\-central\-1 | 
+| Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
+| Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
+| Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
 
 [Prerequisites](#create-service-discovery-prereqs)
 
@@ -160,7 +164,7 @@ First, create a file named `fargate-task.json` with the contents of the followin
                 ],
                 "command": [
                     "/bin/sh -c \"echo '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p> </div></body></html>' >  /usr/local/apache2/htdocs/index.html && httpd-foreground\""
-                ],
+                ]
             }
         ],
         "requiresCompatibilities": [

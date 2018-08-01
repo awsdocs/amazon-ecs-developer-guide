@@ -7,7 +7,7 @@ Manage Amazon ECS services with docker\-compose\-style commands on an ECS cluste
 **Note**  
 To run tasks with the Amazon ECS CLI instead of creating services, see [ecs\-cli compose](cmd-ecs-cli-compose.md)\.
 
-The ecs\-cli compose service command works with a Docker compose file to create task definitions and manage services\. At this time, the Amazon ECS CLI supports [Docker compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1 and 2\. By default, the command looks for a compose file in the current directory, called `docker-compose.yml`\. However, you can also specify a different file name or path to a compose file with the `--file` option\. This is especially useful for managing tasks and services from multiple compose files at a time with the Amazon ECS CLI\.
+The ecs\-cli compose service command works with a Docker compose file to create task definitions and manage services\. At this time, the Amazon ECS CLI supports [Docker compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1, 2, and 3\. By default, the command looks for a compose file in the current directory, called `docker-compose.yml`\. However, you can also specify a different file name or path to a compose file with the `--file` option\. This is especially useful for managing tasks and services from multiple compose files at a time with the Amazon ECS CLI\.
 
 The ecs\-cli compose service command uses a project name with the task definitions and services that it creates\. When the CLI creates a task definition and service from a compose file, the task definition and service are called `project-name`\. By default, the project name is the name of the current working directory\. However, you can also specify your own project name with the `--project-name` option\.
 
@@ -21,6 +21,7 @@ The following parameters are supported in compose files for the Amazon ECS CLI:
 + `cpu_shares`
 **Note**  
 If you are using the Compose version 3 format, `cpu_shares` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\.
++ `devices` \(Not valid for tasks using the Fargate launch type\)
 + `dns`
 + `dns_search`
 + `entrypoint`
@@ -31,6 +32,9 @@ We do not recommend using plaintext environment variables for sensitive informat
 **Important**  
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.
 + `extra_hosts`
++ `healthcheck` \(Compose file version 3 only\)
+**Note**  
+The `start_period` field is not supported using the compose file\. To specify a `start_period`, use the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\.
 + `hostname`
 + `image`
 + `labels`
