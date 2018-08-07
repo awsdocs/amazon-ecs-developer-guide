@@ -63,12 +63,12 @@ def lambda_handler(event, context):
         # Compare events and reconcile.
         print("EXISTING EVENT DETECTED: Id " + event_id + " - reconciling")
         if saved_event["Item"]["version"] < event["detail"]["version"]:
-            print("Received event is more recent version than stored event - updating")
+            print("Received event is a more recent version than the stored event - updating")
             table.put_item(
                 Item=new_record
             )
         else:
-            print("Received event is more recent version than stored event - ignoring")
+            print("Received event is an older version than the stored event - ignoring")
     else:
         print("Saving new event - ID " + event_id)
 

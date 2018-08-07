@@ -2,8 +2,7 @@
 
 Your Amazon ECS service can optionally be configured to use Amazon ECS Service Discovery\. Service discovery uses Amazon Route 53 auto naming API actions to manage DNS entries for your service's tasks, making them discoverable within your VPC\. For more information, see [Using Auto Naming for Service Discovery](http://docs.aws.amazon.com/Route53/latest/APIReference/overview-service-discovery.html) in the *Amazon Route 53 API Reference*\.
 
-**Note**  
-Service discovery is available in the following AWS Regions:  
+Service discovery is available in the following AWS Regions:
 
 
 | Region Name | Region | 
@@ -32,13 +31,13 @@ Service discovery consists of the following components:
 
 The following should be considered when using service discovery:
 + Public namespaces are supported but you must have an existing public hosted zone registered with Route 53 before creating your service discovery service\.
-+ Service discovery requires that tasks use either the `awsvpc`, `bridge`, or `host` network mode\.
++ Service discovery requires that tasks specify either the `awsvpc`, `bridge`, or `host` network mode \(`none` is not supported\)\.
 + If the task definition your service task specifies uses the `awsvpc` network mode, you can create any combination of A or SRV records for each service task\. If you use SRV records, a port is required\.
 + If the task definition that your service task specifies uses the `bridge` or `host` network mode, a SRV record is the only supported DNS record type\. Create a SRV record for each service task\. The SRV record must specify a container name and container port combination from the task definition\.
 + DNS records for a service discovery service can be queried within your VPC\. They use the following format: `<service discovery service name>.<service discovery namespace>`\. For more information, see [Step 5: Verify the service discovery](create-service-discovery.md#create-service-discovery-verify)\.
 + When doing a DNS query on the service name, A records return a set of IP addresses that correspond to your tasks\. SRV records return a set of IP addresses and ports per task\.
++ You can configure service discovery for an ECS service that is behind a load balancer, but service discovery traffic is always routed to the task and not the load balancer\.
 + Service discovery does not support the use of Classic Load Balancers\.
-+ If a load balancer is configured for the ECS service and you enable service discovery, an A record is used to route traffic to the load balancer\. The load balancer also handles the health checks\.
 + When specifying health checks for your service discovery service, you must use either custom health checks managed by Amazon ECS or Route 53 health checks\. The two options for health checks cannot be combined\.
   + **HealthCheckCustomConfig**—Amazon ECS manages health checks on your behalf\. Amazon ECS uses information from container and Elastic Load Balancing health checks, as well as your task state, to update the health with Route 53\. This is specified using the `--health-check-custom-config` parameter when creating your service discovery service\. For more information, see [HealthCheckCustomConfig](http://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_HealthCheckCustomConfig.html) in the *Amazon Route 53 API Reference*\.
   + **HealthCheckConfig**—Route 53 creates health checks to monitor tasks\. This requires the tasks to be publicly available\. This is specified using the `--health-check-config` parameter when creating your service discovery service\. For more information, see [HealthCheckConfig](http://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_HealthCheckConfig.html) in the *Amazon Route 53 API Reference*\.

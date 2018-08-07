@@ -84,7 +84,7 @@ Your Amazon EFS file system and your container instances must be in the same VPC
 
 ## Step 4: Configure Container Instances<a name="efs-config-instance"></a>
 
-After you've created your Amazon EFS file system in the same VPC as your container instances, you must configure the container instances to access and use the file system\. Your container instances must mount the Amazon EFS file system before the Docker daemon starts, or you can restart the Docker daemon after the file system is mounted\.
+After you've created your Amazon EFS file system in the same VPC as your container instances, you must configure the container instances to access and use the file system\.
 
 **Configure a running container instance to use an Amazon EFS file system**
 
@@ -139,28 +139,6 @@ After you've created your Amazon EFS file system in the same VPC as your contain
    ```
 **Note**  
 If you receive an error while running the above command, examine your `/etc/fstab` file for problems\. If necessary, restore it with the backup that you created earlier\.
-
-1. Restart Docker so that it can see the new file system\. The following commands apply to the Amazon ECS–optimized AMI\. If you are using a different operating system, adjust the commands accordingly\.
-**Note**  
-These commands stop all containers that are running on the container instance\.
-
-   1. Stop the Amazon ECS container agent\.
-
-      ```
-      sudo stop ecs
-      ```
-
-   1. Restart the Docker daemon\.
-
-      ```
-      sudo service docker restart
-      ```
-
-   1. Start the Amazon ECS container agent\.
-
-      ```
-      sudo start ecs
-      ```
 
 **Bootstrap an instance to use Amazon EFS with user data**
 
