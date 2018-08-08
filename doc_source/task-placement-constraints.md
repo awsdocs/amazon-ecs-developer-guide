@@ -14,6 +14,9 @@ Place tasks on container instances that satisfy an expression\.
 
 For more information about expression syntax, see [Cluster Query Language](cluster-query-language.md)\.
 
+**Note**
+The placement constraint type `distinctInstance` is not supported when using task placement constraints on a TaskDefinition. 
+
 ## Attributes<a name="attributes"></a>
 
 You can add custom metadata to your container instances, known as *attributes*\. Each attribute has a name and an optional string value\. You can use the built\-in attributes provided by Amazon ECS or define custom attributes\.Built\-in Attributes
@@ -173,7 +176,7 @@ The following constraint places tasks on instances in the databases task group\.
 ]
 ```
 
-The following constraint places each task in the group on a different instance\.
+The following constraint places each task in the group on a different instance\. This type of constraint is not supported when performing [RegisterTaskDefinition](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html)\.
 
 ```
 "placementConstraints": [
