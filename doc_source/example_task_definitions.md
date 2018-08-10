@@ -49,7 +49,7 @@ For more information about the WordPress container, go to the official WordPress
 If you use this task definition with a load balancer, you need to complete the WordPress setup installation through the web interface on the container instance immediately after the container starts\. The load balancer health check ping expects a `200` response from the server, but WordPress returns a `301` until the installation is completed\. If the load balancer health check fails, the load balancer deregisters the instance\.
 
 **Example Example: `awslogs` Log Driver**  <a name="example_task_definition-awslogs"></a>
-The following example demonstrates how to use the `awslogs` log driver in a task definition\. The `nginx` container will send its logs to the `ecs-log-streaming` log group in the `us-west-2` region\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.  
+The following example demonstrates how to use the `awslogs` log driver in a task definition\. The `nginx` container sends its logs to the `ecs-log-streaming` log group in the `us-west-2` region\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.  
 
 ```
 {
@@ -81,7 +81,7 @@ The following example demonstrates how to use the `awslogs` log driver in a task
 ```
 
 **Example Example: Amazon ECR Image and Task Definition IAM Role**  <a name="example_task_definition-iam"></a>
-The following example uses an Amazon ECR image called `aws-nodejs-sample` with the `v1` tag from the `123456789012.dkr.ecr.us-west-2.amazonaws.com` registry\. The container in this task will inherit IAM permissions from the `arn:aws:iam::123456789012:role/AmazonECSTaskS3BucketRole` role\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  
+The following example uses an Amazon ECR image called `aws-nodejs-sample` with the `v1` tag from the `123456789012.dkr.ecr.us-west-2.amazonaws.com` registry\. The container in this task inherits IAM permissions from the `arn:aws:iam::123456789012:role/AmazonECSTaskS3BucketRole` role\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  
 
 ```
 {

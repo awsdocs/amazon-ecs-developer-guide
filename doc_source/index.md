@@ -61,6 +61,8 @@ Amazon's trademarks and trade dress may not be used in
    + [Creating a Task Definition](create-task-definition.md)
    + [Task Definition Parameters](task_definition_parameters.md)
    + [Using Data Volumes in Tasks](using_data_volumes.md)
+      + [Docker Volumes](docker-volumes.md)
+      + [Bind Mounts](bind-mounts.md)
    + [Task Networking with the awsvpc Network Mode](task-networking.md)
    + [Amazon ECS Launch Types](launch_types.md)
    + [Using the awslogs Log Driver](using_awslogs.md)

@@ -44,7 +44,7 @@ Type: string
 Required: no  
 The Docker networking mode to use for the containers in the task\. The valid values are `none`, `bridge`, `awsvpc`, and `host`\. The default Docker network mode is `bridge`\. If using the Fargate launch type, the `awsvpc` network mode is required\. If using the EC2 launch type, any network mode can be used\. If the network mode is set to `none`, you can't specify port mappings in your container definitions, and the task's containers do not have external connectivity\. The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode\.  
 With the `host` and `awsvpc` network modes, exposed container ports are mapped directly to the corresponding host port \(for the `host` network mode\) or the attached elastic network interface port \(for the `awsvpc` network mode\), so you cannot take advantage of dynamic host port mappings\.   
-If the network mode is `awsvpc`, the task is allocated an Elastic Network Interface, and you must specify a `NetworkConfiguration` when you create a service or run a task with the task definition\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.  
+If the network mode is `awsvpc`, the task is allocated an elastic network interface, and you must specify a `NetworkConfiguration` when you create a service or run a task with the task definition\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.  
 Currently, only the Amazon ECS\-optimized AMI, other Amazon Linux variants with the `ecs-init` package, or AWS Fargate infrastructure support the `awsvpc` network mode\. 
 If the network mode is `host`, you can't run multiple instantiations of the same task on a single container instance when port mappings are used\.  
 Docker for Windows uses different network modes than Docker for Linux\. When you register a task definition with Windows containers, you must not specify a network mode\. If you use the console to register a task definition with Windows containers, you must choose the `<default>` network mode object\. 
@@ -356,33 +356,23 @@ This parameter is not supported for Windows containers\.
 ```
 
 `mountPoints`  
-Type: object array  
-Required: no  
+Type: Object  
+Required: No  
 The mount points for data volumes in your container\.   
 This parameter maps to `Volumes` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--volume` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\.    
 `sourceVolume`  
-Type: string  
-Required: yes, when `mountPoints` are used  
+Type: String  
+Required: Yes, when `mountPoints` are used  
 The name of the volume to mount\.  
 `containerPath`  
-Type: string  
-Required: yes, when `mountPoints` are used  
-The path on the container to mount the host volume at\.  
+Type: String  
+Required: Yes, when `mountPoints` are used  
+The path on the container to mount the volume at\.  
 `readOnly`  
 Type: Boolean  
-Required: no  
+Required: No  
 If this value is `true`, the container has read\-only access to the volume\. If this value is `false`, then the container can write to the volume\. The default value is `false`\.
-
-```
-"mountPoints": [
-                {
-                  "sourceVolume": "string",
-                  "containerPath": "string",
-                  "readOnly": true|false
-                }
-              ]
-```
 
 `volumesFrom`  
 Type: object array  
@@ -586,7 +576,7 @@ Required: Yes
 The list of tmpfs volume mount options\.  
 Type: Array of strings  
 Required: No  
-Valid Values: `"defaults" | "ro" | "rw" | "suid" | "nosuid" | "dev" | "nodev" | "exec" | "noexec" | "sync" | "async" | "dirsync" | "remount" | "mand" | "nomand" | "atime" | "noatime" | "diratime" | "nodiratime" | "bind" | "rbind" | "unbindable" | "runbindable" | "private" | "rprivate" | "shared" | "rshared" | "slave" | "rslave" | "relatime" | "norelatime" | "strictatime" | "nostrictatime"`  
+Valid Values: `"defaults" | "ro" | "rw" | "suid" | "nosuid" | "dev" | "nodev" | "exec" | "noexec" | "sync" | "async" | "dirsync" | "remount" | "mand" | "nomand" | "atime" | "noatime" | "diratime" | "nodiratime" | "bind" | "rbind" | "unbindable" | "runbindable" | "private" | "rprivate" | "shared" | "rshared" | "slave" | "rslave" | "relatime" | "norelatime" | "strictatime" | "nostrictatime" | "mode" | "uid" | "gid" | "nr_inodes" | "nr_blocks" | "mpol"`  
 `size`  
 The size \(in MiB\) of the tmpfs volume\.  
 Type: Integer  
@@ -594,48 +584,64 @@ Required: Yes
 
 ## Volumes<a name="volumes"></a>
 
-When you register a task definition, you can optionally specify a list of volumes that will be passed to the Docker daemon on a container instance and become available for other containers on the same container instance to access\. 
+When you register a task definition, you can optionally specify a list of volumes to be passed to the Docker daemon on a container instance, which then become available for access by other containers on the same container instance\.
 
-If you are using the Fargate launch type, the `host` and `sourcePath` parameters are not supported\.
+The following are the types of data volumes that can be used:
++ Docker volumes — A Docker\-managed volume that is created under `/var/lib/docker/volumes` on the container instance\. Docker volume drivers \(also referred to as plugins\) are used to integrate the volumes with external storage systems, such as Amazon EBS\. The built\-in `local` volume driver or a third\-party volume driver can be used\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use Docker volumes, specify a `DockerVolumeConfiguration` in your task definition\. For more information, see [Using volumes](https://docs.docker.com/storage/volumes/)\.
++ Bind mounts — A file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported when using either the EC2 or Fargate launch types\. To use bind mount host volumes, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
 
 For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
 
 The following parameters are allowed in a container definition:
 
 `name`  
-Type: string  
-Required: yes  
+Type: String  
+Required: No  
 The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints`\.
 
-`host`  
-Type: object  
-Required: no  
-The contents of the `host` parameter determine whether your data volume persists on the host container instance and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
-Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\. For example, you can mount `C:\my\path:C:\my\path` and `D:\:D:\`, but not `D:\my\path:C:\my\path` or `D:\:C:\my\path`\.  
-By default, Docker\-managed volumes are created in `/var/lib/docker/volumes/`\. You can change this default location by writing `OPTIONS="-g=/my/path/for/docker/volumes"` to `/etc/sysconfig/docker` on the container instance\.    
-`sourcePath`  
-Type: string  
-Required: no  
-The path on the host container instance that is presented to the container\. If this parameter is empty, then the Docker daemon assigns a host path for you\.  
-If you are using the Fargate launch type, the `sourcePath` parameter is not supported\.  
-If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host container instance until you delete it manually\. If the `sourcePath` value does not exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\.
+`DockerVolumeConfiguration`  
+Type: Object  
+Required: No  
+This parameter is specified when using Docker volumes\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use bind mounts, specify a `host` instead\.    
+`scope`  
+Type: String  
+Valid Values: `task` \| `shared`  
+Required: No  
+The scope for the Docker volume, which determines its lifecycle\. Docker volumes that are scoped to a `task` are automatically provisioned when the task starts and destroyed when the task stops\. Docker volumes that are scoped as `shared` persist after the task stops\.  
+`autoprovision`  
+Type: Boolean  
+Default value: `false`  
+Required: No  
+If this value is `true`, the Docker volume is created if it does not already exist\.  
+This field is only used if the `scope` is `shared`\.  
+`driver`  
+Type: String  
+Required: No  
+The Docker volume driver to use\. The driver value must match the driver name provided by Docker because it is used for task placement\. If the driver was installed using the Docker plugin CLI, use `docker plugin ls` to retrieve the driver name from your container instance\. If the driver was installed using another method, use Docker plugin discovery to retrieve the driver name\. For more information, see [Docker plugin discovery](https://docs.docker.com/engine/extend/plugin_api/#plugin-discovery)\. This parameter maps to `Driver` in the [Create a volume](https://docs.docker.com/engine/api/v1.35/#operation/VolumeCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--driver` option to [https://docs.docker.com/engine/reference/commandline/volume_create/](https://docs.docker.com/engine/reference/commandline/volume_create/)\.  
+`driverOpts`  
+Type: String  
+Required: No  
+A map of Docker driver specific options to pass through\. This parameter maps to `DriverOpts` in the [Create a volume](https://docs.docker.com/engine/api/v1.35/#operation/VolumeCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--opt` option to [https://docs.docker.com/engine/reference/commandline/volume_create/](https://docs.docker.com/engine/reference/commandline/volume_create/)\.  
+`labels`  
+Type: String  
+Required: No  
+Custom metadata to add to your Docker volume\. This parameter maps to `Labels` in the [Create a volume](https://docs.docker.com/engine/api/v1.35/#operation/VolumeCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--label` option to [https://docs.docker.com/engine/reference/commandline/volume_create/](https://docs.docker.com/engine/reference/commandline/volume_create/)\.
 
-```
-[
-  {
-    "name": "string",
-    "host": {
-      "sourcePath": "string"
-    }
-  }
-]
-```
+`host`  
+Required: No  
+This parameter is specified when using bind mounts\. To use Docker volumes, specify a `DockerVolumeConfiguration` instead\. The contents of the `host` parameter determine whether your bind mount data volume persists on the host container instance and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
+Bind mount host volumes are supported when using either the EC2 or Fargate launch types\.  
+Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\. For example, you can mount `C:\my\path:C:\my\path` and `D:\:D:\`, but not `D:\my\path:C:\my\path` or `D:\:C:\my\path`\.    
+`sourcePath`  
+Type: String  
+Required: No  
+When the `host` parameter is used, specify a `sourcePath` to declare the path on the host container instance that is presented to the container\. If this parameter is empty, then the Docker daemon has assigned a host path for you\. If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host container instance until you delete it manually\. If the `sourcePath` value does not exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\.
 
 ## Task Placement Constraints<a name="constraints"></a>
 
 When you register a task definition, you can provide task placement constraints that customize how Amazon ECS places tasks\.
 
-If you are using the Fargate launch type, task placement contraints are not supported\. By default Fargate tasks are spread across availability zones\.
+If you are using the Fargate launch type, task placement constraints are not supported\. By default Fargate tasks are spread across availability zones\.
 
 For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS Task Placement Constraints](task-placement-constraints.md)\.
 
@@ -653,7 +659,7 @@ The type of constraint\. Use `memberOf` to restrict selection to a group of vali
 
 ## Launch Types<a name="requires_compatibilities"></a>
 
-When you register a task definition, you specify the launch type that you will be using for your task\. For more details about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
+When you register a task definition, you specify the launch type to use for your task\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
 
 The following parameter is allowed in a task definition:
 
@@ -677,7 +683,7 @@ The following parameter is allowed in a task definition:
 Type: string  
 Required: no  
 This parameter is not supported for Windows containers\.
-The number of CPU units used by the task\. It can be expressed as an integer using CPU units, for example `1024`, or as a string using vCPUs, for example `1 vCPU` or `1 vcpu`, in a task definition but will be converted to an integer indicating the CPU units when the task definition is registered\.  
+The number of CPU units used by the task\. It can be expressed as an integer using CPU units, for example `1024`, or as a string using vCPUs, for example `1 vCPU` or `1 vcpu`, in a task definition\. When the task definition is registered, a vCPU value is converted to an integer indicating the CPU units\.  
 If using the EC2 launch type, this field is optional\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
 If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
@@ -686,7 +692,7 @@ If using the Fargate launch type, this field is required and you must use one of
 Type: string  
 Required: no  
 This parameter is not supported for Windows containers\.
-The amount of memory \(in MiB\) used by the task\. It can be expressed as an integer using MiB, for example `1024`, or as a string using GB, for example `1GB` or `1 GB`, in a task definition but will be converted to an integer indicating the MiB when the task definition is registered\.  
+The amount of memory \(in MiB\) used by the task\. It can be expressed as an integer using MiB, for example `1024`, or as a string using GB, for example `1GB` or `1 GB`, in a task definition\. When the task definition is registered, a GB value is converted to an integer indicating the MiB\.  
 If using the EC2 launch type, this field is optional\.  
 If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
