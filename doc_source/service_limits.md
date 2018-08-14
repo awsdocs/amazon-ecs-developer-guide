@@ -29,14 +29,3 @@ The following table provides other limitations for Amazon ECS that cannot be cha
 | Maximum layer size of an image used by a task using the Fargate launch type | 4 GB | 
 | Maximum size of a shared volume used by multiple containers within a task using the Fargate launch type | 4 GB | 
 | Maximum container storage for tasks using the Fargate launch type | 10 GB | 
-
-The following table provides the supported task CPU and memory values for Fargate tasks, that cannot be changed\.
-
-
-| CPU value | Memory value \(MiB\) | 
-| --- | --- | 
-| 256 \(\.25 vCPU\) | 512 \(0\.5GB\), 1024 \(1GB\), 2048 \(2GB\) | 
-| 512 \(\.5 vCPU\) | 1024 \(1GB\), 2048 \(2GB\), 3072 \(3GB\), 4096 \(4GB\) | 
-| 1024 \(1 vCPU\) | 2048 \(2GB\), 3072 \(3GB\), 4096 \(4GB\), 5120 \(5GB\), 6144 \(6GB\), 7168 \(7GB\), 8192 \(8GB\) | 
-| 2048 \(2 vCPU\) | Between 4096 \(4GB\) and 16384 \(16GB\) in increments of 1024 \(1GB\) | 
-| 4096 \(4 vCPU\) | Between 8192 \(8GB\) and 30720 \(30GB\) in increments of 1024 \(1GB\) | 
