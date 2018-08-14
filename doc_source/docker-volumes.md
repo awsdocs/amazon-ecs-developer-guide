@@ -1,6 +1,6 @@
 # Docker Volumes<a name="docker-volumes"></a>
 
-When using Docker volumes, the built\-in `local` driver or a third\-party volume driver can be used\. If a third\-party driver is used, it should be installed on the container instance before the task is launched\. Docker volumes are managed by Docker and a directory is created in `/var/lib/docker/volumes` on the container instance that contains the volume data\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use Docker volumes, specify a `DockerVolumeConfiguration` in your task definition\. For more information, see [Using volumes](https://docs.docker.com/storage/volumes/)\.
+When using Docker volumes, the built\-in `local` driver or a third\-party volume driver can be used\. If a third\-party driver is used, it should be installed on the container instance before the task is launched\. Docker volumes are managed by Docker and a directory is created in `/var/lib/docker/volumes` on the container instance that contains the volume data\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use Docker volumes, specify a `dockerVolumeConfiguration` in your task definition\. For more information, see [Using volumes](https://docs.docker.com/storage/volumes/)\.
 
 Some common use cases for Docker volumes are:
 + To provide persistent data volumes for use with containers
@@ -10,7 +10,7 @@ Some common use cases for Docker volumes are:
 
 ## Specifying a Docker volume in your Task Definition<a name="specify-volume-config"></a>
 
-Before your containers can use data volumes, you must specify the volume and mount point configurations in your task definition\. This section describes the volume configuration for a container\. For tasks that use a Docker volume, specify a `DockerVolumeConfiguration`\. For tasks that use a bind mount host volume, specify a `host` and optional `sourcePath`\.
+Before your containers can use data volumes, you must specify the volume and mount point configurations in your task definition\. This section describes the volume configuration for a container\. For tasks that use a Docker volume, specify a `dockerVolumeConfiguration`\. For tasks that use a bind mount host volume, specify a `host` and optional `sourcePath`\.
 
 The task definition JSON shown below shows the syntax for the `volumes` and `mountPoints` objects for a container\.
 
@@ -18,29 +18,32 @@ The task definition JSON shown below shows the syntax for the `volumes` and `mou
 {
     "containerDefinitions": [
         {
-            "name": "string",
-            "volumes": [
-                {
-                    "name": "string",
-                    "DockerVolumeConfiguration" : {
-                        "scope": "string",
-                        "autoprovision": boolean,
-                        "driver": "string",
-                        "driverOpts": {
-                            "key":"value"
-                        },
-                        "labels": {
-                            "key":"value"
-                        }
-                    }
-                }
-            ],
             "mountPoints": [
                 {
-                  "sourceVolume": "string",
-                  "containerPath": "/path/to/mount_volume"
+                    "sourceVolume": "string",
+                    "containerPath": "/path/to/mount_volume",
+                    "readOnly": boolean
                 }
             ]
+        }
+    ],
+    "volumes": [
+        {
+            "name": "string",
+            "host": {
+                "sourcePath": "string"
+            },
+            "dockerVolumeConfiguration": {
+                "scope": "string",
+                "autoprovision": boolean,
+                "driver": "string",
+                "driverOpts": {
+                    "key": "value"
+                },
+                "labels": {
+                    "key": "value"
+                }
+            }
         }
     ]
 }
@@ -51,7 +54,7 @@ Type: String
 Required: No  
 The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints`\.
 
-`DockerVolumeConfiguration`  
+`dockerVolumeConfiguration`  
 Type: Object  
 Required: No  
 This parameter is specified when using Docker volumes\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use bind mounts, specify a `host` instead\.    
@@ -110,7 +113,7 @@ In this example, you want a container to use an empty data volume that you aren'
    "volumes": [
        {
            "name": "scratch",
-           "DockerVolumeConfiguration" : {
+           "dockerVolumeConfiguration" : {
                "scope": "task",
                "autoprovision": true,
                "driver": "local",
@@ -148,7 +151,7 @@ In this example, you want a shared volume for multiple containers to use and you
    "volumes": [
        {
            "name": "database",
-           "DockerVolumeConfiguration" : {
+           "dockerVolumeConfiguration" : {
                "scope": "shared",
                "autoprovision": true,
                "driver": "local",

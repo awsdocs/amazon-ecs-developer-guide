@@ -126,11 +126,14 @@ An empty task definition template is shown below\. You can use this template to 
     "family": "",
     "taskRoleArn": "",
     "executionRoleArn": "",
-    "networkMode": "bridge",
+    "networkMode": "awsvpc",
     "containerDefinitions": [
         {
             "name": "",
             "image": "",
+            "repositoryCredentials": {
+                "credentialsParameter": ""
+            },
             "cpu": 0,
             "memory": 0,
             "memoryReservation": 0,
@@ -184,11 +187,21 @@ An empty task definition template is shown below\. You can use this template to 
                         "hostPath": "",
                         "containerPath": "",
                         "permissions": [
-                            "write"
+                            "mknod"
                         ]
                     }
                 ],
-                "initProcessEnabled": true
+                "initProcessEnabled": true,
+                "sharedMemorySize": 0,
+                "tmpfs": [
+                    {
+                        "containerPath": "",
+                        "size": 0,
+                        "mountOptions": [
+                            ""
+                        ]
+                    }
+                ]
             },
             "hostname": "",
             "user": "",
@@ -216,16 +229,25 @@ An empty task definition template is shown below\. You can use this template to 
             },
             "ulimits": [
                 {
-                    "name": "memlock",
+                    "name": "rttime",
                     "softLimit": 0,
                     "hardLimit": 0
                 }
             ],
             "logConfiguration": {
-                "logDriver": "journald",
+                "logDriver": "json-file",
                 "options": {
                     "KeyName": ""
                 }
+            },
+            "healthCheck": {
+                "command": [
+                    ""
+                ],
+                "interval": 0,
+                "timeout": 0,
+                "retries": 0,
+                "startPeriod": 0
             }
         }
     ],
@@ -235,15 +257,15 @@ An empty task definition template is shown below\. You can use this template to 
             "host": {
                 "sourcePath": ""
             },
-            "DockerVolumeConfiguration": {
-                "scope": "",
-                "autoprovision": false,
+            "dockerVolumeConfiguration": {
+                "scope": "shared",
+                "autoprovision": true,
                 "driver": "",
                 "driverOpts": {
-                    "key":"value"
+                    "KeyName": ""
                 },
                 "labels": {
-                    "key":"value"
+                    "KeyName": ""
                 }
             }
         }
