@@ -169,7 +169,7 @@ The Amazon Linux AMI always includes the recommended version of Docker for use w
 
    For more information about these and other agent runtime options, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\. 
 **Note**  
-You can optionally store your agent environment variables in Amazon S3 \(which can be downloaded to your container instances at launch time using Amazon EC2 user data\)\. This is recommended for sensitive information such as authentication credentials for private repositories\. For more information, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3) and [Private Registry Authentication](private-auth.md)\.
+You can optionally store your agent environment variables in Amazon S3 \(which can be downloaded to your container instances at launch time using Amazon EC2 user data\)\. This is recommended for sensitive information such as authentication credentials for private repositories\. For more information, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3) and [Private Registry Authentication for Tasks](private-auth.md)\.
 
 1. Pull and run the latest Amazon ECS container agent on your container instance\.
 **Note**  
