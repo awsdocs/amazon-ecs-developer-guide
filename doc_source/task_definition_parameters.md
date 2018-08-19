@@ -42,12 +42,24 @@ When you register a task definition, you can provide a task execution role that 
 `networkMode`  
 Type: string  
 Required: no  
-The Docker networking mode to use for the containers in the task\. The valid values are `none`, `bridge`, `awsvpc`, and `host`\. The default Docker network mode is `bridge`\. If using the Fargate launch type, the `awsvpc` network mode is required\. If using the EC2 launch type, any network mode can be used\. If the network mode is set to `none`, you can't specify port mappings in your container definitions, and the task's containers do not have external connectivity\. The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode\.  
-With the `host` and `awsvpc` network modes, exposed container ports are mapped directly to the corresponding host port \(for the `host` network mode\) or the attached elastic network interface port \(for the `awsvpc` network mode\), so you cannot take advantage of dynamic host port mappings\.   
-If the network mode is `awsvpc`, the task is allocated an elastic network interface, and you must specify a `NetworkConfiguration` when you create a service or run a task with the task definition\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.  
-Currently, only the Amazon ECS\-optimized AMI, other Amazon Linux variants with the `ecs-init` package, or AWS Fargate infrastructure support the `awsvpc` network mode\. 
-If the network mode is `host`, you can't run multiple instantiations of the same task on a single container instance when port mappings are used\.  
-Docker for Windows uses different network modes than Docker for Linux\. When you register a task definition with Windows containers, you must not specify a network mode\. If you use the console to register a task definition with Windows containers, you must choose the `<default>` network mode object\. 
+
+The Docker networking mode to use for the containers in the task\. The valid values are `none`, `bridge`, `awsvpc`, and `host`\. 
+
+If the network mode is set to `none`, the task's containers do not have external connectivity\.  This implies you can't specify port mappings in your container definitions.
+
+If the network mode is `bridge`, the task utilizes Docker's built-in virtual network which runs inside each cluster instance.
+
+If the network mode is `host`, the task bypasses Docker's built-in virtual network and maps container ports directly to the EC2 instance's network interface directly.  In this mode, you can't run multiple instantiations of the same task on a single container instance when port mappings are used\.  
+
+If the network mode is `awsvpc`, the task is allocated an Elastic Network Interface, and you must specify a `NetworkConfiguration` when you create a service or run a task with the task definition\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.  Currently, only the Amazon ECS\-optimized AMI, other Amazon Linux variants with the `ecs-init` package, or AWS Fargate infrastructure support the `awsvpc` network mode\. 
+
+The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode\.  With the `host` and `awsvpc` network modes, exposed container ports are mapped directly to the corresponding host port \(for the `host` network mode\) or the attached elastic network interface port \(for the `awsvpc` network mode\), so you cannot take advantage of dynamic host port mappings\.   
+
+Docker for Windows uses a different network mode \(known as `NAT`\) than Docker for Linux\. When you register a task definition with Windows containers, you must not specify a network mode\. If you use the AWS Management Console to register a task definition with Windows containers, you must choose the `<default>` network mode\. 
+
+If using the Fargate launch type, the `awsvpc` network mode is required\. If using the EC2 launch type, the allowable network mode depends on the underlying EC2 instance's operating system\.  If Linux, any network mode can be used\.  If Windows, only the `NAT` mode is allowed, as described above\.
+
+When using the AWS management console, you may specify the value of `<default>` for networking mode\.  When running a Fargate cluster `awsvpc` is the default mode\.  If running Linux-based cluster instances, the `<default>` network mode is `bridge`\.  For Windows-based cluster instances, the `NAT` mode is used, as described above\.  
 
 ## Container Definitions<a name="container_definitions"></a>
 
