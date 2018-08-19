@@ -1,11 +1,13 @@
 # Document History<a name="document_history"></a>
 
 The following table describes the important changes to the documentation since the last release of Amazon ECS\. We also update the documentation frequently to address the feedback that you send us\.
-+ **Latest documentation update:** July 19th, 2018
++ **Latest documentation update:** August 16th, 2018
 
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Private registry authentication using AWS Secrets Manager support  |  Amazon ECS introduced support for private registry authentication using AWS Secrets Manager\. This feature enables you to store your credentials securely and then reference them in your container definition, which allows your tasks to use private images\. For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.  |  16 August 2018  | 
+|  Docker volume support added  |  Amazon ECS introduced support for Docker volumes\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.  |  9 August 2018  | 
 |  AWS Fargate region expansion  |  AWS Fargate with Amazon ECS has expanded to the EU \(Frankfurt\), Asia Pacific \(Singapore\), and Asia Pacific \(Sydney\) regions\. For more information, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\.  |  19 July 2018  | 
 |  Amazon ECS CLI v1\.7\.0  |  New version of the Amazon ECS CLI released, which added the following functionality: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html)  |  18 July 2018  | 
 |  Amazon ECS service scheduler strategies added  |  Amazon ECS introduced the concept of service scheduler strategies\. There are two service scheduler strategies available: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/document_history.html) For more information, see [Service Scheduler Concepts](ecs_services.md#service_scheduler)\.  |  12 June 2018  | 

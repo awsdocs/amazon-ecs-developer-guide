@@ -21,9 +21,9 @@ The following should be considered when specifying a platform version:
 The following is a list of the platform versions currently available:
 
 Fargate Platform Version‐1\.1\.0  
-+ Added support for [Amazon ECS Task Metadata Endpoint](task-metadata-endpoint.md)\.
-+ Added support for [Health Check](task_definition_parameters.md#container_definition_healthcheck)\.
-+ Added support for [Service Discovery](service-discovery.md)
++ Added support for the Amazon ECS task metadata endpoint\. For more information, see [Amazon ECS Task Metadata Endpoint](task-metadata-endpoint.md)\.
++ Added support for Docker health checks in container definitions\. For more information, see [Health Check](task_definition_parameters.md#container_definition_healthcheck)\.
++ Added support for Amazon ECS service discovery\. For more information, see [Service Discovery](service-discovery.md)\.
 
 Fargate Platform Version‐1\.0\.0  
 + Based on Amazon Linux 2017\.09\.

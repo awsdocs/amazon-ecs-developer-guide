@@ -31,7 +31,7 @@ Your Amazon ECS container instances also require `logs:CreateLogStream` and `log
 
 ## Creating Your Log Groups<a name="create_awslogs_loggroups"></a>
 
-The `awslogs` log driver can send log streams to existing log groups in CloudWatch Logs, but it cannot create log groups\. Before you launch any tasks that use the `awslogs` log driver, you should ensure the log groups that you intend your containers to use are created\. The console provides an auto\-configure option so if you register your task definitions in the console and choose the **Auto\-configure CloudWatch Logs** option your log groups will be created for you\. Alternatively, you can manually create your log groups using the following steps\.
+The `awslogs` log driver can send log streams to existing log groups in CloudWatch Logs, but it cannot create log groups\. Before you launch any tasks that use the `awslogs` log driver, you should ensure the log groups that you intend your containers to use are created\. The console provides an auto\-configure option\. If you register your task definitions in the console and choose the **Auto\-configure CloudWatch Logs** option, your log groups are created for you\. Alternatively, you can manually create your log groups using the following steps\.
 
 As an example, you could have a task with a WordPress container \(which uses the `awslogs-wordpress` log group\) that is linked to a MySQL container \(which uses the `awslogs-mysql` log group\)\. The sections below show how to create these log groups with the AWS CLI and with the CloudWatch console\.
 
@@ -47,7 +47,7 @@ aws logs create-log-group --log-group-name awslogs-wordpress --region us-west-2
 
 ### Using the Auto\-configuration Feature to Create a Log Group<a name="create_awslogs_loggroups_auto"></a>
 
-When registering a task definition in the Amazon ECS console, you have the option to allow Amazon ECS to auto\-configure your CloudWatch logs, which will also create the specified log groups for you\. The auto\-configuration option sets up the CloudWatch logs and log groups with the specified prefix to make it easy\.
+When registering a task definition in the Amazon ECS console, you have the option to allow Amazon ECS to auto\-configure your CloudWatch logs\. The optionalso creates the specified log groups for you\. To make it easy, the auto\-configuration option sets up the CloudWatch logs and log groups with the specified prefix\.
 
 **To create a log group in the Amazon ECS console**
 
@@ -55,13 +55,13 @@ When registering a task definition in the Amazon ECS console, you have the optio
 
 1. In the left navigation pane, choose **Task Definitions**, **Create new Task Definition**\.
 
-1. Choose your compatibility option and then **Next Step**\.
+1. Select your compatibility option and choose **Next Step**\.
 
-1. Choose **Add container** to begin creating your container definition\.
+1. Choose **Add container**\.
 
-1. In the **Storage and Logging** section, for **Log configuration** choose **Auto\-configure CloudWatch Logs**\.
+1. In the **Storage and Logging** section, for **Log configuration**, choose **Auto\-configure CloudWatch Logs**\.
 
-1. Enter your awslogs log driver options\. For more details, see [Specifying a Log Configuration in your Task Definition](#specify-log-config)\.
+1. Enter your awslogs log driver options\. For more information, see [Specifying a Log Configuration in your Task Definition](#specify-log-config)\.
 
 1. Complete the rest of the task definition wizard\.
 
@@ -103,7 +103,7 @@ Specify the region to which the `awslogs` log driver should send your Docker log
 
 `awslogs-group`  
 Required: Yes  
-You must specify a log group to which the `awslogs` log driver will send its log streams\. For more information, see [Creating Your Log Groups](#create_awslogs_loggroups)\.
+You must specify a log group to which the `awslogs` log driver sends its log streams\. For more information, see [Creating Your Log Groups](#create_awslogs_loggroups)\.
 
 `awslogs-multiline-pattern`  
 Required: No  

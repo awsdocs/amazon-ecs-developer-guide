@@ -320,7 +320,7 @@ The following IAM policy allows a user to list and deregister container instance
     {
       "Effect": "Allow",
       "Action": [
-        "ecs:DescribeContainerInstance"
+        "ecs:DescribeContainerInstances"
       ],
       "Condition": {
         "ArnEquals": {

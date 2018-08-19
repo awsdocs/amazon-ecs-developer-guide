@@ -15,9 +15,13 @@ The Amazon ECS\-optimized AMI comes prepackaged with the Amazon ECS container ag
 **Note**  
 As new Amazon ECS\-optimized AMIs and Amazon ECS agent versions are released, older versions are still available for launch in Amazon EC2\. However, we encourage you to [update to the latest version](ecs-agent-update.md) of the Amazon ECS agent and to keep your container instance software up\-to\-date\. If you request support for an older version of the Amazon ECS agent through AWS Support, you may be asked to move to the latest version as a part of the support process\.
 
+**Important**  
+Amazon ECS agent versions 1\.20\.0 and later have deprecated support for Docker versions older than 1\.9\.0\.
+
 
 | Amazon ECS\-optimized Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 2018\.03\.e | 1\.20\.1 | 18\.03\.1\-ce | 1\.20\.1\-1 | 
 | 2018\.03\.d | 1\.20\.0 | 18\.03\.1\-ce | 1\.20\.0\-1 | 
 | 2018\.03\.c | 1\.19\.1 | 18\.03\.1\-ce | 1\.19\.1\-1 | 
 | 2018\.03\.b | 1\.19\.0 | 18\.03\.1\-ce | 1\.19\.0\-1 | 

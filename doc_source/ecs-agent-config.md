@@ -36,7 +36,7 @@ An array of UDP ports that should be marked as unavailable for scheduling on thi
 Example values: `dockercfg | docker`  
 Default value on Linux: Null  
 Default value on Windows: Null  
-Required for private registry authentication\. This is the type of authentication data in `ECS_ENGINE_AUTH_DATA`\. For more information, see [Authentication Formats](private-auth.md#docker-auth-formats)\.
+Required for private registry authentication\. This is the type of authentication data in `ECS_ENGINE_AUTH_DATA`\. For more information, see [Authentication Formats](private-auth-container-instances.md#docker-auth-formats)\.
 
 `ECS_ENGINE_AUTH_DATA`  
 Example values:   
@@ -44,7 +44,7 @@ Example values:
 + `ECS_ENGINE_AUTH_TYPE=docker`: `{"https://index.docker.io/v1/":{"username":"my_name","password":"my_password","email":"email@example.com"}}`
 Default value on Linux: Null  
 Default value on Windows: Null  
-Required for private registry authentication\. If `ECS_ENGINE_AUTH_TYPE=dockercfg`, then the `ECS_ENGINE_AUTH_DATA` value should be the contents of a Docker configuration file \(`~/.dockercfg` or `~/.docker/config.json`\) created by running docker login\. If `ECS_ENGINE_AUTH_TYPE=docker`, then the `ECS_ENGINE_AUTH_DATA` value should be a JSON representation of the registry server to authenticate against, as well as the authentication parameters required by that registry \(such as user name, password, and email address for that account\)\. For more information, see [Authentication Formats](private-auth.md#docker-auth-formats)\.
+Required for private registry authentication\. If `ECS_ENGINE_AUTH_TYPE=dockercfg`, then the `ECS_ENGINE_AUTH_DATA` value should be the contents of a Docker configuration file \(`~/.dockercfg` or `~/.docker/config.json`\) created by running docker login\. If `ECS_ENGINE_AUTH_TYPE=docker`, then the `ECS_ENGINE_AUTH_DATA` value should be a JSON representation of the registry server to authenticate against, as well as the authentication parameters required by that registry \(such as user name, password, and email address for that account\)\. For more information, see [Authentication Formats](private-auth-container-instances.md#docker-auth-formats)\.
 
 `AWS_DEFAULT_REGION`  
 Example values: `us-east-1`  
@@ -316,7 +316,7 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
 
 **To store an `ecs.config` file in Amazon S3**
 
-1. Create an `ecs.config` file with valid environment variables and values from [Amazon ECS Container Agent Configuration](#ecs-agent-config) using the following format\. This example configures private registry authentication\. For more information, see [Private Registry Authentication](private-auth.md)\.
+1. Create an `ecs.config` file with valid environment variables and values from [Amazon ECS Container Agent Configuration](#ecs-agent-config) using the following format\. This example configures private registry authentication\. For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.
 
    ```
    ECS_ENGINE_AUTH_TYPE=dockercfg
