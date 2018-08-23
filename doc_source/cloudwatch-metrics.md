@@ -130,7 +130,7 @@ For example, the task definition for a service specifies a total of 512 CPU unit
 
 If the previous example used the soft limit `memoryReservation` instead of the hard limit `memory` parameter, the service's tasks could use more than the specified 1,024 MiB of memory if they needed to\. In this case, the service's memory utilization could exceed 100%\.
 
-If this task is performing CPU\-intensive work during a period and using all 2,048 of the available CPU units and 512 MiB of memory, then the service reports 400% CPU utilization and 50% memory utilization\. If the task is idle and using 128 CPU units and 128 MiB of memory, then the service reports 25% CPU utilization and 12\.5% memory utilization\.
+If this task is performing CPU\-intensive work during a period and using all 2,048 of the available CPU units and 512 MiB of memory, then the service reports 400% CPU utilization and 50% memory utilization\. If the task is idle and using 128 CPU units and 128 MiB of memory, then the service reports 6\.25% CPU utilization and 25% memory utilization\.
 
 ## Service `RUNNING` Task Count<a name="cw_running_task_count"></a>
 
