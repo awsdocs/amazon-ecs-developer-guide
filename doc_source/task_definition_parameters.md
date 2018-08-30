@@ -4,7 +4,7 @@ Task definitions are split into separate parts: the task family, the IAM task ro
 
 The family and container definitions are required in a task definition, while task role, network mode, volumes, task placement constraints, and launch type are optional\.
 
-
+**Topics**
 + [Family](#family)
 + [Task Role](#task_role_arn)
 + [Task Execution Role](#execution_role_arn)
@@ -42,18 +42,30 @@ When you register a task definition, you can provide a task execution role that 
 `networkMode`  
 Type: string  
 Required: no  
-The Docker networking mode to use for the containers in the task\. The valid values are `none`, `bridge`, `awsvpc`, and `host`\. The default Docker network mode is `bridge`\. If using the Fargate launch type, the `awsvpc` network mode is required\. If using the EC2 launch type, any network mode can be used\. If the network mode is set to `none`, you can't specify port mappings in your container definitions, and the task's containers do not have external connectivity\. The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode\.  
-With the `host` and `awsvpc` network modes, exposed container ports are mapped directly to the corresponding host port \(for the `host` network mode\) or the attached elastic network interface port \(for the `awsvpc` network mode\), so you cannot take advantage of dynamic host port mappings\.   
-If the network mode is `awsvpc`, the task is allocated an Elastic Network Interface, and you must specify a `NetworkConfiguration` when you create a service or run a task with the task definition\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.  
-Currently, only the Amazon ECS\-optimized AMI, other Amazon Linux variants with the `ecs-init` package, or AWS Fargate infrastructure support the `awsvpc` network mode\. 
-If the network mode is `host`, you can't run multiple instantiations of the same task on a single container instance when port mappings are used\.  
-Docker for Windows uses different network modes than Docker for Linux\. When you register a task definition with Windows containers, you must not specify a network mode\. If you use the console to register a task definition with Windows containers, you must choose the `<default>` network mode object\. 
+
+The Docker networking mode to use for the containers in the task\. The valid values are `none`, `bridge`, `awsvpc`, and `host`\. 
+
+If the network mode is set to `none`, the task's containers do not have external connectivity\.  This implies you can't specify port mappings in your container definitions.
+
+If the network mode is `bridge`, the task utilizes Docker's built-in virtual network which runs inside each cluster instance.
+
+If the network mode is `host`, the task bypasses Docker's built-in virtual network and maps container ports directly to the EC2 instance's network interface directly.  In this mode, you can't run multiple instantiations of the same task on a single container instance when port mappings are used\.  
+
+If the network mode is `awsvpc`, the task is allocated an Elastic Network Interface, and you must specify a `NetworkConfiguration` when you create a service or run a task with the task definition\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.  Currently, only the Amazon ECS\-optimized AMI, other Amazon Linux variants with the `ecs-init` package, or AWS Fargate infrastructure support the `awsvpc` network mode\. 
+
+The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode\.  With the `host` and `awsvpc` network modes, exposed container ports are mapped directly to the corresponding host port \(for the `host` network mode\) or the attached elastic network interface port \(for the `awsvpc` network mode\), so you cannot take advantage of dynamic host port mappings\.   
+
+Docker for Windows uses a different network mode \(known as `NAT`\) than Docker for Linux\. When you register a task definition with Windows containers, you must not specify a network mode\. If you use the AWS Management Console to register a task definition with Windows containers, you must choose the `<default>` network mode\. 
+
+If using the Fargate launch type, the `awsvpc` network mode is required\. If using the EC2 launch type, the allowable network mode depends on the underlying EC2 instance's operating system\.  If Linux, any network mode can be used\.  If Windows, only the `NAT` mode is allowed, as described above\.
+
+When using the AWS management console, you may specify the value of `<default>` for networking mode\.  When running a Fargate cluster `awsvpc` is the default mode\.  If running Linux-based cluster instances, the `<default>` network mode is `bridge`\.  For Windows-based cluster instances, the `NAT` mode is used, as described above\.  
 
 ## Container Definitions<a name="container_definitions"></a>
 
 When you register a task definition, you must specify a list of container definitions that are passed to the Docker daemon on a container instance\. The following parameters are allowed in a container definition\.
 
-
+**Topics**
 + [Standard Container Definition Parameters](#standard_container_definition_params)
 + [Advanced Container Definition Parameters](#advanced_container_definition_params)
 
@@ -64,29 +76,23 @@ The following task definition parameters are either required or used in most con
 `name`  
 Type: string  
 Required: yes  
-The name of a container\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. If you are linking multiple containers together in a task definition, the `name` of one container can be entered in the `links` of another container to connect the containers\. This parameter maps to `name` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--name` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.
+The name of a container\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. If you are linking multiple containers together in a task definition, the `name` of one container can be entered in the `links` of another container to connect the containers\. This parameter maps to `name` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--name` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.
 
 `image`  
 Type: string  
 Required: yes  
-The image used to start a container\. This string is passed directly to the Docker daemon\. Images in the Docker Hub registry are available by default\. You can also specify other repositories with either `repository-url/image:tag` or `repository-url/image@digest`\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, underscores, colons, periods, forward slashes, and number signs are allowed\. This parameter maps to `Image` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `IMAGE` parameter of [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-
+The image used to start a container\. This string is passed directly to the Docker daemon\. Images in the Docker Hub registry are available by default\. You can also specify other repositories with either `repository-url/image:tag` or `repository-url/image@digest`\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, underscores, colons, periods, forward slashes, and number signs are allowed\. This parameter maps to `Image` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `IMAGE` parameter of [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 + When a new task starts, the Amazon ECS container agent pulls the latest version of the specified image and tag for the container to use\. However, subsequent updates to a repository image are not propagated to already running tasks\.
-
 + The Fargate launch type only supports images in Amazon ECR or public repositories in Docker Hub\.
-
 + Images in Amazon ECR repositories can be specified by using either the full `registry/repository:tag` or `registry/repository@digest` naming convention\. For example, `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app:latest` or `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app@sha256:94afd1f2e64d908bc90dbca0035a5b567EXAMPLE`
-
 + Images in official repositories on Docker Hub use a single name \(for example, `ubuntu` or `mongo`\)\.
-
 + Images in other repositories on Docker Hub are qualified with an organization name \(for example, `amazon/amazon-ecs-agent`\)\.
-
 + Images in other online repositories are qualified further by a domain name \(for example, `quay.io/assemblyline/ubuntu`\)\.
 
 `memory`  
 Type: integer  
 Required: no  
-The hard limit \(in MiB\) of memory to present to the container\. If your container attempts to exceed the memory specified here, the container is killed\. This parameter maps to `Memory` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--memory` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The hard limit \(in MiB\) of memory to present to the container\. If your container attempts to exceed the memory specified here, the container is killed\. This parameter maps to `Memory` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--memory` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 If your containers will be part of a task using the Fargate launch type, this field is optional and the only requirement is that the total amount of memory reserved for all containers within a task be lower than the task `memory` value\.  
 For containers that will be part of a task using the EC2 launch type, you must specify a non\-zero integer for one or both of `memory` or `memoryReservation` in container definitions\. If you specify both, `memory` must be greater than `memoryReservation`\. If you specify `memoryReservation`, then that value is subtracted from the available memory resources for the container instance on which the container is placed; otherwise, the value of `memory` is used\.  
 The Docker daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.  
@@ -95,7 +101,7 @@ If you are trying to maximize your resource utilization by providing your tasks 
 `memoryReservation`  
 Type: integer  
 Required: no  
-The soft limit \(in MiB\) of memory to reserve for the container\. When system memory is under contention, Docker attempts to keep the container memory to this soft limit; however, your container can consume more memory when it needs to, up to either the hard limit specified with the `memory` parameter \(if applicable\), or all of the available memory on the container instance, whichever comes first\. This parameter maps to `MemoryReservation` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--memory-reservation` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The soft limit \(in MiB\) of memory to reserve for the container\. When system memory is under contention, Docker attempts to keep the container memory to this soft limit; however, your container can consume more memory when it needs to, up to either the hard limit specified with the `memory` parameter \(if applicable\), or all of the available memory on the container instance, whichever comes first\. This parameter maps to `MemoryReservation` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--memory-reservation` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 You must specify a non\-zero integer for one or both of `memory` or `memoryReservation` in container definitions\. If you specify both, `memory` must be greater than `memoryReservation`\. If you specify `memoryReservation`, then that value is subtracted from the available memory resources for the container instance on which the container is placed; otherwise, the value of `memory` is used\.  
 For example, if your container normally uses 128 MiB of memory, but occasionally bursts to 256 MiB of memory for short periods of time, you can set a `memoryReservation` of 128 MiB, and a `memory` hard limit of 300 MiB\. This configuration would allow the container to only reserve 128 MiB of memory from the remaining resources on the container instance, but also allow the container to consume more memory resources when needed\.  
 The Docker daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.
@@ -106,27 +112,24 @@ Required: no
 Port mappings allow containers to access ports on the host container instance to send or receive traffic\.  
 For task definitions that use the `awsvpc` network mode, you should only specify the `containerPort`\. The `hostPort` can be left blank or it must be the same value as the `containerPort`\.  
 Port mappings on Windows use the `NetNAT` gateway address rather than `localhost`\. There is no loopback for port mappings on Windows, so you cannot access a container's mapped port from the host itself\.   
-This parameter maps to `PortBindings` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--publish` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. If the network mode of a task definition is set to `host`, then host ports must either be undefined or they must match the container port in the port mapping\.  
+This parameter maps to `PortBindings` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--publish` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. If the network mode of a task definition is set to `host`, then host ports must either be undefined or they must match the container port in the port mapping\.  
 After a task reaches the `RUNNING` status, manual and automatic host and container port assignments are visible in the following locations:  
-
 + Console: The **Network Bindings** section of a container description for a selected task\.
-
 + AWS CLI: The `networkBindings` section of the describe\-tasks command output\.
-
 + API: The `DescribeTasks` response\.  
 `containerPort`  
 Type: integer  
 Required: yes, when `portMappings` are used  
 The port number on the container that is bound to the user\-specified or automatically assigned host port\.  
-If using containers in a task with the Fargate, exposed ports should be specified using `containerPort`\.  
+If using containers in a task with the Fargate launch type, exposed ports should be specified using `containerPort`\.  
 If using containers in a task with the EC2 launch type and you specify a container port and not a host port, your container automatically receives a host port in the ephemeral port range \(for more information, see `hostPort`\)\. Port mappings that are automatically assigned in this way do not count toward the 100 reserved ports limit of a container instance\.  
 `hostPort`  
 Type: integer  
 Required: no  
 The port number on the container instance to reserve for your container\.  
-If using containers in a task with the Fargate, the `hostPort` can either be left blank or be the same value as `containerPort`\.  
+If using containers in a task with the Fargate launch type, the `hostPort` can either be left blank or be the same value as `containerPort`\.  
 If using containers in a task with the EC2 launch type, you can specify a non\-reserved host port for your container port mapping \(this is referred to as *static* host port mapping\), or you can omit the `hostPort` \(or set it to `0`\) while specifying a `containerPort` and your container automatically receives a port \(this is referred to as *dynamic* host port mapping\) in the ephemeral port range for your container instance operating system and Docker version\.  
-The default ephemeral port range is 49153–65535, and this range is used for Docker versions prior to 1\.6\.0\. For Docker version 1\.6\.0 and later, the Docker daemon tries to read the ephemeral port range from `/proc/sys/net/ipv4/ip_local_port_range` \(which is 32768–61000 on the latest Amazon ECS\-optimized AMI\); if this kernel parameter is unavailable, the default ephemeral port range is used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below 32768 are outside of the ephemeral port range\.  
+The default ephemeral port range is `49153–65535`, and this range is used for Docker versions prior to 1\.6\.0\. For Docker version 1\.6\.0 and later, the Docker daemon tries to read the ephemeral port range from `/proc/sys/net/ipv4/ip_local_port_range` \(which is 32768–61000 on the latest Amazon ECS\-optimized AMI\); if this kernel parameter is unavailable, the default ephemeral port range is used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below 32768 are outside of the ephemeral port range\.  
 The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376, and the Amazon ECS container agent port 51678\. Any host port that was previously user\-specified for a running task is also reserved while the task is running \(after a task stops, the host port is released\)\. The current reserved ports are displayed in the `remainingResources` of describe\-container\-instances output, and a container instance may have up to 100 reserved ports at a time, including the default reserved ports \(automatically assigned ports do not count toward the 100 reserved ports limit\)\.  
 `protocol`  
 Type: string  
@@ -159,7 +162,7 @@ If you want an automatically assigned host port, use the following syntax:
 
 The following advanced container definition parameters provide extended capabilities to the [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/) command that is used to launch containers on your Amazon ECS container instances\.
 
-
+**Topics**
 + [Health Check](#container_definition_healthcheck)
 + [Environment](#container_definition_environment)
 + [Network Settings](#container_definition_network)
@@ -167,21 +170,31 @@ The following advanced container definition parameters provide extended capabili
 + [Security](#container_definition_security)
 + [Resource Limits](#container_definition_limits)
 + [Docker Labels](#container_definition_labels)
++ [Linux Parameters](#container_definition_linuxparameters)
 
 #### Health Check<a name="container_definition_healthcheck"></a>
 
 `healthCheck`  
-The health check command and associated configuration parameters for the container\. This parameter maps to `HealthCheck` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `HEALTHCHECK` parameter of [docker run](https://docs.docker.com/engine/reference/run/)\.   
+The health check command and associated configuration parameters for the container\. This parameter maps to `HealthCheck` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `HEALTHCHECK` parameter of [docker run](https://docs.docker.com/engine/reference/run/)\.   
 The Amazon ECS container agent only monitors and reports on the health checks specified in the task definition\. Amazon ECS does not monitor Docker health checks that are embedded in a container image and not specified in the container definition\. Health check parameters that are specified in a container definition override any Docker health checks that exist in the container image\.
 Task health is reported by the `healthStatus` of the task, which is determined by the health of the essential containers in the task\. If all essential containers in the task are reporting as `HEALTHY`, then the task status also reports as `HEALTHY`\. If any essential containers in the task are reporting as `UNHEALTHY` or `UNKNOWN`, then the task status also reports as `UNHEALTHY` or `UNKNOWN`, accordingly\. If a service's task reports as unhealthy, it is removed from a service and replaced\.  
-Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.  
+The following are notes about container health check support:  
++ Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
++ Container health checks are supported for Fargate tasks if using platform version version 1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
++ Container health checks are not supported for tasks that are part of a service that is configured to use a Classic Load Balancer\.  
 `command`  
-A string array representing the command that the container runs to determine if it is healthy\. The string array must start with `CMD` to execute the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. For example:  
+A string array representing the command that the container runs to determine if it is healthy\. The string array can start with `CMD` to execute the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. If neither is specified, `CMD` is used by default\.  
+In the console, example input for a health check could be:  
+
+```
+CMD-SHELL, curl -f http://localhost/ || exit 1
+```
+Similarly, in the console JSON panel, the AWS CLI, or the APIs, example input for a health check could be:  
 
 ```
 [ "CMD-SHELL", "curl -f http://localhost/ || exit 1" ]
 ```
-An exit code of 0 indicates success, and a non\-zero exit code indicates failure\. For more information, see `HealthCheck` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/)\.  
+An exit code of 0 indicates success, and a non\-zero exit code indicates failure\. For more information, see `HealthCheck` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/)\.  
 `interval`  
 The time period in seconds between each health check execution\. You may specify between 5 and 300 seconds\. The default value is 30 seconds\.  
 `timeout`  
@@ -196,15 +209,13 @@ The optional grace period within which to provide containers time to bootstrap b
 `cpu`  
 Type: integer  
 Required: no  
-The number of `cpu` units to reserve for the container\. This parameter maps to `CpuShares` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--cpu-shares` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The number of `cpu` units to reserve for the container\. This parameter maps to `CpuShares` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--cpu-shares` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This field is optional for tasks using the Fargate launch type, and the only requirement is that the total amount of CPU reserved for all containers within a task be lower than the task\-level `cpu` value\.  
-You can determine the number of CPU units that are available per Amazon EC2 instance type by multiplying by the vCPUs listed for that instance type on the [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) detail page\.
+You can determine the number of CPU units that are available per Amazon EC2 instance type by multiplying the number of vCPUs listed for that instance type on the [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) detail page by 1,024\.
 Linux containers share unallocated CPU units with other containers on the container instance with the same ratio as their allocated amount\. For example, if you run a single\-container task on a single\-core instance type with 512 CPU units specified for that container, and that is the only task running on the container instance, that container could use the full 1,024 CPU unit share at any given time\. However, if you launched another copy of the same task on that container instance, each task would be guaranteed a minimum of 512 CPU units when needed, and each container could float to higher CPU usage if the other container was not using it, but if both tasks were 100% active all of the time, they would be limited to 512 CPU units\.  
 On Linux container instances, the Docker daemon on the container instance uses the CPU value to calculate the relative CPU share ratios for running containers\. For more information, see [CPU share constraint](https://docs.docker.com/engine/reference/run/#cpu-share-constraint) in the Docker documentation\. The minimum valid CPU share value that the Linux kernel allows is 2\. However, the CPU parameter is not required, and you can use CPU values below 2 in your container definitions\. For CPU values below 2 \(including null\), the behavior varies based on your Amazon ECS container agent version:  
-
 + **Agent versions <= 1\.1\.0:** Null and zero CPU values are passed to Docker as 0, which Docker then converts to 1,024 CPU shares\. CPU values of 1 are passed to Docker as 1, which the Linux kernel converts to 2 CPU shares\.
-
-+ **Agent versions >= 1\.2\.0:** Null, zero, and CPU values of 1 are passed to Docker as 2\.
++ **Agent versions >= 1\.2\.0:** Null, zero, and CPU values of 1 are passed to Docker as 2 CPU shares\.
 On Windows container instances, the CPU limit is enforced as an absolute limit, or a quota\. Windows containers only have access to the specified amount of CPU that is described in the task definition\.
 
 `essential`  
@@ -221,7 +232,7 @@ All tasks must have at least one essential container\. If you have an applicatio
 Early versions of the Amazon ECS container agent do not properly handle `entryPoint` parameters\. If you have problems using `entryPoint`, update your container agent or enter your commands and arguments as `command` array items instead\.
 Type: string array  
 Required: no  
-The entry point that is passed to the container\. This parameter maps to `Entrypoint` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--entrypoint` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. For more information about the Docker `ENTRYPOINT` parameter, go to [https://docs\.docker\.com/engine/reference/builder/\#entrypoint](https://docs.docker.com/engine/reference/builder/#entrypoint)\.   
+The entry point that is passed to the container\. This parameter maps to `Entrypoint` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--entrypoint` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. For more information about the Docker `ENTRYPOINT` parameter, go to [https://docs\.docker\.com/engine/reference/builder/\#entrypoint](https://docs.docker.com/engine/reference/builder/#entrypoint)\.   
 
 ```
 "entryPoint": ["string", ...]
@@ -230,7 +241,7 @@ The entry point that is passed to the container\. This parameter maps to `Entryp
 `command`  
 Type: string array  
 Required: no  
-The command that is passed to the container\. This parameter maps to `Cmd` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `COMMAND` parameter to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. For more information about the Docker `CMD` parameter, go to [https://docs\.docker\.com/engine/reference/builder/\#cmd](https://docs.docker.com/engine/reference/builder/#cmd)\.   
+The command that is passed to the container\. This parameter maps to `Cmd` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `COMMAND` parameter to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. For more information about the Docker `CMD` parameter, go to [https://docs\.docker\.com/engine/reference/builder/\#cmd](https://docs.docker.com/engine/reference/builder/#cmd)\.   
 
 ```
 "command": ["string", ...]
@@ -239,7 +250,7 @@ The command that is passed to the container\. This parameter maps to `Cmd` in th
 `workingDirectory`  
 Type: string  
 Required: no  
-The working directory in which to run commands inside the container\. This parameter maps to `WorkingDir` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--workdir` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The working directory in which to run commands inside the container\. This parameter maps to `WorkingDir` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--workdir` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 
 ```
 "workingDirectory": "string"
@@ -248,7 +259,7 @@ The working directory in which to run commands inside the container\. This param
 `environment`  
 Type: object array  
 Required: no  
-The environment variables to pass to a container\. This parameter maps to `Env` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--env` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The environment variables to pass to a container\. This parameter maps to `Env` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--env` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.  
 `name`  
 Type: string  
@@ -271,7 +282,7 @@ The value of the environment variable\.
 `disableNetworking`  
 Type: Boolean  
 Required: no  
-When this parameter is true, networking is disabled within the container\. This parameter maps to `NetworkDisabled` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/)\.  
+When this parameter is true, networking is disabled within the container\. This parameter maps to `NetworkDisabled` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/)\.  
 This parameter is not supported for Windows containers\.
 
 ```
@@ -281,7 +292,7 @@ This parameter is not supported for Windows containers\.
 `links`  
 Type: string array  
 Required: no  
-The `link` parameter allows containers to communicate with each other without the need for port mappings\. Only supported if the network mode of a task definition is set to `bridge`\. The `name:internalName` construct is analogous to `name:alias` in Docker links\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. For more information about linking Docker containers, go to [https://docs\.docker\.com/engine/userguide/networking/default\_network/dockerlinks/](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/)\. This parameter maps to `Links` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--link` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The `link` parameter allows containers to communicate with each other without the need for port mappings\. Only supported if the network mode of a task definition is set to `bridge`\. The `name:internalName` construct is analogous to `name:alias` in Docker links\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. For more information about linking Docker containers, go to [https://docs\.docker\.com/engine/userguide/networking/default\_network/dockerlinks/](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/)\. This parameter maps to `Links` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--link` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This parameter is not supported for Windows containers\.
 Containers that are collocated on a single container instance may be able to communicate with each other without requiring links or host port mappings\. Network isolation is achieved on the container instance using security groups and VPC settings\.
 
@@ -292,7 +303,8 @@ Containers that are collocated on a single container instance may be able to com
 `hostname`  
 Type: string  
 Required: no  
-The hostname to use for your container\. This parameter maps to `Hostname` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--hostname` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The hostname to use for your container\. This parameter maps to `Hostname` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--hostname` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The `hostname` parameter is not supported if using the `awsvpc` networkMode\.
 
 ```
 "hostname": "string"
@@ -301,7 +313,7 @@ The hostname to use for your container\. This parameter maps to `Hostname` in th
 `dnsServers`  
 Type: string array  
 Required: no  
-A list of DNS servers that are presented to the container\. This parameter maps to `Dns` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--dns` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+A list of DNS servers that are presented to the container\. This parameter maps to `Dns` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--dns` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This parameter is not supported for Windows containers\.
 
 ```
@@ -311,7 +323,7 @@ This parameter is not supported for Windows containers\.
 `dnsSearchDomains`  
 Type: string array  
 Required: no  
-A list of DNS search domains that are presented to the container\. This parameter maps to `DnsSearch` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--dns-search` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+A list of DNS search domains that are presented to the container\. This parameter maps to `DnsSearch` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--dns-search` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This parameter is not supported for Windows containers\.
 
 ```
@@ -322,7 +334,7 @@ This parameter is not supported for Windows containers\.
 Type: object array  
 Required: no  
 A list of hostnames and IP address mappings to append to the `/etc/hosts` file on the container\.   
-This parameter maps to `ExtraHosts` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--add-host` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+This parameter maps to `ExtraHosts` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--add-host` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This parameter is not supported for Windows containers\.
 
 ```
@@ -348,7 +360,7 @@ The IP address to use in the `/etc/hosts` entry\.
 `readonlyRootFilesystem`  
 Type: Boolean  
 Required: no  
-When this parameter is true, the container is given read\-only access to its root file system\. This parameter maps to `ReadonlyRootfs` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--read-only` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+When this parameter is true, the container is given read\-only access to its root file system\. This parameter maps to `ReadonlyRootfs` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--read-only` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This parameter is not supported for Windows containers\.
 
 ```
@@ -356,38 +368,28 @@ This parameter is not supported for Windows containers\.
 ```
 
 `mountPoints`  
-Type: object array  
-Required: no  
+Type: Object  
+Required: No  
 The mount points for data volumes in your container\.   
-This parameter maps to `Volumes` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--volume` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+This parameter maps to `Volumes` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--volume` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\.    
 `sourceVolume`  
-Type: string  
-Required: yes, when `mountPoints` are used  
+Type: String  
+Required: Yes, when `mountPoints` are used  
 The name of the volume to mount\.  
 `containerPath`  
-Type: string  
-Required: yes, when `mountPoints` are used  
-The path on the container to mount the host volume at\.  
+Type: String  
+Required: Yes, when `mountPoints` are used  
+The path on the container to mount the volume at\.  
 `readOnly`  
 Type: Boolean  
-Required: no  
+Required: No  
 If this value is `true`, the container has read\-only access to the volume\. If this value is `false`, then the container can write to the volume\. The default value is `false`\.
-
-```
-"mountPoints": [
-                {
-                  "sourceVolume": "string",
-                  "containerPath": "string",
-                  "readOnly": true|false
-                }
-              ]
-```
 
 `volumesFrom`  
 Type: object array  
 Required: no  
-Data volumes to mount from another container\. This parameter maps to `VolumesFrom` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--volumes-from` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.    
+Data volumes to mount from another container\. This parameter maps to `VolumesFrom` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--volumes-from` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.    
 `sourceContainer`  
 Type: string  
 Required: yes, when `volumesFrom` is used  
@@ -411,7 +413,7 @@ Type: [LogConfiguration](http://docs.aws.amazon.com/AmazonECS/latest/APIReferenc
 Required: no  
 The log configuration specification for the container\.   
 If using the Fargate launch type, the only supported value is `awslogs`\. For more information on using the `awslogs` log driver in task definitions to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.  
-This parameter maps to `LogConfig` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--log-driver` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. By default, containers use the same logging driver that the Docker daemon uses; however the container may use a different logging driver than the Docker daemon by specifying a log driver with this parameter in the container definition\. To use a different logging driver for a container, the log system must be configured properly on the container instance \(or on a different log server for remote logging options\)\. For more information on the options for different supported log drivers, see [Configure logging drivers](https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation\.  
+This parameter maps to `LogConfig` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--log-driver` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. By default, containers use the same logging driver that the Docker daemon uses; however the container may use a different logging driver than the Docker daemon by specifying a log driver with this parameter in the container definition\. To use a different logging driver for a container, the log system must be configured properly on the container instance \(or on a different log server for remote logging options\)\. For more information on the options for different supported log drivers, see [Configure logging drivers](https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation\.  
 Amazon ECS currently supports a subset of the logging drivers available to the Docker daemon \(shown in the valid values below\)\. Additional log drivers may be available in future releases of the Amazon ECS container agent\.
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 The Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the `ECS_AVAILABLE_LOGGING_DRIVERS` environment variable before containers placed on that instance can use these log configuration options\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
@@ -428,7 +430,7 @@ Valid values: `"json-file" | "syslog" | "journald" | "gelf" | "fluentd" | "awslo
 Required: yes, when `logConfiguration` is used  
 The log driver to use for the container\. The valid values listed earlier are log drivers that the Amazon ECS container agent can communicate with by default\.   
 If using the Fargate launch type, the only supported value is `awslogs`\.  
-If you have a custom driver that is not listed earlier that you would like to work with the Amazon ECS container agent, you can fork the Amazon ECS container agent project that is [available on GitHub](https://github.com/aws/amazon-ecs-agent) and customize it to work with that driver\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently support running modified copies of this software\.
+If you have a custom driver that is not listed earlier that you would like to work with the Amazon ECS container agent, you can fork the Amazon ECS container agent project that is [available on GitHub](https://github.com/aws/amazon-ecs-agent) and customize it to work with that driver\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently provide support for running modified copies of this software\.
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 `options`  
 Type: string to string map  
@@ -442,7 +444,7 @@ This parameter requires version 1\.19 of the Docker Remote API or greater on you
 Type: Boolean  
 Required: no  
 When this parameter is true, the container is given elevated privileges on the host container instance \(similar to the `root` user\)\.   
-This parameter maps to `Privileged` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--privileged` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+This parameter maps to `Privileged` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--privileged` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
 
 ```
@@ -452,7 +454,7 @@ This parameter is not supported for Windows containers or tasks using the Fargat
 `user`  
 Type: string  
 Required: no  
-The user name to use inside the container\. This parameter maps to `User` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--user` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The user name to use inside the container\. This parameter maps to `User` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--user` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This parameter is not supported for Windows containers\.
 
 ```
@@ -463,7 +465,7 @@ This parameter is not supported for Windows containers\.
 Type: string array  
 Required: no  
 A list of strings to provide custom labels for SELinux and AppArmor multi\-level security systems\.   
-This parameter maps to `SecurityOpt` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--security-opt` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+This parameter maps to `SecurityOpt` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--security-opt` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
 
 ```
@@ -471,63 +473,12 @@ This parameter is not supported for Windows containers or tasks using the Fargat
 ```
 The Amazon ECS container agent running on a container instance must register with the `ECS_SELINUX_CAPABLE=true` or `ECS_APPARMOR_CAPABLE=true` environment variables before containers placed on that instance can use these security options\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 
-`linuxParameters`  
-Type: [LinuxParameters](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LinuxParameters.html) object  
-Required: no  
-Linux\-specific options that are applied to the container, such as [KernelCapabilities](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html)\.  
-This parameter is not supported for Windows containers\.
-
-```
-"linuxParameters": {
-      "capabilities": {
-        "add": ["string", ...],
-        "drop": ["string", ...]
-        }
-      }
-```  
-`capabilities`  
-Type: [KernelCapabilities](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html) object  
-Required: no  
-The Linux capabilities for the container that are added to or dropped from the default configuration provided by Docker\. For more information about the default capabilities and the non\-default available capabilities, see [Runtime privilege and Linux capabilities](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) in the *Docker run reference*\. For more detailed information about these Linux capabilities, see the [capabilities\(7\)](http://man7.org/linux/man-pages/man7/capabilities.7.html) Linux manual page\.  
-If you are using tasks that use the Fargate launch type, `capabilities` is supported but the `add` parameter described below is not supported\.  
-`add`  
-Type: string array  
-Valid values: `"ALL" | "AUDIT_CONTROL" | "AUDIT_WRITE" | "BLOCK_SUSPEND" | "CHOWN" | "DAC_OVERRIDE" | "DAC_READ_SEARCH" | "FOWNER" | "FSETID" | "IPC_LOCK" | "IPC_OWNER" | "KILL" | "LEASE" | "LINUX_IMMUTABLE" | "MAC_ADMIN" | "MAC_OVERRIDE" | "MKNOD" | "NET_ADMIN" | "NET_BIND_SERVICE" | "NET_BROADCAST" | "NET_RAW" | "SETFCAP" | "SETGID" | "SETPCAP" | "SETUID" | "SYS_ADMIN" | "SYS_BOOT" | "SYS_CHROOT" | "SYS_MODULE" | "SYS_NICE" | "SYS_PACCT" | "SYS_PTRACE" | "SYS_RAWIO" | "SYS_RESOURCE" | "SYS_TIME" | "SYS_TTY_CONFIG" | "SYSLOG" | "WAKE_ALARM"`  
-Required: no  
-The Linux capabilities for the container to add to the default configuration provided by Docker\. This parameter maps to `CapAdd` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--cap-add` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
-If you are using tasks that use the Fargate launch type, the `add` parameter is not supported\.  
-`drop`  
-Type: string array  
-Valid values: `"ALL" | "AUDIT_CONTROL" | "AUDIT_WRITE" | "BLOCK_SUSPEND" | "CHOWN" | "DAC_OVERRIDE" | "DAC_READ_SEARCH" | "FOWNER" | "FSETID" | "IPC_LOCK" | "IPC_OWNER" | "KILL" | "LEASE" | "LINUX_IMMUTABLE" | "MAC_ADMIN" | "MAC_OVERRIDE" | "MKNOD" | "NET_ADMIN" | "NET_BIND_SERVICE" | "NET_BROADCAST" | "NET_RAW" | "SETFCAP" | "SETGID" | "SETPCAP" | "SETUID" | "SYS_ADMIN" | "SYS_BOOT" | "SYS_CHROOT" | "SYS_MODULE" | "SYS_NICE" | "SYS_PACCT" | "SYS_PTRACE" | "SYS_RAWIO" | "SYS_RESOURCE" | "SYS_TIME" | "SYS_TTY_CONFIG" | "SYSLOG" | "WAKE_ALARM"`  
-Required: no  
-The Linux capabilities for the container to remove from the default configuration provided by Docker\. This parameter maps to `CapDrop` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--cap-drop` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
-`devices`  
-Any host devices to expose to the container\. This parameter maps to `Devices` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--device` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
-If you are using tasks that use the Fargate launch type, the `devices` parameter is not supported\.
-Type: Array of [Device](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Device.html) objects  
-Required: No    
-`hostPath`  
-The path for the device on the host container instance\.  
-Type: String  
-Required: Yes  
-`containerPath`  
-The path inside the container at which to expose the host device\.  
-Type: String  
-Required: No  
-`permissions`  
-The explicit permissions to provide to the container for the device\. By default, the container can `read`, `write`, and `mknod` the device\.  
-Type: Array of strings  
-Valid Values: `read` | `write` | `mknod`  
-`initProcessEnabled`  
-Run an `init` process inside the container that forwards signals and reaps processes\. This parameter maps to the `--init` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
-This parameter requires version 1\.25 of the Docker Remote API or greater on your container instance\.
-
 #### Resource Limits<a name="container_definition_limits"></a>
 
 `ulimits`  
 Type: object array  
 Required: no  
-A list of `ulimits` to set in the container\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.   
+A list of `ulimits` to set in the container\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.   
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 This parameter is not supported for Windows containers\.
 
@@ -560,7 +511,7 @@ The soft limit for the `ulimit` type\.
 `dockerLabels`  
 Type: string to string map  
 Required: no  
-A key/value map of labels to add to the container\. This parameter maps to `Labels` in the [Create a container](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api_v1.24/) and the `--label` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.   
+A key/value map of labels to add to the container\. This parameter maps to `Labels` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--label` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.   
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 
 ```
@@ -568,50 +519,141 @@ This parameter requires version 1\.18 of the Docker Remote API or greater on you
       ...}
 ```
 
+#### Linux Parameters<a name="container_definition_linuxparameters"></a>
+
+`linuxParameters`  
+Type: [LinuxParameters](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LinuxParameters.html) object  
+Required: no  
+Linux\-specific options that are applied to the container, such as [KernelCapabilities](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html)\.  
+This parameter is not supported for Windows containers\.
+
+```
+"linuxParameters": {
+      "capabilities": {
+        "add": ["string", ...],
+        "drop": ["string", ...]
+        }
+      }
+```  
+`capabilities`  
+Type: [KernelCapabilities](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html) object  
+Required: no  
+The Linux capabilities for the container that are added to or dropped from the default configuration provided by Docker\. For more information about the default capabilities and the non\-default available capabilities, see [Runtime privilege and Linux capabilities](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) in the *Docker run reference*\. For more detailed information about these Linux capabilities, see the [capabilities\(7\)](http://man7.org/linux/man-pages/man7/capabilities.7.html) Linux manual page\.  
+If you are using tasks that use the Fargate launch type, `capabilities` is supported but the `add` parameter described below is not supported\.  
+`add`  
+Type: string array  
+Valid values: `"ALL" | "AUDIT_CONTROL" | "AUDIT_WRITE" | "BLOCK_SUSPEND" | "CHOWN" | "DAC_OVERRIDE" | "DAC_READ_SEARCH" | "FOWNER" | "FSETID" | "IPC_LOCK" | "IPC_OWNER" | "KILL" | "LEASE" | "LINUX_IMMUTABLE" | "MAC_ADMIN" | "MAC_OVERRIDE" | "MKNOD" | "NET_ADMIN" | "NET_BIND_SERVICE" | "NET_BROADCAST" | "NET_RAW" | "SETFCAP" | "SETGID" | "SETPCAP" | "SETUID" | "SYS_ADMIN" | "SYS_BOOT" | "SYS_CHROOT" | "SYS_MODULE" | "SYS_NICE" | "SYS_PACCT" | "SYS_PTRACE" | "SYS_RAWIO" | "SYS_RESOURCE" | "SYS_TIME" | "SYS_TTY_CONFIG" | "SYSLOG" | "WAKE_ALARM"`  
+Required: no  
+The Linux capabilities for the container to add to the default configuration provided by Docker\. This parameter maps to `CapAdd` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--cap-add` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
+If you are using tasks that use the Fargate launch type, the `add` parameter is not supported\.  
+`drop`  
+Type: string array  
+Valid values: `"ALL" | "AUDIT_CONTROL" | "AUDIT_WRITE" | "BLOCK_SUSPEND" | "CHOWN" | "DAC_OVERRIDE" | "DAC_READ_SEARCH" | "FOWNER" | "FSETID" | "IPC_LOCK" | "IPC_OWNER" | "KILL" | "LEASE" | "LINUX_IMMUTABLE" | "MAC_ADMIN" | "MAC_OVERRIDE" | "MKNOD" | "NET_ADMIN" | "NET_BIND_SERVICE" | "NET_BROADCAST" | "NET_RAW" | "SETFCAP" | "SETGID" | "SETPCAP" | "SETUID" | "SYS_ADMIN" | "SYS_BOOT" | "SYS_CHROOT" | "SYS_MODULE" | "SYS_NICE" | "SYS_PACCT" | "SYS_PTRACE" | "SYS_RAWIO" | "SYS_RESOURCE" | "SYS_TIME" | "SYS_TTY_CONFIG" | "SYSLOG" | "WAKE_ALARM"`  
+Required: no  
+The Linux capabilities for the container to remove from the default configuration provided by Docker\. This parameter maps to `CapDrop` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--cap-drop` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
+`devices`  
+Any host devices to expose to the container\. This parameter maps to `Devices` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#create-a-container) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--device` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
+If you are using tasks that use the Fargate launch type, the `devices` parameter is not supported\.
+Type: Array of [Device](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Device.html) objects  
+Required: No    
+`hostPath`  
+The path for the device on the host container instance\.  
+Type: String  
+Required: Yes  
+`containerPath`  
+The path inside the container at which to expose the host device\.  
+Type: String  
+Required: No  
+`permissions`  
+The explicit permissions to provide to the container for the device\. By default, the container can `read`, `write`, and `mknod` the device\.  
+Type: Array of strings  
+Valid Values: `read` \| `write` \| `mknod`  
+`initProcessEnabled`  
+Run an `init` process inside the container that forwards signals and reaps processes\. This parameter maps to the `--init` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
+This parameter requires version 1\.25 of the Docker Remote API or greater on your container instance\.  
+`sharedMemorySize`  
+The value for the size \(in MiB\) of the `/dev/shm` volume\. This parameter maps to the `--shm-size` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
+If you are using tasks that use the Fargate launch type, the `sharedMemorySize` parameter is not supported\.
+Type: Integer  
+`tmpfs`  
+The container path, mount options, and size \(in MiB\) of the tmpfs mount\. This parameter maps to the `--tmpfs` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
+If you are using tasks that use the Fargate launch type, the `tmpfs` parameter is not supported\.
+Type: Array of [Tmpfs](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Tmpfs.html) objects  
+Required: No    
+`containerPath`  
+The absolute file path where the tmpfs volume will be mounted\.  
+Type: String  
+Required: Yes  
+`mountOptions`  
+The list of tmpfs volume mount options\.  
+Type: Array of strings  
+Required: No  
+Valid Values: `"defaults" | "ro" | "rw" | "suid" | "nosuid" | "dev" | "nodev" | "exec" | "noexec" | "sync" | "async" | "dirsync" | "remount" | "mand" | "nomand" | "atime" | "noatime" | "diratime" | "nodiratime" | "bind" | "rbind" | "unbindable" | "runbindable" | "private" | "rprivate" | "shared" | "rshared" | "slave" | "rslave" | "relatime" | "norelatime" | "strictatime" | "nostrictatime" | "mode" | "uid" | "gid" | "nr_inodes" | "nr_blocks" | "mpol"`  
+`size`  
+The size \(in MiB\) of the tmpfs volume\.  
+Type: Integer  
+Required: Yes
+
 ## Volumes<a name="volumes"></a>
 
-When you register a task definition, you can optionally specify a list of volumes that will be passed to the Docker daemon on a container instance and become available for other containers on the same container instance to access\. 
+When you register a task definition, you can optionally specify a list of volumes to be passed to the Docker daemon on a container instance, which then become available for access by other containers on the same container instance\.
 
-If you are using the Fargate launch type, the `host` and `sourcePath` parameters are not supported\.
+The following are the types of data volumes that can be used:
++ Docker volumes — A Docker\-managed volume that is created under `/var/lib/docker/volumes` on the container instance\. Docker volume drivers \(also referred to as plugins\) are used to integrate the volumes with external storage systems, such as Amazon EBS\. The built\-in `local` volume driver or a third\-party volume driver can be used\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use Docker volumes, specify a `dockerVolumeConfiguration` in your task definition\. For more information, see [Using volumes](https://docs.docker.com/storage/volumes/)\.
++ Bind mounts — A file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported when using either the EC2 or Fargate launch types\. To use bind mount host volumes, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
 
 For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
 
 The following parameters are allowed in a container definition:
 
 `name`  
-Type: string  
-Required: yes  
+Type: String  
+Required: No  
 The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints`\.
 
-`host`  
-Type: object  
-Required: no  
-The contents of the `host` parameter determine whether your data volume persists on the host container instance and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
-Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\. For example, you can mount `C:\my\path:C:\my\path` and `D:\:D:\`, but not `D:\my\path:C:\my\path` or `D:\:C:\my\path`\.  
-By default, Docker\-managed volumes are created in `/var/lib/docker/volumes/`\. You can change this default location by writing `OPTIONS="-g=/my/path/for/docker/volumes"` to `/etc/sysconfig/docker` on the container instance\.    
-`sourcePath`  
-Type: string  
-Required: no  
-The path on the host container instance that is presented to the container\. If this parameter is empty, then the Docker daemon assigns a host path for you\.  
-If you are using the Fargate launch type, the `sourcePath` parameter is not supported\.  
-If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host container instance until you delete it manually\. If the `sourcePath` value does not exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\.
+`dockerVolumeConfiguration`  
+Type: Object  
+Required: No  
+This parameter is specified when using Docker volumes\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use bind mounts, specify a `host` instead\.    
+`scope`  
+Type: String  
+Valid Values: `task` \| `shared`  
+Required: No  
+The scope for the Docker volume, which determines its lifecycle\. Docker volumes that are scoped to a `task` are automatically provisioned when the task starts and destroyed when the task stops\. Docker volumes that are scoped as `shared` persist after the task stops\.  
+`autoprovision`  
+Type: Boolean  
+Default value: `false`  
+Required: No  
+If this value is `true`, the Docker volume is created if it does not already exist\.  
+This field is only used if the `scope` is `shared`\.  
+`driver`  
+Type: String  
+Required: No  
+The Docker volume driver to use\. The driver value must match the driver name provided by Docker because it is used for task placement\. If the driver was installed using the Docker plugin CLI, use `docker plugin ls` to retrieve the driver name from your container instance\. If the driver was installed using another method, use Docker plugin discovery to retrieve the driver name\. For more information, see [Docker plugin discovery](https://docs.docker.com/engine/extend/plugin_api/#plugin-discovery)\. This parameter maps to `Driver` in the [Create a volume](https://docs.docker.com/engine/api/v1.35/#operation/VolumeCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--driver` option to [https://docs.docker.com/engine/reference/commandline/volume_create/](https://docs.docker.com/engine/reference/commandline/volume_create/)\.  
+`driverOpts`  
+Type: String  
+Required: No  
+A map of Docker driver specific options to pass through\. This parameter maps to `DriverOpts` in the [Create a volume](https://docs.docker.com/engine/api/v1.35/#operation/VolumeCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--opt` option to [https://docs.docker.com/engine/reference/commandline/volume_create/](https://docs.docker.com/engine/reference/commandline/volume_create/)\.  
+`labels`  
+Type: String  
+Required: No  
+Custom metadata to add to your Docker volume\. This parameter maps to `Labels` in the [Create a volume](https://docs.docker.com/engine/api/v1.35/#operation/VolumeCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--label` option to [https://docs.docker.com/engine/reference/commandline/volume_create/](https://docs.docker.com/engine/reference/commandline/volume_create/)\.
 
-```
-[
-  {
-    "name": "string",
-    "host": {
-      "sourcePath": "string"
-    }
-  }
-]
-```
+`host`  
+Required: No  
+This parameter is specified when using bind mounts\. To use Docker volumes, specify a `dockerVolumeConfiguration` instead\. The contents of the `host` parameter determine whether your bind mount data volume persists on the host container instance and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
+Bind mount host volumes are supported when using either the EC2 or Fargate launch types\.  
+Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\. For example, you can mount `C:\my\path:C:\my\path` and `D:\:D:\`, but not `D:\my\path:C:\my\path` or `D:\:C:\my\path`\.    
+`sourcePath`  
+Type: String  
+Required: No  
+When the `host` parameter is used, specify a `sourcePath` to declare the path on the host container instance that is presented to the container\. If this parameter is empty, then the Docker daemon has assigned a host path for you\. If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host container instance until you delete it manually\. If the `sourcePath` value does not exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\.
 
 ## Task Placement Constraints<a name="constraints"></a>
 
 When you register a task definition, you can provide task placement constraints that customize how Amazon ECS places tasks\.
 
-If you are using the Fargate launch type, task placement contraints are not supported\.
+If you are using the Fargate launch type, task placement constraints are not supported\. By default Fargate tasks are spread across availability zones\.
 
 For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS Task Placement Constraints](task-placement-constraints.md)\.
 
@@ -629,13 +671,14 @@ The type of constraint\. Use `memberOf` to restrict selection to a group of vali
 
 ## Launch Types<a name="requires_compatibilities"></a>
 
-When you register a task definition, you specify the launch type that you will be using for your task\. For more details about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
+When you register a task definition, you specify the launch type to use for your task\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
 
 The following parameter is allowed in a task definition:
 
 `requiresCompatibilities`  
-Type: string  
+Type: string array  
 Required: no  
+Valid Values: `EC2` \| `FARGATE`  
 The launch type the task is using\. This will enable a check to ensure that all of the parameters used in the task definition meet the requirements of the launch type\.  
 Valid values are `FARGATE` and `EC2`\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
 
@@ -652,7 +695,7 @@ The following parameter is allowed in a task definition:
 Type: string  
 Required: no  
 This parameter is not supported for Windows containers\.
-The number of CPU units used by the task\. It can be expressed as an integer using CPU units, for example `1024`, or as a string using vCPUs, for example `1 vCPU` or `1 vcpu`, in a task definition but will be converted to an integer indicating the CPU units when the task definition is registered\.  
+The number of CPU units used by the task\. It can be expressed as an integer using CPU units, for example `1024`, or as a string using vCPUs, for example `1 vCPU` or `1 vcpu`, in a task definition\. When the task definition is registered, a vCPU value is converted to an integer indicating the CPU units\.  
 If using the EC2 launch type, this field is optional\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
 If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
@@ -661,7 +704,7 @@ If using the Fargate launch type, this field is required and you must use one of
 Type: string  
 Required: no  
 This parameter is not supported for Windows containers\.
-The amount of memory \(in MiB\) used by the task\. It can be expressed as an integer using MiB, for example `1024`, or as a string using GB, for example `1GB` or `1 GB`, in a task definition but will be converted to an integer indicating the MiB when the task definition is registered\.  
+The amount of memory \(in MiB\) used by the task\. It can be expressed as an integer using MiB, for example `1024`, or as a string using GB, for example `1GB` or `1 GB`, in a task definition\. When the task definition is registered, a GB value is converted to an integer indicating the MiB\.  
 If using the EC2 launch type, this field is optional\.  
 If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)

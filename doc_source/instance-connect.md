@@ -1,11 +1,8 @@
 # Connect to Your Container Instance<a name="instance-connect"></a>
 
 To perform basic administrative tasks on your instance, such as updating or installing software or accessing diagnostic logs, connect to the instance using SSH\. To connect to your instance using SSH, your container instances must meet the following prerequisites:
-
 + Your container instances need external network access to connect using SSH\. If your container instances are running in a private VPC, they need an SSH bastion instance to provide this access\. For more information, see the [Securely connect to Linux instances running in a private Amazon VPC](http://aws.amazon.com/blogs/security/securely-connect-to-linux-instances-running-in-a-private-amazon-vpc/) blog post\.
-
 + Your container instances must have been launched with a valid Amazon EC2 key pair\. Amazon ECS container instances have no password, and you use a key pair to log in using SSH\. If you did not specify a key pair when you launched your instance, there is no way to connect to the instance\.
-
 + 
 
   SSH uses port 22 for communication\. Port 22 must be open in your container instance security group for you to connect to your instance using SSH\.
@@ -34,6 +31,6 @@ The Amazon ECS console first\-run experience creates a security group for your c
    $ ssh -i /path/to/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
    ```
 
-   If you are using a Windows computer, see [Connecting to Your Linux Instance from Windows Using PuTTY](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+   For more information about using a Windows computer, see [Connecting to Your Linux Instance from Windows Using PuTTY](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 **Important**  
-If you experience any issues connecting to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+For more information about any issues while connecting to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html) in the *Amazon EC2 User Guide for Linux Instances*\.

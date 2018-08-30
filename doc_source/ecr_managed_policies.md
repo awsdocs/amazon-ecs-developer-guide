@@ -2,7 +2,7 @@
 
 Amazon ECR provides several managed policies that you can attach to IAM users or EC2 instances that allow differing levels of control over Amazon ECR resources and API operations\. You can apply these policies directly, or you can use them as starting points for creating your own policies\. For more information about each API operation mentioned in these policies, see [Actions](http://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_Operations.html) in the *Amazon Elastic Container Registry API Reference*\.
 
-
+**Topics**
 + [AmazonEC2ContainerRegistryFullAccess](#AmazonEC2ContainerRegistryFullAccess)
 + [AmazonEC2ContainerRegistryPowerUser](#AmazonEC2ContainerRegistryPowerUser)
 + [AmazonEC2ContainerRegistryReadOnly](#AmazonEC2ContainerRegistryReadOnly)

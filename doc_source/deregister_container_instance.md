@@ -2,7 +2,9 @@
 
 When you are finished with a container instance, you can deregister it from your cluster\.
 
-Following deregistration, the container instance is no longer able to accept new tasks\. If you have tasks running on the container instance when you deregister it, these tasks remain running until you terminate the instance or the tasks stop through some other means\. However, these tasks are orphaned \(no longer monitored or accounted for by Amazon ECS\)\. If an orphaned task on your container instance is part of an Amazon ECS service, then the service scheduler starts another copy of that task, on a different container instance, if possible\. Any containers in orphaned service tasks that are registered with a Classic Load Balancer or an Application Load Balancer target group are deregistered\. They begin connection draining according to the settings on the load balancer or target group\.
+Following deregistration, the container instance is no longer able to accept new tasks\. If you have tasks running on the container instance when you deregister it, these tasks remain running until you terminate the instance or the tasks stop through some other means\. 
+
+However, these tasks are orphaned \(no longer monitored or accounted for by Amazon ECS\)\. If an orphaned task on your container instance is part of an Amazon ECS service, then the service scheduler starts another copy of that task, on a different container instance, if possible\. Any containers in orphaned service tasks that are registered with a Classic Load Balancer or an Application Load Balancer target group are deregistered\. They begin connection draining according to the settings on the load balancer or target group\.
 
 If you intend to use the container instance for some other purpose after deregistration, you should stop all of the tasks running on the container instance before deregistration\. This stops any orphaned tasks from consuming resources\.
 
@@ -18,14 +20,14 @@ If you terminate a running container instance with a connected Amazon ECS contai
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. From the navigation bar, choose the region that your container instance is registered in\.
+1. From the navigation bar, choose the Region in which your container instance is registered\.
 
 1. In the navigation pane, choose **Clusters** and select the cluster that hosts your container instance\.
 
 1. On the **Cluster : *name*** page, choose **ECS Instances**\.  
 ![\[ECS Instances Tab\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ECS_Instances_tab.png)
 
-1. Choose the container instance ID to deregister\.
+1. Select the container instance ID to deregister\.
 
 1. On the **Container Instance : *id*** page, choose **Deregister**\.
 

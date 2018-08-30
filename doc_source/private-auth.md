@@ -1,167 +1,114 @@
-# Private Registry Authentication<a name="private-auth"></a>
+# Private Registry Authentication for Tasks<a name="private-auth"></a>
 
-The Amazon ECS container agent can authenticate with private registries, including Docker Hub, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\. 
+Private registry authentication for tasks using AWS Secrets Manager enables you to store your credentials securely and then reference them in your container definition\. This allows your tasks to use images from private repositories\. This feature is only supported by tasks using the EC2 launch type\.
 
-The agent looks for two environment variables when it launches: `ECS_ENGINE_AUTH_TYPE`, which specifies the type of authentication data that is being sent, and `ECS_ENGINE_AUTH_DATA`, which contains the actual authentication credentials\.
+This feature requires version 1\.19\.0 or later of the container agent; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
-The Amazon ECS\-optimized AMI scans the `/etc/ecs/ecs.config` file for these variables when the container instance launches, and each time the service is started \(with the sudo start ecs command\)\. AMIs that are not Amazon ECS\-optimized should store these environment variables in a file and pass them with the `--env-file path_to_env_file` option to the docker run command that starts the container agent\.
-
-**Important**  
-We do not recommend that you inject these authentication environment variables at instance launch time with Amazon EC2 user data or pass them with the `--env` option to the docker run command\. These methods are not appropriate for sensitive data like authentication credentials\. To safely add authentication credentials to your container instances, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
-
-## Authentication Formats<a name="docker-auth-formats"></a>
-
-There are two available formats for private registry authentication, `dockercfg` and `docker`\.
-
-**dockercfg Authentication Format**  
-The `dockercfg` format uses the authentication information stored in the configuration file that is created when you run the docker login command\. You can create this file by running docker login on your local system and entering your registry user name, password, and email address\. You can also log in to a container instance and run the command there\. Depending on your Docker version, this file is saved as either `~/.dockercfg` or `~/.docker/config.json`\.
+Within your container definition, specify `repositoryCredentials` with the full ARN or ID of the secret that you created\. The secret you reference can be from a different region than the task using it, but must be from within the same account\. The following is a snippet of a task definition showing the required parameters:
 
 ```
-cat ~/.docker/config.json
-```
-
-Output:
-
-```
-{
-  "auths": {
-    "https://index.docker.io/v1/": {
-      "auth": "zq212MzEXAMPLE7o6T25Dk0i"
+"containerDefinitions": [
+    {
+        "image": "private-repo/private-image",
+        "repositoryCredentials": {
+            "credentialsParameter": "aws:ssm:region:aws_account_id:secret:secret_name"
+        }
     }
-  }
-}
+]
 ```
 
-**Important**  
-Newer versions of Docker create a configuration file as shown above with an outer `auths` object\. The Amazon ECS agent only supports `dockercfg` authentication data that is in the below format, without the `auths` object\. If you have the jq utility installed, you can extract this data with the following command: cat \~/\.docker/config\.json | jq \.auths
+**Note**  
+Another method of enabling private registry authentication uses Amazon ECS container agent environment variables to authenticate to private registries\. For more information, see [Private Registry Authentication for Container Instances](private-auth-container-instances.md)\.
 
-```
-cat ~/.docker/config.json | jq .auths
-```
+## Private Registry Authentication Required IAM Permissions<a name="private-auth-iam"></a>
 
-Output:
+The Amazon ECS task execution role is required to use this feature\. This allows the container agent to pull the container image\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
-```
-{
-  "https://index.docker.io/v1/": {
-    "auth": "zq212MzEXAMPLE7o6T25Dk0i",
-    "email": "email@example.com"
-  }
-}
-```
+In addition, the permissions below need to be manually added as an inline policy to the task execution role in order to provide access to the secrets you create\. For more information, see [Adding and Removing IAM Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
++ `secretsmanager:GetSecretValue`
++ `kms:Decrypt`, required only if your key uses a custom KMS key and not the default KMS key
 
-In the above example, the following environment variables should be added to the environment variable file \(`/etc/ecs/ecs.config` for the Amazon ECS\-optimized AMI\) that the Amazon ECS container agent loads at run time\. If you are not using the Amazon ECS\-optimized AMI and you are starting the agent manually with docker run, specify the environment variable file with the `--env-file path_to_env_file` option when you start the agent\.
-
-```
-ECS_ENGINE_AUTH_TYPE=dockercfg
-ECS_ENGINE_AUTH_DATA={"https://index.docker.io/v1/":{"auth":"zq212MzEXAMPLE7o6T25Dk0i","email":"email@example.com"}}
-```
-
-You can configure multiple private registries with the following syntax\.
-
-```
-ECS_ENGINE_AUTH_TYPE=dockercfg
-ECS_ENGINE_AUTH_DATA={"repo.example-01.com":{"auth":"zq212MzEXAMPLE7o6T25Dk0i","email":"email@example-01.com"},"repo.example-02.com":{"auth":"fQ172MzEXAMPLEoF7225DU0j","email":"email@example-02.com"}}
-```
-
-**docker Authentication Format**  
-The `docker` format uses a JSON representation of the registry server that the agent should authenticate with, as well as the authentication parameters required by that registry \(such as user name, password, and the email address for that account\)\. For a Docker Hub account, the JSON representation looks like this:
+An example inline policy adding the permissions is shown below\.
 
 ```
 {
-  "https://index.docker.io/v1/": {
-    "username": "my_name",
-    "password": "my_password",
-    "email": "email@example.com"
-  }
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "kms:Decrypt",
+        "secretsmanager:GetSecretValue"
+      ],
+      "Resource": [
+        "aws:ssm:region:aws_account_id:secret:secret_name"     
+      ]
+    }
+  ]
 }
 ```
 
-In this example, the following environment variables should be added to the environment variable file \(`/etc/ecs/ecs.config` for the Amazon ECS\-optimized AMI\) that the Amazon ECS container agent loads at run time\. If you are not using the Amazon ECS\-optimized AMI and you are starting the agent manually with docker run, specify the environment variable file with the `--env-file path_to_env_file` option when you start the agent\.
+## Enabling Private Registry Authentication<a name="private-auth-enable"></a>
 
-```
-ECS_ENGINE_AUTH_TYPE=docker
-ECS_ENGINE_AUTH_DATA={"https://index.docker.io/v1/":{"username":"my_name","password":"my_password","email":"email@example.com"}}
-```
+**To create a basic secret**
 
-You can configure multiple private registries with the following syntax\.
+Use AWS Secrets Manager to create a secret for your private registry credentials\.
 
-```
-ECS_ENGINE_AUTH_TYPE=docker
-ECS_ENGINE_AUTH_DATA={"repo.example-01.com":{"username":"my_name","password":"my_password","email":"email@example-01.com"},"repo.example-02.com":{"username":"another_name","password":"another_password","email":"email@example-02.com"}}
-```
+1. Open the AWS Secrets Manager console at [https://console\.aws\.amazon\.com/secretsmanager/](https://console.aws.amazon.com/secretsmanager/)\.
 
-## Enabling Private Registries<a name="enabling-private-registry"></a>
+1. Choose **Store a new secret**\.
 
-Use the following procedure to enable private registries for your container instances\.
+1. For **Select secret type**, choose **Other type of secrets**\.
 
-**To enable private registries in the Amazon ECS\-optimized AMI**
-
-1. Log in to your container instance via SSH\.
-
-1. Open the `/etc/ecs/ecs.config` file and add the `ECS_ENGINE_AUTH_TYPE` and `ECS_ENGINE_AUTH_DATA` values for your registry and account\.
-
-   ```
-   sudo vi /etc/ecs/ecs.config
-   ```
-
-   This example authenticates a Docker Hub user account\.
-
-   ```
-   ECS_ENGINE_AUTH_TYPE=docker
-   ECS_ENGINE_AUTH_DATA={"https://index.docker.io/v1/":{"username":"my_name","password":"my_password","email":"email@example.com"}}
-   ```
-
-1. Check to see if your agent uses the `ECS_DATADIR` environment variable to save its state\.
-
-   ```
-   docker inspect ecs-agent | grep ECS_DATADIR
-   ```
-
-   Output:
-
-   ```
-   "ECS_DATADIR=/data",
-   ```
-**Important**  
-If the previous command does not return the `ECS_DATADIR` environment variable, you must stop any tasks running on this container instance before stopping the agent\. Newer agents with the `ECS_DATADIR` environment variable save their state and you can stop and start them while tasks are running without issues\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
-
-1. Stop the `ecs` service\.
-
-   ```
-   sudo stop ecs
-   ```
-
-   Output:
-
-   ```
-   ecs stop/waiting
-   ```
-
-1. Restart the `ecs` service\.
-
-   ```
-   sudo start ecs
-   ```
-
-   Output:
-
-   ```
-   ecs start/running, process 2959
-   ```
-
-1. \(Optional\) You can verify that the agent is running and see some information about your new container instance by querying the agent introspection API operation\. For more information, see [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)\.
-
-   ```
-   curl http://localhost:51678/v1/metadata
-   ```
-
-   Output:
+1. Select **Plaintext** and enter your private registry credentials using the following format:
 
    ```
    {
-     "Cluster": "default",
-     "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.17.2 (edc3e260)"
+     "username" : "privateRegistryUsername",
+     "password" : "privateRegistryPassword"
    }
    ```
+
+1. Choose **Next**\.
+
+1. For **Secret name**, type an optional path and name, such as **production/MyAwesomeAppSecret** or **development/TestSecret**, and then choose **Next**\. You can optionally add a description to help you remember the purpose of this secret later on\.
+
+   The secret name must be ASCII letters, digits, or any of the following characters: /\_\+=\.@\-
+
+1. \(Optional\) At this point, you can configure rotation for your secret\. Because we're working on a "basic" secret without rotation, leave it at **Disable automatic rotation**, and then choose **Next**\.
+
+   For information about how to configure rotation on new or existing secrets, see [Rotating Your AWS Secrets Manager Secrets](http://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html)\.
+
+1. Review your settings, and then choose **Store secret** to save everything you entered as a new secret in Secrets Manager\.
+
+**To create a task definition that uses private registry authentication**
+
+1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+
+1. In the navigation pane, choose **Task Definitions**\.
+
+1. On the **Task Definitions** page, choose **Create new Task Definition**\.
+
+1. On the **Select launch type compatibility** page, choose **EC2**, **Next step**\.
+
+1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
+
+1. For **Task execution role**, either select your existing task execution role or choose **Create new role** to have one created for you\. This role authorizes Amazon ECS to pull private images for your task\. For more information, see [Private Registry Authentication Required IAM Permissions](#private-auth-iam)\.
+
+1. For each container to create in your task definition, complete the following steps:
+
+   1. In the **Container Definitions** section, choose **Add container**\.
+
+   1. For **Container name**, type a name for your container\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
+
+   1. For **Image**, type the image name or path to your private image\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
+
+   1. Select the **Private repository authentication** option\.
+
+   1. For **Secrets manager ARN**, enter the full Amazon Resource Name \(ARN\) of the secret that you created earlier\. The value must be between 20 and 2048 characters\.
+
+   1. Fill out the remaining required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task Definition Parameters](task_definition_parameters.md)\.
+
+   1. Choose **Add**\.
+
+1. When your containers are added, choose **Create**\.

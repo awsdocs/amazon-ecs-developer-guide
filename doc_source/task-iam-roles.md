@@ -4,7 +4,8 @@ With IAM roles for Amazon ECS tasks, you can specify an IAM role that can be use
 
 **Important**  
 Containers that are running on your container instances are not prevented from accessing the credentials that are supplied to the container instance profile \(through the Amazon EC2 instance metadata server\)\. We recommend that you limit the permissions in your container instance role to the minimal list of permissions shown in [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.  
-You can prevent containers on the `docker0` bridge from accessing the credential information supplied to the container instance profile \(while still allowing the permissions that are provided by the task role\) by running the following iptables command on your container instances\. However, containers will no longer be able to query instance metadata with this rule in effect\. Note that this command assumes the default Docker bridge configuration and it will not work for containers that use the `host` network mode\. For more information, see [Network Mode](task_definition_parameters.md#network_mode)\.  
+To prevent containers in tasks that use the `awsvpc` network mode from accessing the credential information supplied to the container instance profile \(while still allowing the permissions that are provided by the task role\), set the `ECS_AWSVPC_BLOCK_IMDS` agent configuration variable to `true` in the agent configuration file and restart the agent\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.  
+To prevent containers in tasks that use the `bridge` network mode from accessing the credential information supplied to the container instance profile \(while still allowing the permissions that are provided by the task role\) by running the following iptables command on your container instances\. Note that this command does not affect containers in tasks that use the `host` or `awsvpc` network modes\. For more information, see [Network Mode](task_definition_parameters.md#network_mode)\.  
 
 ```
 sudo iptables --insert FORWARD 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP
@@ -15,7 +16,7 @@ You must save this iptables rule on your container instance for it to survive a 
 sudo service iptables save
 ```
 
-You define the IAM role to use in your task definitions, or you can use a `taskRoleArn` override when running a task manually with the `RunTask` API operation\. The Amazon ECS agent receives a payload message for starting the task with additional fields that contain the role credentials\. The Amazon ECS agent sets the task’s UUID as an identification token and updates its internal credential cache so that the identification token for the task points to the role credentials that are received in the payload\. The Amazon ECS agent populates the `AWS_CONTAINER_CREDENTIALS_RELATIVE_URI` environment variable in the `Env` object \(available with the docker inspect *container\_id* command\) for all containers that belong to this task with the following relative URI: `/credential_provider_version/credentials?id=task_UUID`\. 
+You define the IAM role to use in your task definitions, or you can use a `taskRoleArn` override when running a task manually with the `RunTask` API operation\. The Amazon ECS agent receives a payload message for starting the task with additional fields that contain the role credentials\. The Amazon ECS agent sets a unique task credential ID as an identification token and updates its internal credential cache so that the identification token for the task points to the role credentials that are received in the payload\. The Amazon ECS agent populates the `AWS_CONTAINER_CREDENTIALS_RELATIVE_URI` environment variable in the `Env` object \(available with the docker inspect *container\_id* command\) for all containers that belong to this task with the following relative URI: `/credential_provider_version/credentials?id=task_credential_id`\. 
 
 **Note**  
 When you specify an IAM role for a task, the AWS CLI or other SDKs in the containers for that task use the AWS credentials provided by the task role exclusively and they no longer inherit any IAM permissions from the container instance\.
@@ -42,7 +43,7 @@ If your container instance is using at least version 1\.11\.0 of the container a
 
 Each time the credential provider is used, the request is logged locally on the host container instance at `/var/log/ecs/audit.log.YYYY-MM-DD-HH`\. For more information, see [IAM Roles for Tasks Credential Audit Log](logs.md#task_iam_roles-logs)\.
 
-
+**Topics**
 + [Benefits of Using IAM Roles for Tasks](#task_im_roles_benefits)
 + [Enabling Task IAM Roles on your Container Instances](#enable_task_iam_roles)
 + [Creating an IAM Role and Policy for your Tasks](#create_task_iam_policy_and_role)
@@ -50,11 +51,8 @@ Each time the credential provider is used, the request is logged locally on the 
 + [Specifying an IAM Role for your Tasks](#specify-task-iam-roles)
 
 ## Benefits of Using IAM Roles for Tasks<a name="task_im_roles_benefits"></a>
-
 + **Credential Isolation:** A container can only retrieve credentials for the IAM role that is defined in the task definition to which it belongs; a container never has access to credentials that are intended for another container that belongs to another task\.
-
 + **Authorization:** Unauthorized containers cannot access IAM role credentials defined for other tasks\.
-
 + **Auditability:** Access and event logging is available through CloudTrail to ensure retrospective auditing\. Task credentials have a context of `taskArn` that is attached to the session, so CloudTrail logs show which task is using which role\.
 
 ## Enabling Task IAM Roles on your Container Instances<a name="enable_task_iam_roles"></a>
@@ -147,11 +145,9 @@ To ensure that you are using a supported SDK, follow the installation instructio
 ## Specifying an IAM Role for your Tasks<a name="specify-task-iam-roles"></a>
 
 After you have created a role and attached a policy to that role, you can run tasks that assume the role\. You have several options to do this:
-
 + Specify an IAM role for your tasks in the task definition\. You can create a new task definition or a new revision of an existing task definition and specify the role you created previously\. If you use the console to create your task definition, choose your IAM role in the **Task Role** field\. If you use the AWS CLI or SDKs, specify your task role ARN using the `taskRoleArn` parameter\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
 **Note**  
 This option is required if you want to use IAM task roles in an Amazon ECS service\.
-
 + Specify an IAM task role override when running a task\. You can specify an IAM task role override when running a task\. If you use the console to run your task, choose **Advanced Options** and then choose your IAM role in the **Task Role** field\. If you use the AWS CLI or SDKs, specify your task role ARN using the `taskRoleArn` parameter in the `overrides` JSON object\. For more information, see [Running Tasks](ecs_run_task.md)\. 
 
 **Note**  

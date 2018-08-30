@@ -36,13 +36,13 @@ There are multiple methods for passing both the credentials and the region in an
 
 The order of precedence for credentials is:
 
-1. ECS CLI profile flags
+1. ECS CLI profile flags:
 
    1. ECS profile \(`--ecs-profile`\)
 
    1. AWS profile \(`--aws-profile`\)
 
-1. Environment variables
+1. Environment variables:
 
    1. `ECS_PROFILE`
 
@@ -50,31 +50,31 @@ The order of precedence for credentials is:
 
    1. `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_SESSION_TOKEN`
 
-1. ECS config‐attempts to fetch credentials from the default ECS profile
+1. ECS config‐attempts to fetch credentials from the default ECS profile\.
 
-1. Default AWS profile‐attempts to use credentials \(`aws_access_key_id`, `aws_secret_access_key`\) or `assume_role` \(`role_arn`, `source_profile`\) from the AWS profile name
+1. Default AWS profile—Attempts to use credentials \(`aws_access_key_id`, `aws_secret_access_key`\) or `assume_role` \(`role_arn`, `source_profile`\) from the AWS profile name\.
 
-   1. `AWS_DEFAULT_PROFILE` environment variable \(defaults to `default`\)
+   1. `AWS_DEFAULT_PROFILE` environment variable \(defaults to `default`\)\.
 
-1. EC2 Instance role
+1. EC2 instance role
 
 The order of precedence for region is:
 
-1. ECS CLI flags
+1. ECS CLI flags:
 
    1. Region flag \(`--region`\)
 
    1. Cluster config flag \(`--cluster-config`\)
 
-1. ECS config‐attempts to fetch the region from the default ECS profile
+1. ECS config‐attempts to fetch the region from the default ECS profile\.
 
-1. Environment variables‐attempts to fetch the region from the following environment variables:
+1. Environment variables—Attempts to fetch the region from the following environment variables:
 
    1. `AWS_REGION`
 
    1. `AWS_DEFAULT_REGION`
 
-1. AWS profile‐attempts to use the region from the AWS profile name
+1. AWS profile‐attempts to use the region from the AWS profile name:
 
    1. `AWS_PROFILE` environment variable
 

@@ -50,8 +50,8 @@ The following is an example of a simple task definition containing a single cont
         "FARGATE"
     ],
     "networkMode": "awsvpc",
-    "memory": "100",
-    "cpu": "99",
+    "memory": "512",
+    "cpu": "256",
 }
 ```
 
@@ -65,7 +65,7 @@ The Amazon ECS task scheduler is responsible for placing tasks within your clust
 
 ### Clusters<a name="welcome-clusters"></a>
 
-When you run tasks using Amazon ECS, you place them on a *cluster*, which is a logical grouping of resources\. If you use the Fargate launch type with tasks within your cluster, Amazon ECS manages your cluster resources\. If you use the EC2 launch type, then your clusters will be a group of container instances you manage\. Amazon ECS downloads your container images from a registry that you specify, and runs those images within your cluster\.
+When you run tasks using Amazon ECS, you place them on a *cluster*, which is a logical grouping of resources\. If you use the Fargate launch type with tasks within your cluster, Amazon ECS manages your cluster resources\. If you use the EC2 launch type, then your clusters will be a group of container instances you manage\. An Amazon ECS container instance is an Amazon EC2 instance that is running the Amazon ECS container agent\. Amazon ECS downloads your container images from a registry that you specify, and runs those images within your cluster\.
 
 For more information about creating clusters, see [Amazon ECS Clusters](ECS_clusters.md)\. If you are using the EC2 launch type, you can read about creating container instances at [Amazon ECS Container Instances](ECS_instances.md)\.
 
@@ -116,10 +116,7 @@ In addition to using the AWS CLI to access Amazon ECS resources, you can use the
 
 **AWS SDKs**  
 We also provide SDKs that enable you to access Amazon ECS from a variety of programming languages\. The SDKs automatically take care of tasks such as:  
-
 + Cryptographically signing your service requests
-
 + Retrying requests
-
 + Handling error responses
 For more information about available SDKs, see [Tools for Amazon Web Services](https://aws.amazon.com/tools/)\.

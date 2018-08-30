@@ -6,6 +6,6 @@ For more information on the other tools available for managing your AWS resource
 
 The following steps will help you set up an Amazon ECS cluster using either a Fargate or EC2 task:
 
-
+**Topics**
 + [Tutorial: Creating a Cluster with a Fargate Task Using the AWS CLI](ECS_AWSCLI_Fargate.md)
 + [Tutorial: Creating a Cluster with a EC2 Task Using the AWS CLI](ECS_AWSCLI_EC2.md)

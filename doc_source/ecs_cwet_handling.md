@@ -7,9 +7,7 @@ To enable proper ordering of events, the `detail` section of each event contains
 ## Example: Handling Events in an AWS Lambda Function<a name="ecs_cwet_handling_example"></a>
 
 The following example shows a Lambda function written in Python 2\.7 that captures both task and container instance state change events, and saves them to one of two Amazon DynamoDB tables:
-
 + *ECSCtrInstanceState*: Stores the latest state for a container instance\. The table ID is the `containerInstanceArn` value of the container instance\.
-
 + *ECSTaskState*: Stores the latest state for a task\. The table ID is the `taskArn` value of the task\.
 
 ```
@@ -65,12 +63,12 @@ def lambda_handler(event, context):
         # Compare events and reconcile.
         print("EXISTING EVENT DETECTED: Id " + event_id + " - reconciling")
         if saved_event["Item"]["version"] < event["detail"]["version"]:
-            print("Received event is more recent version than stored event - updating")
+            print("Received event is a more recent version than the stored event - updating")
             table.put_item(
                 Item=new_record
             )
         else:
-            print("Received event is more recent version than stored event - ignoring")
+            print("Received event is an older version than the stored event - ignoring")
     else:
         print("Saving new event - ID " + event_id)
 

@@ -33,9 +33,7 @@ For this tutorial, you create an alarm on the cluster `MemoryReservation` metric
 1. On the **Modify Alarm** page, choose the `MemoryReservation` metric for the default cluster and choose **Next**\.
 
 1. In the **Alarm Threshold** section, enter a name and description for your alarm\.
-
    + **Name:** `memory-above-75-pct`
-
    + **Description:** `Cluster memory reservation above 75%`
 
 1. Set the threshold and time period requirement to `MemoryReservation` greater than 75% for 1 period\.  
@@ -65,7 +63,7 @@ Now that you have enabled CloudWatch metrics and created an alarm based on one o
 
 1. Choose the ECS\-optimized AMI for your Auto Scaling group\.
 
-   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2017\.09\.j\-amazon\-ecs\-optimized** AMI\.
+   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized** AMI\.
 
    The current Amazon ECS\-optimized Linux AMI IDs by region are listed below for reference\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch_alarm_autoscaling.html)
@@ -73,11 +71,8 @@ Now that you have enabled CloudWatch metrics and created an alarm based on one o
 1. On the **Choose Instance Type** step of the **Create Auto Scaling Group** wizard, choose an instance type for your Auto Scaling group and choose **Next: Configure details**\.
 
 1. On the **Configure details** step of the **Create Auto Scaling Group** wizard, enter the following information\. The other fields are optional\. For more information, see [Creating Launch Configurations](http://docs.aws.amazon.com/autoscaling/latest/userguide/WorkingWithLaunchConfig.html) in the *Amazon EC2 Auto Scaling User Guide*\.
-
    + **Name:** Enter a name for your launch configuration\.
-
    + **IAM role:** Select the `ecsInstanceRole` for your container instances\. If you do not have this role configured, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
-
    + **IP Address Type:** Choose the IP address type option that you want for your container instances\. If you want external traffic to be able to reach your containers, choose **Assign a public IP address to every instance\.**
 
 1. \(Optional\) If you have configuration information that you want to pass to your container instances with EC2 user data, choose **Advanced Details** and enter your user data in the **User data** field\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
@@ -92,20 +87,16 @@ Now that you have enabled CloudWatch metrics and created an alarm based on one o
 
 1. Select a private key to use for connecting to your instances with SSH and choose **Create launch configuration** to finish and move on to creating an Auto Scaling group with your new launch configuration\.
 
-## Step 3: Create an Auto Scaling Group for your Cluster<a name="w3ab1c32c21c21c15"></a>
+## Step 3: Create an Auto Scaling Group for your Cluster<a name="create-as-group-cluster"></a>
 
 After the launch configuration is complete, continue with the following procedure to create an Auto Scaling group that uses your launch configuration\.
 
 **To create an Auto Scaling group**
 
 1. On the **Configure Auto Scaling group details** step of the **Create Auto Scaling Group** wizard, enter the following information and choose **Next: Configure scaling policies**\.
-
    + **Group name:** Enter a name for your Auto Scaling group\.
-
    + **Group size:** Specify the number of container instances your Auto Scaling group should start with\.
-
    + **Network:** Choose a VPC to launch your container instances into\.
-
    + **Subnet:** Choose the subnets you would like to launch your container instances into\. For a highly available cluster, we recommend that you enable all of the subnets in the region\.
 
 1. On the **Configure scaling policies** step of the **Create Auto Scaling Group** wizard, choose **Use scaling policies to adjust the capacity of this group**\.
@@ -113,9 +104,7 @@ After the launch configuration is complete, continue with the following procedur
 1. Enter the minimum and maximum number of container instances for your Auto Scaling group\. 
 
 1. In the **Increase Group Size** section, enter the following information\.
-
    + **Execute policy when:** Choose the `memory-above-75-pct` CloudWatch alarm you configured earlier\.
-
    + **Take the action:** Enter the number of instances you would like to add to your cluster when the alarm is triggered\.
 
 1. If you configured an alarm to trigger a group size reduction, set that alarm in the **Decrease Group Size** section and specify how many instances to remove if that alarm is triggered\. Otherwise, collapse the **Decrease Group Size** section by clicking the **X** in the upper\-right\-hand corner of the section\.
@@ -124,13 +113,13 @@ If you configure your Auto Scaling group to remove container instances, any task
 
 1. Choose **Review** to review your Auto Scaling group and then choose **Create Auto Scaling Group** to finish\.
 
-## Step 4: Verify and Test your Auto Scaling Group<a name="w3ab1c32c21c21c17"></a>
+## Step 4: Verify and Test your Auto Scaling Group<a name="verify-as-group"></a>
 
 Now that you've created your Auto Scaling group, you should be able to see your instances launching in the Amazon EC2 console **Instances** page\. These instances should register into your Amazon ECS cluster as well after they launch\.
 
 To test that your Auto Scaling group is configured properly, you can create some tasks that consume a considerable amount of memory and start launching them into your cluster\. After your cluster exceeds the 75% memory reservation from the CloudWatch alarm for the specified number of periods, you should see a new instance launch in the EC2 console\.
 
-## Step 5: Cleaning Up<a name="w3ab1c32c21c21c19"></a>
+## Step 5: Cleaning Up<a name="cleanup-as"></a>
 
 When you have completed this tutorial, you may choose to keep your Auto Scaling group and Amazon EC2 instances in service for your cluster\. However, if you are not actively using these resources, you should consider cleaning them up so your account does not incur unnecessary charges\. You can delete your Auto Scaling group to terminate the Amazon EC2 instances within it, but your launch configuration remains intact and you can create a new Auto Scaling group with it later if you choose\.
 

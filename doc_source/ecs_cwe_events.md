@@ -8,12 +8,10 @@ Amazon ECS may add other event types, sources, and details in the future\. If yo
 In some cases, multiple events are triggered for the same activity\. For example, when a task is started on a container instance, a task state change event is triggered for the new task, and a container instance state change event is triggered to account for the change in available resources \(such as CPU, memory, and available ports\) on the container instance\. Likewise, if a container instance is terminated, events are triggered for the container instance, the container agent connection status, and every task that was running on the container instance\.
 
 Events contain two `version` fields; one in the main body of the event, and one in the `detail` object of the event\.
-
 + The version in the main body of the event is set to `0` on all events\. For more information about CloudWatch Events parameters, see [Events and Event Patterns](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
-
 + The version in the `detail` object of the event describes the version of the associated resource\. Each time a resource changes state, this version is incremented\. Because events can be sent multiple times, this field allows you to identify duplicate events \(they will have the same version in the `detail` object\)\. If you are replicating your Amazon ECS container instance and task state with CloudWatch events, you can compare the version of a resource reported by the Amazon ECS APIs with the version reported in CloudWatch events for the resource \(inside the `detail` object\) to verify that the version in your event stream is current\.
 
-
+**Topics**
 + [Container Instance State Change Events](#ecs_container_instance_events)
 + [Task State Change Events](#ecs_task_events)
 

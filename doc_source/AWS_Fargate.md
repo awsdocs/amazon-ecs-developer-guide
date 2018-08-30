@@ -6,19 +6,23 @@ When you run your tasks and services with the Fargate launch type, you package y
 
 This topic describes the different components of Fargate tasks and services, and calls out special considerations for using Fargate with Amazon ECS\.
 
-AWS Fargate with Amazon ECS is currently only available in the following region:
+AWS Fargate with Amazon ECS is currently only available in the following regions:
 
 
 | Region Name | Region | 
 | --- | --- | 
 | US East \(N\. Virginia\) | us\-east\-1 | 
+| US East \(Ohio\) | us\-east\-2 | 
+| US West \(Oregon\) | us\-west\-2 | 
+| EU \(Ireland\) | eu\-west\-1 | 
+| EU \(Frankfurt\) | eu\-central\-1 | 
+| Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
+| Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
+| Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
 
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
-
 + [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)
-
 + [Tutorial: Creating a Cluster with a Fargate Task Using the AWS CLI](ECS_AWSCLI_Fargate.md)
-
 + [Tutorial: Creating a Cluster with a Fargate Task Using the ECS CLI](ECS_CLI_tutorial_fargate.md)
 
 ## Task Definitions<a name="fargate-task-defs"></a>
@@ -26,40 +30,27 @@ The following walkthroughs help you get started using AWS Fargate with Amazon EC
 Tasks that use the Fargate launch type do not support all of the task definition parameters that are available\. Some parameters are not supported at all, and others behave differently for Fargate tasks\.
 
 The following task definition parameters are not valid in Fargate tasks:
-
 + `disableNetworking`
-
-+ `dnsSearchDomain`
-
++ `dnsSearchDomains`
 + `dnsServers`
-
 + `dockerSecurityOptions`
-
 + `extraHosts`
-
 + `links`
-
 + `host` and `sourcePath`
-
 + `linuxParameters`
-
 + `placementConstraints`
-
 + `privileged`
 
 To ensure that your task definition validates for use with the Fargate launch type, you can specify the following when you register the task definition: 
-
-+ In the AWS Management Console, for the **Requires capabilities** field, specify `FARGATE`\.
-
++ In the AWS Management Console, for the **Requires Compatibilities** field, specify `FARGATE`\.
 + In the AWS CLI, specify the `--requires-compatibilities` option\.
-
-+ In the API, specify the `requiresCapabilities` flag\. 
++ In the API, specify the `requiresCompatibilities` flag\. 
 
 ### Network Mode<a name="fargate-tasks-networkmode"></a>
 
 Fargate task definitions require that the network mode is set to `awsvpc`\. The `awsvpc` network mode provides each task with its own elastic network interface\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
 
-A network configuration is also required when creating the service\. For more information, see [Task Networking](#fargate-tasks-services-networking)\.
+A network configuration is also required when creating a service or manually running tasks\. For more information, see [Task Networking](#fargate-tasks-services-networking)\.
 
 ### Task CPU and Memory<a name="fargate-tasks-size"></a>
 
@@ -143,9 +134,7 @@ The following is an example task definition using the Fargate launch type that s
 ### Task Storage<a name="fargate-tasks-storage"></a>
 
 When provisioned, each Fargate task receives the following storage\. Task storage is ephemeral\. After a Fargate task stops, the storage is deleted\.
-
 + 10 GB of Docker layer storage
-
 + An additional 4 GB for volume mounts\. This can be mounted and shared among containers using the `volumes`, `mountPoints` and `volumesFrom` parameters in the task definition\.
 **Note**  
 The `host` and `sourcePath` parameters are not supported\.
@@ -194,7 +183,7 @@ After you have your Fargate task definition prepared, there are some considerati
 
 Tasks using the Fargate launch type require the `awsvpc` network mode, which provides each task with an elastic network interface\. When you run a task or create a service with this network mode, you must specify one or more subnets to attach the network interface and one or more security groups to apply to the network interface\. 
 
-Decide whether to provide a public IP address for the network interface\. For a Fargate task to pull container images, a public IP address needs to be assigned to the task's elastic network interface, with a route to the internet or a NAT gateway that can route requests to the internet For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
+Decide whether to provide a public IP address for the network interface\. For a Fargate task to pull container images, a public IP address needs to be assigned to the task's elastic network interface, with a route to the internet or a NAT gateway that can route requests to the internet\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
 
 The following is an example of the networkConfiguration section for a Fargate service:
 
@@ -203,10 +192,12 @@ The following is an example of the networkConfiguration section for a Fargate se
       "awsvpcConfiguration": { 
          "assignPublicIp": "ENABLED",
          "securityGroups": [ "sg-12345678" ],
-         "subnets": [ "subnet-12345678, subnet-87654321" ]
+         "subnets": [ "subnet-12345678" ]
       }
    },
 ```
+
+Services with tasks that use the `awsvpc` network mode \(for example, those with the Fargate launch type\) only support Application Load Balancers and Network Load Balancers\. Classic Load Balancers are not supported\. Also, when you create any target groups for these services, you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
 
 ## Clusters<a name="fargate-clusters"></a>
 

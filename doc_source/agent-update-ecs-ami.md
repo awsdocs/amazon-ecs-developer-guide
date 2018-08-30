@@ -1,11 +1,8 @@
 # Updating the Amazon ECS Container Agent on the Amazon ECS\-Optimized AMI<a name="agent-update-ecs-ami"></a>
 
 If you are using the Amazon ECS\-optimized AMI, you have several options to get the latest version of the Amazon ECS container agent \(shown in order of recommendation\):
-
 + Terminate your current container instances and launch the latest version of the Amazon ECS\-optimized AMI \(either manually or by updating your Auto Scaling launch configuration with the latest AMI\)\. This provides a fresh container instance with the most current tested and validated versions of Amazon Linux, Docker, `ecs-init`, and the Amazon ECS container agent\. For more information, see [Amazon ECS\-Optimized AMI](ecs-optimized_AMI.md)\.
-
 + Connect to the instance with SSH and update the `ecs-init` package \(and its dependencies\) to the latest version\. This operation provides the most current tested and validated versions of Docker and `ecs-init` that are available in the Amazon Linux repositories and the latest version of the Amazon ECS container agent\. For more information, see [To update the `ecs-init` package on the Amazon ECS\-optimized AMI](#procedure_update_ecs-init)\.
-
 + Update the container agent with the `UpdateContainerAgent` API operation, either through the console or with the AWS CLI or AWS SDKs\. For more information, see [Updating the Amazon ECS Container Agent with the `UpdateContainerAgent` API Operation](#agent-update-api)\.
 
 **Note**  
@@ -65,7 +62,6 @@ Agent updates do not apply to Windows container instances\. We recommend that yo
 **To update the Amazon ECS container agent on the Amazon ECS\-optimized AMI with the AWS CLI**
 **Note**  
 Agent updates with the `UpdateContainerAgent` API operation do not apply to Windows container instances\. We recommend that you launch new container instances to update the agent version in your Windows clusters\.
-
 + Use the following command to update the Amazon ECS container agent on your container instance:
 
   ```

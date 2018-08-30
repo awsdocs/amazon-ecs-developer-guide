@@ -7,13 +7,9 @@ The following example user data scripts configure an Amazon ECS container instan
 This example user data script configures an instance launched from the Amazon ECS\-optimized AMI to use an existing Amazon EFS file system\. For more information, see [Tutorial: Using Amazon EFS File Systems with Amazon ECS](using_efs.md)
 
 This script does the following:
-
 + Install the `nfs-utils` package, which installs an NFS client
-
 + Create a mount directory for the NFS file system at `/efs`
-
 + Create a mount entry in the `/etc/fstab` file for the file system and then mount the file system
-
 + Write the cluster name, *default*, to the Amazon ECS agent configuration file
 
 You can use this script for your own container instances, provided that they are launched from an Amazon ECS\-optimized AMI\. Be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name, if you are not using the `default` cluster\. For more information about launching container instances, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
@@ -49,17 +45,11 @@ echo "ECS_CLUSTER=default" >> /etc/ecs/ecs.config
 ## Ubuntu Container Instance with `systemd`<a name="ubuntu-systemd-userdata"></a>
 
 This example user data script configures an Ubuntu 16\.04 instance to:
-
 + Install Docker
-
 + Create the required iptables rules for IAM roles for tasks
-
 + Create the required directories for the Amazon ECS container agent
-
 + Write the Amazon ECS container agent configuration file
-
 + Write the systemd unit file to monitor the agent
-
 + Enable and start the systemd unit
 
 You can use this script for your own container instances, provided that they are launched from an Ubuntu 16\.04 AMI\. Be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name, if you are not using the `default` cluster\. For more information about launching container instances, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
@@ -124,17 +114,11 @@ systemctl start docker-container@ecs-agent.service
 ## CentOS Container Instance with `systemd` and `SELinux`<a name="centos-systemd-userdata"></a>
 
 This example user data script configures a CentOS 7 instance with `SELinux` enabled to:
-
 + Install Docker
-
 + Create the required iptables rules for IAM roles for tasks
-
 + Create the required directories for the Amazon ECS container agent
-
 + Write the Amazon ECS container agent configuration file
-
 + Write the systemd unit file to monitor the agent
-
 + Enable and start the systemd unit
 
 **Note**  

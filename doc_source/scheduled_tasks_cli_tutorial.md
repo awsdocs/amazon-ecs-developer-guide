@@ -3,9 +3,7 @@
 This topic shows you how to create a scheduled task using the AWS CLI\. The scheduled task creation uses the CloudWatch Events API\. For more information, see [What is Amazon CloudWatch Events?](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch Events User Guide*\.
 
 Complete the following prerequisites:
-
 + Set up an AWS account\.
-
 + Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
 
 **To create the scheduled task**

@@ -6,7 +6,7 @@ You can pass multiple types of user data to Amazon EC2, including cloud boothook
 
 You can pass this user data into the Amazon EC2 launch wizard in [Step 7](launch_container_instance.md#instance-launch-user-data-step) of [Launching an Amazon ECS Container Instance](launch_container_instance.md)\. 
 
-
+**Topics**
 + [Amazon ECS Container Agent](#bootstrap_container_agent)
 + [Docker Daemon](#bootstrap_docker_daemon)
 + [cloud\-init\-per Utility](#cloud-init-per)
@@ -15,7 +15,7 @@ You can pass this user data into the Amazon EC2 launch wizard in [Step 7](launch
 
 ## Amazon ECS Container Agent<a name="bootstrap_container_agent"></a>
 
-The Amazon ECS\-optimized AMI looks for agent configuration data in the `/etc/ecs/ecs.config` file when the container agent starts\. You can specify this configuration data at launch with Amazon EC2 user data\. For a complete list of available Amazon ECS container agent configuration variables, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+The Amazon ECS\-optimized AMI looks for agent configuration data in the `/etc/ecs/ecs.config` file when the container agent starts\. You can specify this configuration data at launch with Amazon EC2 user data\. For more information about available Amazon ECS container agent configuration variables, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 
 To set only a single agent configuration variable, such as the cluster name, use echo to copy the variable to the configuration file:
 
@@ -38,7 +38,7 @@ EOF
 
 ## Docker Daemon<a name="bootstrap_docker_daemon"></a>
 
-You can specify Docker daemon configuration information with Amazon EC2 user data, but this configuration data must be written before the Docker daemon starts\. The `cloud-boothook` user data format executes earlier in the boot process than a user data shell script\. For a complete list of Docker daemon configuration options, see [the Docker daemon documentation](https://docs.docker.com/engine/reference/commandline/dockerd/)\.
+You can specify Docker daemon configuration information with Amazon EC2 user data, but this configuration data must be written before the Docker daemon starts\. The `cloud-boothook` user data format executes earlier in the boot process than a user data shell script\. For more information about configuration options, see [the Docker daemon documentation](https://docs.docker.com/engine/reference/commandline/dockerd/)\.
 
 By default, `cloud-boothook` user data is run at every instance boot, so you must create a mechanism to prevent the boothook from running multiple times\. The cloud\-init\-per utility is provided to control boothook frequency in this manner\. For more information, see [cloud\-init\-per Utility](#cloud-init-per)\.
 
@@ -71,11 +71,8 @@ cloud-init-per frequency name cmd [ arg1 [ arg2 [ ... ] ]
 
 `frequency`  
 How often the boothook should run\.   
-
 + Specify `once` to never run again, even with a new instance ID\.
-
 + Specify `instance` to run on the first boot for each new instance launch\. For example, if you create an AMI from the instance after the boothook has run, it still runs again on subsequent instances launched from that AMI\.
-
 + Specify `always` to run at every boot\.
 
 `name`  
@@ -108,19 +105,12 @@ Output:
 You can combine multiple user data blocks together into a single user data block called a MIME multi\-part file\. For example, you might want to combine a cloud boothook that configures the Docker daemon with a user data shell script that writes configuration information for the Amazon ECS container agent\. 
 
 A MIME multi\-part file consists of the following components:
-
 + The content type and part boundary declaration: `Content-Type: multipart/mixed; boundary="==BOUNDARY=="`
-
 + The MIME version declaration: `MIME-Version: 1.0`
-
 + One or more user data blocks, which contain the following components:
-
   + The opening boundary, which signals the beginning of a user data block: `--==BOUNDARY==`
-
-  + The content type declaration for the block \(for the list of content types, see the [Cloud\-Init documentation](https://cloudinit.readthedocs.io/en/latest/topics/format.html)\): `Content-Type: text/cloud-boothook; charset="us-ascii"`
-
+  + The content type declaration for the block: `Content-Type: text/cloud-boothook; charset="us-ascii"`\. For more information about content types, see the [Cloud\-Init documentation](https://cloudinit.readthedocs.io/en/latest/topics/format.html)\. 
   + The content of the user data, for example, a list of shell commands or `cloud-init` directives
-
 + The closing boundary, which signals the end of the MIME multi\-part file: `--==BOUNDARY==--`
 
 **Example MIME multi\-part file**  

@@ -3,24 +3,17 @@
 You can use the Amazon EC2 Run Command feature to securely and remotely manage the configuration of your Amazon ECS container instances\. Run Command provides a simple way of performing common administrative tasks without having to log on locally to the instance\. You can manage configuration changes across your clusters by simultaneously executing commands on multiple container instances\. Run Command reports the status and results of each command\.
 
 Here are some examples of the types of tasks you can perform with Run Command:
-
 + Install or uninstall packages
-
 + Perform security updates
-
 + Clean up Docker images
-
 + Stop or start services
-
 + View system resources
-
 + View log files
-
 + Perform file operations
 
 This topic covers basic installation of Run Command on the Amazon ECS\-optimized AMI and a few simple use cases, but it is by no means exhaustive\. For more information about Run Command, see [Manage Amazon EC2 Instances Remotely](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-
+**Topics**
 + [Run Command IAM Policy](#run_command_iam_policy)
 + [Installing the SSM Agent on the Amazon ECS\-optimized AMI](#install_ssm_agent)
 + [Using Run Command](#using_run_command)
@@ -60,7 +53,6 @@ After you have attached the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRol
    ```
 
 **To install the SSM agent on new instance launches with Amazon EC2 user data**
-
 + Launch one or more container instances by following the procedure in [Launching an Amazon ECS Container Instance](launch_container_instance.md), but in [Step 7](launch_container_instance.md#instance-launch-user-data-step), copy and paste the user data script below into the **User data** field\. You can also add the commands from this user data script to another existing script that you may have to perform other tasks, such as setting the cluster name for the instance to register into\.
 **Note**  
 The user data script below installs the jq JSON parser and uses that to determine the region of the container instance\. Then it downloads and installs the SSM agent\.
@@ -80,7 +72,6 @@ The user data script below installs the jq JSON parser and uses that to determin
 ## Using Run Command<a name="using_run_command"></a>
 
 After you have attached the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRole`, and installed the SSM agent on your container instances, you can start using Run Command to send commands to your container instances\. The following topic in the *Amazon EC2 User Guide for Linux Instances* explains how to run commands and shell scripts on your instances and view the resulting output:
-
 + [Running Shell Scripts with Run Command](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/remote-commands-shellcript.html)
 
 For more information about Run Command, see [Manage Amazon EC2 Instances Remotely](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html) in the *Amazon EC2 User Guide for Linux Instances*\.

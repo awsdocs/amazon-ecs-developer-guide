@@ -5,9 +5,7 @@ There are times when you might need to remove an instance from a cluster; for ex
 When you set a container instance to `DRAINING`, Amazon ECS prevents new tasks from being scheduled for placement on the container instance\. If the resources are available, replacement service tasks are started on other container instances in the cluster\. Service tasks on the container instance that are in the `PENDING` state are stopped immediately\.
 
 Service tasks on the container instance that are in the `RUNNING` state are stopped and replaced according to the service's deployment configuration parameters, `minimumHealthyPercent` and `maximumPercent`\. 
-
 + If `minimumHealthyPercent` is below 100%, the scheduler can ignore `desiredCount` temporarily during task replacement\. For example, `desiredCount` is four tasks, a minimum of 50% allows the scheduler to stop two existing tasks before starting two new tasks\. If the minimum is 100%, the service scheduler can't remove existing tasks until the replacement tasks are considered healthy\. If tasks for services that do not use a load balancer are in the `RUNNING` state, they are considered healthy\. Tasks for services that use a load balancer are considered healthy if they are in the `RUNNING` state and the container instance they are hosted on is reported as healthy by the load balancer\.
-
 + The `maximumPercent` parameter represents an upper limit on the number of running tasks during task replacement, which enables you to define the replacement batch size\. For example, if `desiredCount` of four tasks, a maximum of 200% starts four new tasks before stopping the four tasks to be drained \(provided that the cluster resources required to do this are available\)\. If the maximum is 100%, then replacement tasks can't start until the draining tasks have stopped\.
 
 For more information, see [Service Definition Parameters](service_definition_parameters.md)\.

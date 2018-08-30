@@ -20,9 +20,7 @@ Task definitions that use the `awsvpc` network mode are not supported for schedu
 1. \(Optional\) For **Schedule rule description**, enter a description for your rule\. Up to 512 characters are allowed\.
 
 1. For **Schedule rule type**, choose whether to use a fixed interval schedule or a `cron` expression for your schedule rule\. For more information, see [Schedule Expressions for Rules](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) in the *Amazon CloudWatch Events User Guide*\.
-
    + For **Run at fixed interval**, enter the interval and unit for your schedule\.
-
    + For **Cron expression**, enter the `cron` expression for your task schedule\. These expressions have six required fields, and fields are separated by white space\. For more information, and examples of `cron` expressions, see [Cron Expressions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) in the *Amazon CloudWatch Events User Guide*\.
 
 1. Create a target for your schedule rule\.

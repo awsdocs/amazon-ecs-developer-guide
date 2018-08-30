@@ -22,30 +22,56 @@ Some features described may only be available with the latest version of the ECS
 |  `--task-role-arn role_value`  |  Specifies the short name or full Amazon Resource Name \(ARN\) of the IAM role that containers in this task can assume\. All containers in this task are granted the permissions that are specified in this role\. Type: String Required: No  | 
 |  `--ecs-params`  |  Specifies the ECS parameters that are not native to Docker compose files\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\. Default: `./ecs-params.yml` Required: No  | 
 |  `--cluster, -c cluster_name`  |  Specifies the ECS cluster name to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
-|  `--region, -r region`  |  Specifies the AWS region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
+|  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
 |  `--ecs-profile ecs_profile`  |  Specifies the name of the ECS profile configuration to use\. Defaults to the profile configured using the configure profile command\. Type: String Required: No  | 
 |  `--aws-profile aws_profile`  |  Specifies the AWS profile to use\. Enables you to use the AWS credentials from an existing named profile in `~/.aws/credentials`\. Type: String Required: No  | 
 |  `--cluster-config cluster_config_name`  |  Specifies the name of the ECS cluster configuration to use\. Defaults to the cluster configuration set as the default\. Type: String Required: No  | 
 | \-\-launch\-type launch\_type | Specifies the launch type to use\. Available options are FARGATE or EC2\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\. This overrides the default launch type stored in your cluster configuration\. Type: StringRequired: No | 
-|  `--create-log-groups`  |  Creates the CloudWatch log groups specified in your compose file\(s\)\. Required: No  | 
+|  `--create-log-groups`  |  Creates the CloudWatch log groups specified in your compose files\. Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
 
 ## Examples<a name="cmd-ecs-cli-compose-start-examples"></a>
 
 ### Run a Task<a name="cmd-ecs-cli-compose-start-example-1"></a>
 
-This example creates a task definition from the `hello-world.yml` compose file and then runs a single task using that task definition\.
+This example creates a task definition from the `hello-world.yml` compose file\. Additional ECS parameters are specified for task networking configuration for the Fargate launch type\. Then a single task is run using that task definition\.
 
-Example ecs\-params\.yml file:
+Example Docker Compose file, named `hello-world.yml`:
+
+```
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: tutorial
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: nginx
+```
+
+Example ECS parameters file, named `ecs-params.yml`:
 
 ```
 version: 1
 task_definition:
-  ecs_network_mode: host
-  task_role_arn: myCustomRole
-  services:
-    my_service:
-      essential: false
+  task_execution_role: ecsTaskExecutionRole
+  ecs_network_mode: awsvpc
+  task_size:
+    mem_limit: 0.5GB
+    cpu_limit: 256
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - subnet-abcd1234
+        - subnet-dbca4321
+      security_groups:
+        - sg-abcd1234
+      assign_public_ip: ENABLED
 ```
 
 Command:

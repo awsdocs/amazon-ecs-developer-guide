@@ -2,7 +2,7 @@
 
 You can configure your Amazon ECS container instances to use an HTTP proxy for both the Amazon ECS container agent and the Docker daemon\. This is useful if your container instances do not have external network access through an Amazon VPC internet gateway, NAT gateway, or instance\. The process differs for Linux and Windows instances, so be sure to read the appropriate section below for your application\.
 
-
+**Topics**
 + [Linux Container Instance Configuration](#linux-proxy)
 + [Windows Container Instance Configuration](#windows-proxy)
 
@@ -84,7 +84,7 @@ Set `NO_PROXY` to `169.254.169.254,169.254.170.2,\\.\pipe\docker_engine` to filt
 
 **Example Windows HTTP proxy user data script**  
 The example user data PowerShell script below configures the Amazon ECS container agent and the Docker daemon to use an HTTP proxy that you specify\. You can also specify a cluster into which the container instance registers itself\.  
-To use this script when you launch a container instance, follow the steps in [Step 2: Launching a Windows Container Instance into your Cluster](ECS_Windows_getting_started.md#launch_windows_container_instance)\. When you reach [Step 10](ECS_Windows_getting_started.md#windows-instance-launch-user-data-step), copy and paste the PowerShell script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
+To use this script when you launch a container instance, follow the steps in [Step 2: Launching a Windows Container Instance into your Cluster](ECS_Windows_getting_started.md#launch_windows_container_instance)\. When you reach [Step 9](ECS_Windows_getting_started.md#windows-instance-launch-user-data-step), copy and paste the PowerShell script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
 The `-EnableTaskIAMRole` option is required to enable IAM roles for tasks\. For more information, see [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)\.
 
 ```

@@ -1,6 +1,9 @@
 # Amazon ECS Container Instance IAM Role<a name="instance_IAM_role"></a>
 
-The Amazon ECS container agent makes calls to the Amazon ECS API on your behalf\. Container instances that run the agent require an IAM policy and role for the service to know that the agent belongs to you\. Before you can launch container instances and register them into a cluster, you must create an IAM role for those container instances to use when they are launched\. This requirement applies to container instances launched with the Amazon ECS\-optimized AMI provided by Amazon, or with any other instances that you intend to run the agent on\. This role only applies if you are using the EC2 launch type\.
+The Amazon ECS container agent makes calls to the Amazon ECS API on your behalf\. Container instances that run the agent require an IAM policy and role for the service to know that the agent belongs to you\. Before you can launch container instances and register them into a cluster, you must create an IAM role for those container instances to use when they are launched\. This requirement applies to container instances launched with the Amazon ECS\-optimized AMI provided by Amazon, or with any other instances that you intend to run the agent on\.
+
+**Important**  
+This role only applies if you are using the EC2 launch type\.
 
 **Important**  
 Containers that are running on your container instances have access to all of the permissions that are supplied to the container instance role through [instance metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)\. We recommend that you limit the permissions in your container instance role to the minimal list of permissions provided in the managed `AmazonEC2ContainerServiceforEC2Role` policy shown below\. If the containers in your tasks need extra permissions that are not listed here, we recommend providing those tasks with their own IAM roles\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  
@@ -46,7 +49,7 @@ The `AmazonEC2ContainerServiceforEC2Role` policy is shown below\.
 
 **Note**  
 The `ecs:CreateCluster` line in the above policy is optional, provided that the cluster you intend to register your container instance into already exists\. If the cluster does not already exist, the agent must have permission to create it, or you can create the cluster with the create\-cluster command prior to launching your container instance\.  
-If you omit the `ecs:CreateCluster` line, the Amazon ECS container agent will not be able to create clusters, including the default cluster\.
+If you omit the `ecs:CreateCluster` line, the Amazon ECS container agent can not create clusters, including the default cluster\.
 
 The `ecs:Poll` line in the above policy is used to grant the agent permission to connect with the Amazon ECS service to report status and get commands\.
 
@@ -98,7 +101,7 @@ The Amazon ECS instance role is automatically created for you in the console fir
 
 1. Choose the **AWS service** role type, and then choose **Elastic Container Service**\.
 
-1. Choose the **Elastic Container Service** use case and then **Next: Permissions**\.
+1. Choose the **EC2 Role for Elastic Container Service** use case and then **Next: Permissions**\.
 
 1. In the **Attached permissions policy** section, select **AmazonEC2ContainerServiceforEC2Role** and then choose **Next: Review**\.
 

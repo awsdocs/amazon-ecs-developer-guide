@@ -2,7 +2,8 @@
 
 You may need to troubleshoot issues with your load balancers, tasks, services, or container instances\. This chapter helps you find diagnostic information from the Amazon ECS container agent, the Docker daemon on the container instance, and the service event log in the Amazon ECS console\.
 
-
+**Topics**
++ [Troubleshooting First\-Run Wizard Launch Issues](first-run-launch-errors.md)
 + [Checking Stopped Tasks for Errors](stopped-task-errors.md)
 + [Service Event Messages](service-event-messages.md)
 + [Invalid CPU or Memory Value Specified](task-cpu-memory-error.md)
