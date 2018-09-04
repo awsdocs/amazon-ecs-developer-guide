@@ -24,9 +24,9 @@ Another method of enabling private registry authentication uses Amazon ECS conta
 
 The Amazon ECS task execution role is required to use this feature\. This allows the container agent to pull the container image\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
-In addition, the permissions below need to be manually added as an inline policy to the task execution role in order to provide access to the secrets you create\. For more information, see [Adding and Removing IAM Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
+To provide access to the secrets that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
 + `secretsmanager:GetSecretValue`
-+ `kms:Decrypt`, required only if your key uses a custom KMS key and not the default KMS key
++ `kms:Decrypt`—Required only if your key uses a custom KMS key and not the default key\.
 
 An example inline policy adding the permissions is shown below\.
 
@@ -71,11 +71,11 @@ Use AWS Secrets Manager to create a secret for your private registry credentials
 
 1. Choose **Next**\.
 
-1. For **Secret name**, type an optional path and name, such as **production/MyAwesomeAppSecret** or **development/TestSecret**, and then choose **Next**\. You can optionally add a description to help you remember the purpose of this secret later on\.
+1. For **Secret name**, type an optional path and name, such as **production/MyAwesomeAppSecret** or **development/TestSecret**, and choose **Next**\. You can optionally add a description to help you remember the purpose of this secret later\.
 
    The secret name must be ASCII letters, digits, or any of the following characters: /\_\+=\.@\-
 
-1. \(Optional\) At this point, you can configure rotation for your secret\. Because we're working on a "basic" secret without rotation, leave it at **Disable automatic rotation**, and then choose **Next**\.
+1. \(Optional\) At this point, you can configure rotation for your secret\. For this procedure, leave it at **Disable automatic rotation** and choose **Next**\.
 
    For information about how to configure rotation on new or existing secrets, see [Rotating Your AWS Secrets Manager Secrets](http://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html)\.
 

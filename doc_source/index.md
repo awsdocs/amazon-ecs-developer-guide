@@ -18,6 +18,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)
 + [Docker Basics for Amazon ECS](docker-basics.md)
 + [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)
++ [Getting Started with Amazon ECS](ECS_GetStarted_EC2.md)
 + [Cleaning Up your Amazon ECS Resources](ECS_CleaningUp.md)
 + [AWS Fargate on Amazon ECS](AWS_Fargate.md)
    + [AWS Fargate Platform Versions](platform_versions.md)

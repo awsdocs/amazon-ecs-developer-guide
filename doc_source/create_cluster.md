@@ -29,7 +29,7 @@ If you chose the **Networking only** cluster template, do the following, otherwi
 
 1. In the **Networking** section, configure the VPC for your cluster\. You can leave the default settings in or you can modify these settings by following the substeps below\.
 
-   1. \(Optional\) If you choose to create a new VPC, for **CIDR Block**, select a CIDR block for your VPC\. For more information, see [Your VPC and Subnets](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
+   1. \(Optional\) If you choose to create a new VPC, for **CIDR Block**, select a CIDR block for your VPC\. For more information, see [Your VPC and Subnets](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
 
    1. For **Subnets**, select the subnets to use for your VPC\. You can keep the default settings or you can modify them to meet your needs\.
 
@@ -67,7 +67,7 @@ Spot Instances are subject to possible interruptions\. We recommend that you avo
 
    1. For **VPC**, create a new VPC, or select an existing VPC\.
 
-   1. \(Optional\) If you chose to create a new VPC, for **CIDR Block**, select a CIDR block for your VPC\. For more information, see [Your VPC and Subnets](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
+   1. \(Optional\) If you chose to create a new VPC, for **CIDR Block**, select a CIDR block for your VPC\. For more information, see [Your VPC and Subnets](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
 
    1. For **Subnets**, select the subnets to use for your VPC\. If you chose to create a new VPC, you can keep the default settings or you can modify them to meet your needs\. If you chose to use an existing VPC, select one or more subnets in that VPC to use for your cluster\.
 

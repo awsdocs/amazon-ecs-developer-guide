@@ -7,15 +7,15 @@ A *task placement constraint* is a rule that is considered during task placement
 Amazon ECS supports the following types of task placement constraints:
 
 `distinctInstance`  
-Place each task on a different container instance\.
+Place each task on a different container instance\. This task placement constraint can be specified when either running a task or creating a new service\.
 
 `memberOf`  
-Place tasks on container instances that satisfy an expression\.
-
-For more information about expression syntax, see [Cluster Query Language](cluster-query-language.md)\.
-
-**Note**
-The placement constraint type `distinctInstance` is not supported when using task placement constraints on a TaskDefinition. 
+Place tasks on container instances that satisfy an expression\. For more information about the expression syntax for constraints, see [Cluster Query Language](cluster-query-language.md)\.  
+The `memberOf` task placement constraint can be specified with the following actions:  
++ Running a task
++ Creating a new service
++ Creating a new task definition
++ Creating a new revision of an existing task definition
 
 ## Attributes<a name="attributes"></a>
 
@@ -56,9 +56,7 @@ You can add custom attributes at instance registration time using the container 
 
    1. Choose **Add attribute**\.
 
-   1. Type a name and a value for the attribute\.
-
-   1. Choose the checkmark icon to save the attribute\.
+   1. Type a name and a value for the attribute and choose the checkmark icon\.
 
 1. When you are finished adding attributes, choose **Close**\.
 
@@ -124,14 +122,14 @@ aws ecs list-container-instances --filter "attribute:stack != prod"
 ```
 
 **Example: Multiple Attribute Values**  
-The following example uses built\-in attributes to list the instances of type t2\.small or t2\.medium\.
+The following example uses built\-in attributes to list the instances of type `t2.small` or `t2.medium`\.
 
 ```
 aws ecs list-container-instances --filter "attribute:ecs.instance-type in [t2.small, t2.medium]"
 ```
 
 **Example: Multiple Attributes**  
-The following example uses built\-in attributes to list the T2 instances in Availability Zone us\-east\-1a\.
+The following example uses built\-in attributes to list the T2 instances in the us\-east\-1a Availability Zone\.
 
 ```
 aws ecs list-container-instances --filter "attribute:ecs.instance-type =~ t2.* and attribute:ecs.availability-zone == us-east-1a"
@@ -141,9 +139,9 @@ aws ecs list-container-instances --filter "attribute:ecs.instance-type =~ t2.* a
 
 You can identify a set of related tasks as a *task group*\. All tasks with the same task group name are considered as a set when performing spread placement\. For example, suppose that you are running different applications in one cluster, such as databases and web servers\. To ensure that your databases are balanced across Availability Zones, add them to a task group named "databases" and then use this task group as a constraint for task placement\.
 
-When you launch a task using the `RunTask` or `StartTask` action, you can specify the name of the task group for the task\. If you don't specify a task group for the task, the default name is the family name of the task definition \(for example, family:my\-task\-definition\)\.
+When you launch a task using the `RunTask` or `StartTask` action, you can specify the name of the task group for the task\. If you don't specify a task group for the task, the default name is the family name of the task definition \(for example, `family:my-task-definition`\)\.
 
-For tasks launched by the service scheduler, the task group name is the name of the service \(for example, service:my\-service\-name\)\.
+For tasks launched by the service scheduler, the task group name is the name of the service \(for example, `service:my-service-name`\)\.
 
 **Limits**
 + A task group name must be 255 characters or less\.
@@ -152,9 +150,9 @@ For tasks launched by the service scheduler, the task group name is the name of 
 
 ## Example Constraints<a name="constraint-examples"></a>
 
-You can specify task placement constraints with the following actions: [CreateService](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [RegisterTaskDefinition](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html), and [RunTask](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
+The following are task placement constraint examples\.
 
-The following constraint places tasks on T2 instances\.
+This example uses the `memberOf` constraint to place tasks on T2 instances\. It can be specified with the following actions: [CreateService](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [RegisterTaskDefinition](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html), and [RunTask](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
 
 ```
 "placementConstraints": [
@@ -165,7 +163,7 @@ The following constraint places tasks on T2 instances\.
 ]
 ```
 
-The following constraint places tasks on instances in the databases task group\.
+The example uses the `memberOf` constraint to place tasks on instances in the `databases` task group\. It can be specified with the following actions: [CreateService](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [RegisterTaskDefinition](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html), and [RunTask](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
 
 ```
 "placementConstraints": [
@@ -176,7 +174,7 @@ The following constraint places tasks on instances in the databases task group\.
 ]
 ```
 
-The following constraint places each task in the group on a different instance\. This type of constraint is not supported when performing [RegisterTaskDefinition](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html)\.
+The `distinctInstance` constraint places each task in the group on a different instance\. It can be specified with the following actions: [CreateService](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html) and [RunTask](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)
 
 ```
 "placementConstraints": [

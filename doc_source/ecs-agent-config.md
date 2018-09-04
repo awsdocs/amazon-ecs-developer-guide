@@ -222,7 +222,7 @@ Default value on Windows: `default`
 The behavior used to customize the pull image process for your container instances\. The following describes the optional behaviors:  
 + If `default` is specified, the image is pulled remotely\. If the image pull fails, then the container uses the cached image on the instance\.
 + If `always` is specified, the image is always pulled remotely\. If the image pull fails, then the task fails\. This option ensures that the latest version of the image is always pulled\. Any cached images are ignored and are subject to the automated image cleanup process\.
-+ If `once` is specified, the image is pulled remotely if it has not been pulled before or if the image was removed by the automated image cleanup process\. Otherwise, the cached image on the instance is used\. This ensures that no unnecessary image pulls are attempted\.
++ If `once` is specified, the image is pulled remotely only if it has not been pulled by a previous task on the same container instance or if the cached image was removed by the automated image cleanup process\. Otherwise, the cached image on the instance is used\. This ensures that no unnecessary image pulls are attempted\.
 + If `prefer-cached` is specified, the image is pulled remotely if there is no cached image\. Otherwise, the cached image on the instance is used\. Automated image cleanup is disabled for the container to ensure that the cached image is not removed\.
 
 `ECS_INSTANCE_ATTRIBUTES`  <a name="ecs-instance-attributes"></a>

@@ -78,28 +78,28 @@ Amazon ECS task definitions use Docker images to launch containers on the contai
 1. Edit the `Dockerfile` you just created and add the following content\.
 
    ```
-   FROM ubuntu:12.04
+   FROM ubuntu:16.04
    
    # Install dependencies
-   RUN apt-get update -y
-   RUN apt-get install -y apache2
+   RUN apt-get update
+   RUN apt-get -y install apache2
    
    # Install apache and write hello world message
-   RUN echo "Hello World!" > /var/www/index.html
+   RUN echo 'Hello World!' > /var/www/html/index.html
    
    # Configure apache
-   RUN a2enmod rewrite
-   RUN chown -R www-data:www-data /var/www
-   ENV APACHE_RUN_USER www-data
-   ENV APACHE_RUN_GROUP www-data
-   ENV APACHE_LOG_DIR /var/log/apache2
+   RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh
+   RUN echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh
+   RUN echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh
+   RUN echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh
+   RUN chmod 755 /root/run_apache.sh
    
    EXPOSE 80
    
-   CMD ["/usr/sbin/apache2", "-D",  "FOREGROUND"]
+   CMD /root/run_apache.sh
    ```
 
-   This Dockerfile uses the Ubuntu 12\.04 image\. The `RUN` instructions update the package caches, install some software packages for the web server, and then write the "Hello World\!" content to the web server's document root\. The `EXPOSE` instruction exposes port 80 on the container, and the `CMD` instruction starts the web server\.
+   This Dockerfile uses the Ubuntu 16\.04 image\. The `RUN` instructions update the package caches, install some software packages for the web server, and then write the "Hello World\!" content to the web server's document root\. The `EXPOSE` instruction exposes port 80 on the container, and the `CMD` instruction starts the web server\.
 
 1. <a name="sample-docker-build-step"></a>Build the Docker image from your Dockerfile\.
 **Note**  
@@ -147,8 +147,9 @@ Output from the Apache web server is displayed in the terminal window\. You can 
 
 Amazon ECR is a managed AWS Docker registry service\. Customers can use the familiar Docker CLI to push, pull, and manage images\. For Amazon ECR product details, featured customer case studies, and FAQs, see the [Amazon Elastic Container Registry product detail pages](http://aws.amazon.com/ecr)\.
 
-**Note**  
-This section requires the AWS CLI\. If you do not have the AWS CLI installed on your system, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+This section requires the following:
++ You have the AWS CLI installed and configured\. If you do not have the AWS CLI installed on your system, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
++ Your user has the required IAM permissions to access the Amazon ECR service\. For more information, see [Amazon ECR Managed Policies](http://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html)\.
 
 **To tag your image and push it to Amazon ECR**
 
@@ -188,7 +189,7 @@ The get\-login command is available in the AWS CLI starting with version 1\.9\.1
 
 1. Run the docker login command that was returned in the previous step\. This command provides an authorization token that is valid for 12 hours\.
 **Important**  
-When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way and use them to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
+When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way\. They could use the credentials to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
 
 1. Push the image to Amazon ECR with the `repositoryUri` value from the earlier step\.
 

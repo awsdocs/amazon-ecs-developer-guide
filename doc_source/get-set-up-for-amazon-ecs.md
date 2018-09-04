@@ -95,7 +95,7 @@ For more information about IAM, see the [AWS Identity and Access Management User
 
 ## Create an IAM Role for your Container Instances and Services<a name="create-an-iam-role"></a>
 
-Before the Amazon ECS agent can register a container instance into a cluster, the agent must know which account credentials to use\. You can create an IAM role that allows the agent to know which account it should register the container instance with\. When you launch an instance with the Amazon ECS\-optimized AMI provided by Amazon using this role, the agent automatically registers the container instance into your default cluster\.
+Before the Amazon ECS container agent can register a container instance into a cluster, the agent must know which account credentials to use\. You can create an IAM role that allows the agent to know which account it should register the container instance with\. When you launch an instance with the Amazon ECS\-optimized AMI provided by Amazon using this role, the agent automatically registers the container instance into your default cluster\.
 
 The Amazon ECS container agent also makes calls to the Amazon EC2 and Elastic Load Balancing APIs on your behalf, so container instances can be registered and deregistered with load balancers\. Before you can attach a load balancer to an Amazon ECS service, you must create an IAM role for your services to use before you start them\. This requirement applies to any Amazon ECS service that you plan to use with a load balancer\.
 
@@ -177,13 +177,13 @@ If your account supports Amazon EC2 Classic in a region, then you do not have a 
 
 1. From the navigation bar, select a region for the VPC\. VPCs are specific to a region, so you should select the same region in which you created your key pair\.
 
-1. On the VPC dashboard, choose **Create VPC**\.
+1. On the VPC dashboard, choose **Launch VPC Wizard**\.
 
 1. On the **Step 1: Select a VPC Configuration** page, ensure that **VPC with a Single Public Subnet** is selected, and choose **Select**\.
 
 1. On the **Step 2: VPC with a Single Public Subnet** page, enter a friendly name for your VPC in the **VPC name** field\. Leave the other default configuration settings, and choose **Create VPC**\. On the confirmation page, choose **OK**\.
 
-For more information about Amazon VPC, see [What is Amazon VPC?](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/) in the *Amazon VPC User Guide*\.
+For more information about Amazon VPC, see [What is Amazon VPC?](http://docs.aws.amazon.com/vpc/latest/userguide/) in the *Amazon VPC User Guide*\.
 
 ## Create a Security Group<a name="create-a-base-security-group"></a>
 

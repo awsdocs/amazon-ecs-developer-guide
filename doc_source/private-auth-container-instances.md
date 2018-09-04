@@ -54,7 +54,7 @@ Output:
 }
 ```
 
-In the above example, the following environment variables should be added to the environment variable file \(`/etc/ecs/ecs.config` for the Amazon ECS\-optimized AMI\) that the Amazon ECS container agent loads at run time\. If you are not using the Amazon ECS\-optimized AMI and you are starting the agent manually with docker run, specify the environment variable file with the `--env-file path_to_env_file` option when you start the agent\.
+In the above example, the following environment variables should be added to the environment variable file \(`/etc/ecs/ecs.config` for the Amazon ECS\-optimized AMI\) that the Amazon ECS container agent loads at runtime\. If you are not using the Amazon ECS\-optimized AMI and you are starting the agent manually with docker run, specify the environment variable file with the `--env-file path_to_env_file` option when you start the agent\.
 
 ```
 ECS_ENGINE_AUTH_TYPE=dockercfg
@@ -69,7 +69,7 @@ ECS_ENGINE_AUTH_DATA={"repo.example-01.com":{"auth":"zq212MzEXAMPLE7o6T25Dk0i","
 ```
 
 **docker Authentication Format**  
-The `docker` format uses a JSON representation of the registry server that the agent should authenticate with, as well as the authentication parameters required by that registry \(such as user name, password, and the email address for that account\)\. For a Docker Hub account, the JSON representation looks like this:
+The `docker` format uses a JSON representation of the registry server that the agent should authenticate with\. It also includes the authentication parameters required by that registry \(such as user name, password, and the email address for that account\)\. For a Docker Hub account, the JSON representation looks like the following:
 
 ```
 {
@@ -81,7 +81,7 @@ The `docker` format uses a JSON representation of the registry server that the a
 }
 ```
 
-In this example, the following environment variables should be added to the environment variable file \(`/etc/ecs/ecs.config` for the Amazon ECS\-optimized AMI\) that the Amazon ECS container agent loads at run time\. If you are not using the Amazon ECS\-optimized AMI and you are starting the agent manually with docker run, specify the environment variable file with the `--env-file path_to_env_file` option when you start the agent\.
+In this example, the following environment variables should be added to the environment variable file \(`/etc/ecs/ecs.config` for the Amazon ECS\-optimized AMI\) that the Amazon ECS container agent loads at runtime\. If you are not using the Amazon ECS\-optimized AMI and you are starting the agent manually with docker run, specify the environment variable file with the `--env-file path_to_env_file` option when you start the agent\.
 
 ```
 ECS_ENGINE_AUTH_TYPE=docker

@@ -1,11 +1,13 @@
 # Document History<a name="document_history"></a>
 
 The following table describes the important changes to the documentation since the last release of Amazon ECS\. We also update the documentation frequently to address the feedback that you send us\.
-+ **Latest documentation update:** August 16th, 2018
++ **Latest documentation update:** August 30th, 2018
 
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Amazon ECS service discovery region expansion  |  Amazon ECS service discovery has expanded support to the Asia Pacific \(Singapore\), Asia Pacific \(Sydney\), Asia Pacific \(Tokyo\), EU \(Frankfurt\), and EU \(London\) regions\. For more information, see [Service Discovery](service-discovery.md)\.  |  30 August 2018  | 
+|  Scheduled tasks with Fargate tasks support  |  Amazon ECS introduced support for scheduled tasks for the Fargate launch type\. For more information, see [Scheduled Tasks \(`cron`\)](scheduled_tasks.md)\.  |  28 August 2018  | 
 |  Private registry authentication using AWS Secrets Manager support  |  Amazon ECS introduced support for private registry authentication using AWS Secrets Manager\. This feature enables you to store your credentials securely and then reference them in your container definition, which allows your tasks to use private images\. For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.  |  16 August 2018  | 
 |  Docker volume support added  |  Amazon ECS introduced support for Docker volumes\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.  |  9 August 2018  | 
 |  AWS Fargate region expansion  |  AWS Fargate with Amazon ECS has expanded to the EU \(Frankfurt\), Asia Pacific \(Singapore\), and Asia Pacific \(Sydney\) regions\. For more information, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\.  |  19 July 2018  | 

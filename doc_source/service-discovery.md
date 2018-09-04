@@ -11,7 +11,12 @@ Service discovery is available in the following AWS Regions:
 | US East \(Ohio\) | us\-east\-2 | 
 | US West \(N\. California\) | us\-west\-1 | 
 | US West \(Oregon\) | us\-west\-2 | 
+| Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
+| Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
+| Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
+| EU \(Frankfurt\) | eu\-central\-1 | 
 | EU \(Ireland\) | eu\-west\-1 | 
+| EU \(London\) | eu\-west\-2 | 
 
 **Topics**
 + [Service Discovery Concepts](#service-discovery-concepts)
@@ -30,7 +35,9 @@ Service discovery consists of the following components:
 ## Service Discovery Considerations<a name="service-discovery-considerations"></a>
 
 The following should be considered when using service discovery:
++ Service discovery is supported for Fargate tasks if using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
 + Public namespaces are supported but you must have an existing public hosted zone registered with Route 53 before creating your service discovery service\.
++ The DNS records created for a service discovery service will always register with the private IP address for the task, rather than the public IP address, even when public namespaces are used\.
 + Service discovery requires that tasks specify either the `awsvpc`, `bridge`, or `host` network mode \(`none` is not supported\)\.
 + If the task definition your service task specifies uses the `awsvpc` network mode, you can create any combination of A or SRV records for each service task\. If you use SRV records, a port is required\.
 + If the task definition that your service task specifies uses the `bridge` or `host` network mode, a SRV record is the only supported DNS record type\. Create a SRV record for each service task\. The SRV record must specify a container name and container port combination from the task definition\.
@@ -43,9 +50,7 @@ The following should be considered when using service discovery:
   + **HealthCheckConfig**—Route 53 creates health checks to monitor tasks\. This requires the tasks to be publicly available\. This is specified using the `--health-check-config` parameter when creating your service discovery service\. For more information, see [HealthCheckConfig](http://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_HealthCheckConfig.html) in the *Amazon Route 53 API Reference*\.
 + If you are using the Amazon ECS console, the workflow creates one service discovery service per ECS service and maps all of the task IP addresses as A records, or task IP addresses and port as SRV records\.
 + Existing ECS services that have service discovery configured cannot be updated to change the service discovery configuration\.
-
-**Note**  
-Service discovery is supported for Fargate tasks if using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
++ The Route 53 resources created when service discovery is used must be cleaned up manually\. For more information, see [Step 6: Clean Up](create-service-discovery.md#create-service-discovery-cleanup) in the [Tutorial: Creating a Service Using Service Discovery](create-service-discovery.md) topic\.
 
 ## Service Discovery Pricing<a name="service-discovery-pricing"></a>
 

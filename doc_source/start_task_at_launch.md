@@ -20,9 +20,9 @@ The Amazon EC2 user data script in the following procedure uses the Amazon ECS i
 
    1. In the **Permissions** tab, choose **Add inline policy**\.
 
-   1. For **Service**, choose **Choose a service** and then **Elastic Container Service**\.
+   1. For **Service**, choose **Choose a service**, **EC2 Container Service**\.
 
-   1. For **Actions**, choose **Select actions**, type **StartTask** in the search field, and then select **StartTask**\.
+   1. For **Actions**, type **StartTask** in the search field, and then select **StartTask**\.
 
    1. For **Resources**, select **All resources**, and then choose **Review policy**\.
 

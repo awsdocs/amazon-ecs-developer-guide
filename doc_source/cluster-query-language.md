@@ -15,23 +15,17 @@ subject operator [argument]
 **Subject**  
 The attribute or field to be evaluated\.
 
-You can select container instances by attribute\. Specify attributes as follows:
+You can select container instances by attribute\. For more information, see [Attributes](task-placement-constraints.md#attributes)\. Specify attributes as follows:
 
 ```
 attribute:attribute-name
 ```
 
-**Note**  
-For more details about attributes, see [Attributes](task-placement-constraints.md#attributes)\.
-
-You can also select container instances by task group\. Specify task groups as follows:
+You can also select container instances by task group\. For more information, see [Task Groups](task-placement-constraints.md#task-groups)\. Specify task groups as follows:
 
 ```
 task:group
 ```
-
-**Note**  
-For more details about task groups, see [Task Groups](task-placement-constraints.md#task-groups)\.
 
 **Operator**  
 The comparison operator\. The following operators are supported\.
@@ -58,7 +52,7 @@ A single expression can't contain parentheses\. However, parentheses can be used
 **Argument**  
 For many operators, the argument is a literal value\.
 
-The in and not\_in operators expect an argument list as the argument\. You specify an argument list as follows:
+The `in` and `not_in` operators expect an argument list as the argument\. You specify an argument list as follows:
 
 ```
 [argument1, argument2, ..., argumentN]
@@ -105,7 +99,7 @@ attribute:ecs.instance-type =~ g2.* and attribute:ecs.availability-zone != us-ea
 ```
 
 **Example: Task Affinity**  
-The following expression selects instances that are hosting tasks in the service:production group\.
+The following expression selects instances that are hosting tasks in the `service:production` group\.
 
 ```
 task:group == service:production

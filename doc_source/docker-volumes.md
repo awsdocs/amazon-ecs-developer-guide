@@ -30,9 +30,6 @@ The task definition JSON shown below shows the syntax for the `volumes` and `mou
     "volumes": [
         {
             "name": "string",
-            "host": {
-                "sourcePath": "string"
-            },
             "dockerVolumeConfiguration": {
                 "scope": "string",
                 "autoprovision": boolean,
