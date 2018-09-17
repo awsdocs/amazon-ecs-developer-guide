@@ -28,6 +28,7 @@ Some features described may only be available with the latest version of the ECS
 |  `--cluster-config cluster_config_name`  |  Specifies the name of the ECS cluster configuration to use\. Defaults to the cluster configuration set as the default\. Type: String Required: No  | 
 | \-\-launch\-type launch\_type | Specifies the launch type to use\. Available options are FARGATE or EC2\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\. This overrides the default launch type stored in your cluster configuration\. Type: StringRequired: No | 
 |  `--create-log-groups`  |  Creates the CloudWatch log groups specified in your compose files\. Required: No  | 
+|  `--force-update`  |  Forces the relaunching of the tasks\. Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
 
 ## Examples<a name="cmd-ecs-cli-compose-up-examples"></a>

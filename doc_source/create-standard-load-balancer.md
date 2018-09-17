@@ -28,7 +28,7 @@ A *listener* is a process that checks for connection requests\. It is configured
 
 1. For **Create LB inside**, select the same network that your container instances are located in: EC2\-Classic or a specific VPC\.
 
-1. The default values configure an HTTP load balancer that forwards traffic from port 80 at the load balancer to port 80 of your container instances, but you can modify these values for your application\. For more information, see [Listeners for Your Classic Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html) in the *User Guide for Classic Load Balancers*\.
+1. The default values configure an HTTP load balancer that forwards traffic from port 80 at the load balancer to port 80 of your container instances, but you can modify these values for your application\. For more information, see [Listeners for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html) in the *User Guide for Classic Load Balancers*\.
 
 1. \[EC2\-VPC\] To improve the availability of your load balancer, select at least two subnets in different Availability Zones\. Your load balancer subnet configuration must include all Availability Zones that your container instances reside in\. In the **Select Subnets** section, under **Available Subnets**, select the subnets\. The subnets that you select are moved under **Selected Subnets**\.
 **Note**  
@@ -57,7 +57,7 @@ Also assign this security group to container instances in your service, or anoth
 
 ## \(Optional\) Configure Security Settings<a name="configure-security-settings"></a>
 
-For this tutorial, you can choose **Next: Configure Health Check** to continue to the next step\. For more information about creating an HTTPS load balancer and using additional security features, see [HTTPS Load Balancers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-https-load-balancers.html) in the *User Guide for Classic Load Balancers*\.
+For this tutorial, you can choose **Next: Configure Health Check** to continue to the next step\. For more information about creating an HTTPS load balancer and using additional security features, see [HTTPS Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-https-load-balancers.html) in the *User Guide for Classic Load Balancers*\.
 
 ## Configure Health Checks for Your EC2 Instances<a name="configure-health-check"></a>
 
@@ -95,7 +95,7 @@ Your load balancer distributes traffic between the instances that are registered
 
 ## Tag Your Load Balancer \(Optional\)<a name="elb-add-tags"></a>
 
-You can tag your load balancer, or continue to the next step\. You can tag your load balancer later on\. For more information, see [Tag Your Classic Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html) in the *User Guide for Classic Load Balancers*\.
+You can tag your load balancer, or continue to the next step\. You can tag your load balancer later on\. For more information, see [Tag Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html) in the *User Guide for Classic Load Balancers*\.
 
 **To add tags to your load balancer**
 

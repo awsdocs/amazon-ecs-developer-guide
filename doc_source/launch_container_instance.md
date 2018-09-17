@@ -16,7 +16,7 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 **Note**  
 For more information about Amazon ECS\-specific CoreOS installation instructions, see [Running CoreOS Container Linux with AWS EC2 Container Service](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
-   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized** AMI\. 
+   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized** AMI\. 
 
    The current Amazon ECS–optimized AMI IDs by region are listed below for reference\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
@@ -35,7 +35,7 @@ The current Amazon ECS\-optimized AMI can be retrieved using the AWS CLI with th
 
    1. Set the **Number of instances** field depending on how many container instances you want to add to your cluster\.
 
-   1. \(Optional\) To use Spot Instances, for **Purchasing option**, select the check box next to **Request Spot Instances**\. You also need to set the other fields related to Spot Instances\. For more information, see [Spot Instance Requests](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html)\.
+   1. \(Optional\) To use Spot Instances, for **Purchasing option**, select the check box next to **Request Spot Instances**\. You also need to set the other fields related to Spot Instances\. For more information, see [Spot Instance Requests](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html)\.
 **Note**  
 If you are using Spot Instances and see a `Not available` message, you may need to choose a different instance type\.
 
@@ -45,7 +45,7 @@ If you are using Spot Instances and see a `Not available` message, you may need 
 
    1. Set the **Auto\-assign Public IP** field depending on whether you want your instance to be accessible from the public internet\. If your instance should be accessible from the internet, verify that the **Auto\-assign Public IP** field is set to **Enable**\. If not, set this field to **Disable**\.
 **Note**  
-Container instances need external network access to communicate with the Amazon ECS service endpoint, so if your container instances do not have public IP addresses, then they must use network address translation \(NAT\) to provide this access\. For more information, see [NAT Gateways](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide* and [HTTP Proxy Configuration](http_proxy_config.md) in this guide\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
+Container instances need external network access to communicate with the Amazon ECS service endpoint, so if your container instances do not have public IP addresses, then they must use network address translation \(NAT\) to provide this access\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide* and [HTTP Proxy Configuration](http_proxy_config.md) in this guide\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
 
    1. Select the `ecsInstanceRole` **IAM role** value that you created for your container instances in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 **Important**  

@@ -1,6 +1,6 @@
 # Tutorial: Creating a Cluster with a EC2 Task Using the AWS CLI<a name="ECS_AWSCLI_EC2"></a>
 
-The following steps will help you set up a cluster, register a task definition, run a task, and perform other common scenarios in Amazon ECS with the AWS CLI\. Ensure you are using the latest version of the AWS CLI\. For more information on how to upgrade to the latest version, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
+The following steps will help you set up a cluster, register a task definition, run a task, and perform other common scenarios in Amazon ECS with the AWS CLI\. Ensure you are using the latest version of the AWS CLI\. For more information on how to upgrade to the latest version, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 
 [Prerequisites](#AWSCLI_EC2_prereq)
 
@@ -25,10 +25,10 @@ The following steps will help you set up a cluster, register a task definition, 
 ## Prerequisites<a name="AWSCLI_EC2_prereq"></a>
 
 This tutorial assumes the following prerequisites have been completed:
-+ The latest version of the AWS CLI is installed and configured\. For more information about installing or upgrading your AWS CLI, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
++ The latest version of the AWS CLI is installed and configured\. For more information about installing or upgrading your AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 + The steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard](IAMPolicyExamples.md#first-run-permissions) IAM policy example\.
-+ You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
++ You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 
 ## Step 1: \(Optional\) Create a Cluster<a name="AWSCLI_EC2_create_cluster"></a>
 
@@ -64,22 +64,22 @@ The current Amazon ECS\-optimized Linux AMI IDs by region are listed below for r
 
 | Region | AMI Name | AMI ID | EC2 console link | 
 | --- | --- | --- | --- | 
-| us\-east\-2 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-028a9de0a7e353ed9 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-2#LaunchInstanceWizard:ami=ami-028a9de0a7e353ed9) | 
-| us\-east\-1 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-00129b193dc81bc31 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-00129b193dc81bc31) | 
-| us\-west\-2 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-00d4f478 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-00d4f478) | 
-| us\-west\-1 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-0d438d09af26c9583 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-0d438d09af26c9583) | 
-| eu\-west\-3 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-07da674f0655ef4e1 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-3#LaunchInstanceWizard:ami=ami-07da674f0655ef4e1) | 
-| eu\-west\-2 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-a44db8c3 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-2#LaunchInstanceWizard:ami=ami-a44db8c3) | 
-| eu\-west\-1 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-0af844a965e5738db | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-0af844a965e5738db) | 
-| eu\-central\-1 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-0291ba887ba0d515f | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-0291ba887ba0d515f) | 
-| ap\-northeast\-2 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-047d2a61f94f862dc | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-2#LaunchInstanceWizard:ami=ami-047d2a61f94f862dc) | 
-| ap\-northeast\-1 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-0041c416aa23033a2 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-0041c416aa23033a2) | 
-| ap\-southeast\-2 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-0092e55c70015d8c3 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-0092e55c70015d8c3) | 
-| ap\-southeast\-1 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-091bf462afdb02c60 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-091bf462afdb02c60) | 
-| ca\-central\-1 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-192fa27d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ca-central-1#LaunchInstanceWizard:ami=ami-192fa27d) | 
-| ap\-south\-1 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-0c179ca015d301829 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-south-1#LaunchInstanceWizard:ami=ami-0c179ca015d301829) | 
-| sa\-east\-1 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-0018ff8ee48970ac3 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-0018ff8ee48970ac3) | 
-| us\-gov\-west\-1 | amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized | ami\-c6079ba7 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-c6079ba7) | 
+| us\-east\-2 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-0a0d2004b44b9287c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-2#LaunchInstanceWizard:ami=ami-0a0d2004b44b9287c) | 
+| us\-east\-1 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-0254e5972ebcd132c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0254e5972ebcd132c) | 
+| us\-west\-2 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-093381d21a4fc38d1 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-093381d21a4fc38d1) | 
+| us\-west\-1 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-0de5608ca20c07aa2 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-0de5608ca20c07aa2) | 
+| eu\-west\-3 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-024c0b7d07abc6526 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-3#LaunchInstanceWizard:ami=ami-024c0b7d07abc6526) | 
+| eu\-west\-2 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-005307409c5f6e76c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-2#LaunchInstanceWizard:ami=ami-005307409c5f6e76c) | 
+| eu\-west\-1 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-0dbcd2533bc72c3f6 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-0dbcd2533bc72c3f6) | 
+| eu\-central\-1 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-03804565a6baf6d30 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-03804565a6baf6d30) | 
+| ap\-northeast\-2 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-0060ad36f655af38b | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-2#LaunchInstanceWizard:ami=ami-0060ad36f655af38b) | 
+| ap\-northeast\-1 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-0d5f884dada5562c6 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-0d5f884dada5562c6) | 
+| ap\-southeast\-2 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-0aa8b7a8042811ddf | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-0aa8b7a8042811ddf) | 
+| ap\-southeast\-1 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-065c0bd2832a70f9d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-065c0bd2832a70f9d) | 
+| ca\-central\-1 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-0d50dee936e241e7e | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ca-central-1#LaunchInstanceWizard:ami=ami-0d50dee936e241e7e) | 
+| ap\-south\-1 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-056a07eb5b1d13734 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-south-1#LaunchInstanceWizard:ami=ami-056a07eb5b1d13734) | 
+| sa\-east\-1 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-0078e33a9103e1e58 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-0078e33a9103e1e58) | 
+| us\-gov\-west\-1 | amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized | ami\-a842dcc9 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-a842dcc9) | 
 
 ## Step 3: List Container Instances<a name="AWSCLI_EC2_list_container_instances"></a>
 

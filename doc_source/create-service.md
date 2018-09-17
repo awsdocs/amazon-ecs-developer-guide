@@ -114,7 +114,7 @@ If your service's task definition uses the `awsvpc` network mode \(which is requ
 1. \(Optional\) If you chose to create a new target group, complete the following fields as follows:
    + For **Target group name**, enter a name for your target group\.
    + For **Target group protocol**, enter the protocol to use for routing traffic to your tasks\.
-   + For **Path pattern**, if your listener does not have any existing rules, the default path pattern \(`/`\) is used\. If your listener already has a default rule, then you must enter a path pattern that matches traffic that you want to have sent to your service's target group\. For example, if your service is a web application called `web-app`, and you want traffic that matches `http://my-elb-url/web-app` to route to your service, then you would enter `/web-app*` as your path pattern\. For more information, see [ListenerRules](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-rules) in the *User Guide for Application Load Balancers*\.
+   + For **Path pattern**, if your listener does not have any existing rules, the default path pattern \(`/`\) is used\. If your listener already has a default rule, then you must enter a path pattern that matches traffic that you want to have sent to your service's target group\. For example, if your service is a web application called `web-app`, and you want traffic that matches `http://my-elb-url/web-app` to route to your service, then you would enter `/web-app*` as your path pattern\. For more information, see [ListenerRules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-rules) in the *User Guide for Application Load Balancers*\.
    + For **Health check path**, enter the path to which the load balancer should send health check pings\.
 
 1. When you are finished configuring your Application Load Balancer, choose **Next step**\.<a name="create-service-configure-nlb"></a>
@@ -164,7 +164,7 @@ Your Amazon ECS service can optionally enable service discovery integration, whi
 
 1. Select **Enable ECS task health propagation** if you want health checks enabled for your service discovery service\.
 
-1. For **DNS record type**, select the DNS record type to create for your service\. Amazon ECS service discovery only supports A and SRV records, depending on the network mode that your task definition specifies\. For more information about these record types, see [DnsRecord](http://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_DnsRecord.html)\.
+1. For **DNS record type**, select the DNS record type to create for your service\. Amazon ECS service discovery only supports A and SRV records, depending on the network mode that your task definition specifies\. For more information about these record types, see [DnsRecord](https://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_DnsRecord.html)\.
    + If the task definition that your service task specifies uses the `bridge` or `host` network mode, only type SRV records are supported\. Choose a container name and port combination to associate with the record\.
    + If the task definition that your service task specifies uses the `awsvpc` network mode, select either the A or SRV record type\. If the type A DNS record is selected, skip to the next step\. If the type SRV is selected, specify either the port that the service can be found on or a container name and port combination to associate with the record\.
 
@@ -237,7 +237,7 @@ These steps help you create step scaling policies and CloudWatch alarms that can
    1. For **ECS service metric**, choose the service metric to use for your alarm\. For more information about these service utilization metrics, see [Service Utilization](cloudwatch-metrics.md#service_utilization)\.
 
    1. For **Alarm threshold**, enter the following information to configure your alarm:
-      + Choose the CloudWatch statistic for your alarm \(the default value of **Average** works in many cases\)\. For more information, see [Statistics](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic) in the *Amazon CloudWatch User Guide*\.
+      + Choose the CloudWatch statistic for your alarm \(the default value of **Average** works in many cases\)\. For more information, see [Statistics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic) in the *Amazon CloudWatch User Guide*\.
       + Choose the comparison operator for your alarm and enter the value that the comparison operator checks against \(for example, `>` and `75`\)\.
       + Enter the number of consecutive periods before the alarm is triggered and the period length\. For example, two consecutive periods of 5 minutes would take 10 minutes before the alarm triggered\. Because your Amazon ECS tasks can scale up and down quickly, consider using a low number of consecutive periods and a short period duration to react to alarms as soon as possible\.
 

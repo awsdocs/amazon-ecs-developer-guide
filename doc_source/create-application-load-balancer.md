@@ -30,7 +30,7 @@ A *listener* is a process that checks for connection requests\. It is configured
 
    1. For **Listeners**, the default is a listener that accepts HTTP traffic on port 80\. You can keep the default listener settings, modify the protocol or port of the listener, or choose **Add** to add another listener\.
 **Note**  
-If you plan on routing traffic to more than one target group, see [ListenerRules](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html) for details on how to add host or path\-based rules\.
+If you plan on routing traffic to more than one target group, see [ListenerRules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html) for details on how to add host or path\-based rules\.
 
    1. For **VPC**, select the same VPC that you used for the container instances on which you intend to run your service\.
 
@@ -50,7 +50,7 @@ If you created a secure listener in the previous step, complete the **Configure 
 
 1. If you have a certificate ready to upload, choose **Upload a new SSL Certificate to AWS Identity and Access Management \(IAM\)**\. For **Certificate name**, type a name for the certificate\. For **Private Key**, copy and paste the contents of the private key file \(PEM\-encoded\)\. In **Public Key Certificate**, copy and paste the contents of the public key certificate file \(PEM\-encoded\)\. In **Certificate Chain**, copy and paste the contents of the certificate chain file \(PEM\-encoded\), unless you are using a self\-signed certificate and it's not important that browsers implicitly accept the certificate\.
 
-1. For **Select policy**, choose a predefined security policy\. For details on the security policies, see [Security Policies](http://docs.aws.amazon.com/elasticloadbalancing/latest/application//create-https-listener.html#describe-ssl-policies)\.
+1. For **Select policy**, choose a predefined security policy\. For details on the security policies, see [Security Policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/application//create-https-listener.html#describe-ssl-policies)\.
 
 1. Choose **Next: Configure Security Groups**\.
 

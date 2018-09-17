@@ -17,7 +17,7 @@ Place tasks evenly based on the specified value\. Accepted values are attribute 
 
 ## Example Strategies<a name="strategy-examples"></a>
 
-You can specify task placement strategies with the following actions: [CreateService](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html) and [RunTask](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
+You can specify task placement strategies with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html) and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
 
 The following strategy distributes tasks evenly across Availability Zones\.
 

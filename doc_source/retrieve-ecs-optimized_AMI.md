@@ -1,6 +1,6 @@
 # Retrieving the Amazon ECS\-optimized AMI Metadata<a name="retrieve-ecs-optimized_AMI"></a>
 
-The AMI ID, image name, operating system, container agent version, and runtime version for an Amazon ECS\-optimized AMI can be programmatically retrieved by querying the SSM Parameter Store API\. For more information about the SSM Parameter Store API, see [GetParameters](http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameters.html) and [GetParametersByPath](http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html)\.
+The AMI ID, image name, operating system, container agent version, and runtime version for an Amazon ECS\-optimized AMI can be programmatically retrieved by querying the SSM Parameter Store API\. For more information about the SSM Parameter Store API, see [GetParameters](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameters.html) and [GetParametersByPath](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html)\.
 
 **Note**  
 Your user account must have the following IAM permissions to retrieve the Amazon ECS\-optimized AMI metadata\. These permissions have been added to the `AmazonECS_FullAccess` IAM policy\.  

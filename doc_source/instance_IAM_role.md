@@ -6,7 +6,7 @@ The Amazon ECS container agent makes calls to the Amazon ECS API on your behalf\
 This role only applies if you are using the EC2 launch type\.
 
 **Important**  
-Containers that are running on your container instances have access to all of the permissions that are supplied to the container instance role through [instance metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)\. We recommend that you limit the permissions in your container instance role to the minimal list of permissions provided in the managed `AmazonEC2ContainerServiceforEC2Role` policy shown below\. If the containers in your tasks need extra permissions that are not listed here, we recommend providing those tasks with their own IAM roles\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  
+Containers that are running on your container instances have access to all of the permissions that are supplied to the container instance role through [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)\. We recommend that you limit the permissions in your container instance role to the minimal list of permissions provided in the managed `AmazonEC2ContainerServiceforEC2Role` policy shown below\. If the containers in your tasks need extra permissions that are not listed here, we recommend providing those tasks with their own IAM roles\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  
 You can prevent containers on the `docker0` bridge from accessing the permissions supplied to the container instance role \(while still allowing the permissions that are provided by [IAM Roles for Tasks](task-iam-roles.md)\) by running the following iptables command on your container instances; however, containers will not be able to query instance metadata with this rule in effect\. Note that this command assumes the default Docker bridge configuration and it will not work for containers that use the `host` network mode\. For more information, see [Network Mode](task_definition_parameters.md#network_mode)\.  
 
 ```
@@ -129,4 +129,4 @@ For more information about creating an `ecs.config` file, storing it in Amazon S
 
 1. Check the box to the left of the **AmazonS3ReadOnlyAccess** policy and click **Attach policy**\.
 **Note**  
-This policy allows read\-only access to all Amazon S3 resources\. For more restrictive bucket policy examples, see [Bucket Policy Examples](http://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html) in the Amazon Simple Storage Service Developer Guide\.
+This policy allows read\-only access to all Amazon S3 resources\. For more restrictive bucket policy examples, see [Bucket Policy Examples](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html) in the Amazon Simple Storage Service Developer Guide\.

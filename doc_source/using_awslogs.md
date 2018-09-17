@@ -5,7 +5,7 @@ You can configure the containers in your tasks to send log information to CloudW
 **Note**  
 The type of information that is logged by your task's containers depends mostly on their `ENTRYPOINT` command\. By default, the logs that are captured show the command output that you would normally see in an interactive terminal if you ran the container locally, which are the `STDOUT` and `STDERR` I/O streams\. The `awslogs` log driver simply passes these logs from Docker to CloudWatch\. For more information on how Docker logs are processed, including alternative ways to capture different file data or streams, see [View logs for a container or service](https://docs.docker.com/config/containers/logging/) in the Docker documentation\.
 
-To send system logs from your Amazon ECS container instances to CloudWatch Logs, see [Using CloudWatch Logs with Container Instances](using_cloudwatch_logs.md)\. For more information about CloudWatch Logs, see [Monitoring Log Files](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch User Guide*\.
+To send system logs from your Amazon ECS container instances to CloudWatch Logs, see [Using CloudWatch Logs with Container Instances](using_cloudwatch_logs.md)\. For more information about CloudWatch Logs, see [Monitoring Log Files](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch User Guide*\.
 
 **Topics**
 + [Enabling the awslogs Log Driver for Your Containers](#enable_awslogs)
@@ -37,7 +37,7 @@ As an example, you could have a task with a WordPress container \(which uses the
 
 ### Creating a Log Group with the AWS CLI<a name="create_awslogs_loggroups_cli"></a>
 
-The AWS Command Line Interface \(AWS CLI\) is a unified tool to manage your AWS services\. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts\. For more information, see the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/)\.
+The AWS Command Line Interface \(AWS CLI\) is a unified tool to manage your AWS services\. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts\. For more information, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\.
 
 If you have a working installation of the AWS CLI, you can use it to create your log groups\. The command below creates a log group called `awslogs-wordpress` in the `us-west-2` region\. Run this command for each log group to create, replacing the log group name with your value and region name to the desired log destination\.
 

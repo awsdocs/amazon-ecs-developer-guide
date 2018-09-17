@@ -94,7 +94,7 @@ The port on the container to associate with the load balancer\. This port must c
 `serviceRegistries`  
 The details of the service discovery configuration for your service\. For more information, see [Service Discovery](service-discovery.md)\.    
 `registryArn`  
-The Amazon Resource Name \(ARN\) of the service registry\. The currently supported service registry is Amazon Route 53 Auto Naming\. For more information, see [Service](http://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_Service.html)\.   
+The Amazon Resource Name \(ARN\) of the service registry\. The currently supported service registry is Amazon Route 53 Auto Naming\. For more information, see [Service](https://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_Service.html)\.   
 `port`  
 The port value used if your service discovery service specified an SRV record\. This field is required if both the `awsvpc` network mode and SRV records are used\.  
 `containerName`  
@@ -118,7 +118,7 @@ Platform versions are not specified for tasks using the EC2 launch type\.
 
 `role`  
 The name or full Amazon Resource Name \(ARN\) of the IAM role that allows Amazon ECS to make calls to your load balancer on your behalf\. This parameter is required if you are using a load balancer with your service\. If you specify the `role` parameter, you must also specify a load balancer object with the `loadBalancers` parameter\.  
-If your specified role has a path other than `/`, then you must either specify the full role ARN \(this is recommended\) or prefix the role name with the path\. For example, if a role with the name `bar` has a path of `/foo/` then you would specify `/foo/bar` as the role name\. For more information, see [Friendly Names and Paths](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-friendly-names) in the *IAM User Guide*\.
+If your specified role has a path other than `/`, then you must either specify the full role ARN \(this is recommended\) or prefix the role name with the path\. For example, if a role with the name `bar` has a path of `/foo/` then you would specify `/foo/bar` as the role name\. For more information, see [Friendly Names and Paths](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-friendly-names) in the *IAM User Guide*\.
 
 `deploymentConfiguration`  
 Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping and starting tasks\.    

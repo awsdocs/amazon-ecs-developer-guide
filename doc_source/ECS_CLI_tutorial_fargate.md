@@ -7,7 +7,7 @@ This tutorial shows you how to set up a cluster and deploy a task using the Farg
 It is expected that you have completed the following prerequisites before continuing on:
 + Set up an AWS account
 + Installed the ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
-+ Installed and configured the AWS CLI\. For more information, see [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)
++ Installed and configured the AWS CLI\. For more information, see [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)
 
 ## Step 1: Create the Task Execution IAM Role<a name="ECS_CLI_tutorial_fargate_iam_role"></a>
 

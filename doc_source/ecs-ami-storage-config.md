@@ -7,7 +7,7 @@ By default, the Amazon ECS\-optimized AMI ships with 30 GiB of total storage\. Y
 Amazon ECS\-optimized AMIs from version `2015.09.d` and later launch with an 8\-GiB volume for the operating system that is attached at `/dev/xvda` and mounted as the root of the file system\. There is an additional 22\-GiB volume that is attached at `/dev/xvdcz` that Docker uses for image and metadata storage\. The volume is configured as a Logical Volume Management \(LVM\) device and it is accessed directly by Docker via the `devicemapper` backend\. Because the volume is not mounted, you cannot use standard storage information commands \(such as df \-h\) to determine the available storage\. However, you can use LVM commands and docker info to find the available storage by following the procedure below\. For more information, see the [LVM HOWTO](http://tldp.org/HOWTO/LVM-HOWTO/) in The Linux Documentation Project\.
 
 **Note**  
-You can increase these default volume sizes by changing the block device mapping settings for your instances when you launch them; however, you cannot specify a smaller volume size than the default\. For more information, see [Block Device Mapping](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+You can increase these default volume sizes by changing the block device mapping settings for your instances when you launch them; however, you cannot specify a smaller volume size than the default\. For more information, see [Block Device Mapping](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 The docker\-storage\-setup utility configures the LVM volume group and logical volume for Docker when the instance launches\. By default, docker\-storage\-setup creates a volume group called `docker`, adds `/dev/xvdcz` as a physical volume to that group\. It then creates a logical volume called `docker-pool` that uses 99% of the available storage in the volume group\. The remaining 1% of the available storage is reserved for metadata\.
 
@@ -84,9 +84,9 @@ Remove unused data blocks within containers\. You can use the following command 
   $ sudo sh -c "docker ps -q | xargs docker inspect --format='{{ .State.Pid }}' | xargs -IZ fstrim /proc/Z/root/"
   ```
 
-1. Create a new Amazon EBS volume in the same Availability Zone as your container instance\. For more information, see [Creating an Amazon EBS Volume](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. Create a new Amazon EBS volume in the same Availability Zone as your container instance\. For more information, see [Creating an Amazon EBS Volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-1. Attach the volume to your container instance\. The default location for the Docker data volume is `/dev/xvdcz`\. For consistency, attach additional volumes in reverse alphabetical order from that device name \(for example, `/dev/xvdcy`\)\. For more information, see [Attaching an Amazon EBS Volume to an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
+1. Attach the volume to your container instance\. The default location for the Docker data volume is `/dev/xvdcz`\. For consistency, attach additional volumes in reverse alphabetical order from that device name \(for example, `/dev/xvdcy`\)\. For more information, see [Attaching an Amazon EBS Volume to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
 1. Connect to your container instance using SSH\. For more information, see [Connect to Your Container Instance](instance-connect.md)\.
 

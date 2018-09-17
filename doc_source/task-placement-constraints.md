@@ -61,7 +61,7 @@ You can add custom attributes at instance registration time using the container 
 1. When you are finished adding attributes, choose **Close**\.
 
 **Adding custom attributes using the AWS CLI**  
-The following examples demonstrate how to add custom attributes using the [put\-attributes](http://docs.aws.amazon.com/cli/latest/reference/ecs/put-attributes.html) command\.
+The following examples demonstrate how to add custom attributes using the [put\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-attributes.html) command\.
 
 **Example: Single Attribute**  
 The following example adds the custom attribute "stack=prod" to the specified container instance in the default cluster\.
@@ -98,7 +98,7 @@ You can apply a filter for your container instances, allowing you to see custom 
 1. Add additional attributes to the filter as needed\. Remove an attribute by choosing the **X** next to it\.
 
 **Filter container instances by attribute using the AWS CLI**  
-The following examples demonstrate how to filter container instances by attribute using the [list\-constainer\-instances](http://docs.aws.amazon.com/cli/latest/reference/ecs/list-container-instances.html) command\. For more information about the filter syntax, see [Cluster Query Language](cluster-query-language.md)\.
+The following examples demonstrate how to filter container instances by attribute using the [list\-constainer\-instances](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-container-instances.html) command\. For more information about the filter syntax, see [Cluster Query Language](cluster-query-language.md)\.
 
 **Example: Built\-in Attribute**  
 The following example uses built\-in attributes to list the g2\.2xlarge instances\.
@@ -152,7 +152,7 @@ For tasks launched by the service scheduler, the task group name is the name of 
 
 The following are task placement constraint examples\.
 
-This example uses the `memberOf` constraint to place tasks on T2 instances\. It can be specified with the following actions: [CreateService](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [RegisterTaskDefinition](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html), and [RunTask](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
+This example uses the `memberOf` constraint to place tasks on T2 instances\. It can be specified with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [RegisterTaskDefinition](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html), and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
 
 ```
 "placementConstraints": [
@@ -163,7 +163,7 @@ This example uses the `memberOf` constraint to place tasks on T2 instances\. It 
 ]
 ```
 
-The example uses the `memberOf` constraint to place tasks on instances in the `databases` task group\. It can be specified with the following actions: [CreateService](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [RegisterTaskDefinition](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html), and [RunTask](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
+The example uses the `memberOf` constraint to place tasks on instances in the `databases` task group\. It can be specified with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [RegisterTaskDefinition](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html), and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
 
 ```
 "placementConstraints": [
@@ -174,7 +174,7 @@ The example uses the `memberOf` constraint to place tasks on instances in the `d
 ]
 ```
 
-The `distinctInstance` constraint places each task in the group on a different instance\. It can be specified with the following actions: [CreateService](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html) and [RunTask](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)
+The `distinctInstance` constraint places each task in the group on a different instance\. It can be specified with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html) and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)
 
 ```
 "placementConstraints": [

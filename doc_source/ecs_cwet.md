@@ -50,7 +50,7 @@ If you do not have a running cluster to capture events from, follow the steps in
  Next, you create a CloudWatch Events event rule that captures task events coming from your Amazon ECS clusters\. This rule captures all events coming from all clusters within the account where it is defined\. The task messages themselves contain information about the event source, including the cluster on which it resides, that you can use to filter and sort events programmatically\. 
 
 **Note**  
-When you use the AWS Management Console to create an event rule, the console automatically adds the IAM permissions necessary to grant CloudWatch Events permission to call your Lambda function\. If you are creating an event rule using the AWS CLI, you need to grant this permission explicitly\. For more information, see [Events and Event Patterns](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
+When you use the AWS Management Console to create an event rule, the console automatically adds the IAM permissions necessary to grant CloudWatch Events permission to call your Lambda function\. If you are creating an event rule using the AWS CLI, you need to grant this permission explicitly\. For more information, see [Events and Event Patterns](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
 
 **To route events to your Lambda function**
 

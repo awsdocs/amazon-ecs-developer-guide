@@ -1,30 +1,37 @@
 # Private Registry Authentication for Tasks<a name="private-auth"></a>
 
-Private registry authentication for tasks using AWS Secrets Manager enables you to store your credentials securely and then reference them in your container definition\. This allows your tasks to use images from private repositories\. This feature is only supported by tasks using the EC2 launch type\.
+Private registry authentication for tasks using AWS Secrets Manager enables you to store your credentials securely and then reference them in your container definition\. This allows your tasks to use images from private repositories\. This feature supported by tasks using either the Fargate or EC2 launch type\.
 
-This feature requires version 1\.19\.0 or later of the container agent; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+For tasks using the EC2 launch type, this feature requires version 1\.19\.0 or later of the container agent; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
-Within your container definition, specify `repositoryCredentials` with the full ARN or ID of the secret that you created\. The secret you reference can be from a different region than the task using it, but must be from within the same account\. The following is a snippet of a task definition showing the required parameters:
+For tasks using the Fargate launch type, this feature requires platform version 1\.2\.0 or later\. For information, see [AWS Fargate Platform Versions](platform_versions.md)\.
+
+Within your container definition, specify `repositoryCredentials` with the full ARN of the secret that you created\. The secret you reference can be from a different region than the task using it, but must be from within the same account\.
+
+**Note**  
+When using the Amazon ECS API, AWS CLI, or AWS SDK, if the secret exists in the same region as the task you are launching then you can use either the full ARN or name of the secret\. When using the AWS Management Console, the full ARN of the secret must be specified\.
+
+The following is a snippet of a task definition showing the required parameters:
 
 ```
 "containerDefinitions": [
     {
         "image": "private-repo/private-image",
         "repositoryCredentials": {
-            "credentialsParameter": "aws:ssm:region:aws_account_id:secret:secret_name"
+            "credentialsParameter": "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name"
         }
     }
 ]
 ```
 
 **Note**  
-Another method of enabling private registry authentication uses Amazon ECS container agent environment variables to authenticate to private registries\. For more information, see [Private Registry Authentication for Container Instances](private-auth-container-instances.md)\.
+Another method of enabling private registry authentication uses Amazon ECS container agent environment variables to authenticate to private registries\. This method is only supported for tasks using the EC2 launch type\. For more information, see [Private Registry Authentication for Container Instances](private-auth-container-instances.md)\.
 
 ## Private Registry Authentication Required IAM Permissions<a name="private-auth-iam"></a>
 
 The Amazon ECS task execution role is required to use this feature\. This allows the container agent to pull the container image\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
-To provide access to the secrets that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
+To provide access to the secrets that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
 + `secretsmanager:GetSecretValue`
 + `kms:Decrypt`—Required only if your key uses a custom KMS key and not the default key\.
 
@@ -41,7 +48,7 @@ An example inline policy adding the permissions is shown below\.
         "secretsmanager:GetSecretValue"
       ],
       "Resource": [
-        "aws:ssm:region:aws_account_id:secret:secret_name"     
+        "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name"     
       ]
     }
   ]
@@ -77,7 +84,7 @@ Use AWS Secrets Manager to create a secret for your private registry credentials
 
 1. \(Optional\) At this point, you can configure rotation for your secret\. For this procedure, leave it at **Disable automatic rotation** and choose **Next**\.
 
-   For information about how to configure rotation on new or existing secrets, see [Rotating Your AWS Secrets Manager Secrets](http://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html)\.
+   For information about how to configure rotation on new or existing secrets, see [Rotating Your AWS Secrets Manager Secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html)\.
 
 1. Review your settings, and then choose **Store secret** to save everything you entered as a new secret in Secrets Manager\.
 
@@ -89,7 +96,7 @@ Use AWS Secrets Manager to create a secret for your private registry credentials
 
 1. On the **Task Definitions** page, choose **Create new Task Definition**\.
 
-1. On the **Select launch type compatibility** page, choose **EC2**, **Next step**\.
+1. On the **Select launch type compatibility** page, choose the launch type for your tasks and then **Next step**\.
 
 1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 

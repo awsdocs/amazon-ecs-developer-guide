@@ -1,10 +1,10 @@
 # Creating a Scheduled Task Using the AWS CLI<a name="scheduled_tasks_cli_tutorial"></a>
 
-This topic shows you how to create a scheduled task using the AWS CLI\. The scheduled task creation uses the CloudWatch Events API\. For more information, see [What is Amazon CloudWatch Events?](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch Events User Guide*\.
+This topic shows you how to create a scheduled task using the AWS CLI\. The scheduled task creation uses the CloudWatch Events API\. For more information, see [What is Amazon CloudWatch Events?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch Events User Guide*\.
 
 Complete the following prerequisites:
 + Set up an AWS account\.
-+ Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
++ Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
 
 **To create the scheduled task**
 
@@ -14,7 +14,7 @@ Complete the following prerequisites:
    aws events put-rule --schedule-expression "cron(0 12 * * ? *)" --name MyRule1
    ```
 **Note**  
-For other examples of rule expressions, see [Schedule Expressions for Rules](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) in the *Amazon CloudWatch Events User Guide*\.
+For other examples of rule expressions, see [Schedule Expressions for Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) in the *Amazon CloudWatch Events User Guide*\.
 
 1. Add the details of your ECS cluster and task definition as a target for the CloudWatch Events rule\. Specify the cluster and task definition using the full ARN\.
 

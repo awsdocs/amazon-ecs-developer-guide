@@ -29,7 +29,7 @@ If you chose the **Networking only** cluster template, do the following, otherwi
 
 1. In the **Networking** section, configure the VPC for your cluster\. You can leave the default settings in or you can modify these settings by following the substeps below\.
 
-   1. \(Optional\) If you choose to create a new VPC, for **CIDR Block**, select a CIDR block for your VPC\. For more information, see [Your VPC and Subnets](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
+   1. \(Optional\) If you choose to create a new VPC, for **CIDR Block**, select a CIDR block for your VPC\. For more information, see [Your VPC and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
 
    1. For **Subnets**, select the subnets to use for your VPC\. You can keep the default settings or you can modify them to meet your needs\.
 
@@ -45,13 +45,13 @@ If you chose the **EC2 Linux \+ Networking** or **EC2 Windows \+ Networking** te
 
 1. For **Provisioning model**, choose one of the following:
    + **On\-Demand Instance**–With On\-Demand Instances, you pay for compute capacity by the hour with no long\-term commitments or upfront payments\.
-   + **Spot**–Spot Instances allow you to bid on spare Amazon EC2 computing capacity for up to 90% off the On\-Demand price\. For more information, see [Spot Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide//using-spot-instances.html)\.
+   + **Spot**–Spot Instances allow you to bid on spare Amazon EC2 computing capacity for up to 90% off the On\-Demand price\. For more information, see [Spot Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide//using-spot-instances.html)\.
 **Note**  
-Spot Instances are subject to possible interruptions\. We recommend that you avoid Spot Instances for applications that can't be interrupted\. For more information, see [Spot Instance Interruptions](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide//spot-interruptions.html)\.
+Spot Instances are subject to possible interruptions\. We recommend that you avoid Spot Instances for applications that can't be interrupted\. For more information, see [Spot Instance Interruptions](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide//spot-interruptions.html)\.
 
 1. For Spot Instances, do the following; otherwise, skip to the next step\.
 
-   1. For **Spot Instance allocation strategy**, choose the strategy that meets your needs\. For more information, see [Spot Fleet Allocation Strategy](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide//spot-fleet.html#spot-fleet-allocation-strategy)\.
+   1. For **Spot Instance allocation strategy**, choose the strategy that meets your needs\. For more information, see [Spot Fleet Allocation Strategy](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide//spot-fleet.html#spot-fleet-allocation-strategy)\.
 
    1. For **Maximum bid price \(per instance/hour\)**, specify a bid price\. Your Spot Instances are not launched if your bid price is lower than the Spot price for the instance types that you selected\.
 
@@ -61,19 +61,19 @@ Spot Instances are subject to possible interruptions\. We recommend that you avo
 
 1. For **EBS storage \(GiB\)**, choose the size of the Amazon EBS volume to use for data storage on your container instances\. By default, the Amazon ECS–optimized AMI launches with an 8\-GiB root volume and a 22\-GiB data volume\. You can increase the size of the data volume to allow for greater image and container storage\.
 
-1. For **Key pair**, choose an Amazon EC2 key pair to use with your container instances for SSH access\. If you do not specify a key pair, you cannot connect to your container instances with SSH\. For more information, see [Amazon EC2 Key Pairs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. For **Key pair**, choose an Amazon EC2 key pair to use with your container instances for SSH access\. If you do not specify a key pair, you cannot connect to your container instances with SSH\. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. In the **Networking** section, configure the VPC to launch your container instances into\. By default, the cluster creation wizard creates a new VPC with two subnets in different Availability Zones, and a security group open to the internet on port 80\. This is a basic setup that works well for an HTTP service\. However, you can modify these settings by following the substeps below\.
 
    1. For **VPC**, create a new VPC, or select an existing VPC\.
 
-   1. \(Optional\) If you chose to create a new VPC, for **CIDR Block**, select a CIDR block for your VPC\. For more information, see [Your VPC and Subnets](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
+   1. \(Optional\) If you chose to create a new VPC, for **CIDR Block**, select a CIDR block for your VPC\. For more information, see [Your VPC and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
 
    1. For **Subnets**, select the subnets to use for your VPC\. If you chose to create a new VPC, you can keep the default settings or you can modify them to meet your needs\. If you chose to use an existing VPC, select one or more subnets in that VPC to use for your cluster\.
 
    1. For **Security group**, select the security group to attach to the container instances in your cluster\. If you choose to create a new security group, you can specify a CIDR block to allow inbound traffic from \(the default 0\.0\.0\.0/0 is open to the internet\) and a single port or a range of contiguous ports to open on the container instance\. For more complicated security group rules, you can choose an existing security group that you have already created\.
 **Note**  
-You can also choose to create a new security group and then modify the rules after the cluster is created\. For more information, see [Amazon EC2 Security Groups for Linux Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+You can also choose to create a new security group and then modify the rules after the cluster is created\. For more information, see [Amazon EC2 Security Groups for Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
    1. In the **Container instance IAM role** section, select the IAM role to use with your container instances\. If your account has the **ecsInstanceRole** that is created for you in the console first\-run wizard, that is selected by default\. If you do not have this role in your account, you can choose to create the role, or you can choose another IAM role to use with your container instances\.
 **Important**  

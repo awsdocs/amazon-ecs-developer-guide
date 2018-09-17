@@ -7,7 +7,7 @@ This tutorial shows you how to set up a cluster and deploy a task using the EC2 
 It is expected that you have completed the following prerequisites before continuing on:
 + Set up an AWS account\.
 + Install the ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
-+ Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
++ Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
 
 ## Step 1: Configure the ECS CLI<a name="ECS_CLI_tutorial_configure"></a>
 

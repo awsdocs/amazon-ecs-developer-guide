@@ -45,7 +45,7 @@ For example, if you specify `ECS_RESERVED_MEMORY=256` in your container agent co
 
 ## Viewing Container Instance Memory<a name="viewing-memory"></a>
 
-You can view how much memory a container instance registers with in the Amazon ECS console \(or with the [DescribeContainerInstances](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeContainerInstances.html) API operation\)\. If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, you can observe the memory available for that container instance and then assign your tasks that much memory\.
+You can view how much memory a container instance registers with in the Amazon ECS console \(or with the [DescribeContainerInstances](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeContainerInstances.html) API operation\)\. If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, you can observe the memory available for that container instance and then assign your tasks that much memory\.
 
 **To view container instance memory**
 

@@ -32,7 +32,7 @@ After you have run the script, you can examine the collected logs in the `collec
 
 **To download and run the Amazon ECS logs collector for Windows**
 
-1. Connect to your container instance\. For more information, see [Connecting to Your Windows Instance](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+1. Connect to your container instance\. For more information, see [Connecting to Your Windows Instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 1. Download the Amazon ECS logs collector script using PowerShell\.
 

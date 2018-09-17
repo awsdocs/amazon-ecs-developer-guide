@@ -1,6 +1,6 @@
 # Service Discovery<a name="service-discovery"></a>
 
-Your Amazon ECS service can optionally be configured to use Amazon ECS Service Discovery\. Service discovery uses Amazon Route 53 auto naming API actions to manage DNS entries for your service's tasks, making them discoverable within your VPC\. For more information, see [Using Auto Naming for Service Discovery](http://docs.aws.amazon.com/Route53/latest/APIReference/overview-service-discovery.html) in the *Amazon Route 53 API Reference*\.
+Your Amazon ECS service can optionally be configured to use Amazon ECS Service Discovery\. Service discovery uses Amazon Route 53 auto naming API actions to manage DNS entries for your service's tasks, making them discoverable within your VPC\. For more information, see [Using Auto Naming for Service Discovery](https://docs.aws.amazon.com/Route53/latest/APIReference/overview-service-discovery.html) in the *Amazon Route 53 API Reference*\.
 
 Service discovery is available in the following AWS Regions:
 
@@ -30,7 +30,7 @@ Service discovery consists of the following components:
 + **Service discovery namespace**: A logical group of services that share the same domain name, such as example\.com\. You need one namespace per Route 53 hosted zone and per VPC\. If you are using service discovery from the Amazon ECS console, the workflow creates one private namespace per ECS cluster\. 
 + **Service discovery service**: Exists within the service discovery namespace and consists of the service name and DNS configuration for the namespace\. It provides the following core component:
   + **Service directory**: Allows you to look up a service via DNS or Route 53 auto naming API actions and get back one or more available endpoints that can be used to connect to the service\.
-+ **Health checks**: Perform periodic container\-level health checks\. If an endpoint does not pass the health check, it is removed from DNS routing and marked as unhealthy\. For more information, see [How Amazon Route 53 Checks the Health of Your Resources](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/welcome-health-checks.html)\.
++ **Health checks**: Perform periodic container\-level health checks\. If an endpoint does not pass the health check, it is removed from DNS routing and marked as unhealthy\. For more information, see [How Amazon Route 53 Checks the Health of Your Resources](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/welcome-health-checks.html)\.
 
 ## Service Discovery Considerations<a name="service-discovery-considerations"></a>
 
@@ -46,10 +46,10 @@ The following should be considered when using service discovery:
 + You can configure service discovery for an ECS service that is behind a load balancer, but service discovery traffic is always routed to the task and not the load balancer\.
 + Service discovery does not support the use of Classic Load Balancers\.
 + When specifying health checks for your service discovery service, you must use either custom health checks managed by Amazon ECS or Route 53 health checks\. The two options for health checks cannot be combined\.
-  + **HealthCheckCustomConfig**—Amazon ECS manages health checks on your behalf\. Amazon ECS uses information from container and Elastic Load Balancing health checks, as well as your task state, to update the health with Route 53\. This is specified using the `--health-check-custom-config` parameter when creating your service discovery service\. For more information, see [HealthCheckCustomConfig](http://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_HealthCheckCustomConfig.html) in the *Amazon Route 53 API Reference*\.
-  + **HealthCheckConfig**—Route 53 creates health checks to monitor tasks\. This requires the tasks to be publicly available\. This is specified using the `--health-check-config` parameter when creating your service discovery service\. For more information, see [HealthCheckConfig](http://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_HealthCheckConfig.html) in the *Amazon Route 53 API Reference*\.
+  + **HealthCheckCustomConfig**—Amazon ECS manages health checks on your behalf\. Amazon ECS uses information from container and Elastic Load Balancing health checks, as well as your task state, to update the health with Route 53\. This is specified using the `--health-check-custom-config` parameter when creating your service discovery service\. For more information, see [HealthCheckCustomConfig](https://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_HealthCheckCustomConfig.html) in the *Amazon Route 53 API Reference*\.
+  + **HealthCheckConfig**—Route 53 creates health checks to monitor tasks\. This requires the tasks to be publicly available\. This is specified using the `--health-check-config` parameter when creating your service discovery service\. For more information, see [HealthCheckConfig](https://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_HealthCheckConfig.html) in the *Amazon Route 53 API Reference*\.
 + If you are using the Amazon ECS console, the workflow creates one service discovery service per ECS service and maps all of the task IP addresses as A records, or task IP addresses and port as SRV records\.
-+ Existing ECS services that have service discovery configured cannot be updated to change the service discovery configuration\.
++ Service discovery can only be configured when first creating a service\. Updating existing services to configure service discovery for the first time or change the current configuration is not supported\.
 + The Route 53 resources created when service discovery is used must be cleaned up manually\. For more information, see [Step 6: Clean Up](create-service-discovery.md#create-service-discovery-cleanup) in the [Tutorial: Creating a Service Using Service Discovery](create-service-discovery.md) topic\.
 
 ## Service Discovery Pricing<a name="service-discovery-pricing"></a>

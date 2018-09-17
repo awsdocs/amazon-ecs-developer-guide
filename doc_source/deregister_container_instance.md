@@ -9,9 +9,9 @@ However, these tasks are orphaned \(no longer monitored or accounted for by Amaz
 If you intend to use the container instance for some other purpose after deregistration, you should stop all of the tasks running on the container instance before deregistration\. This stops any orphaned tasks from consuming resources\.
 
 **Important**  
-Because each container instance has unique state information, they should not be deregistered from one cluster and re\-registered into another\. To relocate container instance resources, we recommend that you terminate container instances from one cluster and launch new container instances with the latest Amazon ECS\-optimized AMI in the new cluster\. For more information, see [Terminate Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances* and [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
+Because each container instance has unique state information, they should not be deregistered from one cluster and re\-registered into another\. To relocate container instance resources, we recommend that you terminate container instances from one cluster and launch new container instances with the latest Amazon ECS\-optimized AMI in the new cluster\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances* and [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
 
-Deregistering a container instance removes the instance from a cluster, but it does not terminate the EC2 instance\. If you are finished using the instance, be sure to terminate it in the Amazon EC2 console to stop billing\. For more information, see [Terminate Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+Deregistering a container instance removes the instance from a cluster, but it does not terminate the EC2 instance\. If you are finished using the instance, be sure to terminate it in the Amazon EC2 console to stop billing\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Note**  
 If you terminate a running container instance with a connected Amazon ECS container agent, the agent automatically deregisters the instance from your cluster\. Stopped container instances or instances with disconnected agents are not automatically deregistered when terminated\.
@@ -33,6 +33,6 @@ If you terminate a running container instance with a connected Amazon ECS contai
 
 1. Review the deregistration message, and choose **Yes, Deregister**\.
 
-1. If you are finished with the container instance, terminate the underlying Amazon EC2 instance\. For more information, see [Terminate Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. If you are finished with the container instance, terminate the underlying Amazon EC2 instance\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 **Note**  
 If your instance is maintained by an Auto Scaling group or AWS CloudFormation stack, terminate the instance by updating the Auto Scaling group or AWS CloudFormation stack\. Otherwise, the Auto Scaling group re\-creates the instance after you terminate it\.

@@ -7,7 +7,7 @@ Your user account must have `sns::subscribe` IAM permissions to subscribe to an 
 
 You can subscribe an Amazon SQS queue to this notification topic, but you must use a topic ARN that is in the same region\. For more information, see [Tutorial: Subscribing an Amazon SQS Queue to an Amazon SNS Topic]() in the *Amazon Simple Queue Service Developer Guide*\.
 
-You can also use an AWS Lambda function to trigger events when notifications are received\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](http://docs.aws.amazon.com/sns/latest/dg/sns-lambda.html) in the *Amazon Simple Notification Service Developer Guide*\.
+You can also use an AWS Lambda function to trigger events when notifications are received\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-lambda.html) in the *Amazon Simple Notification Service Developer Guide*\.
 
 The Amazon SNS topic ARNs for each region are shown below\.
 

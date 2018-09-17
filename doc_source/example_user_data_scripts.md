@@ -183,3 +183,66 @@ EOF
 systemctl enable docker-container@ecs-agent.service
 systemctl start docker-container@ecs-agent.service
 ```
+
+## Default Windows User Data<a name="windows-default-userdata"></a>
+
+This example user data script shows the default user data that your Windows container instances receive if you use the [cluster creation wizard](create_cluster.md)\. The below script does the following:
++ Sets the cluster name to `windows`
++ Enables IAM roles for tasks
++ Sets `json-file` and `awslogs` as the available logging drivers
+
+You can use this script for your own container instances \(provided that they are launched from the Amazon ECS\-optimized Windows AMI\), but be sure to replace the `-Cluster windows` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
+
+```
+<powershell>
+Initialize-ECSAgent -Cluster windows -EnableTaskIAMRole -LoggingDrivers '["json-file","awslogs"]'
+</powershell>
+```
+
+## Windows Agent Installation User Data<a name="agent-service-userdata"></a>
+
+This example user data script installs the Amazon ECS container agent on an instance launched with a **Windows\_Server\-2016\-English\-Full\-Containers** AMI\. It has been adapted from the agent installation instructions on the [Amazon ECS Container Agent GitHub repository](https://github.com/aws/amazon-ecs-agent) README page\.
+
+**Note**  
+This script is shared for example purposes\. It is much easier to get started with Windows containers by using the Amazon ECS\-optimized Windows AMI\. For more information, see [Creating a Cluster](create_cluster.md)\.
+
+You can use this script for your own container instances \(provided that they are launched with a version of the **Windows\_Server\-2016\-English\-Full\-Containers** AMI\), but be sure to replace the `windows` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
+
+```
+<powershell>
+# Set up directories the agent uses
+New-Item -Type directory -Path ${env:ProgramFiles}\Amazon\ECS -Force
+New-Item -Type directory -Path ${env:ProgramData}\Amazon\ECS -Force
+New-Item -Type directory -Path ${env:ProgramData}\Amazon\ECS\data -Force
+# Set up configuration
+$ecsExeDir = "${env:ProgramFiles}\Amazon\ECS"
+[Environment]::SetEnvironmentVariable("ECS_CLUSTER", "windows", "Machine")
+[Environment]::SetEnvironmentVariable("ECS_LOGFILE", "${env:ProgramData}\Amazon\ECS\log\ecs-agent.log", "Machine")
+[Environment]::SetEnvironmentVariable("ECS_DATADIR", "${env:ProgramData}\Amazon\ECS\data", "Machine")
+# Download the agent
+$agentVersion = "latest"
+$agentZipUri = "https://s3.amazonaws.com/amazon-ecs-agent/ecs-agent-windows-$agentVersion.zip"
+$zipFile = "${env:TEMP}\ecs-agent.zip"
+Invoke-RestMethod -OutFile $zipFile -Uri $agentZipUri
+# Put the executables in the executable directory.
+Expand-Archive -Path $zipFile -DestinationPath $ecsExeDir -Force
+Set-Location ${ecsExeDir}
+# Set $EnableTaskIAMRoles to $true to enable task IAM roles
+# Note that enabling IAM roles will make port 80 unavailable for tasks.
+[bool]$EnableTaskIAMRoles = $false
+if (${EnableTaskIAMRoles}) {
+  $HostSetupScript = Invoke-WebRequest https://raw.githubusercontent.com/aws/amazon-ecs-agent/master/misc/windows-deploy/hostsetup.ps1
+  Invoke-Expression $($HostSetupScript.Content)
+}
+# Install the agent service
+New-Service -Name "AmazonECS" `
+        -BinaryPathName "$ecsExeDir\amazon-ecs-agent.exe -windows-service" `
+        -DisplayName "Amazon ECS" `
+        -Description "Amazon ECS service runs the Amazon ECS agent" `
+        -DependsOn Docker `
+        -StartupType Manual
+sc.exe failure AmazonECS reset=300 actions=restart/5000/restart/30000/restart/60000
+sc.exe failureflag AmazonECS 1
+Start-Service AmazonECS
+</powershell>
+```

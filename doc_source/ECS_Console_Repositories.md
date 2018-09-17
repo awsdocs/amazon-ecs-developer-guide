@@ -2,7 +2,7 @@
 
 Amazon ECR is a managed AWS Docker registry service\. Customers can use the familiar Docker CLI to push, pull, and manage images\. Amazon ECR provides a secure, scalable, and reliable registry\. Amazon ECR supports private Docker repositories with resource\-based permissions using AWS IAM so that specific users or Amazon EC2 instances can access repositories and images\. Developers can use the Docker CLI to author and manage images\.
 
-For more information on how to create repositories, push and pull images from Amazon ECR, and set access controls on your repositories, see the [Amazon Elastic Container Registry User Guide](http://docs.aws.amazon.com/AmazonECR/latest/userguide/)\.
+For more information on how to create repositories, push and pull images from Amazon ECR, and set access controls on your repositories, see the [Amazon Elastic Container Registry User Guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/)\.
 
 ## Using Amazon ECR Images with Amazon ECS<a name="ECR_on_ECS_ecs-dg"></a>
 

@@ -57,7 +57,7 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
    }
    ```
 
-   This code defines a CloudWatch Events event rule that matches any event where the `lastStatus` and `stoppedReason` fields match the indicated values\. For more information about event patterns, see [Events and Event Patterns](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch User Guide*\. 
+   This code defines a CloudWatch Events event rule that matches any event where the `lastStatus` and `stoppedReason` fields match the indicated values\. For more information about event patterns, see [Events and Event Patterns](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch User Guide*\. 
 
 1. For **Targets**, choose **Add target**\. For **Target type**, choose **SNS topic**, and then choose **TaskStoppedAlert**\.
 

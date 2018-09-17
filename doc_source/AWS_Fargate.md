@@ -194,13 +194,38 @@ The following is an example of the networkConfiguration section for a Fargate se
          "securityGroups": [ "sg-12345678" ],
          "subnets": [ "subnet-12345678" ]
       }
-   },
+   }
 ```
 
 Services with tasks that use the `awsvpc` network mode \(for example, those with the Fargate launch type\) only support Application Load Balancers and Network Load Balancers\. Classic Load Balancers are not supported\. Also, when you create any target groups for these services, you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
+
+## Private Registry Authentication<a name="fargate-private-auth-reg"></a>
+
+Fargate tasks can authenticate with private image registries, including Docker Hub, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\.
+
+To use private registry authentication, you create a secret with AWS Secrets Manager containing the credentials for your private registry\. Then, within your container definition you specify `repositoryCredentials` with the full ARN of the secret you created\. The following snippet of a task definition shows the required parameters:
+
+```
+"containerDefinitions": [
+            {
+                "image": "private-repo/private-image",
+                "repositoryCredentials": {
+                “credentialsParameter”: "aws:ssm:region:aws_account_id:secret:secret_name"
+                }
+            }
+]
+```
+
+For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.
 
 ## Clusters<a name="fargate-clusters"></a>
 
 Clusters can contain tasks using both the Fargate and EC2 launch types\. When viewing your clusters in the AWS Management Console, Fargate and EC2 task counts are displayed separately\.
 
 For more information about Amazon ECS clusters, including a walkthrough for creating a cluster, see [Amazon ECS Clusters](ECS_clusters.md)\.
+
+## Fargate Task Retirement<a name="fargate-task-retirement"></a>
+
+A Fargate task is scheduled to be retired when AWS detects the irreparable failure of the underlying hardware hosting the task or if a security issue needs to be patched\. Most security patches are handled transparently without requiring any action on your part or having to restart your tasks\. But for certain issues, it may be required that the task be restarted\. 
+
+When a task reaches its scheduled retirement date, it is stopped or terminated by AWS\. If the task is part of a service, then the task is automatically stopped and the service scheduler starts a new one to replace it\. If you are using standalone tasks, then you receive notification of the task retirement\. For more information, see [Task Retirement](task-retirement.md)\.

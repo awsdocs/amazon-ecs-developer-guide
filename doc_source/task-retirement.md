@@ -1,8 +1,10 @@
 # Task Retirement<a name="task-retirement"></a>
 
-A task is scheduled to be retired when AWS detects the irreparable failure of the underlying hardware hosting the task\. When a task reaches its scheduled retirement date, it is stopped or terminated by AWS\.
+A task is scheduled to be retired in the following scenarios:
++ Your Fargate tasks are running on a platform version that has a security vulnerability that requires you to launch new tasks using a patched platform version\.
++ AWS detects the irreparable failure of the underlying hardware hosting the task\.
 
-If the task is part of a service, then the task is automatically stopped and the service schedule starts a new one to replace it\. If you are using standalone tasks, then you receive notification of the task retirement\.
+When a task reaches its scheduled retirement date, it is stopped or terminated by AWS\. If the task is part of a service, then the task is automatically stopped and the service scheduler starts a new one to replace it\. If you are using standalone tasks, then you receive notification of the task retirement and will need to launch new tasks to replace them\.
 
 ## Identifying Tasks Scheduled for Retirement<a name="task-retirement-identify"></a>
 
@@ -10,4 +12,52 @@ If your task is scheduled for retirement, you receive an email before the event 
 
 ## Working with Tasks Scheduled for Retirement<a name="task-retirement-working"></a>
 
-If the task is part of a service, then the task is automatically stopped and the service schedule starts a new one to replace it\. If you are using standalone tasks, then you can start a new task to replace it\. For more information, see [Running Tasks](ecs_run_task.md)\.
+If the task is part of a service, then the task is automatically stopped and the service scheduler starts a new one to replace it once it reaches its scheduled retirement date\. If you would like to update your service tasks prior to the retirement date, you can use the following steps\. For more information, see [Updating a Service](update-service.md)\.
+
+**To update a running service using the AWS Management Console**
+
+1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+
+1. On the navigation bar, select the region that your cluster is in\.
+
+1. In the navigation pane, choose **Clusters**\.
+
+1. On the **Clusters** page, select the name of the cluster in which your service resides\.
+
+1. On the **Cluster: *name*** page, choose **Services**\.
+
+1. Check the box to the left of the service to update and choose **Update**\.
+
+1. On the **Configure service** page, your service information is pre\-populated\. Select **Force new deployment** and choose **Next step**\.
+**Note**  
+For tasks using the Fargate launch type, forcing a new deployment will launch new tasks using the patched platform version\. Your tasks do not require you select a different platform version\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
+
+1. On the **Configure network** and **Set Auto Scaling \(optional\)** pages, choose **Next step**\.
+
+1. Choose **Update Service** to finish and update your service\.
+
+**To update a running service using the AWS CLI**
+
+1. Obtain the ARN for the service\.
+
+   ```
+   aws ecs list-services --cluster cluster_name --region region
+   ```
+
+   Output:
+
+   ```
+   {
+       "serviceArns": [
+           "arn:aws:ecs:region:aws_account_id:service/MyService"
+       ]
+   }
+   ```
+
+1. Update your service, forcing a new deployment which will deploy new tasks\.
+
+   ```
+   aws ecs update-service --service serviceArn --force-new-deployment --cluster cluster_name --region region
+   ```
+
+If you are using standalone tasks, then you can start a new task to replace it\. For more information, see [Running Tasks](ecs_run_task.md)\.

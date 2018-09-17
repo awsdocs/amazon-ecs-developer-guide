@@ -11,7 +11,7 @@ Here are some examples of the types of tasks you can perform with Run Command:
 + View log files
 + Perform file operations
 
-This topic covers basic installation of Run Command on the Amazon ECS\-optimized AMI and a few simple use cases, but it is by no means exhaustive\. For more information about Run Command, see [Manage Amazon EC2 Instances Remotely](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+This topic covers basic installation of Run Command on the Amazon ECS\-optimized AMI and a few simple use cases, but it is by no means exhaustive\. For more information about Run Command, see [Manage Amazon EC2 Instances Remotely](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Topics**
 + [Run Command IAM Policy](#run_command_iam_policy)
@@ -72,9 +72,9 @@ The user data script below installs the jq JSON parser and uses that to determin
 ## Using Run Command<a name="using_run_command"></a>
 
 After you have attached the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRole`, and installed the SSM agent on your container instances, you can start using Run Command to send commands to your container instances\. The following topic in the *Amazon EC2 User Guide for Linux Instances* explains how to run commands and shell scripts on your instances and view the resulting output:
-+ [Running Shell Scripts with Run Command](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/remote-commands-shellcript.html)
++ [Running Shell Scripts with Run Command](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/remote-commands-shellcript.html)
 
-For more information about Run Command, see [Manage Amazon EC2 Instances Remotely](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+For more information about Run Command, see [Manage Amazon EC2 Instances Remotely](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Example: To update container instance software with Run Command**
 

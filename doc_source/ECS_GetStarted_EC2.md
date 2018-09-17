@@ -7,7 +7,7 @@ In the Regions that don't support AWS Fargate, the Amazon ECS first\-run wizard 
 **Important**  
 For information about the Amazon ECS first\-run wizard for Fargate tasks, see [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)\.
 
-You can optionally create an Amazon Elastic Container Registry \(Amazon ECR\) image repository and push an image to it\. For more information, see the *[Amazon Elastic Container Registry User Guide](http://docs.aws.amazon.com/AmazonECR/latest/userguide/)*\.
+You can optionally create an Amazon Elastic Container Registry \(Amazon ECR\) image repository and push an image to it\. For more information, see the *[Amazon Elastic Container Registry User Guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/)*\.
 
 Complete the following tasks to get started with Amazon ECS:
 + [Prerequisites](#first-run-ec2-prereqs)
@@ -24,7 +24,7 @@ Before you begin, be sure that you've completed the steps in [Setting Up with Am
 
 The first\-run wizard attempts to automatically create the Amazon ECS service IAM and container instance IAM role\. To ensure that the first\-run experience is able to create these IAM roles, one of the following must be true:
 + Your user has administrator access\. For more information, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
-+ Your user has the IAM permissions to create a service role\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
++ Your user has the IAM permissions to create a service role\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
 + A user with administrator access has manually created these IAM roles so that they are available on the account to be used\. For more information, see [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md) and [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\. 
 
 ## Step 1: Choose Your Configuration Options<a name="first-run-ec2-options"></a>
@@ -47,7 +47,7 @@ In this section of the wizard, you use the Docker CLI to tag an existing local i
 
 1. Retrieve the docker login command that you can use to authenticate your Docker client to your registry by pasting the aws ecr get\-login command from the console into a terminal window\. 
 **Note**  
-The get\-login command is available in the AWS CLI starting with version 1\.9\.15; however, we recommend version 1\.11\.91 or later for recent versions of Docker \(17\.06 or later\)\. You can check your AWS CLI version with the aws \-\-version command\. If you are using Docker version 17\.06 or later, include the `--no-include-email` option after `get-login`\. If you receive an `Unknown options: --no-include-email` error, install the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+The get\-login command is available in the AWS CLI starting with version 1\.9\.15; however, we recommend version 1\.11\.91 or later for recent versions of Docker \(17\.06 or later\)\. You can check your AWS CLI version with the aws \-\-version command\. If you are using Docker version 17\.06 or later, include the `--no-include-email` option after `get-login`\. If you receive an `Unknown options: --no-include-email` error, install the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
 1. Run the docker login command that was returned in the previous step\. This command provides an authorization token that is valid for 12 hours\.
 **Important**  
@@ -89,7 +89,7 @@ The first\-run wizard comes preloaded with a service definition, and you can see
 
 1. In the **Desired number of tasks** field, enter the number of tasks you would like to launch with your specified task definition\.
 
-1. \(Optional\) You can choose to use an Application Load Balancer with your service\. When a task is launched from a service that is configured to use a load balancer, the task is registered with the load balancer\. Traffic from the load balancer is distributed across the instances in the load balancer\. For more information, see [Introduction to Application Load Balancers](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)\.
+1. \(Optional\) You can choose to use an Application Load Balancer with your service\. When a task is launched from a service that is configured to use a load balancer, the task is registered with the load balancer\. Traffic from the load balancer is distributed across the instances in the load balancer\. For more information, see [Introduction to Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)\.
 **Important**  
 Application Load Balancers do incur cost while they exist in your AWS resources\. For more information on Application Load Balancer pricing, see [Application Load Balancer Pricing](http://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/pricing/)\.
 
@@ -115,7 +115,7 @@ In this section of the wizard, you name your cluster, and then Amazon ECS take c
 **Note**  
 If you created a service with more than one desired task in it that exposes container ports on to container instance ports, such as the **Amazon ECS sample** application, you must specify at least that many instances here\.
 
-1. Select a key pair name to use with your container instances\. This is required for you to log into your instances with SSH\. If you do not specify a key pair here, you cannot connect to your container instances with SSH\. If you do not have a key pair, you can create one in the Amazon EC2 console\. For more information, see [Amazon EC2 Key Pairs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)\.
+1. Select a key pair name to use with your container instances\. This is required for you to log into your instances with SSH\. If you do not specify a key pair here, you cannot connect to your container instances with SSH\. If you do not have a key pair, you can create one in the Amazon EC2 console\. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)\.
 
 1. \(Optional\) In the **Security Group** section, you can choose a CIDR block that restricts access to your instances\. The default value \(**Anywhere**\) allows access from the entire internet\.
 

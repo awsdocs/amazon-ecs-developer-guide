@@ -21,7 +21,7 @@ Before you begin, be sure that you've completed the steps in [Setting Up with Am
 
 The first\-run wizard attempts to automatically create the task execution IAM role, which is required for Fargate tasks\. To ensure that the first\-run experience is able to create this IAM role, one of the following must be true:
 + Your user has administrator access\. For more information, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
-+ Your user has the IAM permissions to create a service role\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
++ Your user has the IAM permissions to create a service role\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
 + A user with administrator access has manually created the task execution role so that it is available on the account to be used\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\. 
 
 ## Step 1: Create a Task Definition<a name="first-run-task-def"></a>
@@ -58,7 +58,7 @@ The first\-run wizard comes preloaded with a service definition, and you can see
 
 1. In the **Security group** field, specify a range of IPv4 addresses to allow inbound traffic from, in CIDR block notation\. For example, `203.0.113.0/24`\.
 
-1. \(Optional\) You can choose to use an Application Load Balancer with your service\. When a task is launched from a service that is configured to use a load balancer, the task is registered with the load balancer\. Traffic from the load balancer is distributed across the instances in the load balancer\. For more information, see [Introduction to Application Load Balancers](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)\.
+1. \(Optional\) You can choose to use an Application Load Balancer with your service\. When a task is launched from a service that is configured to use a load balancer, the task is registered with the load balancer\. Traffic from the load balancer is distributed across the instances in the load balancer\. For more information, see [Introduction to Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)\.
 **Important**  
 Application Load Balancers do incur cost while they exist in your AWS resources\. For more information, see [Application Load Balancer Pricing](http://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/pricing/)\.
 

@@ -37,7 +37,7 @@ Service CPU and memory utilization metrics are available in the Amazon ECS conso
 
 ## Viewing Amazon ECS Metrics in the CloudWatch Console<a name="viewing_metrics_console"></a>
 
-Amazon ECS cluster and service metrics can also be viewed in the CloudWatch console\. The CloudWatch console provides the most detailed view of Amazon ECS metrics, and you can tailor the views to suit your needs\. You can view [Cluster Reservation](cloudwatch-metrics.md#cluster_reservation), [Cluster Utilization](cloudwatch-metrics.md#cluster_utilization), [Service Utilization](cloudwatch-metrics.md#service_utilization), and the [Service `RUNNING` Task Count](cloudwatch-metrics.md#cw_running_task_count)\. For more information about CloudWatch, see the [Amazon CloudWatch User Guide](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\.
+Amazon ECS cluster and service metrics can also be viewed in the CloudWatch console\. The CloudWatch console provides the most detailed view of Amazon ECS metrics, and you can tailor the views to suit your needs\. You can view [Cluster Reservation](cloudwatch-metrics.md#cluster_reservation), [Cluster Utilization](cloudwatch-metrics.md#cluster_utilization), [Service Utilization](cloudwatch-metrics.md#service_utilization), and the [Service `RUNNING` Task Count](cloudwatch-metrics.md#cw_running_task_count)\. For more information about CloudWatch, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\.
 
 **To view metrics in the CloudWatch console**
 

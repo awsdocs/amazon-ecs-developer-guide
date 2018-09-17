@@ -16,7 +16,7 @@ Your Amazon ECS container instances also require `ecs:StartTelemetrySession` per
 
 ## Step 1: Create a CloudWatch Alarm for a Metric<a name="create-cw-alarms"></a>
 
-After you have enabled CloudWatch metrics for your clusters and services, and the metrics for your cluster are visible in the CloudWatch console, you can set alarms on the metrics\. For more information, see [Creating Amazon CloudWatch Alarms](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.
+After you have enabled CloudWatch metrics for your clusters and services, and the metrics for your cluster are visible in the CloudWatch console, you can set alarms on the metrics\. For more information, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.
 
 For this tutorial, you create an alarm on the cluster `MemoryReservation` metric to alert when the cluster's memory reservation is above 75%\.
 
@@ -47,7 +47,7 @@ For this tutorial, you create an alarm on the cluster `MemoryReservation` metric
 
 ## Step 2: Create a Launch Configuration for an Auto Scaling Group<a name="create-as-group"></a>
 
-Now that you have enabled CloudWatch metrics and created an alarm based on one of those metrics, you can create a launch configuration and an Auto Scaling group for your cluster\. For more information and other configuration options, see the [Amazon EC2 Auto Scaling User Guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/)\.
+Now that you have enabled CloudWatch metrics and created an alarm based on one of those metrics, you can create a launch configuration and an Auto Scaling group for your cluster\. For more information and other configuration options, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/)\.
 
 **To create an Auto Scaling launch configuration**
 
@@ -63,14 +63,14 @@ Now that you have enabled CloudWatch metrics and created an alarm based on one o
 
 1. Choose the ECS\-optimized AMI for your Auto Scaling group\.
 
-   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2018\.03\.e\-amazon\-ecs\-optimized** AMI\.
+   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized** AMI\.
 
    The current Amazon ECS\-optimized Linux AMI IDs by region are listed below for reference\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch_alarm_autoscaling.html)
 
 1. On the **Choose Instance Type** step of the **Create Auto Scaling Group** wizard, choose an instance type for your Auto Scaling group and choose **Next: Configure details**\.
 
-1. On the **Configure details** step of the **Create Auto Scaling Group** wizard, enter the following information\. The other fields are optional\. For more information, see [Creating Launch Configurations](http://docs.aws.amazon.com/autoscaling/latest/userguide/WorkingWithLaunchConfig.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+1. On the **Configure details** step of the **Create Auto Scaling Group** wizard, enter the following information\. The other fields are optional\. For more information, see [Creating Launch Configurations](https://docs.aws.amazon.com/autoscaling/latest/userguide/WorkingWithLaunchConfig.html) in the *Amazon EC2 Auto Scaling User Guide*\.
    + **Name:** Enter a name for your launch configuration\.
    + **IAM role:** Select the `ecsInstanceRole` for your container instances\. If you do not have this role configured, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
    + **IP Address Type:** Choose the IP address type option that you want for your container instances\. If you want external traffic to be able to reach your containers, choose **Assign a public IP address to every instance\.**

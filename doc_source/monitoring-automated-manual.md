@@ -11,8 +11,8 @@ You can use the following automated monitoring tools to watch Amazon ECS and rep
 + Amazon CloudWatch Logs – Monitor, store, and access the log files from the containers in your Amazon ECS tasks by specifying the `awslogs` log driver in your task definitions\. This method for accessing logs must be used for tasks using the Fargate launch type, but also works with tasks using the EC2 launch type\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.
 
   You can also monitor, store, and access the operating system and Amazon ECS container agent log files from your Amazon ECS container instances\. This method for accessing logs can be used for containers using the EC2 launch type\. For more information, see [Using CloudWatch Logs with Container Instances](using_cloudwatch_logs.md)\. 
-+ Amazon CloudWatch Events – Match events and route them to one or more target functions or streams to make changes, capture state information, and take corrective action\. For more information, see [Amazon ECS Event Stream for CloudWatch Events](cloudwatch_event_stream.md) in this guide and [Using Events](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\.
-+ AWS CloudTrail log monitoring – Share log files between accounts, monitor CloudTrail log files in real time by sending them to CloudWatch Logs, write log processing applications in Java, and validate that your log files have not changed after delivery by CloudTrail\. For more information, see [Logging Amazon ECS API Calls with AWS CloudTrail](logging-using-cloudtrail.md) in this guide, and [Working with CloudTrail Log Files](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-working-with-log-files.html) in the *AWS CloudTrail User Guide*\. 
++ Amazon CloudWatch Events – Match events and route them to one or more target functions or streams to make changes, capture state information, and take corrective action\. For more information, see [Amazon ECS Event Stream for CloudWatch Events](cloudwatch_event_stream.md) in this guide and [Using Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch User Guide*\.
++ AWS CloudTrail log monitoring – Share log files between accounts, monitor CloudTrail log files in real time by sending them to CloudWatch Logs, write log processing applications in Java, and validate that your log files have not changed after delivery by CloudTrail\. For more information, see [Logging Amazon ECS API Calls with AWS CloudTrail](logging-using-cloudtrail.md) in this guide, and [Working with CloudTrail Log Files](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-working-with-log-files.html) in the *AWS CloudTrail User Guide*\. 
 
 ## Manual Monitoring Tools<a name="monitoring-manual-tools"></a>
 
@@ -23,7 +23,7 @@ Another important part of monitoring Amazon ECS involves manually monitoring tho
   + Service health status
 
   In addition, you can use CloudWatch to do the following: 
-  + Create [customized dashboards](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html) to monitor the services you care about
+  + Create [customized dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html) to monitor the services you care about
   + Graph metric data to troubleshoot issues and discover trends
   + Search and browse all your AWS resource metrics
   + Create and edit alarms to be notified of problems

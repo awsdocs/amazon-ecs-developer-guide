@@ -8,7 +8,7 @@ Amazon ECS may add other event types, sources, and details in the future\. If yo
 In some cases, multiple events are triggered for the same activity\. For example, when a task is started on a container instance, a task state change event is triggered for the new task, and a container instance state change event is triggered to account for the change in available resources \(such as CPU, memory, and available ports\) on the container instance\. Likewise, if a container instance is terminated, events are triggered for the container instance, the container agent connection status, and every task that was running on the container instance\.
 
 Events contain two `version` fields; one in the main body of the event, and one in the `detail` object of the event\.
-+ The version in the main body of the event is set to `0` on all events\. For more information about CloudWatch Events parameters, see [Events and Event Patterns](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
++ The version in the main body of the event is set to `0` on all events\. For more information about CloudWatch Events parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.
 + The version in the `detail` object of the event describes the version of the associated resource\. Each time a resource changes state, this version is incremented\. Because events can be sent multiple times, this field allows you to identify duplicate events \(they will have the same version in the `detail` object\)\. If you are replicating your Amazon ECS container instance and task state with CloudWatch events, you can compare the version of a resource reported by the Amazon ECS APIs with the version reported in CloudWatch events for the resource \(inside the `detail` object\) to verify that the version in your event stream is current\.
 
 **Topics**
@@ -45,7 +45,7 @@ You upgrade the Amazon ECS container agent on an instance
 The container instance detail contains an object for the container agent version\. If you upgrade the agent, this version information changes and triggers an event\.
 
 **Example Container Instance State Change Event**  
-Container instance state change events are delivered in the following format \(the `detail` section below resembles the [ContainerInstance](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerInstance.html) object that is returned from a [DescribeContainerInstances](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeContainerInstances.html) API operation in the *Amazon Elastic Container Service API Reference*\)\. For more information about CloudWatch Events parameters, see [Events and Event Patterns](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.  
+Container instance state change events are delivered in the following format \(the `detail` section below resembles the [ContainerInstance](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerInstance.html) object that is returned from a [DescribeContainerInstances](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeContainerInstances.html) API operation in the *Amazon Elastic Container Service API Reference*\)\. For more information about CloudWatch Events parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.  
 
 ```
 {
@@ -199,7 +199,7 @@ A container in the task changes state
 The Amazon ECS container agent monitors the state of containers within tasks\. For example, if a container that is running within a task stops, this container state change triggers an event\.
 
 **Example Task State Change Event**  
-Task state change events are delivered in the following format \(the `detail` section below resembles the [Task](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Task.html) object that is returned from a [DescribeTasks](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) API operation in the *Amazon Elastic Container Service API Reference*\)\. For more information about CloudWatch Events parameters, see [Events and Event Patterns](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.  
+Task state change events are delivered in the following format \(the `detail` section below resembles the [Task](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Task.html) object that is returned from a [DescribeTasks](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) API operation in the *Amazon Elastic Container Service API Reference*\)\. For more information about CloudWatch Events parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.  
 
 ```
 {

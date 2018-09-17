@@ -12,13 +12,13 @@ For more information, see [Service Definition Parameters](service_definition_par
 
 Any `PENDING` or `RUNNING` tasks that do not belong to a service are unaffected; you must wait for them to finish or stop them manually\.
 
-A container instance has completed draining when there are no more `RUNNING` tasks \(although the state remains as `DRAINING`\)\. You can verify this using the [ListTasks](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListTasks.html) operation with the `containerInstance` parameter\.
+A container instance has completed draining when there are no more `RUNNING` tasks \(although the state remains as `DRAINING`\)\. You can verify this using the [ListTasks](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListTasks.html) operation with the `containerInstance` parameter\.
 
 When you change the status of a container instance from `DRAINING` to `ACTIVE`, the Amazon ECS scheduler can schedule tasks on the instance again\.
 
 ## Draining Instances<a name="drain-instances"></a>
 
-You can use the [UpdateContainerInstancesState](http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateContainerInstancesState.html) API action or the [update\-container\-instances\-state](http://docs.aws.amazon.com/cli/latest/reference/ecs/update-container-instances-state.html) command to change the status of a container instance to `DRAINING`\.
+You can use the [UpdateContainerInstancesState](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateContainerInstancesState.html) API action or the [update\-container\-instances\-state](https://docs.aws.amazon.com/cli/latest/reference/ecs/update-container-instances-state.html) command to change the status of a container instance to `DRAINING`\.
 
 The following procedure demonstrates how to set your instance to `DRAINING` using the AWS Management Console\.
 

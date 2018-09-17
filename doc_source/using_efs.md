@@ -5,7 +5,7 @@ Amazon Elastic File System \(Amazon EFS\) provides simple, scalable file storage
 You can use Amazon EFS file systems with Amazon ECS to export file system data across your fleet of container instances\. That way, your tasks have access to the same persistent storage, no matter the instance on which they land\. However, you must configure your container instance AMI to mount the Amazon EFS file system before the Docker daemon starts\. Also, your task definitions must reference volume mounts on the container instance to use the file system\. The following sections help you get started using Amazon EFS with Amazon ECS\.
 
 **Note**  
-Amazon EFS is not available in all regions\. For more information about which regions support Amazon EFS, see [Amazon Elastic File System](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the [AWS Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html) section of the *AWS General Reference*\.
+Amazon EFS is not available in all regions\. For more information about which regions support Amazon EFS, see [Amazon Elastic File System](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) section of the *AWS General Reference*\.
 
 **Topics**
 + [Step 1: Gather Cluster Information](#efs-cluster-info)
@@ -64,7 +64,7 @@ Before you can use Amazon EFS with your container instances, you must create an 
 
 1. Open the Amazon Elastic File System console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 **Note**  
-Amazon EFS is not available in all regions\. For more information about which regions support Amazon EFS, see [Amazon Elastic File System](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the [AWS Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html) section of the *AWS General Reference*\.
+Amazon EFS is not available in all regions\. For more information about which regions support Amazon EFS, see [Amazon Elastic File System](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) section of the *AWS General Reference*\.
 
 1. Choose **Create file system**\.
 
@@ -114,7 +114,7 @@ After you've created your Amazon EFS file system in the same VPC as your contain
    sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 fs-613c8628.efs.us-east-1.amazonaws.com:/ /efs
    ```
 
-1. Validate that the file system is mounted correctly with the following command\. You should see a file system entry that matches your Amazon EFS file system\. If not, see [Troubleshooting Amazon EFS](http://docs.aws.amazon.com/efs/latest/ug/troubleshooting.html) in the *Amazon Elastic File System User Guide*\.
+1. Validate that the file system is mounted correctly with the following command\. You should see a file system entry that matches your Amazon EFS file system\. If not, see [Troubleshooting Amazon EFS](https://docs.aws.amazon.com/efs/latest/ug/troubleshooting.html) in the *Amazon Elastic File System User Guide*\.
 
    ```
    mount | grep efs
@@ -217,7 +217,7 @@ The following task definition creates a data volume called `efs-html` at `/efs/h
 }
 ```
 
-You can save this task definition to a file called `nginx-efs.json` and register it to use in your own clusters with the following AWS CLI command\. For more information, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+You can save this task definition to a file called `nginx-efs.json` and register it to use in your own clusters with the following AWS CLI command\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
 ```
 aws ecs register-task-definition --cli-input-json file://nginx-efs.json

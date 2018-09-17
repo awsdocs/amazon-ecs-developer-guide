@@ -7,7 +7,7 @@ To perform basic administrative tasks on your instance, such as updating or inst
 
   SSH uses port 22 for communication\. Port 22 must be open in your container instance security group for you to connect to your instance using SSH\.
 **Note**  
-The Amazon ECS console first\-run experience creates a security group for your container instances without inbound access on port 22\. If your container instances were launched from the console first\-run experience, add inbound access to port 22 on the security group used for those instances\. For more information, see [Authorizing Network Access to Your Instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+The Amazon ECS console first\-run experience creates a security group for your container instances without inbound access on port 22\. If your container instances were launched from the console first\-run experience, add inbound access to port 22 on the security group used for those instances\. For more information, see [Authorizing Network Access to Your Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **To connect to your container instance**
 
@@ -31,6 +31,6 @@ The Amazon ECS console first\-run experience creates a security group for your c
    $ ssh -i /path/to/my-key-pair.pem ec2-user@ec2-198-51-100-1.compute-1.amazonaws.com
    ```
 
-   For more information about using a Windows computer, see [Connecting to Your Linux Instance from Windows Using PuTTY](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+   For more information about using a Windows computer, see [Connecting to Your Linux Instance from Windows Using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 **Important**  
-For more information about any issues while connecting to your instance, see [Troubleshooting Connecting to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+For more information about any issues while connecting to your instance, see [Troubleshooting Connecting to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html) in the *Amazon EC2 User Guide for Linux Instances*\.

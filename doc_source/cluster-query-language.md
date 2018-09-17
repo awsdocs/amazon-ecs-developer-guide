@@ -15,17 +15,32 @@ subject operator [argument]
 **Subject**  
 The attribute or field to be evaluated\.
 
-You can select container instances by attribute\. For more information, see [Attributes](task-placement-constraints.md#attributes)\. Specify attributes as follows:
+`agentConnected`  
+Select container instances by their Amazon ECS container agent connection status\. You can use this filter to search for instances with container agents that are disconnected\.  
+Valid operators: equals \(==\), not\_equals \(\!=\), in, not\_in \(\!in\), matches \(=\~\), not\_matches \(\!\~\)
 
-```
-attribute:attribute-name
-```
+`agentVersion`  
+Select container instances by their Amazon ECS container agent version\. You can use this filter to find instances that are running outdated versions of the Amazon ECS container agent\.  
+Valid operators: equals \(==\), not\_equals \(\!=\), greater\_than \(>\), greater\_than\_equal \(>=\), less\_than \(<\), less\_than\_equal \(<=\)
 
-You can also select container instances by task group\. For more information, see [Task Groups](task-placement-constraints.md#task-groups)\. Specify task groups as follows:
+`attribute:attribute-name`  
+Select container instances by attribute\. For more information, see [Attributes](task-placement-constraints.md#attributes)\.
 
-```
-task:group
-```
+`ec2InstanceId`  
+Select container instances by their Amazon EC2 instance ID\.  
+Valid operators: equals \(==\), not\_equals \(\!=\), in, not\_in \(\!in\), matches \(=\~\), not\_matches \(\!\~\)
+
+`registeredAt`  
+Select container instances by their container instance registration date\. You can use this filter to find newly registered instances or instances that are very old\.  
+Valid operators: equals \(==\), not\_equals \(\!=\), greater\_than \(>\), greater\_than\_equal \(>=\), less\_than \(<\), less\_than\_equal \(<=\)  
+Valid date formats: 2018\-06\-18T22:28:28\+00:00, 2018\-06\-18T22:28:28Z, 2018\-06\-18T22:28:28, 2018\-06\-18
+
+`runningTasksCount`  
+Select container instances by number of running tasks\. You can use this filter to find instances that are empty or near empty \(few tasks running on them\)\.  
+Valid operators: equals \(==\), not\_equals \(\!=\), greater\_than \(>\), greater\_than\_equal \(>=\), less\_than \(<\), less\_than\_equal \(<=\)
+
+`task:group`  
+Select container instances by task group\. For more information, see [Task Groups](task-placement-constraints.md#task-groups)\.
 
 **Operator**  
 The comparison operator\. The following operators are supported\.
@@ -110,4 +125,32 @@ The following expression selects instances that are not hosting tasks in the dat
 
 ```
 not(task:group == database)
+```
+
+**Example: Running task count**  
+The following expression selects instances that are only running one task\.
+
+```
+runningTasksCount == 1
+```
+
+**Example: Amazon ECS container agent version**  
+The following expression selects instances that are running a container agent version below 1\.14\.5\.
+
+```
+agentVersion < 1.14.5
+```
+
+**Example: Instance registration time**  
+The following expression selects instances that were registered before February 13, 2018\.
+
+```
+registeredAt < 2018-02-13
+```
+
+**Example: Amazon EC2 instance ID**  
+The following expression selects instances with the following Amazon EC2 instance IDs\.
+
+```
+ec2InstanceId in ['i-abcd1234', 'i-wxyx7890']
 ```

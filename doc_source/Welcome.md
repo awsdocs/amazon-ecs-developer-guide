@@ -95,10 +95,10 @@ Auto Scaling is a web service that enables you to automatically scale out or in 
 Elastic Load Balancing automatically distributes incoming application traffic across multiple EC2 instances in the cloud\. It enables you to achieve greater levels of fault tolerance in your applications, seamlessly providing the required amount of load balancing capacity needed to distribute application traffic\. You can use Elastic Load Balancing to create an endpoint that balances traffic across services in a cluster\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
 
 **Amazon Elastic Container Registry**  
-Amazon ECR is a managed AWS Docker registry service that is secure, scalable, and reliable\. Amazon ECR supports private Docker repositories with resource\-based permissions using IAM so that specific users or EC2 instances can access repositories and images\. Developers can use the Docker CLI to push, pull, and manage images\. For more information, see the [Amazon Elastic Container Registry User Guide](http://docs.aws.amazon.com/AmazonECR/latest/userguide/)\.
+Amazon ECR is a managed AWS Docker registry service that is secure, scalable, and reliable\. Amazon ECR supports private Docker repositories with resource\-based permissions using IAM so that specific users or EC2 instances can access repositories and images\. Developers can use the Docker CLI to push, pull, and manage images\. For more information, see the [Amazon Elastic Container Registry User Guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/)\.
 
 **AWS CloudFormation**  
-AWS CloudFormation gives developers and systems administrators an easy way to create and manage a collection of related AWS resources, provisioning and updating them in an orderly and predictable fashion\. You can define clusters, task definitions, and services as entities in an AWS CloudFormation script\. For more information, see [AWS CloudFormation Template Reference](http://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/)\.
+AWS CloudFormation gives developers and systems administrators an easy way to create and manage a collection of related AWS resources, provisioning and updating them in an orderly and predictable fashion\. You can define clusters, task definitions, and services as entities in an AWS CloudFormation script\. For more information, see [AWS CloudFormation Template Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/)\.
 
 ## Accessing Amazon ECS<a name="welcome-accessing"></a>
 
@@ -109,7 +109,7 @@ The console is a browser\-based interface to manage Amazon ECS resources\. For a
 
 **AWS command line tools**  
 You can use the AWS command line tools to issue commands at your system's command line to perform Amazon ECS and AWS tasks; this can be faster and more convenient than using the console\. The command line tools are also useful for building scripts that perform AWS tasks\.  
-AWS provides two sets of command line tools: the [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/) \(AWS CLI\) and the [AWS Tools for Windows PowerShell](http://docs.aws.amazon.com/powershell/latest/userguide/)\. For more information, see the [AWS Command Line Interface User Guide](http://docs.aws.amazon.com/cli/latest/userguide/) and the [AWS Tools for Windows PowerShell User Guide](http://docs.aws.amazon.com/powershell/latest/userguide/)\.
+AWS provides two sets of command line tools: the [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/) \(AWS CLI\) and the [AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/)\. For more information, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/) and the [AWS Tools for Windows PowerShell User Guide](https://docs.aws.amazon.com/powershell/latest/userguide/)\.
 
 **Amazon ECS CLI**  
 In addition to using the AWS CLI to access Amazon ECS resources, you can use the Amazon ECS CLI, which provides high\-level commands to simplify creating, updating, and monitoring clusters and tasks from a local development environment using Docker Compose\. For more information, see [Using the Amazon ECS Command Line Interface](ECS_CLI.md)\.
