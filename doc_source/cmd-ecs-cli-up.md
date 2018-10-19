@@ -1,17 +1,15 @@
 # ecs\-cli up<a name="cmd-ecs-cli-up"></a>
 
-## Description<a name="cmd-ecs-cli-up-description"></a>
-
-Creates the ECS cluster \(if it does not already exist\) and the AWS resources required to set up the cluster\.
+Creates the Amazon ECS cluster \(if it does not already exist\) and the AWS resources required to set up the cluster\.
 
 This command creates a new AWS CloudFormation stack called `amazon-ecs-cli-setup-cluster_name`\. You can view the progress of the stack creation in the AWS Management Console\. 
 
 **Important**  
-Some features described may only be available with the latest version of the ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described may only be available with the latest version of the Amazon ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Syntax<a name="cmd-ecs-cli-up-syntax"></a>
 
-**ecs\-cli up \[\-\-verbose\] \[\-\-capability\-iam \| `--instance-role instance-profile-name`\] \[\-\-keypair *keypair\_name*\] \[`--size n`\] \[`--azs availability_zone_1,availability_zone_2`\] \[\-\-security\-group *security\_group\_id*\[,*security\_group\_id*\[,\.\.\.\]\]\] \[`--cidr ip_range`\] \[`--port port_number`\] \[`--subnets subnet_1,subnet_2`\] \[`--vpc vpc_id`\] \[\-\-instance\-type *instance\_type*\] \[\-\-image\-id *ami\_id*\] \[\-\-launch\-type *launch\_type*\] \[\-\-no\-associate\-public\-ip\-address\] \[\-\-force\] \[\-\-cluster *cluster\_name*\] \[\-\-region *region*\] \[\-\-empty\] \[\-\-help\]** 
+**ecs\-cli up \[\-\-verbose\] \[\-\-capability\-iam \| `--instance-role instance-profile-name`\] \[\-\-keypair *keypair\_name*\] \[`--size n`\] \[`--azs availability_zone_1,availability_zone_2`\] \[\-\-security\-group *security\_group\_id*\[,*security\_group\_id*\[,\.\.\.\]\]\] \[`--cidr ip_range`\] \[`--port port_number`\] \[`--subnets subnet_1,subnet_2`\] \[`--vpc vpc_id`\] \[\-\-extra\-user\-data *string*\] \[\-\-instance\-type *instance\_type*\] \[\-\-image\-id *ami\_id*\] \[\-\-launch\-type *launch\_type*\] \[\-\-no\-associate\-public\-ip\-address\] \[\-\-force\] \[\-\-cluster *cluster\_name*\] \[\-\-region *region*\] \[\-\-empty\] \[\-\-help\]** 
 
 ## Options<a name="cmd-ecs-cli-up-options"></a>
 
@@ -28,23 +26,41 @@ Some features described may only be available with the latest version of the ECS
 |  `--port port_number`  |  Specifies a port to open on the security group to use for container instances in your cluster\. This parameter is ignored if an existing security group is specified with the `--security-group` option\.  Type: Integer Default: `80` Required: No  | 
 |  `--subnets subnet_1,subnet_2`  |  Specifies a comma\-separated list of existing VPC subnet IDs in which to launch your container instances\. Type: String Required: This option is required if you specify a VPC with the `--vpc` option\.  | 
 |  `--vpc vpc_id`  |  Specifies the ID of an existing VPC in which to launch your container instances\. If you specify a VPC ID, you must specify a list of existing subnets in that VPC with the `--subnets` option\. If you do not specify a VPC ID, a new VPC is created with two subnets\. Type: String Required: No  | 
+| \-\-extra\-user\-data string |  Specifies additional user data for your container instance\. Files can be shell scripts or cloud\-init directives\. They are packaged into a MIME multipart archive along with user data provided by the Amazon ECS CLI that directs instances to join your cluster\. For more information, see [Specifying User Data](#cmd-ecs-cli-up-userdata)\. Type: String Required: No  | 
 |  `--instance-type instance_type`  |  Specifies the EC2 instance type for your container instances\.  This parameter is only supported with tasks that use the EC2 launch type\.  For more information on EC2 instance types, see [Amazon EC2 Instances](https://aws.amazon.com/ec2/instance-types/)\. Type: String Default: `t2.micro` Required: No  | 
-|  `--image-id ami_id`  |  Specifies the Amazon EC2 AMI ID to use for your container instances\.  This parameter is only supported with tasks that use the EC2 launch type\.   If no AMI ID is specified, the Amazon ECS CLI automatically retrieves the latest stable Amazon ECS\-optimized AMI by querying the SSM Parameter Store API during the cluster resource creation process\. This requires the user account that you are using to have the required SSM permissions\. For more information, see [Retrieving the Amazon ECS\-optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)\.  Type: String Default: The latest stable Amazon ECS–optimized AMI for the specified region\. Required: No  | 
+|  `--image-id ami_id`  |  Specifies the Amazon EC2 AMI ID to use for your container instances\.  This parameter is only supported with tasks that use the EC2 launch type\.   If an AMI ID is not specified, the Amazon ECS CLI automatically retrieves the latest stable Amazon ECS\-optimized AMI by querying the SSM Parameter Store API during the cluster resource creation process\. This requires the user account that you are using to have the required SSM permissions\. For more information, see [Retrieving Amazon ECS\-Optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)\.  Type: String Default: The latest stable Amazon ECS–optimized AMI for the specified region\. Required: No  | 
 |  `--no-associate-public-ip-address`  |  Do not assign public IP addresses to new instances in this VPC\. Unless this option is specified, new instances in this VPC receive an automatically assigned public IP address\.  This parameter is only supported with tasks that use the EC2 launch type\.  Required: No  | 
 |  `--force, -f`  |  Forces the recreation of any existing resources that match your current configuration\. This option is useful for cleaning up stale resources from previous failed attempts\. Required: No  | 
 |  `--instance-role, -f instance-profile-name`  |  Specifies a custom IAM instance profile name for instances in your cluster\.  This parameter is only supported with tasks that use the EC2 launch type\.  This parameter is required if you do not specify the `--capability-iam` option\. You cannot specify both options\. Required: No  | 
-| \-\-launch\-type launch\_type | Specifies the launch type to use\. Available options are FARGATE or EC2\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\. This overrides the default launch type stored in your cluster configuration\. Type: StringRequired: No | 
-|  `--cluster, -c cluster_name`  |  Specifies the ECS cluster name to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
-|  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
-|  `--cluster-config cluster_config_name`  |  Specifies the name of the ECS cluster configuration to use\. Defaults to the cluster configuration set as the default\. Type: String Required: No  | 
-|  `--ecs-profile ecs_profile`  |  Specifies the name of the ECS profile configuration to use\. Defaults to the profile configured using the configure profile command\. Type: String Required: No  | 
-|  `--aws-profile aws_profile`  |  Specifies the AWS profile to use\. Enables you to use the AWS credentials from an existing named profile in `~/.aws/credentials`\. Type: String Required: No  | 
+|  `--launch-type launch_type`  |  Specifies the launch type to use\. Available options are `FARGATE` or `EC2`\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\. This overrides the default launch type stored in your cluster configuration\.  Type: StringRequired: No | 
 |  `--empty, -e`  |  Specifies that an ECS cluster is created with no resources\. If other flags are also specified that would create resources, they are ignored and a warning is displayed\. Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
 
+## Specifying User Data<a name="cmd-ecs-cli-up-userdata"></a>
+
+When launching tasks that use the EC2 launch type, the ECS CLI always creates container instances that include the following user data:
+
+```
+#!/bin/bash
+echo ECS_CLUSTER={ clusterName } >> /etc/ecs/ecs.config
+```
+
+This user data directs the container instance to join your ECS cluster\. You can optionally include additional user data using the `--extra-user-data` flag\. The flag can be specified multiple times\. For example, extra user data can be shell scripts or cloud\-init directives\. For more information, see [Running Commands on Your Linux Instance at Launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+
+The Amazon ECS CLI takes the user data and packs it into a MIME multipart archive, which can be used by cloud\-init on the container instance\. The Amazon ECS CLI allows existing MIME multipart archives to be passed in with `--extra-user-data`\. The Amazon ECS CLI unpacks the existing archive, and then repack it into the final archive \(preserving all header and content type information\)\. The following is an example:
+
+```
+ecs-cli up \  
+  --capability-iam \  
+  --extra-user-data my-shellscript \  
+  --extra-user-data my-cloud-boot-hook \  
+  --extra-user-data my-mime-multipart-archive \  
+  --launch-type EC2
+```
+
 ## Examples<a name="cmd-ecs-cli-up-examples"></a>
 
-### Creating a Cluster to Use with Tasks That Will Use the EC2 Launch Type<a name="cmd-ecs-cli-up-example-1"></a>
+### Creating a Cluster for Tasks Using the EC2 Launch Type<a name="cmd-ecs-cli-up-example-1"></a>
 
 This example brings up a cluster of four `c4.large` instances and configures them to use the EC2 key pair called `id_rsa`\.
 
@@ -69,7 +85,7 @@ Subnets created: subnet-abcd1234
 Subnets created: subnet-dcba4321
 ```
 
-### Creating a Cluster to Use with Tasks That Will Use the Fargate Launch Type<a name="cmd-ecs-cli-up-example-2"></a>
+### Creating a Cluster for Tasks Using the Fargate Launch Type<a name="cmd-ecs-cli-up-example-2"></a>
 
 This example brings up a cluster for your Fargate tasks and creates a new VPC with two subnets\.
 

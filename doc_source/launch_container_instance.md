@@ -12,19 +12,19 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 
 1. On the **Choose an Amazon Machine Image \(AMI\)** page, choose **Community AMIs**\.
 
-1. Choose an AMI for your container instance\. You can choose the Amazon ECS\-optimized AMI, or another operating system, such as CoreOS or Ubuntu\. If you do not choose the Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS Container Agent](ecs-agent-install.md)\.
+1. Choose an AMI for your container instance\. You can choose the Amazon ECS\-optimized Amazon Linux 2 AMI, or another operating system, such as CoreOS or Ubuntu\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS Container Agent](ecs-agent-install.md)\.
 **Note**  
 For more information about Amazon ECS\-specific CoreOS installation instructions, see [Running CoreOS Container Linux with AWS EC2 Container Service](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
-   To use the Amazon ECS\-optimized AMI, type **amazon\-ecs\-optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn\-ami\-2018\.03\.f\-amazon\-ecs\-optimized** AMI\. 
+   To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs\-hvm\-2\.0** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20181017\-x86\_64\-ebs** AMI\. 
 
-   The current Amazon ECS–optimized AMI IDs by region are listed below for reference\.    
+   The current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by region are listed below for reference\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
 **Note**  
-The current Amazon ECS\-optimized AMI can be retrieved using the AWS CLI with the following command:  
+The current Amazon ECS\-optimized Amazon Linux 2 AMI ID can be retrieved using the AWS CLI with the following command:  
 
    ```
-   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended
+   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended
    ```
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.
@@ -76,9 +76,9 @@ For more information about this configuration, see [Storing Container Instance C
 
 1. On the **Add Storage** page, configure the storage for your container instance\.
 
-   If you are using an Amazon ECS\-optimized AMI before the **2015\.09\.d** version, your instance has a single volume that is shared by the operating system and Docker\.
+   If you are using the Amazon ECS\-optimized Amazon Linux 2 AMI, your instance a single 30 GiB volume configured, which is shared between the operating system and Docker\.
 
-   If you are using the **2015\.09\.d** or later Amazon ECS\-optimized AMI, your instance has two volumes configured\. The **Root** volume is for the operating system's use, and the second Amazon EBS volume \(attached to `/dev/xvdcz`\) is for Docker's use\.
+   If you are using the Amazon ECS\-optimized AMI, your instance has two volumes configured\. The **Root** volume is for the operating system's use, and the second Amazon EBS volume \(attached to `/dev/xvdcz`\) is for Docker's use\.
 
    You can optionally increase or decrease the volume sizes for your instance to meet your application needs\.
 

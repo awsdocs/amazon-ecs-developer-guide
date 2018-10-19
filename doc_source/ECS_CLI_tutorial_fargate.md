@@ -1,13 +1,13 @@
-# Tutorial: Creating a Cluster with a Fargate Task Using the ECS CLI<a name="ECS_CLI_tutorial_fargate"></a>
+# Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI<a name="ECS_CLI_tutorial_fargate"></a>
 
 This tutorial shows you how to set up a cluster and deploy a task using the Fargate launch type\. 
 
 ## Prerequisites<a name="ECS_CLI_tutorial_fargate_prereqs"></a>
 
-It is expected that you have completed the following prerequisites before continuing on:
+Complete the following prerequisites:
 + Set up an AWS account
-+ Installed the ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
-+ Installed and configured the AWS CLI\. For more information, see [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)
++ Install the Amazon ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
++ Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
 
 ## Step 1: Create the Task Execution IAM Role<a name="ECS_CLI_tutorial_fargate_iam_role"></a>
 
@@ -45,11 +45,11 @@ Amazon ECS needs permissions so that your Fargate task can store logs in CloudWa
    aws iam --region us-east-1 attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
    ```
 
-## Step 2: Configure the ECS CLI<a name="ECS_CLI_tutorial_fargate_configure"></a>
+## Step 2: Configure the Amazon ECS CLI<a name="ECS_CLI_tutorial_fargate_configure"></a>
 
-The ECS CLI requires credentials in order to make API requests on your behalf\. It can pull credentials from environment variables, an AWS profile, or an Amazon ECS profile\. For more information, see [Configuring the Amazon ECS CLI](ECS_CLI_Configuration.md)\.
+The Amazon ECS CLI requires credentials in order to make API requests on your behalf\. It can pull credentials from environment variables, an AWS profile, or an Amazon ECS profile\. For more information, see [Configuring the Amazon ECS CLI](ECS_CLI_Configuration.md)\.
 
-**To create an ECS CLI configuration**
+**To create an Amazon ECS CLI configuration**
 
 1. Create a cluster configuration, which defines the AWS region to use, resource creation prefixes, and the cluster name to use with the Amazon ECS CLI:
 
@@ -63,7 +63,7 @@ The ECS CLI requires credentials in order to make API requests on your behalf\. 
    ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET_ACCESS_KEY --profile-name tutorial
    ```
 **Note**  
-If this is the first time that you are configuring the ECS CLI, these configurations are marked as default\. If this is not your first time configuring the ECS CLI, see [ecs\-cli configure default](cmd-ecs-cli-configure-default.md) and [ecs\-cli configure profile default](cmd-ecs-cli-configure-profile-default.md) to set this as the default configuration and profile\.
+If this is the first time that you are configuring the Amazon ECS CLI, these configurations are marked as default\. If this is not your first time configuring the Amazon ECS CLI, see [ecs\-cli configure default](cmd-ecs-cli-configure-default.md) and [ecs\-cli configure profile default](cmd-ecs-cli-configure-profile-default.md) to set this as the default configuration and profile\.
 
 ## Step 3: Create a Cluster and Security Group<a name="ECS_CLI_tutorial_fargate_cluster"></a>
 
@@ -167,7 +167,7 @@ ecs-cli logs --task-id a06a6642-12c5-4006-b1d1-033994580605 --follow --cluster-c
 ```
 
 **Note**  
-The `--follow` option tells the ECS CLI to continuously poll for logs\.
+The `--follow` option tells the Amazon ECS CLI to continuously poll for logs\.
 
 ## Step 8: Scale the Tasks on the Cluster<a name="ECS_CLI_tutorial_fargate_scale"></a>
 

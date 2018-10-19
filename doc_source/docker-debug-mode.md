@@ -5,19 +5,19 @@ If you are having trouble with Docker containers or images, you can enable debug
 Enabling Docker debug mode can be especially useful in retrieving error messages that are sent from container registries, such as Amazon ECR, and, in many circumstances, enabling debug mode is the only way to see these error messages\.
 
 **Important**  
-This procedure is written for the Amazon ECS\-optimized AMI\. For other operating systems, see [Enable debugging](https://docs.docker.com/engine/admin/#enable-debugging) and [Control and configure Docker with systemd]() in the Docker documentation\.
+This procedure is written for the Amazon ECS\-optimized Amazon Linux AMI\. For other operating systems, see [Enable debugging](https://docs.docker.com/engine/admin/#enable-debugging) and [Control and configure Docker with systemd]() in the Docker documentation\.
 
-**To enable Docker daemon debug mode on the Amazon ECS\-optimized AMI**
+**To enable Docker daemon debug mode on the Amazon ECS\-optimized Amazon Linux AMI**
 
 1. Connect to your container instance\. For more information, see [Connect to Your Container Instance](instance-connect.md)\.
 
-1. Open the Docker options file with a text editor, such as vi\. For the Amazon ECS\-optimized AMI, the Docker options file is at `/etc/sysconfig/docker`\.
+1. Open the Docker options file with a text editor, such as vi\. For the Amazon ECS\-optimized Amazon Linux AMI, the Docker options file is at `/etc/sysconfig/docker`\.
 
 1. Find the Docker options statement and add the `-D` option to the string, inside the quotes\.
 **Note**  
 If the Docker options statement begins with a `#`, remove that character to uncomment the statement and enable the options\.
 
-   For the Amazon ECS\-optimized AMI, the Docker options statement is called `OPTIONS`\. For example:
+   For the Amazon ECS\-optimized Amazon Linux AMI, the Docker options statement is called `OPTIONS`\. For example:
 
    ```
    # Additional startup options for the Docker daemon, for example:

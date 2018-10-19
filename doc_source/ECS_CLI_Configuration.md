@@ -16,7 +16,7 @@ The Amazon ECS CLI requires some basic configuration information before you can 
    ecs-cli configure --cluster cluster_name --default-launch-type launch_type --region region_name --config-name configuration_name
    ```
 
-After you have installed and configured the CLI, you can try the [Tutorial: Creating a Cluster with a Fargate Task Using the ECS CLI](ECS_CLI_tutorial_fargate.md)\. For more information, see the [Amazon ECS Command Line Reference](ECS_CLI_reference.md)\.
+After you have installed and configured the CLI, you can try the [Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI](ECS_CLI_tutorial_fargate.md)\. For more information, see the [Amazon ECS Command Line Reference](ECS_CLI_reference.md)\.
 
 ## Profiles<a name="ECS_CLI_profiles"></a>
 
@@ -36,7 +36,7 @@ There are multiple methods for passing both the credentials and the region in an
 
 The order of precedence for credentials is:
 
-1. ECS CLI profile flags:
+1. Amazon ECS CLI profile flags:
 
    1. ECS profile \(`--ecs-profile`\)
 
@@ -60,7 +60,7 @@ The order of precedence for credentials is:
 
 The order of precedence for region is:
 
-1. ECS CLI flags:
+1. Amazon ECS CLI flags:
 
    1. Region flag \(`--region`\)
 

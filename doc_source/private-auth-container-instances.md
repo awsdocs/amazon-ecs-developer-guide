@@ -8,7 +8,7 @@ The Amazon ECS container agent looks for two environment variables when it launc
 + `ECS_ENGINE_AUTH_TYPE`, which specifies the type of authentication data that is being sent\.
 + `ECS_ENGINE_AUTH_DATA`, which contains the actual authentication credentials\.
 
-The Amazon ECS\-optimized AMI scans the `/etc/ecs/ecs.config` file for these variables when the container instance launches, and each time the service is started \(with the sudo start ecs command\)\. AMIs that are not Amazon ECS\-optimized should store these environment variables in a file and pass them with the `--env-file path_to_env_file` option to the docker run command that starts the container agent\.
+Linux variants of the Amazon ECS\-optimized AMI scan the `/etc/ecs/ecs.config` file for these variables when the container instance launches, and each time the service is started \(with the sudo start ecs command\)\. AMIs that are not Amazon ECS\-optimized should store these environment variables in a file and pass them with the `--env-file path_to_env_file` option to the docker run command that starts the container agent\.
 
 **Important**  
 We do not recommend that you inject these authentication environment variables at instance launch time with Amazon EC2 user data or pass them with the `--env` option to the docker run command\. These methods are not appropriate for sensitive data, such as authentication credentials\. For information about safely adding authentication credentials to your container instances, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
@@ -54,7 +54,7 @@ Output:
 }
 ```
 
-In the above example, the following environment variables should be added to the environment variable file \(`/etc/ecs/ecs.config` for the Amazon ECS\-optimized AMI\) that the Amazon ECS container agent loads at runtime\. If you are not using the Amazon ECS\-optimized AMI and you are starting the agent manually with docker run, specify the environment variable file with the `--env-file path_to_env_file` option when you start the agent\.
+In the above example, the following environment variables should be added to the environment variable file \(`/etc/ecs/ecs.config` for the Amazon ECS\-optimized AMI\) that the Amazon ECS container agent loads at runtime\. If you are not using an Amazon ECS\-optimized AMI and you are starting the agent manually with docker run, specify the environment variable file with the `--env-file path_to_env_file` option when you start the agent\.
 
 ```
 ECS_ENGINE_AUTH_TYPE=dockercfg
@@ -81,7 +81,7 @@ The `docker` format uses a JSON representation of the registry server that the a
 }
 ```
 
-In this example, the following environment variables should be added to the environment variable file \(`/etc/ecs/ecs.config` for the Amazon ECS\-optimized AMI\) that the Amazon ECS container agent loads at runtime\. If you are not using the Amazon ECS\-optimized AMI and you are starting the agent manually with docker run, specify the environment variable file with the `--env-file path_to_env_file` option when you start the agent\.
+In this example, the following environment variables should be added to the environment variable file \(`/etc/ecs/ecs.config` for the Amazon ECS\-optimized AMI\) that the Amazon ECS container agent loads at runtime\. If you are not using an Amazon ECS\-optimized AMI, and you are starting the agent manually with docker run, specify the environment variable file with the `--env-file path_to_env_file` option when you start the agent\.
 
 ```
 ECS_ENGINE_AUTH_TYPE=docker
@@ -130,29 +130,17 @@ Use the following procedure to enable private registries for your container inst
 **Important**  
 If the previous command does not return the `ECS_DATADIR` environment variable, you must stop any tasks running on this container instance before stopping the agent\. Newer agents with the `ECS_DATADIR` environment variable save their state and you can stop and start them while tasks are running without issues\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
-1. Stop the `ecs` service\.
-
-   ```
-   sudo stop ecs
-   ```
-
-   Output:
-
-   ```
-   ecs stop/waiting
-   ```
-
 1. Restart the `ecs` service\.
+   + For the Amazon ECS\-optimized Amazon Linux 2 AMI:
 
-   ```
-   sudo start ecs
-   ```
+     ```
+     sudo systemctl restart ecs
+     ```
+   + For the Amazon ECS\-optimized Amazon Linux AMI:
 
-   Output:
-
-   ```
-   ecs start/running, process 2959
-   ```
+     ```
+     sudo stop ecs && sudo start ecs
+     ```
 
 1. \(Optional\) You can verify that the agent is running and see some information about your new container instance by querying the agent introspection API operation\. For more information, see [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)\.
 
@@ -166,6 +154,6 @@ If the previous command does not return the `ECS_DATADIR` environment variable, 
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.20.2 (d68e729f)"
+     "Version": "Amazon ECS Agent - v1.21.0 (3d368554)"
    }
    ```

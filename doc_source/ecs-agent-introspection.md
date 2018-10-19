@@ -8,7 +8,7 @@ Your container instance must have an IAM role that allows access to Amazon ECS i
 To view container instance metadata, log in to your container instance via SSH and run the following command\. Metadata includes the container instance ID, the Amazon ECS cluster in which the container instance is registered, and the Amazon ECS container agent version information\.
 
 ```
-[ec2-user ~]$ curl http://localhost:51678/v1/metadata
+[ec2-user ~]$ curl -s http://localhost:51678/v1/metadata | python -mjson.tool
 ```
 
 Output:
@@ -17,7 +17,7 @@ Output:
 {
   "Cluster": "default",
   "ContainerInstanceArn": "<container_instance_ARN>",
-  "Version": "Amazon ECS Agent - v1.20.2 (d68e729f)"
+  "Version": "Amazon ECS Agent - v1.21.0 (3d368554)"
 }
 ```
 

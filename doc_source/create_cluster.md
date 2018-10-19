@@ -57,9 +57,9 @@ Spot Instances are subject to possible interruptions\. We recommend that you avo
 
 1. For **EC2 instance types**, choose the EC2 instance type for your container instances\. The instance type that you select determines the resources available for your tasks\.
 
-1. For **Number of instances**, choose the number of EC2 instances to launch into your cluster\. These instances are launched using the latest Amazon ECS–optimized AMI\. For more information, see [Amazon ECS\-Optimized AMI](ecs-optimized_AMI.md)\.
+1. For **Number of instances**, choose the number of EC2 instances to launch into your cluster\. These instances are launched using the latest Amazon ECS\-optimized Amazon Linux AMI\. For more information, see [Amazon ECS\-Optimized Amazon Linux AMI](ecs-optimized_AMI.md)\.
 
-1. For **EBS storage \(GiB\)**, choose the size of the Amazon EBS volume to use for data storage on your container instances\. By default, the Amazon ECS–optimized AMI launches with an 8\-GiB root volume and a 22\-GiB data volume\. You can increase the size of the data volume to allow for greater image and container storage\.
+1. For **EBS storage \(GiB\)**, choose the size of the Amazon EBS volume to use for data storage on your container instances\. You can increase the size of the data volume to allow for greater image and container storage\.
 
 1. For **Key pair**, choose an Amazon EC2 key pair to use with your container instances for SSH access\. If you do not specify a key pair, you cannot connect to your container instances with SSH\. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 

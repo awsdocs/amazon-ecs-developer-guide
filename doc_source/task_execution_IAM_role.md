@@ -7,9 +7,11 @@ The Amazon ECS container agent makes calls to the Amazon ECS API actions on your
 **Note**  
 The task execution role is supported by ECS Agent version 1\.16\.0 and later\.
 
+If you want to use the private registry authentication for tasks feature, it requires you to add additional permissions as an inline policy to the task execution role\. For more information, see [Private Registry Authentication Required IAM Permissions](private-auth.md#private-auth-iam)\.
+
 For tasks that use the Fargate launch type, the task execution role is required to pull container images from Amazon ECR or to use the awslogs log driver, which is currently the only supported logging option for this launch type\. If you are using a public container image, for example a public image from Docker Hub, and are not using a logging configuration then the task execution role is not needed\.
 
-For tasks that use the EC2 launch type, the permissions granted by the task execution role are already granted by the container instance IAM role and thus the task execution role is not required\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+For tasks that use the EC2 launch type, the permissions granted by the task execution role are already granted by the container instance IAM role and thus the task execution role is not required unless you are using the private registry authentication for tasks feature\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
 The `AmazonECSTaskExecutionRolePolicy` policy is shown below\.
 

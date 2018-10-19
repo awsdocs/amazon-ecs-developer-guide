@@ -39,7 +39,7 @@ By default, the container metadata file is written to the following host and con
 + **For Linux instances:**
   + Host path: `/var/lib/ecs/data/metadata/task_id/container_name/ecs-container-metadata.json`
 **Note**  
-The Linux host path assumes that the default data directory mount path \(`/var/lib/ecs/data`\) is used when the agent is started\. If you are not using the Amazon ECS\-optimized AMI \(or the `ecs-init` package to start and maintain the container agent\), be sure to set the `ECS_HOST_DATA_DIR` agent configuration variable to the host path where the container agent's state file is located\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+The Linux host path assumes that the default data directory mount path \(`/var/lib/ecs/data`\) is used when the agent is started\. If you are not using an Amazon ECS\-optimized AMI \(or the `ecs-init` package to start and maintain the container agent\), be sure to set the `ECS_HOST_DATA_DIR` agent configuration variable to the host path where the container agent's state file is located\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
   + Container path: `/opt/ecs/metadata/random_ID/ecs-container-metadata.json`
 + **For Windows instances:**
   + Host path: `C:\ProgramData\Amazon\ECS\data\metadata\task_id\container_name\ecs-container-metadata.json`

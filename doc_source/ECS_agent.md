@@ -1,6 +1,6 @@
 # Amazon ECS Container Agent<a name="ECS_agent"></a>
 
-The Amazon ECS container agent allows container instances to connect to your cluster\. The Amazon ECS container agent is included in the Amazon ECS\-optimized AMI, but you can also install it on any Amazon EC2 instance that supports the Amazon ECS specification\. The Amazon ECS container agent is only supported on Amazon EC2 instances\.
+The Amazon ECS container agent allows container instances to connect to your cluster\. The Amazon ECS container agent is included in the Amazon ECS\-optimized AMIs, but you can also install it on any Amazon EC2 instance that supports the Amazon ECS specification\. The Amazon ECS container agent is only supported on Amazon EC2 instances\.
 
 The source code for the Amazon ECS container agent is [available on GitHub](https://github.com/aws/amazon-ecs-agent)\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently support running modified copies of this software\.
 

@@ -46,10 +46,16 @@ Some task definition parameters require a specific Docker remote API version to 
 ### \(service *service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* encountered error "AGENT"\.<a name="service-event-messages-2"></a>
 
 The Amazon ECS container agent on the closest matching container instance for task placement is disconnected\. If you can connect to the container instance with SSH, you can examine the agent logs; for more information, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\. You should also verify that the agent is running on the instance\. If you are using the Amazon ECS\-optimized AMI, you can try stopping and restarting the agent with the following command:
++ For the Amazon ECS\-optimized Amazon Linux 2 AMI:
 
-```
-sudo stop ecs && sudo start ecs
-```
+  ```
+  sudo systemctl restart ecs
+  ```
++ For the Amazon ECS\-optimized Amazon Linux AMI:
+
+  ```
+  sudo stop ecs && sudo start ecs
+  ```
 
 ### \(service *service\-name*\) \(instance *instance\-id*\) is unhealthy in \(elb *elb\-name*\) due to \(reason Instance has failed at least the UnhealthyThreshold number of health checks consecutively\.\)<a name="service-event-messages-3"></a>
 

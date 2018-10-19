@@ -23,7 +23,7 @@ AWS Fargate with Amazon ECS is currently only available in the following regions
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
 + [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)
 + [Tutorial: Creating a Cluster with a Fargate Task Using the AWS CLI](ECS_AWSCLI_Fargate.md)
-+ [Tutorial: Creating a Cluster with a Fargate Task Using the ECS CLI](ECS_CLI_tutorial_fargate.md)
++ [Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI](ECS_CLI_tutorial_fargate.md)
 
 ## Task Definitions<a name="fargate-task-defs"></a>
 

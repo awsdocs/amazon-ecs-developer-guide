@@ -321,7 +321,7 @@ This managed policy allows Application Auto Scaling to scale your Amazon ECS ser
 
 ## AmazonEC2ContainerServiceTaskRole<a name="AmazonEC2ContainerServiceTaskRole"></a>
 
-This IAM trust relationship policy allows containers in your Amazon ECS tasks to make calls to the AWS APIs on your behalf\. For more information, see [**Amazon Elastic Container Service Task Role**](task_IAM_role.md)\.
+This IAM trust relationship policy allows containers in your Amazon ECS tasks to make calls to the AWS APIs on your behalf\. For more information, see [**Amazon ECS Task Role**](task_IAM_role.md)\.
 
 ```
 {

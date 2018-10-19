@@ -18,7 +18,7 @@ Any task or service using the Fargate launch type will be enabled for CloudWatch
 
 For any task or service using the EC2 launch type, your Amazon ECS container instances require at least version 1\.4\.0 of the container agent to enable CloudWatch metrics; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
-If you are starting your agent manually \(for example, if you are not using the Amazon ECS\-optimized AMI for your container instances\), see [Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-optimized AMIs\)](manually_update_agent.md)\.
+If you are starting your agent manually \(for example, if you are not using the Amazon ECS\-optimized AMI for your container instances\), see [Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
 
 Your Amazon ECS container instances also require `ecs:StartTelemetrySession` permission on the IAM role that you launch your container instances with\. If you created your Amazon ECS container instance role before CloudWatch metrics were available for Amazon ECS, then you might need to add this permission\. For information about checking your Amazon ECS container instance role and attaching the managed IAM policy for container instances, see [To check for the `ecsInstanceRole` in the IAM console](instance_IAM_role.md#procedure_check_instance_role)\.
 

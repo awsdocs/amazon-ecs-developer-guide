@@ -23,7 +23,7 @@ The Amazon ECS console first\-run experience creates a security group for your c
 
    1. On the **Container Instance** page, record the **Public IP** or **Public DNS** for your instance\.
 
-1. Find the default username for your container instance AMI\. The user name for instances launched with the Amazon ECS\-optimized AMI is `ec2-user`\. For Ubuntu AMIs, the default user name is `ubuntu`\. For CoreOS, the default user name is `core`\.
+1. Find the default username for your container instance AMI\. The user name for instances launched with an Amazon ECS\-optimized AMI is `ec2-user`\. For Ubuntu AMIs, the default user name is `ubuntu`\. For CoreOS, the default user name is `core`\.
 
 1. If you are using a macOS or Linux computer, connect to your instance with the following command, substituting the path to your private key and the public address for your instance:
 

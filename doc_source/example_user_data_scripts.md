@@ -2,9 +2,9 @@
 
 The following example user data scripts configure an Amazon ECS container instance at launch\.
 
-## Amazon ECS\-optimized AMI Container Instance with Amazon EFS File System<a name="alinux-efs"></a>
+## Amazon ECS\-Optimized Amazon Linux AMI Container Instance with Amazon EFS File System<a name="alinux-efs"></a>
 
-This example user data script configures an instance launched from the Amazon ECS\-optimized AMI to use an existing Amazon EFS file system\. For more information, see [Tutorial: Using Amazon EFS File Systems with Amazon ECS](using_efs.md)
+This example user data script configures an instance launched from the Amazon ECS\-optimized Amazon Linux AMI to use an existing Amazon EFS file system\. For more information, see [Tutorial: Using Amazon EFS File Systems with Amazon ECS](using_efs.md)
 
 This script does the following:
 + Install the `nfs-utils` package, which installs an NFS client
@@ -12,7 +12,7 @@ This script does the following:
 + Create a mount entry in the `/etc/fstab` file for the file system and then mount the file system
 + Write the cluster name, *default*, to the Amazon ECS agent configuration file
 
-You can use this script for your own container instances, provided that they are launched from an Amazon ECS\-optimized AMI\. Be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name, if you are not using the `default` cluster\. For more information about launching container instances, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
+You can use this script for your own container instances, provided that they are launched from an Amazon ECS\-optimized Amazon Linux AMI\. Be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name, if you are not using the `default` cluster\. For more information about launching container instances, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
 
 ```
 Content-Type: multipart/mixed; boundary="==BOUNDARY=="

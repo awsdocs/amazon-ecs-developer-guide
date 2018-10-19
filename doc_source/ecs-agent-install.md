@@ -1,19 +1,58 @@
 # Installing the Amazon ECS Container Agent<a name="ecs-agent-install"></a>
 
-If your container instance was not launched using the Amazon ECS\-optimized AMI, you can install the Amazon ECS container agent manually using one of the following procedures\.
-+ For Amazon Linux instances, you can install the agent using the Amazon YUM repo\. For more information, see [Installing the Amazon ECS Container Agent on an Amazon Linux EC2 Instance](#ecs-agent-install-amazonlinux)\.
+If your container instance was not launched using an Amazon ECS\-optimized AMI, you can install the Amazon ECS container agent manually using one of the following procedures\.
++ For Amazon Linux 2 instances, you can install the agent using the `amazon-linux-extras` command\. For more information, see [Installing the Amazon ECS Container Agent on an Amazon Linux 2 EC2 Instance](#ecs-agent-install-al2)\.
++ For Amazon Linux AMI instances, you can install the agent using the Amazon YUM repo\. For more information, see [Installing the Amazon ECS Container Agent on an Amazon Linux AMI EC2 Instance](#ecs-agent-install-amazonlinux)\.
 + For non\-Amazon Linux instances, you can either download the agent from one of the regional S3 buckets or from Docker Hub\. If you download from one of the regional S3 buckets, you can optionally verify the validity of the container agent file using the PGP signature\. For more information, see [Installing the Amazon ECS Container Agent on a non\-Amazon Linux EC2 Instance](#ecs-agent-install-nonamazonlinux)
 
 **Note**  
-The Amazon ECS container agent is included in the Amazon ECS\-optimized AMI and does not require installation\.
+The Amazon ECS container agent is included in the Amazon ECS\-optimized AMIs and does not require installation\.
 
-## Installing the Amazon ECS Container Agent on an Amazon Linux EC2 Instance<a name="ecs-agent-install-amazonlinux"></a>
+## Installing the Amazon ECS Container Agent on an Amazon Linux 2 EC2 Instance<a name="ecs-agent-install-al2"></a>
 
-To install the Amazon ECS container agent on an Amazon Linux EC2 instance using the Amazon YUM repo, use the following steps\.
+To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance using the `amazon-linux-extras` command, use the following steps\.
 
-**To install the Amazon ECS container agent on an Amazon Linux EC2 instance**
+**To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance**
 
-1. Launch an Amazon Linux EC2 instance with an IAM role that allows access to Amazon ECS\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+1. Launch an Amazon Linux 2 EC2 instance with an IAM role that allows access to Amazon ECS\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+
+1. Connect to your instance\.
+
+1. Disable the `docker` Amazon Linux extra repository\. The `ecs` Amazon Linux extra repository ships with its own version of Docker, so the `docker` extra must be disabled to avoid any potential future conflicts\. This ensures that you are always using the Docker version that Amazon ECS intends for you to use with a particular version of the container agent\.
+
+   ```
+   [ec2-user ~]$ sudo amazon-linux-extras disable docker
+   ```
+
+1. Install and enable the `ecs` Amazon Linux extra repository\.
+
+   ```
+   [ec2-user ~]$ sudo amazon-linux-extras install -y ecs; sudo systemctl enable --now ecs 
+   ```
+
+1. \(Optional\) You can verify that the agent is running and see some information about your new container instance with the agent introspection API\. For more information, see [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)\.
+
+   ```
+   [ec2-user ~]$ curl -s http://localhost:51678/v1/metadata | python -mjson.tool
+   ```
+
+   Output:
+
+   ```
+   {
+       "Cluster": "default",
+       "ContainerInstanceArn": "<container_instance_ARN>",
+       "Version": "Amazon ECS Agent - v1.21.0 (3d368554)"
+   }
+   ```
+
+## Installing the Amazon ECS Container Agent on an Amazon Linux AMI EC2 Instance<a name="ecs-agent-install-amazonlinux"></a>
+
+To install the Amazon ECS container agent on an Amazon Linux AMI EC2 instance using the Amazon YUM repo, use the following steps\.
+
+**To install the Amazon ECS container agent on an Amazon Linux AMI EC2 instance**
+
+1. Launch an Amazon Linux AMI EC2 instance with an IAM role that allows access to Amazon ECS\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
 1. Connect to your instance\.
 
@@ -51,7 +90,7 @@ To install the Amazon ECS container agent on an Amazon Linux EC2 instance using 
 1. \(Optional\) You can verify that the agent is running and see some information about your new container instance with the agent introspection API\. For more information, see [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)\.
 
    ```
-   [ec2-user ~]$ curl http://localhost:51678/v1/metadata
+   [ec2-user ~]$ curl -s http://localhost:51678/v1/metadata | python -mjson.tool
    ```
 
    Output:
@@ -60,7 +99,7 @@ To install the Amazon ECS container agent on an Amazon Linux EC2 instance using 
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.20.2 (d68e729f)"
+     "Version": "Amazon ECS Agent - v1.21.0 (3d368554)"
    }
    ```
 
@@ -173,7 +212,7 @@ You can optionally store your agent environment variables in Amazon S3 \(which c
 
 1. Pull and run the latest Amazon ECS container agent on your container instance\.
 **Note**  
-Use Docker restart policies or a process manager \(such as upstart or systemd\) to treat the container agent as a service or a daemon and ensure that it is restarted after exiting\. For more information, see [Automatically start containers](https://docs.docker.com/engine/admin/host_integration/) and [Restart policies](https://docs.docker.com/engine/reference/run/#restart-policies-restart) in the Docker documentation\. The Amazon ECS\-optimized AMI uses the `ecs-init` RPM for this purpose, and you can view the [source code for this RPM](https://github.com/aws/amazon-ecs-init) on GitHub\. For example systemd unit files for Ubuntu 16\.04 and CentOS 7, see [Example Container Instance User Data Configuration Scripts](example_user_data_scripts.md)\.
+Use Docker restart policies or a process manager \(such as upstart or systemd\) to treat the container agent as a service or a daemon and ensure that it is restarted after exiting\. For more information, see [Automatically start containers](https://docs.docker.com/engine/admin/host_integration/) and [Restart policies](https://docs.docker.com/engine/reference/run/#restart-policies-restart) in the Docker documentation\. The Linux variants of the Amazon ECS\-optimized AMI use the `ecs-init` RPM for this purpose, and you can view the [source code for this RPM](https://github.com/aws/amazon-ecs-init) on GitHub\. For example systemd unit files for Ubuntu 16\.04 and CentOS 7, see [Example Container Instance User Data Configuration Scripts](example_user_data_scripts.md)\.
 
    The following example of the agent run command is broken into separate lines to show each option\. For more information about these and other agent runtime options, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 **Important**  

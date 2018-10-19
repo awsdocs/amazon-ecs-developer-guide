@@ -15,7 +15,7 @@ You can pass this user data into the Amazon EC2 launch wizard in [Step 7](launch
 
 ## Amazon ECS Container Agent<a name="bootstrap_container_agent"></a>
 
-The Amazon ECS\-optimized AMI looks for agent configuration data in the `/etc/ecs/ecs.config` file when the container agent starts\. You can specify this configuration data at launch with Amazon EC2 user data\. For more information about available Amazon ECS container agent configuration variables, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+The Linux variants of the Amazon ECS\-optimized AMI look for agent configuration data in the `/etc/ecs/ecs.config` file when the container agent starts\. You can specify this configuration data at launch with Amazon EC2 user data\. For more information about available Amazon ECS container agent configuration variables, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 
 To set only a single agent configuration variable, such as the cluster name, use echo to copy the variable to the configuration file:
 

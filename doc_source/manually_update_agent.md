@@ -1,4 +1,4 @@
-# Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-optimized AMIs\)<a name="manually_update_agent"></a>
+# Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-Optimized AMIs\)<a name="manually_update_agent"></a>
 
 **To manually update the Amazon ECS container agent \(for non\-Amazon ECS\-optimized AMIs\)**
 **Note**  

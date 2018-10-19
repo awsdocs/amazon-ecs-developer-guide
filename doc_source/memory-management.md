@@ -14,7 +14,7 @@ The free command returns the total memory that is recognized by the operating sy
 ```
 free -b
 ```
-Example output for an `m4.large` instance running the Amazon ECS\-optimized Linux AMI\.  
+Example output for an `m4.large` instance running the Amazon ECS\-optimized Amazon Linux AMI\.  
 
 ```
              total       used       free     shared    buffers     cached

@@ -395,7 +395,10 @@ The following IAM policy allows permission to run any revision of a specific tas
 
 The resources for `StartTask` are task definitions\. To limit which clusters and container instances a user can start task definitions on, you can specify them in the `Condition` block\. The advantage is that you don't have to list both task definitions and clusters in your resources to allow appropriate access\. You can apply one, the other, or both\.
 
-The following IAM policy allows permission to start any revision of a specific task definition on a specific cluster and specific container instance:
+The following IAM policy allows permission to start any revision of a specific task definition on a specific cluster and specific container instance\.
+
+**Note**  
+For this example, when you call the `StartTask` API with the AWS CLI or another AWS SDK, you must specify the task definition revision so that the `Resource` mapping matches\.
 
 ```
 {

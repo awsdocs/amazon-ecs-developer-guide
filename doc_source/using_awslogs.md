@@ -47,7 +47,7 @@ aws logs create-log-group --log-group-name awslogs-wordpress --region us-west-2
 
 ### Using the Auto\-configuration Feature to Create a Log Group<a name="create_awslogs_loggroups_auto"></a>
 
-When registering a task definition in the Amazon ECS console, you have the option to allow Amazon ECS to auto\-configure your CloudWatch logs\. The optionalso creates the specified log groups for you\. To make it easy, the auto\-configuration option sets up the CloudWatch logs and log groups with the specified prefix\.
+When registering a task definition in the Amazon ECS console, you have the option to allow Amazon ECS to auto\-configure your CloudWatch logs\. The option also creates the specified log groups for you\. To make it easy, the auto\-configuration option sets up the CloudWatch logs and log groups with the specified prefix\.
 
 **To create a log group in the Amazon ECS console**
 

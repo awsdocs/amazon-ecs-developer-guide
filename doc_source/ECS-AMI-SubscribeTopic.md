@@ -1,6 +1,6 @@
-# Subscribing to Amazon ECS–Optimized AMI Update Notifications<a name="ECS-AMI-SubscribeTopic"></a>
+# Subscribing to Amazon ECS\-Optimized Amazon Linux AMI Update Notifications<a name="ECS-AMI-SubscribeTopic"></a>
 
-The Amazon ECS\-optimized AMI receives regular updates for agent changes, Docker version updates, and Linux kernel security updates\. You can subscribe to the AMI update Amazon SNS topic to receive notifications when a new Amazon ECS–optimized AMI is available\. Notifications are available in all formats that Amazon SNS supports\. 
+The Amazon ECS\-optimized Amazon Linux AMI receives regular updates for agent changes, Docker version updates, and Linux kernel security updates\. You can subscribe to the AMI update Amazon SNS topic to receive notifications when a new Amazon ECS\-optimized Amazon Linux AMI is available\. Notifications are available in all formats that Amazon SNS supports\. 
 
 **Note**  
 Your user account must have `sns::subscribe` IAM permissions to subscribe to an SNS topic\.
@@ -38,7 +38,7 @@ The Amazon SNS topic ARNs for each region are shown below\.
 
 1. Choose **Subscriptions** in the left navigation, then **Create subscription**\.
 
-1. In the **Create Subscription** dialog box, for **Topic ARN**, paste the Amazon ECS\-optimized AMI update topic ARN: `arn:aws:sns:us-west-2:177427601217:ecs-optimized-amazon-ami-update`\. 
+1. In the **Create Subscription** dialog box, for **Topic ARN**, paste the Amazon ECS\-optimized Amazon Linux AMI update topic ARN: `arn:aws:sns:us-west-2:177427601217:ecs-optimized-amazon-ami-update`\. 
 
 1. For **Protocol**, choose **Email**\. For **Endpoint**, type an email address you can use to receive the notification\.
 

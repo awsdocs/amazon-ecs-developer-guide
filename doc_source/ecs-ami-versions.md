@@ -1,18 +1,23 @@
-# Amazon ECS\-Optimized AMI Versions<a name="ecs-ami-versions"></a>
+# Amazon ECS\-Optimized Amazon Linux AMI Versions<a name="ecs-ami-versions"></a>
 
-The table below lists the current and previous versions of the Amazon ECS\-optimized AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+**Note**  
+Amazon ECS vends Linux AMIs that are optimized for the service in two variants\. The latest and recommended version is based on Amazon Linux 2\. Amazon ECS also vends AMIs that are based on the Amazon Linux AMI, but we recommend that you migrate your workloads to the Amazon Linux 2 variant, as support for the Amazon Linux AMI will end no later than June 30, 2020\. For more information, see [Amazon ECS\-Optimized Amazon Linux 2 AMI](al2ami.md)\.
 
-The current Amazon ECS\-optimized AMI can be retrieved using the AWS CLI with the following command:
+The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+
+The current Amazon ECS\-optimized Amazon Linux AMI can be retrieved using the AWS CLI with the following command:
 
 ```
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended
 ```
 
-We always recommend using the latest version of the Amazon ECS\-optimized AMI\. For more information, see [How to Launch the Latest Amazon ECS\-Optimized AMI](ecs-optimized_AMI_launch_latest.md)\.
+We always recommend using the latest version of the Amazon ECS\-optimized Amazon Linux AMI\. For more information, see [How to Launch the Latest Amazon ECS\-Optimized Amazon Linux AMI](ecs-optimized_AMI_launch_latest.md)\.
 
 
-| Amazon ECS\-optimized Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| Amazon ECS\-optimized Amazon Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 2018\.03\.h | 1\.21\.0 | 18\.06\.1\-ce | 1\.21\.0\-1 | 
+| 2018\.03\.g | 1\.20\.3 | 18\.06\.1\-ce | 1\.20\.3\-1 | 
 | 2018\.03\.f | 1\.20\.2 | 18\.06\.1\-ce | 1\.20\.2\-1 | 
 | 2018\.03\.e | 1\.20\.1 | 18\.03\.1\-ce | 1\.20\.1\-1 | 
 | 2018\.03\.d | 1\.20\.0 | 18\.03\.1\-ce | 1\.20\.0\-1 | 

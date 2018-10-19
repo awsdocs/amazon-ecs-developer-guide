@@ -31,11 +31,11 @@ If you have an AWS account already, skip to the next task\. If you don't have an
 
 1. Open [https://aws\.amazon\.com/](https://aws.amazon.com/), and then choose **Create an AWS Account**\.
 **Note**  
-This might be unavailable in your browser if you previously signed into the AWS Management Console\. In that case, choose **Sign in to a different account**, and then choose **Create a new AWS account**\.
+If you previously signed in to the AWS Management Console using AWS account root user credentials, choose **Sign in to a different account**\. If you previously signed in to the console using IAM credentials, choose **Sign\-in using root account credentials**\. Then choose **Create a new AWS account**\.
 
 1. Follow the online instructions\.
 
-   Part of the sign\-up procedure involves receiving a phone call and entering a PIN using the phone keypad\.
+   Part of the sign\-up procedure involves receiving a phone call and entering a verification code using the phone keypad\.
 
 Note your AWS account number, because you'll need it for the next task\.
 
@@ -95,7 +95,7 @@ For more information about IAM, see the [AWS Identity and Access Management User
 
 ## Create an IAM Role for your Container Instances and Services<a name="create-an-iam-role"></a>
 
-Before the Amazon ECS container agent can register a container instance into a cluster, the agent must know which account credentials to use\. You can create an IAM role that allows the agent to know which account it should register the container instance with\. When you launch an instance with the Amazon ECS\-optimized AMI provided by Amazon using this role, the agent automatically registers the container instance into your default cluster\.
+Before the Amazon ECS container agent can register a container instance into a cluster, the agent must know which account credentials to use\. You can create an IAM role that allows the agent to know which account it should register the container instance with\. When you launch an instance with an Amazon ECS\-optimized AMI provided by Amazon using this role, the agent automatically registers the container instance into your default cluster\.
 
 The Amazon ECS container agent also makes calls to the Amazon EC2 and Elastic Load Balancing APIs on your behalf, so container instances can be registered and deregistered with load balancers\. Before you can attach a load balancer to an Amazon ECS service, you must create an IAM role for your services to use before you start them\. This requirement applies to any Amazon ECS service that you plan to use with a load balancer\.
 

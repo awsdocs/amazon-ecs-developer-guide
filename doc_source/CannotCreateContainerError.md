@@ -6,7 +6,7 @@ The following Docker error indicates that the thin pool storage on your containe
 CannotCreateContainerError: API error (500): devmapper: Thin Pool has 4350 free data blocks which is less than minimum required 4454 free data blocks. Create more free space in thin pool or use dm.min_free_space option to change behavior 
 ```
 
-By default, Amazon ECS\-optimized AMIs from version `2015.09.d` and later launch with an 8\-GiB volume for the operating system that is attached at `/dev/xvda` and mounted as the root of the file system\. There is an additional 22\-GiB volume that is attached at `/dev/xvdcz` that Docker uses for image and metadata storage\. If this storage space is filled up, the Docker daemon cannot create new containers\.
+By default, Amazon ECS\-optimized Amazon Linux AMIs from version `2015.09.d` and later launch with an 8\-GiB volume for the operating system that is attached at `/dev/xvda` and mounted as the root of the file system\. There is an additional 22\-GiB volume that is attached at `/dev/xvdcz` that Docker uses for image and metadata storage\. If this storage space is filled up, the Docker daemon cannot create new containers\.
 
 The easiest way to add storage to your container instances is to terminate the existing instances and launch new ones with larger data storage volumes\. However, if you are unable to do this, you can add storage to the volume group that Docker uses and extend its logical volume by following the procedures in [Storage Configuration](ecs-ami-storage-config.md)\.
 

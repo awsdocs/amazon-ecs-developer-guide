@@ -11,11 +11,11 @@ Here are some examples of the types of tasks you can perform with Run Command:
 + View log files
 + Perform file operations
 
-This topic covers basic installation of Run Command on the Amazon ECS\-optimized AMI and a few simple use cases, but it is by no means exhaustive\. For more information about Run Command, see [Manage Amazon EC2 Instances Remotely](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+This topic covers basic installation of Run Command on the Linux variants of the Amazon ECS\-optimized AMI and a few simple use cases, but it is by no means exhaustive\. For more information about Run Command, see [Manage Amazon EC2 Instances Remotely](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Topics**
 + [Run Command IAM Policy](#run_command_iam_policy)
-+ [Installing the SSM Agent on the Amazon ECS\-optimized AMI](#install_ssm_agent)
++ [Installing the SSM Agent on an Amazon ECS\-Optimized AMI](#install_ssm_agent)
 + [Using Run Command](#using_run_command)
 
 ## Run Command IAM Policy<a name="run_command_iam_policy"></a>
@@ -38,7 +38,7 @@ Before you can send commands to your container instances with Run Command, you m
 
 1. Select the check box for the **AmazonEC2RoleforSSM** policy and choose **Attach Policy**\.
 
-## Installing the SSM Agent on the Amazon ECS\-optimized AMI<a name="install_ssm_agent"></a>
+## Installing the SSM Agent on an Amazon ECS\-Optimized AMI<a name="install_ssm_agent"></a>
 
 After you have attached the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRole`, you can install the SSM agent on your container instances\. The SSM agent processes Run Command requests and configures the instances that are specified in the request\. Use the following procedures to install the SSM agent on your Amazon ECS\-optimized AMI container instances\.
 
@@ -82,7 +82,7 @@ One of the most common use cases for Run Command on Amazon ECS container instanc
 
 1. [Attach the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRole`\.](#run_command_iam_policy)
 
-1. Install the SSM agent on your container instances\. For more information, see [Installing the SSM Agent on the Amazon ECS\-optimized AMI](#install_ssm_agent)\.
+1. Install the SSM agent on your container instances\. For more information, see [Installing the SSM Agent on an Amazon ECS\-Optimized AMI](#install_ssm_agent)\.
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 

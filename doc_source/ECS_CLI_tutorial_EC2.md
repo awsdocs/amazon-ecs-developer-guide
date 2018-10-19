@@ -1,21 +1,21 @@
-# Tutorial: Creating a Cluster with an EC2 Task Using the ECS CLI<a name="ECS_CLI_tutorial_EC2"></a>
+# Tutorial: Creating a Cluster with an EC2 Task Using the Amazon ECS CLI<a name="ECS_CLI_tutorial_EC2"></a>
 
 This tutorial shows you how to set up a cluster and deploy a task using the EC2 launch type\.
 
 ## Prerequisites<a name="ECS_CLI_EC2_prerequisites"></a>
 
-It is expected that you have completed the following prerequisites before continuing on:
+Complete the following prerequisites:
 + Set up an AWS account\.
-+ Install the ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
++ Install the Amazon ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 + Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
 
-## Step 1: Configure the ECS CLI<a name="ECS_CLI_tutorial_configure"></a>
+## Step 1: Configure the Amazon ECS CLI<a name="ECS_CLI_tutorial_configure"></a>
 
 Before you can start this tutorial, you must install and configure the Amazon ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
-The ECS CLI requires credentials in order to make API requests on your behalf\. It can pull credentials from environment variables, an AWS profile, or an Amazon ECS profile\. For more information, see [Configuring the Amazon ECS CLI](ECS_CLI_Configuration.md)\.
+The Amazon ECS CLI requires credentials in order to make API requests on your behalf\. It can pull credentials from environment variables, an AWS profile, or an Amazon ECS profile\. For more information, see [Configuring the Amazon ECS CLI](ECS_CLI_Configuration.md)\.
 
-**To create an ECS CLI configuration**
+**To create an Amazon ECS CLI configuration**
 
 1. Create a cluster configuration:
 
@@ -29,7 +29,7 @@ The ECS CLI requires credentials in order to make API requests on your behalf\. 
    ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET_ACCESS_KEY --profile-name ec2-tutorial
    ```
 **Note**  
-If this is the first time that you are configuring the ECS CLI, these configurations are marked as default\. If this is not your first time configuring the ECS CLI, see [ecs\-cli configure default](cmd-ecs-cli-configure-default.md) and [ecs\-cli configure profile default](cmd-ecs-cli-configure-profile-default.md) to set this as the default configuration and profile\.
+If this is the first time that you are configuring the Amazon ECS CLI, these configurations are marked as default\. If this is not your first time configuring the Amazon ECS CLI, see [ecs\-cli configure default](cmd-ecs-cli-configure-default.md) and [ecs\-cli configure profile default](cmd-ecs-cli-configure-profile-default.md) to set this as the default configuration and profile\.
 
 ## Step 2: Create Your Cluster<a name="ECS_CLI_tutorial_cluster_create"></a>
 
@@ -53,7 +53,7 @@ The following parameters are supported in compose files for the Amazon ECS CLI:
 + `command`
 + `cpu_shares`
 **Note**  
-If you are using the Compose version 3 format, `cpu_shares` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\.
+If you are using the Compose version 3 format, `cpu_shares` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.
 + `devices` \(Not valid for tasks using the Fargate launch type\)
 + `dns`
 + `dns_search`
@@ -67,7 +67,7 @@ We do not recommend using plaintext environment variables for sensitive informat
 + `extra_hosts`
 + `healthcheck` \(Compose file version 3 only\)
 **Note**  
-The `start_period` field is not supported using the compose file\. To specify a `start_period`, use the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\.
+The `start_period` field is not supported using the compose file\. To specify a `start_period`, use the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.
 + `hostname`
 + `image`
 + `labels`
@@ -79,10 +79,10 @@ The `start_period` field is not supported using the compose file\. To specify a 
   + `options`
 + `mem_limit` \(in bytes\)
 **Note**  
-If you are using the Compose version 3 format, `mem_limit` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\.
+If you are using the Compose version 3 format, `mem_limit` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.
 + `mem_reservation` \(in bytes\)
 **Note**  
-If you are using the Compose version 3 format, `mem_reservation` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-ecsparams)\.
+If you are using the Compose version 3 format, `mem_reservation` should be specified in the `ecs-params.yml`\. file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.
 + `ports`
 + `privileged` \(Not valid for tasks using the Fargate launch type\)
 + `read_only`

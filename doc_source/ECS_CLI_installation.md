@@ -4,7 +4,7 @@ Follow these instructions to install the Amazon ECS CLI on your macOS, Linux, or
 
 ## Step 1: Download the Amazon ECS CLI<a name="ECS_CLI_install"></a>
 
-Download the ECS CLI binary\.
+Download the Amazon ECS CLI binary\.
 + For macOS:
 
   ```
@@ -60,9 +60,9 @@ Verify the downloaded binary with the MD5 sum provided\.
 
 ### Verify Using the PGP Signature<a name="ECS_CLI_verify_pgp"></a>
 
-The ECS CLI executables are cryptographically signed using PGP signatures\. You can use the following steps to verify the signatures using the GnuPG tool\.
+The Amazon ECS CLI executables are cryptographically signed using PGP signatures\. You can use the following steps to verify the signatures using the GnuPG tool\.
 
-1. Download and install GnuPG\. For more information about GNUpg, see the [GnuPG website](https://www.gnupg.org)\.
+1. Download and install GnuPG\. For more information, see the [GnuPG website](https://www.gnupg.org)\.
    + For macOS, we recommend using Homebrew\. Install Homebrew using the instructions from their website\. For more information, see [Homebrew](https://brew.sh/)\. After Homebrew is installed, use the following command from your macOS terminal:
 
      ```
@@ -231,7 +231,7 @@ The ECS CLI executables are cryptographically signed using PGP signatures\. You 
       gpg --import <public_key_filename>
       ```
 
-1. Download the ECS CLI signatures\. ECS CLI signatures are ascii detached PGP signatures stored in files with the extension `.asc`\. The signatures file has the same name as its corresponding executable, with `.asc` appended\.
+1. Download the Amazon ECS CLI signatures\. The signatures are ASCII detached PGP signatures stored in files with the extension `.asc`\. The signatures file has the same name as its corresponding executable, with `.asc` appended\.
    + For macOS systems:
 
      ```
@@ -292,7 +292,7 @@ Apply execute permissions to the binary\.
 
   Restart PowerShell \(or the command prompt\) so the changes go into effect\.
 **Note**  
-Once the `PATH` variable is set, the ECS CLI can be used from either Windows PowerShell or the command prompt\.
+Once the `PATH` variable is set, the Amazon ECS CLI can be used from either Windows PowerShell or the command prompt\.
 
 ## Step 4: Complete the Installation<a name="ECS_CLI_install_verify"></a>
 
@@ -305,4 +305,4 @@ ecs-cli --version
 Proceed to [Configuring the Amazon ECS CLI](ECS_CLI_Configuration.md)\.
 
 **Important**  
-You must configure the ECS CLI with your AWS credentials, an AWS region, and an Amazon ECS cluster name before you can use it\.
+You must configure the Amazon ECS CLI with your AWS credentials, an AWS region, and an Amazon ECS cluster name before you can use it\.

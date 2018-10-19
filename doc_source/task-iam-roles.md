@@ -8,13 +8,19 @@ To prevent containers in tasks that use the `awsvpc` network mode from accessing
 To prevent containers in tasks that use the `bridge` network mode from accessing the credential information supplied to the container instance profile \(while still allowing the permissions that are provided by the task role\) by running the following iptables command on your container instances\. Note that this command does not affect containers in tasks that use the `host` or `awsvpc` network modes\. For more information, see [Network Mode](task_definition_parameters.md#network_mode)\.  
 
 ```
-sudo iptables --insert FORWARD 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP
+sudo yum install -y iptables-services; sudo iptables --insert FORWARD 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP
 ```
 You must save this iptables rule on your container instance for it to survive a reboot\. For the Amazon ECS\-optimized AMI, use the following command\. For other operating systems, consult the documentation for that OS\.  
+For the Amazon ECS\-optimized Amazon Linux 2 AMI:  
 
-```
-sudo service iptables save
-```
+  ```
+  sudo iptables-save | sudo tee /etc/sysconfig/iptables && sudo systemctl enable --now iptables
+  ```
+For the Amazon ECS\-optimized Amazon Linux AMI:  
+
+  ```
+  sudo service iptables save
+  ```
 
 You define the IAM role to use in your task definitions, or you can use a `taskRoleArn` override when running a task manually with the `RunTask` API operation\. The Amazon ECS agent receives a payload message for starting the task with additional fields that contain the role credentials\. The Amazon ECS agent sets a unique task credential ID as an identification token and updates its internal credential cache so that the identification token for the task points to the role credentials that are received in the payload\. The Amazon ECS agent populates the `AWS_CONTAINER_CREDENTIALS_RELATIVE_URI` environment variable in the `Env` object \(available with the docker inspect *container\_id* command\) for all containers that belong to this task with the following relative URI: `/credential_provider_version/credentials?id=task_credential_id`\. 
 
@@ -57,7 +63,7 @@ Each time the credential provider is used, the request is logged locally on the 
 
 ## Enabling Task IAM Roles on your Container Instances<a name="enable_task_iam_roles"></a>
 
-Your Amazon ECS container instances require at least version 1\.11\.0 of the container agent to enable task IAM roles; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using the Amazon ECS\-optimized AMI, your instance needs at least 1\.11\.0\-1 of the `ecs-init` package\. If your container instances are launched from version 2016\.03\.e or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-Optimized AMI](ecs-optimized_AMI.md)\.
+Your Amazon ECS container instances require at least version 1\.11\.0 of the container agent to enable task IAM roles; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using the Amazon ECS\-optimized AMI, your instance needs at least 1\.11\.0\-1 of the `ecs-init` package\. If your container instances are launched from version 2016\.03\.e or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-Optimized Amazon Linux AMI](ecs-optimized_AMI.md)\.
 
 If you are not using the Amazon ECS\-optimized AMI for your container instances, be sure to add the `--net=host` option to your docker run command that starts the agent and the appropriate agent configuration variables for your desired configuration \(for more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\):
 
@@ -67,7 +73,7 @@ Enables IAM roles for tasks for containers with the `bridge` and `default` netwo
 `ECS_ENABLE_TASK_IAM_ROLE_NETWORK_HOST=true`  
 Enables IAM roles for tasks for containers with the `host` network mode\. This variable is only supported on agent versions 1\.12\.0 and later\.
 
-For an example run command, see [Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-optimized AMIs\)](manually_update_agent.md)\. You will also need to set the following networking commands on your container instance so that the containers in your tasks can retrieve their AWS credentials:
+For an example run command, see [Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\. You will also need to set the following networking commands on your container instance so that the containers in your tasks can retrieve their AWS credentials:
 
 ```
 sudo sysctl -w net.ipv4.conf.all.route_localnet=1
@@ -84,7 +90,7 @@ You must create an IAM policy for your tasks to use that specifies the permissio
 You must also create a role for your tasks to use before you can specify it in your task definitions\. You can create the role using the **Amazon Elastic Container Service Task Role** service role in the IAM console\. Then you can attach your specific IAM policy to the role that gives the containers in your task the permissions you desire\. The procedures below describe how to do this\.
 
 **Note**  
-To view the trust relationship for this role, see [**Amazon Elastic Container Service Task Role**](task_IAM_role.md)\.
+To view the trust relationship for this role, see [**Amazon ECS Task Role**](task_IAM_role.md)\.
 
 If you have multiple task definitions or services that require IAM permissions, you should consider creating a role for each specific task definition or service with the minimum required permissions for the tasks to operate so that you can minimize the access that you provide for each task\. 
 
@@ -94,11 +100,27 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Policies** and then choose **Create Policy**\. 
+1. In the navigation pane, choose **Policies** and then choose **Create policy**\. 
 
-1. In the **Create Policy** section, choose **Select** next to **Create Your Own Policy**\.
+1. Follow the steps under one of the following tabs, which shows you how to use the visual or JSON editors\.
 
-1. In the **Policy Name** field, type your own unique name, such as `AmazonECSTaskS3BucketPolicy`\.
+------
+#### [ Using the visual editor ]
+
+1. For **Service**, choose **S3**\.
+
+1. For **Actions**, expand the **Read** option and select **GetObject**\.
+
+1. For **Resources**, select **Add ARN** and enter the full ARN of your Amazon S3 bucket\.
+
+1. Choose **Review policy**\.
+
+1. In the **Review policy** section, for **Name** type your own unique name, such as `AmazonECSTaskS3BucketPolicy`\.
+
+1. Choose **Create policy** to finish\.
+
+------
+#### [ Using the JSON editor ]
 
 1. In the **Policy Document** field, paste the policy to apply to your tasks\. The example below allows permission to the *my\-task\-secrets\-bucket* Amazon S3 bucket\. You can modify the policy document to suit your specific needs\.
 
@@ -107,7 +129,6 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
      "Version": "2012-10-17",
      "Statement": [
        {
-         "Sid": "Stmt1465589882000",
          "Effect": "Allow",
          "Action": [
            "s3:GetObject"
@@ -120,21 +141,29 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
    }
    ```
 
-1. Choose **Create Policy** to finish\. 
+1. Choose **Review policy**\.
+
+1. In the **Review policy** section, for **Name** type your own unique name, such as `AmazonECSTaskS3BucketPolicy`\.
+
+1. Choose **Create policy** to finish\.
+
+------
 
 **To create an IAM role for your tasks**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles** and then choose **Create New Role**\. 
+1. In the navigation pane, choose **Roles** and then choose **Create role**\. 
 
-1. In the **Select Role Type** section, choose **Select** next to the **Amazon Elastic Container Service Task Role ** service role\.
+1. In the **Choose the service that will use this role** section, choose **Elastic Container Service**\.
+
+1. For **Select your use case**, choose **Elastic Container Service Task**, **Next: Permissions**\.
 **Note**  
-To view the trust relationship for this role, see [**Amazon Elastic Container Service Task Role**](task_IAM_role.md)\.
+To view the trust relationship for this role, see [**Amazon ECS Task Role**](task_IAM_role.md)\.
 
-1. In the **Attach Policy** section, select the policy you want to use for your tasks \(in this example `AmazonECSTaskS3BucketPolicy`, and then choose **Next Step**\.
+1. In the **Attach permissions policy** section, select the policy you want to use for your tasks \(in this example `AmazonECSTaskS3BucketPolicy`, and then choose **Next: Review**\.
 
-1. In the **Role Name** field, enter a name for your role\. For this example, type `AmazonECSTaskS3BucketRole` to name the role, and then choose **Create Role** to finish\.
+1. In the **Role name** field, enter a name for your role\. For this example, type `AmazonECSTaskS3BucketRole` to name the role, and then choose **Create role** to finish\.
 
 ## Using a Supported AWS SDK<a name="task-iam-roles-minimum-sdk"></a>
 

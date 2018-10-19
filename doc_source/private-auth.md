@@ -1,6 +1,6 @@
 # Private Registry Authentication for Tasks<a name="private-auth"></a>
 
-Private registry authentication for tasks using AWS Secrets Manager enables you to store your credentials securely and then reference them in your container definition\. This allows your tasks to use images from private repositories\. This feature supported by tasks using either the Fargate or EC2 launch type\.
+Private registry authentication for tasks using AWS Secrets Manager enables you to store your credentials securely and then reference them in your container definition\. This allows your tasks to use images from private repositories\. This feature is supported by tasks using both the Fargate or EC2 launch types\.
 
 For tasks using the EC2 launch type, this feature requires version 1\.19\.0 or later of the container agent; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
@@ -97,10 +97,18 @@ Use AWS Secrets Manager to create a secret for your private registry credentials
 1. On the **Task Definitions** page, choose **Create new Task Definition**\.
 
 1. On the **Select launch type compatibility** page, choose the launch type for your tasks and then **Next step**\.
+**Note**  
+This step only applies to regions that currently support Amazon ECS using AWS Fargate\. For more information, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\.
 
 1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
 1. For **Task execution role**, either select your existing task execution role or choose **Create new role** to have one created for you\. This role authorizes Amazon ECS to pull private images for your task\. For more information, see [Private Registry Authentication Required IAM Permissions](#private-auth-iam)\.
+**Important**  
+If the **Task execution role** field does not appear, choose **Configure via JSON** and manually add the `executionRoleArn` field to specify your task execution role\. The following shows the syntax:  
+
+   ```
+   "executionRoleArn": "arn:aws:iam::aws_account_id:role/ecsTaskExecutionRole"
+   ```
 
 1. For each container to create in your task definition, complete the following steps:
 

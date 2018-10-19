@@ -7,7 +7,7 @@ The following are the types of data volumes that can be used:
 + Bind mounts — A file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported when using either the EC2 or Fargate launch types\. To use bind mount host volumes, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
 
 **Note**  
-Prior to the release of the Amazon ECS\-optimized AMI version 2017\.03\.a, only file systems that were available when the Docker daemon was started are available to Docker containers\. You can use the latest Amazon ECS\-optimized AMI to avoid this limitation, or you can upgrade the `docker` package to the latest version and restart Docker\.
+Prior to the release of the Amazon ECS\-optimized Amazon Linux AMI version 2017\.03\.a, only file systems that were available when the Docker daemon was started are available to Docker containers\. You can use the latest Amazon ECS\-optimized Amazon Linux 2 AMI to avoid this limitation, or you can upgrade the `docker` package to the latest version and restart Docker\.
 
 **Topics**
 + [Docker Volumes](docker-volumes.md)

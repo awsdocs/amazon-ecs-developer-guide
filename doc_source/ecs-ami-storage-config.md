@@ -1,10 +1,10 @@
 # Storage Configuration<a name="ecs-ami-storage-config"></a>
 
-By default, the Amazon ECS\-optimized AMI ships with 30 GiB of total storage\. You can modify this value at launch time to increase or decrease the available storage on your container instance\. This storage is used for the operating system and for Docker images and metadata\. The sections below describe the storage configuration of the Amazon ECS\-optimized AMI, based on the AMI version\.
+By default, the Amazon ECS\-optimized Amazon Linux AMI ships with 30 GiB of total storage\. You can modify this value at launch time to increase or decrease the available storage on your container instance\. This storage is used for the operating system and for Docker images and metadata\. The sections below describe the storage configuration of the Amazon ECS\-optimized Amazon Linux AMI, based on the AMI version\.
 
 ## Version 2015\.09\.d and Later<a name="ecs-AMI-LVM"></a>
 
-Amazon ECS\-optimized AMIs from version `2015.09.d` and later launch with an 8\-GiB volume for the operating system that is attached at `/dev/xvda` and mounted as the root of the file system\. There is an additional 22\-GiB volume that is attached at `/dev/xvdcz` that Docker uses for image and metadata storage\. The volume is configured as a Logical Volume Management \(LVM\) device and it is accessed directly by Docker via the `devicemapper` backend\. Because the volume is not mounted, you cannot use standard storage information commands \(such as df \-h\) to determine the available storage\. However, you can use LVM commands and docker info to find the available storage by following the procedure below\. For more information, see the [LVM HOWTO](http://tldp.org/HOWTO/LVM-HOWTO/) in The Linux Documentation Project\.
+Amazon ECS\-optimized Amazon Linux AMIs from version `2015.09.d` and later launch with an 8\-GiB volume for the operating system that is attached at `/dev/xvda` and mounted as the root of the file system\. There is an additional 22\-GiB volume that is attached at `/dev/xvdcz` that Docker uses for image and metadata storage\. The volume is configured as a Logical Volume Management \(LVM\) device and it is accessed directly by Docker via the `devicemapper` backend\. Because the volume is not mounted, you cannot use standard storage information commands \(such as df \-h\) to determine the available storage\. However, you can use LVM commands and docker info to find the available storage by following the procedure below\. For more information, see the [LVM HOWTO](http://tldp.org/HOWTO/LVM-HOWTO/) in The Linux Documentation Project\.
 
 **Note**  
 You can increase these default volume sizes by changing the block device mapping settings for your instances when you launch them; however, you cannot specify a smaller volume size than the default\. For more information, see [Block Device Mapping](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html) in the *Amazon EC2 User Guide for Linux Instances*\.
@@ -12,7 +12,7 @@ You can increase these default volume sizes by changing the block device mapping
 The docker\-storage\-setup utility configures the LVM volume group and logical volume for Docker when the instance launches\. By default, docker\-storage\-setup creates a volume group called `docker`, adds `/dev/xvdcz` as a physical volume to that group\. It then creates a logical volume called `docker-pool` that uses 99% of the available storage in the volume group\. The remaining 1% of the available storage is reserved for metadata\.
 
 **Note**  
-Earlier Amazon ECS\-optimized AMI versions \(`2015.09.d` to `2016.03.a`\) create a logical volume that uses 40% of the available storage in the volume group\. When the logical volume becomes 60% full, the logical volume is increased in size by 20%\.
+Earlier Amazon ECS\-optimized Amazon Linux AMI versions \(`2015.09.d` to `2016.03.a`\) create a logical volume that uses 40% of the available storage in the volume group\. When the logical volume becomes 60% full, the logical volume is increased in size by 20%\.
 
 **To determine the available storage for Docker**
 + You can use the LVM commands, vgs and lvs, or the docker info command to view available storage for Docker\.
@@ -181,6 +181,6 @@ Because docker info displays storage values as GB \(10^9 bytes\), instead of GiB
 
 ## Version 2015\.09\.c and Earlier<a name="ecs-AMI-pre-LVM"></a>
 
-Amazon ECS\-optimized AMIs from version `2015.09.c` and earlier launch with a single 30\-GiB volume that is attached at `/dev/xvda` and mounted as the root of the file system\. This volume shares the operating system and all Docker images and metadata\. You can determine the available storage on your container instance with standard storage information commands \(such as df \-h\)\.
+Amazon ECS\-optimized Amazon Linux AMIs from version `2015.09.c` and earlier launch with a single 30\-GiB volume that is attached at `/dev/xvda` and mounted as the root of the file system\. This volume shares the operating system and all Docker images and metadata\. You can determine the available storage on your container instance with standard storage information commands \(such as df \-h\)\.
 
-There is no practical way to add storage \(that Docker can use\) to instances launched from these AMIs without stopping them\. If you find that your container instances need more storage than the default 30 GiB, you should terminate each instance\. Then, launch another in its place with the latest Amazon ECS\-optimized AMI and a large enough data storage volume\.
+There is no practical way to add storage \(that Docker can use\) to instances launched from these AMIs without stopping them\. If you find that your container instances need more storage than the default 30 GiB, you should terminate each instance\. Then, launch another in its place with the latest Amazon ECS\-optimized Amazon Linux AMI and a large enough data storage volume\.

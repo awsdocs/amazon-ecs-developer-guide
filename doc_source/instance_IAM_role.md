@@ -10,13 +10,19 @@ Containers that are running on your container instances have access to all of th
 You can prevent containers on the `docker0` bridge from accessing the permissions supplied to the container instance role \(while still allowing the permissions that are provided by [IAM Roles for Tasks](task-iam-roles.md)\) by running the following iptables command on your container instances; however, containers will not be able to query instance metadata with this rule in effect\. Note that this command assumes the default Docker bridge configuration and it will not work for containers that use the `host` network mode\. For more information, see [Network Mode](task_definition_parameters.md#network_mode)\.  
 
 ```
-sudo iptables --insert FORWARD 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP
+sudo yum install -y iptables-services; sudo iptables --insert FORWARD 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP
 ```
 You must save this iptables rule on your container instance for it to survive a reboot\. For the Amazon ECS\-optimized AMI, use the following command\. For other operating systems, consult the documentation for that OS\.  
+For the Amazon ECS\-optimized Amazon Linux 2 AMI:  
 
-```
-sudo service iptables save
-```
+  ```
+  sudo iptables-save | sudo tee /etc/sysconfig/iptables && sudo systemctl enable --now iptables
+  ```
+For the Amazon ECS\-optimized Amazon Linux AMI:  
+
+  ```
+  sudo service iptables save
+  ```
 
 The `AmazonEC2ContainerServiceforEC2Role` policy is shown below\.
 
