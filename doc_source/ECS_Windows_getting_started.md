@@ -127,7 +127,7 @@ Before you can run Windows containers in your Amazon ECS cluster, you must regis
        {
          "name": "windows_sample_app",
          "image": "microsoft/iis",
-         "cpu": 100,
+         "cpu": 512,
          "entryPoint":["powershell", "-Command"],
          "command":["New-Item -Path C:\\inetpub\\wwwroot\\index.html -Type file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p>'; C:\\ServiceMonitor.exe w3svc"],
          "portMappings": [
@@ -137,7 +137,7 @@ Before you can run Windows containers in your Amazon ECS cluster, you must regis
              "hostPort": 8080
            }
          ],
-         "memory": 500,
+         "memory": 1024,
          "essential": true
        }
      ]
