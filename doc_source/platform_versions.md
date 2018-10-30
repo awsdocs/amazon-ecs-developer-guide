@@ -2,7 +2,7 @@
 
 AWS Fargate platform versions are used to refer to a specific runtime environment for Fargate task infrastructure\. It is a combination of the kernel and container runtime versions\. 
 
-New platform versions are released as the runtime environment evolves, for example, if there are kernel or operating system updates, new features, bug fixes, or security updates\. Security updates and patches are deployed automatically for your Fargate tasks\. If a security issue is found that affects a platform version, AWS will patch the platform version\. In some cases, you may be notified that your Fargate tasks have been scheduled for retirement\. For more information, see [Task Retirement](task-retirement.md)\.
+New platform versions are released as the runtime environment evolves, for example, if there are kernel or operating system updates, new features, bug fixes, or security updates\. Security updates and patches are deployed automatically for your Fargate tasks\. If a security issue is found that affects a platform version, AWS patches the platform version\. In some cases, you may be notified that your Fargate tasks have been scheduled for retirement\. For more information, see [Task Retirement](task-retirement.md)\.
 
 **Topics**
 + [Platform Version Considerations](#platform-version-considerations)

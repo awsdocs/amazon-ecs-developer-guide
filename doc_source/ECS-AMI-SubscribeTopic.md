@@ -30,17 +30,17 @@ The Amazon SNS topic ARNs for each region are shown below\.
 | ap\-south\-1 | arn:aws:sns:ap\-south\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
 | sa\-east\-1 | arn:aws:sns:sa\-east\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
 
-**To subscribe to AMI update notification emails in the AWS Management Console**
+**To subscribe to AMI update notification email in the AWS Management Console**
 
 1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
 
-1. In the region list, choose the same region as the topic ARN to which to subscribe\. This example uses the `us-west-2` region\.
+1. In the region list, choose the same Region as the topic ARN to which to subscribe\. This example uses the `us-west-2` Region\.
 
-1. Choose **Subscriptions** in the left navigation, then **Create subscription**\.
+1. In the left navigation pane, choose **Subscriptions**, **Create subscription**\.
 
 1. In the **Create Subscription** dialog box, for **Topic ARN**, paste the Amazon ECS\-optimized Amazon Linux AMI update topic ARN: `arn:aws:sns:us-west-2:177427601217:ecs-optimized-amazon-ami-update`\. 
 
-1. For **Protocol**, choose **Email**\. For **Endpoint**, type an email address you can use to receive the notification\.
+1. For **Protocol**, choose **Email**\. For **Endpoint**, type an email address that you can use to receive the notification\.
 
 1. Choose **Create subscription**\.
 
@@ -48,7 +48,7 @@ The Amazon SNS topic ARNs for each region are shown below\.
 
    Your web browser displays a confirmation response from Amazon SNS\.
 
-**To subscribe to AMI update notification emails with the AWS CLI**
+**To subscribe to AMI update notification email with the AWS CLI**
 
 1. Run the following command with the AWS CLI:
 

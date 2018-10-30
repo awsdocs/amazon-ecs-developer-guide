@@ -14,13 +14,13 @@ You can monitor your Amazon ECS resources using Amazon CloudWatch, which collect
 
 ## Enabling CloudWatch Metrics<a name="enable_cloudwatch"></a>
 
-Any task or service using the Fargate launch type will be enabled for CloudWatch CPU and memory utilization metrics automatically, so there is no need to do it manually\.
+Any task or service using the Fargate launch type is enabled for CloudWatch CPU and memory utilization metrics automatically, so there is no need to take any manual steps\.
 
 For any task or service using the EC2 launch type, your Amazon ECS container instances require at least version 1\.4\.0 of the container agent to enable CloudWatch metrics; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
 If you are starting your agent manually \(for example, if you are not using the Amazon ECS\-optimized AMI for your container instances\), see [Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
 
-Your Amazon ECS container instances also require `ecs:StartTelemetrySession` permission on the IAM role that you launch your container instances with\. If you created your Amazon ECS container instance role before CloudWatch metrics were available for Amazon ECS, then you might need to add this permission\. For information about checking your Amazon ECS container instance role and attaching the managed IAM policy for container instances, see [To check for the `ecsInstanceRole` in the IAM console](instance_IAM_role.md#procedure_check_instance_role)\.
+Your Amazon ECS container instances also require the `ecs:StartTelemetrySession` permission on the IAM role that you launch your container instances with\. If you created your Amazon ECS container instance role before CloudWatch metrics were available for Amazon ECS, then you might need to add this permission\. For information about checking your Amazon ECS container instance role and attaching the managed IAM policy for container instances, see [To check for the `ecsInstanceRole` in the IAM console](instance_IAM_role.md#procedure_check_instance_role)\.
 
 **Note**  
 You can disable CloudWatch metrics collection by setting `ECS_DISABLE_METRICS=true` in your Amazon ECS container agent configuration\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
@@ -62,7 +62,7 @@ Amazon ECS metrics use the `AWS/ECS` namespace and provide metrics for the follo
 
 ## Cluster Reservation<a name="cluster_reservation"></a>
 
-Cluster reservation metrics are measured as the percentage of CPU and memory that is reserved by all Amazon ECS tasks on a cluster when compared to the aggregate CPU and memory that was registered for each active container instance in the cluster\. This metric is only utilized on clusters with tasks or services using the Standard launch type and is not compatible with any using the Fargate launch type\.
+Cluster reservation metrics are measured as the percentage of CPU and memory that is reserved by all Amazon ECS tasks on a cluster when compared to the aggregate CPU and memory that was registered for each active container instance in the cluster\. This metric is only used on clusters with tasks or services using the EC2 launch type\. It is not supported on clusters with tasks using the Fargate launch type\.
 
 ```
                                   (Total CPU units reserved by tasks in cluster) x 100
@@ -76,19 +76,19 @@ Cluster memory reservation =  --------------------------------------------------
                               (Total MiB of memory registered by container instances in cluster)
 ```
 
-When you run a task in a cluster, Amazon ECS parses its task definition and reserves the aggregate CPU units and MiB of memory that is specified in its container definitions\. Each minute, Amazon ECS calculates the number of CPU units and MiB of memory that are currently reserved for each task that is running in the cluster\. The total amount of CPU and memory reserved for all tasks running on the cluster is calculated, and those numbers are reported to CloudWatch as a percentage of the total registered resources for the cluster\. If you specify a soft limit \(`memoryReservation`\), then it will be used to calculate the amount of reserved memory\. Otherwise, the hard limit \(`memory`\) is used\. For more information about hard and soft limits, see [Task Definition Parameters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definitions)\.
+When you run a task in a cluster, Amazon ECS parses its task definition and reserves the aggregate CPU units and MiB of memory that is specified in its container definitions\. Each minute, Amazon ECS calculates the number of CPU units and MiB of memory that are currently reserved for each task that is running in the cluster\. The total amount of CPU and memory reserved for all tasks running on the cluster is calculated, and those numbers are reported to CloudWatch as a percentage of the total registered resources for the cluster\. If you specify a soft limit \(`memoryReservation`\), then it is used to calculate the amount of reserved memory\. Otherwise, the hard limit \(`memory`\) is used\. For more information about hard and soft limits, see [Task Definition Parameters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definitions)\.
 
 For example, a cluster has two active container instances registered, a `c4.4xlarge` instance and a `c4.large` instance\. The `c4.4xlarge` instance registers into the cluster with 16,384 CPU units and 30,158 MiB of memory\. The `c4.large` instance registers with 2,048 CPU units and 3,768 MiB of memory\. The aggregate resources of this cluster are 18,432 CPU units and 33,926 MiB of memory\.
 
 If a task definition reserves 1,024 CPU units and 2,048 MiB of memory, and ten tasks are started with this task definition on this cluster \(and no other tasks are currently running\), a total of 10,240 CPU units and 20,480 MiB of memory are reserved, which is reported to CloudWatch as 55% CPU reservation and 60% memory reservation for the cluster\.
 
-The illustration below shows the total registered CPU units in a cluster and what their reservation and utilization means to existing tasks and new task placement\. The lower \(Reserved, utilized\) and center \(Reserved, not utilized\) blocks represent the total CPU units that are reserved for the existing tasks that are running on the cluster, or the `CPUReservation` CloudWatch metric\. The lower block represents the reserved CPU units that the running tasks are actually using on the cluster, or the `CPUUtilization` CloudWatch metric\. The upper block represents CPU units that are not reserved by existing tasks; these CPU units are available for new task placement\. Existing tasks can utilize these unreserved CPU units as well, if their need for CPU resources increases\. For more information, see the [cpu](task_definition_parameters.md#ContainerDefinition-cpu) task definition parameter documentation\.
+The illustration below shows the total registered CPU units in a cluster and what their reservation and utilization means to existing tasks and new task placement\. The lower \(Reserved, used\) and center \(Reserved, not used\) blocks represent the total CPU units that are reserved for the existing tasks that are running on the cluster, or the `CPUReservation` CloudWatch metric\. The lower block represents the reserved CPU units that the running tasks are actually using on the cluster, or the `CPUUtilization` CloudWatch metric\. The upper block represents CPU units that are not reserved by existing tasks; these CPU units are available for new task placement\. Existing tasks can use these unreserved CPU units as well, if their need for CPU resources increases\. For more information, see the [cpu](task_definition_parameters.md#ContainerDefinition-cpu) task definition parameter documentation\.
 
 ![\[Cluster CPU reservation and utilization\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/telemetry.png)
 
 ## Cluster Utilization<a name="cluster_utilization"></a>
 
-Cluster utilization is measured as the percentage of CPU and memory that is used by all Amazon ECS tasks on a cluster when compared to the aggregate CPU and memory that was registered for each active container instance in the cluster\. This metric is only utilized on clusters with tasks or services using the Standard launch type and is not compatible with any using the Fargate launch type\.
+Cluster utilization is measured as the percentage of CPU and memory that is used by all Amazon ECS tasks on a cluster when compared to the aggregate CPU and memory that was registered for each active container instance in the cluster\. This metric is only used on clusters with tasks or services using the EC2 launch type\. It is not supported on clusters with tasks using the Fargate launch type\.
 
 ```
                                   (Total CPU units used by tasks in cluster) x 100
@@ -106,11 +106,11 @@ Each minute, the Amazon ECS container agent on each container instance calculate
 
 For example, a cluster has two active container instances registered, a `c4.4xlarge` instance and a `c4.large` instance\. The `c4.4xlarge` instance registers into the cluster with 16,384 CPU units and 30,158 MiB of memory\. The `c4.large` instance registers with 2,048 CPU units and 3,768 MiB of memory\. The aggregate resources of this cluster are 18,432 CPU units and 33,926 MiB of memory\.
 
-If ten tasks are running on this cluster that each consume 1,024 CPU units and 2,048 MiB of memory, a total of 10,240 CPU units and 20,480 MiB of memory are utilized on the cluster, which is reported to CloudWatch as 55% CPU utilization and 60% memory utilization for the cluster\.
+If ten tasks are running on this cluster anch each task consumes 1,024 CPU units and 2,048 MiB of memory, a total of 10,240 CPU units and 20,480 MiB of memory are used on the cluster, which is reported to CloudWatch as 55% CPU utilization and 60% memory utilization for the cluster\.
 
 ## Service Utilization<a name="service_utilization"></a>
 
-Service utilization is measured as the percentage of CPU and memory that is used by the Amazon ECS tasks that belong to a service on a cluster when compared to the CPU and memory that is specified in the service's task definition\. This metric is compatible with services with tasks using both the Standard and Fargate launch types\.
+Service utilization is measured as the percentage of CPU and memory that is used by the Amazon ECS tasks that belong to a service on a cluster when compared to the CPU and memory that is specified in the service's task definition\. This metric is supported for services with tasks using both the EC2 and Fargate launch types\.
 
 ```
                                       (Total CPU units used by tasks in service) x 100
@@ -124,11 +124,11 @@ Service memory utilization =  --------------------------------------------------
                               (Total MiB of memory specified in task definition) x (number of tasks in service)
 ```
 
-Each minute, the Amazon ECS container agent on each container instance calculates the number of CPU units and MiB of memory that are currently being used for each task owned by the service that is running on that container instance, and this information is reported back to Amazon ECS\. The total amount of CPU and memory used for all tasks owned by the service that are running on the cluster is calculated, and those numbers are reported to CloudWatch as a percentage of the total resources that are specified for the service in the service's task definition\. If you specify a soft limit \(`memoryReservation`\), then it will be used to calculate the amount of reserved memory\. Otherwise, the hard limit \(`memory`\) is used\. For more information about hard and soft limits, see [Task Definition Parameters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definitions)\.
+Each minute, the Amazon ECS container agent on each container instance calculates the number of CPU units and MiB of memory that are currently being used for each task owned by the service that is running on that container instance, and this information is reported back to Amazon ECS\. The total amount of CPU and memory used for all tasks owned by the service that are running on the cluster is calculated, and those numbers are reported to CloudWatch as a percentage of the total resources that are specified for the service in the service's task definition\. If you specify a soft limit \(`memoryReservation`\), then it is used to calculate the amount of reserved memory\. Otherwise, the hard limit \(`memory`\) is used\. For more information about hard and soft limits, see [Task Definition Parameters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definitions)\.
 
-For example, the task definition for a service specifies a total of 512 CPU units and 1,024 MiB of memory \(with the hard limit `memory` parameter\) for all of its containers\. The service has a desired count of 1 running task, the service is running on a cluster with 1 `c4.large` container instance \(with 2,048 CPU units and 3,768 MiB of total memory\), and there are no other tasks running on the cluster\. Although the task specifies 512 CPU units, because it is the only running task on a container instance with 2,048 CPU units, it has the ability to use up to four times the specified amount \(2,048 / 512\); however, the specified memory of 1,024 MiB is a hard limit and it cannot be exceeded, so in this case, service memory utilization cannot exceed 100%\.
+For example, the task definition for a service specifies a total of 512 CPU units and 1,024 MiB of memory \(with the hard limit `memory` parameter\) for all of its containers\. The service has a desired count of 1 running task, the service is running on a cluster with 1 `c4.large` container instance \(with 2,048 CPU units and 3,768 MiB of total memory\), and there are no other tasks running on the cluster\. Although the task specifies 512 CPU units, because it is the only running task on a container instance with 2,048 CPU units, it can use up to four times the specified amount \(2,048 / 512\); however, the specified memory of 1,024 MiB is a hard limit and it cannot be exceeded, so in this case, service memory utilization cannot exceed 100%\.
 
-If the previous example used the soft limit `memoryReservation` instead of the hard limit `memory` parameter, the service's tasks could use more than the specified 1,024 MiB of memory if they needed to\. In this case, the service's memory utilization could exceed 100%\.
+If the previous example used the soft limit `memoryReservation` instead of the hard limit `memory` parameter, the service's tasks could use more than the specified 1,024 MiB of memory as needed\. In this case, the service's memory utilization could exceed 100%\.
 
 If this task is performing CPU\-intensive work during a period and using all 2,048 of the available CPU units and 512 MiB of memory, then the service reports 400% CPU utilization and 50% memory utilization\. If the task is idle and using 128 CPU units and 128 MiB of memory, then the service reports 25% CPU utilization and 12\.5% memory utilization\.
 
@@ -140,13 +140,13 @@ You can use CloudWatch metrics to view the number of tasks in your services that
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. Choose **Metrics** section on the navigation pane\.
+1. On the navigation pane, choose **Metrics** section \.
 
 1. On the **All metrics** tab, choose **ECS**\.
 
-1. Choose **ClusterName, ServiceName** and choose any metric \(either `CPUUtilization` or `MemoryUtilization`\) that corresponds to the service to view running tasks in\.
+1. Choose **ClusterName**, **ServiceName** and then choose any metric \(either `CPUUtilization` or `MemoryUtilization`\) that corresponds to the service in which to view running tasks\.
 
-1. On the **Graphed metrics** tab, change the **Period** to **1 Minute** and the **Statistic** to **Sample Count**\.
+1. On the **Graphed metrics** tab, change **Period** to **1 Minute** and **Statistic** to **Sample Count**\.
 
 1. The value displayed in the graph indicates the number of `RUNNING` tasks in the service\.  
 ![\[Cluster metrics view\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/running-task-count.png)

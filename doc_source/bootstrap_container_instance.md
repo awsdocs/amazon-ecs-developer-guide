@@ -88,7 +88,7 @@ In the example below, the command `echo 'OPTIONS="${OPTIONS} --storage-opt dm.ba
 cloud-init-per once docker_options echo 'OPTIONS="${OPTIONS} --storage-opt dm.basesize=20G"' >> /etc/sysconfig/docker
 ```
 
-The semaphore file records the exit code of the command and a UNIX time stamp for when it was executed\.
+The semaphore file records the exit code of the command and a UNIX timestamp for when it was executed\.
 
 ```
 [ec2-user ~]$ cat /var/lib/cloud/instances/i-0c7f87d7611b2165e/sem/bootper.docker_options.instance

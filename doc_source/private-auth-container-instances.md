@@ -11,7 +11,7 @@ The Amazon ECS container agent looks for two environment variables when it launc
 Linux variants of the Amazon ECS\-optimized AMI scan the `/etc/ecs/ecs.config` file for these variables when the container instance launches, and each time the service is started \(with the sudo start ecs command\)\. AMIs that are not Amazon ECS\-optimized should store these environment variables in a file and pass them with the `--env-file path_to_env_file` option to the docker run command that starts the container agent\.
 
 **Important**  
-We do not recommend that you inject these authentication environment variables at instance launch time with Amazon EC2 user data or pass them with the `--env` option to the docker run command\. These methods are not appropriate for sensitive data, such as authentication credentials\. For information about safely adding authentication credentials to your container instances, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
+We do not recommend that you inject these authentication environment variables at instance launch with Amazon EC2 user data or pass them with the `--env` option to the docker run command\. These methods are not appropriate for sensitive data, such as authentication credentials\. For information about safely adding authentication credentials to your container instances, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
 
 ## Authentication Formats<a name="docker-auth-formats"></a>
 
@@ -61,7 +61,7 @@ ECS_ENGINE_AUTH_TYPE=dockercfg
 ECS_ENGINE_AUTH_DATA={"https://index.docker.io/v1/":{"auth":"zq212MzEXAMPLE7o6T25Dk0i","email":"email@example.com"}}
 ```
 
-You can configure multiple private registries with the following syntax\.
+You can configure multiple private registries with the following syntax:
 
 ```
 ECS_ENGINE_AUTH_TYPE=dockercfg
@@ -88,7 +88,7 @@ ECS_ENGINE_AUTH_TYPE=docker
 ECS_ENGINE_AUTH_DATA={"https://index.docker.io/v1/":{"username":"my_name","password":"my_password","email":"email@example.com"}}
 ```
 
-You can configure multiple private registries with the following syntax\.
+You can configure multiple private registries with the following syntax:
 
 ```
 ECS_ENGINE_AUTH_TYPE=docker
@@ -101,22 +101,22 @@ Use the following procedure to enable private registries for your container inst
 
 **To enable private registries in the Amazon ECS\-optimized AMI**
 
-1. Log in to your container instance via SSH\.
+1. Log in to your container instance using SSH\.
 
-1. Open the `/etc/ecs/ecs.config` file and add the `ECS_ENGINE_AUTH_TYPE` and `ECS_ENGINE_AUTH_DATA` values for your registry and account\.
+1. Open the `/etc/ecs/ecs.config` file and add the `ECS_ENGINE_AUTH_TYPE` and `ECS_ENGINE_AUTH_DATA` values for your registry and account:
 
    ```
    sudo vi /etc/ecs/ecs.config
    ```
 
-   This example authenticates a Docker Hub user account\.
+   This example authenticates a Docker Hub user account:
 
    ```
    ECS_ENGINE_AUTH_TYPE=docker
    ECS_ENGINE_AUTH_DATA={"https://index.docker.io/v1/":{"username":"my_name","password":"my_password","email":"email@example.com"}}
    ```
 
-1. Check to see if your agent uses the `ECS_DATADIR` environment variable to save its state\.
+1. Check to see if your agent uses the `ECS_DATADIR` environment variable to save its state:
 
    ```
    docker inspect ecs-agent | grep ECS_DATADIR
@@ -129,6 +129,18 @@ Use the following procedure to enable private registries for your container inst
    ```
 **Important**  
 If the previous command does not return the `ECS_DATADIR` environment variable, you must stop any tasks running on this container instance before stopping the agent\. Newer agents with the `ECS_DATADIR` environment variable save their state and you can stop and start them while tasks are running without issues\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+
+1. Stop the `ecs` service:
+
+   ```
+   sudo stop ecs
+   ```
+
+   Output:
+
+   ```
+   ecs stop/waiting
+   ```
 
 1. Restart the `ecs` service\.
    + For the Amazon ECS\-optimized Amazon Linux 2 AMI:

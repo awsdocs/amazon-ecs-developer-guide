@@ -18,7 +18,7 @@ For other examples of rule expressions, see [Schedule Expressions for Rules](htt
 
 1. Add the details of your ECS cluster and task definition as a target for the CloudWatch Events rule\. Specify the cluster and task definition using the full ARN\.
 
-   This example defines the target for `MyRule1` as the `first-run-task-definition:1` task definition in the `default` cluster and assigns the `ecsEventsRole` IAM role to it\. It requests that `1` task be scheduled\. The cluster and task definition must already be created; otherwise, you receive an error\.
+   This example defines the target for `MyRule1` as the `first-run-task-definition:1` task definition in the `default` cluster and assigns the `ecsEventsRole` IAM role to it\. It requests that `1` task be scheduled\. The cluster and task definition must already be created\. Otherwise, you receive an error\.
 
    ```
    aws events put-targets --rule "MyRule1" --targets "Id"="1","Arn"="arn:aws:ecs:us-east-1:123456789012:cluster/default","RoleArn"="arn:aws:iam::123456789012:role/ecsEventsRole","EcsParameters"="{"TaskDefinitionArn"= "arn:aws:ecs:us-east-1:123456789012:task-definition/first-run-task-definition:1","TaskCount"= 1}"

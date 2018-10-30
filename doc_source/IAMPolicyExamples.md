@@ -1,6 +1,6 @@
 # Amazon ECS IAM Policy Examples<a name="IAMPolicyExamples"></a>
 
-The following examples show policy statements that you could use to control the permissions that IAM users have to Amazon ECS\.
+The following examples show policy statements that you could use to control the permissions that IAM users have for Amazon ECS\.
 
 **Topics**
 + [Amazon ECS First Run Wizard](#first-run-permissions)
@@ -15,7 +15,7 @@ The following examples show policy statements that you could use to control the 
 
 ## Amazon ECS First Run Wizard<a name="first-run-permissions"></a>
 
-The Amazon ECS first run wizard simplifies the process of creating a cluster and running your tasks and services\. However, users require permissions to many API operations from multiple AWS services to complete the wizard\. The [AmazonECS\_FullAccess](ecs_managed_policies.md#AmazonECS_FullAccess) managed policy below shows the required permissions to complete the Amazon ECS first run wizard\.
+The Amazon ECS first\-run wizard simplifies the process of creating a cluster and running your tasks and services\. However, users require permissions to many API operations from multiple AWS services to complete the wizard\. The [AmazonECS\_FullAccess](ecs_managed_policies.md#AmazonECS_FullAccess) managed policy below shows the required permissions to complete the Amazon ECS first\-run wizard\.
 
 ```
 {
@@ -194,7 +194,7 @@ The Amazon ECS first run wizard simplifies the process of creating a cluster and
 }
 ```
 
-The first run wizard also attempts to automatically create different IAM roles depending on the launch type of the tasks used\. Examples are the Amazon ECS service role, container instance IAM role, and the task execution IAM role\. To ensure the first run experience is able to create these IAM roles, one of the following must be true:
+The first run wizard also attempts to automatically create different IAM roles depending on the launch type of the tasks used\. Examples are the Amazon ECS service role, container instance IAM role, and the task execution IAM role\. To ensure that the first\-run experience is able to create these IAM roles, one of the following must be true:
 + Your user has administrator access\. For more information, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 + Your user has the IAM permissions to create a service role\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
 + You have a user with administrator access manually create the required IAM role so it is available on the account to be used\. For more information, see the following:
@@ -365,7 +365,7 @@ Task definition IAM policies do not support resource\-level permissions, but the
 
 ## Run Tasks<a name="IAM_run_policies"></a>
 
-The resources for `RunTask` are task definitions\. To limit which clusters a user can run task definitions on, you can specify them in the `Condition` block\. The advantage is that you don't have to list both task definitions and clusters in your resources to allow appropriate access\. You can apply one, the other, or both\.
+The resources for `RunTask` are task definitions\. To limit which clusters a user can run task definitions on, you can specify them in the `Condition` block\. The advantage is that you don't have to list both task definitions and clusters in your resources to allow the appropriate access\. You can apply one, the other, or both\.
 
 The following IAM policy allows permission to run any revision of a specific task definition on a specific cluster:
 
@@ -393,7 +393,7 @@ The following IAM policy allows permission to run any revision of a specific tas
 
 ## Start Tasks<a name="IAM_start_policies"></a>
 
-The resources for `StartTask` are task definitions\. To limit which clusters and container instances a user can start task definitions on, you can specify them in the `Condition` block\. The advantage is that you don't have to list both task definitions and clusters in your resources to allow appropriate access\. You can apply one, the other, or both\.
+The resources for `StartTask` are task definitions\. To limit which clusters and container instances a user can start task definitions on, you can specify them in the `Condition` block\. The advantage is that you don't have to list both task definitions and clusters in your resources to allow the appropriate access\. You can apply one, the other, or both\.
 
 The following IAM policy allows permission to start any revision of a specific task definition on a specific cluster and specific container instance\.
 

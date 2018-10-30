@@ -6,6 +6,21 @@ An Amazon ECS launch type determines the type of infrastructure on which your ta
 
 The Fargate launch type allows you to run your containerized applications without the need to provision and manage the backend infrastructure\. Just register your task definition and Fargate launches the container for you\.
 
+The AWS Fargate launch type is currently available in the following Regions:
+
+
+| Region Name | Region | 
+| --- | --- | 
+| US East \(N\. Virginia\) | us\-east\-1 | 
+| US East \(Ohio\) | us\-east\-2 | 
+| US West \(Oregon\) | us\-west\-2 | 
+| EU \(Ireland\) | eu\-west\-1 | 
+| EU \(London\) | eu\-west\-2 | 
+| EU \(Frankfurt\) | eu\-central\-1 | 
+| Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
+| Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
+| Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
+
 This diagram shows the general architecture:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-fargate.png)

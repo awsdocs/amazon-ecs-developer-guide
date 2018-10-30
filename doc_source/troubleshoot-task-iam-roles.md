@@ -3,11 +3,11 @@
 If you are having trouble configuring IAM roles for tasks in your cluster, you can try this known good configuration to help debug your own configuration\.
 
 The following procedure helps you to:
-+ Create a CloudWatch Logs log group to store your test logs
-+ Create a task IAM role that has full Amazon ECS permissions
-+ Register a task definition with a known good AWS CLI configuration that is compatible with IAM roles for tasks
-+ Run a task from that task definition to test your container instance support for IAM roles for tasks
-+ View the container logs from that task in CloudWatch Logs to verify that it works
++ Create a CloudWatch Logs log group to store your test logs\.
++ Create a task IAM role that has full Amazon ECS permissions\.
++ Register a task definition with a known good AWS CLI configuration that is compatible with IAM roles for tasks\.
++ Run a task from that task definition to test your container instance support for IAM roles for tasks\.
++ View the container logs from that task in CloudWatch Logs to verify that it works\.
 
 **To test IAM roles for tasks with a known good configuration**
 
@@ -15,13 +15,9 @@ The following procedure helps you to:
 
    1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-   1. In the left navigation pane, choose **Logs**\.
+   1. In the left navigation pane, choose **Logs**, **Actions**, **Create log group**\.
 
-   1. Choose **Actions**, **Create log group**\.
-
-   1. For **Log Group Name**, enter `ecs-tasks`\.
-
-   1. Choose **Create log group** to finish\.
+   1. For **Log Group Name**, enter `ecs-tasks` and choose **Create log group**\.
 
 1. Create an IAM role for your task to use\.
 
@@ -105,9 +101,9 @@ Replace the `awslogs-region` value with the region in which you created your Clo
 
    1. In the left navigation pane, choose **Logs**\.
 
-   1. Choose the `ecs-tasks` log group\.
+   1. Select the `ecs-tasks` log group\.
 
-   1. Choose the most recent log stream\.
+   1. Select the most recent log stream\.
 
    1. Scroll down to view the last lines of the log stream\. You should see the output of the aws ecs list\-tasks command\.
 

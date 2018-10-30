@@ -1,6 +1,6 @@
 # Bind Mounts<a name="bind-mounts"></a>
 
-When using bind mounts, a file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported when using either the EC2 or Fargate launch types\. To use bind mount host volumes, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
+With bind mounts, a file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported when using either the EC2 or Fargate launch types\. To use bind mount host volumes, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
 
 Some common use cases for bind mounts are:
 + To provide persistent data volumes for use with containers
@@ -9,7 +9,7 @@ Some common use cases for bind mounts are:
 
 ## Specifying a Bind Mount in your Task Definition<a name="specify-volume-config"></a>
 
-Before your containers can use bind mount host volumes, you must specify the volume and mount point configurations in your task definition\. This section describes the volume configuration for a container\. For tasks that use a bind mount host volume, specify a `host` and optional `sourcePath`\.
+Before your containers can use bind mount host volumes, you must specify the volume and mount point configurations in your task definition\. This section describes the volume configuration for a container\. For tasks that use a bind mount host volume, specify a `host` value and optional `sourcePath` value\.
 
 The task definition JSON shown below shows the syntax for the `volumes` and `mountPoints` objects for a container\.
 
@@ -90,7 +90,7 @@ Because the `database_scratch` bind mount does not specify a source path, the Do
      ]
    ```
 
-1. In the `containerDefinitions` section, create the database container definitions so they mount the nonpersistent storage\.
+1. In the `containerDefinitions` section, create the database container definitions so that they mount the nonpersistent storage\.
 
    ```
      "containerDefinitions": [
@@ -142,7 +142,7 @@ Amazon ECS does not sync your storage across container instances\. Tasks that us
      ]
    ```
 
-1. In the `containerDefinitions` section, define a container with `mountPoints` that reference the name of the defined bind mount and the `containerPath` value to mount the bind mount at on the container\.
+1. In the `containerDefinitions` section, define a container with `mountPoints` values that reference the name of the defined bind mount and the `containerPath` value to mount the bind mount at on the container\.
 
    ```
      "containerDefinitions": [
@@ -319,6 +319,6 @@ You can define one or more volumes on a container, and then use the `volumesFrom
    }
    ```
 
-   When this task is run, the two containers mount the volumes, and the `command` in the `busybox` container writes the date and time to a file called `date` in each of the volume folders, which are then visible at the website displayed by the `web` container\.
+   When this task is run, the two containers mount the volumes, and the `command` in the `busybox` container writes the date and time to a file called `date` in each of the volume folders\. The folders are then visible at the website displayed by the `web` container\.
 **Note**  
-Because the `busybox` container runs a quick command and then exits, it needs to be set as `"essential": false` in the container definition to prevent it from stopping the entire task when it exits\.
+Because the `busybox` container runs a quick command and then exits, it must be set as `"essential": false` in the container definition\. Otherwise, it stops the entire task when it exits\.

@@ -1,6 +1,6 @@
 # Setting Up with Amazon ECS<a name="get-set-up-for-amazon-ecs"></a>
 
-If you've already signed up for Amazon Web Services \(AWS\) and have been using Amazon Elastic Compute Cloud \(Amazon EC2\), you are close to being able to use Amazon ECS\. The set up process for the two services is very similar\. The following guide prepares you for launching your first cluster using either the Amazon ECS first\-run wizard or the Amazon ECS Command Line Interface \(CLI\)\.
+If you've already signed up for Amazon Web Services \(AWS\) and have been using Amazon Elastic Compute Cloud \(Amazon EC2\), you are close to being able to use Amazon ECS\. The set\-up process for the two services is similar\. The following guide prepares you for launching your first cluster using either the Amazon ECS first\-run wizard or the Amazon ECS Command Line Interface \(CLI\)\.
 
 **Note**  
 Because Amazon ECS uses many components of Amazon EC2, you use the Amazon EC2 console for many of these steps\.
@@ -11,7 +11,7 @@ Complete the following tasks to get set up for Amazon ECS\. If you have already 
 
 1. [Create an IAM User](#create-an-iam-user)
 
-1. [Create an IAM Role for your Container Instances and Services](#create-an-iam-role)
+1. [Create an IAM Role](#create-an-iam-role)
 
 1. [Create a Key Pair](#create-a-key-pair)
 
@@ -93,28 +93,32 @@ To verify the sign\-in link for IAM users for your account, open the IAM console
 
 For more information about IAM, see the [AWS Identity and Access Management User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
-## Create an IAM Role for your Container Instances and Services<a name="create-an-iam-role"></a>
+## Create an IAM Role<a name="create-an-iam-role"></a>
 
-Before the Amazon ECS container agent can register a container instance into a cluster, the agent must know which account credentials to use\. You can create an IAM role that allows the agent to know which account it should register the container instance with\. When you launch an instance with an Amazon ECS\-optimized AMI provided by Amazon using this role, the agent automatically registers the container instance into your default cluster\.
+Before the Amazon ECS container agent can make calls to the Amazon ECS API actions on your behalf, it requires an IAM policy and role for the service to know that the agent belongs to you\.
 
-The Amazon ECS container agent also makes calls to the Amazon EC2 and Elastic Load Balancing APIs on your behalf, so container instances can be registered and deregistered with load balancers\. Before you can attach a load balancer to an Amazon ECS service, you must create an IAM role for your services to use before you start them\. This requirement applies to any Amazon ECS service that you plan to use with a load balancer\.
+For tasks using the EC2 launch type, you can create an IAM role that allows the agent to know which account it should register your container instances with\. When you launch a container instance with the Amazon ECS\-optimized AMI provided by Amazon using this role, the agent automatically registers the container instance into your `default` cluster\. This role is referred to as the Amazon ECS container instance IAM role\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+
+The Amazon ECS container agent also makes calls to the Amazon EC2 and Elastic Load Balancing APIs on your behalf, so container instances can be registered and deregistered with load balancers\. Before you can attach a load balancer to an Amazon ECS service, you must create an IAM role for your services to use before you start them\. This requirement applies to any Amazon ECS service that you plan to use with a load balancer\. This role is referred to as the Amazon ECS service scheduler IAM role\. For more information, see [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md)\.
+
+For tasks using the Fargate launch type, you can create an IAM role that allows the agent to pull container images from Amazon ECR or to use the awslogs log driver, which is currently the only supported logging option for this launch type\. This role is referred to as the Amazon ECS task execution IAM role\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
 **Note**  
-The Amazon ECS instance and service roles are automatically created for you in the console first run experience, so if you intend to use the Amazon ECS console, you can move ahead to the next section\. If you do not intend to use the Amazon ECS console, and instead plan to use the AWS CLI, complete the procedures in [Amazon ECS Container Instance IAM Role](instance_IAM_role.md) and [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md) before launching container instances or using Elastic Load Balancing load balancers with services\.
+These IAM roles are automatically created for you in the Amazon ECS console first\-run experience, so if you intend to use the console, you can move ahead to the next section\. If you do not intend to use the console, and instead plan to use the AWS CLI, these IAM roles will need to be manually created\.
 
 ## Create a Key Pair<a name="create-a-key-pair"></a>
 
 For Amazon ECS, a key pair is only needed if you intend on using the EC2 launch type\.
 
-AWS uses public\-key cryptography to secure the login information for your instance\. A Linux instance, such as an Amazon ECS container instance, has no password to use for SSH access; you use a key pair to log in to your instance securely\. You specify the name of the key pair when you launch your container instance, then provide the private key when you log in using SSH\.
+AWS uses public\-key cryptography to secure the login information for your instance\. A Linux instance, such as an Amazon ECS container instance, has no password to use for SSH access\. You use a key pair to log in to your instance securely\. You specify the name of the key pair when you launch your container instance, then provide the private key when you log in using SSH\.
 
-If you haven't created a key pair already, you can create one using the Amazon EC2 console\. Note that if you plan to launch instances in multiple regions, you'll need to create a key pair in each region\. For more information about regions, see [Regions and Availability Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+If you haven't created a key pair already, you can create one using the Amazon EC2 console\. If you plan to launch instances in multiple regions, you'll need to create a key pair in each region\. For more information about regions, see [Regions and Availability Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **To create a key pair**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select a region for the key pair\. You can select any region that's available to you, regardless of your location\. However, key pairs are specific to a region; for example, if you plan to launch a container instance in the US East \(Ohio\) Region, you must create a key pair for the instance in the US East \(Ohio\) Region\.  
+1. From the navigation bar, select a Region for the key pair\. You can select any Region that's available to you, regardless of your location\. However, key pairs are specific to a Region\. For example, if you plan to launch a container instance in the US East \(Ohio\) Region, you must create a key pair for the instance in the US East \(Ohio\) Region\.  
 ![\[Select a region\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/EC2_select_region.png)
 
 1. In the navigation pane, under **NETWORK & SECURITY**, choose **Key Pairs**\.
@@ -128,9 +132,9 @@ The navigation pane is on the left side of the console\. If you do not see the p
 
 1. The private key file is automatically downloaded by your browser\. The base file name is the name you specified as the name of your key pair, and the file name extension is `.pem`\. Save the private key file in a safe place\.
 **Important**  
-This is the only chance for you to save the private key file\. You'll need to provide the name of your key pair when you launch an instance and the corresponding private key each time you connect to the instance\.
+This is the only chance for you to save the private key file\. Provide the name of your key pair when you launch an instance and the corresponding private key each time you connect to the instance\.
 
-1. If you will use an SSH client on a Mac or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
+1. If you use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
 
    ```
    chmod 400 your_user_name-key-pair-region_name.pem
@@ -139,7 +143,7 @@ This is the only chance for you to save the private key file\. You'll need to pr
 For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **To connect to your instance using your key pair**  
-To connect to your Linux instance from a computer running Mac or Linux, you'll specify the `.pem` file to your SSH client with the `-i` option and the path to your private key\. To connect to your Linux instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you'll need to install it and use the following procedure to convert the `.pem` file to a `.ppk` file\.<a name="prepare-for-putty"></a>
+To connect to your Linux instance from a computer running macOS or Linux, specify the `.pem` file to your SSH client with the `-i` option and the path to your private key\. To connect to your Linux instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you need to install it and use the following procedure to convert the `.pem` file to a `.ppk` file\.<a name="prepare-for-putty"></a>
 
 **\(Optional\) To prepare to connect to a Linux instance from Windows using PuTTY**
 
@@ -164,7 +168,7 @@ To connect to your Linux instance from a computer running Mac or Linux, you'll s
 Amazon Virtual Private Cloud \(Amazon VPC\) enables you to launch AWS resources into a virtual network that you've defined\. We strongly suggest that you launch your container instances in a VPC\. 
 
 **Note**  
-The Amazon ECS console first run experience creates a VPC for your cluster, so if you intend to use the Amazon ECS console, you can skip to the next section\.
+The Amazon ECS console first\-run experience creates a VPC for your cluster, so if you intend to use the Amazon ECS console, you can skip to the next section\.
 
 If you have a default VPC, you also can skip this section and move to the next task, [Create a Security Group](#create-a-base-security-group)\. To determine whether you have a default VPC, see [Supported Platforms in the Amazon EC2 Console](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html#console-updates) in the *Amazon EC2 User Guide for Linux Instances*\. Otherwise, you can create a nondefault VPC in your account using the steps below\.
 
@@ -187,29 +191,27 @@ For more information about Amazon VPC, see [What is Amazon VPC?](https://docs.aw
 
 ## Create a Security Group<a name="create-a-base-security-group"></a>
 
-Security groups act as a firewall for associated container instances, controlling both inbound and outbound traffic at the container instance level\. You can add rules to a security group that enable you to connect to your container instance from your IP address using SSH\. You can also add rules that allow inbound and outbound HTTP and HTTPS access from anywhere\. Add any rules to open ports that are required by your tasks\. Note that container instances require external network access to communicate with the Amazon ECS service endpoint\. 
+Security groups act as a firewall for associated container instances, controlling both inbound and outbound traffic at the container instance level\. You can add rules to a security group that enable you to connect to your container instance from your IP address using SSH\. You can also add rules that allow inbound and outbound HTTP and HTTPS access from anywhere\. Add any rules to open ports that are required by your tasks\. Container instances require external network access to communicate with the Amazon ECS service endpoint\. 
 
 **Note**  
 The Amazon ECS console first run experience creates a security group for your instances and load balancer based on the task definition you use, so if you intend to use the Amazon ECS console, you can move ahead to the next section\.
 
-Note that if you plan to launch container instances in multiple regions, you need to create a security group in each region\. For more information about regions, see [Regions and Availability Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+If you plan to launch container instances in multiple Regions, you need to create a security group in each Region\. For more information, see [Regions and Availability Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Tip**  
-You need the public IP address of your local computer, which you can get using a service\. For example, we provide the following service: [http://checkip\.amazonaws\.com/](http://checkip.amazonaws.com/) or [https://checkip\.amazonaws\.com/](https://checkip.amazonaws.com/)\. To locate another service that provides your IP address, use the search phrase "what is my IP address\." If you are connecting through an Internet service provider \(ISP\) or from behind a firewall without a static IP address, you need to find out the range of IP addresses used by client computers\.
+You need the public IP address of your local computer, which you can get using a service\. For example, we provide the following service: [http://checkip\.amazonaws\.com/](http://checkip.amazonaws.com/) or [https://checkip\.amazonaws\.com/](https://checkip.amazonaws.com/)\. To locate another service that provides your IP address, use the search phrase "what is my IP address\." If you are connecting through an internet service provider \(ISP\) or from behind a firewall without a static IP address, you must find out the range of IP addresses used by client computers\.
 
 **To create a security group with least privilege**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select a region for the security group\. Security groups are specific to a region, so you should select the same region in which you created your key pair\.
+1. From the navigation bar, select a Region for the security group\. Security groups are specific to a Region, so you should select the same Region in which you created your key pair\.
 
-1. Choose **Security Groups** in the navigation pane\.
-
-1. Choose **Create Security Group**\.
+1. In the navigation pane, choose **Security Groups**, **Create Security Group**\.
 
 1. Enter a name for the new security group and a description\. Choose a name that is easy for you to remember, such as *ecs\-instances\-default\-cluster*\.
 
-1. In the **VPC** list, ensure that your default VPC is selected; it's marked with an asterisk \(\*\)\.
+1. In the **VPC** list, ensure that your default VPC is selected\. It's marked with an asterisk \(\*\)\.
 **Note**  
 If your account supports Amazon EC2 Classic, select the VPC that you created in the previous task\.
 

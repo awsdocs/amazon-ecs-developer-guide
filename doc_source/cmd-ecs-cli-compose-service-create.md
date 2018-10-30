@@ -51,4 +51,4 @@ The `--health-check-grace-period` option specifies the period of time, in second
 
 ## Using Service Discovery<a name="cmd-ecs-cli-compose-service-create-sd"></a>
 
-Your Amazon ECS service can optionally be configured to use Amazon ECS Service Discovery\. Service discovery uses Amazon Route 53 auto naming API actions to manage DNS entries for your service's tasks, making them discoverable within your VPC\. For more information, see [Tutorial: Creating an Amazon ECS Service That Uses Service Discovery Using the Amazon ECS CLI](ECS_CLI_tutorial_servicediscovery.md)\.
+Your Amazon ECS service can optionally be configured to use Amazon ECS Service Discovery\. Service discovery uses Amazon Route 53 auto naming API actions to manage DNS entries for your service's tasks, making them discoverable within your VPC\. For more information, see [Tutorial: Creating an Amazon ECS Service That Uses Service Discovery Using the Amazon ECS CLI](ecs-cli-tutorial-servicediscovery.md)\.

@@ -257,7 +257,7 @@ The Amazon ECS CLI executables are cryptographically signed using PGP signatures
    + For Windows systems:
 
      ```
-     gpg --verify ecs-cli.asc 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe'
+     PS C:\> gpg --verify ecs-cli.asc 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe'
      ```
 
    Expected output:
@@ -271,8 +271,8 @@ The Amazon ECS CLI executables are cryptographically signed using PGP signatures
    Primary key fingerprint: F34C 3DDA E729 26B0 79BE  AEC6 BCE9 D9A4 2D51 784F
         Subkey fingerprint: EB3D F841 E2C9 212A 2BD4  2232 DE3C BD61 ADAF 8B8E
    ```
-**Note**  
-The warning in the output is expected and is not problematic; it occurs because there is not a chain of trust between your personal PGP key \(if you have one\) and the Amazon ECS PGP key\. For more information, see [Web of trust](https://en.wikipedia.org/wiki/Web_of_trust)\.
+**Important**  
+The warning in the output is expected and is not problematic\. It occurs because there is not a chain of trust between your personal PGP key \(if you have one\) and the Amazon ECS PGP key\. For more information, see [Web of trust](https://en.wikipedia.org/wiki/Web_of_trust)\.
 
 ## Step 3: Apply Execute Permissions to the Binary<a name="ECS_CLI_install_execute"></a>
 
@@ -287,7 +287,7 @@ Apply execute permissions to the binary\.
   Edit the environment variables and add `C:\Program Files\Amazon\ECSCLI` to the `PATH` variable field, separated from existing entries by using a semicolon\. For example:
 
   ```
-  C:\existing\path;C:\Program Files\Amazon\ECSCLI
+  PS C:\> C:\existing\path;C:\Program Files\Amazon\ECSCLI
   ```
 
   Restart PowerShell \(or the command prompt\) so the changes go into effect\.

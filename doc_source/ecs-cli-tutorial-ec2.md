@@ -1,4 +1,4 @@
-# Tutorial: Creating a Cluster with an EC2 Task Using the Amazon ECS CLI<a name="ECS_CLI_tutorial_EC2"></a>
+# Tutorial: Creating a Cluster with an EC2 Task Using the Amazon ECS CLI<a name="ecs-cli-tutorial-ec2"></a>
 
 This tutorial shows you how to set up a cluster and deploy a task using the EC2 launch type\.
 

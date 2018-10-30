@@ -1,16 +1,16 @@
 # Checking Stopped Tasks for Errors<a name="stopped-task-errors"></a>
 
-If you have trouble starting a task \(for example, you run the task and the task displays a `PENDING` status and then disappears\), your task might be stopping because of an error\. You can view errors like this in the Amazon ECS console by displaying the stopped task and inspecting it for error messages\.
+If you have trouble starting a task, your task might be stopping because of an error\. For example, you run the task and the task displays a `PENDING` status and then disappears\. You can view errors like this in the Amazon ECS console by displaying the stopped task and inspecting it for error messages\.
 
 **To check stopped tasks for errors**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. On the **Clusters** page, choose the cluster in which your stopped task resides\.
+1. On the **Clusters** page, select the cluster in which your stopped task resides\.
 
-1. On the **Cluster : *clustername*** page, choose**Tasks**\.
+1. On the **Cluster : *clustername*** page, choose **Tasks**\.
 
-1. In the **Desired task status** table header, choose **Stopped** to view stopped tasks, and then choose the stopped task to inspect\. The most recent stopped tasks are listed first\.
+1. In the **Desired task status** table header, choose **Stopped**, and then select the stopped task to inspect\. The most recent stopped tasks are listed first\.
 
 1. In the **Details** section, inspect the **Stopped reason** field to see the reason that the task was stopped\.  
 ![\[Stopped task reason\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/stopped_task_reason.png)

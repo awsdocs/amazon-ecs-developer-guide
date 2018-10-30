@@ -32,8 +32,8 @@ An IAM policy is a JSON document that consists of one or more statements\. Each 
 There are various elements that make up a statement:
 + **Effect:** The *effect* can be `Allow` or `Deny`\. By default, IAM users don't have permission to use resources and API actions, so all requests are denied\. An explicit allow overrides the default\. An explicit deny overrides any allows\.
 + **Action**: The *action* is the specific API action for which you are granting or denying permission\. To learn about specifying *action*, see [Actions for Amazon ECS](#UsingWithECS_Actions)\. 
-+ **Resource**: The resource that's affected by the action\. Some Amazon ECS API actions allow you to include specific resources in your policy that can be created or modified by the action\. To specify a resource in the statement, you need to use its Amazon Resource Name \(ARN\)\. For more information about specifying the *arn* value, see [Amazon Resource Names for Amazon ECS](#ECS_ARN_Format)\. For more information about which API actions support which ARNs, see [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)\. If the API action does not support ARNs, use the \* wildcard to specify that all resources can be affected by the action\. 
-+ **Condition**: Conditions are optional\. They can be used to control when your policy will be in effect\. For more information about specifying conditions for Amazon ECS, see [Condition Keys for Amazon ECS](#amazon-ecs-keys)\.
++ **Resource**: The resource that's affected by the action\. Some Amazon ECS API actions allow you to include specific resources in your policy that can be created or modified by the action\. To specify a resource in the statement, use its Amazon Resource Name \(ARN\)\. For more information about specifying the *arn* value, see [Amazon Resource Names for Amazon ECS](#ECS_ARN_Format)\. For more information about which API actions support which ARNs, see [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)\. If the API action does not support ARNs, use the \* wildcard to specify that all resources can be affected by the action\. 
++ **Condition**: Conditions are optional\. They can be used to control when your policy is in effect\. For more information about specifying conditions for Amazon ECS, see [Condition Keys for Amazon ECS](#amazon-ecs-keys)\.
 
 For more information about example IAM policy statements for Amazon ECS, see [Creating Amazon ECS IAM Policies](ECS_IAM_user_policies.md)\. 
 
@@ -66,7 +66,7 @@ For a list of Amazon ECS actions, see [Actions](https://docs.aws.amazon.com/Amaz
 Each IAM policy statement applies to the resources that you specify using their ARNs\. 
 
 **Important**  
-Currently, not all API actions support individual ARNs; we'll add support for additional API actions and ARNs for additional Amazon ECS resources later\. For information about which ARNs you can use with which Amazon ECS API actions, as well as supported condition keys for each ARN, see [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)\. 
+Currently, not all API actions support individual ARNs\. For information about which ARNs you can use with which Amazon ECS API actions, as well as supported condition keys for each ARN, see [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)\. 
 
 An ARN has the following general syntax:
 
@@ -78,7 +78,7 @@ arn:aws:[service]:[region]:[account]:resourceType/resourcePath
 The service \(for example, `ecs`\)\.
 
 *region*  
-The region for the resource \(for example, `us-east-1`\)\.
+The Region for the resource \(for example, `us-east-1`\)\.
 
 *account*  
 The AWS account ID, with no hyphens \(for example, `123456789012`\)\.
@@ -137,7 +137,7 @@ If you specify multiple conditions, or multiple keys in a single condition, we e
 
 You can also use placeholders when you specify conditions\. For more information, see [Policy Variables](https://docs.aws.amazon.com/IAM/latest/UserGuide/PolicyVariables.html) in the *IAM User Guide*\.
 
-Amazon ECS implements the AWS\-wide condition keys \(see [Available Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/AccessPolicyLanguage_ElementDescriptions.html#AvailableKeys)\), plus the following service\-specific condition keys\. \(We'll add support for additional service\-specific condition keys for Amazon ECS later\.\)
+Amazon ECS implements the AWS\-wide condition keys \(see [Available Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/AccessPolicyLanguage_ElementDescriptions.html#AvailableKeys)\), plus the following service\-specific condition keys\. 
 
 
 | Condition Key | Key/Value Pair | Evaluation Types | 

@@ -3,7 +3,7 @@
 Amazon ECS services can register tasks with an Elastic Load Balancing load balancer\. Load balancer configuration errors are common causes for stopped tasks\. If your stopped tasks were started by services that use a load balancer, consider the following possible causes\.
 
 **Important**  
-Container health checks are not supported for tasks that are part of a service that is configured to use a Classic Load Balancer\. The Amazon ECS service scheduler will ignore tasks in an `UNHEALTHY` state that are behind a Classic Load Balancer\.
+Container health checks are not supported for tasks that are part of a service that is configured to use a Classic Load Balancer\. The Amazon ECS service scheduler ignores tasks in an `UNHEALTHY` state that are behind a Classic Load Balancer\.
 
 Improper IAM permissions for the `ecsServiceRole` IAM role  
 The `ecsServiceRole` allows Amazon ECS services to register container instances with Elastic Load Balancing load balancers\. You must have the proper permissions set for this role\. For more information, see [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md)\.
@@ -17,7 +17,7 @@ Your load balancer should be configured to use all of the Availability Zones in 
 Elastic Load Balancing load balancer health check misconfigured  
 The load balancer health check parameters can be overly restrictive or point to resources that do not exist\. If a container instance is determined to be unhealthy, it is removed from the load balancer\. Be sure to verify that the following parameters are configured correctly for your service load balancer\.    
 Ping Port  
-The **Ping Port** value for a load balancer health check is the port on the container instances that the load balancer checks to determine if it is healthy\. If this port is misconfigured, the load balancer will likely deregister your container instance from itself\. This port should be configured to use the `hostPort` value for the container in your service's task definition that you are using with the health check\.  
+The **Ping Port** value for a load balancer health check is the port on the container instances that the load balancer checks to determine if it is healthy\. If this port is misconfigured, the load balancer likely deregisters your container instance from itself\. This port should be configured to use the `hostPort` value for the container in your service's task definition that you are using with the health check\.  
 Ping Path  
 This value is often set to `index.html`, but if your service does not respond to that request, then the health check fails\. If your container does not have an `index.html` file, you can set this to `/` to target the base URL for the container instance\.  
 Response Timeout  

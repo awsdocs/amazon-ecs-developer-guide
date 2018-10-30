@@ -13,7 +13,7 @@ For information about sending container logs from your tasks to CloudWatch Logs,
 
 ## CloudWatch Logs IAM Policy<a name="cwl_iam_policy"></a>
 
-Before your container instances can send log data to CloudWatch Logs, you must create an IAM policy to allow your container instances to use the CloudWatch Logs APIs, and then you must attach that policy to the `ecsInstanceRole`\.
+Before your container instances can send log data to CloudWatch Logs, you must create an IAM policy to allow your container instances to use the CloudWatch Logs APIs, and then you must attach that policy to `ecsInstanceRole`\.
 
 **To create the `ECS-CloudWatchLogs` IAM policy**
 
@@ -21,9 +21,9 @@ Before your container instances can send log data to CloudWatch Logs, you must c
 
 1. In the navigation pane, choose **Policies**\. 
 
-1. Choose **Create policy**\.
+1. Choose **Create policy**, **JSON**\.
 
-1. On the **Create policy** page, choose the **JSON** tab and enter the following policy:
+1. Enter the following policy:
 
    ```
    {
@@ -47,9 +47,9 @@ Before your container instances can send log data to CloudWatch Logs, you must c
 
 1. Choose **Review policy**\.
 
-1. On the **Review policy** page, enter `ECS-CloudWatchLogs` for the **Name** and then choose **Create policy**\.
+1. On the **Review policy** page, enter `ECS-CloudWatchLogs` for the **Name** and choose **Create policy**\.
 
-**To attach the `ECS-CloudWatchLogs` policy to your `ecsInstanceRole`**
+**To attach the `ECS-CloudWatchLogs` policy to `ecsInstanceRole`**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -57,9 +57,9 @@ Before your container instances can send log data to CloudWatch Logs, you must c
 
 1. Choose `ecsInstanceRole`\. If the role does not exist, follow the procedures in [Amazon ECS Container Instance IAM Role](instance_IAM_role.md) to create the role\.
 
-1. Choose the **Permissions** tab, then **Attach policy**\.
+1. Choose **Permissions**, **Attach policy**\.
 
-1. In the **Filter** box, type **ECS\-CloudWatchLogs** to narrow the available policies to attach\.
+1. To narrow the available policies to attach, for **Filter**, type **ECS\-CloudWatchLogs**\.
 
 1. Check the box to the left of the **ECS\-CloudWatchLogs** policy and choose **Attach policy**\.
 
@@ -101,7 +101,7 @@ Log messages from the `ecs-init` upstart job\.
 Log messages from the Amazon ECS container agent\.
 
 `/var/log/ecs/audit.log`  
-Log messages from the IAM roles for tasks credential provider\.
+Log messages from the IAM roles for the task credential provider\.
 
 You can use the example file below for your Amazon ECS container instances, but you must substitute the `{cluster}` and `{container_instance_id}` entries with the cluster name and container instance ID for each container instance so that the log streams are grouped by cluster name and separate for each individual container instance\. The procedure that follows the example configuration file has steps to replace the cluster name and container instance ID placeholders\.
 
@@ -179,7 +179,7 @@ datetime_format = %Y-%m-%dT%H:%M:%SZ
    [ec2-user ~]$ sudo sed -i -e "s/{cluster}/$cluster/g" /etc/awslogs/awslogs.conf
    ```
 
-1. Query the Amazon ECS introspection API to find the container instance ID and set it to an environment variable\.
+1. Query the Amazon ECS introspection API operation to find the container instance ID and set it to an environment variable\.
 
    ```
    [ec2-user ~]$ container_instance_id=$(curl -s http://localhost:51678/v1/metadata | jq -r '. | .ContainerInstanceArn' | awk -F/ '{print $2}' )
@@ -191,13 +191,13 @@ datetime_format = %Y-%m-%dT%H:%M:%SZ
    [ec2-user ~]$ sudo sed -i -e "s/{container_instance_id}/$container_instance_id/g" /etc/awslogs/awslogs.conf
    ```
 
-**To configure the CloudWatch Logs agent region**
+**To configure the CloudWatch Logs agent Region**
 
-By default, the CloudWatch Logs agent sends data to the `us-east-1` region\. If you would like to send your data to a different region, such as the region that your cluster is located in, you can set the region in the `/etc/awslogs/awscli.conf` file\.
+By default, the CloudWatch Logs agent sends data to the `us-east-1` region\. To send your data to a different region, such as the Region in which your cluster is located, you can set the Region in the `/etc/awslogs/awscli.conf` file\.
 
 1. Open the `/etc/awslogs/awscli.conf` file with a text editor\.
 
-1. In the `[default]` section, replace `us-east-1` with the region where you want to view log data\.
+1. In the `[default]` section, replace `us-east-1` with the Region from which to view log data\.
 
 1. Save the file and exit your text editor\.
 
@@ -232,12 +232,12 @@ New instance launches may take a few minutes to send data to CloudWatch Logs\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. Choose **Logs** in the left navigation\.
+1. In the left navigation pane, choose **Logs**\.
 
-1. You should see the log groups you configured in [Configuring and Starting the CloudWatch Logs Agent](#configure_cwl_agent)\.  
+   You should see the log groups you configured in [Configuring and Starting the CloudWatch Logs Agent](#configure_cwl_agent)\.  
 ![\[CloudWatch console metrics view\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/cwl-log-groups.png)
 
-1. Choose a log group that you would like to view\.
+1. Choose a log group to view\.
 
 1. Choose a log stream to view\. The streams are identified by the cluster name and container instance ID that sent the logs\.  
 ![\[CloudWatch console metrics view\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/cw_log_stream.png)
@@ -249,7 +249,7 @@ When you launch an Amazon ECS container instance in Amazon EC2, you have the opt
 The example user data block below performs the following tasks:
 + Installs the `awslogs` package, which contains the CloudWatch Logs agent
 + Installs the jq JSON query utility
-+ Writes the configuration file for the CloudWatch Logs agent and configures the region to send data to \(the region that the container instance is located\)
++ Writes the configuration file for the CloudWatch Logs agent and configures the Region to send data to \(the Region in which the container instance is located\)
 + Gets the cluster name and container instance ID after the Amazon ECS container agent starts and then writes those values to the CloudWatch Logs agent configuration file log streams
 + Starts the CloudWatch Logs agent
 + Configures the CloudWatch Logs agent to start at every system boot

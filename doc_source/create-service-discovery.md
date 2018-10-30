@@ -14,6 +14,7 @@ Fargate tasks are only supported in the following regions:
 | US East \(Ohio\) | us\-east\-2 | 
 | US West \(Oregon\) | us\-west\-2 | 
 | EU \(Ireland\) | eu\-west\-1 | 
+| EU \(London\) | eu\-west\-2 | 
 | EU \(Frankfurt\) | eu\-central\-1 | 
 | Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
 | Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
@@ -29,7 +30,7 @@ Fargate tasks are only supported in the following regions:
 
 [Step 4: Create a Service](#create-service-discovery-service)
 
-[Step 5: Verify the service discovery](#create-service-discovery-verify)
+[Step 5: Verify Service Discovery](#create-service-discovery-verify)
 
 [Step 6: Clean Up](#create-service-discovery-cleanup)
 
@@ -284,7 +285,7 @@ Output:
 }
 ```
 
-## Step 5: Verify the service discovery<a name="create-service-discovery-verify"></a>
+## Step 5: Verify Service Discovery<a name="create-service-discovery-verify"></a>
 
 You can verify that everything has been created properly by querying your DNS information\. After service discovery is configured, you can query it using either the Route 53 auto naming API actions or by using `dig` from within your VPC, as described below\.
 

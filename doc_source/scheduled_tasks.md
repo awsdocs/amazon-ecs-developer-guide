@@ -25,6 +25,8 @@ If you have tasks to run at set intervals in your cluster, such as a backup oper
    1. For **Target id**, enter a unique identifier for your target\. Up to 64 letters, numbers, periods, hyphens, and underscores are allowed\.
 
    1. For **Launch type**, choose whether your service should run tasks on Fargate infrastructure, or Amazon EC2 container instances that you maintain\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
+**Important**  
+This feature is not yet available for Fargate tasks in eu\-west\-2 \(London\)\.
 
    1. For **Task definition**, choose the family and revision \(family:revision\) of the task definition to run for this target\.
 
@@ -38,7 +40,7 @@ Platform versions are only applicable to tasks that use the Fargate launch type\
 
    1. If your scheduled task's task definition uses the `awsvpc` network mode, you must configure a VPC, subnet, and security group settings for your scheduled task\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\. 
 
-      1. For **Cluster VPC**, if you selected the EC2 launch type, choose the VPC in which your container instances reside\. If you selected the Fargate launch type, select the VPC that the Fargate tasks should use\. Ensure that the VPC you choose was not configured to require dedicated hardware tenancy as that is not supported by Fargate tasks\.
+      1. For **Cluster VPC**, if you selected the EC2 launch type, choose the VPC in which your container instances reside\. If you selected the Fargate launch type, select the VPC that the Fargate tasks should use\. Ensure that the VPC you choose is not configured to require dedicated hardware tenancy as that is not supported by Fargate tasks\.
 
       1. For **Subnets**, choose the available subnets for your scheduled task placement\.
 **Important**  
@@ -46,11 +48,11 @@ Only private subnets are supported for the `awsvpc` network mode\. Because tasks
 
       1. For **Security groups**, a security group has been created for your scheduled tasks, which allows HTTP traffic from the internet \(`0.0.0.0/0`\)\. To edit the name or the rules of this security group, or to choose an existing security group, choose **Edit** and then modify your security group settings\.
 
-      1. For **Auto\-assign Public IP**, choose whether to have your tasks receive a public IP address\. If you are using Fargate tasks, a public IP address needs to be assigned to the task's elastic network interface, with a route to the internet, or a NAT gateway that can route requests to the internet, in order for the task to pull container images\.
+      1. For **Auto\-assign Public IP**, choose whether to have your tasks receive a public IP address\. If you are using Fargate tasks, a public IP address must be assigned to the task's elastic network interface, with a route to the internet, or a NAT gateway that can route requests to the internet\. This allows the task to pull container images\.
 
    1. For **CloudWatch Events IAM role for this target**, choose an existing CloudWatch Events service role \(`ecsEventsRole`\) that you may have already created\. Or, choose **Create new role** to create the required IAM role that allows CloudWatch Events to make calls to Amazon ECS to run tasks on your behalf\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 **Important**  
-If your scheduled tasks require the use of the task execution role, or if they use a task role override, then you must add `iam:PassRole` permissions for your task execution role and/or task role override to the CloudWatch IAM role\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
+If your scheduled tasks require the use of the task execution role, or if they use a task role override, then you must add `iam:PassRole` permissions for your task execution role or task role override to the CloudWatch IAM role\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 
    1. \(Optional\) In the **Container overrides** section, you can expand individual containers and override the command and/or environment variables for that container that are defined in the task definition\.
 

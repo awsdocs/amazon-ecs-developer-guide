@@ -1,6 +1,6 @@
 # CloudWatch Events IAM Role<a name="CWE_IAM_role"></a>
 
-Before you can use Amazon ECS scheduled tasks with CloudWatch Events rules and targets, the CloudWatch Events service needs permission to run Amazon ECS tasks on your behalf\. These permissions are provided by the CloudWatch Events IAM role \(`ecsEventsRole`\)\.
+Before you can use Amazon ECS scheduled tasks with CloudWatch Events rules and targets, the CloudWatch Events service needs permissions to run Amazon ECS tasks on your behalf\. These permissions are provided by the CloudWatch Events IAM role \(`ecsEventsRole`\)\.
 
 The CloudWatch Events role is automatically created for you in the AWS Management Console when you configure a scheduled task\. For more information, see [Scheduled Tasks \(`cron`\)](scheduled_tasks.md)\.
 
@@ -23,7 +23,7 @@ The `AmazonEC2ContainerServiceEventsRole` policy is shown below\.
 }
 ```
 
-If your scheduled tasks require the use of the task execution role or a task role override, then you must add `iam:PassRole` permissions for each task execution role or task role override to the CloudWatch IAM role\. For more information about task execution role, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+If your scheduled tasks require the use of the task execution role or a task role override, then you must add `iam:PassRole` permissions for each task execution role or task role override to the CloudWatch IAM role\. For more information about the task execution role, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
 **Note**  
 Specify the full ARN of your task execution role or task role override\.
@@ -59,7 +59,7 @@ You can use the following procedure to check that your account already has the C
 
    1. Choose **Attach Policy**\.
 
-   1. For **Filter**, type `AmazonEC2ContainerServiceEventsRole` to narrow the available policies to attach\.
+   1. To narrow the available policies to attach, for **Filter**, type `AmazonEC2ContainerServiceEventsRole`\.
 
    1. Select the box to the left of the **AmazonEC2ContainerServiceEventsRole** policy and choose **Attach Policy**\.
 
@@ -91,7 +91,7 @@ You can use the following procedure to check that your account already has the C
 
 1. In the **Select type of trusted entity** section, choose **Elastic Container Service**\. For **Select your use case** choose **Elastic Container Service Task**\. Choose **Next: Permissions**\.
 
-1. In the **Attach permissions policy** section, select the **AmazonEC2ContainerServiceEventsRole** policy and then choose **Next: Review**\.
+1. In the **Attach permissions policy** section, select the **AmazonEC2ContainerServiceEventsRole** policy and choose **Next: Review**\.
 
 1. For **Role name**, type `ecsEventsRole` to name the role, optionally enter a description, and then choose **Create role**\.
 

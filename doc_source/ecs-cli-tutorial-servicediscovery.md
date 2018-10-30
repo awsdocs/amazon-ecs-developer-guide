@@ -1,4 +1,4 @@
-# Tutorial: Creating an Amazon ECS Service That Uses Service Discovery Using the Amazon ECS CLI<a name="ECS_CLI_tutorial_servicediscovery"></a>
+# Tutorial: Creating an Amazon ECS Service That Uses Service Discovery Using the Amazon ECS CLI<a name="ecs-cli-tutorial-servicediscovery"></a>
 
 This tutorial shows a simple walkthrough of creating an Amazon ECS service that is configured to use service discovery\. Many of the service discovery configuration values can be specified with either the ECS parameters file or flags\. When flags are used, they take precedence over the ECS parameters file if both are present\. When using the Amazon ECS CLI, the compose project name is used as the name for your ECS service\.
 
@@ -28,7 +28,7 @@ The Amazon ECS CLI requires credentials in order to make API requests on your be
    ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET_ACCESS_KEY --profile-name ec2-tutorial
    ```
 **Note**  
-If this is the first time that you are configuring the Amazon ECS CLI, these configurations are marked as default\. If this is not your first time configuring the Amazon ECS CLI, see [ecs\-cli configure default](cmd-ecs-cli-configure-default.md) and [ecs\-cli configure profile default](cmd-ecs-cli-configure-profile-default.md) to set this as the default configuration and profile\.
+If this is the first time that you are configuring the Amazon ECS CLI, these configurations are marked as default\. If this is not your first time configuring the Amazon ECS CLI, see the [Amazon ECS Command Line Reference](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_reference.html) in the *Amazon Elastic Container Service Developer Guide* to set this as the default configuration and profile\.
 
 ## Create an Amazon ECS Service Configured to Use Service Discovery<a name="ECS_CLI_tutorial_servicediscovery_create"></a>
 

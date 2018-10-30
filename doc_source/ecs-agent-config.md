@@ -50,7 +50,7 @@ Required for private registry authentication\. If `ECS_ENGINE_AUTH_TYPE=dockercf
 Example values: `us-east-1`  
 Default value on Linux: Taken from EC2 instance metadata\.  
 Default value on Windows: Taken from EC2 instance metadata\.  
-The region to be used in API requests as well as to infer the correct back\-end host\.
+The region to be used in API requests as well as to infer the correct backend host\.
 
 `AWS_ACCESS_KEY_ID`  
 Example values: `AKIAIOSFODNN7EXAMPLE`  
@@ -232,7 +232,7 @@ Default value on Windows: Null
 A list of custom attributes, in JSON form, to apply to your container instances\. Using this attribute at instance registration adds the custom attributes, allowing you to skip the manual method of adding custom attributes via the AWS Management Console\.  
 Attributes added do not apply to container instances that are already registered\. To add custom attributes to already registered container instances, see [Adding an Attribute](task-placement-constraints.md#add-attribute)\.
 For information about custom attributes to use, see [Attributes](task-placement-constraints.md#attributes)\.  
-An invalid JSON value for this variable causes the agent to exit with a code of `5`\. A message appears in the agent logs\. If the JSON value is valid but there is an issue detected when validating the attribute \(for example if the value is too long or contains invalid characters\), then the container instance registration happens but the agent exits with a code of `5` and a message is written to the agent logs\. For information about how to locate the agent logs, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\.
+An invalid JSON value for this variable causes the agent to exit with a code of `5`\. A message appears in the agent logs\. The JSON value may be valid but there is an issue detected when validating the attribute \(for example if the value is too long or contains invalid characters\)\. In that case, the container instance registration happens but the agent exits with a code of `5` and a message is written to the agent logs\. For information about how to locate the agent logs, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\.
 
 `ECS_ENABLE_TASK_ENI`  
 Example values: `true` \| `false`  
@@ -298,25 +298,23 @@ Comma\-separated integer values for steady state and burst throttle limits for t
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-When a `dockerVolumeConfiguration` is specified in a task definition and the `autoprovision` flag is used, the Amazon ECS container agent will compare the details of the Docker volume with the details of existing Docker volumes\. When `ECS_SHARED_VOLUME_MATCH_FULL_CONFIG` is `true`, the container agent will compare the full configuration of the volume \(`name`, `driverOpts`, and `labels`\) to verify the volumes are identical\. When `false`, the container agent will use Docker's default behavior which verifies the volume `name` only\. If a volume is shared across container instances, this should be set to `false`\. For more information, see [Docker Volumes](docker-volumes.md)\.
+When `dockerVolumeConfiguration` is specified in a task definition and the `autoprovision` flag is used, the Amazon ECS container agent compares the details of the Docker volume with the details of existing Docker volumes\. When `ECS_SHARED_VOLUME_MATCH_FULL_CONFIG` is `true`, the container agent compares the full configuration of the volume \(`name`, `driverOpts`, and `labels`\) to verify that the volumes are identical\. When it is `false`, the container agent uses Docker's default behavior, which verifies the volume `name` only\. If a volume is shared across container instances, this should be set to `false`\. For more information, see [Docker Volumes](docker-volumes.md)\.
 
 ## Storing Container Instance Configuration in Amazon S3<a name="ecs-config-s3"></a>
 
-Amazon ECS container agent configuration is controlled with the environment variables described above\. Linux variants of the Amazon ECS\-optimized AMI look for these variables in `/etc/ecs/ecs.config` when the container agent starts and configures the agent accordingly\. Certain innocuous environment variables, such as `ECS_CLUSTER`, can be passed to the container instance at launch time through Amazon EC2 user data and written to this file without consequence\. However, other sensitive information, such as your AWS credentials or the `ECS_ENGINE_AUTH_DATA` variable, should never be passed to an instance in user data or written to `/etc/ecs/ecs.config` in a way that they would show up in a `.bash_history` file\.
+Amazon ECS container agent configuration is controlled with the environment variables described above\. Linux variants of the Amazon ECS\-optimized AMI look for these variables in `/etc/ecs/ecs.config` when the container agent starts and configures the agent accordingly\. Certain innocuous environment variables, such as `ECS_CLUSTER`, can be passed to the container instance at launch through Amazon EC2 user data and written to this file without consequence\. However, other sensitive information, such as your AWS credentials or the `ECS_ENGINE_AUTH_DATA` variable, should never be passed to an instance in user data or written to `/etc/ecs/ecs.config` in a way that they would show up in a `.bash_history` file\.
 
-Storing configuration information in a private bucket in Amazon S3 and granting read\-only access to your container instance IAM role is a secure and convenient way to allow container instance configuration at launch time\. You can store a copy of your `ecs.config` file in a private bucket, and then use Amazon EC2 user data to install the AWS CLI and copy your configuration information to `/etc/ecs/ecs.config` when the instance launches\.
+Storing configuration information in a private bucket in Amazon S3 and granting read\-only access to your container instance IAM role is a secure and convenient way to allow container instance configuration at launch\. You can store a copy of your `ecs.config` file in a private bucket, and then use Amazon EC2 user data to install the AWS CLI and copy your configuration information to `/etc/ecs/ecs.config` when the instance launches\.
 
 **To allow Amazon S3 read\-only access for your container instance role**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles**\. 
-
-1. Choose the IAM role to use for your container instances \(this role is likely titled `ecsInstanceRole`\)\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+1. In the navigation pane, choose **Roles** and select the IAM role to use for your container instances \(this role is likely titled `ecsInstanceRole`\)\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\. 
 
 1. Under **Managed Policies**, choose **Attach Policy**\.
 
-1. On the **Attach Policy** page, for **Filter**, type `S3` to narrow the policy results\.
+1. To narrow the policy results, on the **Attach Policy** page, for **Filter**, type `S3`\.
 
 1. Select the box to the left of the **AmazonS3ReadOnlyAccess** policy and choose **Attach Policy**\.
 
@@ -335,7 +333,7 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
 
 **To load an `ecs.config` file from Amazon S3 at launch**
 
-1. Complete the above procedures in this section to allow read\-only Amazon S3 access to your container instances and store an `ecs.config` file in a private S3 bucket\.
+1. Complete the earlier procedures in this section to allow read\-only Amazon S3 access to your container instances and store an `ecs.config` file in a private S3 bucket\.
 
 1. Launch new container instances by following the steps in [Launching an Amazon ECS Container Instance](launch_container_instance.md)\. In [Step 7](launch_container_instance.md#instance-launch-user-data-step), use the following example script that installs the AWS CLI and copies your configuration file to `/etc/ecs/ecs.config`\.
 

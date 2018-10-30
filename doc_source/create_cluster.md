@@ -10,7 +10,7 @@ Do not attempt to modify the underlying resources directly after they are create
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. From the navigation bar, select the region to use\.
+1. From the navigation bar, select the Region to use\.
 
 1. In the navigation pane, choose **Clusters**\.
 
@@ -41,7 +41,7 @@ If you chose the **EC2 Linux \+ Networking** or **EC2 Windows \+ Networking** te
 
 1. For **Cluster name**, enter a name for your cluster\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
-1. \(Optional\) If you wish to create a cluster with no resources, choose **Create an empty cluster**, **Create**\.
+1. \(Optional\) To create a cluster with no resources, choose **Create an empty cluster**, **Create**\.
 
 1. For **Provisioning model**, choose one of the following:
    + **On\-Demand Instance**–With On\-Demand Instances, you pay for compute capacity by the hour with no long\-term commitments or upfront payments\.
@@ -53,7 +53,7 @@ Spot Instances are subject to possible interruptions\. We recommend that you avo
 
    1. For **Spot Instance allocation strategy**, choose the strategy that meets your needs\. For more information, see [Spot Fleet Allocation Strategy](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide//spot-fleet.html#spot-fleet-allocation-strategy)\.
 
-   1. For **Maximum bid price \(per instance/hour\)**, specify a bid price\. Your Spot Instances are not launched if your bid price is lower than the Spot price for the instance types that you selected\.
+   1. For **Maximum bid price \(per instance/hour\)**, specify a bid price\. If your bid price is lower than the Spot price for the instance types that you selected, your Spot Instances are not launched\.
 
 1. For **EC2 instance types**, choose the EC2 instance type for your container instances\. The instance type that you select determines the resources available for your tasks\.
 
@@ -79,6 +79,6 @@ You can also choose to create a new security group and then modify the rules aft
 **Important**  
 If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent does not connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
-   1. If you chose the Spot Instance type earlier, the **Spot Fleet Role IAM role** section indicates that an IAM role `ecsSpotFleetRole` will be created\.
+   1. If you chose the Spot Instance type earlier, the **Spot Fleet Role IAM role** section indicates that an IAM role `ecsSpotFleetRole` is created\.
 
    1. Choose **Create**\.

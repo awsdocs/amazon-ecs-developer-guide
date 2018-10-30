@@ -8,7 +8,7 @@ If you do not have a running cluster to capture events from, follow the steps in
 
 ## Step 1: Create the Lambda Function<a name="cwet_step_2"></a>
 
- In this procedure, you will create a simple Lambda function to serve as a target for Amazon ECS event stream messages\. 
+In this procedure, you create a simple Lambda function to serve as a target for Amazon ECS event stream messages\. 
 
 1. Open the AWS Lambda console at [https://console\.aws\.amazon\.com/lambda/](https://console.aws.amazon.com/lambda/)\.
 
@@ -16,7 +16,7 @@ If you do not have a running cluster to capture events from, follow the steps in
 
 1. On the **Author from scratch** screen, do the following:
 
-   1. choose a **Name** for the function\.
+   1. For **Name**, enter a value\. 
 
    1. For **Runtime**, choose **Python 2\.7**\.
 
@@ -39,7 +39,7 @@ If you do not have a running cluster to capture events from, follow the steps in
        print(json.dumps(event))
    ```
 
-   This is a simple Python 2\.7 function that prints the event sent by Amazon ECS\. If everything is configured correctly, at the end of this tutorial, you see the event details appear in the CloudWatch Logs log stream associated with this Lambda function\.
+   This is a simple Python 2\.7 function that prints the event sent by Amazon ECS\. If everything is configured correctly, at the end of this tutorial, you see that the event details appear in the CloudWatch Logs log stream associated with this Lambda function\.
 
 1. In the **Function code** section, edit the value of **Handler** to be **eventstream\-handler\.lambda\_handler**\.
 

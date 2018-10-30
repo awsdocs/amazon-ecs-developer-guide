@@ -7,10 +7,10 @@ The following example user data scripts configure an Amazon ECS container instan
 This example user data script configures an instance launched from the Amazon ECS\-optimized Amazon Linux AMI to use an existing Amazon EFS file system\. For more information, see [Tutorial: Using Amazon EFS File Systems with Amazon ECS](using_efs.md)
 
 This script does the following:
-+ Install the `nfs-utils` package, which installs an NFS client
-+ Create a mount directory for the NFS file system at `/efs`
-+ Create a mount entry in the `/etc/fstab` file for the file system and then mount the file system
-+ Write the cluster name, *default*, to the Amazon ECS agent configuration file
++ Install the `nfs-utils` package, which installs an NFS client\.
++ Create a mount directory for the NFS file system at `/efs`\.
++ Create a mount entry in the `/etc/fstab` file for the file system and then mount the file system\.
++ Write the cluster name, *default*, to the Amazon ECS agent configuration file\.
 
 You can use this script for your own container instances, provided that they are launched from an Amazon ECS\-optimized Amazon Linux AMI\. Be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name, if you are not using the `default` cluster\. For more information about launching container instances, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
 
@@ -45,12 +45,12 @@ echo "ECS_CLUSTER=default" >> /etc/ecs/ecs.config
 ## Ubuntu Container Instance with `systemd`<a name="ubuntu-systemd-userdata"></a>
 
 This example user data script configures an Ubuntu 16\.04 instance to:
-+ Install Docker
-+ Create the required iptables rules for IAM roles for tasks
-+ Create the required directories for the Amazon ECS container agent
-+ Write the Amazon ECS container agent configuration file
-+ Write the systemd unit file to monitor the agent
-+ Enable and start the systemd unit
++ Install Docker\.
++ Create the required iptables rules for IAM roles for tasks\.
++ Create the required directories for the Amazon ECS container agent\.
++ Write the Amazon ECS container agent configuration file\.
++ Write the systemd unit file to monitor the agent\.
++ Enable and start the systemd unit\.
 
 You can use this script for your own container instances, provided that they are launched from an Ubuntu 16\.04 AMI\. Be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name, if you are not using the `default` cluster\. For more information about launching container instances, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
 
@@ -114,17 +114,17 @@ systemctl start docker-container@ecs-agent.service
 ## CentOS Container Instance with `systemd` and `SELinux`<a name="centos-systemd-userdata"></a>
 
 This example user data script configures a CentOS 7 instance with `SELinux` enabled to:
-+ Install Docker
-+ Create the required iptables rules for IAM roles for tasks
-+ Create the required directories for the Amazon ECS container agent
-+ Write the Amazon ECS container agent configuration file
-+ Write the systemd unit file to monitor the agent
-+ Enable and start the systemd unit
++ Install Docker\.
++ Create the required iptables rules for IAM roles for tasks\.
++ Create the required directories for the Amazon ECS container agent\.
++ Write the Amazon ECS container agent configuration file\.
++ Write the systemd unit file to monitor the agent\.
++ Enable and start the systemd unit\.
 
 **Note**  
 The docker run command in the systemd unit file below contains the required modifications for `SELinux`, including the `--privileged` flag, and the `:Z` suffixes to the volume mounts\.
 
-You can use this script for your own container instances \(provided that they are launched from an CentOS 7 AMI\), but be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name \(if you are not using the `default` cluster\)\. For more information about launching container instances, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
+You can use this script for your own container instances \(provided that they are launched from an CentOS 7 AMI\), Be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name \(if you are not using the `default` cluster\)\. For more information about launching container instances, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
 
 ```
 #!/bin/bash
@@ -187,9 +187,9 @@ systemctl start docker-container@ecs-agent.service
 ## Default Windows User Data<a name="windows-default-userdata"></a>
 
 This example user data script shows the default user data that your Windows container instances receive if you use the [cluster creation wizard](create_cluster.md)\. The below script does the following:
-+ Sets the cluster name to `windows`
-+ Enables IAM roles for tasks
-+ Sets `json-file` and `awslogs` as the available logging drivers
++ Sets the cluster name to `windows`\.
++ Enables IAM roles for tasks\.
++ Sets `json-file` and `awslogs` as the available logging drivers\.
 
 You can use this script for your own container instances \(provided that they are launched from the Amazon ECS\-optimized Windows AMI\), but be sure to replace the `-Cluster windows` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
 
@@ -206,7 +206,7 @@ This example user data script installs the Amazon ECS container agent on an inst
 **Note**  
 This script is shared for example purposes\. It is much easier to get started with Windows containers by using the Amazon ECS\-optimized Windows AMI\. For more information, see [Creating a Cluster](create_cluster.md)\.
 
-You can use this script for your own container instances \(provided that they are launched with a version of the **Windows\_Server\-2016\-English\-Full\-Containers** AMI\), but be sure to replace the `windows` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
+You can use this script for your own container instances \(provided that they are launched with a version of the **Windows\_Server\-2016\-English\-Full\-Containers** AMI\)\. Be sure to replace the `windows` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
 
 ```
 <powershell>

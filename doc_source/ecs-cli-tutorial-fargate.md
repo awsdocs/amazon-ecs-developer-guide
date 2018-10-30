@@ -1,4 +1,4 @@
-# Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI<a name="ECS_CLI_tutorial_fargate"></a>
+# Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI<a name="ecs-cli-tutorial-fargate"></a>
 
 This tutorial shows you how to set up a cluster and deploy a task using the Fargate launch type\. 
 
@@ -63,7 +63,7 @@ The Amazon ECS CLI requires credentials in order to make API requests on your be
    ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET_ACCESS_KEY --profile-name tutorial
    ```
 **Note**  
-If this is the first time that you are configuring the Amazon ECS CLI, these configurations are marked as default\. If this is not your first time configuring the Amazon ECS CLI, see [ecs\-cli configure default](cmd-ecs-cli-configure-default.md) and [ecs\-cli configure profile default](cmd-ecs-cli-configure-profile-default.md) to set this as the default configuration and profile\.
+If this is the first time that you are configuring the Amazon ECS CLI, these configurations are marked as default\. If this is not your first time configuring the Amazon ECS CLI, see the [Amazon ECS Command Line Reference](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_reference.html) in the *Amazon Elastic Container Service Developer Guide* to set this as the default configuration and profile\.
 
 ## Step 3: Create a Cluster and Security Group<a name="ECS_CLI_tutorial_fargate_cluster"></a>
 

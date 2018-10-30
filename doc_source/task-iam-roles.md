@@ -141,33 +141,27 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
    }
    ```
 
-1. Choose **Review policy**\.
-
-1. In the **Review policy** section, for **Name** type your own unique name, such as `AmazonECSTaskS3BucketPolicy`\.
-
-1. Choose **Create policy** to finish\.
-
-------
+1. Choose **Create Policy**\. 
 
 **To create an IAM role for your tasks**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles** and then choose **Create role**\. 
+1. In the navigation pane, choose **Roles**, **Create New Role**\. 
 
-1. In the **Choose the service that will use this role** section, choose **Elastic Container Service**\.
-
-1. For **Select your use case**, choose **Elastic Container Service Task**, **Next: Permissions**\.
+1. In the **Select Role Type** section, for the **Amazon Elastic Container Service Task Role ** service role, choose **Select**\.
 **Note**  
 To view the trust relationship for this role, see [**Amazon ECS Task Role**](task_IAM_role.md)\.
 
-1. In the **Attach permissions policy** section, select the policy you want to use for your tasks \(in this example `AmazonECSTaskS3BucketPolicy`, and then choose **Next: Review**\.
+1. In the **Attach Policy** section, select the policy to use for your tasks \(in this example `AmazonECSTaskS3BucketPolicy`, and then choose **Next Step**\.
 
-1. In the **Role name** field, enter a name for your role\. For this example, type `AmazonECSTaskS3BucketRole` to name the role, and then choose **Create role** to finish\.
+1. For **Role Name**, enter a name for your role\. For this example, type `AmazonECSTaskS3BucketRole` to name the role, and then choose **Create Role** to finish\.
+
+------
 
 ## Using a Supported AWS SDK<a name="task-iam-roles-minimum-sdk"></a>
 
-Support for IAM roles for tasks was added to the AWS SDKs on July 13th, 2016, so the containers in your tasks must use an AWS SDK version that was created on or after that date\. AWS SDKs that are included in Linux distribution package managers may not be new enough to support this feature\.
+Support for IAM roles for tasks was added to the AWS SDKs on July 13th, 2016\. The containers in your tasks must use an AWS SDK version that was created on or after that date\. AWS SDKs that are included in Linux distribution package managers may not be new enough to support this feature\.
 
 To ensure that you are using a supported SDK, follow the installation instructions for your preferred SDK at [Tools for Amazon Web Services](https://aws.amazon.com/tools/) when you are building your containers to get the latest version\.
 

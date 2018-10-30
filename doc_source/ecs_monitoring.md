@@ -10,7 +10,7 @@ Monitoring is an important part of maintaining the reliability, availability, an
 + Who will perform the monitoring tasks?
 + Who should be notified when something goes wrong?
 
-The metrics made available will depend on the launch type of the tasks and services in your clusters\. If you are using the Fargate launch type for your services then CPU and memory utilization metrics are provided to assist in the monitoring of your services\. For the Amazon EC2 launch type you will own and need to monitor the EC2 instances that make your underlying infrastructure so additional CPU and memory reservation and utilization metrics are made available at the cluster, service, and task level\.
+The metrics made available depend on the launch type of the tasks and services in your clusters\. If you are using the Fargate launch type for your services, then CPU and memory utilization metrics are provided to assist in the monitoring of your services\. For the Amazon EC2 launch type, you own and need to monitor the EC2 instances that make your underlying infrastructure\. Additional CPU and memory reservation and utilization metrics are made available at the cluster, service, and task level\.
 
 The next step is to establish a baseline for normal Amazon ECS performance in your environment, by measuring performance at various times and under different load conditions\. As you monitor Amazon ECS, store historical monitoring data so that you can compare it with current performance data, identify normal performance patterns and performance anomalies, and devise methods to address issues\.
 

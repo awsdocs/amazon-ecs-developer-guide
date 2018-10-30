@@ -40,13 +40,13 @@ Service discovery consists of the following components:
 ## Service Discovery Considerations<a name="service-discovery-considerations"></a>
 
 The following should be considered when using service discovery:
-+ Service discovery is supported for Fargate tasks if using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
++ Service discovery is supported for Fargate tasks if you are using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
 + Public namespaces are supported but you must have an existing public hosted zone registered with Route 53 before creating your service discovery service\.
-+ The DNS records created for a service discovery service will always register with the private IP address for the task, rather than the public IP address, even when public namespaces are used\.
++ The DNS records created for a service discovery service always register with the private IP address for the task, rather than the public IP address, even when public namespaces are used\.
 + Service discovery requires that tasks specify either the `awsvpc`, `bridge`, or `host` network mode \(`none` is not supported\)\.
 + If the task definition your service task specifies uses the `awsvpc` network mode, you can create any combination of A or SRV records for each service task\. If you use SRV records, a port is required\.
-+ If the task definition that your service task specifies uses the `bridge` or `host` network mode, a SRV record is the only supported DNS record type\. Create a SRV record for each service task\. The SRV record must specify a container name and container port combination from the task definition\.
-+ DNS records for a service discovery service can be queried within your VPC\. They use the following format: `<service discovery service name>.<service discovery namespace>`\. For more information, see [Step 5: Verify the service discovery](create-service-discovery.md#create-service-discovery-verify)\.
++ If the task definition that your service task specifies uses the `bridge` or `host` network mode, an SRV record is the only supported DNS record type\. Create an SRV record for each service task\. The SRV record must specify a container name and container port combination from the task definition\.
++ DNS records for a service discovery service can be queried within your VPC\. They use the following format: `<service discovery service name>.<service discovery namespace>`\. For more information, see [Step 5: Verify Service Discovery](create-service-discovery.md#create-service-discovery-verify)\.
 + When doing a DNS query on the service name, A records return a set of IP addresses that correspond to your tasks\. SRV records return a set of IP addresses and ports per task\.
 + You can configure service discovery for an ECS service that is behind a load balancer, but service discovery traffic is always routed to the task and not the load balancer\.
 + Service discovery does not support the use of Classic Load Balancers\.

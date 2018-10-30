@@ -111,7 +111,7 @@ Before you create the load balancer, review the settings that you selected\. Aft
 
 **To finish creating your load balancer**
 
-1. On the **Review** page, check your settings\. To make changes to the initial settings, choose the corresponding edit link\.
+1. On the **Review** page, check your settings\. To change the initial settings, choose the corresponding edit link\.
 
 1. Choose **Create** to create your load balancer\.
 

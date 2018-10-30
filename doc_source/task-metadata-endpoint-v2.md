@@ -12,12 +12,12 @@ The task metadata version 2 feature is enabled by default for the following:
 
 You can add support for this feature on older container instances by updating the agent to the latest version\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
-## Task Metadata Endpoint Paths<a name="task-metadata-endpoint-paths"></a>
+## Task Metadata Endpoint Paths<a name="task-metadata-endpoint-v2-paths"></a>
 
 The following API endpoints are available to containers:
 
 `169.254.170.2/v2/metadata`  
-This endpoint returns metadata JSON for the task, including a list of the container IDs and names for all of the containers associated with the task\. For more information about the response for this endpoint, see [Task Metadata JSON Response](task-metadata-endpoint-v3.md#task-metadata-response)\.
+This endpoint returns metadata JSON for the task, including a list of the container IDs and names for all of the containers associated with the task\. For more information about the response for this endpoint, see [Task Metadata JSON Response](#task-metadata-endpoint-v2-response)\.
 
 `169.254.170.2/v2/metadata/<container-id>`  
 This endpoint returns metadata JSON for the specified Docker container ID\.
@@ -27,6 +27,8 @@ This endpoint returns Docker stats JSON for all of the containers associated wit
 
 `169.254.170.2/v2/stats/<container-id>`  
 This endpoint returns Docker stats JSON for the specified Docker container ID\. For more information about each of the returned stats, see [ContainerStats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) in the Docker API documentation\. 
+
+## Task Metadata JSON Response<a name="task-metadata-endpoint-v2-response"></a>
 
 The following information is returned from the task metadata endpoint \(`169.254.170.2/v2/metadata`\) JSON response\.
 
@@ -94,6 +96,8 @@ The time stamp for when the last container image pull finished\.
 
 `ExecutionStoppedAt`  
 The time stamp for when the tasks `DesiredStatus` moved to `STOPPED`\. This occurs when an essential container moves to `STOPPED`\.
+
+## Example Task Metadata Response<a name="task-metadata-endpoint-v2-example-task-metadata-response"></a>
 
 The following JSON response is for a single\-container task\.
 

@@ -55,13 +55,13 @@ You can launch a Windows container instance using the AWS Management Console, as
 
 1. Choose **Next: Configure Instance Details**\.
 
-1. On the **Configure Instance Details** page, set the **Auto\-assign Public IP** check box depending on whether to make your instance accessible from the public Internet\. If your instance should be accessible from the Internet, verify that the **Auto\-assign Public IP** field is set to **Enable**\. If your instance should not be accessible from the Internet, choose **Disable**\.
+1. On the **Configure Instance Details** page, set the **Auto\-assign Public IP** check box depending on whether to make your instance accessible from the public internet\. If your instance should be accessible from the internet, verify that the **Auto\-assign Public IP** field is set to **Enable**\. If your instance should not be accessible from the Internet, choose **Disable**\.
 **Note**  
 Container instances need external network access to communicate with the Amazon ECS service endpoint, so if your container instances do not have public IP addresses, then they must use network address translation \(NAT\) to provide this access\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide* and [HTTP Proxy Configuration](http_proxy_config.md) in this guide\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
 
 1. On the **Configure Instance Details** page, select the `ecsInstanceRole` **IAM role** value that you created for your container instances in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 **Important**  
-If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent will not connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent does not connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
 1. <a name="windows-instance-launch-user-data-step"></a>Expand the **Advanced Details** section and paste the provided user data PowerShell script into the **User data** field\. By default, this script registers your container instance into the `windows` cluster that you created earlier\. To launch into another cluster instead of `windows`, replace the red text in the script below with the name of your cluster\.
 **Note**  

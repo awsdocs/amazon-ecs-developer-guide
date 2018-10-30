@@ -4,6 +4,51 @@ Below are some task definition examples that you can use to start creating your 
 
 **Topics**
 
+**Example Example: Webserver**  <a name="example_task_definition-webserver"></a>
+The following is an example task definition using the Fargate launch type that sets up a web server:  
+
+```
+{
+   "containerDefinitions": [ 
+      { 
+         "command": [
+            "/bin/sh -c \"echo '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p> </div></body></html>' >  /usr/local/apache2/htdocs/index.html && httpd-foreground\""
+         ],
+         "entryPoint": [
+            "sh",
+            "-c"
+         ],
+         "essential": true,
+         "image": "httpd:2.4",
+         "logConfiguration": { 
+            "logDriver": "awslogs",
+            "options": { 
+               "awslogs-group" : "/ecs/fargate-task-definition",
+               "awslogs-region": "us-east-1",
+               "awslogs-stream-prefix": "ecs"
+            }
+         },
+         "name": "sample-fargate-app",
+         "portMappings": [ 
+            { 
+               "containerPort": 80,
+               "hostPort": 80,
+               "protocol": "tcp"
+            }
+         ]
+      }
+   ],
+   "cpu": "256",
+   "executionRoleArn": "arn:aws:iam::012345678910:role/ecsTaskExecutionRole",
+   "family": "fargate-task-definition",
+   "memory": "512",
+   "networkMode": "awsvpc",
+   "requiresCompatibilities": [ 
+       "FARGATE" 
+    ]
+}
+```
+
 **Example Example: WordPress and MySQL**  <a name="example_task_definition-wordpress"></a>
 The following example specifies a WordPress container and a MySQL container that are linked together\. This WordPress container exposes the container port 80 on the host port 80\. The security group on the container instance would need to open port 80 in order for this WordPress installation to be accessible from a web browser\.  
 For more information about the WordPress container, go to the official WordPress Docker Hub repository at [https://registry\.hub\.docker\.com/\_/wordpress/](https://registry.hub.docker.com/_/wordpress/)\. For more information about the MySQL container, go to the official MySQL Docker Hub repository at [https://registry\.hub\.docker\.com/\_/mysql/](https://registry.hub.docker.com/_/mysql/)\.  
@@ -49,7 +94,7 @@ For more information about the WordPress container, go to the official WordPress
 If you use this task definition with a load balancer, you need to complete the WordPress setup installation through the web interface on the container instance immediately after the container starts\. The load balancer health check ping expects a `200` response from the server, but WordPress returns a `301` until the installation is completed\. If the load balancer health check fails, the load balancer deregisters the instance\.
 
 **Example Example: `awslogs` Log Driver**  <a name="example_task_definition-awslogs"></a>
-The following example demonstrates how to use the `awslogs` log driver in a task definition\. The `nginx` container sends its logs to the `ecs-log-streaming` log group in the `us-west-2` region\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.  
+The following example demonstrates how to use the `awslogs` log driver in a task definition that uses the Fargate launch type\. The `nginx` container sends its logs to the `ecs-log-streaming` log group in the `us-west-2` region\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.  
 
 ```
 {
@@ -70,11 +115,19 @@ The following example demonstrates how to use the `awslogs` log driver in a task
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "ecs-log-streaming",
-          "awslogs-region": "us-west-2"
+          "awslogs-region": "us-west-2",
+          "awslogs-stream-prefix": "fargate-task-1"
         }
       },
       "cpu": 0
     }
+  ],
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "memory": "2048",
+  "cpu": "1024",
+  "requiresCompatibilities": [
+    "FARGATE"
   ],
   "family": "example_task_1"
 }

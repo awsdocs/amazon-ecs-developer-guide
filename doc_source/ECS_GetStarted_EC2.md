@@ -73,7 +73,7 @@ A task definition is like a blueprint for your application\. Each time that you 
 
    The first\-run wizard comes preloaded with a task definition, and you can see the `simple-app` container defined in the console\. You can optionally rename the task definition or review and edit the resources used by the container \(such as CPU units and memory limits\)\. Choose the container name and editing the values shown \(CPU units are under the **Advanced options** menu\)\. Task definitions created in the first\-run wizard are limited to a single container for simplicity\. You can create multi\-container task definitions later in the Amazon ECS console\.
 
-   For more information on what each of these task definition parameters does, see [Task Definition Parameters](task_definition_parameters.md)\.
+   For more information about what each of these task definition parameters does, see [Task Definition Parameters](task_definition_parameters.md)\.
 **Note**  
 If you are using an Amazon ECR image in your container definition, be sure to use the full `registry/repository:tag` naming for your Amazon ECR images\. For example, `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app:latest`\.
 
@@ -85,33 +85,31 @@ In this section of the wizard, you select how you would like to configure the Am
 
 The first\-run wizard comes preloaded with a service definition, and you can see the `sample-app-service` service defined in the console\. You can optionally rename the service or review and edit the details by choosing **Edit** and doing the following:
 
-1. In the **Service name** field, select a name for your service\.
+1. For **Service name**, select a name for your service\.
 
-1. In the **Desired number of tasks** field, enter the number of tasks you would like to launch with your specified task definition\.
+1. For **Desired number of tasks**, enter the number of tasks to launch with your specified task definition\.
 
 1. \(Optional\) You can choose to use an Application Load Balancer with your service\. When a task is launched from a service that is configured to use a load balancer, the task is registered with the load balancer\. Traffic from the load balancer is distributed across the instances in the load balancer\. For more information, see [Introduction to Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)\.
 **Important**  
-Application Load Balancers do incur cost while they exist in your AWS resources\. For more information on Application Load Balancer pricing, see [Application Load Balancer Pricing](http://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/pricing/)\.
-
-   Complete the following steps to use a load balancer with your service\.
+Application Load Balancers do incur cost while they exist in your AWS resources\. For more information, see [Application Load Balancer Pricing](http://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/pricing/)\.
 
    1. Choose the **Application Load Balancer listener port**\. The default value here is set up for the sample application, but you can configure different listener options for the load balancer\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
 
    1. In the **Application Load Balancer target group name** field, specify a name for the target group\.
 
-   1. In the **Service IAM Role** section, choose either an existing Amazon ECS service \(`ecsServiceRole`\) role that you have already created, or click **Create new role** to create the required IAM role for your service\. For more information, see [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md)\.
+   1. In the **Service IAM Role** section, choose either an existing Amazon ECS service \(`ecsServiceRole`\) role that you have already created, or choose **Create new role** to create the required IAM role for your service\. For more information, see [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md)\.
 
-1. Review your service settings and click **Next step**\.
+1. Review your service settings and choose **Next step**\.
 
 ## Step 4: Configure the Cluster<a name="first-run-ec2-cluster"></a>
 
-In this section of the wizard, you name your cluster, and then Amazon ECS take cares of the networking and IAM configuration for you\.
+In this section of the wizard, you name your cluster\. Then, Amazon ECS take cares of the networking and IAM configuration for you\.
 
-1. In the **Cluster name** field, choose a name for your cluster\.
+1. For **Cluster name**, choose a name for your cluster\.
 
-1. In the **EC2 instance type** field, choose the instance type to use for your container instances\. Instance types with more CPU and memory resources can handle more tasks\. For more information about the different instance types, see [Amazon EC2 Instances](https://aws.amazon.com/ec2/instance-types/)\.
+1. For **EC2 instance type**, choose the instance type to use for your container instances\. Instance types with more CPU and memory resources can handle more tasks\. For more information about the different instance types, see [Amazon EC2 Instances](https://aws.amazon.com/ec2/instance-types/)\.
 
-1. In the **Number of instances** field, type the number of Amazon EC2 instances you want to launch into your cluster for tasks to be placed on\. The more instances you have in your cluster, the more tasks you can place on them\. Amazon EC2 instances incur costs while they exist in your AWS resources\. For more information, see [Amazon EC2 Pricing](http://aws.amazon.com/ec2/pricing/)\.
+1. For **Number of instances**, type the number of Amazon EC2 instances to launch into your cluster for tasksplacement\. The more instances you have in your cluster, the more tasks you can place on them\. Amazon EC2 instances incur costs while they exist in your AWS resources\. For more information, see [Amazon EC2 Pricing](http://aws.amazon.com/ec2/pricing/)\.
 **Note**  
 If you created a service with more than one desired task in it that exposes container ports on to container instance ports, such as the **Amazon ECS sample** application, you must specify at least that many instances here\.
 
@@ -133,11 +131,11 @@ If you created a service with more than one desired task in it that exposes cont
 
 If your service is a web\-based application, such as the **Amazon ECS sample** application, you can view its containers with a web browser\.
 
-1. On the **Service: *service\-name*** page, choose the **Tasks** tab\.
+1. On the **Service: *service\-name*** page, choose **Tasks**\.
 
 1. Choose a task from the list of tasks in your service\.
 
-1. In the **Network** section, choose the **ENI Id** for your task\. This takes you to the Amazon EC2 console where you can view the details of the network interface associated with your task, including the**IPv4 Public IP** address\.
+1. In the **Network** section, choose the **ENI Id** value for your task\. This takes you to the Amazon EC2 console where you can view the details of the network interface associated with your task, including the**IPv4 Public IP** address\.
 
 1. Enter the **IPv4 Public IP** address in your web browser and you should see a webpage that displays the **Amazon ECS sample** application\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ECS_Sample_Application.png)

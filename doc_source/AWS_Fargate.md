@@ -1,12 +1,12 @@
 # AWS Fargate on Amazon ECS<a name="AWS_Fargate"></a>
 
-AWS Fargate is a technology that you can use with Amazon ECS to run [containers](https://aws.amazon.com/what-are-containers) without having to manage servers or clusters of EC2 instances\. With AWS Fargate, you no longer have to provision, configure, and scale clusters of virtual machines to run containers\. This removes the need to choose server types, decide when to scale your clusters, or optimize cluster packing\.
+AWS Fargate is a technology that you can use with Amazon ECS to run [containers](https://aws.amazon.com/what-are-containers) without having to manage servers or clusters of Amazon EC2 instances\. With AWS Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers\. This removes the need to choose server types, decide when to scale your clusters, or optimize cluster packing\.
 
 When you run your tasks and services with the Fargate launch type, you package your application in containers, specify the CPU and memory requirements, define networking and IAM policies, and launch the application\.
 
 This topic describes the different components of Fargate tasks and services, and calls out special considerations for using Fargate with Amazon ECS\.
 
-AWS Fargate with Amazon ECS is currently only available in the following regions:
+AWS Fargate with Amazon ECS is currently only available in the following Regions:
 
 
 | Region Name | Region | 
@@ -15,6 +15,7 @@ AWS Fargate with Amazon ECS is currently only available in the following regions
 | US East \(Ohio\) | us\-east\-2 | 
 | US West \(Oregon\) | us\-west\-2 | 
 | EU \(Ireland\) | eu\-west\-1 | 
+| EU \(London\) | eu\-west\-2 | 
 | EU \(Frankfurt\) | eu\-central\-1 | 
 | Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
 | Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
@@ -23,7 +24,7 @@ AWS Fargate with Amazon ECS is currently only available in the following regions
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
 + [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)
 + [Tutorial: Creating a Cluster with a Fargate Task Using the AWS CLI](ECS_AWSCLI_Fargate.md)
-+ [Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI](ECS_CLI_tutorial_fargate.md)
++ [Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)
 
 ## Task Definitions<a name="fargate-task-defs"></a>
 
@@ -44,7 +45,7 @@ The following task definition parameters are not valid in Fargate tasks:
 To ensure that your task definition validates for use with the Fargate launch type, you can specify the following when you register the task definition: 
 + In the AWS Management Console, for the **Requires Compatibilities** field, specify `FARGATE`\.
 + In the AWS CLI, specify the `--requires-compatibilities` option\.
-+ In the API, specify the `requiresCompatibilities` flag\. 
++ In the Amazon ECS API, specify the `requiresCompatibilities` flag\. 
 
 ### Network Mode<a name="fargate-tasks-networkmode"></a>
 
@@ -83,11 +84,11 @@ For more information about using the `awslogs` log driver in task definitions to
 
 ### Amazon ECS Task Execution IAM Role<a name="fargate-tasks-iam"></a>
 
-There is an optional task execution IAM role that you can specify with Fargate to allow your Fargate tasks to make API calls to Amazon ECR\. The API calls pull container images as well as call CloudWatch to store container application logs\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+There is an optional task execution IAM role that you can specify with Fargate to allow your Fargate tasks to make API calls to Amazon ECR\. The API calls pull container images as well as calling CloudWatch to store container application logs\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
 ### Example Task Definition<a name="fargate-tasks-example"></a>
 
-The following is an example task definition using the Fargate launch type that sets up a web server:
+The following is an example task definition that sets up a web server using the Fargate launch type:
 
 ```
 {
@@ -135,7 +136,7 @@ The following is an example task definition using the Fargate launch type that s
 
 When provisioned, each Fargate task receives the following storage\. Task storage is ephemeral\. After a Fargate task stops, the storage is deleted\.
 + 10 GB of Docker layer storage
-+ An additional 4 GB for volume mounts\. This can be mounted and shared among containers using the `volumes`, `mountPoints` and `volumesFrom` parameters in the task definition\.
++ An additional 4 GB for volume mounts\. This can be mounted and shared among containers using the `volumes`, `mountPoints`, and `volumesFrom` parameters in the task definition\.
 **Note**  
 The `host` and `sourcePath` parameters are not supported\.
 
@@ -177,7 +178,7 @@ The following shows a snippet of a task definition where two containers are shar
 
 ## Tasks and Services<a name="fargate-tasks-services"></a>
 
-After you have your Fargate task definition prepared, there are some considerations to make when creating your service\.
+After you have your Fargate task definition prepared, there are some decisions to make when creating your service\.
 
 ### Task Networking<a name="fargate-tasks-services-networking"></a>
 
@@ -203,7 +204,7 @@ Services with tasks that use the `awsvpc` network mode \(for example, those with
 
 Fargate tasks can authenticate with private image registries, including Docker Hub, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\.
 
-To use private registry authentication, you create a secret with AWS Secrets Manager containing the credentials for your private registry\. Then, within your container definition you specify `repositoryCredentials` with the full ARN of the secret you created\. The following snippet of a task definition shows the required parameters:
+To use private registry authentication, you create a secret with AWS Secrets Manager containing the credentials for your private registry\. Then, within your container definition, you specify `repositoryCredentials` with the full ARN of the secret that you created\. The following snippet of a task definition shows the required parameters:
 
 ```
 "containerDefinitions": [
@@ -226,6 +227,6 @@ For more information about Amazon ECS clusters, including a walkthrough for crea
 
 ## Fargate Task Retirement<a name="fargate-task-retirement"></a>
 
-A Fargate task is scheduled to be retired when AWS detects the irreparable failure of the underlying hardware hosting the task or if a security issue needs to be patched\. Most security patches are handled transparently without requiring any action on your part or having to restart your tasks\. But for certain issues, it may be required that the task be restarted\. 
+A Fargate task is scheduled to be retired when AWS detects the irreparable failure of the underlying hardware hosting the task or if a security issue needs to be patched\. Most security patches are handled transparently without requiring any action on your part or having to restart your tasks\. But for certain issues, we may require that the task be restarted\. 
 
 When a task reaches its scheduled retirement date, it is stopped or terminated by AWS\. If the task is part of a service, then the task is automatically stopped and the service scheduler starts a new one to replace it\. If you are using standalone tasks, then you receive notification of the task retirement\. For more information, see [Task Retirement](task-retirement.md)\.

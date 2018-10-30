@@ -1,6 +1,6 @@
-# Tutorial: Creating a Cluster with a EC2 Task Using the AWS CLI<a name="ECS_AWSCLI_EC2"></a>
+# Tutorial: Creating a Cluster with an EC2 Task Using the AWS CLI<a name="ECS_AWSCLI_EC2"></a>
 
-The following steps will help you set up a cluster, register a task definition, run a task, and perform other common scenarios in Amazon ECS with the AWS CLI\. Ensure you are using the latest version of the AWS CLI\. For more information on how to upgrade to the latest version, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
+The following steps help you set up a cluster, register a task definition, run a task, and perform other common scenarios in Amazon ECS with the AWS CLI\. Ensure that you are using the latest version of the AWS CLI\. For more information on how to upgrade to the latest version, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 
 [Prerequisites](#AWSCLI_EC2_prereq)
 
@@ -24,7 +24,7 @@ The following steps will help you set up a cluster, register a task definition, 
 
 ## Prerequisites<a name="AWSCLI_EC2_prereq"></a>
 
-This tutorial assumes the following prerequisites have been completed:
+This tutorial assumes that the following prerequisites have been completed:
 + The latest version of the AWS CLI is installed and configured\. For more information about installing or upgrading your AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 + The steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard](IAMPolicyExamples.md#first-run-permissions) IAM policy example\.
@@ -35,7 +35,7 @@ This tutorial assumes the following prerequisites have been completed:
 By default, your account receives a `default` cluster when you launch your first container instance\.
 
 **Note**  
-The benefit of using the `default` cluster that is provided for you is that you don't have to specify the `--cluster cluster_name` option in the subsequent commands\. If you do create your own, non\-default, cluster you need to specify `--cluster cluster_name` for each command that you intend to use with that cluster\.
+The benefit of using the `default` cluster that is provided for you is that you don't have to specify the `--cluster cluster_name` option in the subsequent commands\. If you do create your own, non\-default, cluster, you must specify `--cluster cluster_name` for each command that you intend to use with that cluster\.
 
 Create your own cluster with a unique name with the following command:
 
@@ -249,7 +249,7 @@ Before you can run a task on your ECS cluster, you must register a task definiti
 }
 ```
 
-The above example JSON can be passed to the AWS CLI in two ways: you can save the task definition JSON as a file and pass it with the `--cli-input-json file://path_to_file.json` option, or you can escape the quotation marks in the JSON and pass the JSON container definitions on the command line as in the below example\. If you choose to pass the container definitions on the command line, your command additionally requires a `--family` parameter that is used to keep multiple versions of your task definition associated with each other\.
+The above example JSON can be passed to the AWS CLI in two ways: You can save the task definition JSON as a file and pass it with the `--cli-input-json file://path_to_file.json` option\. Or, you can escape the quotation marks in the JSON and pass the JSON container definitions on the command line as in the below example\. If you choose to pass the container definitions on the command line, your command additionally requires a `--family` parameter that is used to keep multiple versions of your task definition associated with each other\.
 
 To use a JSON file for container definitions:
 

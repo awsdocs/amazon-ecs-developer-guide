@@ -6,9 +6,9 @@ If you are troubleshooting a problem with a service, the first place you should 
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. On the **Clusters** page, choose the cluster in which your service resides\.
+1. On the **Clusters** page, select the cluster in which your service resides\.
 
-1. On the **Cluster : *clustername*** page, choose the service to inspect\.
+1. On the **Cluster : *clustername*** page, select the service to inspect\.
 
 1. On the **Service : *servicename*** page, choose **Events**\.  
 ![\[Service event messages\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/events.png)

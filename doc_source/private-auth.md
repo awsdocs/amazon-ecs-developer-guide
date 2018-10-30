@@ -6,10 +6,10 @@ For tasks using the EC2 launch type, this feature requires version 1\.19\.0 or l
 
 For tasks using the Fargate launch type, this feature requires platform version 1\.2\.0 or later\. For information, see [AWS Fargate Platform Versions](platform_versions.md)\.
 
-Within your container definition, specify `repositoryCredentials` with the full ARN of the secret that you created\. The secret you reference can be from a different region than the task using it, but must be from within the same account\.
+Within your container definition, specify `repositoryCredentials` with the full ARN of the secret that you created\. The secret you reference can be from a different Region than the task using it, but must be from within the same account\.
 
 **Note**  
-When using the Amazon ECS API, AWS CLI, or AWS SDK, if the secret exists in the same region as the task you are launching then you can use either the full ARN or name of the secret\. When using the AWS Management Console, the full ARN of the secret must be specified\.
+When using the Amazon ECS API, AWS CLI, or AWS SDK, if the secret exists in the same Region as the task you are launching then you can use either the full ARN or name of the secret\. When using the AWS Management Console, the full ARN of the secret must be specified\.
 
 The following is a snippet of a task definition showing the required parameters:
 
@@ -33,7 +33,7 @@ The Amazon ECS task execution role is required to use this feature\. This allows
 
 To provide access to the secrets that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
 + `secretsmanager:GetSecretValue`
-+ `kms:Decrypt`—Required only if your key uses a custom KMS key and not the default key\.
++ `kms:Decrypt`—Required only if your key uses a custom KMS key and not the default key\. The ARN for your custom key should be added as a resource\.
 
 An example inline policy adding the permissions is shown below\.
 
@@ -48,7 +48,8 @@ An example inline policy adding the permissions is shown below\.
         "secretsmanager:GetSecretValue"
       ],
       "Resource": [
-        "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name"     
+        "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name",
+        "arn:aws:kms:region:aws_account_id:key:key_id"     
       ]
     }
   ]

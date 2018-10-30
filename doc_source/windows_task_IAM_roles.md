@@ -1,6 +1,6 @@
 # Windows IAM Roles for Tasks<a name="windows_task_IAM_roles"></a>
 
-IAM roles for tasks with Windows requires extra configuration, but much of this configuration is similar to enabling IAM roles for tasks on Linux container instances\. The following requirements must be met to enable IAM roles for tasks for Windows containers\.
+The IAM roles for tasks with Windows features requires extra configuration, but much of this configuration is similar to enabling IAM roles for tasks on Linux container instances\. The following requirements must be met to enable IAM roles for tasks for Windows containers\.
 + When you launch your container instances, you must enable the feature by setting the `-EnableTaskIAMRole` option in the container instances user data script\. For example:
 
   ```

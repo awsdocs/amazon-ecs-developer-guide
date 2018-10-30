@@ -45,15 +45,15 @@ The Amazon ECS task execution role is automatically created for you in the conso
 
 1. Search the list of roles for `ecsTaskExecutionRole`\. If the role does not exist, use the procedure below to create the role\. If the role does exist, select the role to view the attached policies\.
 
-1. Choose the **Permissions** tab\. Ensure that the **AmazonECSTaskExecutionRolePolicy** managed policy is attached to the role\. If the policy is attached, your Amazon ECS task execution role is properly configured\. If not, follow the substeps below to attach the policy\.
+1. Choose **Permissions**\. Ensure that the **AmazonECSTaskExecutionRolePolicy** managed policy is attached to the role\. If the policy is attached, your Amazon ECS task execution role is properly configured\. If not, follow the substeps below to attach the policy\.
 
    1. Choose **Attach policy**\.
 
-   1. In the **Filter** box, type **AmazonECSTaskExecutionRolePolicy** to narrow the available policies to attach\.
+   1. To narrow the available policies to attach, for **Filter**, type **AmazonECSTaskExecutionRolePolicy**\.
 
    1. Check the box to the left of the **AmazonECSTaskExecutionRolePolicy** policy and choose **Attach policy**\.
 
-1. Choose the **Trust relationships** tab, and **Edit trust relationship**\.
+1. Choose **Trust relationships**, **Edit trust relationship**\.
 
 1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, copy the policy into the **Policy Document** window and choose **Update Trust Policy**\.
 
@@ -77,12 +77,12 @@ The Amazon ECS task execution role is automatically created for you in the conso
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles** and then choose **Create role**\. 
+1. In the navigation pane, choose **Roles**, **Create role**\. 
 
 1. In the **Select type of trusted entity** section, choose **Elastic Container Service**\.
 
 1. For **Select your use case**, choose **Elastic Container Service Task**, then choose **Next: Permissions**\.
 
-1. In the **Attach permissions policy** section, search for **AmazonECSTaskExecutionRolePolicy** and select the policy and choose **Next: Review**\.
+1. In the **Attach permissions policy** section, search for **AmazonECSTaskExecutionRolePolicy**, select the policy, and then choose **Next: Review**\.
 
 1. For **Role Name**, type `ecsTaskExecutionRole` and choose **Create role**\.

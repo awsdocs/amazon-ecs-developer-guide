@@ -10,7 +10,7 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
 
  For this tutorial, you configure an Amazon SNS topic to serve as an event target for your new event rule\. 
 
-**To create a Amazon SNS topic**
+**To create an Amazon SNS topic**
 
 1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
 
@@ -67,7 +67,7 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
 
 ## Step 3: Test Your Rule<a name="cwet2_step_4"></a>
 
- To test your rule, you attempt to run a task that exits shortly after it starts\. If your event rule is configured correctly, you receive an email message within a few minutes with the event text\. 
+To test your rule, you attempt to run a task that exits shortly after it starts\. If your event rule is configured correctly, you receive an email message within a few minutes with the event text\. 
 
 **To test a rule**
 
@@ -83,8 +83,8 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
 
 1. On the **Task Definition** screen, choose **Actions**, **Run Task**\.
 
-1. For **Cluster**, choose **default** and then **Run Task**\.
+1. For **Cluster**, choose **default**\. Choose **Run Task**\.
 
-1. On the **Tasks** tab for your cluster, periodically choose the refresh icon until you no longer see your task running\. For **Desired task status**, choose **Stopped** to verify that your task has stopped\.
+1. On the **Tasks** tab for your cluster, periodically choose the refresh icon until you no longer see your task running\. To verify that your task has stopped, for **Desired task status**, choose **Stopped**\.
 
 1. Check your email to confirm that you have received an email alert for the stopped notification\.

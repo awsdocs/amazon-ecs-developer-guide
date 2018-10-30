@@ -3,13 +3,13 @@
 You can use the Amazon EC2 Run Command feature to securely and remotely manage the configuration of your Amazon ECS container instances\. Run Command provides a simple way of performing common administrative tasks without having to log on locally to the instance\. You can manage configuration changes across your clusters by simultaneously executing commands on multiple container instances\. Run Command reports the status and results of each command\.
 
 Here are some examples of the types of tasks you can perform with Run Command:
-+ Install or uninstall packages
-+ Perform security updates
-+ Clean up Docker images
-+ Stop or start services
-+ View system resources
-+ View log files
-+ Perform file operations
++ Install or uninstall packages\.
++ Perform security updates\.
++ Clean up Docker images\.
++ Stop or start services\.
++ View system resources\.
++ View log files\.
++ Perform file operations\.
 
 This topic covers basic installation of Run Command on the Linux variants of the Amazon ECS\-optimized AMI and a few simple use cases, but it is by no means exhaustive\. For more information about Run Command, see [Manage Amazon EC2 Instances Remotely](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
@@ -30,11 +30,11 @@ Before you can send commands to your container instances with Run Command, you m
 
 1. Choose `ecsInstanceRole`\. If the role does not exist, follow the procedures in [Amazon ECS Container Instance IAM Role](instance_IAM_role.md) to create the role\.
 
-1. Choose the **Permissions** tab\.
+1. Choose **Permissions**\.
 
 1. In the **Managed Policies** section, choose **Attach Policy**\.
 
-1. For **Filter**, type **AmazonEC2RoleforSSM** to narrow the available policies to attach\.
+1. To narrow the available policies to attach, for **Filter**, type **AmazonEC2RoleforSSM**\.
 
 1. Select the check box for the **AmazonEC2RoleforSSM** policy and choose **Attach Policy**\.
 
@@ -46,7 +46,7 @@ After you have attached the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRol
 
 1. [Connect to your container instance\.](instance-connect.md)
 
-1. Install the SSM agent RPM\. The SSM agent is available in all regions that Amazon ECS is available in, and each region has its own region\-specific download URL; the example command below works for all regions that Amazon ECS supports, but you can avoid cross\-region data transfer costs for the RPM download by substituting the region of your container instance\.
+1. Install the SSM agent RPM\. The SSM agent is available in all Regions that Amazon ECS is available in\. Each Region has its own region\-specific download URL\. The example command below works for all Regions that Amazon ECS supports\. Avoid cross\-region data transfer costs for the RPM download by substituting the Region of your container instance\.
 
    ```
    [ec2-user ~]$ sudo yum install -y https://amazon-ssm-us-east-1.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm
@@ -78,7 +78,7 @@ For more information about Run Command, see [Manage Amazon EC2 Instances Remotel
 
 **Example: To update container instance software with Run Command**
 
-One of the most common use cases for Run Command on Amazon ECS container instances is to update the instance software on your entire fleet of container instances at once, simultaneously\.
+A common use case for Run Command is to update the instance software on your entire fleet of container instances at one time\.
 
 1. [Attach the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRole`\.](#run_command_iam_policy)
 
@@ -86,15 +86,13 @@ One of the most common use cases for Run Command on Amazon ECS container instanc
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. In the left navigation, choose **Commands**\.
-
-1. Choose **Run a command**\.
+1. In the left navigation, choose **Commands**, **Run a command**\.
 
 1. For **Command document**, choose **AWS\-RunShellScript**\.
 
-1. In the **Target instances** section, choose **Select instances** and check the container instances to send the update command to\.
+1. In the **Target instances** section, choose **Select instances** and check the container instances to which to send the update command\.
 
-1. In the **Commands** section, enter the command or commands to send to your container instances\. In this example, the command below updates the instance software, but you can send any command that you want\.
+1. In the **Commands** section, enter the command or commands to send to your container instances\. In this example, the command below updates the instance software:
 
    ```
    $ yum update -y
@@ -102,12 +100,12 @@ One of the most common use cases for Run Command on Amazon ECS container instanc
 
 1. Choose **Run** to send the command to the specified instances\.
 
-1. \(Optional\) Choose **View result** to see the results of your command\.
+1. \(Optional\) Choose **View result**\.
 
-1. \(Optional\) Choose a command from the list of recent commands to view the command output\.  
+1. \(Optional\) To view the command output, select a command from the list of recent commands\.  
 ![\[Run Command command list\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/command_list.png)
 
-1. \(Optional\) Choose the **Output** tab, and then choose **View Output**\. The image below shows a snippet of the container instance output for the yum update command\.
+1. \(Optional\) Choose **Output**, **View Output**\. The image below shows a snippet of the container instance output for the yum update command\.
 **Note**  
 Unless you configure a command to save the output to an Amazon S3 bucket, then the command output is truncated at 2500 characters\.  
 ![\[Run Command command output\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/run-command-output.png)

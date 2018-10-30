@@ -12,7 +12,7 @@ Do not edit or delete the CloudWatch alarms that Amazon ECS manages for a target
 
 Keep the following considerations in mind when creating a target tracking scaling policy:
 + A target tracking scaling policy assumes that it should perform scale out when the specified metric is above the target value\. You cannot use a target tracking scaling policy to scale out when the specified metric is below the target value\.
-+ A target tracking scaling policy does not perform scaling when the specified metric has insufficient data\. It does not perform scale in because it does not interpret insufficient data as low utilization\. To scale in when a metric has insufficient data, create a step scaling policy and have an alarm invoke the scaling policy when it changes to the `INSUFFICIENT_DATA` state\. For information about alarm states, see [Alarm States](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-states) in the *Amazon CloudWatch User Guide*\.
++ A target tracking scaling policy does not perform scaling when the specified metric has insufficient data\. It does not perform scale in because it does not interpret insufficient data as low utilization\. To scale in when a metric has insufficient data, create a step scaling policy and have an alarm invoke the scaling policy when it changes to the `INSUFFICIENT_DATA` state\. For information, see [Alarm States](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-states) in the *Amazon CloudWatch User Guide*\.
 + You may see gaps between the target value and the actual metric data points\. This is because Application Auto Scaling always acts conservatively by rounding up or down when it determines how much capacity to add or remove\. This prevents it from adding insufficient capacity or removing too much capacity\. However, for a scalable target with small capacity, the actual metric data points might seem far from the target value\. For a scalable target with larger capacity, adding or removing capacity causes less of a gap between the target value and the actual metric data points\.
 + We recommend that you scale based on metrics with a 1\-minute frequency because that ensures a faster response to utilization changes\. Scaling on metrics with a 5\-minute frequency can result in slower response time and scaling on stale metric data\.
 + To ensure application availability, Application Auto Scaling scales out proportionally to the metric as fast as it can, but scales in more gradually\.
@@ -64,11 +64,11 @@ Application Load Balancers do incur costs while they exist in your AWS resources
 
 ### Step 2: Configure Service Auto Scaling<a name="tt-configure-autoscaling"></a>
 
-Now that you have launched a cluster and created a service in that cluster that is running behind a load balancer, you can configure Service Auto Scaling by creating scaling policies to scale your service out and in in response to CloudWatch alarms\.
+Now that you have launched a cluster and created a service in that cluster that is running behind a load balancer, you can configure Service Auto Scaling by creating scaling policies to scale your service out and in response to CloudWatch alarms\.
 
 **To configure basic Service Auto Scaling parameters**
 
-1. On the **Service: sample\-app\-service** page, your service configuration should look similar to the image below \(although the task definition revision and load balancer name will likely be different\)\. Choose **Update** to update your new service\.  
+1. On the **Service: sample\-app\-service** page, your service configuration should look similar to the image below, although the task definition revision and load balancer name are likely to be different\. Choose **Update** to update your new service\.  
 ![\[Choose your configuration options\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/sample-app-service.png)
 
 1. On the **Update service** page, choose **Next step** until you get to **Step 3: Set Auto Scaling \(optional\)**\.
@@ -85,11 +85,11 @@ Now that you have launched a cluster and created a service in that cluster that 
 
 **To configure scaling policies for your service**
 
-These steps help you create scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. You can create a scale\-out alarm to increase the desired count of your service, and a scale in alarm to decrease the desired count of your service\.
+These steps help you create scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. You can create a scale\-out alarm to increase the desired count of your service, and a scale\-in alarm to decrease the desired count of your service\.
 
 1. Choose **Add scaling policy** to configure your scaling policy\.
 
-1. On the **Add policy** page, do the following:
+1. On the **Add policy** page, update the following fields:
 
    1. For **Scaling policy type**, choose **Target tracking**\.
 
@@ -139,7 +139,7 @@ This command is installed by default on macOS, and it is available for many Linu
 
 1. In the left navigation pane, choose **Alarms**\.
 
-1. Wait for your ab HTTP requests to trigger the scale\-out alarm in the CloudWatch console\. You should see your Amazon ECS service scale out and add 1 task to your service's desired count\.
+1. Wait for your ab HTTP requests to trigger the scale\-out alarm in the CloudWatch console\. You should see your Amazon ECS service scale out and add one task to your service's desired count\.
 
 1. Shortly after your ab HTTP requests complete \(between 1 and 2 minutes\), your scale in alarm should trigger and the scale in policy reduces your service's desired count back to 1\.
 

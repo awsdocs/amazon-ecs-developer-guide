@@ -16,7 +16,7 @@ To send system logs from your Amazon ECS container instances to CloudWatch Logs,
 
 ## Enabling the awslogs Log Driver for Your Containers<a name="enable_awslogs"></a>
 
-If you are using the Fargate launch type for your tasks, all you need to do to enable the `awslogs` log driver is add the required logConfiguration parameters to your task definition\. For more information, see [Specifying a Log Configuration in your Task Definition](#specify-log-config)\.
+If you are using the Fargate launch type for your tasks, all you need to do to enable the `awslogs` log driver is add the required `logConfiguration` parameters to your task definition\. This configures your Fargate tasks to send log information to Amazon CloudWatch Logs\. For more information, see [Specifying a Log Configuration in your Task Definition](#specify-log-config)\.
 
 If you are using the EC2 launch type for your tasks and want to enable the `awslogs` log driver, your Amazon ECS container instances require at least version 1\.9\.0 of the container agent\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
@@ -94,7 +94,7 @@ Your IAM policy must include the `logs:CreateLogGroup` permission before you att
 Required: No  
 This option defines a multiline start pattern in Python `strftime` format\. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern\. Thus the matched line is the delimiter between log messages\.  
 One example of a use case for using this format is for parsing output such as a stack dump, which might otherwise be logged in multiple entries\. The correct pattern allows it to be captured in a single entry\.  
-This option always takes precedence if both awslogs\-datetime\-format and awslogs\-multiline\-pattern are configured\.  
+This option always takes precedence if both `awslogs-datetime-format` and `awslogs-multiline-pattern` are configured\.  
 Multiline logging performs regular expression parsing and matching of all log messages, which may have a negative impact on logging performance\.
 
 `awslogs-region`  
@@ -112,7 +112,7 @@ This option is ignored if `awslogs-datetime-format` is also configured\.
 Multiline logging performs regular expression parsing and matching of all log messages\. This may have a negative impact on logging performance\.
 
 `awslogs-stream-prefix`  
-Required: Optional for EC2 launch type, required for Fargate launch type\.  
+Required: Optional for the EC2 launch type, required for the Fargate launch type\.  
 The `awslogs-stream-prefix` option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs\. If you specify a prefix with this option, then the log stream takes the following format:  
 
 ```
@@ -189,7 +189,7 @@ After you have registered a task definition with the `awslogs` log driver in a c
 
 ## Viewing awslogs Container Logs in CloudWatch Logs<a name="viewing_awslogs"></a>
 
-After your container instance role has the proper permissions to send logs to CloudWatch Logs, your container agents are updated to at least version 1\.9\.0, and you have configured and started a task with containers that use the `awslogs` log driver, your configured containers should be sending their log data to CloudWatch Logs\. You can view and search these logs in the console\.
+For tasks using the EC2 launch type, after your container instance role has the proper permissions to send logs to CloudWatch Logs, your container agents are updated to at least version 1\.9\.0, and you have configured and started a task with containers that use the `awslogs` log driver, your configured containers should be sending their log data to CloudWatch Logs\. You can view and search these logs in the console\.
 
 **To view your CloudWatch Logs data for a container from the Amazon ECS console**
 

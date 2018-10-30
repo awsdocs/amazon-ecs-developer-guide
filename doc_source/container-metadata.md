@@ -23,7 +23,7 @@ The container metadata file is cleaned up on the host instance when the containe
 
 ## Enabling Container Metadata<a name="enable-metadata"></a>
 
-This feature is disabled by default\. You can enable container metadata at the container instance level by setting the `ECS_ENABLE_CONTAINER_METADATA` container agent variable to `true`\. You can set this variable in the `/etc/ecs/ecs.config` configuration file and restart the agent\. You can also set it as a Docker environment variable at run time when the agent container is started\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+This feature is disabled by default\. You can enable container metadata at the container instance level by setting the `ECS_ENABLE_CONTAINER_METADATA` container agent variable to `true`\. You can set this variable in the `/etc/ecs/ecs.config` configuration file and restart the agent\. You can also set it as a Docker environment variable at runtime when the agent container is started\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 
 **Note**  
 The minimum Amazon ECS container agent version to support this feature is 1\.15\.0\.
@@ -31,7 +31,7 @@ The minimum Amazon ECS container agent version to support this feature is 1\.15\
 If the `ECS_ENABLE_CONTAINER_METADATA` is set to `true` when the agent starts, metadata files are created for any future containers started by ECS\.
 
 **Note**  
-The Amazon ECS container agent cannot create metadata files for containers that were created before the `ECS_ENABLE_CONTAINER_METADATA` container agent variable was set to `true`\. To ensure that all containers receive metadata files, you should set this agent variable at container instance launch time\.
+The Amazon ECS container agent cannot create metadata files for containers that were created before the `ECS_ENABLE_CONTAINER_METADATA` container agent variable was set to `true`\. To ensure that all containers receive metadata files, you should set this agent variable at container instance launch\.
 
 ## Container Metadata File Locations<a name="metadata-file-locations"></a>
 

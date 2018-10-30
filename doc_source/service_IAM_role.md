@@ -44,11 +44,11 @@ The `ec2:AuthorizeSecurityGroupIngress` rule is reserved for future use\. Amazon
 
    1. Choose **Attach Policy**\.
 
-   1. In the **Filter** box, type **AmazonEC2ContainerServiceRole** to narrow the available policies to attach\.
+   1. To narrow the available policies to attach, for **Filter**, type **AmazonEC2ContainerServiceRole**\.
 
    1. Check the box to the left of the **AmazonEC2ContainerServiceRole** policy and choose **Attach Policy**\.
 
-1. Choose the **Trust Relationships** tab, and **Edit Trust Relationship**\.
+1. Choose **Trust Relationships**, **Edit Trust Relationship**\.
 
 1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, copy the policy into the **Policy Document** window and choose **Update Trust Policy**\.
 
@@ -72,12 +72,12 @@ The `ec2:AuthorizeSecurityGroupIngress` rule is reserved for future use\. Amazon
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles** and then choose **Create role**\. 
+1. In the navigation pane, choose **Roles**, **Create role**\. 
 
 1. In the **Select type of trusted entity** section, choose **Elastic Container Service**\.
 
-1. In the **Select your use case** section, choose **Elastic Container Service** and then choose **Next: Permissions**\.
+1. In the **Select your use case** section, choose **Elastic Container Service** and choose **Next: Permissions**\.
 
-1. In the **Attached permissions policy** section, select the **AmazonEC2ContainerServiceRole** policy and then choose **Next: Review**\.
+1. In the **Attached permissions policy** section, select the **AmazonEC2ContainerServiceRole** policy and choose **Next: Review**\.
 
-1. For **Role Name**, type `ecsServiceRole`, enter a **Role description**, and then choose **Create role**\.
+1. For **Role Name**, type `ecsServiceRole`, enter a **Role description** and then choose **Create role**\.

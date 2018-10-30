@@ -51,7 +51,7 @@ Output:
 When the credential provider for the IAM role is used to provide credentials to tasks, these requests are logged in `/var/log/ecs/audit.log.YYYY-MM-DD-HH`\.
 
 The log entry format is as follows:
-+ Time stamp
++ Timestamp
 + HTTP response code
 + IP address and port number of request origin
 + Relative URI of the credential provider

@@ -15,7 +15,7 @@ Some features described may only be available with the latest version of the Ama
 
 ## Syntax<a name="cmd-ecs-cli-compose-service-syntax"></a>
 
-**ecs\-cli compose \[\-\-verbose\] \[\-\-file *compose\_file*\] \[\-\-project\-name *project\_name*\] \[\-\-task\-role\-arn *task\_role\_arn*\] \[\-\-ecs\-params *ecs\_params\_file*\] \[\-\-region *region*\] \[\-\-cluster\-config *cluster\_config\_name*\] \[\-\-ecs\-profile *ecs\_profile*\] \[\-\-aws\-profile *aws\_profile*\] \[\-\-cluster *cluster\_name*\] \[\-\-help\] service \[*subcommand*\] \[*arguments*\] \[\-\-help\]** 
+**ecs\-cli compose \[\-\-verbose\] \[\-\-file *compose\_file*\] \[\-\-project\-name *project\_name*\] \[\-\-task\-role\-arn *task\_role\_arn*\] \[\-\-ecs\-params *ecs\_params\_file*\] \[\-\-registry\-creds *value*\] \[\-\-region *region*\] \[\-\-cluster\-config *cluster\_config\_name*\] \[\-\-ecs\-profile *ecs\_profile*\] \[\-\-aws\-profile *aws\_profile*\] \[\-\-cluster *cluster\_name*\] \[\-\-help\] service \[*subcommand*\] \[*arguments*\] \[\-\-help\]** 
 
 ## Options<a name="cmd-ecs-cli-compose-service-options"></a>
 
@@ -27,6 +27,7 @@ Some features described may only be available with the latest version of the Ama
 |  `--project-name, -p project_name`  |  Specifies the project name to use\. If the `COMPOSE_PROJECT_NAME` environment variable is set when ecs\-cli compose is run, then the project name is set to the value of that environment variable\. Type: String Default: The current directory name\. Required: No  | 
 |  `--task-role-arn role_value`  |  Specifies the short name or full Amazon Resource Name \(ARN\) of the IAM role that containers in this task can assume\. All containers in this task are granted the permissions that are specified in this role\. Type: String Required: No  | 
 |  `--ecs-params ecs_params_file`  |  Specifies the ECS parameters that are not native to Docker compose files\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\. Default: `./ecs-params.yml` Required: No  | 
+|  `--registry-creds value`  |  Specifies the ECS registry credentials file to use\. Defaults to the latest output file from the `ecs-cli registry-creds up` command, if one exists\. For more information, see [ecs\-cli registry\-creds](cmd-ecs-cli-registry-creds.md)\. Default: `./ecs-registry-creds_[TIMESTAMP].yml` Required: No  | 
 |  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
 |  `--cluster-config cluster_config_name`  |  Specifies the name of the Amazon ECS cluster configuration to use\. Defaults to the cluster configuration set as the default\. Type: String Required: No  | 
 |  `--ecs-profile ecs_profile`  |  Specifies the name of the Amazon ECS profile configuration to use\. Defaults to the profile configured using the configure profile command\. Type: String Required: No  | 

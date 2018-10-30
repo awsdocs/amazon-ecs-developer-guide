@@ -7,7 +7,7 @@ ecs-cli --help
 ```
 
 **Note**  
-Ensure that you are using the latest version of the Amazon ECS CLI\. The latest version is 1\.8\.0\. For release notes, see [Changelog](https://github.com/aws/amazon-ecs-cli/blob/master/CHANGELOG.md)\.
+Ensure that you are using the latest version of the Amazon ECS CLI\. The latest version is 1\.10\.0\. For release notes, see [Changelog](https://github.com/aws/amazon-ecs-cli/blob/master/CHANGELOG.md)\.
 
 **Topics**
 + [ecs\-cli](cmd-ecs-cli.md)
@@ -15,7 +15,6 @@ Ensure that you are using the latest version of the Amazon ECS CLI\. The latest 
 + [ecs\-cli up](cmd-ecs-cli-up.md)
 + [ecs\-cli down](cmd-ecs-cli-down.md)
 + [ecs\-cli scale](cmd-ecs-cli-scale.md)
-+ [ecs\-cli logs](cmd-ecs-cli-logs.md)
 + [ecs\-cli ps](cmd-ecs-cli-ps.md)
 + [ecs\-cli push](cmd-ecs-cli-push.md)
 + [ecs\-cli pull](cmd-ecs-cli-pull.md)
@@ -23,5 +22,7 @@ Ensure that you are using the latest version of the Amazon ECS CLI\. The latest 
 + [ecs\-cli license](cmd-ecs-cli-license.md)
 + [ecs\-cli compose](cmd-ecs-cli-compose.md)
 + [ecs\-cli compose service](cmd-ecs-cli-compose-service.md)
++ [ecs\-cli logs](cmd-ecs-cli-logs.md)
++ [ecs\-cli registry\-creds](cmd-ecs-cli-registry-creds.md)
 + [Using Docker Compose File Syntax](cmd-ecs-cli-compose-parameters.md)
 + [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)

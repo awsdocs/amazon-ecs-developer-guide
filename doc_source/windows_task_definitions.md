@@ -67,7 +67,7 @@ Task\-level memory is ignored for Windows containers\. We recommend specifying c
 
 ## Windows Sample Task Definitions<a name="windows_sample_task_defs"></a>
 
-Below is a sample task definition that can help you get started with Windows containers on Amazon ECS\.
+Below is a sample task definition to help you get started with Windows containers on Amazon ECS\.
 
 **Example Amazon ECS Console Sample Application for Windows**  
 The following task definition is the Amazon ECS console sample application that is produced in the first\-run wizard for Amazon ECS; it has been ported to use the `microsoft/iis` Windows container image\.  
@@ -79,7 +79,7 @@ The following task definition is the Amazon ECS console sample application that 
     {
       "name": "windows_sample_app",
       "image": "microsoft/iis",
-      "cpu": 100,
+      "cpu": 512,
       "entryPoint":["powershell", "-Command"],
       "command":["New-Item -Path C:\\inetpub\\wwwroot\\index.html -Type file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p>'; C:\\ServiceMonitor.exe w3svc"],
       "portMappings": [
@@ -89,7 +89,7 @@ The following task definition is the Amazon ECS console sample application that 
           "hostPort": 8080
         }
       ],
-      "memory": 500,
+      "memory": 1024,
       "essential": true
     }
   ]

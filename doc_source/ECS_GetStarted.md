@@ -5,7 +5,7 @@ Get started with Amazon Elastic Container Service \(Amazon ECS\) by creating a t
 In the Regions that support AWS Fargate, the Amazon ECS first\-run wizard guides you through the process of getting started with Amazon ECS using Fargate\. For more information, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\. The wizard gives you the option of creating a cluster and launching a sample web application\. If you already have a Docker image to launch in Amazon ECS, you can create a task definition with that image and use that for your cluster instead\.
 
 **Important**  
-For more information about the Amazon ECS first\-run wizard for EC2 tasks, see [Getting Started with Amazon ECS](ECS_GetStarted_EC2.md)\.
+For more information about the Amazon ECS first\-run wizard for EC2 tasks, see [Getting Started with Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_GetStarted_EC2.html)\.
 
 Complete the following tasks to get started with Amazon ECS using Fargate:
 + [Prerequisites](#first-run-prereqs)

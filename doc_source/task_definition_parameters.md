@@ -1,6 +1,6 @@
 # Task Definition Parameters<a name="task_definition_parameters"></a>
 
-Task definitions are split into separate parts: the task family, the IAM task role, the network mode, container definitions, volumes, task placement constraints, and launch types\. The family is the name of the task, and each family can have multiple revisions\. The IAM task role specifies the permissions that containers in the task should have\. The network mode determines how the networking is configured for your containers\. Container definitions specify which image to use, how much CPU and memory the container are allocated, and many more options\. Volumes allow you to share data between containers and even persist the data on the container instance when the containers are no longer running\. The task placement constraints customize how your tasks are placed within the infrastructure\. The launch type determines which infrastructure your tasks use\.
+Task definitions are split into separate parts: the task family, the IAM task role, the network mode, container definitions, volumes, task placement constraints, and launch types\. The family is the name of the task, and each family can have multiple revisions\. The IAM task role specifies the permissions that containers in the task should have\. The network mode determines how the networking is configured for your containers\. Container definitions specify which image to use, how much CPU and memory the container are allocated, and many more options\. Volumes allow you to share data between containers and even persist the data on the container instance when the containers are no longer running\. The task placement constraints customize how your tasks are placed within the infrastructure\. The launch type determines which infrastructure your tasks use\. 
 
 The family and container definitions are required in a task definition, while task role, network mode, volumes, task placement constraints, and launch type are optional\.
 
@@ -84,15 +84,15 @@ The image used to start a container\. This string is passed directly to the Dock
 Type: integer  
 Required: no  
 The hard limit \(in MiB\) of memory to present to the container\. If your container attempts to exceed the memory specified here, the container is killed\. This parameter maps to `Memory` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--memory` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-If your containers will be part of a task using the Fargate launch type, this field is optional and the only requirement is that the total amount of memory reserved for all containers within a task be lower than the task `memory` value\.  
-For containers that will be part of a task using the EC2 launch type, you must specify a non\-zero integer for one or both of `memory` or `memoryReservation` in container definitions\. If you specify both, `memory` must be greater than `memoryReservation`\. If you specify `memoryReservation`, then that value is subtracted from the available memory resources for the container instance on which the container is placed; otherwise, the value of `memory` is used\.  
+If your containers are part of a task using the Fargate launch type, this field is optional and the only requirement is that the total amount of memory reserved for all containers within a task be lower than the task `memory` value\.  
+For containers that are part of a task using the EC2 launch type, you must specify a non\-zero integer for one or both of `memory` or `memoryReservation` in container definitions\. If you specify both, `memory` must be greater than `memoryReservation`\. If you specify `memoryReservation`, then that value is subtracted from the available memory resources for the container instance on which the container is placed; otherwise, the value of `memory` is used\.  
 The Docker daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.  
 If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.
 
 `memoryReservation`  
 Type: integer  
 Required: no  
-The soft limit \(in MiB\) of memory to reserve for the container\. When system memory is under contention, Docker attempts to keep the container memory to this soft limit; however, your container can consume more memory when it needs to, up to either the hard limit specified with the `memory` parameter \(if applicable\), or all of the available memory on the container instance, whichever comes first\. This parameter maps to `MemoryReservation` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--memory-reservation` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The soft limit \(in MiB\) of memory to reserve for the container\. When system memory is under contention, Docker attempts to keep the container memory to this soft limit; however, your container can consume more memory when needed, up to either the hard limit specified with the `memory` parameter \(if applicable\), or all of the available memory on the container instance, whichever comes first\. This parameter maps to `MemoryReservation` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--memory-reservation` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 You must specify a non\-zero integer for one or both of `memory` or `memoryReservation` in container definitions\. If you specify both, `memory` must be greater than `memoryReservation`\. If you specify `memoryReservation`, then that value is subtracted from the available memory resources for the container instance on which the container is placed; otherwise, the value of `memory` is used\.  
 For example, if your container normally uses 128 MiB of memory, but occasionally bursts to 256 MiB of memory for short periods of time, you can set a `memoryReservation` of 128 MiB, and a `memory` hard limit of 300 MiB\. This configuration would allow the container to only reserve 128 MiB of memory from the remaining resources on the container instance, but also allow the container to consume more memory resources when needed\.  
 The Docker daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.
@@ -113,15 +113,15 @@ Type: integer
 Required: yes, when `portMappings` are used  
 The port number on the container that is bound to the user\-specified or automatically assigned host port\.  
 If using containers in a task with the Fargate launch type, exposed ports should be specified using `containerPort`\.  
-If using containers in a task with the EC2 launch type and you specify a container port and not a host port, your container automatically receives a host port in the ephemeral port range \(for more information, see `hostPort`\)\. Port mappings that are automatically assigned in this way do not count toward the 100 reserved ports limit of a container instance\.  
+If using containers in a task with the EC2 launch type and you specify a container port and not a host port, your container automatically receives a host port in the ephemeral port range\. For more information, see `hostPort`\. Port mappings that are automatically assigned in this way do not count toward the 100 reserved ports limit of a container instance\.  
 `hostPort`  
 Type: integer  
 Required: no  
 The port number on the container instance to reserve for your container\.  
 If using containers in a task with the Fargate launch type, the `hostPort` can either be left blank or be the same value as `containerPort`\.  
 If using containers in a task with the EC2 launch type, you can specify a non\-reserved host port for your container port mapping \(this is referred to as *static* host port mapping\), or you can omit the `hostPort` \(or set it to `0`\) while specifying a `containerPort` and your container automatically receives a port \(this is referred to as *dynamic* host port mapping\) in the ephemeral port range for your container instance operating system and Docker version\.  
-The default ephemeral port range is `49153–65535`, and this range is used for Docker versions prior to 1\.6\.0\. For Docker version 1\.6\.0 and later, the Docker daemon tries to read the ephemeral port range from `/proc/sys/net/ipv4/ip_local_port_range` \(which is 32768–61000 on the latest Amazon ECS\-optimized AMI\); if this kernel parameter is unavailable, the default ephemeral port range is used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below 32768 are outside of the ephemeral port range\.  
-The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376, and the Amazon ECS container agent port 51678\. Any host port that was previously user\-specified for a running task is also reserved while the task is running \(after a task stops, the host port is released\)\. The current reserved ports are displayed in the `remainingResources` of describe\-container\-instances output, and a container instance may have up to 100 reserved ports at a time, including the default reserved ports \(automatically assigned ports do not count toward the 100 reserved ports limit\)\.  
+The default ephemeral port range is `49153–65535`, and this range is used for Docker versions before 1\.6\.0\. For Docker version 1\.6\.0 and later, the Docker daemon tries to read the ephemeral port range from `/proc/sys/net/ipv4/ip_local_port_range` \(which is 32768–61000 on the latest Amazon ECS\-optimized AMI\); if this kernel parameter is unavailable, the default ephemeral port range is used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below 32768 are outside of the ephemeral port range\.  
+The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376, and the Amazon ECS container agent port 51678\. Any host port that was previously user\-specified for a running task is also reserved while the task is running \(after a task stops, the host port is released\)\. The current reserved ports are displayed in the `remainingResources` of describe\-container\-instances output, and a container instance may have up to 100 reserved ports at a time, including the default reserved ports\. Automatically assigned ports do not count toward the 100 reserved ports limit\.  
 `protocol`  
 Type: string  
 Required: no  
@@ -170,7 +170,7 @@ The Amazon ECS container agent only monitors and reports on the health checks sp
 Task health is reported by the `healthStatus` of the task, which is determined by the health of the essential containers in the task\. If all essential containers in the task are reporting as `HEALTHY`, then the task status also reports as `HEALTHY`\. If any essential containers in the task are reporting as `UNHEALTHY` or `UNKNOWN`, then the task status also reports as `UNHEALTHY` or `UNKNOWN`, accordingly\. If a service's task reports as unhealthy, it is removed from a service and replaced\.  
 The following are notes about container health check support:  
 + Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
-+ Container health checks are supported for Fargate tasks if using platform version version 1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
++ Container health checks are supported for Fargate tasks if you are using platform version 1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
 + Container health checks are not supported for tasks that are part of a service that is configured to use a Classic Load Balancer\.  
 `command`  
 A string array representing the command that the container runs to determine if it is healthy\. The string array can start with `CMD` to execute the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. If neither is specified, `CMD` is used by default\.  
@@ -190,7 +190,7 @@ The time period in seconds between each health check execution\. You may specify
 `timeout`  
 The time period in seconds to wait for a health check to succeed before it is considered a failure\. You may specify between 2 and 60 seconds\. The default value is 5 seconds\.  
 `retries`  
-The number of times to retry a failed health check before the container is considered unhealthy\. You may specify between 1 and 10 retries\. The default value is 3 retries\.  
+The number of times to retry a failed health check before the container is considered unhealthy\. You may specify between 1 and 10 retries\. The default value is three retries\.  
 `startPeriod`  
 The optional grace period within which to provide containers time to bootstrap before failed health checks count towards the maximum number of retries\. You may specify between 0 and 300 seconds\. The `startPeriod` is disabled by default\.
 
@@ -204,8 +204,8 @@ This field is optional for tasks using the Fargate launch type, and the only req
 You can determine the number of CPU units that are available per Amazon EC2 instance type by multiplying the number of vCPUs listed for that instance type on the [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) detail page by 1,024\.
 Linux containers share unallocated CPU units with other containers on the container instance with the same ratio as their allocated amount\. For example, if you run a single\-container task on a single\-core instance type with 512 CPU units specified for that container, and that is the only task running on the container instance, that container could use the full 1,024 CPU unit share at any given time\. However, if you launched another copy of the same task on that container instance, each task would be guaranteed a minimum of 512 CPU units when needed, and each container could float to higher CPU usage if the other container was not using it, but if both tasks were 100% active all of the time, they would be limited to 512 CPU units\.  
 On Linux container instances, the Docker daemon on the container instance uses the CPU value to calculate the relative CPU share ratios for running containers\. For more information, see [CPU share constraint](https://docs.docker.com/engine/reference/run/#cpu-share-constraint) in the Docker documentation\. The minimum valid CPU share value that the Linux kernel allows is 2\. However, the CPU parameter is not required, and you can use CPU values below 2 in your container definitions\. For CPU values below 2 \(including null\), the behavior varies based on your Amazon ECS container agent version:  
-+ **Agent versions <= 1\.1\.0:** Null and zero CPU values are passed to Docker as 0, which Docker then converts to 1,024 CPU shares\. CPU values of 1 are passed to Docker as 1, which the Linux kernel converts to 2 CPU shares\.
-+ **Agent versions >= 1\.2\.0:** Null, zero, and CPU values of 1 are passed to Docker as 2 CPU shares\.
++ **Agent versions <= 1\.1\.0:** Null and zero CPU values are passed to Docker as 0, which Docker then converts to 1,024 CPU shares\. CPU values of 1 are passed to Docker as 1, which the Linux kernel converts to two CPU shares\.
++ **Agent versions >= 1\.2\.0:** Null, zero, and CPU values of 1 are passed to Docker as two CPU shares\.
 On Windows container instances, the CPU limit is enforced as an absolute limit, or a quota\. Windows containers only have access to the specified amount of CPU that is described in the task definition\.
 
 `essential`  
@@ -273,7 +273,7 @@ The value of the environment variable\.
 Type: Boolean  
 Required: no  
 When this parameter is true, networking is disabled within the container\. This parameter maps to `NetworkDisabled` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/)\.  
-This parameter is not supported for Windows containers\.
+This parameter is not supported for Windows containers or tasks using the `awsvpc` network mode\.
 
 ```
 "disableNetworking": true|false
@@ -283,7 +283,7 @@ This parameter is not supported for Windows containers\.
 Type: string array  
 Required: no  
 The `link` parameter allows containers to communicate with each other without the need for port mappings\. Only supported if the network mode of a task definition is set to `bridge`\. The `name:internalName` construct is analogous to `name:alias` in Docker links\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. For more information about linking Docker containers, go to [https://docs\.docker\.com/engine/userguide/networking/default\_network/dockerlinks/](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/)\. This parameter maps to `Links` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--link` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers\.
+This parameter is not supported for Windows containers or tasks using the `awsvpc` network mode\.
 Containers that are collocated on a single container instance may be able to communicate with each other without requiring links or host port mappings\. Network isolation is achieved on the container instance using security groups and VPC settings\.
 
 ```
@@ -294,7 +294,7 @@ Containers that are collocated on a single container instance may be able to com
 Type: string  
 Required: no  
 The hostname to use for your container\. This parameter maps to `Hostname` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--hostname` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-The `hostname` parameter is not supported if using the `awsvpc` networkMode\.
+The `hostname` parameter is not supported if you are using the `awsvpc` network mode\.
 
 ```
 "hostname": "string"
@@ -314,7 +314,7 @@ This parameter is not supported for Windows containers\.
 Type: string array  
 Required: no  
 A list of DNS search domains that are presented to the container\. This parameter maps to `DnsSearch` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--dns-search` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers\.
+This parameter is not supported for Windows containers or tasks using the `awsvpc` network mode\.
 
 ```
 "dnsSearchDomains": ["string", ...]
@@ -420,7 +420,7 @@ Valid values: `"json-file" | "syslog" | "journald" | "gelf" | "fluentd" | "awslo
 Required: yes, when `logConfiguration` is used  
 The log driver to use for the container\. The valid values listed earlier are log drivers that the Amazon ECS container agent can communicate with by default\.   
 If using the Fargate launch type, the only supported value is `awslogs`\.  
-If you have a custom driver that is not listed earlier that you would like to work with the Amazon ECS container agent, you can fork the Amazon ECS container agent project that is [available on GitHub](https://github.com/aws/amazon-ecs-agent) and customize it to work with that driver\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently provide support for running modified copies of this software\.
+If you have a custom driver that is not listed, you can fork the Amazon ECS container agent project that is [available on GitHub](https://github.com/aws/amazon-ecs-agent) and customize it to work with that driver\. We encourage you to submit pull requests for changes that you would like to have included\. However, we do not currently provide support for running modified copies of this software\.
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 `options`  
 Type: string to string map  
@@ -565,7 +565,7 @@ The path inside the container at which to expose the host device\.
 Type: String  
 Required: No  
 `permissions`  
-The explicit permissions to provide to the container for the device\. By default, the container can `read`, `write`, and `mknod` the device\.  
+The explicit permissions to provide to the container for the device\. By default, the container has permissions for `read`, `write`, and `mknod` on the device\.  
 Type: Array of strings  
 Valid Values: `read` \| `write` \| `mknod`  
 `initProcessEnabled`  
@@ -581,7 +581,7 @@ If you are using tasks that use the Fargate launch type, the `tmpfs` parameter i
 Type: Array of [Tmpfs](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Tmpfs.html) objects  
 Required: No    
 `containerPath`  
-The absolute file path where the tmpfs volume will be mounted\.  
+The absolute file path where the tmpfs volume is to be mounted\.  
 Type: String  
 Required: Yes  
 `mountOptions`  
@@ -640,7 +640,7 @@ When this parameter is `true`, a TTY is allocated\. This parameter maps to `Tty`
 
 ## Volumes<a name="volumes"></a>
 
-When you register a task definition, you can optionally specify a list of volumes to be passed to the Docker daemon on a container instance, which then become available for access by other containers on the same container instance\.
+When you register a task definition, you can optionally specify a list of volumes to be passed to the Docker daemon on a container instance, which then becomes available for access by other containers on the same container instance\.
 
 The following are the types of data volumes that can be used:
 + Docker volumes — A Docker\-managed volume that is created under `/var/lib/docker/volumes` on the container instance\. Docker volume drivers \(also referred to as plugins\) are used to integrate the volumes with external storage systems, such as Amazon EBS\. The built\-in `local` volume driver or a third\-party volume driver can be used\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use Docker volumes, specify a `dockerVolumeConfiguration` in your task definition\. For more information, see [Using volumes](https://docs.docker.com/storage/volumes/)\.
@@ -697,7 +697,7 @@ When the `host` parameter is used, specify a `sourcePath` to declare the path on
 
 When you register a task definition, you can provide task placement constraints that customize how Amazon ECS places tasks\.
 
-If you are using the Fargate launch type, task placement constraints are not supported\. By default Fargate tasks are spread across availability zones\.
+If you are using the Fargate launch type, task placement constraints are not supported\. By default Fargate tasks are spread across Availability Zones\.
 
 For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS Task Placement Constraints](task-placement-constraints.md)\.
 
@@ -711,7 +711,7 @@ A cluster query language expression to apply to the constraint\. For more inform
 `type`  
 Type: string  
 Required: yes  
-The type of constraint\. Use `memberOf` to restrict selection to a group of valid candidates\.
+The type of constraint\. Use `memberOf` to restrict the selection to a group of valid candidates\.
 
 ## Launch Types<a name="requires_compatibilities"></a>
 
@@ -723,7 +723,7 @@ The following parameter is allowed in a task definition:
 Type: string array  
 Required: no  
 Valid Values: `EC2` \| `FARGATE`  
-The launch type the task is using\. This will enable a check to ensure that all of the parameters used in the task definition meet the requirements of the launch type\.  
+The launch type the task is using\. This enables a check to ensure that all of the parameters used in the task definition meet the requirements of the launch type\.  
 Valid values are `FARGATE` and `EC2`\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
 
 ## Task Size<a name="task_size"></a>

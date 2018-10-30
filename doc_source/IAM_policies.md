@@ -1,6 +1,6 @@
 # Amazon ECS IAM Policies, Roles, and Permissions<a name="IAM_policies"></a>
 
-By default, IAM users don't have permission to create or modify Amazon ECS resources, or perform tasks using the Amazon ECS API\. \(This means that they also can't do so using the Amazon ECS console or the AWS CLI\.\) To allow IAM users to create or modify resources and perform tasks, you must create IAM policies that grant IAM users permission to use the specific resources and API actions they'll need, and then attach those policies to the IAM users or groups that require those permissions\.
+By default, IAM users don't have permission to create or modify Amazon ECS resources, or perform tasks using the Amazon ECS API\. This means that they also can't do so using the Amazon ECS console or the AWS CLI\. To allow IAM users to create or modify resources and perform tasks, you must create IAM policies\. Policies grant IAM users permissions to use specific resources and API actions\. Then, attach those policies to the IAM users or groups that require those permissions\.
 
 When you attach a policy to a user or group of users, it allows or denies the users permission to perform the specified tasks on the specified resources\. For more general information about IAM policies, see [Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html) in the *IAM User Guide*\. For more information about managing and creating custom IAM policies, see [Managing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingPolicies.html)\.
 

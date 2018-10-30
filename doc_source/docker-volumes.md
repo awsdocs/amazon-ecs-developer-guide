@@ -1,14 +1,16 @@
 # Docker Volumes<a name="docker-volumes"></a>
 
-When using Docker volumes, the built\-in `local` driver or a third\-party volume driver can be used\. If a third\-party driver is used, it should be installed on the container instance before the task is launched\. Docker volumes are managed by Docker and a directory is created in `/var/lib/docker/volumes` on the container instance that contains the volume data\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use Docker volumes, specify a `dockerVolumeConfiguration` in your task definition\. For more information, see [Using volumes](https://docs.docker.com/storage/volumes/)\.
+When using Docker volumes, the built\-in `local` driver or a third\-party volume driver can be used\. If a third\-party driver is used, it should be installed on the container instance before the task is launched\. Docker volumes are managed by Docker and a directory is created in `/var/lib/docker/volumes` on the container instance that contains the volume data\. 
+
+Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use Docker volumes, specify a `dockerVolumeConfiguration` in your task definition\. For more information, see [Using Volumes](https://docs.docker.com/storage/volumes/)\.
 
 Some common use cases for Docker volumes are:
 + To provide persistent data volumes for use with containers
 + To share a defined data volume at different locations on different containers on the same container instance
 + To define an empty, nonpersistent data volume and mount it on multiple containers within the same task
-+ To provide a data volume to your task that is managed by a third party driver
++ To provide a data volume to your task that is managed by a third\-party driver
 
-## Specifying a Docker volume in your Task Definition<a name="specify-volume-config"></a>
+## Specifying a Docker Volume in your Task Definition<a name="specify-volume-config"></a>
 
 Before your containers can use data volumes, you must specify the volume and mount point configurations in your task definition\. This section describes the volume configuration for a container\. For tasks that use a Docker volume, specify a `dockerVolumeConfiguration`\. For tasks that use a bind mount host volume, specify a `host` and optional `sourcePath`\.
 
@@ -100,11 +102,13 @@ If this value is `true`, the container has read\-only access to the volume\. If 
 
 ## Examples<a name="docker-volume-examples"></a>
 
+The following are examples showing the use of Docker volumes\.
+
 **To provide nonpersistent storage for a container using a Docker volume**
 
-In this example, you want a container to use an empty data volume that you aren't interested in keeping after the task has finished\. For example, you may have a container that need to access some scratch file storage location during a task\. This task can be achieved using either a Docker volume\.
+In this example, you want a container to use an empty data volume that you aren't interested in keeping after the task has finished\. For example, you may have a container that needs to access some scratch file storage location during a task\. This task can be achieved using a Docker volume\.
 
-1. In the task definition `volumes` section, define a data volume with `name` and `DockerVolumeConfiguration` values\. In this example, we specify the scope as `task` so the volume will deleted once the task stops, set autoprovision to `true` so the volume will be created for us, and use the built\-in `local` driver\.
+1. In the task definition `volumes` section, define a data volume with `name` and `DockerVolumeConfiguration` values\. In this example, we specify the scope as `task` so the volume is deleted after the task stops, set autoprovision to `true` so that the volume is created for use, and use the built\-in `local` driver\.
 
    ```
    "volumes": [
@@ -115,14 +119,14 @@ In this example, you want a container to use an empty data volume that you aren'
                "autoprovision": true,
                "driver": "local",
                "labels": {
-                   "scratch: space"
+                   "scratch": "space"
                }
            }
        }
    ]
    ```
 
-1. In the `containerDefinitions` section, define a container with `mountPoints` that reference the name of the defined volume and the `containerPath` value to mount the volume at on the container\.
+1. In the `containerDefinitions` section, define a container with `mountPoints` values that reference the name of the defined volume and the `containerPath` value to mount the volume at on the container\.
 
    ```
    "containerDefinitions": [
@@ -140,9 +144,9 @@ In this example, you want a container to use an empty data volume that you aren'
 
 **To provide persistent storage for a container using a Docker volume**
 
-In this example, you want a shared volume for multiple containers to use and you want it to persist after any single task using it has stopped\. The built\-in `local` driver is being used so the volume will still be tied to the lifecycle of the container instance\.
+In this example, you want a shared volume for multiple containers to use and you want it to persist after any single task using it has stopped\. The built\-in `local` driver is being used so the volume is still tied to the lifecycle of the container instance\.
 
-1. In the task definition `volumes` section, define a data volume with `name` and `DockerVolumeConfiguration` values\. In this example, we will specify a `shared` scope so the volume will persist, set autoprovision to `true` so the volume will be created for us, and use the built\-in `local` driver\.
+1. In the task definition `volumes` section, define a data volume with `name` and `DockerVolumeConfiguration` values\. In this example, specify a `shared` scope so the volume persists, set autoprovision to `true` so that the volume is created for use, and use the built\-in `local` driver\.
 
    ```
    "volumes": [
@@ -153,14 +157,14 @@ In this example, you want a shared volume for multiple containers to use and you
                "autoprovision": true,
                "driver": "local",
                "labels": {
-                   "database: database_name"
+                   "database": "database_name"
                }
            }
        }
    ]
    ```
 
-1. In the `containerDefinitions` section, define a container with `mountPoints` that reference the name of the defined volume and the `containerPath` value to mount the volume at on the container\.
+1. In the `containerDefinitions` section, define a container with `mountPoints` values that reference the name of the defined volume and the `containerPath` value to mount the volume at on the container\.
 
    ```
    "containerDefinitions": [

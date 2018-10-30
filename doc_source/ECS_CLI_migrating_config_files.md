@@ -10,7 +10,7 @@ The process of configuring the Amazon ECS CLI has changed significantly in the l
 + Amazon ECS CLI v0\.6\.6 and earlier allowed configuring credentials using a named AWS profile from the `~/.aws/credentials` file on your system\. This functionality has been removed\. However, a new flag, `--aws-profile`, has been added which allows the referencing of an AWS profile inline in all commands that require credentials\.
 
 **Note**  
-The `--project-name` flag can be used to set the Project name\.
+The `--project-name` flag can be used to set the project name\.
 
 ## Migrating Older Configuration Files to the v1\.0\.0\+ Format<a name="ECS_CLI_migrating_config_files_notes"></a>
 
@@ -18,4 +18,4 @@ While all versions of the Amazon ECS CLI support reading from the older configur
 
 When running the `ecs-cli configure migrate` command there is a warning message displayed with the old configuration file, and a preview of the new configuration files\. User confirmation is required before the migration proceeds\. If the `--force` flag is used, then the warning message is not displayed, and the migration proceeds without any confirmation\. If `cfn-stack-name-prefix` is used in the legacy file, then `cfn-stack-name` is stored in the new file as `<cfn_stack_name_prefix> + <cluster_name>`\.
 
-For more information, see [ecs\-cli configure migrate](cmd-ecs-cli-configure-migrate.md)\.
+For more information, see the [Amazon ECS Command Line Reference](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_reference.html) in the *Amazon Elastic Container Service Developer Guide*\.
