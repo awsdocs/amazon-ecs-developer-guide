@@ -21,10 +21,10 @@ This path returns metadata JSON for the container\.
 `${ECS_CONTAINER_METADATA_URI}/task`  
 This path returns metadata JSON for the task, including a list of the container IDs and names for all of the containers associated with the task\. For more information about the response for this endpoint, see [Task Metadata JSON Response](#task-metadata-response)\.
 
-`${ECS_CONTAINER_METADATA_URI}/stats/`  
+`${ECS_CONTAINER_METADATA_URI}/stats`  
 This path returns Docker stats JSON for the specific Docker container\. For more information about each of the returned stats, see [ContainerStats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) in the Docker API documentation\.
 
-`${ECS_CONTAINER_METADATA_URI}/task/stats/`  
+`${ECS_CONTAINER_METADATA_URI}/task/stats`  
 This path returns Docker stats JSON for all of the containers associated with the task\. For more information about each of the returned stats, see [ContainerStats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) in the Docker API documentation\.
 
 ## Task Metadata JSON Response<a name="task-metadata-response"></a>
