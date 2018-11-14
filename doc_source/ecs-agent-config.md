@@ -124,7 +124,7 @@ Default value on Windows: 0
 The amount of memory, in MiB, to remove from the pool that is allocated to your tasks\. This effectively reserves that memory for critical system processes including the Docker daemon and the Amazon ECS container agent\. For example, if you specify `ECS_RESERVED_MEMORY=256`, then the agent registers the total memory minus 256 MiB for that instance, and 256 MiB of the system memory cannot be allocated by ECS tasks\. For more information, see [Container Instance Memory Management](memory-management.md)\.
 
 `ECS_AVAILABLE_LOGGING_DRIVERS`  
-Example values: `["awslogs","fluentd","gelf","json-file","journald","splunk"]`  
+Example values: `["awslogs","fluentd","gelf","json-file","journald","splunk","logentries","sumologic"]`  
 Default value on Linux: `["json-file","none"]`  
 Default value on Windows: `["json-file","none"]`  
 The logging drivers available on the container instance\. The Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the `ECS_AVAILABLE_LOGGING_DRIVERS` environment variable before containers placed on that instance can use log configuration options for those drivers in tasks\. For information about how to use the `awslogs` log driver, see [Using the awslogs Log Driver](using_awslogs.md)\. For more information about the different log drivers available for your Docker version and how to configure them, see [Configure logging drivers](https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation\.
