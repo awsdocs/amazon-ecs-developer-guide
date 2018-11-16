@@ -199,7 +199,7 @@ The optional grace period within which to provide containers time to bootstrap b
 `cpu`  
 Type: integer  
 Required: no  
-The number of `cpu` units for the ECS Agent to reserve for the container\. This parameter maps to `CpuShares` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--cpu-shares` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The number of `cpu` units the Amazon ECS container agent will reserve for the container\. This parameter maps to `CpuShares` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--cpu-shares` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This field is optional for tasks using the Fargate launch type, and the only requirement is that the total amount of CPU reserved for all containers within a task be lower than the task\-level `cpu` value\.  
 You can determine the number of CPU units that are available per Amazon EC2 instance type by multiplying the number of vCPUs listed for that instance type on the [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) detail page by 1,024\.
 Linux containers share unallocated CPU units with other containers on the container instance with the same ratio as their allocated amount\. For example, if you run a single\-container task on a single\-core instance type with 512 CPU units specified for that container, and that is the only task running on the container instance, that container could use the full 1,024 CPU unit share at any given time\. However, if you launched another copy of the same task on that container instance, each task would be guaranteed a minimum of 512 CPU units when needed, and each container could float to higher CPU usage if the other container was not using it, but if both tasks were 100% active all of the time, they would be limited to 512 CPU units\.  
@@ -264,6 +264,29 @@ The value of the environment variable\.
 "environment" : [
     { "name" : "string", "value" : "string" },
     { "name" : "string", "value" : "string" }
+]
+```
+
+`secrets`  
+Type: object array  
+Required: no  
+The secrets to pass to the container as environment variables\.    
+`name`  
+Type: string  
+Required: yes, when `environment` is used  
+The value to set as the environment variable on the container\.  
+`valueFrom`  
+Type: string  
+Required: yes, when `environment` is used  
+The secret to expose to the container\. Supported values are either the full ARN or the name of the parameter in the AWS Systems Manager Parameter Store\.  
+If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching then you can use either the full ARN or name of the secret\. If the parameter exists in a different Region then the full ARN must be specified\.
+
+```
+"secrets": [
+    {
+        "name": "environment_variable_name",
+        "valueFrom": "arn:aws:ssm:region:aws_account_id:parameter/parameter_name"
+    }
 ]
 ```
 

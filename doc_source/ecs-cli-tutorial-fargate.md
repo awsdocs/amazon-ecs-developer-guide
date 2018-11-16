@@ -5,13 +5,13 @@ This tutorial shows you how to set up a cluster and deploy a task using the Farg
 ## Prerequisites<a name="ECS_CLI_tutorial_fargate_prereqs"></a>
 
 Complete the following prerequisites:
-+ Set up an AWS account
++ Set up an AWS account\.
 + Install the Amazon ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 + Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
 
 ## Step 1: Create the Task Execution IAM Role<a name="ECS_CLI_tutorial_fargate_iam_role"></a>
 
-Amazon ECS needs permissions so that your Fargate task can store logs in CloudWatch\. This permission is covered by the task execution IAM role\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+Amazon ECS needs permissions so that your Fargate task can store logs in CloudWatch\. These permissions are covered by the task execution IAM role\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
 **To create the task execution IAM role using the AWS CLI**
 

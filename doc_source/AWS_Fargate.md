@@ -2,7 +2,7 @@
 
 AWS Fargate is a technology that you can use with Amazon ECS to run [containers](https://aws.amazon.com/what-are-containers) without having to manage servers or clusters of Amazon EC2 instances\. With AWS Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers\. This removes the need to choose server types, decide when to scale your clusters, or optimize cluster packing\.
 
-When you run your tasks and services with the Fargate launch type, you package your application in containers, specify the CPU and memory requirements, define networking and IAM policies, and launch the application\.
+When you run your tasks and services with the Fargate launch type, you package your application in containers, specify the CPU and memory requirements, define networking and IAM policies, and launch the application\. Each Fargate task has it's own isolation boundary and does not share the underlying kernel, CPU resources, memory resources, or elastic network interface with another task\.
 
 This topic describes the different components of Fargate tasks and services, and calls out special considerations for using Fargate with Amazon ECS\.
 
@@ -13,11 +13,13 @@ AWS Fargate with Amazon ECS is currently only available in the following Regions
 | --- | --- | 
 | US East \(N\. Virginia\) | us\-east\-1 | 
 | US East \(Ohio\) | us\-east\-2 | 
+| US West \(N\. California\) | us\-west\-1 | 
 | US West \(Oregon\) | us\-west\-2 | 
 | EU \(Ireland\) | eu\-west\-1 | 
 | EU \(London\) | eu\-west\-2 | 
 | EU \(Frankfurt\) | eu\-central\-1 | 
 | Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
+| Asia Pacific \(Seoul\) | ap\-northeast\-2 | 
 | Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
 | Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
 
@@ -63,8 +65,8 @@ Fargate task definitions require that you specify CPU and memory at the task lev
 | 256 \(\.25 vCPU\) | 0\.5 GB, 1 GB, 2 GB | 
 | 512 \(\.5 vCPU\) | 1 GB, 2 GB, 3 GB, 4 GB | 
 | 1024 \(1 vCPU\) | 2 GB, 3 GB, 4 GB, 5 GB, 6 GB, 7 GB, 8 GB | 
-| 2048 \(2 vCPU\) | Between 4 GB and 16 GB in 1 GB increments | 
-| 4096 \(4 vCPU\) | Between 8 GB and 30 GB in 1 GB increments | 
+| 2048 \(2 vCPU\) | Between 4 GB and 16 GB in 1\-GB increments | 
+| 4096 \(4 vCPU\) | Between 8 GB and 30 GB in 1\-GB increments | 
 
 ### Logging<a name="fargate-tasks-logging"></a>
 

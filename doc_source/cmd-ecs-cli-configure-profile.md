@@ -3,7 +3,7 @@
 Configures your AWS credentials in a named Amazon ECS profile, which is stored in the `~/.ecs/credentials` file\. If multiple profiles are created, you can change the profile used by default with the ecs\-cli configure profile default command\. For more information, see [ecs\-cli configure profile default](cmd-ecs-cli-configure-profile-default.md)\.
 
 **Important**  
-Some features described may only be available with the latest version of the Amazon ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described may only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 You can configure your AWS credentials in several ways:
 + You can set the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_SESSION_TOKEN` environment variables\. When you run ecs\-cli configure profile, the values of those variables are stored in the Amazon ECS CLI configuration file\.

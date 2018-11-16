@@ -12,7 +12,7 @@ AWS Elastic Beanstalk can also be used to rapidly develop, test, and deploy Dock
 
 ## Features of Amazon ECS<a name="welcome-features"></a>
 
-Amazon ECS is a regional service that simplifies running application containers in a highly available manner across multiple Availability Zones within a region\. You can create Amazon ECS clusters within a new or existing VPC\. After a cluster is up and running, you can define task definitions and services that specify which Docker container images to run across your clusters\. Container images are stored in and pulled from container registries, which may exist within or outside of your AWS infrastructure\.
+Amazon ECS is a regional service that simplifies running application containers in a highly available manner across multiple Availability Zones within a Region\. You can create Amazon ECS clusters within a new or existing VPC\. After a cluster is up and running, you can define task definitions and services that specify which Docker container images to run across your clusters\. Container images are stored in and pulled from container registries, which may exist within or outside of your AWS infrastructure\.
 
 The following diagram shows the architecture of an Amazon ECS environment using the Fargate launch type:
 
@@ -32,7 +32,7 @@ Images are typically built from a Dockerfile, a plain text file that specifies a
 
 To prepare your application to run on Amazon ECS, you create a *task definition*\. The task definition is a text file, in JSON format, that describes one or more containers, up to a maximum of ten, that form your application\. It can be thought of as a blueprint for your application\. Task definitions specify various parameters for your application\. Examples of task definition parameters are which containers to use, which launch type to use, which ports should be opened for your application, and what data volumes should be used with the containers in the task\. The specific parameters available for the task definition depend on which launch type you are using\. For more information about creating task definitions, see [Amazon ECS Task Definitions](task_definitions.md)\.
 
-The following is an example of a simple task definition containing a single container that runs an NGINX web server using the Fargate launch type\. For a more extended example demonstrating the use of multiple containers in a task definition, see [Example Task Definitions](example_task_definitions.md)\. 
+The following is an example of a task definition containing a single container that runs an NGINX web server using the Fargate launch type\. For a more extended example demonstrating the use of multiple containers in a task definition, see [Example Task Definitions](example_task_definitions.md)\. 
 
 ```
 {
@@ -58,13 +58,15 @@ The following is an example of a simple task definition containing a single cont
 
 A *task* is the instantiation of a task definition within a cluster\. After you have created a task definition for your application within Amazon ECS, you can specify the number of tasks that will run on your cluster\.
 
+Each task that uses the Fargate launch type has it's own isolation boundary and does not share the underlying kernel, CPU resources, memory resources, or elastic network interface with another task\.
+
 The Amazon ECS task scheduler is responsible for placing tasks within your cluster\. There are several different scheduling options available\. For example, you can define a *service* that runs and maintains a specified number of tasks simultaneously\. For more information about the different scheduling options available, see [Scheduling Amazon ECS Tasks](scheduling_tasks.md)\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-service-fargate.png)
 
 ### Clusters<a name="welcome-clusters"></a>
 
-When you run tasks using Amazon ECS, you place them on a *cluster*, which is a logical grouping of resources\. If you use the Fargate launch type with tasks within your cluster, Amazon ECS manages your cluster resources\. If you use the EC2 launch type, then your clusters are a group of container instances you manage\. An Amazon ECS container instance is an Amazon EC2 instance that is running the Amazon ECS container agent\. Amazon ECS downloads your container images from a registry that you specify, and runs those images within your cluster\.
+When you run tasks using Amazon ECS, you place them on a *cluster*, which is a logical grouping of resources\. When using the Fargate launch type with tasks within your cluster, Amazon ECS manages your cluster resources\. When using the EC2 launch type, then your clusters are a group of container instances you manage\. An Amazon ECS container instance is an Amazon EC2 instance that is running the Amazon ECS container agent\. Amazon ECS downloads your container images from a registry that you specify, and runs those images within your cluster\.
 
 For more information about creating clusters, see [Amazon ECS Clusters](ECS_clusters.md)\. If you are using the EC2 launch type, you can read about creating container instances at [Amazon ECS Container Instances](ECS_instances.md)\.
 
@@ -76,7 +78,7 @@ The *container agent* runs on each infrastructure resource within an Amazon ECS 
 
 ## How to Get Started with Amazon ECS<a name="welcome-getstarted"></a>
 
-If you are using Amazon ECS for the first time, the AWS Management Console for Amazon ECS provides a first\-run wizard that steps you through defining a task definition for a web server, configuring a service, and launching your first Fargate cluster\. The first\-run wizard is highly recommended for users who have no prior experience with Amazon ECS\. For more information, see the [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md) tutorial\. 
+If you are using Amazon ECS for the first time, the AWS Management Console for Amazon ECS provides a first\-run wizard that steps you through defining a task definition for a web server, configuring a service, and launching your first Fargate task\. The first\-run wizard is highly recommended for users who have no prior experience with Amazon ECS\. For more information, see the [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md) tutorial\. 
 
 Alternatively, you can install the AWS Command Line Interface \(AWS CLI\) to use Amazon ECS\. For more information, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 

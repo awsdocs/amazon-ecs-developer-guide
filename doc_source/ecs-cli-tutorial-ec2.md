@@ -210,7 +210,7 @@ You can scale your task count up so you could have more instances of your applic
 ecs-cli compose --file hello-world.yml scale 2 --cluster-config ec2-tutorial
 ```
 
-Now you should see two more containers in your cluster\.
+Now you should see two more containers in your cluster:
 
 ```
 ecs-cli ps --cluster-config ec2-tutorial

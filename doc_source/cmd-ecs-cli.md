@@ -9,7 +9,7 @@ For a quick walkthrough of the Amazon ECS CLI, see the [Tutorial: Creating a Clu
 Help text is available for each individual subcommand with ecs\-cli *subcommand* \-\-help\.
 
 **Important**  
-Some features described may only be available with the latest version of the Amazon ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described may only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Syntax<a name="cmd-ecs-cli-syntax"></a>
 
@@ -28,7 +28,7 @@ Some features described may only be available with the latest version of the Ama
 The ecs\-cli command supports the following subcommands:
 
 configure  
-Configures your AWS credentials, the region to use, and the ECS cluster name to use with the Amazon ECS CLI\. For more information, see [ecs\-cli configure](cmd-ecs-cli-configure.md)\.
+Configures your AWS credentials, the Region to use, and the ECS cluster name to use with the Amazon ECS CLI\. For more information, see [ecs\-cli configure](cmd-ecs-cli-configure.md)\.
 
 migrate  
 Migrates a legacy configuration file \(ECS CLI v0\.6\.6 and older\) to the new configuration file format \(ECS CLI v1\.0\.0 and later\)\. The command prints a summary of the changes to be made and then asks for confirmation to proceed\. For more information, see [ecs\-cli configure migrate](cmd-ecs-cli-configure-migrate.md)\.

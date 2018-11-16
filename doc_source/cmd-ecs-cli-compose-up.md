@@ -3,7 +3,7 @@
 If an Amazon ECS task definition does not already exist, creates one from your compose file and runs one instance of that task on your cluster\.
 
 **Important**  
-Some features described may only be available with the latest version of the Amazon ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described may only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Syntax<a name="cmd-ecs-cli-compose-up-syntax"></a>
 

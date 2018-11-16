@@ -26,7 +26,7 @@ If you have tasks to run at set intervals in your cluster, such as a backup oper
 
    1. For **Launch type**, choose whether your service should run tasks on Fargate infrastructure, or Amazon EC2 container instances that you maintain\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
 **Important**  
-This feature is not yet available for Fargate tasks in eu\-west\-2 \(London\)\.
+This feature is not yet available for Fargate tasks in the eu\-west\-2 \(London\), ap\-northeast\-2 \(Seoul\), and us\-west\-1 \(N\. California\) Regions\.
 
    1. For **Task definition**, choose the family and revision \(family:revision\) of the task definition to run for this target\.
 

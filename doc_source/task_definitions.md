@@ -24,6 +24,7 @@ Your entire application stack does not need to exist on a single task definition
 + [Task Networking with the `awsvpc` Network Mode](task-networking.md)
 + [Using the awslogs Log Driver](using_awslogs.md)
 + [Private Registry Authentication for Tasks](private-auth.md)
++ [Specifying Sensitive Data](specifying-sensitive-data.md)
 + [Example Task Definitions](example_task_definitions.md)
 + [Updating a Task Definition](update-task-definition.md)
 + [Deregistering Task Definitions](deregister-task-definition.md)

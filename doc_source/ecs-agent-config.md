@@ -300,6 +300,19 @@ Default value on Linux: `false`
 Default value on Windows: `false`  
 When `dockerVolumeConfiguration` is specified in a task definition and the `autoprovision` flag is used, the Amazon ECS container agent compares the details of the Docker volume with the details of existing Docker volumes\. When `ECS_SHARED_VOLUME_MATCH_FULL_CONFIG` is `true`, the container agent compares the full configuration of the volume \(`name`, `driverOpts`, and `labels`\) to verify that the volumes are identical\. When it is `false`, the container agent uses Docker's default behavior, which verifies the volume `name` only\. If a volume is shared across container instances, this should be set to `false`\. For more information, see [Docker Volumes](docker-volumes.md)\.
 
+`ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM`  
+Example values: `ec2_instance`  
+Default value on Linux: none  
+Default value on Windows: none  
+If `ec2_instance` is specified, existing tags defined on the container instance are registered to Amazon ECS\. The tags are discoverable using the `ListTagsForResource` operation\. The IAM role associated with the container instance should have the `ec2:DescribeTags` action allowed\. For more information, see [Adding Tags to a Container Instance](ecs-using-tags.md#instance-details-tags)\.
+
+`ECS_CONTAINER_INSTANCE_TAGS`  
+Example values: `{"tag_key": "tag_val"}`  
+Default value on Linux: `{}`  
+Default value on Windows: `{}`  
+Metadata applied to container instances to help you categorize and organize your resources\. Each tag consists of a custom\-defined key and an optional value\. Tag keys can have a maximum character length of 128 characters\. Tag values can have a maximum length of 256 characters\.  
+If container instance tags are propagated using the `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM` parameter, those tags are overwritten by the tags specified using `ECS_CONTAINER_INSTANCE_TAGS`\. For more information, see [Adding Tags to a Container Instance](ecs-using-tags.md#instance-details-tags)\.
+
 ## Storing Container Instance Configuration in Amazon S3<a name="ecs-config-s3"></a>
 
 Amazon ECS container agent configuration is controlled with the environment variables described above\. Linux variants of the Amazon ECS\-optimized AMI look for these variables in `/etc/ecs/ecs.config` when the container agent starts and configures the agent accordingly\. Certain innocuous environment variables, such as `ECS_CLUSTER`, can be passed to the container instance at launch through Amazon EC2 user data and written to this file without consequence\. However, other sensitive information, such as your AWS credentials or the `ECS_ENGINE_AUTH_DATA` variable, should never be passed to an instance in user data or written to `/etc/ecs/ecs.config` in a way that they would show up in a `.bash_history` file\.

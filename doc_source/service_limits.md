@@ -9,8 +9,8 @@ The following table provides the default limits for Amazon ECS for an AWS accoun
 | Number of container instances per cluster | 1000 | 
 | Number of services per cluster | 500 | 
 | Number of tasks using the EC2 launch type per service \(the desired count\) | 1000 | 
-| Number of tasks using the Fargate launch type, per region, per account | 20 | 
-| Number of public IP addresses for tasks using the Fargate launch type | 20 | 
+| Number of tasks using the Fargate launch type, per region, per account | 50 | 
+| Number of public IP addresses for tasks using the Fargate launch type | 50 | 
 
 The following table provides other limitations for Amazon ECS that cannot be changed\.
 
@@ -29,3 +29,4 @@ The following table provides other limitations for Amazon ECS that cannot be cha
 | Maximum layer size of an image used by a task using the Fargate launch type | 4 GB | 
 | Maximum size of a shared volume used by multiple containers within a task using the Fargate launch type | 4 GB | 
 | Maximum container storage for tasks using the Fargate launch type | 10 GB | 
+| Maximum number of tags per resource \(tasks, services, task definitions, clusters, and container instances\) | 50 | 

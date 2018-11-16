@@ -12,6 +12,15 @@ Before you can run Docker containers on Amazon ECS, you must create a task defin
 **Note**  
 The Fargate launch type is not compatible with Windows containers\.
 
+1. Follow the steps under one of the following tabs, according to the launch type that you have chosen\.
+
+------
+#### [ Fargate launch type ]
+
+**Using the Fargate launch type compatibility template**
+
+If you chose **Fargate**, complete the following steps:
+
 1. \(Optional\) If you have a JSON representation of your task definition, complete the following steps:
 
    1. On the **Configure task and container definitions** page, scroll to the bottom of the page and choose **Configure via JSON**\.
@@ -45,39 +54,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. For **Name**, type a name for your volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
-1. Choose **Create**\.
-
-1. Follow the steps under one of the following tabs, according to the launch type that you have chosen\.
-
-------
-#### [ Fargate launch type ]
-
-**Using the Fargate launch type compatibility template**
-
-If you chose **Fargate**, complete the following steps:
-
-1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
-
-1. \(Optional\) For **Task Role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS API operations on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
-**Note**  
-Only roles that have the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
-
-1. For **Task execution IAM role**, either select your task execution role or choose **Create new role** so that the console can create one for you\. For more information, see[Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
-
-1. For **Task size**, choose a value for **Task memory \(GB\)** and **Task CPU \(vCPU\)**\. The table below shows the valid combinations\.    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-task-definition.html)
-
-1. For each container in your task definition, complete the following steps:
-
-   1. Choose **Add container**\.
-
-   1. Fill out each required field and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task Definition Parameters](task_definition_parameters.md)\.
-
-   1. Choose **Add** to add your container to the task definition\.
-
-1. \(Optional\) To define data volumes for your task, choose **Add volume**\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
-
-   1. For **Name**, type a name for your volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
+1. In the **Tags** section, specify the key and value for each tag to associate with the task definition\. For more information, see [Tagging Your Amazon ECS Resources](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)\.
 
 1. Choose **Create**\.
 
@@ -87,6 +64,16 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 **Using the EC2 launch type compatibility template**
 
 If you chose **EC2**, complete the following steps:
+
+1. \(Optional\) If you have a JSON representation of your task definition, complete the following steps:
+
+   1. On the **Configure task and container definitions** page, scroll to the bottom of the page and choose **Configure via JSON**\.
+
+   1. Paste your task definition JSON into the text area and choose **Save**\.
+
+   1. Verify your information and choose **Create**\.
+
+   Scroll to the bottom of the page and choose **Configure via JSON**\.
 
 1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
@@ -136,6 +123,8 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
       1. For **Volume labels**, specify the custom metadata to add to your Docker volume\.
 
+1. In the **Tags** section, specify the key and value for each tag to associate with the task definition\. For more information, see [Tagging Your Amazon ECS Resources](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)\.
+
 1. Choose **Create**\.
 
 ------
@@ -157,6 +146,12 @@ An empty task definition template is shown below\. You can use this template to 
             "repositoryCredentials": {
                 "credentialsParameter": ""
             },
+            "secrets": [ 
+                { 
+                    "name": "",
+                    "valueFrom": ""
+                }
+            ],
             "cpu": 0,
             "memory": 0,
             "memoryReservation": 0,
@@ -301,6 +296,12 @@ An empty task definition template is shown below\. You can use this template to 
     ],
     "requiresCompatibilities": [
         "EC2"
+    ],
+    "tags": [ 
+        { 
+            "key": "string",
+            "value": "string"
+        }
     ],
     "cpu": "",
     "memory": ""

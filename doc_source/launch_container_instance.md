@@ -10,28 +10,30 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 
 1. From the console dashboard, choose **Launch Instance**\.
 
-1. On the **Choose an Amazon Machine Image \(AMI\)** page, choose **Community AMIs**\.
+1. On the **Choose an Amazon Machine Image \(AMI\)** page, complete the following steps:
 
-1. Choose an AMI for your container instance\. You can choose the Amazon ECS\-optimized Amazon Linux 2 AMI, or another operating system, such as CoreOS or Ubuntu\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS Container Agent](ecs-agent-install.md)\.
+   1. Choose **Community AMIs**\.
+
+   1. Choose an AMI for your container instance\. You can choose the Amazon ECS\-optimized Amazon Linux 2 AMI, or another operating system, such as CoreOS or Ubuntu\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS Container Agent](ecs-agent-install.md)\.
 **Note**  
 For more information about Amazon ECS\-specific CoreOS installation instructions, see [Running CoreOS Container Linux with AWS EC2 Container Service](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
-   To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs\-hvm\-2\.0** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20181017\-x86\_64\-ebs** AMI\. 
+      To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs\-hvm\-2\.0** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20181112\-x86\_64\-ebs** AMI\. 
 
-   The current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by region are listed below for reference\.    
+      The current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by region are listed below for reference\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
 **Note**  
 The current Amazon ECS\-optimized Amazon Linux 2 AMI ID can be retrieved using the AWS CLI with the following command:  
 
-   ```
-   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended
-   ```
+      ```
+      aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended
+      ```
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.
 
-1. Choose **Next: Configure Instance Details**\.
+   Choose **Next: Configure Instance Details** when you are done\.
 
-1. On the **Configure Instance Details** page, configure the following fields accordingly\.
+1. On the **Configure Instance Details** page, complete the following steps:
 
    1. Set the **Number of instances** field depending on how many container instances you want to add to your cluster\.
 
@@ -51,28 +53,46 @@ Container instances need external network access to communicate with the Amazon 
 **Important**  
 If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent cannot connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
-   1. <a name="instance-launch-user-data-step"></a>\(Optional\) Configure your Amazon ECS container instance with user data, such as the agent environment variables from [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\. Amazon EC2 user data scripts are executed only one time, when the instance is first launched\.
+   1. <a name="instance-launch-user-data-step"></a>\(Optional\) Configure your Amazon ECS container instance with user data, such as the agent environment variables from [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\. Amazon EC2 user data scripts are executed only one time, when the instance is first launched\. The following are common examples of what user data is used for:
+      + Specify a By default, your container instance launches into your default cluster\. To launch into a non\-default cluster, choose the **Advanced Details** list\. Then, paste the following script into the **User data** field, replacing *your\_cluster\_name* with the name of your cluster\.
 
-      By default, your container instance launches into your default cluster\. To launch into a non\-default cluster, choose the **Advanced Details** list\. Then, paste the following script into the **User data** field, replacing *your\_cluster\_name* with the name of your cluster\.
-
-      ```
-      #!/bin/bash
-      echo ECS_CLUSTER=your_cluster_name >> /etc/ecs/ecs.config
-      ```
-
-      Or, if you have an `ecs.config` file in Amazon S3 and have enabled Amazon S3 read\-only access to your container instance role, choose the **Advanced Details** list\. Then, paste the following script into the **User data** field, replacing *your\_bucket\_name* with the name of your bucket to install the AWS CLI and write your configuration file at launch time\. 
+        ```
+        #!/bin/bash
+        echo ECS_CLUSTER=your_cluster_name >> /etc/ecs/ecs.config
+        ```
+      + If you have an `ecs.config` file in Amazon S3 and have enabled Amazon S3 read\-only access to your container instance role, choose the **Advanced Details** list\. Then, paste the following script into the **User data** field, replacing *your\_bucket\_name* with the name of your bucket to install the AWS CLI and write your configuration file at launch time\. 
 **Note**  
 For more information about this configuration, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
 
-      ```
-      #!/bin/bash
-      yum install -y aws-cli
-      aws s3 cp s3://your_bucket_name/ecs.config /etc/ecs/ecs.config
-      ```
+        ```
+        #!/bin/bash
+        yum install -y aws-cli
+        aws s3 cp s3://your_bucket_name/ecs.config /etc/ecs/ecs.config
+        ```
+      + Specify tags for your container instance using the `ECS_CONTAINER_INSTANCE_TAGS` configuration parameter\. This creates tags that are associated with Amazon ECS only, they cannot be listed using the Amazon EC2 API\.
+
+        ```
+        #!/bin/bash
+        cat &lt;&lt;'EOF' >> /etc/ecs/ecs.config
+        ECS_CLUSTER=your_cluster_name
+        ECS_CONTAINER_INSTANCE_TAGS={"tag_key": "tag_value"}
+        EOF
+        ```
+      + Specify tags for your container instance and then use the `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM` configuration parameter to propagate them from Amazon EC2 to Amazon ECS
+
+        The following is an example of a user data script that would propagate the tags associated with a container instance, as well as register the container instance with a cluster named `your_cluster_name`:
+
+        ```
+        #!/bin/bash
+        cat <<'EOF' >> /etc/ecs/ecs.config
+        ECS_CLUSTER=your_cluster_name
+        ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM=ec2_instance
+        EOF
+        ```
 
       For more information, see [Bootstrapping Container Instances with Amazon EC2 User Data](bootstrap_container_instance.md)\.
 
-1. Choose **Next: Add Storage**\.
+   1. Choose **Next: Add Storage**\.
 
 1. On the **Add Storage** page, configure the storage for your container instance\.
 
@@ -82,7 +102,13 @@ For more information about this configuration, see [Storing Container Instance C
 
    You can optionally increase or decrease the volume sizes for your instance to meet your application needs\.
 
-1. Choose **Review and Launch**\.
+   When done configuring your volumes, choose **Next: Add Tags**\.
+
+1. On the **Add Tags** page, specify tags by providing key and value combinations for the container instance\. Choose **Add another tag** to add more than one tag to your container instance\. For more information resource tags, see [Resources and Tags](ecs-resource-tagging.md)\.
+
+   Choose **Next: Configure Security Group** when you are done\.
+
+1. On the **Configure Security Group** page, use a security group to define firewall rules for your container instance\. These rules specify which incoming network traffic is delivered to your container instance\. All other traffic is ignored\. Select or create a security group as follows, and then choose **Review and Launch**\.
 
 1. On the **Review Instance Launch** page, under **Security Groups**, you see that the wizard created and selected a security group for you\. Instead, select the security group that you created in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) using the following steps:
 

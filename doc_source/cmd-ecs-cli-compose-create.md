@@ -6,7 +6,7 @@ Creates an Amazon ECS task definition from your compose file\.
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.
 
 **Important**  
-Some features described may only be available with the latest version of the Amazon ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described may only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Syntax<a name="cmd-ecs-cli-compose-create-syntax"></a>
 

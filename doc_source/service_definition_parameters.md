@@ -56,7 +56,15 @@ A service definition defines which task definition to use with your service, how
         }
     },
     "healthCheckGracePeriodSeconds": 0,
-    "schedulingStrategy": "REPLICA"
+    "schedulingStrategy": "REPLICA",
+    "tags": [
+        {
+            "key": "",
+            "value": ""
+        }
+    ],
+    "enableECSManagedTags": true,
+    "propagateTags": "SERVICE"
 }
 ```
 
@@ -165,3 +173,16 @@ There are two service scheduler strategies available:
 + `DAEMON`—The daemon scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints that you specify in your cluster\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\. For more information, see [Daemon](ecs_services.md#service_scheduler_daemon)\.
 **Note**  
 Fargate tasks do not support the `DAEMON` scheduling strategy\.
+
+`tags`  
+The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. For more information, see [Resources and Tags](ecs-resource-tagging.md)\.
+
+`enableECSManagedTags`  
+Specifies whether to enable Amazon ECS managed tags for the tasks in the service\. For more information, see [Tagging Your Resources for Billing](ecs-using-tags.md#tag-resources-for-billing)\.    
+`key`  
+One part of a key\-value pair that make up a tag\. A key is a general label that acts like a category for more specific tag values\.  
+`value`  
+The optional part of a key\-value pair that make up a tag\. A value acts as a descriptor within a tag category \(key\)\.
+
+`propagateTags`  
+Specifies whether to propagate the tags from the task definition or the service to the task\. If no value is specified, the tags are not propagated\.

@@ -5,7 +5,7 @@ Creates the Amazon ECS cluster \(if it does not already exist\) and the AWS reso
 This command creates a new AWS CloudFormation stack called `amazon-ecs-cli-setup-cluster_name`\. You can view the progress of the stack creation in the AWS Management Console\. 
 
 **Important**  
-Some features described may only be available with the latest version of the Amazon ECS CLI\. To obtain the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described may only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Syntax<a name="cmd-ecs-cli-up-syntax"></a>
 

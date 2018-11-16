@@ -79,9 +79,9 @@ Use the following steps to create an Amazon ECS service that is configured to us
    INFO[0157] ECS Service has reached a stable state        desiredCount=1 runningCount=1 serviceName=frontend
    ```
 
-1. Verify the two services are able to discover each other within the VPC using DNS\. The DNS hostname uses the following format: `<service_discovery_service_name>.<service_discovery_namespace>`\. For this example, the `frontend` service can be discovered at `frontend.tutorial` and the `backend` service can be discovered at `backend.tutorial`\. Because these are private DNS namespaces, these DNS names only resolve when within the specified VPC\.
+1. Verify that the two services are able to discover each other within the VPC using DNS\. The DNS hostname uses the following format: `<service_discovery_service_name>.<service_discovery_namespace>`\. For this example, the `frontend` service can be discovered at `frontend.tutorial` and the `backend` service can be discovered at `backend.tutorial`\. Because these are private DNS namespaces, these DNS names only resolve when within the specified VPC\.
 
-1. To update the service discovery settings, update the settings for the `frontend` service\. The values that can be updated are the DNS TTL and the health check custom config failure threshold value\.
+1. To update the service discovery settings, update the settings for the `frontend` service\. The values that can be updated are the DNS TTL and the value for the health check custom config failure threshold\.
 
    ```
    ecs-cli compose --project-name frontend service up --update-service-discovery --dns-type SRV --dns-ttl 120 --healthcheck-custom-config-failure-threshold 2
@@ -116,7 +116,7 @@ Use the following steps to create an Amazon ECS service that is configured to us
    INFO[0027] Cloudformation stack status                   stackStatus=DELETE_IN_PROGRESS
    ```
 
-1. To complete the cleanup, delete the `backend` service along with the private DNS namespace that was created with it\. The Amazon ECS CLI associates the AWS CloudFormation stack for the private DNS namespace with the Amazon ECS service that it was created for, so when the service is deleted the namespace is also deleted\.
+1. To complete the cleanup, delete the `backend` service along with the private DNS namespace that was created with it\. The Amazon ECS CLI associates the AWS CloudFormation stack for the private DNS namespace with the Amazon ECS service for which it was created\. When the service is deleted, the namespace is also deleted\.
 
    ```
    ecs-cli compose --project-name backend service rm --delete-namespace

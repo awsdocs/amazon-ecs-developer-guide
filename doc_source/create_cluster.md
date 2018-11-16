@@ -33,6 +33,8 @@ If you chose the **Networking only** cluster template, do the following, otherwi
 
    1. For **Subnets**, select the subnets to use for your VPC\. You can keep the default settings or you can modify them to meet your needs\.
 
+1. In the **Tags** section, specify the key and value for each tag to associate with the cluster\. For more information, see [Tagging Your Amazon ECS Resources](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)\.
+
 1. Choose **Create**\.
 
 If you chose the **EC2 Linux \+ Networking** or **EC2 Windows \+ Networking** templates, do the following:
@@ -80,5 +82,7 @@ You can also choose to create a new security group and then modify the rules aft
 If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent does not connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
    1. If you chose the Spot Instance type earlier, the **Spot Fleet Role IAM role** section indicates that an IAM role `ecsSpotFleetRole` is created\.
+
+   1. In the **Tags** section, specify the key and value for each tag to associate with the cluster\. For more information, see [Tagging Your Amazon ECS Resources](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)\.
 
    1. Choose **Create**\.
