@@ -26,7 +26,7 @@ For more information about Amazon ECS\-specific CoreOS installation instructions
 The current Amazon ECS\-optimized Amazon Linux 2 AMI ID can be retrieved using the AWS CLI with the following command:  
 
       ```
-      aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended
+      aws ssm get-parameters --names recommended
       ```
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.

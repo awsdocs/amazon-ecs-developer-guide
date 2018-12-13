@@ -8,6 +8,7 @@ In addition to maintaining the desired count of tasks in your service, you can o
 + [Service Scheduler Concepts](#service_scheduler)
 + [Additional Service Concepts](#service_concepts)
 + [Service Definition Parameters](service_definition_parameters.md)
++ [Amazon ECS Deployment Types](deployment-types.md)
 + [Service Load Balancing](service-load-balancing.md)
 + [Service Auto Scaling](service-auto-scaling.md)
 + [Service Discovery](service-discovery.md)

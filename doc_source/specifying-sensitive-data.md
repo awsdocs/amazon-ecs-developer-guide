@@ -34,7 +34,7 @@ The following is a snippet of a task definition showing the required parameters:
 
 ## Required IAM Permissions for Amazon ECS Secrets<a name="secrets-iam"></a>
 
-To use this feature, you must have the Amazon ECS task execution role\. This allows the container agent to pull the container image\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+To use this feature, you must have the Amazon ECS task execution role\. This allows the container agent to pull the necessary AWS Systems Manager and Secrets Manager resources\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
 To provide access to the AWS Systems Manager Parameter Store parameters that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
 + `ssm:GetParameters`—Always required when referencing an Systems Manager Parameter Store parameter in a task definition\.

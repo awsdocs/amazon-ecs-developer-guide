@@ -26,8 +26,8 @@ If the root volume of your container instance has insufficient disk space when p
 ```
 CannotPullContainerError: write /var/lib/docker/tmp/GetImageBlob111111111: no space left on device
 ```
-To resolve this issue, you need to free up disk space\.  
-If you are using the Amazon ECS\-optimized AMI you can use the following command to retrieve the twenty largest files on your filesystem:  
+To resolve this issue, free up disk space\.  
+If you are using the Amazon ECS\-optimized AMI, you can use the following command to retrieve the 20 largest files on your filesystem:  
 
 ```
 du -Sh / | sort -rh | head -20
@@ -46,7 +46,7 @@ In some cases, like this example above, the root volume may be filled out by a r
 CONTAINER ID   IMAGE                            COMMAND             CREATED             STATUS              PORTS                            NAMES
 50501b5f4cbf   amazon/amazon-ecs-agent:latest   "/agent"            4 days ago          Up 4 days                                            ecs-agent
 ```
-By default, when using the `json-file` log driver, Docker captures the standard output \(and standard error\) of all of your containers and writers them in files using the JSON format\. You are able to set the `max-size` as a log driver option, which prevents the log file from taking up too much space\. For more information, see [Configure logging drivers](https://docs.docker.com/config/containers/logging/json-file/) in the Docker documentation\.  
+By default, when using the `json-file` log driver, Docker captures the standard output \(and standard error\) of all of your containers and writes them in files using the JSON format\. You are able to set the `max-size` as a log driver option, which prevents the log file from taking up too much space\. For more information, see [Configure logging drivers](https://docs.docker.com/config/containers/logging/json-file/) in the Docker documentation\.  
 The following is a container definition snippet showing how to use this option:  
 
 ```

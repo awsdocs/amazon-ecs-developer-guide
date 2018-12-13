@@ -25,7 +25,7 @@ A service definition defines which task definition to use with your service, how
     ],
     "desiredCount": 0,
     "clientToken": "",
-    "launchType": "EC2",
+    "launchType": "FARGATE",
     "platformVersion": "",
     "role": "",
     "deploymentConfiguration": {
@@ -52,11 +52,16 @@ A service definition defines which task definition to use with your service, how
             "securityGroups": [
                 ""
             ],
-            "assignPublicIp": "ENABLED"
+            "assignPublicIp": "ENABLED",
+            "networkInterfaceOwner": "",
+            "networkInterfaceCredential": ""
         }
     },
     "healthCheckGracePeriodSeconds": 0,
     "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "ECS"
+    },
     "tags": [
         {
             "key": "",
@@ -64,7 +69,7 @@ A service definition defines which task definition to use with your service, how
         }
     ],
     "enableECSManagedTags": true,
-    "propagateTags": "SERVICE"
+    "propagateTags": "TASK_DEFINITION"
 }
 ```
 
@@ -173,6 +178,11 @@ There are two service scheduler strategies available:
 + `DAEMON`—The daemon scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints that you specify in your cluster\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\. For more information, see [Daemon](ecs_services.md#service_scheduler_daemon)\.
 **Note**  
 Fargate tasks do not support the `DAEMON` scheduling strategy\.
+
+`deploymentController`  
+The deployment controller type the service is using\. \.    
+`type`  
+The deployment controller type to use\. If `ECS` is specified, your tasks will launched through Amazon ECS\. If `CODE_DEPLOY` is specified, your tasks will be deployed through AWS CodeDeploy\.
 
 `tags`  
 The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. For more information, see [Resources and Tags](ecs-resource-tagging.md)\.

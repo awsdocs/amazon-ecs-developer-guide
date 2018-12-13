@@ -5,9 +5,6 @@ To help you manage your Amazon ECS tasks, services, task definitions, clusters, 
 **Important**  
 To use this feature, it requires that you opt\-in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-resource-ids.md)\.
 
-**Note**  
-Resource tagging is not available in the GovCloud \(US\-East\) region\.
-
 **Topics**
 + [Tag Basics](#tag-basics)
 + [Tagging Your Resources](#tag-resources)

@@ -21,6 +21,7 @@ Amazon ECS partially supports resource\-level permissions\. This means that for 
 + [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)
 + [Using Service\-Linked Roles for Amazon ECS](using-service-linked-roles.md)
 + [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md)
++ [Amazon ECS AWS CodeDeploy IAM Role](codedeploy_IAM_role.md)
 + [Amazon ECS Service Auto Scaling IAM Role](autoscale_IAM_role.md)
 + [**Amazon ECS Task Role**](task_IAM_role.md)
 + [CloudWatch Events IAM Role](CWE_IAM_role.md)

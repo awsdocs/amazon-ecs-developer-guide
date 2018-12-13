@@ -42,7 +42,10 @@ For each Region, you can opt in or opt out of the new ARN and resource ID format
 
 The opt in and opt out account setting can be set for each Amazon ECS resource separately\. The ARN and resource ID format of a resource will be defined by the opt\-in status of the IAM user or role that created the resource\.
 
-Only resources launched after opting in will receive the new ARN and resource ID format\. All existing resources keep their ARN and resource ID and are not affected\. For example, if you opt in to the new format for all resources and have an existing Amazon ECS service, it will keep its old ARN\. After you opt in, any new tasks launched by that service will receive the new ARN format\.
+Only resources launched after opting in will receive the new ARN and resource ID format\. All existing resources keep their ARN and resource ID and are not affected\. For Amazon ECS services and tasks to transition to the new format, the service or task must be re\-created\. To transition a container instance to the new format, the container instance must be drained and a new container instance registered to the cluster\.
+
+**Note**  
+Tasks launched by an Amazon ECS service can only receive the new ARN and resource ID format if the service was created on or after November 16, 2018 and the IAM user who created the service has opted in for the new format for tasks\.
 
 **Topics**
 + [Viewing Account Settings](#ecs-viewing_longer_id_settings)

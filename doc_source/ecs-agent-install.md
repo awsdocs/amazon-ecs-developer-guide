@@ -127,7 +127,7 @@ The latest Amazon ECS container agent files, by region, are listed below for ref
 | ca\-central\-1 | Canada \(Central\) | [ECS container agent](http://s3-ca-central-1.amazonaws.com/amazon-ecs-agent-ca-central-1/ecs-agent-latest.tar) | [PGP signature](http://s3-ca-central-1.amazonaws.com/amazon-ecs-agent-ca-central-1/ecs-agent-latest.tar.asc) | 
 | ap\-south\-1 | Asia Pacific \(Mumbai\) | [ECS container agent](http://s3-ap-south-1.amazonaws.com/amazon-ecs-agent-ap-south-1/ecs-agent-latest.tar) | [PGP signature](http://s3-ap-south-1.amazonaws.com/amazon-ecs-agent-ap-south-1/ecs-agent-latest.tar.asc) | 
 | sa\-east\-1 | South America \(São Paulo\) | [ECS container agent](http://s3-sa-east-1.amazonaws.com/amazon-ecs-agent-sa-east-1/ecs-agent-latest.tar) | [PGP signature](http://s3-sa-east-1.amazonaws.com/amazon-ecs-agent-sa-east-1/ecs-agent-latest.tar.asc) | 
-| us\-gov\-west\-1 | AWS GovCloud \(US\) | [ECS container agent](http://s3-us-gov-west-1.amazonaws.com/amazon-ecs-agent-us-gov-west-1/ecs-agent-latest.tar) | [PGP signature](http://s3-us-gov-west-1.amazonaws.com/amazon-ecs-agent-us-gov-west-1/ecs-agent-latest.tar.asc) | 
+| us\-gov\-west\-1 | AWS GovCloud \(US\-West\) | [ECS container agent](http://s3-us-gov-west-1.amazonaws.com/amazon-ecs-agent-us-gov-west-1/ecs-agent-latest.tar) | [PGP signature](http://s3-us-gov-west-1.amazonaws.com/amazon-ecs-agent-us-gov-west-1/ecs-agent-latest.tar.asc) | 
 | cn\-north\-1 | China \(Beijing\) | [ECS container agent](http://s3.cn-north-1.amazonaws.com.cn/amazon-ecs-agent-cn-north-1/ecs-agent-latest.tar) | [PGP signature](http://s3.cn-north-1.amazonaws.com.cn/amazon-ecs-agent-cn-north-1/ecs-agent-latest.tar.asc) | 
 
 **To install the Amazon ECS container agent on a non\-Amazon Linux EC2 instance**

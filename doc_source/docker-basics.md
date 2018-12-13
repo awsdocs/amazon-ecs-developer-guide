@@ -1,6 +1,6 @@
 # Docker Basics for Amazon ECS<a name="docker-basics"></a>
 
-Docker is a technology that allows you to build, run, test, and deploy distributed applications that are based on Linux containers\. Amazon ECS uses Docker images in task definitions to launch containers on EC2 instances in your clusters\. For Amazon ECS product details, featured customer case studies, and FAQs, see the [Amazon Elastic Container Service product detail pages](http://aws.amazon.com/ecs)\.
+Docker is a technology that allows you to build, run, test, and deploy distributed applications that are based on Linux containers\. Amazon ECS uses Docker images in task definitions to launch containers on Amazon EC2 instances in your clusters\. For Amazon ECS product details, featured customer case studies, and FAQs, see the [Amazon Elastic Container Service product detail pages](http://aws.amazon.com/ecs)\.
 
 The documentation in this guide assumes that readers possess a basic understanding of what Docker is and how it works\. For more information about Docker, see [What is Docker?](http://aws.amazon.com/docker/) and the [Docker overview](https://docs.docker.com/engine/docker-overview/)\.
 
@@ -17,11 +17,11 @@ If you already have Docker installed, skip to [Create a Docker Image](#docker-ba
 
 Docker is available on many different operating systems, including most modern Linux distributions, like Ubuntu, and even Mac OSX and Windows\. For more information about how to install Docker on your particular operating system, go to the [Docker installation guide](https://docs.docker.com/engine/installation/#installation)\.
 
-You don't even need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an Amazon Linux instance and install Docker to get started\.
+You don't even need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an Amazon Linux 2 instance and install Docker to get started\.
 
-**To install Docker on an Amazon Linux instance**
+**To install Docker on an Amazon Linux 2 instance**
 
-1. Launch an instance with the Amazon Linux AMI\. For more information, see [Launching an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. Launch an instance with the Amazon Linux 2 AMI\. For more information, see [Launching an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Connect to your instance\. For more information, see [Connect to Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
@@ -34,7 +34,7 @@ You don't even need a local development system to use Docker\. If you are using 
 1. Install the most recent Docker Community Edition package\.
 
    ```
-   sudo yum install -y docker
+   sudo amazon-linux-extras install docker
    ```
 
 1. Start the Docker service\.
@@ -156,7 +156,7 @@ This section requires the following:
 1. Create an Amazon ECR repository to store your `hello-world` image\. Note the `repositoryUri` in the output\.
 
    ```
-   aws ecr create-repository --repository-name hello-world
+   aws ecr create-repository --repository-name hello-repository
    ```
 
    Output:
@@ -166,9 +166,9 @@ This section requires the following:
        "repository": {
            "registryId": "aws_account_id",
            "repositoryName": "hello-world",
-           "repositoryArn": "arn:aws:ecr:us-east-1:aws_account_id:repository/hello-world",
+           "repositoryArn": "arn:aws:ecr:us-east-1:aws_account_id:repository/hello-repository",
            "createdAt": 1505337806.0,
-           "repositoryUri": "aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world"
+           "repositoryUri": "aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-repository"
        }
    }
    ```
@@ -176,7 +176,7 @@ This section requires the following:
 1. Tag the `hello-world` image with the `repositoryUri` value from the previous step\.
 
    ```
-   docker tag hello-world aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world
+   docker tag hello-world aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-repository
    ```
 
 1. Run the aws ecr get\-login \-\-no\-include\-email command to get the docker login authentication command string for your registry\. 
@@ -194,7 +194,7 @@ When you execute this docker login command, the command string can be visible to
 1. Push the image to Amazon ECR with the `repositoryUri` value from the earlier step\.
 
    ```
-   docker push aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world
+   docker push aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-repository
    ```
 
 ## Next Steps<a name="docker_next_steps"></a>
@@ -213,8 +213,8 @@ This section requires the AWS CLI\. If you do not have the AWS CLI installed on 
        "family": "hello-world",
        "containerDefinitions": [
            {
-               "name": "hello-world",
-               "image": "aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world",
+               "name": "hello-task-definition",
+               "image": "aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-repository",
                "cpu": 10,
                "memory": 500,
                "portMappings": [
@@ -242,11 +242,11 @@ This section requires the AWS CLI\. If you do not have the AWS CLI installed on 
 
    The task definition is registered in the `hello-world` family as defined in the JSON file\.
 
-**To run a task with the `hello-world` task definition**
+**To run a task with the `hello-task-definition` task definition**
 **Important**  
 Before you can run tasks in Amazon ECS, you need to launch container instances into a default cluster\. For more information about how to set up and launch container instances, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)\.
-+ Use the following AWS CLI command to run a task with the `hello-world` task definition\.
++ Use the following AWS CLI command to run a task with the `hello-task-definition` task definition\.
 
   ```
-  aws ecs run-task --task-definition hello-world
+  aws ecs run-task --task-definition hello-task-definition
   ```

@@ -14,6 +14,7 @@ The family and container definitions are required in a task definition, while ta
 + [Task Placement Constraints](#constraints)
 + [Launch Types](#requires_compatibilities)
 + [Task Size](#task_size)
++ [Other Task Definition Parameters](#other_task_definition_params)
 
 ## Family<a name="family"></a>
 
@@ -625,7 +626,10 @@ Required: no
 A list of namespaced kernel parameters to set in the container\. This parameter maps to `Sysctls` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--sysctl` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 It is not recommended that you specify network\-related `systemControls` parameters for multiple containers in a single task that also uses either the `awsvpc` or `host` network mode for the following reasons:  
 + For tasks that use the `awsvpc` network mode, if you set `systemControls` for any container it will apply to all containers in the task\. If you set different `systemControls` for multiple containers in a single task, the container that is started last will determine which `systemControls` take effect\.
-+ For tasks that use the `host` network mode, the `systemControls` parameter will apply to the container instance's kernel parameter as well as that of all containers of any tasks running on that container instance\.
++ For tasks that use the `host` network mode, the network namespace `systemControls` are not supported\.
+If you are setting an IPC resource namespace to use for the containers in the task, the following will apply to your system controls\. For more information, see [IPC Mode](#task_definition_ipcmode)\.  
++ For tasks that use the `host` IPC mode, IPC namespace `systemControls` are not supported\.
++ For tasks that use the `task` IPC mode, IPC namespace `systemControls` values will apply to all containers within a task\.
 This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
 
 ```
@@ -640,8 +644,8 @@ This parameter is not supported for Windows containers or tasks using the Fargat
 Type: String  
 Required: no  
 The namespaced kernel parameter to set a `value` for\.  
-Valid IPC Namespace values: `"kernel.msgmax" | "kernel.msgmnb" | "kernel.msgmni" | "kernel.sem" | "kernel.shmall" | "kernel.shmmax" | "kernel.shmmni" | "kernel.shm_rmid_forced"`, as well as Sysctls beginning with `"fs.mqueue.*"`  
-Valid Network Namespace values: Sysctls beginning with `"net.*"`  
+Valid IPC namespace values: `"kernel.msgmax" | "kernel.msgmnb" | "kernel.msgmni" | "kernel.sem" | "kernel.shmall" | "kernel.shmmax" | "kernel.shmmni" | "kernel.shm_rmid_forced"`, as well as Sysctls beginning with `"fs.mqueue.*"`  
+Valid network namespace values: Sysctls beginning with `"net.*"`  
 `value`  
 Type: String  
 Required: no  
@@ -775,3 +779,36 @@ The amount of memory \(in MiB\) used by the task\. It can be expressed as an int
 If using the EC2 launch type, this field is optional\.  
 If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
+
+## Other Task Definition Parameters<a name="other_task_definition_params"></a>
+
+The following task definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
+
+**Topics**
++ [IPC Mode](#task_definition_ipcmode)
++ [PID Mode](#task_definition_pidmode)
+
+### IPC Mode<a name="task_definition_ipcmode"></a>
+
+`ipcMode`  
+Type: String  
+Required: No  
+The IPC resource namespace to use for the containers in the task\. The valid values are `host`, `task`, or `none`\. If `host` is specified, then all containers within the tasks that specified the `host` IPC mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same IPC resources\. If `none` is specified, then IPC resources within the containers of a task are private and not shared with other containers in a task or on the container instance\. If no value is specified, then the IPC resource namespace sharing depends on the Docker daemon setting on the container instance\. For more information, see [IPC settings](https://docs.docker.com/engine/reference/run/#ipc-settings---ipc) in the *Docker run reference*\.  
+If the `host` IPC mode is used, be aware that there is a heightened risk of undesired IPC namespace exposure\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.  
+If you are setting namespaced kernel parameters using `systemControls` for the containers in the task, the following will apply to your IPC resource namespace\. For more information, see [System Controls](#container_definition_systemcontrols)\.  
++ For tasks that use the `host` IPC mode, IPC namespace related `systemControls` are not supported\.
++ For tasks that use the `task` IPC mode, IPC namespace related `systemControls` will apply to all containers within a task\.
+
+**Note**  
+This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
+
+### PID Mode<a name="task_definition_pidmode"></a>
+
+`pidMode`  
+Type: String  
+Required: No  
+The process namespace to use for the containers in the task\. The valid values are `host` or `task`\. If `host` is specified, then all containers within the tasks that specified the `host` PID mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same process namespace\. If no value is specified, the default is a private namespace\. For more information, see [PID settings](https://docs.docker.com/engine/reference/run/#pid-settings---pid) in the *Docker run reference*\.  
+If the `host` PID mode is used, be aware that there is a heightened risk of undesired process namespace exposure\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.
+
+**Note**  
+This parameter is not supported for Windows containers or tasks using the Fargate launch type\.

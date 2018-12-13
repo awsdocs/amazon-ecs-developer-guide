@@ -14,8 +14,12 @@ The following is the format of the parameter name\.
   ```
   /aws/service/ecs/optimized-ami/amazon-linux-2/<version>
   ```
++ Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI metadata:
 
-  Amazon ECS\-optimized Amazon Linux AMI metadata:
+  ```
+  /aws/service/ecs/optimized-ami/amazon-linux-2/arm64/<version>
+  ```
++ Amazon ECS\-optimized Amazon Linux AMI metadata:
 
   ```
   /aws/service/ecs/optimized-ami/amazon-linux/<version>
@@ -63,7 +67,12 @@ The following parameter name format retrieves the metadata of a specific Amazon 
 + Amazon ECS\-optimized Amazon Linux 2 AMI metadata:
 
   ```
-  /aws/service/ecs/optimized-ami/amazon-linux-2/amzn2-ami-ecs-hvm-2.0.20181017-x86_64-ebs
+  /aws/service/ecs/optimized-ami/amazon-linux-2/amzn2-ami-ecs-hvm-2.0.20181112-x86_64-ebs
+  ```
++ Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI metadata:
+
+  ```
+  /aws/service/ecs/optimized-ami/amazon-linux-2/arm64/amzn2-ami-ecs-hvm-2.0.20181120-arm64-ebs
   ```
 + Amazon ECS\-optimized Amazon Linux AMI metadata:
 
@@ -99,6 +108,29 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
               "Version": 1,
               "LastModifiedDate": 1539908415.817,
               "ARN": "arn:aws:ssm:us-east-1::parameter/aws/service/ecs/optimized-ami/amazon-linux-2/recommended"
+          }
+      ],
+      "InvalidParameters": []
+  }
+  ```
++ **For the Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMIs:**
+
+  ```
+  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended --region us-east-1
+  ```
+
+  Output:
+
+  ```
+  {
+      "Parameters": [
+          {
+              "Name": "/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended",
+              "Type": "String",
+              "Value": "{\"schema_version\":1,\"image_name\":\"amzn2-ami-ecs-hvm-2.0.20181120-arm64-ebs\",\"image_id\":\"ami-053b2a8c2f3e87928\",\"os\":\"Amazon Linux 2\",\"ecs_runtime_version\":\"Docker version 18.06.1-ce\",\"ecs_agent_version\":\"1.22.0\"}",
+              "Version": 1,
+              "LastModifiedDate": 1542745522.454,
+              "ARN": "arn:aws:ssm:us-east-1::parameter/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended"
           }
       ],
       "InvalidParameters": []

@@ -19,13 +19,13 @@ If you have trouble starting a task, your task might be stopping because of an e
 Task failed ELB health checks in \(elb elb\-name\)  
 The current task failed the Elastic Load Balancing health check for the load balancer that is associated with the task's service\. For more information, see [Troubleshooting Service Load Balancers](troubleshoot-service-load-balancers.md)\.  
 Scaling activity initiated by \(deployment deployment\-id\)  
-When you reduce the desired count of a stable service, some tasks need to be stopped in order to reach the desired number\. Tasks that are stopped by downscaling services have this stopped reason\.   
+When you reduce the desired count of a stable service, some tasks must be stopped in order to reach the desired number\. Tasks that are stopped by downscaling services have this stopped reason\.   
 Host EC2 \(instance *id*\) stopped/terminated  
 If you stop or terminate a container instance with running tasks, then the tasks are given this stopped reason\.  
 Container instance deregistration forced by user  
 If you force the deregistration of a container instance with running tasks, then the tasks are given this stopped reason\.  
 Essential container in task exited  
-Containers marked as `essential` in task definitions cause a task to stop if they exit or die\. When an essential container exiting is the cause of a stopped task, the [Step 6](#status-reason-step) can provide more diagnostic information as to why the container stopped\.
+If a container marked as `essential` in task definitions exits or dies, that can cause a task to stop\. When an essential container exiting is the cause of a stopped task, the [Step 6](#status-reason-step) can provide more diagnostic information as to why the container stopped\.
 
 1. <a name="status-reason-step"></a>If you have a container that has stopped, expand the container and inspect the **Status reason** row to see what caused the task state to change\.  
 ![\[Stopped container error\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/stopped_container_status_reason.png)

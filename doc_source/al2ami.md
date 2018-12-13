@@ -1,6 +1,8 @@
 # Amazon ECS\-Optimized Amazon Linux 2 AMI<a name="al2ami"></a>
 
-The Amazon ECS\-optimized Amazon Linux 2 AMI is the recommended AMI to use for launching your Amazon ECS container instances\. Although you can create your own container instance AMI that meets the basic specifications outlined in [Container Instance AMIs](container_instance_AMIs.md), the Amazon ECS\-optimized Amazon Linux 2 AMI is preconfigured and tested on Amazon ECS by AWS engineers\. It is the simplest AMI for you to get started and to get your containers running on AWS quickly\.
+The Amazon ECS\-optimized Amazon Linux 2 AMI is the recommended AMI to use for launching your Amazon ECS container instances\. Amazon ECS provides separate Amazon ECS\-optimized Amazon Linux 2 AMIs for x86 and arm64 architecture\.
+
+Although you can create your own container instance AMI that meets the basic specifications outlined in [Container Instance AMIs](container_instance_AMIs.md), the Amazon ECS\-optimized Amazon Linux 2 AMI is preconfigured and tested on Amazon ECS by AWS engineers\. It is the simplest AMI for you to get started and to get your containers running on AWS quickly\.
 
 **Note**  
 Amazon ECS vends Linux AMIs that are optimized for the service in two variants\. The latest and recommended version is based on Amazon Linux 2\. Amazon ECS also vends AMIs that are based on the Amazon Linux AMI\. We recommend that you migrate your workloads to the Amazon Linux 2 variant, as support for the Amazon Linux AMI ends no later than June 30, 2020\.
@@ -34,6 +36,16 @@ The current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by region are listed be
 | ap\-south\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20181112\-x86\_64\-ebs | ami\-0b7c3be99909df6ef | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-south-1#LaunchInstanceWizard:ami=ami-0b7c3be99909df6ef) | 
 | sa\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20181112\-x86\_64\-ebs | ami\-078146697425f25a7 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-078146697425f25a7) | 
 | us\-gov\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20181112\-x86\_64\-ebs | ami\-31b5d150 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-31b5d150) | 
+
+The current Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI IDs by region are listed below for reference\.
+
+
+| Region | AMI Name | AMI ID | EC2 console link | 
+| --- | --- | --- | --- | 
+| us\-east\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20181120\-arm64\-ebs | ami\-0a2be55320fc4a274 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-2#LaunchInstanceWizard:ami=ami-0a2be55320fc4a274) | 
+| us\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20181120\-arm64\-ebs | ami\-0e851dee3d33f685e | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0e851dee3d33f685e) | 
+| us\-west\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20181120\-arm64\-ebs | ami\-053b2a8c2f3e87928 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-053b2a8c2f3e87928) | 
+| eu\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20181120\-arm64\-ebs | ami\-0874eb7dff7483ab5 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-0874eb7dff7483ab5) | 
 
 **Topics**
 + [How to Launch the Latest Amazon ECS\-Optimized Amazon Linux 2 AMI](al2ami-get-latest.md)

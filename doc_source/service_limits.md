@@ -8,7 +8,7 @@ The following table provides the default limits for Amazon ECS for an AWS accoun
 | Number of clusters per region, per account | 1000 | 
 | Number of container instances per cluster | 1000 | 
 | Number of services per cluster | 500 | 
-| Number of tasks using the EC2 launch type per service \(the desired count\) | 1000 | 
+| Number of tasks per service \(the desired count\) | 1000 | 
 | Number of tasks using the Fargate launch type, per region, per account | 50 | 
 | Number of public IP addresses for tasks using the Fargate launch type | 50 | 
 
@@ -21,6 +21,7 @@ The following table provides other limitations for Amazon ECS that cannot be cha
 | Number of tasks launched \(count\) per run\-task | 10 | 
 | Number of container instances per start\-task | 10 | 
 | Throttle on container instance registration rate | 1 per second / 60 max per minute | 
+| Number of revisions per task definition family | 1,000,000 | 
 | Task definition size limit | 32 KiB | 
 | Task definition max containers | 10 | 
 | Throttle on task definition registration rate | 1 per second / 60 max per minute | 

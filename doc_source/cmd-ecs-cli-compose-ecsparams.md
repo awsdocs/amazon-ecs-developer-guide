@@ -13,6 +13,8 @@ task_definition:
   task_size:
     cpu_limit: string
     mem_limit: string
+  pid: string
+  ipc: string
   services:
     <service_name>:
       essential: boolean
@@ -27,6 +29,9 @@ task_definition:
         timeout: string
         retries: integer
         start_period: string
+      secrets:
+        - value_from: string
+          name: string
   docker_volumes:
       name: string
       scope: string
@@ -82,6 +87,20 @@ The fields listed under `task_definition` correspond to fields to be included in
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cmd-ecs-cli-compose-ecsparams.html)
 
   For more information, see [Task Size](task_definition_parameters.md#task_size)\.
++ `pid` – The process namespace to use for the containers in the task\. The valid values are `host` or `task`\. If `host` is specified, then all containers within the tasks that specified the `host` PID mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same process namespace\. If no value is specified, the default is a private namespace\. For more information, see [PID settings](https://docs.docker.com/engine/reference/run/#pid-settings) in the *Docker run reference*\.
+
+  If the `host` PID mode is used, be aware that there is a heightened risk of undesired process namespace expose\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.
+**Note**  
+This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
++ `ipc` – The IPC resource namespace to use for the containers in the task\. The valid values are `host`, `task`, or `none`\. If `host` is specified, then all containers within the tasks that specified the `host` IPC mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same IPC resources\. If `none` is specified, then IPC resources within the containers of a task are private and not shared with other containers in a task or on the container instance\. If no value is specified, then the IPC resource namespace sharing depends on the Docker daemon setting on the container instance\. For more information, see [IPC settings](https://docs.docker.com/engine/reference/run/#ipc-settings) in the *Docker run reference*\.
+
+  If the `host` IPC mode is used, be aware that there is a heightened risk of undesired IPC namespace expose\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.
+
+  If you are setting namespaced kernel parameters using `systemControls` for the containers in the task, the following will apply to your IPC resource namespace\. For more information, see [System Controls](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html) in the *Amazon Elastic Container Service Developer Guide*\.
+  + For tasks that use the `host` IPC mode, IPC namespace related `systemControls` are not supported\.
+  + For tasks that use the `task` IPC mode, IPC namespace related `systemControls` will apply to all containers within a task\.
+**Note**  
+This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
 + `services` – Corresponds to the services listed in your Docker compose file, with `service_name` matching the name of the container to run\. Its fields are merged into a container definition\.
   + `essential` – If the `essential` parameter of a container is marked as `true`, and that container fails or stops for any reason, all other containers that are part of the task are stopped\. If the `essential` parameter of a container is marked as `false`, then its failure does not affect the rest of the containers in a task\. The default value is `true`\.
 
@@ -93,6 +112,9 @@ The fields listed under `task_definition` correspond to fields to be included in
   + `healthcheck` – This parameter maps to `healthcheck` in the [Docker compose file reference](https://docs.docker.com/compose/compose-file/#healthcheck)\. The `test` field can also be specified as `command` and must be either a string or a list\. If it's a list, the first item must be either `NONE`, `CMD`, or `CMD-SHELL`\. If it's a string, it's equivalent to specifying `CMD-SHELL` followed by that string\. The `interval`, `timeout`, and `start_period` fields are specified as durations in a string format\. For example: `2.5s`, `10s`, `1m30s`, `2h23m`, or `5h34m56s`\.
 **Note**  
 If no units are specified, seconds are assumed\. For example, you can specify either `10s` or simply `10`\.
+  + `secrets` – This parameter allows you to inject sensitive data into your containers by storing your sensitive data in AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
+    + `value_from` – This is the AWS Systems Manager Parameter Store ARN or name to expose to the container\. If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
+    + `name` – The value to set as the environment variable on the container\.
 + `docker_volumes` – This parameter allows you to create docker volumes\. The `name` key is required, and `scope`, `autoprovision`, `driver`, `driver_opts` and `labels` correspond with the Docker volume configuration fields in a task definition\. For more information, see [DockerVolumeConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DockerVolumeConfiguration.html) in the *Amazon Elastic Container Service API Reference*\. Volumes defined with the `docker_volumes` key can be referenced in your compose file by name, even if they were not also specified in the compose file\.
 
 The fields listed under `run_params` are for values needed as options to any API calls not specifically related to a task definition, such as `compose up` \(RunTask\) and `compose service up` \(CreateService\)\. Currently, the only supported parameter under `run_params` is `network_configuration`, which is a required parameter to use task networking and when using tasks with the Fargate launch type\.

@@ -2,9 +2,6 @@
 
 Amazon ECS resources, including task definitions, clusters, tasks, services, and container instances, are assigned an Amazon Resource Name \(ARN\) and a unique resource identifier \(ID\)\. These resources can be tagged with values that you define, to help you organize and identify them\.
 
-**Note**  
-Resource tagging is not available in the GovCloud \(US\-East\) region\.
-
 The following topics describe resources and tags, and how you can work with them\.
 
 **Topics**

@@ -39,7 +39,10 @@ The first\-run wizard attempts to automatically create the Amazon ECS service IA
 **Configure repository**
 
 A repository is where you store Docker images in Amazon ECR\. Every time you push or pull an image from Amazon ECR, you specify the registry and repository location to tell Docker where to push the image to or where to pull it from\.
-+ For **Repository name**, enter a unique name for your repository and choose **Next step**\.
+
+1. Choose **Get Started**\.
+
+1. For **Repository configuration**, enter a unique name for your repository and choose **Create repository**\.
 
 **Build, tag, and push Docker image**
 
@@ -53,13 +56,13 @@ The get\-login command is available in the AWS CLI starting with version 1\.9\.1
 **Important**  
 When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way\. They could use the credentials to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
 
-1. \(Optional\) If you have a Dockerfile for the image to push, build the image and tag it for your new repository by pasting the docker build command from the console into a terminal window\. Make sure that you are in the same directory as your Dockerfile\.
+1. \(Optional\) If you have a Dockerfile for the image to push, build the image and tag it for your new repository\. Pasting the docker build command from the console into a terminal window\. Make sure that you are in the same directory as your Dockerfile\.
 
 1. Tag the image for your ECR registry and your new repository by pasting the docker tag command from the console into a terminal window\. The console command assumes that your image was built from a Dockerfile in the previous step\. If you did not build your image from a Dockerfile, replace the first instance of `repository:latest` with the image ID or image name of your local image to push\.
 
 1. Push the newly tagged image to your ECR repository by pasting the docker push command into a terminal window\.
 
-1. Choose **Done**\.
+1. Choose **Close**\.
 
 ## Step 2: Create a Task Definition<a name="first-run-ec2-task-def"></a>
 

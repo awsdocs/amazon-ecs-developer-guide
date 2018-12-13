@@ -36,7 +36,7 @@ Specify the full ARN of your task execution role or task role override\.
             "Effect": "Allow",
             "Action": "iam:PassRole",
             "Resource": [
-                "arn:aws:iam::<aws_account_id>:role/<ecsTaskExecutionRole_name>"
+                "arn:aws:iam::<aws_account_id>:role/<ecsTaskExecutionRole_or_TaskRole_name>"
             ]
         }
     ]
@@ -113,7 +113,7 @@ You can use the following procedure to check that your account already has the C
                "Effect": "Allow",
                "Action": "iam:PassRole",
                "Resource": [
-                   "arn:aws:iam::<aws_account_id>:role/<ecsTaskExecutionRole_name>"
+                   "arn:aws:iam::<aws_account_id>:role/<ecsTaskExecutionRole_or_TaskRole_name>"
                ]
            }
        ]

@@ -138,7 +138,7 @@ An empty task definition template is shown below\. You can use this template to 
     "family": "",
     "taskRoleArn": "",
     "executionRoleArn": "",
-    "networkMode": "awsvpc",
+    "networkMode": "host",
     "containerDefinitions": [
         {
             "name": "",
@@ -146,12 +146,6 @@ An empty task definition template is shown below\. You can use this template to 
             "repositoryCredentials": {
                 "credentialsParameter": ""
             },
-            "secrets": [ 
-                { 
-                    "name": "",
-                    "valueFrom": ""
-                }
-            ],
             "cpu": 0,
             "memory": 0,
             "memoryReservation": 0,
@@ -221,6 +215,15 @@ An empty task definition template is shown below\. You can use this template to 
                     }
                 ]
             },
+            "inferenceDevices": [
+                ""
+            ],
+            "secrets": [
+                {
+                    "name": "",
+                    "valueFrom": ""
+                }
+            ],
             "hostname": "",
             "user": "",
             "workingDirectory": "",
@@ -242,18 +245,20 @@ An empty task definition template is shown below\. You can use this template to 
             "dockerSecurityOptions": [
                 ""
             ],
+            "interactive": true,
+            "pseudoTerminal": true,
             "dockerLabels": {
                 "KeyName": ""
             },
             "ulimits": [
                 {
-                    "name": "rttime",
+                    "name": "sigpending",
                     "softLimit": 0,
                     "hardLimit": 0
                 }
             ],
             "logConfiguration": {
-                "logDriver": "json-file",
+                "logDriver": "awslogs",
                 "options": {
                     "KeyName": ""
                 }
@@ -266,7 +271,19 @@ An empty task definition template is shown below\. You can use this template to 
                 "timeout": 0,
                 "retries": 0,
                 "startPeriod": 0
-            }
+            },
+            "systemControls": [
+                {
+                    "namespace": "",
+                    "value": ""
+                }
+            ],
+            "resourceRequirements": [
+                {
+                    "value": "",
+                    "type": "GPU"
+                }
+            ]
         }
     ],
     "volumes": [
@@ -295,16 +312,25 @@ An empty task definition template is shown below\. You can use this template to 
         }
     ],
     "requiresCompatibilities": [
-        "EC2"
-    ],
-    "tags": [ 
-        { 
-            "key": "string",
-            "value": "string"
-        }
+        "FARGATE"
     ],
     "cpu": "",
-    "memory": ""
+    "memory": "",
+    "inferenceAccelerators": [
+        {
+            "deviceName": "",
+            "deviceType": "",
+            "devicePolicy": ""
+        }
+    ],
+    "pidMode": "host",
+    "ipcMode": "none",
+    "tags": [
+        {
+            "key": "",
+            "value": ""
+        }
+    ]
 }
 ```
 

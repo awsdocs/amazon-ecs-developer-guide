@@ -22,6 +22,7 @@ The role permissions policy allows Amazon ECS to complete the following actions 
     "Version": "2012-10-17",
     "Statement": [
         {
+            "Sid": "ECSTaskManagement",
             "Effect": "Allow",
             "Action": [
                 "ec2:AttachNetworkInterface",
@@ -45,9 +46,18 @@ The role permissions policy allows Amazon ECS to complete the following actions 
                 "servicediscovery:DeregisterInstance",
                 "servicediscovery:Get*",
                 "servicediscovery:List*",
-                "servicediscovery:RegisterInstance"
+                "servicediscovery:RegisterInstance",
+                "servicediscovery:UpdateInstanceCustomHealthStatus"
             ],
             "Resource": "*"
+        },
+        {
+            "Sid": "ECSTagging",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateTags"
+            ],
+            "Resource": "arn:aws:ec2:*:*:network-interface/*"
         }
     ]
 }

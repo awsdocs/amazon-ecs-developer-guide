@@ -2,7 +2,7 @@
 
 Amazon Elastic Container Service \(Amazon ECS\) is a shared state, optimistic concurrency system that provides flexible scheduling capabilities for your tasks and containers\. The Amazon ECS schedulers leverage the same cluster state information provided by the Amazon ECS API to make appropriate placement decisions\.
 
-Each task that uses the Fargate launch type has it's own isolation boundary and does not share the underlying kernel, CPU resources, memory resources, or elastic network interface with another task\.
+Each task that uses the Fargate launch type has its own isolation boundary and does not share the underlying kernel, CPU resources, memory resources, or elastic network interface with another task\.
 
 Amazon ECS provides a service scheduler \(for long\-running tasks and applications\), the ability to run tasks manually \(for batch jobs or single run tasks\), with Amazon ECS placing tasks on your cluster for you\. You can specify task placement strategies and constraints that allow you to run tasks in the configuration you choose, such as spread out across Availability Zones\. It is also possible to integrate with custom or third\-party schedulers\.
 
