@@ -4,7 +4,7 @@ Creates an Amazon ECS service from your compose file\. The service is created wi
 
 ## Syntax<a name="cmd-ecs-cli-compose-service-create-syntax"></a>
 
-ecs\-cli compose service create \[\-\-deployment\-max\-percent *n*\] \[\-\-deployment\-min\-healthy\-percent *n*\] \[\-\-load\-balancer\-name *value*\|\-\-target\-group\-arn *value*\] \[\-\-container\-name *value*\] \[\-\-container\-port *value*\] \[\-\-role *value*\] \[\-\-launch\-type *launch\_type*\] \[\-\-health\-check\-grace\-period *integer*\] \[\-\-create\-log\-groups\] \[\-\-enable\-service\-discovery\] \[\-\-vpc *value*\] \[\-\-private\-dns\-namespace *value*\] \[\-\-private\-dns\-namespace\-id *value*\] \[\-\-public\-dns\-namespace *value*\] \[\-\-public\-dns\-namespace\-id *value*\] \[\-\-sd\-container\-name *value*\] \[\-\-sd\-container\-port *value*\] \[\-\-dns\-ttl *value*\] \[\-\-dns\-type *value*\] \[\-\-healthcheck\-custom\-config\-failure\-threshold *value*\] \[\-\-help\]
+ecs\-cli compose service create \[\-\-deployment\-max\-percent *n*\] \[\-\-deployment\-min\-healthy\-percent *n*\] \[\-\-load\-balancer\-name *value*\|\-\-target\-group\-arn *value*\] \[\-\-container\-name *value*\] \[\-\-container\-port *value*\] \[\-\-role *value*\] \[\-\-launch\-type *launch\_type*\] \[\-\-health\-check\-grace\-period *integer*\] \[\-\-create\-log\-groups\] \[\-\-enable\-service\-discovery\] \[\-\-vpc *value*\] \[\-\-private\-dns\-namespace *value*\] \[\-\-private\-dns\-namespace\-id *value*\] \[\-\-public\-dns\-namespace *value*\] \[\-\-public\-dns\-namespace\-id *value*\] \[\-\-sd\-container\-name *value*\] \[\-\-sd\-container\-port *value*\] \[\-\-dns\-ttl *value*\] \[\-\-dns\-type *value*\] \[\-\-healthcheck\-custom\-config\-failure\-threshold *value*\] \[\-\-scheduling\-strategy *value*\] \[\-\-help\]
 
 ## Options<a name="cmd-ecs-cli-compose-service-create-options"></a>
 
@@ -36,6 +36,7 @@ ecs\-cli compose service create \[\-\-deployment\-max\-percent *n*\] \[\-\-deplo
 |  `--ecs-profile ecs_profile`  |  Specifies the name of the Amazon ECS profile configuration to use\. Defaults to the profile configured using the configure profile command\. Type: String Required: No  | 
 |  `--aws-profile aws_profile`  |  Specifies the AWS profile to use\. Enables you to use the AWS credentials from an existing named profile in `~/.aws/credentials`\. Type: String Required: No  | 
 |  `--cluster, -c cluster_name`  |  Specifies the Amazon ECS cluster name to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
+|  `--scheduling-strategy strategy`  |  Specifies the scheduling strategy type\. Options: REPLICA (default) or DAEMON\.  Default Value: `REPLICA` Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
 
 ## Using a Load Balancer<a name="cmd-ecs-cli-compose-service-create-elb"></a>
