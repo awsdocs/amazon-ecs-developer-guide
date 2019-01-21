@@ -64,7 +64,7 @@ This managed policy provides administrative access to Amazon ECS resources and e
                 "codedeploy:BatchGetApplications",
                 "codedeploy:ListApplicationRevisions",
                 "codedeploy:ListDeploymentConfigs",
-                "codedpeloy:ContinueDeployment",
+                "codedeploy:ContinueDeployment",
                 "sns:ListTopics",
                 "lambda:ListFunctions",
                 "ec2:AssociateRouteTable",

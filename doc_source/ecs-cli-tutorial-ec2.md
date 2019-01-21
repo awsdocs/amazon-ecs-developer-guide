@@ -64,6 +64,7 @@ We do not recommend using plaintext environment variables for sensitive informat
 + `env_file`
 **Important**  
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.
++ `extends` \(Compose file version 1 and 2 only\)
 + `extra_hosts`
 + `healthcheck` \(Compose file version 3 only\)
 **Note**  

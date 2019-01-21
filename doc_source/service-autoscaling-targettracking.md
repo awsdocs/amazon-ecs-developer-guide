@@ -24,7 +24,7 @@ The following procedures help you to create an Amazon ECS cluster and a service 
 
 Amazon ECS publishes CloudWatch metrics with your service’s average CPU and memory usage\. You can use these service utilization metrics to scale your service up to deal with high demand at peak times, and to scale your service down to reduce costs during periods of low utilization\. For more information, see [Service Utilization](cloudwatch-metrics.md#service_utilization)\. 
 
-In this tutorial, you create a cluster and a service \(that runs behind an Elastic Load Balancing load balancer\) using the Amazon ECS first run wizard\. Then you configure Service Auto Scaling on the service with CloudWatch alarms that use the `CPUUtilization` metric to scale your service up or down, depending on the current application load\. 
+In this tutorial, you create a cluster and a service \(that runs behind an Elastic Load Balancing load balancer\) using the Amazon ECS first run wizard\. Then you configure Service Auto Scaling on the service with CloudWatch alarms that use the `ECSServiceAverageCPUUtilization` metric to scale your service up or down, depending on the current application load\. 
 
 When the CPU utilization of your service rises above 75% \(meaning that more than 75% of the CPU that is reserved for the service is being used\), the scale\-out alarm triggers Service Auto Scaling to add another task to your service to help out with the increased load\. Conversely, when the CPU utilization of your service drops below 75%, the scale in alarm triggers a decrease in the service's desired count to free up those cluster resources for other tasks and services\.
 
@@ -95,7 +95,7 @@ These steps help you create scaling policies and CloudWatch alarms that can be u
 
    1. For **Policy name**, enter `TargetTrackingPolicy`\.
 
-   1. For **ECS service metric**, choose **CPUUtilization**\.
+   1. For **ECS service metric**, choose **ECSServiceAverageCPUUtilization**\.
 
    1. For **Target value**, enter `75`\.
 

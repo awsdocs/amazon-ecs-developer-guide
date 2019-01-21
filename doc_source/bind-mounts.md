@@ -1,6 +1,8 @@
 # Bind Mounts<a name="bind-mounts"></a>
 
-With bind mounts, a file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported when using either the EC2 or Fargate launch types\. To use bind mount host volumes, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
+With bind mounts, a file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported when using either the EC2 or Fargate launch types\. Fargate tasks only support nonpersistent storage volumes, so the `host` and `sourcePath` fields are not supported\. For more information, see [Fargate Task Storage](fargate-task-storage.md)\.
+
+To use bind mount host volumes with tasks using the EC2 launch type, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
 
 Some common use cases for bind mounts are:
 + To provide persistent data volumes for use with containers

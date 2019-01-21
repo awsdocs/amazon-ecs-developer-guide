@@ -1,7 +1,7 @@
 # Amazon Elastic Container Service Developer Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -90,6 +90,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Scheduled Tasks (cron)](scheduled_tasks.md)
    + [Task Lifecycle](task_life_cycle.md)
    + [Task Retirement](task-retirement.md)
+   + [Fargate Task Recycling](task-recycle.md)
    + [Creating a Scheduled Task Using the AWS CLI](scheduled_tasks_cli_tutorial.md)
 + [Services](ecs_services.md)
    + [Service Definition Parameters](service_definition_parameters.md)
@@ -122,6 +123,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Amazon Resource Names (ARNs) and IDs](ecs-resource-ids.md)
    + [Tagging Your Amazon ECS Resources](ecs-using-tags.md)
    + [Amazon ECS Usage Reports](usage-reports.md)
++ [Interface VPC Endpoints (AWS PrivateLink)](vpc-endpoints.md)
 + [Amazon ECR Repositories](ECS_Console_Repositories.md)
 + [Monitoring Amazon ECS](ecs_monitoring.md)
    + [Monitoring Tools](monitoring-automated-manual.md)

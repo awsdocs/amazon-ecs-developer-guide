@@ -66,7 +66,7 @@ The Amazon ECS first\-run wizard simplifies the process of creating a cluster an
                 "codedeploy:BatchGetApplications",
                 "codedeploy:ListApplicationRevisions",
                 "codedeploy:ListDeploymentConfigs",
-                "codedpeloy:ContinueDeployment",
+                "codedeploy:ContinueDeployment",
                 "sns:ListTopics",
                 "lambda:ListFunctions",
                 "ec2:AssociateRouteTable",

@@ -4,6 +4,17 @@ You can run Amazon ECS tasks on a `cron`\-like schedule using CloudWatch Events 
 
 If you have tasks to run at set intervals in your cluster, such as a backup operation or a log scan, you can use the Amazon ECS console to create a CloudWatch Events rule that runs one or more tasks in your cluster at the specified times\. Your scheduled event rule can be set to either a specific interval \(run every *N* minutes, hours, or days\), or for more complicated scheduling, you can use a `cron` expression\. For more information, see [Schedule Expressions for Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) in the *Amazon CloudWatch Events User Guide*\.
 
+**Note**  
+This feature is not yet available for Fargate tasks in the following Regions:  
+
+
+| Region Name | Region | 
+| --- | --- | 
+| US West \(N\. California\) | us\-west\-1 | 
+| Asia Pacific \(Mumbai\) | ap\-south\-1 | 
+| Asia Pacific \(Seoul\) | ap\-northeast\-2 | 
+| EU \(London\) | eu\-west\-2 | 
+
 **Creating a scheduled task**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
@@ -24,9 +35,7 @@ If you have tasks to run at set intervals in your cluster, such as a backup oper
 
    1. For **Target id**, enter a unique identifier for your target\. Up to 64 letters, numbers, periods, hyphens, and underscores are allowed\.
 
-   1. For **Launch type**, choose whether your service should run tasks on Fargate infrastructure, or Amazon EC2 container instances that you maintain\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
-**Important**  
-This feature is not yet available for Fargate tasks in the eu\-west\-2 \(London\), ap\-northeast\-2 \(Seoul\), and us\-west\-1 \(N\. California\) Regions\.
+   1. For **Launch type**, choose the launch type for the tasks in your service\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
 
    1. For **Task definition**, choose the family and revision \(family:revision\) of the task definition to run for this target\.
 

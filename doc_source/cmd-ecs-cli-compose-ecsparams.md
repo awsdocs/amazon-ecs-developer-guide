@@ -33,14 +33,14 @@ task_definition:
         - value_from: string
           name: string
   docker_volumes:
-      name: string
-      scope: string
-      autoprovision: 
-      driver: string
-      driver_opts: boolean
-         string: string
-      labels:
-         string: string
+      - name: string
+        scope: string
+        autoprovision: 
+        driver: string
+        driver_opts: boolean
+           string: string
+        labels:
+           string: string
 run_params:
   network_configuration:
     awsvpc_configuration:

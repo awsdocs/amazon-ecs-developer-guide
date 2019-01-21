@@ -20,6 +20,14 @@ The following should be considered when specifying a platform version:
 
 The following is a list of the platform versions currently available:
 
+Fargate Platform Version‐1\.3\.0  
++ Added support for using AWS Systems Manager Parameter Store parameters to inject sensitive data into your containers\.
+
+  For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
++ Added task recycling for Fargate tasks, which is the process of refreshing tasks that are a part of an Amazon ECS service\.
+
+  For more information, see [Fargate Task Recycling](task-recycle.md)\.
+
 Fargate Platform Version‐1\.2\.0  
 + Added support for private registry authentication using AWS Secrets Manager\. For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.
 

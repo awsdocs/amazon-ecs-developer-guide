@@ -180,8 +180,8 @@ Use the following to add, update, list, and delete the tags for your resources\.
 
 | Task | AWS CLI | API Action | 
 | --- | --- | --- | 
-|  Add or overwrite one or more tags\.  |   |  [TagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html)  | 
-|  Delete one or more tags\.  |   |  [UntagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UntagResource.html)  | 
+|  Add or overwrite one or more tags\.  |  [tag\-resource](https://docs.aws.amazon.com/cli/latest/reference/tag-resource.html)  |  [TagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html)  | 
+|  Delete one or more tags\.  |  [untag\-resource](https://docs.aws.amazon.com/cli/latest/reference/untag-resource.html)  |  [UntagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UntagResource.html)  | 
 
 The following examples show how to tag or untag resources using the AWS CLI\.
 
@@ -189,7 +189,7 @@ The following examples show how to tag or untag resources using the AWS CLI\.
 The following command tags an existing cluster\.
 
 ```
-aws ecs tag-resource --resource-arn resource_ARN --tags key=stack,values=dev
+aws ecs tag-resource --resource-arn resource_ARN --tags key=stack,value=dev
 ```
 
 **Example 2: Untag an existing cluster**  
@@ -223,18 +223,18 @@ The following examples demonstrate how to apply tags when you create resources\.
 The following command creates a cluster named `devcluster` and adds a tag with key `team` and value `devs`\.
 
 ```
-aws ecs create-cluster --cluster-name devcluster --tags key=team,values=devs
+aws ecs create-cluster --cluster-name devcluster --tags key=team,value=devs
 ```
 
 **Example 2: Create a service and apply a tag**  
 The following command creates a service named `application` and adds a tag with key `stack` and value `dev`\.
 
 ```
-aws ecs create-service --service-name application --task-definition task-def-app --tags key=stack,values=dev
+aws ecs create-service --service-name application --task-definition task-def-app --tags key=stack,value=dev
 ```
 
 The `--propagateTags` parameter can be used to copy the tags from either a task definition or a service to the tasks in a service\. The following command creates a service with tags and propagates them to the tasks in that service\.
 
 ```
-aws ecs create-service --service-name application --task-definition task-def-app --tags key=stack,values=dev --propagateTags Service
+aws ecs create-service --service-name application --task-definition task-def-app --tags key=stack,value=dev --propagateTags Service
 ```

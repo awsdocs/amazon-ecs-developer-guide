@@ -5,11 +5,11 @@ The following table provides the default limits for Amazon ECS for an AWS accoun
 
 | Resource | Default Limit | 
 | --- | --- | 
-| Number of clusters per region, per account | 1000 | 
-| Number of container instances per cluster | 1000 | 
-| Number of services per cluster | 500 | 
+| Number of clusters per Region, per account | 2000 | 
+| Number of container instances per cluster | 2000 | 
+| Number of services per cluster | 1000 | 
 | Number of tasks per service \(the desired count\) | 1000 | 
-| Number of tasks using the Fargate launch type, per region, per account | 50 | 
+| Number of tasks using the Fargate launch type, per Region, per account | 50 | 
 | Number of public IP addresses for tasks using the Fargate launch type | 50 | 
 
 The following table provides other limitations for Amazon ECS that cannot be changed\.

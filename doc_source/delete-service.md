@@ -29,6 +29,8 @@ To delete the remaining service discovery resources, you can use the AWS CLI to 
    ```
    aws servicediscovery list-services --region <region_name>
    ```
+**Note**  
+If no service discovery service is returned, continue to step 4\.
 
 1. Using the service discovery service ID from the previous output, delete the service\.
 

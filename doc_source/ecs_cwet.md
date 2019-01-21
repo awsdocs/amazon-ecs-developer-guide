@@ -12,7 +12,7 @@ In this procedure, you create a simple Lambda function to serve as a target for 
 
 1. Open the AWS Lambda console at [https://console\.aws\.amazon\.com/lambda/](https://console.aws.amazon.com/lambda/)\.
 
-1. Choose **Create a function**\. 
+1. Choose **Create function**\. 
 
 1. On the **Author from scratch** screen, do the following:
 

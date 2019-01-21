@@ -337,6 +337,7 @@ This parameter is not supported for Windows containers\.
 `dnsSearchDomains`  
 Type: string array  
 Required: no  
+Pattern: ^\[a\-zA\-Z0\-9\-\.\]\{0,253\}\[a\-zA\-Z0\-9\]$  
 A list of DNS search domains that are presented to the container\. This parameter maps to `DnsSearch` in the [Create a container](https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.35/) and the `--dns-search` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This parameter is not supported for Windows containers or tasks using the `awsvpc` network mode\.
 

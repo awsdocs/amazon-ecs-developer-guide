@@ -1,13 +1,12 @@
 # Specifying Sensitive Data<a name="specifying-sensitive-data"></a>
 
-Amazon ECS enables you to inject sensitive data into your containers by storing your sensitive data in AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\.
+Amazon ECS enables you to inject sensitive data into your containers by storing your sensitive data in AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\. This feature is supported by tasks using both the Fargate or EC2 launch types\.
 
 You can also reference an AWS Secrets Manager secret in your parameter\. For more information, see [Referencing AWS Secrets Manager Secrets from Parameter Store Parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/integration-ps-secretsmanager.html) in the *AWS Systems Manager User Guide*\.
 
 For tasks using the EC2 launch type, this feature requires version 1\.22\.0 or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
-**Important**  
-This feature is not yet supported for tasks using the Fargate launch type\.
+For tasks using the Fargate launch type, this feature requires platform version 1\.3\.0 or later\. For information, see [AWS Fargate Platform Versions](platform_versions.md)\.
 
 **Note**  
 This feature is not available in the GovCloud \(US\-East\) region\.
@@ -57,7 +56,7 @@ The following example inline policy adds the required permissions:
       "Resource": [
         "arn:aws:ssm:region:aws_account_id:parameter/parameter_name",
         "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name",
-        "arn:aws:kms:region:aws_account_id:key:key_id"
+        "arn:aws:kms:region:aws_account_id:key/key_id"
       ]
     }
   ]

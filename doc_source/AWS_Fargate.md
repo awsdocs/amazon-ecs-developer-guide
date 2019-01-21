@@ -2,7 +2,7 @@
 
 AWS Fargate is a technology that you can use with Amazon ECS to run [containers](https://aws.amazon.com/what-are-containers) without having to manage servers or clusters of Amazon EC2 instances\. With AWS Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers\. This removes the need to choose server types, decide when to scale your clusters, or optimize cluster packing\.
 
-When you run your tasks and services with the Fargate launch type, you package your application in containers, specify the CPU and memory requirements, define networking and IAM policies, and launch the application\. Each Fargate task has it's own isolation boundary and does not share the underlying kernel, CPU resources, memory resources, or elastic network interface with another task\.
+When you run your tasks and services with the Fargate launch type, you package your application in containers, specify the CPU and memory requirements, define networking and IAM policies, and launch the application\. Each Fargate task has its own isolation boundary and does not share the underlying kernel, CPU resources, memory resources, or elastic network interface with another task\.
 
 This topic describes the different components of Fargate tasks and services, and calls out special considerations for using Fargate with Amazon ECS\.
 
@@ -188,7 +188,7 @@ After you have your Fargate task definition prepared, there are some decisions t
 
 Tasks using the Fargate launch type require the `awsvpc` network mode, which provides each task with an elastic network interface\. When you run a task or create a service with this network mode, you must specify one or more subnets to attach the network interface and one or more security groups to apply to the network interface\. 
 
-Decide whether to provide a public IP address for the network interface\. For a Fargate task to pull container images, a public IP address needs to be assigned to the task's elastic network interface, with a route to the internet or a NAT gateway that can route requests to the internet\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
+If you are using public subnets, decide whether to provide a public IP address for the network interface\. For a Fargate task in a public subnet to pull container images, a public IP address needs to be assigned to the task's elastic network interface, with a route to the internet or a NAT gateway that can route requests to the internet\. For a Fargate task in a private subnet to pull container images, the private subnet requires a NAT gateway be attached to route requests to the internet\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
 
 The following is an example of the networkConfiguration section for a Fargate service:
 
