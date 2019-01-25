@@ -13,8 +13,8 @@ task_definition:
   task_size:
     cpu_limit: string
     mem_limit: string
-  pid: string
-  ipc: string
+  pid_mode: string
+  ipc_mode: string
   services:
     <service_name>:
       essential: boolean
@@ -53,11 +53,11 @@ run_params:
       assign_public_ip: ENABLED
   task_placement:
     strategy:
-        type: string
+      - type: string
         field: string
     constraints:
-        type: string
-        expression: string
+      - type: string
+         expression: string
   service_discovery:
     container_name: string
     container_port: integer
@@ -87,12 +87,12 @@ The fields listed under `task_definition` correspond to fields to be included in
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cmd-ecs-cli-compose-ecsparams.html)
 
   For more information, see [Task Size](task_definition_parameters.md#task_size)\.
-+ `pid` – The process namespace to use for the containers in the task\. The valid values are `host` or `task`\. If `host` is specified, then all containers within the tasks that specified the `host` PID mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same process namespace\. If no value is specified, the default is a private namespace\. For more information, see [PID settings](https://docs.docker.com/engine/reference/run/#pid-settings) in the *Docker run reference*\.
++ `pid_mode` – The process namespace to use for the containers in the task\. The valid values are `host` or `task`\. If `host` is specified, then all containers within the tasks that specified the `host` PID mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same process namespace\. If no value is specified, the default is a private namespace\. For more information, see [PID settings](https://docs.docker.com/engine/reference/run/#pid-settings) in the *Docker run reference*\.
 
   If the `host` PID mode is used, be aware that there is a heightened risk of undesired process namespace expose\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.
 **Note**  
 This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
-+ `ipc` – The IPC resource namespace to use for the containers in the task\. The valid values are `host`, `task`, or `none`\. If `host` is specified, then all containers within the tasks that specified the `host` IPC mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same IPC resources\. If `none` is specified, then IPC resources within the containers of a task are private and not shared with other containers in a task or on the container instance\. If no value is specified, then the IPC resource namespace sharing depends on the Docker daemon setting on the container instance\. For more information, see [IPC settings](https://docs.docker.com/engine/reference/run/#ipc-settings) in the *Docker run reference*\.
++ `ipc_mode` – The IPC resource namespace to use for the containers in the task\. The valid values are `host`, `task`, or `none`\. If `host` is specified, then all containers within the tasks that specified the `host` IPC mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same IPC resources\. If `none` is specified, then IPC resources within the containers of a task are private and not shared with other containers in a task or on the container instance\. If no value is specified, then the IPC resource namespace sharing depends on the Docker daemon setting on the container instance\. For more information, see [IPC settings](https://docs.docker.com/engine/reference/run/#ipc-settings) in the *Docker run reference*\.
 
   If the `host` IPC mode is used, be aware that there is a heightened risk of undesired IPC namespace expose\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.
 

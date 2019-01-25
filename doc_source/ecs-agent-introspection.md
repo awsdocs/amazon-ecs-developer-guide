@@ -17,7 +17,7 @@ Output:
 {
   "Cluster": "default",
   "ContainerInstanceArn": "<container_instance_ARN>",
-  "Version": "Amazon ECS Agent - v1.24.0 (8b5e1863)"
+  "Version": "Amazon ECS Agent - v1.25.0 (a8b7b7c0)"
 }
 ```
 
