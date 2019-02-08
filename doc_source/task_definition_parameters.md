@@ -122,7 +122,7 @@ The port number on the container instance to reserve for your container\.
 If using containers in a task with the Fargate launch type, the `hostPort` can either be left blank or be the same value as `containerPort`\.  
 If using containers in a task with the EC2 launch type, you can specify a non\-reserved host port for your container port mapping \(this is referred to as *static* host port mapping\), or you can omit the `hostPort` \(or set it to `0`\) while specifying a `containerPort` and your container automatically receives a port \(this is referred to as *dynamic* host port mapping\) in the ephemeral port range for your container instance operating system and Docker version\.  
 The default ephemeral port range is `49153–65535`, and this range is used for Docker versions before 1\.6\.0\. For Docker version 1\.6\.0 and later, the Docker daemon tries to read the ephemeral port range from `/proc/sys/net/ipv4/ip_local_port_range` \(which is 32768–61000 on the latest Amazon ECS\-optimized AMI\); if this kernel parameter is unavailable, the default ephemeral port range is used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below 32768 are outside of the ephemeral port range\.  
-The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376, and the Amazon ECS container agent port 51678\. Any host port that was previously user\-specified for a running task is also reserved while the task is running \(after a task stops, the host port is released\)\. The current reserved ports are displayed in the `remainingResources` of describe\-container\-instances output, and a container instance may have up to 100 reserved ports at a time, including the default reserved ports\. Automatically assigned ports do not count toward the 100 reserved ports limit\.  
+The default reserved ports are `22` for SSH, the Docker ports `2375` and `2376`, and the Amazon ECS container agent ports `51678-51680`\. Any host port that was previously user\-specified for a running task is also reserved while the task is running \(after a task stops, the host port is released\)\. The current reserved ports are displayed in the `remainingResources` of describe\-container\-instances output, and a container instance may have up to 100 reserved ports at a time, including the default reserved ports\. Automatically assigned ports do not count toward the 100 reserved ports limit\.  
 `protocol`  
 Type: string  
 Required: no  
@@ -175,12 +175,12 @@ The following are notes about container health check support:
 + Container health checks are not supported for tasks that are part of a service that is configured to use a Classic Load Balancer\.  
 `command`  
 A string array representing the command that the container runs to determine if it is healthy\. The string array can start with `CMD` to execute the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. If neither is specified, `CMD` is used by default\.  
-In the console, example input for a health check could be:  
+When registering a task definition in the AWS Management Console, use a comma separated list of commands which will automatically converted to a string after the task definition is created\. An example input for a health check could be:  
 
 ```
 CMD-SHELL, curl -f http://localhost/ || exit 1
 ```
-Similarly, in the console JSON panel, the AWS CLI, or the APIs, example input for a health check could be:  
+When registering a task definition using the AWS Management Console JSON panel, the AWS CLI, or the APIs, you should enclose the list of commands in brackets\. An example input for a health check could be:  
 
 ```
 [ "CMD-SHELL", "curl -f http://localhost/ || exit 1" ]
@@ -208,6 +208,12 @@ On Linux container instances, the Docker daemon on the container instance uses t
 + **Agent versions <= 1\.1\.0:** Null and zero CPU values are passed to Docker as 0, which Docker then converts to 1,024 CPU shares\. CPU values of 1 are passed to Docker as 1, which the Linux kernel converts to two CPU shares\.
 + **Agent versions >= 1\.2\.0:** Null, zero, and CPU values of 1 are passed to Docker as two CPU shares\.
 On Windows container instances, the CPU limit is enforced as an absolute limit, or a quota\. Windows containers only have access to the specified amount of CPU that is described in the task definition\.
+
+`gpu`  
+Type: [ResourceRequirement](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ResourceRequirement.html) object  
+Required: no  
+The number of physical `GPUs` the Amazon ECS container agent will reserve for the container\. The number of GPUs reserved for all containers in a task should not exceed the number of available GPUs on the container instance the task is launched on\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.  
+This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
 
 `essential`  
 Type: Boolean  

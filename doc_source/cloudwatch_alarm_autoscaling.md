@@ -61,9 +61,9 @@ Now that you have enabled CloudWatch metrics and created an alarm based on one o
 
 1. Choose the ECS\-optimized AMI for your Auto Scaling group\.
 
-   To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs** AMI\.
+   To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs** AMI\.
 
-   The current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by region are listed below for reference\.    
+   The following table lists the current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by Region\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch_alarm_autoscaling.html)
 
 1. On the **Choose Instance Type** step of the **Create Auto Scaling Group** wizard, choose an instance type for your Auto Scaling group and choose **Next: Configure details**\.

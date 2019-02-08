@@ -19,6 +19,11 @@ The following is the format of the parameter name\.
   ```
   /aws/service/ecs/optimized-ami/amazon-linux-2/arm64/<version>
   ```
++ Amazon ECS GPU\-optimized AMI metadata:
+
+  ```
+  /aws/service/ecs/optimized-ami/amazon-linux-2/gpu/<version>
+  ```
 + Amazon ECS\-optimized Amazon Linux AMI metadata:
 
   ```
@@ -131,6 +136,29 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
               "Version": 1,
               "LastModifiedDate": 1542745522.454,
               "ARN": "arn:aws:ssm:us-east-1::parameter/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended"
+          }
+      ],
+      "InvalidParameters": []
+  }
+  ```
++ **For the Amazon ECS GPU\-optimized AMIs:**
+
+  ```
+  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/gpu/recommended --region us-east-1
+  ```
+
+  Output:
+
+  ```
+  {
+      "Parameters": [
+          {
+              "Name": "/aws/service/ecs/optimized-ami/amazon-linux-2/gpu/recommended",
+              "Type": "String",
+              "Value": "{\"schema_version\":1,\"image_name\":\"amzn2-ami-ecs-gpu-hvm-2.0.20190118-x86_64-ebs\",\"image_id\":\"ami-0f8776282f835efc5\",\"os\":\"Amazon Linux 2\",\"ecs_runtime_version\":\"Docker version 18.06.1-ce\",\"ecs_agent_version\":\"1.25.0\"}",
+              "Version": 1,
+              "LastModifiedDate": 1548369045.401,
+              "ARN": "arn:aws:ssm:us-east-1::parameter/aws/service/ecs/optimized-ami/amazon-linux-2/gpu/recommended"
           }
       ],
       "InvalidParameters": []

@@ -106,7 +106,7 @@ Application Load Balancers do incur cost while they exist in your AWS resources\
 
 ## Step 4: Configure the Cluster<a name="first-run-ec2-cluster"></a>
 
-In this section of the wizard, you name your cluster\. Then, Amazon ECS take cares of the networking and IAM configuration for you\.
+In this section of the wizard, you name your cluster\. Then, Amazon ECS takes care of the networking and IAM configuration for you\.
 
 1. For **Cluster name**, choose a name for your cluster\.
 

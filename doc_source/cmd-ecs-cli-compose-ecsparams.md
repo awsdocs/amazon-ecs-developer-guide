@@ -130,7 +130,7 @@ The fields listed under `run_params` are for values needed as options to any API
     + `field` – Valid values depend on the strategy type\.
       + For `spread`, valid values are `instanceId`, `host`, or attribute key\-value pairs, for example `attribute:ecs.instance-type =~ t2.*`\.
       + For `binpack`, valid values are `cpu` or `memory`\.
-  + `constraint` – A list of objects, with two keys\. Valid keys are `type` and `expression`\.
+  + `constraints` – A list of objects, with two keys\. Valid keys are `type` and `expression`\.
     + `type` – Valid values are `distinctInstance` and `memberOf`\. If `distinctInstance` is specified, the `expression` key should not be provided\.
     + `expression` – When type is `memberOf`, valid values are key\-value pairs for attributes or task groups, for example `task:group == databases` or `attribute:color =~ green`\.
 + `service_discovery` – This parameter allows you to configure Amazon ECS Service Discovery using Amazon Route 53 auto naming API actions to manage DNS entries for your service's tasks\. For more information, see [Tutorial: Creating an Amazon ECS Service That Uses Service Discovery Using the Amazon ECS CLI](ecs-cli-tutorial-servicediscovery.md)\.

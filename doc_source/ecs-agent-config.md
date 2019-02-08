@@ -117,6 +117,18 @@ Default value on Linux: `false`
 Default value on Windows: `true`  
 Whether to disable CloudWatch metrics for Amazon ECS\. If this value is set to `true`, CloudWatch metrics are not collected\.
 
+`ECS_POLL_METRICS`  
+Example values: `true` \| `false`  
+Default value on Linux: `false`  
+Default value on Windows: `false`  
+Whether to poll or stream when gathering CloudWatch metrics for tasks\.
+
+`ECS_POLLING_METRICS_WAIT_DURATION`  
+Example values: `30s`  
+Default value on Linux: `15s`  
+Default value on Windows: `15s`  
+Time to wait to poll for new CloudWatch metrics for a task\. Only used when `ECS_POLL_METRICS` is `true`\.
+
 `ECS_RESERVED_MEMORY`  
 Example values: 32  
 Default value on Linux: 0  
@@ -124,7 +136,7 @@ Default value on Windows: 0
 The amount of memory, in MiB, to remove from the pool that is allocated to your tasks\. This effectively reserves that memory for critical system processes including the Docker daemon and the Amazon ECS container agent\. For example, if you specify `ECS_RESERVED_MEMORY=256`, then the agent registers the total memory minus 256 MiB for that instance, and 256 MiB of the system memory cannot be allocated by ECS tasks\. For more information, see [Container Instance Memory Management](memory-management.md)\.
 
 `ECS_AVAILABLE_LOGGING_DRIVERS`  
-Example values: `["awslogs","fluentd","gelf","json-file","journald","splunk","logentries","sumologic"]`  
+Example values: `["awslogs","fluentd","gelf","json-file","journald","splunk","logentries","syslog"]`  
 Default value on Linux: `["json-file","none"]`  
 Default value on Windows: `["json-file","none"]`  
 The logging drivers available on the container instance\. The Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the `ECS_AVAILABLE_LOGGING_DRIVERS` environment variable before containers placed on that instance can use log configuration options for those drivers in tasks\. For information about how to use the `awslogs` log driver, see [Using the awslogs Log Driver](using_awslogs.md)\. For more information about the different log drivers available for your Docker version and how to configure them, see [Configure logging drivers](https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation\.
@@ -216,7 +228,7 @@ Default value on Windows: `5`
 The maximum number of images to delete in a single automated image cleanup cycle\. If set to less than 1, the value is ignored\.
 
 `ECS_IMAGE_PULL_BEHAVIOR`  
-Example values: `default | always | once | prefer-cached`  
+Example values: `default` \| `always` \| `once` \| `prefer-cached`  
 Default value on Linux: `default`  
 Default value on Windows: `default`  
 The behavior used to customize the pull image process for your container instances\. The following describes the optional behaviors:  
@@ -225,8 +237,14 @@ The behavior used to customize the pull image process for your container instanc
 + If `once` is specified, the image is pulled remotely only if it has not been pulled by a previous task on the same container instance or if the cached image was removed by the automated image cleanup process\. Otherwise, the cached image on the instance is used\. This ensures that no unnecessary image pulls are attempted\.
 + If `prefer-cached` is specified, the image is pulled remotely if there is no cached image\. Otherwise, the cached image on the instance is used\. Automated image cleanup is disabled for the container to ensure that the cached image is not removed\.
 
+`ECS_IMAGE_PULL_INACTIVITY_TIMEOUT`  
+Example values: `1m`  
+Default value on Linux: `1m`  
+Default value on Windows: `3m`  
+The time to wait after docker pulls complete waiting for extraction of a container\. Useful for tuning large Windows containers\.
+
 `ECS_INSTANCE_ATTRIBUTES`  <a name="ecs-instance-attributes"></a>
-Example values: `{"custom attribute": "custom_attribute_value"}`  
+Example values: `{"custom_attribute": "custom_attribute_value"}`  
 Default value on Linux: Null  
 Default value on Windows: Null  
 A list of custom attributes, in JSON form, to apply to your container instances\. Using this attribute at instance registration adds the custom attributes, allowing you to skip the manual method of adding custom attributes via the AWS Management Console\.  
@@ -312,6 +330,30 @@ Default value on Linux: `{}`
 Default value on Windows: `{}`  
 Metadata applied to container instances to help you categorize and organize your resources\. Each tag consists of a custom\-defined key and an optional value\. Tag keys can have a maximum character length of 128 characters\. Tag values can have a maximum length of 256 characters\.  
 If container instance tags are propagated using the `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM` parameter, those tags are overwritten by the tags specified using `ECS_CONTAINER_INSTANCE_TAGS`\. For more information, see [Adding Tags to a Container Instance](ecs-using-tags.md#instance-details-tags)\.
+
+`ECS_ENABLE_UNTRACKED_IMAGE_CLEANUP`  
+Example values: `true` \| `false`  
+Default value on Linux: `false`  
+Default value on Windows: `false`  
+Whether to allow the ECS agent to delete containers and images that are not part of Amazon ECS tasks\.
+
+`ECS_EXCLUDE_UNTRACKED_IMAGE`  
+Example values: `{"alpine":"latest"}`  
+Default value on Linux: `{}`  
+Default value on Windows: `{}`  
+Comma separated list of images \(`imageName:tag`\) that should not be deleted by the ECS agent if `ECS_ENABLE_UNTRACKED_IMAGE_CLEANUP` is `true`\.
+
+`ECS_DISABLE_DOCKER_HEALTH_CHECK`  
+Example values: `true` \| `false`  
+Default value on Linux: `false`  
+Default value on Windows: `false`  
+Whether to disable the Docker container health check for the ECS Agent\.
+
+`ECS_NVIDIA_RUNTIME`  
+Example values: `nvidia`  
+Default value on Linux: `nvidia`  
+Default value on Windows: `n/a`  
+The runtime to be used to pass NVIDIA GPU devices to containers\. This parameter should not be specified as an environment variable in a task definition if the GPU resource requirements are already specified\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
 
 ## Storing Container Instance Configuration in Amazon S3<a name="ecs-config-s3"></a>
 

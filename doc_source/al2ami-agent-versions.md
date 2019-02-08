@@ -8,6 +8,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20190127 | 1\.25\.1 | 18\.06\.1\-ce | 1\.25\.1\-1 | 
 | 20190118 | 1\.25\.0 | 18\.06\.1\-ce | 1\.25\.0\-1 | 
 | 20190107 | 1\.24\.0 | 18\.06\.1\-ce | 1\.24\.0\-1 | 
 | 20181112 | 1\.22\.0 | 18\.06\.1\-ce | 1\.22\.0\-1 | 
@@ -25,6 +26,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20190127 | 1\.25\.1 | 18\.06\.1\-ce | 1\.25\.1\-1 | 
 | 20190119 | 1\.25\.0 | 18\.06\.1\-ce | 1\.25\.0\-1 | 
 | 20181120 | 1\.22\.0 | 18\.06\.1\-ce | 1\.22\.0\-1 | 
 

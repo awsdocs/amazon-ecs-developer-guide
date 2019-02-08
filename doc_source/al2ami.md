@@ -9,44 +9,44 @@ Amazon ECS vends Linux AMIs that are optimized for the service in two variants\.
 
 The current Amazon ECS\-optimized Amazon Linux 2 AMI consists of:
 + The latest minimal version of the Amazon Linux 2
-+ The latest version of the Amazon ECS container agent \(`1.25.0`\)
++ The latest version of the Amazon ECS container agent \(`1.25.1`\)
 + The recommended version of Docker for the latest Amazon ECS container agent \(`18.06.1-ce`\)
-+ The latest version of the `ecs-init` package to run and monitor the Amazon ECS agent \(`1.25.0-1`\)
++ The latest version of the `ecs-init` package to run and monitor the Amazon ECS agent \(`1.25.1-1`\)
 
 The Amazon ECS\-optimized Amazon Linux 2 AMI metadata, including the AMI ID, can be retrieved programmatically\. For more information, see [Retrieving Amazon ECS\-Optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)\.
 
-The current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by region are listed below for reference\.
+The following table lists the current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by Region\.
 
 
-| Region | AMI Name | AMI ID | EC2 console link | 
+| Region | AMI Name | AMI ID | EC2 Console Link | 
 | --- | --- | --- | --- | 
-| us\-east\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-093b710aa3d88540d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-2#LaunchInstanceWizard:ami=ami-093b710aa3d88540d) | 
-| us\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-014810e050a2986e9 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-014810e050a2986e9) | 
-| us\-west\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-0bd5f1e6656ee98d6 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-0bd5f1e6656ee98d6) | 
-| us\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-0ed6989bdf821b0fb | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-0ed6989bdf821b0fb) | 
-| eu\-west\-3 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-0d86fa8483cfc9a34 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-3#LaunchInstanceWizard:ami=ami-0d86fa8483cfc9a34) | 
-| eu\-west\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-0b48a90115318e01c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-2#LaunchInstanceWizard:ami=ami-0b48a90115318e01c) | 
-| eu\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-059d1b1771487e7a2 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-059d1b1771487e7a2) | 
-| eu\-central\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-016b7db231a5906da | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-016b7db231a5906da) | 
-| eu\-north\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-0bb17cf9f4c34ccde | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-north-1#LaunchInstanceWizard:ami=ami-0bb17cf9f4c34ccde) | 
-| ap\-northeast\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-076742548207a9869 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-2#LaunchInstanceWizard:ami=ami-076742548207a9869) | 
-| ap\-northeast\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-06884bb5517cd1ec5 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-06884bb5517cd1ec5) | 
-| ap\-southeast\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-0d5df8acd1ff68422 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-0d5df8acd1ff68422) | 
-| ap\-southeast\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-06534f8692c419582 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-06534f8692c419582) | 
-| ca\-central\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-06956934e43c09088 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ca-central-1#LaunchInstanceWizard:ami=ami-06956934e43c09088) | 
-| ap\-south\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-0b69100abbf75258c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-south-1#LaunchInstanceWizard:ami=ami-0b69100abbf75258c) | 
-| sa\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-0cbc976a4d63b3523 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-0cbc976a4d63b3523) | 
-| us\-gov\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs | ami\-4b8be62a | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-4b8be62a) | 
+| us\-east\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-005930c8f6eb929ba | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-2#LaunchInstanceWizard:ami=ami-005930c8f6eb929ba) | 
+| us\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-011a85ba0ae2013bf | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-011a85ba0ae2013bf) | 
+| us\-west\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-08a73ef2db6c656e5 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-08a73ef2db6c656e5) | 
+| us\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-0d9f6edebb7a71985 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-0d9f6edebb7a71985) | 
+| eu\-west\-3 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-00f450ea3c6b83ffe | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-3#LaunchInstanceWizard:ami=ami-00f450ea3c6b83ffe) | 
+| eu\-west\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-078d18e79de0fab14 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-2#LaunchInstanceWizard:ami=ami-078d18e79de0fab14) | 
+| eu\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-0f778fb7f41acc3b9 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-0f778fb7f41acc3b9) | 
+| eu\-central\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-0e81c199cc79782ac | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-0e81c199cc79782ac) | 
+| eu\-north\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-0308ae5298817c894 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-north-1#LaunchInstanceWizard:ami=ami-0308ae5298817c894) | 
+| ap\-northeast\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-0e2ad4e582b9b22c2 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-2#LaunchInstanceWizard:ami=ami-0e2ad4e582b9b22c2) | 
+| ap\-northeast\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-0b8933b7fd93e97e9 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-0b8933b7fd93e97e9) | 
+| ap\-southeast\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-092eb8209cbca22c9 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-092eb8209cbca22c9) | 
+| ap\-southeast\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-09b965b4d74a4c5e2 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-09b965b4d74a4c5e2) | 
+| ca\-central\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-07297d7703df5a13c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ca-central-1#LaunchInstanceWizard:ami=ami-07297d7703df5a13c) | 
+| ap\-south\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-0a5044768ebf7ed50 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-south-1#LaunchInstanceWizard:ami=ami-0a5044768ebf7ed50) | 
+| sa\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-09d08b8179ca0e18c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-09d08b8179ca0e18c) | 
+| us\-gov\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs | ami\-53325e32 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-53325e32) | 
 
-The current Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI IDs by region are listed below for reference\.
+The following table lists the current Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI IDs by Region\.
 
 
-| Region | AMI Name | AMI ID | EC2 console link | 
+| Region | AMI Name | AMI ID | EC2 Console Link | 
 | --- | --- | --- | --- | 
-| us\-east\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190119\-arm64\-ebs | ami\-03199f44dfc5fabbe | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-2#LaunchInstanceWizard:ami=ami-03199f44dfc5fabbe) | 
-| us\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190119\-arm64\-ebs | ami\-0e373a2446b389bf4 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0e373a2446b389bf4) | 
-| us\-west\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190119\-arm64\-ebs | ami\-0f97835ab144d7db8 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-0f97835ab144d7db8) | 
-| eu\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190119\-arm64\-ebs | ami\-06b2fbdf41d3f6490 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-06b2fbdf41d3f6490) | 
+| us\-east\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-arm64\-ebs | ami\-03c8e52026e8e08a7 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-2#LaunchInstanceWizard:ami=ami-03c8e52026e8e08a7) | 
+| us\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-arm64\-ebs | ami\-0b580fabcc7e0e3af | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0b580fabcc7e0e3af) | 
+| us\-west\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-arm64\-ebs | ami\-0acb24f4e4bf3bd0a | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-0acb24f4e4bf3bd0a) | 
+| eu\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-arm64\-ebs | ami\-0dc972aea81873c0e | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-0dc972aea81873c0e) | 
 
 **Topics**
 + [How to Launch the Latest Amazon ECS\-Optimized Amazon Linux 2 AMI](al2ami-get-latest.md)

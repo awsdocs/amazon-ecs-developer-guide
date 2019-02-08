@@ -27,7 +27,6 @@ The following table provides other limitations for Amazon ECS that cannot be cha
 | Throttle on task definition registration rate | 1 per second / 60 max per minute | 
 | Number of subnets specified in awsvpcConfiguration | 16 | 
 | Number of security groups specified in awsvpcConfiguration | 5 | 
-| Maximum layer size of an image used by a task using the Fargate launch type | 4 GB | 
 | Maximum size of a shared volume used by multiple containers within a task using the Fargate launch type | 4 GB | 
 | Maximum container storage for tasks using the Fargate launch type | 10 GB | 
 | Maximum number of tags per resource \(tasks, services, task definitions, clusters, and container instances\) | 50 | 

@@ -18,9 +18,9 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 **Note**  
 For more information about Amazon ECS\-specific CoreOS installation instructions, see [Running CoreOS Container Linux with AWS EC2 Container Service](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
-      To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs\-hvm\-2\.0** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20190118\-x86\_64\-ebs** AMI\. 
+      To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs\-hvm\-2\.0** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs** AMI\. 
 
-      The current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by region are listed below for reference\.    
+      The following table lists the current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by Region\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
 **Note**  
 The current Amazon ECS\-optimized Amazon Linux 2 AMI ID can be retrieved using the AWS CLI with the following command:  

@@ -350,10 +350,12 @@ After=ecs.service
 Before=awslogsd.service
 
 [Service]
+Type=oneshot
+RemainAfterExit=yes
 ExecStart=/usr/local/bin/bootstrap-awslogs.sh
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=awslogsd.service
 EOF
 
 --==BOUNDARY==
@@ -363,7 +365,6 @@ chmod +x /usr/local/bin/bootstrap-awslogs.sh
 systemctl daemon-reload
 systemctl enable bootstrap-awslogs.service
 systemctl enable awslogsd.service
-systemctl start bootstrap-awslogs.service --no-block
 systemctl start awslogsd.service --no-block
 
 --==BOUNDARY==--
