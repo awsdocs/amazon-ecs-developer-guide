@@ -248,11 +248,11 @@ This section requires the AWS CLI\. If you do not have the AWS CLI installed on 
 
    The task definition is registered in the `hello-world` family as defined in the JSON file\.
 
-**To run a task with the `hello-task-definition` task definition**
+**To run a task with the `hello-world` task definition**
 **Important**  
 Before you can run tasks in Amazon ECS, you need to launch container instances into a default cluster\. For more information about how to set up and launch container instances, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)\.
-+ Use the following AWS CLI command to run a task with the `hello-task-definition` task definition\.
++ Use the following AWS CLI command to run a task with the `hello-world` task definition\.
 
   ```
-  aws ecs run-task --task-definition hello-task-definition
+  aws ecs run-task --task-definition hello-world
   ```
