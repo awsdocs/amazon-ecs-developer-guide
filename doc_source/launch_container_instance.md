@@ -73,7 +73,7 @@ For more information about this configuration, see [Storing Container Instance C
 
         ```
         #!/bin/bash
-        cat &lt;&lt;'EOF' >> /etc/ecs/ecs.config
+        cat <<'EOF' >> /etc/ecs/ecs.config
         ECS_CLUSTER=your_cluster_name
         ECS_CONTAINER_INSTANCE_TAGS={"tag_key": "tag_value"}
         EOF
