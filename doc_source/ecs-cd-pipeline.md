@@ -17,7 +17,7 @@ After you have satisfied these prerequisites, you can proceed with the tutorial 
 
 ## Step 1: Add a Build Specification File to Your Source Repository<a name="cd-buildspec"></a>
 
-This tutorial uses AWS CodeBuild to build your Docker image and push the image to Amazon ECR\. Add a `buildspec.yml` file to your source code repository to tells AWS CodeBuild how to do that\. The example build specification below does the following:
+This tutorial uses AWS CodeBuild to build your Docker image and push the image to Amazon ECR\. Add a `buildspec.yml` file to your source code repository to tell AWS CodeBuild how to do that\. The example build specification below does the following:
 + Pre\-build stage:
   + Log in to Amazon ECR\.
   + Set the repository URI to your ECR image and add an image tag with the first seven characters of the Git commit ID of the source\.
