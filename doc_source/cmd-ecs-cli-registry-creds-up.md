@@ -3,11 +3,11 @@
 Generates AWS Secrets Manager secrets and an IAM task execution role for use in an Amazon ECS task definition\.
 
 **Important**  
-Some features described may only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described might only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Syntax<a name="cmd-ecs-cli-registry-creds-up-syntax"></a>
 
-ecs\-cli registry\-creds up *\./creds\_input\_file\.yml* \-\-role\-name *value* \[\-\-update\-existing\-secrets\] \[\-\-no\-role\] \[\-\-no\-output\-value\] \[\-\-output\-dir *value*\] \[\-\-help\] 
+ecs\-cli registry\-creds up *\./creds\_input\_file\.yml* \-\-role\-name *value* \[\-\-update\-existing\-secrets\] \[\-\-no\-role\] \[\-\-no\-output\-value\] \[\-\-output\-dir *value*\] \[\-\-tags *key1=value1,key2=value2*\] \[\-\-help\] 
 
 ## Options<a name="cmd-ecs-cli-registry-creds-up-options"></a>
 
@@ -20,6 +20,7 @@ ecs\-cli registry\-creds up *\./creds\_input\_file\.yml* \-\-role\-name *value* 
 |  `--no-role`  |  If specified, no task execution role is created\. Required: No  | 
 |  `--no-output-file`  |  If specified, no output file for use with `compose` is created\. Required: No  | 
 |  `--output-dir value`  |  The directory where the output file should be created\. If none specified, the file is created in the current working directory\. Required: No  | 
+|  `--tags key1=value1,key2=value2`  |  Specifies the metadata to apply to your AWS resources\. Each tag consists of a key and an optional value\. Tags use the following format: `key1=value1,key2=value2,key3=value3`\. For more information, see [Tagging Resources](#cmd-ecs-cli-registry-creds-up-tags)\. Type: Key value pairs Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
 
 ## Using Private Registry Authentication<a name="cmd-ecs-cli-registry-creds-up-privregauth"></a>
@@ -69,6 +70,15 @@ Required: No
 container\_names  
 Corresponds to a service name in a Docker compose file\. For more information, see [ecs\-cli compose](cmd-ecs-cli-compose.md) or [ecs\-cli compose service](cmd-ecs-cli-compose-service.md)\.  
 Required: No
+
+## Tagging Resources<a name="cmd-ecs-cli-registry-creds-up-tags"></a>
+
+The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [AWS Tagging Strategies](https://aws.amazon.com/answers/account-management/aws-tagging-strategies)\.
+
+When using the `ecs-cli registry-creds up` command, using the `--tags` flag enables you to add metadata tags to the Secrets Manager secrets and then IAM roles\.
+
+**Note**  
+Existing Secrets Manager secrets within your account will be tagged, but IAM roles can only be tagged during creation\. If you're using an existing IAM role, new tags can't be added\.
 
 ## Examples<a name="cmd-ecs-cli-registry-creds-up-examples"></a>
 

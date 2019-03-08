@@ -13,7 +13,7 @@ ecs\-cli compose service rm\|delete\|down \[\-\-timeout *value*\] \[\-\-delete\-
 
 | Name | Description | 
 | --- | --- | 
-|  `--timeout value`  |  Specifies the timeout value, in minutes \(decimals supported\), to wait for the running task count to change\. If the running task count has not changed for the specified period of time, then the Amazon ECS CLI times out and returns an error\. Setting the timeout to `0` causes the command to return without checking for success\. The default timeout value is `5` \(minutes\)\. Default value: `5` Required: No  | 
+|  `--timeout value`  |  Specifies the timeout value, in minutes \(decimals supported\), to wait for the running task count to change\. If the running task count has not changed for the specified period of time, the Amazon ECS CLI times out and returns an error\. Setting the timeout to `0` causes the command to return without checking for success\. The default timeout value is `5` \(minutes\)\. Default value: `5` Required: No  | 
 |  `--delete-namespace`  |  If specified, the private namespace created with either the compose service create or compose service up commands is deleted\. Required: No  | 
 |  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
 |  `--cluster-config cluster_config_name`  |  Specifies the name of the Amazon ECS cluster configuration to use\. Defaults to the cluster configuration set as the default\. Type: String Required: No  | 

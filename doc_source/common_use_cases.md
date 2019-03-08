@@ -57,9 +57,9 @@ Continuous integration and continuous deployment \(CICD\) is a common process fo
 + Updates your Amazon ECS services to use the new image in your application
 
  The following resources outline how to do this in different ways:
-+ [ECS Reference Architecture: Continuous Deployment](https://github.com/awslabs/ecs-refarch-continuous-deployment): This reference architecture demonstrates how to achieve continuous deployment of an application to Amazon ECS using AWS CodePipeline, AWS CodeBuild, and AWS CloudFormation\.
++ [ECS Reference Architecture: Continuous Deployment](https://github.com/awslabs/ecs-refarch-continuous-deployment): This reference architecture demonstrates how to achieve continuous deployment of an application to Amazon ECS using CodePipeline, CodeBuild, and AWS CloudFormation\.
 + [Continuous Delivery Pipeline for Amazon ECS Using Jenkins, GitHub, and Amazon ECR](https://github.com/awslabs/aws-cicd-docker-containers): This AWS labs repository helps you set up and configure a continuous delivery pipeline for Amazon ECS using Jenkins, GitHub, and Amazon ECR\.
-+ [Pipelines For Container Applications Made Easy with mu](http://aws.amazon.com/blogs/opensource/mu-pipelines-container-applications): This post on the AWS Open Source blog shows how to use [mu](https://github.com/stelligent/mu) to configure a continuous delivery pipeline for a container workload using Amazon ECS, AWS CodePipeline, and AWS CodeBuild\.
++ [Pipelines For Container Applications Made Easy with mu](http://aws.amazon.com/blogs/opensource/mu-pipelines-container-applications): This post on the AWS Open Source blog shows how to use [mu](https://github.com/stelligent/mu) to configure a continuous delivery pipeline for a container workload using Amazon ECS, CodePipeline, and CodeBuild\.
 
 ## Batch Jobs<a name="batch"></a>
 

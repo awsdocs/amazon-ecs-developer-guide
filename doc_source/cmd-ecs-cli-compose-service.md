@@ -8,10 +8,10 @@ To run tasks with the Amazon ECS CLI instead of creating services, see [ecs\-cli
 The ecs\-cli compose service command uses a project name with the task definitions and services that it creates\. When the Amazon ECS CLI creates a task definition and service from a compose file, the task definition and service are called `project-name`\. By default, the project name is the name of the directory that contains your Docker compose file\. However, you can also specify your own project name with the `--project-name` option\.
 
 **Note**  
-The Amazon ECS CLI can only manage tasks, services, and container instances that were created with the Amazon ECS CLI\. To manage tasks, services, and container instances that were not created by the Amazon ECS CLI, use the AWS Command Line Interface or the AWS Management Console\.
+The Amazon ECS CLI can only manage tasks, services, and container instances that were created with the Amazon ECS CLI\. To manage tasks, services, and container instances that weren't created by the Amazon ECS CLI, use the AWS Command Line Interface or the AWS Management Console\.
 
 **Important**  
-Some features described may only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described might only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Syntax<a name="cmd-ecs-cli-compose-service-syntax"></a>
 
@@ -23,11 +23,11 @@ Some features described may only be available with the latest version of the Ama
 | Name | Description | 
 | --- | --- | 
 |  `--verbose, --debug`  |  Increases the verbosity of command output to aid in diagnostics\. Required: No  | 
-|  `--file, -f compose_file`  |  Specifies the Docker compose file to use\. At this time, the latest version of the Amazon ECS CLI supports [Docker compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1, 2, and 3\. If the `COMPOSE_FILE` environment variable is set when ecs\-cli compose is run, then the Docker compose file is set to the value of that environment variable\. Type: String Default: `./docker-compose.yml` Required: No  | 
-|  `--project-name, -p project_name`  |  Specifies the project name to use\. If the `COMPOSE_PROJECT_NAME` environment variable is set when ecs\-cli compose is run, then the project name is set to the value of that environment variable\. Type: String Default: The current directory name\. Required: No  | 
+|  `--file, -f compose_file`  |  Specifies the Docker Compose file to use\. At this time, the latest version of the Amazon ECS CLI supports [Docker Compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1, 2, and 3\. If the `COMPOSE_FILE` environment variable is set when ecs\-cli compose is run, the Docker Compose file is set to the value of that environment variable\. Type: String Default: `./docker-compose.yml` Required: No  | 
+|  `--project-name, -p project_name`  |  Specifies the project name to use\. If the `COMPOSE_PROJECT_NAME` environment variable is set when ecs\-cli compose is run, the project name is set to the value of that environment variable\. Type: String Default: The current directory name\. Required: No  | 
 |  `--task-role-arn role_value`  |  Specifies the short name or full Amazon Resource Name \(ARN\) of the IAM role that containers in this task can assume\. All containers in this task are granted the permissions that are specified in this role\. Type: String Required: No  | 
-|  `--ecs-params ecs_params_file`  |  Specifies the ECS parameters that are not native to Docker compose files\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\. Default: `./ecs-params.yml` Required: No  | 
-|  `--registry-creds value`  |  Specifies the ECS registry credentials file to use\. Defaults to the latest output file from the `ecs-cli registry-creds up` command, if one exists\. For more information, see [ecs\-cli registry\-creds](cmd-ecs-cli-registry-creds.md)\. Default: `./ecs-registry-creds_[TIMESTAMP].yml` Required: No  | 
+|  `--ecs-params ecs_params_file`  |  Specifies the ECS parameters that aren't native to Docker Compose files\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\. Default: `./ecs-params.yml` Required: No  | 
+|  `--registry-creds value`  |  Specifies the Amazon ECS registry credentials file to use\. Defaults to the latest output file from the `ecs-cli registry-creds up` command, if one exists\. For more information, see [ecs\-cli registry\-creds](cmd-ecs-cli-registry-creds.md)\. Default: `./ecs-registry-creds_[TIMESTAMP].yml` Required: No  | 
 |  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
 |  `--cluster-config cluster_config_name`  |  Specifies the name of the Amazon ECS cluster configuration to use\. Defaults to the cluster configuration set as the default\. Type: String Required: No  | 
 |  `--ecs-profile ecs_profile`  |  Specifies the name of the Amazon ECS profile configuration to use\. Defaults to the profile configured using the configure profile command\. Type: String Required: No  | 

@@ -1,9 +1,9 @@
 # ecs\-cli compose start<a name="cmd-ecs-cli-compose-start"></a>
 
-Starts a single Amazon ECS task from the task definition created from your compose file\.
+Starts a single Amazon ECS task from the task definition created from your Compose file\.
 
 **Important**  
-Some features described may only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described might only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Syntax<a name="cmd-ecs-cli-compose-start-syntax"></a>
 
@@ -20,14 +20,14 @@ ecs\-cli compose start \[\-\-region *region*\] \[\-\-cluster\-config *cluster\_c
 |  `--aws-profile aws_profile`  |  Specifies the AWS profile to use\. Enables you to use the AWS credentials from an existing named profile in `~/.aws/credentials`\. Type: String Required: No  | 
 |  `--cluster, -c cluster_name`  |  Specifies the Amazon ECS cluster name to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
 |  `--launch-type launch_type`  |  Specifies the launch type to use\. Available options are `FARGATE` or `EC2`\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\. This overrides the default launch type stored in your cluster configuration\.  Type: StringRequired: No | 
-|  `--create-log-groups`  |  Creates the CloudWatch log groups specified in your compose files\. Required: No  | 
+|  `--create-log-groups`  |  Creates the CloudWatch log groups specified in your Compose files\. Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
 
 ## Examples<a name="cmd-ecs-cli-compose-start-examples"></a>
 
 ### Run a Task<a name="cmd-ecs-cli-compose-start-example-1"></a>
 
-This example creates a task definition from the `hello-world.yml` compose file\. Additional ECS parameters are specified for task networking configuration for the Fargate launch type\. Then a single task is run using that task definition\.
+This example creates a task definition from the `hello-world.yml` Compose file\. Additional ECS parameters are specified for task networking configuration for the Fargate launch type\. Then a single task is run using that task definition\.
 
 Example Docker Compose file, named `hello-world.yml`:
 

@@ -14,6 +14,7 @@ This feature is not yet available for Fargate tasks in the following Regions:
 | Asia Pacific \(Mumbai\) | ap\-south\-1 | 
 | Asia Pacific \(Seoul\) | ap\-northeast\-2 | 
 | EU \(London\) | eu\-west\-2 | 
+| Canada \(Central\) | ca\-central\-1 | 
 
 **Creating a scheduled task**
 

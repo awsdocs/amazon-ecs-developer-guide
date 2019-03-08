@@ -1,11 +1,18 @@
 # Example Task Definitions<a name="example_task_definitions"></a>
 
-Below are some task definition examples that you can use to start creating your own task definitions\. For more information, see [Task Definition Parameters](task_definition_parameters.md) and [Creating a Task Definition](create-task-definition.md)\.
+This section provides some task definition examples that you can use to start creating your own task definitions\. For more information, see [Task Definition Parameters](task_definition_parameters.md) and [Creating a Task Definition](create-task-definition.md)\.
 
 **Topics**
++ [Example: Webserver](#example_task_definition-webserver)
++ [Example: WordPress and MySQL](#example_task_definition-wordpress)
++ [Example: `awslogs` Log Driver](#example_task_definition-awslogs)
++ [Example: Amazon ECR Image and Task Definition IAM Role](#example_task_definition-iam)
++ [Example: Entrypoint with Command](#example_task_definition-ping)
++ [Example: Container Dependency](#example_task_definition-containerdependency)
 
-**Example Example: Webserver**  <a name="example_task_definition-webserver"></a>
-The following is an example task definition using the Fargate launch type that sets up a web server:  
+## Example: Webserver<a name="example_task_definition-webserver"></a>
+
+The following is an example task definition using the Fargate launch type that sets up a web server:
 
 ```
 {
@@ -49,9 +56,11 @@ The following is an example task definition using the Fargate launch type that s
 }
 ```
 
-**Example Example: WordPress and MySQL**  <a name="example_task_definition-wordpress"></a>
-The following example specifies a WordPress container and a MySQL container that are linked together\. This WordPress container exposes the container port 80 on the host port 80\. The security group on the container instance would need to open port 80 in order for this WordPress installation to be accessible from a web browser\.  
-For more information about the WordPress container, go to the official WordPress Docker Hub repository at [https://registry\.hub\.docker\.com/\_/wordpress/](https://registry.hub.docker.com/_/wordpress/)\. For more information about the MySQL container, go to the official MySQL Docker Hub repository at [https://registry\.hub\.docker\.com/\_/mysql/](https://registry.hub.docker.com/_/mysql/)\.  
+## Example: WordPress and MySQL<a name="example_task_definition-wordpress"></a>
+
+The following example specifies a WordPress container and a MySQL container that are linked together\. This WordPress container exposes the container port 80 on the host port 80\. The security group on the container instance would need to open port 80 in order for this WordPress installation to be accessible from a web browser\.
+
+For more information about the WordPress container, see the official WordPress Docker Hub repository at [https://registry\.hub\.docker\.com/\_/wordpress/](https://registry.hub.docker.com/_/wordpress/)\. For more information about the MySQL container, go to the official MySQL Docker Hub repository at [https://registry\.hub\.docker\.com/\_/mysql/](https://registry.hub.docker.com/_/mysql/)\.
 
 ```
 {
@@ -93,8 +102,9 @@ For more information about the WordPress container, go to the official WordPress
 **Important**  
 If you use this task definition with a load balancer, you need to complete the WordPress setup installation through the web interface on the container instance immediately after the container starts\. The load balancer health check ping expects a `200` response from the server, but WordPress returns a `301` until the installation is completed\. If the load balancer health check fails, the load balancer deregisters the instance\.
 
-**Example Example: `awslogs` Log Driver**  <a name="example_task_definition-awslogs"></a>
-The following example demonstrates how to use the `awslogs` log driver in a task definition that uses the Fargate launch type\. The `nginx` container sends its logs to the `ecs-log-streaming` log group in the `us-west-2` region\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.  
+## Example: `awslogs` Log Driver<a name="example_task_definition-awslogs"></a>
+
+The following example demonstrates how to use the `awslogs` log driver in a task definition that uses the Fargate launch type\. The `nginx` container sends its logs to the `ecs-log-streaming` log group in the `us-west-2` region\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.
 
 ```
 {
@@ -133,8 +143,9 @@ The following example demonstrates how to use the `awslogs` log driver in a task
 }
 ```
 
-**Example Example: Amazon ECR Image and Task Definition IAM Role**  <a name="example_task_definition-iam"></a>
-The following example uses an Amazon ECR image called `aws-nodejs-sample` with the `v1` tag from the `123456789012.dkr.ecr.us-west-2.amazonaws.com` registry\. The container in this task inherits IAM permissions from the `arn:aws:iam::123456789012:role/AmazonECSTaskS3BucketRole` role\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  
+## Example: Amazon ECR Image and Task Definition IAM Role<a name="example_task_definition-iam"></a>
+
+The following example uses an Amazon ECR image called `aws-nodejs-sample` with the `v1` tag from the `123456789012.dkr.ecr.us-west-2.amazonaws.com` registry\. The container in this task inherits IAM permissions from the `arn:aws:iam::123456789012:role/AmazonECSTaskS3BucketRole` role\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
 ```
 {
@@ -152,8 +163,9 @@ The following example uses an Amazon ECR image called `aws-nodejs-sample` with t
 }
 ```
 
-**Example Example: Entrypoint with Command**  <a name="example_task_definition-ping"></a>
-The following example demonstrates the syntax for a Docker container that uses an entry point and a command argument\. This container pings `google.com` four times and then exits\.  
+## Example: Entrypoint with Command<a name="example_task_definition-ping"></a>
+
+The following example demonstrates the syntax for a Docker container that uses an entry point and a command argument\. This container pings `google.com` four times and then exits\.
 
 ```
 {
@@ -176,5 +188,87 @@ The following example demonstrates the syntax for a Docker container that uses a
     }
   ],
   "family": "example_task_2"
+}
+```
+
+## Example: Container Dependency<a name="example_task_definition-containerdependency"></a>
+
+This example demonstrates the syntax for a task definition with multiple containers where container dependency is specified\. In the following task definition, the `envoy` container must reach a healthy status, determined by the required container healthcheck parameters, before the `app` container will start\. For more information, see [Container Dependency](task_definition_parameters.md#container_definition_dependson)\.
+
+```
+{
+  "family": "appmesh-gateway",
+  "proxyConfiguration":{
+      "type": "APPMESH",
+      "containerName": "envoy",
+      "properties": [
+          {
+              "name": "IgnoredUID",
+              "value": "1337"
+          },
+          {
+              "name": "ProxyIngressPort",
+              "value": "15000"
+          },
+          {
+              "name": "ProxyEgressPort",
+              "value": "15001"
+          },
+          {
+              "name": "AppPorts",
+              "value": "9080"
+          },
+          {
+              "name": "EgressIgnoredIPs",
+              "value": "169.254.170.2,169.254.169.254"
+          }
+      ]
+  },
+  "containerDefinitions": [
+    {
+      "name": "app",
+      "image": "application_image",
+      "portMappings": [
+        {
+          "containerPort": 9080,
+          "hostPort": 9080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "dependsOn": [
+        {
+          "containerName": "envoy",
+          "condition": "HEALTHY"
+        }
+      ]
+    },
+    {
+      "name": "envoy",
+      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.8.0.2-beta",
+      "essential": true,
+      "environment": [
+        {
+          "name": "APPMESH_VIRTUAL_NODE_NAME",
+          "value": "mesh/meshName/virtualNode/virtualNodeName"
+        },
+        {
+          "name": "ENVOY_LOG_LEVEL",
+          "value": "info"
+        }
+      ],
+      "healthCheck": {
+        "command": [
+          "CMD-SHELL",
+          "echo hello"
+        ],
+        "interval": 5,
+        "timeout": 2,
+        "retries": 3
+      }    
+    }
+  ],
+  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc"
 }
 ```

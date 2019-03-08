@@ -1,16 +1,16 @@
 # ecs\-cli compose create<a name="cmd-ecs-cli-compose-create"></a>
 
-Creates an Amazon ECS task definition from your compose file\.
+Creates an Amazon ECS task definition from your Compose file\.
 
 **Important**  
-We do not recommend using plaintext environment variables for sensitive information, such as credential data\.
+We don't recommend using plaintext environment variables for sensitive information, such as credential data\.
 
 **Important**  
-Some features described may only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described might only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Syntax<a name="cmd-ecs-cli-compose-create-syntax"></a>
 
-ecs\-cli compose create \[\-\-region *region*\] \[\-\-cluster\-config *cluster\_config\_name*\] \[\-\-ecs\-profile *ecs\_profile*\] \[\-\-aws\-profile *aws\_profile*\] \[\-\-cluster *cluster\_name*\] \[\-\-launch\-type *launch\_type*\] \[\-\-create\-log\-groups\] \[\-\-help\] 
+ecs\-cli compose create \[\-\-region *region*\] \[\-\-cluster\-config *cluster\_config\_name*\] \[\-\-ecs\-profile *ecs\_profile*\] \[\-\-aws\-profile *aws\_profile*\] \[\-\-cluster *cluster\_name*\] \[\-\-launch\-type *launch\_type*\] \[\-\-create\-log\-groups\] \[\-\-tags *key1=value1,key2=value2*\] \[\-\-help\] 
 
 ## Options<a name="cmd-ecs-cli-compose-create-options"></a>
 
@@ -23,14 +23,21 @@ ecs\-cli compose create \[\-\-region *region*\] \[\-\-cluster\-config *cluster\_
 |  `--aws-profile aws_profile`  |  Specifies the AWS profile to use\. Enables you to use the AWS credentials from an existing named profile in `~/.aws/credentials`\. Type: String Required: No  | 
 |  `--cluster, -c cluster_name`  |  Specifies the Amazon ECS cluster name to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
 |  `--launch-type launch_type`  |  Specifies the launch type to use\. Available options are `FARGATE` or `EC2`\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\. This overrides the default launch type stored in your cluster configuration\.  Type: StringRequired: No | 
-|  `--create-log-groups`  |  Creates the CloudWatch log groups specified in your compose files\. Required: No  | 
+|  `--create-log-groups`  |  Creates the CloudWatch log groups specified in your Compose files\. Required: No  | 
+|  `--tags key1=value1,key2=value2`  |  Specifies the metadata to apply to your AWS resources\. Each tag consists of a key and an optional value\. Tags use the following format: `key1=value1,key2=value2,key3=value3`\. For more information, see [Tagging Resources](#cmd-ecs-cli-compose-create-tags)\. Type: Key value pairs Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
+
+## Tagging Resources<a name="cmd-ecs-cli-compose-create-tags"></a>
+
+The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [AWS Tagging Strategies](https://aws.amazon.com/answers/account-management/aws-tagging-strategies)\.
+
+When using the `ecs-cli compose create` command, using the `--tags` flag enables you to add metadata tags to the task definition\.
 
 ## Examples<a name="cmd-ecs-cli-compose-create-examples"></a>
 
 ### Register a Task Definition<a name="cmd-ecs-cli-compose-create-example-1"></a>
 
-This example creates a task definition with the project name `hello-world` from the `hello-world.yml` compose file\.
+This example creates a task definition with the project name `hello-world` from the `hello-world.yml` Compose file\.
 
 ```
 ecs-cli compose --project-name hello-world --file hello-world.yml create --launch-type EC2
@@ -44,7 +51,7 @@ INFO[0000] Using ECS task definition                     TaskDefinition=ecscompo
 
 ### Register a Task Definition Using the EC2 Launch Type Without Task Networking<a name="cmd-ecs-cli-compose-create-example-2"></a>
 
-This example creates a task definition with the project name `hello-world` from the `hello-world.yml` compose file\. Additional ECS parameters specified for the container size parameters\.
+This example creates a task definition with the project name `hello-world` from the `hello-world.yml` Compose file\. Additional ECS parameters specified for the container size parameters\.
 
 Example Docker Compose file, named `hello-world.yml`:
 
@@ -87,7 +94,7 @@ INFO[0000] Using ECS task definition                     TaskDefinition=ecscompo
 
 ### Register a Task Definition Using the Fargate Launch Type<a name="cmd-ecs-cli-compose-create-example-3"></a>
 
-This example creates a task definition with the project name `hello-world` from the `hello-world.yml` compose file\. Additional ECS parameters are specified for task networking configuration for the Fargate launch type\. Then one instance of the task is run\.
+This example creates a task definition with the project name `hello-world` from the `hello-world.yml` Compose file\. Additional ECS parameters are specified for task networking configuration for the Fargate launch type\. Then one instance of the task is run\.
 
 Example Docker Compose file, named `hello-world.yml`:
 

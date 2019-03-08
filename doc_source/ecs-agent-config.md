@@ -22,7 +22,7 @@ The cluster that this agent should check into\. If this value is undefined, then
 
 `ECS_RESERVED_PORTS`  
 Example values: `[22, 80, 5000, 8080]`  
-Default value on Linux: `[22, 2375, 2376, 51678, 51679]`  
+Default value on Linux: `[22, 2375, 2376, 51678, 51679, 51680]`  
 Default value on Windows: `[53, 135, 139, 445, 2375, 2376, 3389, 5985, 51678, 51679]`  
 An array of ports that should be marked as unavailable for scheduling on this container instance\.
 
@@ -139,6 +139,7 @@ The amount of memory, in MiB, to remove from the pool that is allocated to your 
 Example values: `["awslogs","fluentd","gelf","json-file","journald","splunk","logentries","syslog"]`  
 Default value on Linux: `["json-file","none"]`  
 Default value on Windows: `["json-file","none"]`  
+If you are using ECS init, the default values are `["json-file","syslog","awslogs","none"]`\.
 The logging drivers available on the container instance\. The Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the `ECS_AVAILABLE_LOGGING_DRIVERS` environment variable before containers placed on that instance can use log configuration options for those drivers in tasks\. For information about how to use the `awslogs` log driver, see [Using the awslogs Log Driver](using_awslogs.md)\. For more information about the different log drivers available for your Docker version and how to configure them, see [Configure logging drivers](https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation\.
 
 `ECS_DISABLE_PRIVILEGED`  
@@ -195,12 +196,14 @@ The HTTP traffic that should not be forwarded to the specified `HTTP_PROXY`\. Yo
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
+If you are using ECS init, the default value is `true`\.
 Whether IAM roles for tasks should be enabled on the container instance for task containers with the `bridge` or `default` network modes\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
 `ECS_ENABLE_TASK_IAM_ROLE_NETWORK_HOST`  
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
+If you are using ECS init, the default value is `true`\.
 Whether IAM roles for tasks should be enabled on the container instance for task containers with the `host` network mode\. This variable is only supported on agent versions 1\.12\.0 and later\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
 `ECS_DISABLE_IMAGE_CLEANUP`  

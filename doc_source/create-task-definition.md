@@ -138,7 +138,7 @@ An empty task definition template is shown below\. You can use this template to 
     "family": "",
     "taskRoleArn": "",
     "executionRoleArn": "",
-    "networkMode": "host",
+    "networkMode": "none",
     "containerDefinitions": [
         {
             "name": "",
@@ -215,15 +215,20 @@ An empty task definition template is shown below\. You can use this template to 
                     }
                 ]
             },
-            "inferenceDevices": [
-                ""
-            ],
             "secrets": [
                 {
                     "name": "",
                     "valueFrom": ""
                 }
             ],
+            "dependsOn": [
+                {
+                    "containerName": "",
+                    "condition": "SUCCESS"
+                }
+            ],
+            "startTimeout": 0,
+            "stopTimeout": 0,
             "hostname": "",
             "user": "",
             "workingDirectory": "",
@@ -252,13 +257,13 @@ An empty task definition template is shown below\. You can use this template to 
             },
             "ulimits": [
                 {
-                    "name": "sigpending",
+                    "name": "rss",
                     "softLimit": 0,
                     "hardLimit": 0
                 }
             ],
             "logConfiguration": {
-                "logDriver": "awslogs",
+                "logDriver": "syslog",
                 "options": {
                     "KeyName": ""
                 }
@@ -293,7 +298,7 @@ An empty task definition template is shown below\. You can use this template to 
                 "sourcePath": ""
             },
             "dockerVolumeConfiguration": {
-                "scope": "shared",
+                "scope": "task",
                 "autoprovision": true,
                 "driver": "",
                 "driverOpts": {
@@ -316,21 +321,24 @@ An empty task definition template is shown below\. You can use this template to 
     ],
     "cpu": "",
     "memory": "",
-    "inferenceAccelerators": [
-        {
-            "deviceName": "",
-            "deviceType": "",
-            "devicePolicy": ""
-        }
-    ],
-    "pidMode": "host",
-    "ipcMode": "none",
     "tags": [
         {
             "key": "",
             "value": ""
         }
-    ]
+    ],
+    "pidMode": "host",
+    "ipcMode": "host",
+    "proxyConfiguration": {
+        "type": "APPMESH",
+        "containerName": "",
+        "properties": [
+            {
+                "name": "",
+                "value": ""
+            }
+        ]
+    }
 }
 ```
 

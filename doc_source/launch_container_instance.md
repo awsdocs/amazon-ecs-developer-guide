@@ -18,7 +18,7 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 **Note**  
 For more information about Amazon ECS\-specific CoreOS installation instructions, see [Running CoreOS Container Linux with AWS EC2 Container Service](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
-      To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs\-hvm\-2\.0** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20190127\-x86\_64\-ebs** AMI\. 
+      To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs\-hvm\-2\.0** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20190301\-x86\_64\-ebs** AMI\. 
 
       The following table lists the current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by Region\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
@@ -54,7 +54,7 @@ Container instances need external network access to communicate with the Amazon 
 If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent cannot connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
    1. <a name="instance-launch-user-data-step"></a>\(Optional\) Configure your Amazon ECS container instance with user data, such as the agent environment variables from [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\. Amazon EC2 user data scripts are executed only one time, when the instance is first launched\. The following are common examples of what user data is used for:
-      + Specify a By default, your container instance launches into your default cluster\. To launch into a non\-default cluster, choose the **Advanced Details** list\. Then, paste the following script into the **User data** field, replacing *your\_cluster\_name* with the name of your cluster\.
+      + By default, your container instance launches into your default cluster\. To launch into a non\-default cluster, choose the **Advanced Details** list\. Then, paste the following script into the **User data** field, replacing *your\_cluster\_name* with the name of your cluster\.
 
         ```
         #!/bin/bash

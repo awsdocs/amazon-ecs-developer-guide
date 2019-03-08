@@ -4,4 +4,4 @@ The following tutorials show you how to perform common tasks when using Amazon E
 
 **Topics**
 + [Tutorial: Creating a Service Using a Blue/Green Deployment](create-blue-green.md)
-+ [Tutorial: Continuous Deployment with AWS CodePipeline](ecs-cd-pipeline.md)
++ [Tutorial: Continuous Deployment with CodePipeline](ecs-cd-pipeline.md)

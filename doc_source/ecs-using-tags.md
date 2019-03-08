@@ -31,9 +31,9 @@ If you're using AWS Identity and Access Management \(IAM\), you can control whic
 
 You can tag new or existing Amazon ECS tasks, services, task definitions, and clusters\.
 
-If you're using the Amazon ECS console, you can apply tags to new resources when they are created or existing resources by using the **Tags** tab on the relevant resource page at any time\.
+If you're using the Amazon ECS console, you can apply tags to new resources when they are created or existing resources by using the **Tags** tab on the relevant resource page at any time\. The **Propagate tags from** option can be used when running a task to copy the tags from the task definition to the task or when creating a service to copy the tags from either the service or the task definition to the tasks in the service\.
 
-If you're using the Amazon ECS API, the AWS CLI, or an AWS SDK, you can apply tags to new resources using the `tags` parameter on the relevant API action or use the `TagResource` API action to apply tags to existing resources\. For more information, see [TagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html)\.
+If you're using the Amazon ECS API, the AWS CLI, or an AWS SDK, you can apply tags to new resources using the `tags` parameter on the relevant API action or use the `TagResource` API action to apply tags to existing resources\. For more information, see [TagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html)\. The **propagateTags** parameter can be used when running a task to copy the tags from the task definition to the task or when creating a service to copy the tags from either the service or the task definition to the tasks in the service\. For more information, see [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html) and [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html)\.
 
 Additionally, some resource\-creating actions enable you to specify tags for a resource when the resource is created\. If tags cannot be applied during resource creation, we roll back the resource creation process\. This ensures that resources are either created with tags or not created at all, and that no resources are left untagged at any time\. By tagging resources at the time of creation, you can eliminate the need to run custom tagging scripts after resource creation\.
 
@@ -42,13 +42,13 @@ The following table describes the Amazon ECS resources that can be tagged, and t
 
 **Tagging Support for Amazon ECS Resources**  
 
-| Resource | Supports tags | Supports tagging on creation \(Amazon ECS API, AWS CLI, AWS SDK\) | 
-| --- | --- | --- | 
-|  Amazon ECS tasks  |  Yes  |  Yes  | 
-|  Amazon ECS services  |  Yes  |  Yes  | 
-|  Amazon ECS task definitions  |  Yes  |  Yes  | 
-|  Amazon ECS clusters  |  Yes  |  Yes  | 
-|  Amazon ECS container instances  |  Yes  |  Yes  | 
+| Resource | Supports tags | Supports tag propagation | Supports tagging on creation \(Amazon ECS API, AWS CLI, AWS SDK\) | 
+| --- | --- | --- | --- | 
+|  Amazon ECS tasks  |  Yes  | Yes, from the task definition\. |  Yes  | 
+|  Amazon ECS services  |  Yes  | Yes, from either the task definition or the service to the tasks in the service\. |  Yes  | 
+|  Amazon ECS task definitions  |  Yes  | No |  Yes  | 
+|  Amazon ECS clusters  |  Yes  | No |  Yes  | 
+|  Amazon ECS container instances  |  Yes  |  Yes, from the Amazon EC2 instance\. For more information, see [Adding Tags to a Container Instance](#instance-details-tags)\.   |  Yes  | 
 
 ## Tag Restrictions<a name="tag-restrictions"></a>
 
@@ -233,6 +233,7 @@ The following command creates a service named `application` and adds a tag with 
 aws ecs create-service --service-name application --task-definition task-def-app --tags key=stack,value=dev
 ```
 
+**Example 3: Create a service with tags and propagate the tags to the tasks in the service**  
 The `--propagateTags` parameter can be used to copy the tags from either a task definition or a service to the tasks in a service\. The following command creates a service with tags and propagates them to the tasks in that service\.
 
 ```

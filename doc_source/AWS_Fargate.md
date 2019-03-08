@@ -215,7 +215,7 @@ To use private registry authentication, you create a secret with AWS Secrets Man
             {
                 "image": "private-repo/private-image",
                 "repositoryCredentials": {
-                “credentialsParameter”: "aws:secretsmanager:region:aws_account_id:secret:secret_name"
+                    "credentialsParameter: "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name"
                 }
             }
 ]

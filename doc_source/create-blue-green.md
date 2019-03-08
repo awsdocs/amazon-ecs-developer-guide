@@ -11,7 +11,7 @@ The following tutorial shows how to create an Amazon ECS service containing a Fa
 + [Step 3: Register a Task Definition](#create-blue-green-taskdef)
 + [Step 4: Create an Amazon ECS Service](#create-blue-green-service)
 + [Step 5: Create the AWS CodeDeploy Resources](#create-blue-green-codedeploy)
-+ [Step 5: Create and Monitor an AWS CodeDeploy Deployment](#create-blue-green-verify)
++ [Step 5: Create and Monitor an CodeDeploy Deployment](#create-blue-green-verify)
 + [Step 6: Clean Up](#create-blue-green-cleanup)
 
 ## Prerequisites<a name="create-blue-green-prereqs"></a>
@@ -177,11 +177,11 @@ arn:aws:ecs:region:aws_account_id:service/service-bluegreen
 
 ## Step 5: Create the AWS CodeDeploy Resources<a name="create-blue-green-codedeploy"></a>
 
-Use the following steps to create your AWS CodeDeploy application, the Application Load Balancer target group for the AWS CodeDeploy deployment group, and the AWS CodeDeploy deployment group\.
+Use the following steps to create your CodeDeploy application, the Application Load Balancer target group for the CodeDeploy deployment group, and the CodeDeploy deployment group\.
 
-**To create AWS CodeDeploy resources**
+**To create CodeDeploy resources**
 
-1. Use the [create\-application](https://docs.aws.amazon.com/cli/latest/reference/deploy/create-application.html) command to create an AWS CodeDeploy application\. Specify the `ECS` compute platform\.
+1. Use the [create\-application](https://docs.aws.amazon.com/cli/latest/reference/deploy/create-application.html) command to create an CodeDeploy application\. Specify the `ECS` compute platform\.
 
    ```
    aws deploy create-application --application-name tutorial-bluegreen \
@@ -196,7 +196,7 @@ Use the following steps to create your AWS CodeDeploy application, the Applicati
    }
    ```
 
-1. Use the [create\-target\-group](https://docs.aws.amazon.com/cli/latest/reference/elbv2/create-target-group.html) command to create a second Application Load Balancer target group, which will be used when creating your AWS CodeDeploy deployment group\.
+1. Use the [create\-target\-group](https://docs.aws.amazon.com/cli/latest/reference/elbv2/create-target-group.html) command to create a second Application Load Balancer target group, which will be used when creating your CodeDeploy deployment group\.
 
    ```
    aws elbv2 create-target-group --name bluegreentarget2 --protocol HTTP --port 80 \
@@ -209,7 +209,7 @@ Use the following steps to create your AWS CodeDeploy application, the Applicati
    arn:aws:elasticloadbalancing:region:aws_account_id:targetgroup/bluegreentarget2/708d384187a3cfdc
    ```
 
-1. Use the [create\-deployment\-group](https://docs.aws.amazon.com/cli/latest/reference/deploy/create-deployment-group.html) command to create an AWS CodeDeploy deployment group\.
+1. Use the [create\-deployment\-group](https://docs.aws.amazon.com/cli/latest/reference/deploy/create-deployment-group.html) command to create an CodeDeploy deployment group\.
 
    First, create a file named `tutorial-deployment-group.json` with the following contents\. This example uses the resource that you created\.
 
@@ -264,7 +264,7 @@ Use the following steps to create your AWS CodeDeploy application, the Applicati
    }
    ```
 
-   Then create the AWS CodeDeploy deployment group\.
+   Then create the CodeDeploy deployment group\.
 
    ```
    aws deploy create-deployment-group --cli-input-json file://tutorial-deployment-group.json --region us-east-1
@@ -278,15 +278,15 @@ Use the following steps to create your AWS CodeDeploy application, the Applicati
    }
    ```
 
-## Step 5: Create and Monitor an AWS CodeDeploy Deployment<a name="create-blue-green-verify"></a>
+## Step 5: Create and Monitor an CodeDeploy Deployment<a name="create-blue-green-verify"></a>
 
-Use the following steps to create and upload an application specification file \(AppSpec file\) and an AWS CodeDeploy deployment\.
+Use the following steps to create and upload an application specification file \(AppSpec file\) and an CodeDeploy deployment\.
 
-**To create and monitor an AWS CodeDeploy deployment**
+**To create and monitor an CodeDeploy deployment**
 
 1. Create and upload an AppSpec file using the following steps\.
 
-   1. Create a file named `appspec.yaml` with the contents of the AWS CodeDeploy deployment group\. This example uses the resources that you created earlier in the tutorial\.
+   1. Create a file named `appspec.yaml` with the contents of the CodeDeploy deployment group\. This example uses the resources that you created earlier in the tutorial\.
 
       ```
       version: 0.0
@@ -313,9 +313,9 @@ Use the following steps to create and upload an application specification file \
       aws s3 cp ./AppSpec.yaml s3://tutorial-bluegreen/appspec.yaml
       ```
 
-1. Create the AWS CodeDeploy deployment using the following steps\.
+1. Create the CodeDeploy deployment using the following steps\.
 
-   1. Create a file named `create-deployment.json` with the contents of the AWS CodeDeploy deployment\. This example uses the resources that you created earlier in the tutorial\.
+   1. Create a file named `create-deployment.json` with the contents of the CodeDeploy deployment\. This example uses the resources that you created earlier in the tutorial\.
 
       ```
       {
@@ -437,13 +437,13 @@ When you have finished this tutorial, clean up the resources associated with it 
 
 **Cleaning up the tutorial resources**
 
-1. Use the [delete\-deployment\-group](https://docs.aws.amazon.com/cli/latest/reference/deploy/delete-deployment-group.html) command to delete the AWS CodeDeploy deployment group\.
+1. Use the [delete\-deployment\-group](https://docs.aws.amazon.com/cli/latest/reference/deploy/delete-deployment-group.html) command to delete the CodeDeploy deployment group\.
 
    ```
    aws deploy delete-deployment-group --application-name tutorial-bluegreen --deployment-group-name tutorial-bluegreen-dg --region us-east-1
    ```
 
-1. Use the [delete\-application](https://docs.aws.amazon.com/cli/latest/reference/deploy/delete-application.html) command to delete the AWS CodeDeploy application\.
+1. Use the [delete\-application](https://docs.aws.amazon.com/cli/latest/reference/deploy/delete-application.html) command to delete the CodeDeploy application\.
 
    ```
    aws deploy delete-application --application-name tutorial-bluegreen --region us-east-1

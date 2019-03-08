@@ -9,7 +9,7 @@ For a quick walkthrough of the Amazon ECS CLI, see the [Tutorial: Creating a Clu
 Help text is available for each individual subcommand with ecs\-cli *subcommand* \-\-help\.
 
 **Important**  
-Some features described may only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described might only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Syntax<a name="cmd-ecs-cli-syntax"></a>
 

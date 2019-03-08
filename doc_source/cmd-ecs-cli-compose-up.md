@@ -1,13 +1,13 @@
 # ecs\-cli compose up<a name="cmd-ecs-cli-compose-up"></a>
 
-If an Amazon ECS task definition does not already exist, creates one from your compose file and runs one instance of that task on your cluster\.
+If an Amazon ECS task definition doesn't already exist, creates one from your Compose file and runs one instance of that task on your cluster\.
 
 **Important**  
-Some features described may only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
+Some features described might only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 
 ## Syntax<a name="cmd-ecs-cli-compose-up-syntax"></a>
 
-ecs\-cli compose up \[\-\-region *region*\] \[\-\-cluster\-config *cluster\_config\_name*\] \[\-\-ecs\-profile *ecs\_profile*\] \[\-\-aws\-profile *aws\_profile*\] \[\-\-cluster *cluster\_name*\] \[\-\-launch\-type *launch\_type*\] \[\-\-create\-log\-groups\] \[\-\-force\-update\] \[\-\-help\] 
+ecs\-cli compose up \[\-\-region *region*\] \[\-\-cluster\-config *cluster\_config\_name*\] \[\-\-ecs\-profile *ecs\_profile*\] \[\-\-aws\-profile *aws\_profile*\] \[\-\-cluster *cluster\_name*\] \[\-\-launch\-type *launch\_type*\] \[\-\-create\-log\-groups\] \[\-\-force\-update\] \[\-\-tags *key1=value1,key2=value2*\] \[\-\-disable\-ecs\-managed\-tags\] \[\-\-help\] 
 
 ## Options<a name="cmd-ecs-cli-compose-up-options"></a>
 
@@ -20,14 +20,23 @@ ecs\-cli compose up \[\-\-region *region*\] \[\-\-cluster\-config *cluster\_conf
 |  `--aws-profile aws_profile`  |  Specifies the AWS profile to use\. Enables you to use the AWS credentials from an existing named profile in `~/.aws/credentials`\. Type: String Required: No  | 
 |  `--cluster, -c cluster_name`  |  Specifies the Amazon ECS cluster name to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
 |  `--launch-type launch_type`  |  Specifies the launch type to use\. Available options are `FARGATE` or `EC2`\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\. This overrides the default launch type stored in your cluster configuration\.  Type: StringRequired: No | 
+|  `--create-log-groups`  |  Creates the CloudWatch log groups specified in your Compose files\. Required: No  | 
 |  `--force-update`  |  Forces the relaunching of the tasks\. Required: No  | 
+|  `--tags key1=value1,key2=value2`  |  Specifies the metadata to apply to your AWS resources\. Each tag consists of a key and an optional value\. Tags use the following format: `key1=value1,key2=value2,key3=value3`\. For more information, see [Tagging Resources](#cmd-ecs-cli-compose-up-tags)\. Type: Key value pairs Required: No  | 
+|  `--disable-ecs-managed-tags`  |  Disable the Amazon ECS managed tags\. For more information, see [Tagging Your Resources for Billing](ecs-using-tags.md#tag-resources-for-billing)\. Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
+
+## Tagging Resources<a name="cmd-ecs-cli-compose-up-tags"></a>
+
+The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [AWS Tagging Strategies](https://aws.amazon.com/answers/account-management/aws-tagging-strategies)\.
+
+When using the `ecs-cli compose up` command, using the `--tags` flag enables you to add metadata tags to the task definition and tasks\. Amazon ECS managed tags are enabled by default unless specifically disabled using the `--disable-ecs-managed-tags` flag\. For more information, see [Tagging Your Resources for Billing](ecs-using-tags.md#tag-resources-for-billing)\.
 
 ## Examples<a name="cmd-ecs-cli-compose-up-examples"></a>
 
 ### Register a Task Definition Using the AWS Fargate Launch Type with Task Networking<a name="cmd-ecs-cli-compose-up-example-1"></a>
 
-This example creates a task definition with the project name `hello-world` from the `hello-world.yml` compose file\. Additional ECS parameters are specified for task and network configuration for the Fargate launch type\. Then one instance of the task is run using the Fargate launch type\.
+This example creates a task definition with the project name `hello-world` from the `hello-world.yml` Compose file\. Additional ECS parameters are specified for task and network configuration for the Fargate launch type\. Then one instance of the task is run using the Fargate launch type\.
 
 Example Docker Compose file, named `hello-world.yml`:
 

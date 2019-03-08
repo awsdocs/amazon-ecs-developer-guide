@@ -43,9 +43,9 @@ To have your service use a newly updated Docker image with the same tag as in th
 
 1. On the **Configure deployments** page, if your service is using the blue/green deployment type, the components of your service deployment is pre\-populated\. Confirm the following settings\.
 
-   1. For **Application name**, choose the AWS CodeDeploy application of which your service is a part\.
+   1. For **Application name**, choose the CodeDeploy application of which your service is a part\.
 
-   1. For **Deployment group name**, choose the AWS CodeDeploy deployment group of which your service is a part\.
+   1. For **Deployment group name**, choose the CodeDeploy deployment group of which your service is a part\.
 
    1. Select the deployment lifecycle event hooks and the associated Lambda functions to execute as part of the new revision of the service deployment\. The available lifecycle hooks are:
       + **BeforeInstall** – Use this deployment lifecycle event hook to invoke a Lambda function before the replacement task set is created\. The result of the Lambda function at this lifecycle event does not trigger a rollback\.

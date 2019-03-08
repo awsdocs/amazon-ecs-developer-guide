@@ -42,11 +42,11 @@ You can specify Docker daemon configuration information with Amazon EC2 user dat
 
 By default, `cloud-boothook` user data is run at every instance boot, so you must create a mechanism to prevent the boothook from running multiple times\. The cloud\-init\-per utility is provided to control boothook frequency in this manner\. For more information, see [cloud\-init\-per Utility](#cloud-init-per)\.
 
-In the example below, the `--storage-opt dm.basesize=20G` option is appended to any existing options in the Docker daemon configuration file, `/etc/sysconfig/docker`\.
+In the example below, the `--foo bar` option is appended to any existing options in the Docker daemon configuration file, `/etc/sysconfig/docker`\.
 
 ```
 #cloud-boothook
-cloud-init-per once docker_options echo 'OPTIONS="${OPTIONS} --storage-opt dm.basesize=20G"' >> /etc/sysconfig/docker
+cloud-init-per once docker_options echo 'OPTIONS="${OPTIONS} --foo bar"' >> /etc/sysconfig/docker
 ```
 
 To write multiple lines to a file, use the following `heredoc` format to accomplish the same goal:
@@ -54,7 +54,7 @@ To write multiple lines to a file, use the following `heredoc` format to accompl
 ```
 #cloud-boothook
 cloud-init-per instance docker_options cat <<'EOF' >> /etc/sysconfig/docker
-OPTIONS="${OPTIONS} --storage-opt dm.basesize=20G"
+OPTIONS="${OPTIONS} --foo bar"
 HTTP_PROXY=http://proxy.example.com:80/
 EOF
 ```
@@ -81,11 +81,11 @@ The name to include in the semaphore file path that is written when the boothook
 `cmd`  
 The command and arguments that the boothook should execute\.
 
-In the example below, the command `echo 'OPTIONS="${OPTIONS} --storage-opt dm.basesize=20G"' >> /etc/sysconfig/docker` is executed only once\. A semaphore file is written that contains its name\.
+In the example below, the command `echo 'OPTIONS="${OPTIONS} --foo bar"' >> /etc/sysconfig/docker` is executed only once\. A semaphore file is written that contains its name\.
 
 ```
 #cloud-boothook
-cloud-init-per once docker_options echo 'OPTIONS="${OPTIONS} --storage-opt dm.basesize=20G"' >> /etc/sysconfig/docker
+cloud-init-per once docker_options echo 'OPTIONS="${OPTIONS} --foo bar"' >> /etc/sysconfig/docker
 ```
 
 The semaphore file records the exit code of the command and a UNIX timestamp for when it was executed\.
@@ -124,7 +124,7 @@ MIME-Version: 1.0
 Content-Type: text/cloud-boothook; charset="us-ascii"
 
 # Set Docker daemon options
-cloud-init-per once docker_options echo 'OPTIONS="${OPTIONS} --storage-opt dm.basesize=20G"' >> /etc/sysconfig/docker
+cloud-init-per once docker_options echo 'OPTIONS="${OPTIONS} --foo bar"' >> /etc/sysconfig/docker
 
 --==BOUNDARY==
 Content-Type: text/x-shellscript; charset="us-ascii"

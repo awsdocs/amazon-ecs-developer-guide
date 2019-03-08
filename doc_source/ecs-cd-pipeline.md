@@ -1,6 +1,6 @@
-# Tutorial: Continuous Deployment with AWS CodePipeline<a name="ecs-cd-pipeline"></a>
+# Tutorial: Continuous Deployment with CodePipeline<a name="ecs-cd-pipeline"></a>
 
-This tutorial helps you to create a complete, end\-to\-end continuous deployment \(CD\) pipeline with Amazon ECS with AWS CodePipeline\.
+This tutorial helps you to create a complete, end\-to\-end continuous deployment \(CD\) pipeline with Amazon ECS with CodePipeline\.
 
 ## Prerequisites<a name="ecs-cd-prereqs"></a>
 
@@ -8,7 +8,7 @@ There are a few resources that you must have in place before you can use this tu
 
 **Note**  
 All of these resources should be created within the same AWS Region\.
-+ A source control repository \(this tutorial uses AWS CodeCommit\) with your Dockerfile and application source\. For more information, see [Create an AWS CodeCommit Repository](https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-create-repository.html) in the *AWS CodeCommit User Guide*\.
++ A source control repository \(this tutorial uses CodeCommit\) with your Dockerfile and application source\. For more information, see [Create an CodeCommit Repository](https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-create-repository.html) in the *AWS CodeCommit User Guide*\.
 + A Docker image repository \(this tutorial uses Amazon ECR\) that contains an image you have built from your Dockerfile and application source\. For more information, see [Creating a Repository](https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html) and [Pushing an Image](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html) in the *Amazon Elastic Container Registry User Guide*\.
 + An Amazon ECS task definition that references the Docker image hosted in your image repository\. For more information, see [Creating a Task Definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-task-definition.html) in the *Amazon Elastic Container Service Developer Guide*\.
 + An Amazon ECS cluster that is running a service that uses your previously mentioned task definition\. For more information, see [Creating a Cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create_cluster.html) and [Creating a Service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service.html) in the *Amazon Elastic Container Service Developer Guide*\.
@@ -17,7 +17,7 @@ After you have satisfied these prerequisites, you can proceed with the tutorial 
 
 ## Step 1: Add a Build Specification File to Your Source Repository<a name="cd-buildspec"></a>
 
-This tutorial uses AWS CodeBuild to build your Docker image and push the image to Amazon ECR\. Add a `buildspec.yml` file to your source code repository to tells AWS CodeBuild how to do that\. The example build specification below does the following:
+This tutorial uses CodeBuild to build your Docker image and push the image to Amazon ECR\. Add a `buildspec.yml` file to your source code repository to tells CodeBuild how to do that\. The example build specification below does the following:
 + Pre\-build stage:
   + Log in to Amazon ECR\.
   + Set the repository URI to your ECR image and add an image tag with the first seven characters of the Git commit ID of the source\.
@@ -25,7 +25,7 @@ This tutorial uses AWS CodeBuild to build your Docker image and push the image t
   + Build the Docker image and tag the image both as `latest` and with the Git commit ID\.
 + Post\-build stage:
   + Push the image to your ECR repository with both tags\.
-  + Write a file called `imagedefinitions.json` in the build root that has your Amazon ECS service's container name and the image and tag\. The deployment stage of your CD pipeline uses this information to create a new revision of your service's task definition, and then it updates the service to use the new task definition\. The `imagedefinitions.json` file is required for the AWS CodeDeploy ECS job worker\.
+  + Write a file called `imagedefinitions.json` in the build root that has your Amazon ECS service's container name and the image and tag\. The deployment stage of your CD pipeline uses this information to create a new revision of your service's task definition, and then it updates the service to use the new task definition\. The `imagedefinitions.json` file is required for the CodeDeploy ECS job worker\.
 
 ```
 version: 0.2
@@ -111,25 +111,25 @@ The build specification was written for the following task definition, used by t
 
 ## Step 2: Creating Your Continuous Deployment Pipeline<a name="pipeline-wizard"></a>
 
-Use the AWS CodePipeline wizard to create your pipeline stages and connect your source repository to your ECS service\.
+Use the CodePipeline wizard to create your pipeline stages and connect your source repository to your ECS service\.
 
 **To create your pipeline**
 
-1. Open the AWS CodePipeline console at [https://console\.aws\.amazon\.com/codepipeline/](https://console.aws.amazon.com/codepipeline/)\.
+1. Open the CodePipeline console at [https://console\.aws\.amazon\.com/codepipeline/](https://console.aws.amazon.com/codepipeline/)\.
 
 1. On the **Welcome** page, choose **Create pipeline**\. 
 
-   If this is your first time using AWS CodePipeline, an introductory page appears instead of **Welcome**\. Choose **Get Started Now**\.
+   If this is your first time using CodePipeline, an introductory page appears instead of **Welcome**\. Choose **Get Started Now**\.
 
 1. On the **Step 1: Name** page, for **Pipeline name**, type the name for your pipeline and choose **Next step**\. For this tutorial, the pipeline name is **hello\-world**\.
 
-1. On the **Step 2: Source** page, for **Source provider**, choose **AWS CodeCommit**\.
+1. On the **Step 2: Source** page, for **Source provider**, choose **CodeCommit**\.
 
-   1. For **Repository name**, choose the name of the AWS CodeCommit repository to use as the source location for your pipeline\.
+   1. For **Repository name**, choose the name of the CodeCommit repository to use as the source location for your pipeline\.
 
    1. For **Branch name**, choose the branch to use and choose **Next step**\.
 
-1. On the **Step 3: Build** page, choose **AWS CodeBuild**, and then choose **Create a new build project**\.
+1. On the **Step 3: Build** page, choose **CodeBuild**, and then choose **Create a new build project**\.
 
    1. For **Project name**, choose a unique name for your build project\. For this tutorial, the project name is **hello\-world**\.
 
@@ -143,7 +143,7 @@ Use the AWS CodePipeline wizard to create your pipeline stages and connect your 
 
    1. Choose **Next step**\.
 **Note**  
-The wizard creates an AWS CodeBuild service role for your build project, called **code\-build\-*build\-project\-name*\-service\-role**\. Note this role name, as you add Amazon ECR permissions to it later\.
+The wizard creates an CodeBuild service role for your build project, called **code\-build\-*build\-project\-name*\-service\-role**\. Note this role name, as you add Amazon ECR permissions to it later\.
 
 1. On the **Step 4: Deploy** page, for **Deployment provider**, choose **Amazon ECS**\.
 
@@ -157,19 +157,19 @@ The wizard creates an AWS CodeBuild service role for your build project, called 
 
 1. On the **Step 6: Review** page, review your pipeline configuration and choose **Create pipeline** to create the pipeline\.
 **Note**  
-Now that the pipeline has been created, it attempts to run through the different pipeline stages\. However, the default AWS CodeBuild role created by the wizard does not have permissions to execute all of the commands contained in the `buildspec.yml` file, so the build stage fails\. The next section adds the permissions for the build stage\.
+Now that the pipeline has been created, it attempts to run through the different pipeline stages\. However, the default CodeBuild role created by the wizard does not have permissions to execute all of the commands contained in the `buildspec.yml` file, so the build stage fails\. The next section adds the permissions for the build stage\.
 
-## Step 3: Add Amazon ECR Permissions to the AWS CodeBuild Role<a name="code-build-perms"></a>
+## Step 3: Add Amazon ECR Permissions to the CodeBuild Role<a name="code-build-perms"></a>
 
-The AWS CodePipeline wizard created an IAM role for the AWS CodeBuild build project, called **code\-build\-*build\-project\-name*\-service\-role**\. For this tutorial, the name is **code\-build\-hello\-world\-service\-role**\. Because the `buildspec.yml` file makes calls to Amazon ECR API operations, the role must have a policy that allows permissions to make these Amazon ECR calls\. The following procedure helps you attach the proper permissions to the role\.
+The CodePipeline wizard created an IAM role for the CodeBuild build project, called **code\-build\-*build\-project\-name*\-service\-role**\. For this tutorial, the name is **code\-build\-hello\-world\-service\-role**\. Because the `buildspec.yml` file makes calls to Amazon ECR API operations, the role must have a policy that allows permissions to make these Amazon ECR calls\. The following procedure helps you attach the proper permissions to the role\.
 
-**To add Amazon ECR permissions to the AWS CodeBuild role**
+**To add Amazon ECR permissions to the CodeBuild role**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
 1. In the left navigation pane, choose **Roles**\.
 
-1. In the search box, type **code\-build\-** and choose the role that was created by the AWS CodePipeline wizard\. For this tutorial, the role name is **code\-build\-hello\-world\-service\-role**\.
+1. In the search box, type **code\-build\-** and choose the role that was created by the CodePipeline wizard\. For this tutorial, the role name is **code\-build\-hello\-world\-service\-role**\.
 
 1. On the **Summary** page, choose **Attach policy**\.
 
@@ -183,9 +183,9 @@ Your pipeline should have everything for running an end\-to\-end native AWS cont
 
 1. Make a code change to your configured source repository, commit, and push the change\.
 
-1. Open the AWS CodePipeline console at [https://console\.aws\.amazon\.com/codepipeline/](https://console.aws.amazon.com/codepipeline/)\.
+1. Open the CodePipeline console at [https://console\.aws\.amazon\.com/codepipeline/](https://console.aws.amazon.com/codepipeline/)\.
 
 1. Choose your pipeline from the list\.
 
 1. Watch the pipeline progress through its stages\. Your pipeline should complete and your Amazon ECS service runs the Docker image that was created from your code change\.  
-![\[AWS CodePipeline completed\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/code-pipeline-complete.png)
+![\[CodePipeline completed\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/code-pipeline-complete.png)

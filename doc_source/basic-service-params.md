@@ -31,7 +31,7 @@ If your launch type is `EC2`, and your task definition uses static host port map
 
 1. On the **Deployments** page, fill out the following parameters accordingly:
    + For **Deployment type**, choose whether your service should use a rolling update deployment or a blue/green deployment using AWS CodeDeploy\. For more information, see [Amazon ECS Deployment Types](deployment-types.md)\.
-   + If you selected the blue/green deployment type, for **Service role for CodeDeploy** choose the IAM service role for AWS CodeDeploy\. For more information, see [Amazon ECS AWS CodeDeploy IAM Role](codedeploy_IAM_role.md)\.
+   + If you selected the blue/green deployment type, for **Service role for CodeDeploy** choose the IAM service role for AWS CodeDeploy\. For more information, see [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)\.
 
 1. \(Optional\) If you selected the EC2 launch type and the `REPLICA` service type, for **Task Placement**, you can specify how tasks are placed using task placement strategies and constraints\. Choose from the following options:
    + **AZ Balanced Spread** \- Distribute tasks across Availability Zones and across container instances in the Availability Zone\.

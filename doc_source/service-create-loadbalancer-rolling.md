@@ -1,6 +1,6 @@
 # Configuring a Load Balancer for the Rolling Update Deployment Type<a name="service-create-loadbalancer-rolling"></a>
 
-If your service's tasks take a while to start and respond to Elastic Load Balancing health checks, you can specify a health check grace period of up to 7,200 seconds\. During that time, the service scheduler ignores health check status\. This grace period can prevent the service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\. This is only valid if your service is configured to use a load balancer\.<a name="service-health-check-grace-period"></a>
+If your service's tasks take a while to start and respond to Elastic Load Balancing health checks, you can specify a health check grace period of up to 2,147,483,647 seconds\. During that time, the service scheduler ignores health check status\. This grace period can prevent the service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\. This is only valid if your service is configured to use a load balancer\.<a name="service-health-check-grace-period"></a>
 
 **To configure a health check grace period**
 

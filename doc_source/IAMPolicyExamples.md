@@ -488,7 +488,7 @@ The following IAM policy allows a user to describe a specified task in a specifi
     {
       "Effect": "Allow",
       "Action": [
-        "ecs:DescribeTask"
+        "ecs:DescribeTasks"
       ],
       "Condition": {
         "ArnEquals": {

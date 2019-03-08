@@ -4,13 +4,14 @@ Lists all the containers in your cluster that belong to the service created with
 
 ## Syntax<a name="cmd-ecs-cli-compose-service-ps-syntax"></a>
 
-ecs\-cli compose service ps\|list \[\-\-help\]
+ecs\-cli compose service ps\|list \[\-\-desired\-status *status*\] \[\-\-help\]
 
 ## Options<a name="cmd-ecs-cli-compose-service-ps-options"></a>
 
 
 | Name | Description | 
 | --- | --- | 
+|  `--desired-status status`  |  The container desired status to filter the container list results with\. Required: No Valid values: `RUNNING` \| `STOPPED`  | 
 |  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: No  | 
 |  `--cluster-config cluster_config_name`  |  Specifies the name of the Amazon ECS cluster configuration to use\. Defaults to the cluster configuration set as the default\. Type: String Required: No  | 
 |  `--ecs-profile ecs_profile`  |  Specifies the name of the Amazon ECS profile configuration to use\. Defaults to the profile configured using the configure profile command\. Type: String Required: No  | 
