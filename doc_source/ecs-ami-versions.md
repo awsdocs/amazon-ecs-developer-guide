@@ -1,17 +1,79 @@
-# Amazon ECS\-Optimized Amazon Linux AMI Versions<a name="ecs-ami-versions"></a>
+# Amazon ECS\-optimized AMI Versions<a name="ecs-ami-versions"></a>
 
-**Note**  
-Amazon ECS vends Linux AMIs that are optimized for the service in two variants\. The latest and recommended version is based on Amazon Linux 2\. Amazon ECS also vends AMIs that are based on the Amazon Linux AMI, but we recommend that you migrate your workloads to the Amazon Linux 2 variant, as support for the Amazon Linux AMI will end no later than June 30, 2020\. For more information, see [Amazon ECS\-Optimized Amazon Linux 2 AMI](al2ami.md)\.
+This topic lists the current and previous versions of the Amazon ECS\-optimized AMIs and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+
+The Amazon ECS\-optimized AMI metadata, including the AMI ID, for each variant can be retrieved programmatically\. For more information, see [Retrieving Amazon ECS\-Optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)\.
+
+**Topics**
++ [Amazon ECS\-Optimized Amazon Linux 2 AMI Versions](#al2ami-agent-versions)
++ [Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI Versions](#al2-arm64-ami-agent-versions)
++ [Amazon ECS GPU\-optimized AMI Versions](#al2-gpu-ami-agent-versions)
++ [Amazon ECS\-optimized Amazon Linux AMI Versions](#al1-ami-agent-versions)
+
+## Amazon ECS\-Optimized Amazon Linux 2 AMI Versions<a name="al2ami-agent-versions"></a>
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2 AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+
+
+| Amazon ECS\-optimized Amazon Linux 2 AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| --- | --- | --- | --- | 
+| 20190301 | 1\.26\.0 | 18\.06\.1\-ce | 1\.26\.0\-1 | 
+| 20190215 | 1\.25\.3 | 18\.06\.1\-ce | 1\.25\.3\-1 | 
+| 20190204 | 1\.25\.2 | 18\.06\.1\-ce | 1\.25\.2\-1 | 
+| 20190127 | 1\.25\.1 | 18\.06\.1\-ce | 1\.25\.1\-1 | 
+| 20190118 | 1\.25\.0 | 18\.06\.1\-ce | 1\.25\.0\-1 | 
+| 20190107 | 1\.24\.0 | 18\.06\.1\-ce | 1\.24\.0\-1 | 
+| 20181112 | 1\.22\.0 | 18\.06\.1\-ce | 1\.22\.0\-1 | 
+| 20181016 | 1\.20\.3 | 18\.06\.1\-ce | 1\.21\.0\-1 | 
+
+The current Amazon ECS\-optimized Amazon Linux 2 AMI can be retrieved using the AWS CLI with the following command:
+
+```
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended
+```
+
+## Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI Versions<a name="al2-arm64-ami-agent-versions"></a>
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+
+
+| Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| --- | --- | --- | --- | 
+| 20190301 | 1\.26\.0 | 18\.06\.1\-ce | 1\.26\.0\-1 | 
+| 20190215 | 1\.25\.3 | 18\.06\.1\-ce | 1\.25\.3\-1 | 
+| 20190204 | 1\.25\.2 | 18\.06\.1\-ce | 1\.25\.2\-1 | 
+| 20190127 | 1\.25\.1 | 18\.06\.1\-ce | 1\.25\.1\-1 | 
+| 20190119 | 1\.25\.0 | 18\.06\.1\-ce | 1\.25\.0\-1 | 
+| 20181120 | 1\.22\.0 | 18\.06\.1\-ce | 1\.22\.0\-1 | 
+
+The current Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI can be retrieved using the AWS CLI with the following command:
+
+```
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended
+```
+
+## Amazon ECS GPU\-optimized AMI Versions<a name="al2-gpu-ami-agent-versions"></a>
+
+The table below lists the current and previous versions of the Amazon ECS GPU\-optimized AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+
+
+| Amazon ECS GPU\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| --- | --- | --- | --- | 
+| 20190301 | 1\.26\.0 | 18\.06\.1\-ce | 1\.26\.0\-1 | 
+| 20190215 | 1\.25\.3 | 18\.06\.1\-ce | 1\.25\.3\-1 | 
+| 20190204 | 1\.25\.2 | 18\.06\.1\-ce | 1\.25\.2\-1 | 
+| 20190127 | 1\.25\.1 | 18\.06\.1\-ce | 1\.25\.1\-1 | 
+| 20190118 | 1\.25\.0 | 18\.06\.1\-ce | 1\.25\.0\-1 | 
+
+You can retrieve the current Amazon ECS GPU\-optimized AMI using the AWS CLI with the following command:
+
+```
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/gpu/recommended
+```
+
+## Amazon ECS\-optimized Amazon Linux AMI Versions<a name="al1-ami-agent-versions"></a>
 
 The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
-
-The current Amazon ECS\-optimized Amazon Linux AMI can be retrieved using the AWS CLI with the following command:
-
-```
-aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended
-```
-
-We always recommend using the latest version of the Amazon ECS\-optimized Amazon Linux AMI\. For more information, see [How to Launch the Latest Amazon ECS\-Optimized Amazon Linux AMI](ecs-optimized_AMI_launch_latest.md)\.
 
 
 | Amazon ECS\-optimized Amazon Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 

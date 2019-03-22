@@ -1,17 +1,15 @@
 # Amazon ECS Task Execution IAM Role<a name="task_execution_IAM_role"></a>
 
-The Amazon ECS container agent makes calls to the Amazon ECS API actions on your behalf, so it requires an IAM policy and role for the service to know that the agent belongs to you\. The following actions are covered by the `AmazonECSTaskExecutionRolePolicy` policy in the task execution role:
-+ Calls to Amazon ECR to pull the container image
-+ Calls to CloudWatch to store container application logs
+The Amazon ECS container agent makes calls to the Amazon ECS API on your behalf, so it requires an IAM policy and role for the service to know that the agent belongs to you\. The following are the use cases for when the task execution IAM role is needed:
++ Your task uses the Fargate launch type and\.\.\.
+  + is pulling a container image from Amazon ECR\.
+  + uses the awslogs log driver\.
++ Your tasks uses either the Fargate or EC2 launch type and\.\.\.
+  + is using private registry authentication\. For more information, see [Required IAM Permissions for Private Registry Authentication](#task-execution-private-auth)\.
+  + the task definition is referencing sensitive data using Secrets Manager secrets or AWS Systems Manager Parameter Store parameters\. For more information, see [Required IAM Permissions for Amazon ECS Secrets](#task-execution-secrets)\.
 
 **Note**  
-The task execution role is supported by ECS Agent version 1\.16\.0 and later\.
-
-If you want to use the private registry authentication for tasks feature, it requires you to add additional permissions as an inline policy to the task execution role\. For more information, see [Private Registry Authentication Required IAM Permissions](private-auth.md#private-auth-iam)\.
-
-For tasks that use the Fargate launch type, the task execution role is required to pull container images from Amazon ECR or to use the awslogs log driver, which is currently the only supported logging option for this launch type\. If you are using a public container image, for example a public image from Docker Hub, and are not using a logging configuration then the task execution role is not needed\.
-
-For tasks that use the EC2 launch type, the permissions granted by the task execution role are already granted by the container instance IAM role and thus the task execution role is not required unless you are using the private registry authentication for tasks feature\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+The task execution role is supported by Amazon ECS container agent version 1\.16\.0 and later\.
 
 The `AmazonECSTaskExecutionRolePolicy` policy is shown below\.
 
@@ -35,7 +33,7 @@ The `AmazonECSTaskExecutionRolePolicy` policy is shown below\.
 }
 ```
 
-The Amazon ECS task execution role is automatically created for you in the console first\-run experience; however, you should manually attach the managed IAM policy for tasks to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS task execution role and to attach the managed IAM policy if needed\.<a name="procedure_check_execution_role"></a>
+The Amazon ECS task execution role is automatically created for you in the Amazon ECS console first\-run experience; however, you should manually attach the managed IAM policy for tasks to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS task execution role and to attach the managed IAM policy if needed\.<a name="procedure_check_execution_role"></a>
 
 **To check for the `ecsTaskExecutionRole` in the IAM console**
 
@@ -86,3 +84,64 @@ The Amazon ECS task execution role is automatically created for you in the conso
 1. In the **Attach permissions policy** section, search for **AmazonECSTaskExecutionRolePolicy**, select the policy, and then choose **Next: Review**\.
 
 1. For **Role Name**, type `ecsTaskExecutionRole` and choose **Create role**\.
+
+## Required IAM Permissions for Private Registry Authentication<a name="task-execution-private-auth"></a>
+
+The Amazon ECS task execution role is required to use the private registry authentication feature\. This allows the container agent to pull the container image\. For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.
+
+To provide access to the secrets that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
++ `secretsmanager:GetSecretValue`
++ `kms:Decrypt`—Required only if your key uses a custom KMS key and not the default key\. The ARN for your custom key should be added as a resource\.
+
+An example inline policy adding the permissions is shown below\.
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "kms:Decrypt",
+        "secretsmanager:GetSecretValue"
+      ],
+      "Resource": [
+        "arn:aws:secretsmanager:<region>:<aws_account_id>:secret:secret_name",
+        "arn:aws:kms:<region>:<aws_account_id>:key:key_id"     
+      ]
+    }
+  ]
+}
+```
+
+## Required IAM Permissions for Amazon ECS Secrets<a name="task-execution-secrets"></a>
+
+To use the Amazon ECS secrets feature, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary AWS Systems Manager or Secrets Manager resources\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
+
+To provide access to the AWS Systems Manager Parameter Store parameters that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
++ `ssm:GetParameters`—Required if you are referencing a Systems Manager Parameter Store parameter in a task definition\.
++ `secretsmanager:GetSecretValue`—Required if you are referencing a Secrets Manager secret either directly or if your Systems Manager Parameter Store parameter is referencing a Secrets Manager secret in a task definition\.
++ `kms:Decrypt`—Required only if your secret uses a custom KMS key and not the default key\. The ARN for your custom key should be added as a resource\.
+
+The following example inline policy adds the required permissions:
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ssm:GetParameters",
+        "secretsmanager:GetSecretValue",
+        "kms:Decrypt"
+      ],
+      "Resource": [
+        "arn:aws:ssm:<region>:<aws_account_id>:parameter/parameter_name",
+        "arn:aws:secretsmanager:<region>:<aws_account_id>:secret:secret_name",
+        "arn:aws:kms:<region>:<aws_account_id>:key/key_id"
+      ]
+    }
+  ]
+}
+```

@@ -2,7 +2,7 @@
 
 Amazon ECS supports workloads that take advantage of GPUs by enabling you to create clusters with GPU\-enabled container instances\. Amazon EC2 GPU\-based container instances using the p2 and p3 instance types provide access to NVIDIA GPUs\. For more information, see [Linux Accelerated Computing Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-Amazon ECS provides a GPU\-optimized AMI that comes ready with pre\-configured NVIDIA kernel drivers and a Docker GPU runtime\. For more information, see [Amazon ECS GPU\-Optimized AMI](gpuami.md)\.
+Amazon ECS provides a GPU\-optimized AMI that comes ready with pre\-configured NVIDIA kernel drivers and a Docker GPU runtime\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 
 You can designate a number of GPUs in your task definition for task placement consideration at a container level\. Amazon ECS will schedule to available GPU\-enabled container instances and pin physical GPUs to proper containers for optimal performance\. 
 

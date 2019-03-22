@@ -30,7 +30,7 @@ The following is a snippet of a task definition showing the required parameters:
 **Note**  
 Another method of enabling private registry authentication uses Amazon ECS container agent environment variables to authenticate to private registries\. This method is only supported for tasks using the EC2 launch type\. For more information, see [Private Registry Authentication for Container Instances](private-auth-container-instances.md)\.
 
-## Private Registry Authentication Required IAM Permissions<a name="private-auth-iam"></a>
+## Required IAM Permissions for Private Registry Authentication<a name="private-auth-iam"></a>
 
 The Amazon ECS task execution role is required to use this feature\. This allows the container agent to pull the container image\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
@@ -51,8 +51,8 @@ An example inline policy adding the permissions is shown below\.
         "secretsmanager:GetSecretValue"
       ],
       "Resource": [
-        "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name",
-        "arn:aws:kms:region:aws_account_id:key:key_id"     
+        "arn:aws:secretsmanager:<region>:<aws_account_id>:secret:secret_name",
+        "arn:aws:kms:<region>:<aws_account_id>:key:key_id"     
       ]
     }
   ]
@@ -106,7 +106,7 @@ This step only applies to regions that currently support Amazon ECS using AWS Fa
 
 1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
-1. For **Task execution role**, either select your existing task execution role or choose **Create new role** to have one created for you\. This role authorizes Amazon ECS to pull private images for your task\. For more information, see [Private Registry Authentication Required IAM Permissions](#private-auth-iam)\.
+1. For **Task execution role**, either select your existing task execution role or choose **Create new role** to have one created for you\. This role authorizes Amazon ECS to pull private images for your task\. For more information, see [Required IAM Permissions for Private Registry Authentication](#private-auth-iam)\.
 **Important**  
 If the **Task execution role** field does not appear, choose **Configure via JSON** and manually add the `executionRoleArn` field to specify your task execution role\. The following shows the syntax:  
 

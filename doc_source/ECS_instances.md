@@ -9,7 +9,7 @@ Tasks using the Fargate launch type are deployed onto infrastructure managed by 
 + [Container Instance Concepts](#container_instance_concepts)
 + [Container Instance Lifecycle](#container_instance_life_cycle)
 + [Check the Instance Role for Your Account](#check-instance-role)
-+ [Container Instance AMIs](container_instance_AMIs.md)
++ [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)
 + [Retrieving Amazon ECS\-Optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)
 + [Subscribing to Amazon ECS\-Optimized Amazon Linux AMI Update Notifications](ECS-AMI-SubscribeTopic.md)
 + [Launching an Amazon ECS Container Instance](launch_container_instance.md)

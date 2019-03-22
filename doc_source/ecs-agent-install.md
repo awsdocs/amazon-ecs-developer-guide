@@ -264,6 +264,8 @@ For example:
       --env-file=/etc/ecs/ecs.config \
       amazon/amazon-ecs-agent:latest
       ```
+**Important**  
+The `host` network mode is the only supported network mode for the container agent container\. For more information, see [Running the Amazon ECS Container Agent with Host Network Mode](#container_agent_host)\.
 **Note**  
 If you receive an `Error response from daemon: Cannot start container` message, you can delete the failed container with the sudo docker rm ecs\-agent command and try running the agent again\. 
 
@@ -455,3 +457,11 @@ If you receive an `Error response from daemon: Cannot start container` message, 
       ```
 **Note**  
 The warning in the output is expected and is not problematic; it occurs because there is not a chain of trust between your personal PGP key \(if you have one\) and the Amazon ECS PGP key\. For more information, see [Web of trust](https://en.wikipedia.org/wiki/Web_of_trust)\.
+
+## Running the Amazon ECS Container Agent with Host Network Mode<a name="container_agent_host"></a>
+
+When running the Amazon ECS container agent, `ecs-init` will create the container agent container with the `host` network mode\. This is the only supported network mode for the container agent container\. 
+
+This enables you to block access to the [Amazon EC2 instance metadata service endpoint](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) \(`http://169.254.169.254`\) for the containers started by the container agent\. This ensures that containers can not access IAM role credentials from the container instance profile and enforces that tasks use only the IAM task role credentials\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
+
+This also makes it so the container agent doesn't contend for connections and network traffic on the `docker0` bridge\.

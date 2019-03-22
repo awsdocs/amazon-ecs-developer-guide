@@ -13,28 +13,31 @@ Some common use cases for bind mounts are:
 
 Before your containers can use bind mount host volumes, you must specify the volume and mount point configurations in your task definition\. This section describes the volume configuration for a container\. For tasks that use a bind mount host volume, specify a `host` value and optional `sourcePath` value\.
 
-The task definition JSON shown below shows the syntax for the `volumes` and `mountPoints` objects for a container\.
+The following task definition JSON snippet shows the syntax for the `volumes` and `mountPoints` objects for a container:
 
 ```
 {
-    "containerDefinitions": [
-        {
-            "name": "string",
-            "volumes": [
-                {
-                    "name": "string",
-                    "host": {
-                        "sourcePath": "string"
-                    }
-                }
-            ],
-            "mountPoints": [
-                {
-                  "sourceVolume": "string",
-                  "containerPath": "/path/to/mount_volume"
-                }
-            ]
-        }
+   "family": "",
+   ...
+   "containerDefinitions" : [
+      {
+         "mountPoints" : [
+            {
+               "containerPath" : "/path/to/mount_volume",
+               "sourceVolume" : "string"
+            }
+          ],
+          "name" : "string"
+       }
+    ],
+    ...
+    "volumes" : [
+       {
+          "host" : {
+             "sourcePath" : "string"
+          },
+          "name" : "string"
+       }
     ]
 }
 ```

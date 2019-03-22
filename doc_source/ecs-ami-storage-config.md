@@ -1,8 +1,22 @@
-# Storage Configuration<a name="ecs-ami-storage-config"></a>
+# AMI Storage Configuration<a name="ecs-ami-storage-config"></a>
+
+The following describes the storage configuration for each of the Amazon ECS\-optimized AMIs\.
+
+**Topics**
++ [Amazon Linux 2 Storage Configuration](#al2-ami-storage-config)
++ [Amazon ECS\-optimized Amazon Linux AMI Storage Configuration](#al1-ami-storage-config)
+
+## Amazon Linux 2 Storage Configuration<a name="al2-ami-storage-config"></a>
+
+By default, the Amazon Linux 2\-based Amazon ECS\-optimized AMIs \(Amazon ECS\-optimized Amazon Linux 2 AMI, Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI, and Amazon ECS GPU\-optimized AMI\) ship with a single 30\-GiB root volume\. You can modify the 30\-GiB root volume size at launch time to increase the available storage on your container instance\. This storage is used for the operating system and for Docker images and metadata\.
+
+The default filesystem for the Amazon ECS\-optimized Amazon Linux 2 AMI is `ext4`, and Docker uses the `overlay2` storage driver\. For more information, see [Use the OverlayFS storage driver](https://docs.docker.com/storage/storagedriver/overlayfs-driver/) in the Docker documentation\.
+
+## Amazon ECS\-optimized Amazon Linux AMI Storage Configuration<a name="al1-ami-storage-config"></a>
 
 By default, the Amazon ECS\-optimized Amazon Linux AMI ships with 30 GiB of total storage\. You can modify this value at launch time to increase or decrease the available storage on your container instance\. This storage is used for the operating system and for Docker images and metadata\. The sections below describe the storage configuration of the Amazon ECS\-optimized Amazon Linux AMI, based on the AMI version\.
 
-## Version 2015\.09\.d and Later<a name="ecs-AMI-LVM"></a>
+### Version 2015\.09\.d and Later<a name="ecs-AMI-LVM"></a>
 
 Amazon ECS\-optimized Amazon Linux AMIs from version `2015.09.d` and later launch with an 8\-GiB volume for the operating system that is attached at `/dev/xvda` and mounted as the root of the file system\. There is an additional 22\-GiB volume that is attached at `/dev/xvdcz` that Docker uses for image and metadata storage\. The volume is configured as a Logical Volume Management \(LVM\) device and it is accessed directly by Docker via the `devicemapper` backend\. Because the volume is not mounted, you cannot use standard storage information commands \(such as df \-h\) to determine the available storage\. However, you can use LVM commands and docker info to find the available storage by following the procedure below\. For more information, see the [LVM HOWTO](http://tldp.org/HOWTO/LVM-HOWTO/) in The Linux Documentation Project\.
 
@@ -179,7 +193,7 @@ Because docker info displays storage values as GB \(10^9 bytes\), instead of GiB
     Data Space Available: 1.539 TB
    ```
 
-## Version 2015\.09\.c and Earlier<a name="ecs-AMI-pre-LVM"></a>
+### Version 2015\.09\.c and Earlier<a name="ecs-AMI-pre-LVM"></a>
 
 Amazon ECS\-optimized Amazon Linux AMIs from version `2015.09.c` and earlier launch with a single 30\-GiB volume that is attached at `/dev/xvda` and mounted as the root of the file system\. This volume shares the operating system and all Docker images and metadata\. You can determine the available storage on your container instance with standard storage information commands \(such as df \-h\)\.
 

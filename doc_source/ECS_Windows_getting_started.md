@@ -116,6 +116,10 @@ Before you can run Windows containers in your Amazon ECS cluster, you must regis
 
 1. On the **Task Definitions** page, choose **Create new Task Definition**\.
 
+1. On the **Select launch type compatibilities** page, choose **EC2**, **Next step**\.
+**Note**  
+The Fargate launch type is not compatible with Windows containers\.
+
 1. Scroll to the bottom of the page and choose **Configure via JSON**\.
 
 1. Paste the sample task definition JSON below into the text area \(replacing the pre\-populated JSON there\) and choose **Save**\.
@@ -129,7 +133,7 @@ Before you can run Windows containers in your Amazon ECS cluster, you must regis
          "image": "microsoft/iis",
          "cpu": 512,
          "entryPoint":["powershell", "-Command"],
-         "command":["New-Item -Path C:\\inetpub\\wwwroot\\index.html -Type file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p>'; C:\\ServiceMonitor.exe w3svc"],
+         "command":["New-Item -Path C:\\inetpub\\wwwroot\\index.html -ItemType file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p>' --Force"],
          "portMappings": [
            {
              "protocol": "tcp",
@@ -137,7 +141,7 @@ Before you can run Windows containers in your Amazon ECS cluster, you must regis
              "hostPort": 8080
            }
          ],
-         "memory": 1024,
+         "memory": 768,
          "essential": true
        }
      ]
@@ -169,9 +173,12 @@ After you have registered your task definition, you can place tasks in your clus
 1. On the **Task Definition: windows\-simple\-iis** registration confirmation page, choose **Actions**, **Create Service**\.
 
 1. On the **Create Service** page, enter the following information and then choose **Create service**\.
-   + **Cluster:** windows 
-   + **Number of tasks:** 1
+   + **Launch type:** `EC2`
+   + **Cluster:** windows
    + **Service name:** windows\-simple\-iis
+   + **Service type:** `REPLICA`
+   + **Number of tasks:** 1
+   + **Deployment type:** Rolling update
 
 **To create a service from your task definition with the AWS CLI**
 + Using the AWS CLI, run the following command to create your service\.

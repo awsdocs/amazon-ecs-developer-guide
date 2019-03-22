@@ -73,9 +73,9 @@ The following example inline policy adds the required permissions:
         "kms:Decrypt"
       ],
       "Resource": [
-        "arn:aws:ssm:region:aws_account_id:parameter/parameter_name",
-        "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name",
-        "arn:aws:kms:region:aws_account_id:key/key_id"
+        "arn:aws:ssm:<region>:<aws_account_id>:parameter/parameter_name",
+        "arn:aws:secretsmanager:<region>:<aws_account_id>:secret:secret_name",
+        "arn:aws:kms:<region>:<aws_account_id>:key/key_id"
       ]
     }
   ]
@@ -164,7 +164,7 @@ This step only applies to Regions that currently support Amazon ECS using AWS Fa
 
 1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
-1. For **Task execution role**, either select your existing task execution role or choose **Create new role** to have one created for you\. This role authorizes Amazon ECS to pull private images for your task\. For more information, see [Private Registry Authentication Required IAM Permissions](private-auth.md#private-auth-iam)\.
+1. For **Task execution role**, either select your existing task execution role or choose **Create new role** to have one created for you\. This role authorizes Amazon ECS to pull private images for your task\. For more information, see [Required IAM Permissions for Private Registry Authentication](private-auth.md#private-auth-iam)\.
 **Important**  
 If the **Task execution role** field does not appear, choose **Configure via JSON** and manually add the `executionRoleArn` field to specify your task execution role\. The following code shows the syntax:  
 

@@ -91,7 +91,7 @@ The following parameter name format retrieves the metadata of a specific Amazon 
   ```
 
 **Note**  
-All versions of the Amazon ECS\-optimized Amazon Linux 2 AMI are available for retrieval\. Only Amazon ECS\-optimized AMI versions `amzn-ami-2017.09.l-amazon-ecs-optimized` \(Linux\) and `Windows_Server-2016-English-Full-ECS_Optimized-2018.03.26` \(Windows\) and later can be retrieved\. For more information, see [Amazon ECS\-Optimized Amazon Linux AMI Versions](ecs-ami-versions.md)\.
+All versions of the Amazon ECS\-optimized Amazon Linux 2 AMI are available for retrieval\. Only Amazon ECS\-optimized AMI versions `amzn-ami-2017.09.l-amazon-ecs-optimized` \(Linux\) and `Windows_Server-2016-English-Full-ECS_Optimized-2018.03.26` \(Windows\) and later can be retrieved\. For more information, see [Amazon ECS\-optimized AMI Versions](ecs-ami-versions.md)\.
 
 **Example Retrieving the metadata of the latest stable Amazon ECS\-optimized AMI**  
 You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI with the following AWS CLI command\.  
@@ -225,7 +225,7 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   ```
 
 **Example Retrieving the metadata of a specific Amazon ECS\-optimized Amazon Linux AMI version**  
-Retrieve the metadata of a specific Amazon ECS\-optimized Amazon Linux AMI version using the AWS CLI with the following AWS CLI command\. Replace the AMI name with the name of the Amazon ECS\-optimized Amazon Linux AMI to retrieve\. For more information about the available versions, see [Amazon ECS\-Optimized Amazon Linux AMI Versions](ecs-ami-versions.md)\.  
+Retrieve the metadata of a specific Amazon ECS\-optimized Amazon Linux AMI version using the AWS CLI with the following AWS CLI command\. Replace the AMI name with the name of the Amazon ECS\-optimized Amazon Linux AMI to retrieve\. For more information about the available versions, see [Amazon ECS\-optimized AMI Versions](ecs-ami-versions.md)\.  
 
 ```
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/amzn-ami-2017.09.l-amazon-ecs-optimized --region us-east-1

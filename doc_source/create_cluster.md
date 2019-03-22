@@ -59,7 +59,7 @@ Spot Instances are subject to possible interruptions\. We recommend that you avo
 
 1. For **EC2 instance type**, choose the EC2 instance type for your container instances\. The instance type that you select determines the resources available for your tasks\. To use GPU workloads, choose one of the p2 or p3 instance types\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
 
-1. For **Number of instances**, choose the number of EC2 instances to launch into your cluster\. These instances are launched using the latest Amazon ECS\-optimized Amazon Linux AMI the instance type you chose requires\. For more information, see [Container Instance AMIs](container_instance_AMIs.md)\.
+1. For **Number of instances**, choose the number of EC2 instances to launch into your cluster\. These instances are launched using the latest Amazon ECS\-optimized Amazon Linux AMI the instance type you chose requires\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 
 1. For **EBS storage \(GiB\)**, choose the size of the Amazon EBS volume to use for data storage on your container instances\. You can increase the size of the data volume to allow for greater image and container storage\.
 
