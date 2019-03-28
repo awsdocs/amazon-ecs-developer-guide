@@ -54,16 +54,17 @@ aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/arm
 
 ## Amazon ECS GPU\-optimized AMI Versions<a name="al2-gpu-ami-agent-versions"></a>
 
-The table below lists the current and previous versions of the Amazon ECS GPU\-optimized AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+The table below lists the current and previous versions of the Amazon ECS GPU\-optimized AMI and their corresponding versions of the Amazon ECS container agent, Docker, `ecs-init` package, and NVIDIA driver\.
 
 
-| Amazon ECS GPU\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
-| --- | --- | --- | --- | 
-| 20190301 | 1\.26\.0 | 18\.06\.1\-ce | 1\.26\.0\-1 | 
-| 20190215 | 1\.25\.3 | 18\.06\.1\-ce | 1\.25\.3\-1 | 
-| 20190204 | 1\.25\.2 | 18\.06\.1\-ce | 1\.25\.2\-1 | 
-| 20190127 | 1\.25\.1 | 18\.06\.1\-ce | 1\.25\.1\-1 | 
-| 20190118 | 1\.25\.0 | 18\.06\.1\-ce | 1\.25\.0\-1 | 
+| Amazon ECS GPU\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | NVIDIA driver version | 
+| --- | --- | --- | --- | --- | 
+| 20190321 | 1\.26\.0 | 18\.06\.1\-ce | 1\.26\.0\-1 | 410\.104 | 
+| 20190301 | 1\.26\.0 | 18\.06\.1\-ce | 1\.26\.0\-1 | 396\.26 | 
+| 20190215 | 1\.25\.3 | 18\.06\.1\-ce | 1\.25\.3\-1 | 396\.26 | 
+| 20190204 | 1\.25\.2 | 18\.06\.1\-ce | 1\.25\.2\-1 | 396\.26 | 
+| 20190127 | 1\.25\.1 | 18\.06\.1\-ce | 1\.25\.1\-1 | 396\.26 | 
+| 20190118 | 1\.25\.0 | 18\.06\.1\-ce | 1\.25\.0\-1 | 396\.26 | 
 
 You can retrieve the current Amazon ECS GPU\-optimized AMI using the AWS CLI with the following command:
 

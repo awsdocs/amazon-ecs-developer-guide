@@ -1,6 +1,6 @@
 # Service Definition Parameters<a name="service_definition_parameters"></a>
 
-A service definition defines which task definition to use with your service, how many instantiations of that task to run, and which load balancers \(if any\) to associate with your tasks\.
+A service definition defines which task definition to use with your service, how many instantiations of that task to run, which load balancers \(if any\) to associate with your tasks, as well as other service parameters\.
 
 ```
 {
@@ -25,7 +25,7 @@ A service definition defines which task definition to use with your service, how
     ],
     "desiredCount": 0,
     "clientToken": "",
-    "launchType": "FARGATE",
+    "launchType": "EC2",
     "platformVersion": "",
     "role": "",
     "deploymentConfiguration": {
@@ -34,13 +34,13 @@ A service definition defines which task definition to use with your service, how
     },
     "placementConstraints": [
         {
-            "type": "memberOf",
+            "type": "distinctInstance",
             "expression": ""
         }
     ],
     "placementStrategy": [
         {
-            "type": "random",
+            "type": "binpack",
             "field": ""
         }
     ],
@@ -52,9 +52,7 @@ A service definition defines which task definition to use with your service, how
             "securityGroups": [
                 ""
             ],
-            "assignPublicIp": "ENABLED",
-            "networkInterfaceOwner": "",
-            "networkInterfaceCredential": ""
+            "assignPublicIp": "ENABLED"
         }
     },
     "healthCheckGracePeriodSeconds": 0,
@@ -86,10 +84,11 @@ You can specify the following parameters in a service definition\.
 The short name or full Amazon Resource Name \(ARN\) of the cluster on which to run your service\. If you do not specify a cluster, the `default` cluster is assumed\.
 
 `serviceName`  
-The name of your service\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. Service names must be unique within a cluster, but you can have similarly named services in multiple clusters within a region or across multiple regions\.
+The name of your service\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. Service names must be unique within a cluster, but you can have similarly named services in multiple clusters within a Region or across multiple Regions\.  
+Required: Yes
 
 `taskDefinition`  
-The `family` and `revision` \(`family:revision`\) or full ARN of the task definition to run in your service\. If a `revision` is not specified, the latest `ACTIVE` revision is used\.
+The `family` and `revision` \(`family:revision`\) or full Amazon Resource Name \(ARN\) of the task definition to run in your service\. If a `revision` is not specified, the latest `ACTIVE` revision is used\.
 
 `loadBalancers`  
 A load balancer object representing the load balancer to use with your service\. Currently, you are limited to one load balancer or target group per service\. After you create a service, the load balancer name or target group ARN, container name, and container port specified in the service definition are immutable\.  
@@ -122,26 +121,29 @@ The number of instantiations of the specified task definition to place and keep 
 Unique, case\-sensitive identifier you provide to ensure the idempotency of the request\. Up to 32 ASCII characters are allowed\.
 
 `launchType`  
-The launch type on which to run your service\. If one is not specified, `EC2` is used by default\. For more information, see [Amazon ECS Launch Types](launch_types.md)\. 
+The launch type on which to run your service\. Accepted values are `FARGATE` or `EC2`\. If a launch type is not specified, `EC2` is used by default\. For more information, see [Amazon ECS Launch Types](launch_types.md)\. 
 
 `platformVersion`  
-The platform version on which to run your service\. If one is not specified, the latest version \(`LATEST`\) is used by default\.  
+The platform version on which your tasks in the service are running\. A platform version is only specified for tasks using the Fargate launch type\. If one is not specified, the latest version \(`LATEST`\) is used by default\.  
 AWS Fargate platform versions are used to refer to a specific runtime environment for the Fargate task infrastructure\. When specifying the `LATEST` platform version when running a task or creating a service, you get the most current platform version available for your tasks\. When you scale up your service, those tasks receive the platform version that was specified on the service's current deployment\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.  
 Platform versions are not specified for tasks using the EC2 launch type\.
 
 `role`  
-The name or full Amazon Resource Name \(ARN\) of the IAM role that allows Amazon ECS to make calls to your load balancer on your behalf\. This parameter is required if you are using a load balancer with your service\. If you specify the `role` parameter, you must also specify a load balancer object with the `loadBalancers` parameter\.  
-If your specified role has a path other than `/`, then you must either specify the full role ARN \(this is recommended\) or prefix the role name with the path\. For example, if a role with the name `bar` has a path of `/foo/` then you would specify `/foo/bar` as the role name\. For more information, see [Friendly Names and Paths](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-friendly-names) in the *IAM User Guide*\.
+The short name or full ARN of the IAM role that allows Amazon ECS to make calls to your load balancer on your behalf\. This parameter is only permitted if you are using a load balancer with your service and your task definition does not use the `awsvpc` network mode\. If you specify the `role` parameter, you must also specify a load balancer object with the `loadBalancers` parameter\.  
+If your specified role has a path other than `/`, then you must either specify the full role ARN \(this is recommended\) or prefix the role name with the path\. For example, if a role with the name `bar` has a path of `/foo/` then you would specify `/foo/bar` as the role name\. For more information, see [Friendly Names and Paths](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-friendly-names) in the *IAM User Guide*\.  
+If your account has already created the Amazon ECS service\-linked role, that role is used by default for your service unless you specify a role here\. The service\-linked role is required if your task definition uses the awsvpc network mode, in which case you should not specify a role here\. For more information, see [Using Service\-Linked Roles for Amazon ECS](using-service-linked-roles.md)\.
 
 `deploymentConfiguration`  
 Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping and starting tasks\.    
 `maximumPercent`  <a name="maximumPercent"></a>
-The `maximumPercent` parameter represents an upper limit on the number of your service's tasks that are allowed in the `RUNNING` or `PENDING` state during a deployment, as a percentage of the `desiredCount` \(rounded down to the nearest integer\)\. This parameter enables you to define the deployment batch size\. For example, if your replica service has a `desiredCount` of four tasks and a `maximumPercent` value of 200%, the scheduler may start four new tasks before stopping the four older tasks \(provided that the cluster resources required to do this are available\)\. The default value for a replica service for `maximumPercent` is 200%\.  
-If you are using a daemon service type, the `maximumPercent` should remain at 100%, which is the default value\.  
+If a service is using the rolling update \(`ECS`\) deployment type, the `maximumPercent` parameter represents an upper limit on the number of your service's tasks that are allowed in the `RUNNING` or `PENDING` state during a deployment, as a percentage of the `desiredCount` \(rounded down to the nearest integer\)\. This parameter enables you to define the deployment batch size\. For example, if your service is using the `REPLICA` service scheduler and has a `desiredCount` of four tasks and a `maximumPercent` value of 200%, the scheduler may start four new tasks before stopping the four older tasks \(provided that the cluster resources required to do this are available\)\. The default `maximumPercent` value for a service using the `REPLICA` service scheduler is 200%\.  
+If your service is using the `DAEMON` service scheduler type, the `maximumPercent` should remain at 100%, which is the default value\.  
 The maximum number of tasks during a deployment is the `desiredCount` multiplied by the `maximumPercent`/100, rounded down to the nearest integer value\.  
+If a service is using either the blue/green \(`CODE_DEPLOY`\) or `EXTERNAL` deployment types and tasks that use the EC2 launch type, the **maximum percent** value is set to the default value and is used to define the upper limit on the number of the tasks in the service that remain in the `RUNNING` state while the container instances are in the `DRAINING` state\. If the tasks in the service use the Fargate launch type, the maximum percent value is not used, although it is returned when describing your service\.  
 `minimumHealthyPercent`  <a name="minimumHealthyPercent"></a>
-The `minimumHealthyPercent` represents a lower limit on the number of your service's tasks that must remain in the `RUNNING` state during a deployment, as a percentage of the `desiredCount` \(rounded up to the nearest integer\)\. This parameter enables you to deploy without using additional cluster capacity\. For example, if your service has a `desiredCount` of four tasks and a `minimumHealthyPercent` of 50%, the scheduler may stop two existing tasks to free up cluster capacity before starting two new tasks\. Tasks for services that *do not* use a load balancer are considered healthy if they are in the `RUNNING` state\. Tasks for services that *do* use a load balancer are considered healthy if they are in the `RUNNING` state and the container instance on which the load balancer is hosted is reported as healthy\. The default value for a replica service for `minimumHealthyPercent` is 50% in the AWS Management Console and 100% for the AWS CLI, the AWS SDKs, and the APIs\. The default value for a daemon service for `minimumHealthyPercent` is 0% for the AWS CLI, the AWS SDKs, and the APIs and 50% for the AWS Management Console\.  
-The minimum number of healthy tasks during a deployment is the `desiredCount` multiplied by the `minimumHealthyPercent`/100, rounded up to the nearest integer value\.
+If a service is using the rolling update \(`ECS`\) deployment type, the `minimumHealthyPercent` represents a lower limit on the number of your service's tasks that must remain in the `RUNNING` state during a deployment, as a percentage of the `desiredCount` \(rounded up to the nearest integer\)\. This parameter enables you to deploy without using additional cluster capacity\. For example, if your service has a `desiredCount` of four tasks and a `minimumHealthyPercent` of 50%, the service scheduler may stop two existing tasks to free up cluster capacity before starting two new tasks\. Tasks for services that *do not* use a load balancer are considered healthy if they are in the `RUNNING` state\. Tasks for services that *do* use a load balancer are considered healthy if they are in the `RUNNING` state and the container instance on which the load balancer is hosted is reported as healthy\. The default value for a replica service for `minimumHealthyPercent` is 50% in the AWS Management Console and 100% for the AWS CLI, the AWS SDKs, and the APIs\. The default `minimumHealthyPercent` value for a service using the `DAEMON` service schedule is 0% for the AWS CLI, the AWS SDKs, and the APIs and 50% for the AWS Management Console\.  
+The minimum number of healthy tasks during a deployment is the `desiredCount` multiplied by the `minimumHealthyPercent`/100, rounded up to the nearest integer value\.  
+If a service is using either the blue/green \(`CODE_DEPLOY`\) or `EXTERNAL` deployment types and tasks that use the EC2 launch type, the **minimum healthy percent** value is set to the default value and is used to define the lower limit on the number of the tasks in the service that remain in the `RUNNING` state while the container instances are in the `DRAINING` state\. If the tasks in the service use the Fargate launch type, the minimum healthy percent value is not used, although it is returned when describing your service\.
 
 `placementConstraints`  
 An array of placement constraint objects to use for tasks in your service\. You can specify a maximum of 10 constraints per task \(this limit includes constraints in the task definition and those specified at run time\)\. If you are using the Fargate launch type, task placement constraints are not supported\.    
@@ -169,7 +171,7 @@ The security groups associated with the task or service\. If you do not specify 
 Whether the task's elastic network interface receives a public IP address\.
 
 `healthCheckGracePeriodSeconds`  
-The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks after a task has first started\. This is only valid if your service is configured to use a load balancer\. If your service's tasks take a while to start and respond to health checks, you can specify a health check grace period of up to 2,147,483,647 seconds during which the ECS service scheduler ignores the health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\.
+The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks, container health checks, and Route 53 health checks after a task has first started\. This is only valid if your service is configured to use a load balancer\. If your service's tasks take a while to start and respond to health checks, you can specify a health check grace period of up to 2,147,483,647 seconds during which the ECS service scheduler ignores the health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\.
 
 `schedulingStrategy`  
 The scheduling strategy to use\. For more information, see [Service Scheduler Concepts](ecs_services.md#service_scheduler)\.  
@@ -180,12 +182,18 @@ There are two service scheduler strategies available:
 Fargate tasks do not support the `DAEMON` scheduling strategy\.
 
 `deploymentController`  
-The deployment controller type the service is using\. \.    
+The deployment controller to use for the service\. For more information, see [Amazon ECS Deployment Types](deployment-types.md)\.    
 `type`  
-The deployment controller type to use\. If `ECS` is specified, your tasks will launched through Amazon ECS\. If `CODE_DEPLOY` is specified, your tasks will be deployed through AWS CodeDeploy\.
+The deployment controller type to use\. There are three deployment controller types available:    
+`ECS`  
+The rolling update \(`ECS`\) deployment type involves replacing the current running version of the container with the latest version\. The number of containers Amazon ECS adds or removes from the service during a rolling update is controlled by adjusting the minimum and maximum number of healthy tasks allowed during a service deployment, as specified in the [deploymentConfiguration](#deploymentConfiguration)\.  
+`CODE_DEPLOY`  
+The blue/green \(`CODE_DEPLOY`\) deployment type uses the blue/green deployment model powered by CodeDeploy, which allows you to verify a new deployment of a service before sending production traffic to it\.  
+`EXTERNAL`  
+The external deployment type enables you to use any third party deployment controller for full control over the deployment process for an Amazon ECS service\.
 
 `tags`  
-The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. For more information, see [Resources and Tags](ecs-resource-tagging.md)\.
+The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. When a service is deleted, the tags are deleted as well\. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.
 
 `enableECSManagedTags`  
 Specifies whether to enable Amazon ECS managed tags for the tasks in the service\. For more information, see [Tagging Your Resources for Billing](ecs-using-tags.md#tag-resources-for-billing)\.    
@@ -195,4 +203,4 @@ One part of a key\-value pair that make up a tag\. A key is a general label that
 The optional part of a key\-value pair that make up a tag\. A value acts as a descriptor within a tag category \(key\)\.
 
 `propagateTags`  
-Specifies whether to propagate the tags from the task definition or the service to the task\. If no value is specified, the tags are not propagated\.
+Specifies whether to copy the tags from the task definition or the service to the tasks in the service\. If no value is specified, the tags are not copied\. Tags can only be copied to the tasks within the service during service creation\. To add tags to a task after service creation, use the `TagResource` API action\.

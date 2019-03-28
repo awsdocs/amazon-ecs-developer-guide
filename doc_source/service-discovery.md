@@ -25,6 +25,7 @@ Service discovery consists of the following components:
     + **`ECS_CLUSTER_NAME`** – The name of the Amazon ECS cluster to which the task belongs\.
     + **`EC2_INSTANCE_ID`** – The ID of the container instance the task was placed on\. This custom attribute is not added if the task is using the Fargate launch type\.
     + **`ECS_TASK_DEFINITION_FAMILY`** – The task definition family that the task is using\.
+    + **`ECS_TASK_SET_EXTERNAL_ID`** – If a task set is created for an external deployment and is associated with a service discovery registry, then the `ECS_TASK_SET_EXTERNAL_ID` attribute will contain the external ID of the task set\.
 + **Amazon ECS health checks**: Amazon ECS performs periodic container\-level health checks\. If an endpoint does not pass the health check, it is removed from DNS routing and marked as unhealthy\.
 
 ## Service Discovery Considerations<a name="service-discovery-considerations"></a>

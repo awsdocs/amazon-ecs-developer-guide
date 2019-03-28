@@ -21,12 +21,9 @@ The following should be considered when specifying a platform version:
 The following is a list of the platform versions currently available:
 
 Fargate Platform Version‐1\.3\.0  
-+ Added support for using AWS Systems Manager Parameter Store parameters to inject sensitive data into your containers\.
-
-  For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
-+ Added task recycling for Fargate tasks, which is the process of refreshing tasks that are a part of an Amazon ECS service\.
-
-  For more information, see [Fargate Task Recycling](task-recycle.md)\.
++ Added support for using AWS Systems Manager Parameter Store parameters to inject sensitive data into your containers\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
++ Added task recycling for Fargate tasks, which is the process of refreshing tasks that are a part of an Amazon ECS service\. For more information, see [Fargate Task Recycling](task-recycle.md)\.
++ Beginning on March 27, 2019, any new Fargate task launched in the Ohio \(us\-east\-2\) region can use additional task definition parameters that enable you to define a proxy configuration, dependencies for container startup and shutdown as well as a per\-container start and stop timeout value\. For more information, see [Proxy Configuration](task_definition_parameters.md#task_definition_proxyConfiguration), [Container Dependency](task_definition_parameters.md#container_definition_dependson), and [Container Timeouts](task_definition_parameters.md#container_definition_timeout)\.
 
 Fargate Platform Version‐1\.2\.0  
 + Added support for private registry authentication using AWS Secrets Manager\. For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.

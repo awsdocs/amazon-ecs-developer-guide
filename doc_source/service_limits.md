@@ -20,11 +20,9 @@ The following table provides other limitations for Amazon ECS that cannot be cha
 | Number of load balancers per service | 1 | 
 | Number of tasks launched \(count\) per run\-task | 10 | 
 | Number of container instances per start\-task | 10 | 
-| Throttle on container instance registration rate | 1 per second / 60 max per minute | 
 | Number of revisions per task definition family Deregistering a task definition revision does not exclude it from being included in this limit\.  | 1,000,000 | 
 | Task definition size limit | 32 KiB | 
 | Task definition max containers | 10 | 
-| Throttle on task definition registration rate | 1 per second / 60 max per minute | 
 | Number of subnets specified in awsvpcConfiguration | 16 | 
 | Number of security groups specified in awsvpcConfiguration | 5 | 
 | Maximum size of a shared volume used by multiple containers within a task using the Fargate launch type | 4 GB | 
