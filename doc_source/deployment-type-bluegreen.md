@@ -99,7 +99,7 @@ In addition to the standard IAM permissions for creating and updating services, 
         "codedeploy:BatchGetApplications",
         "codedeploy:ListApplicationRevisions",
         "codedeploy:ListDeploymentConfigs",
-        "codedpeloy:ContinueDeployment",
+        "codedeploy:ContinueDeployment",
         "sns:ListTopics",
         "cloudwatch:DescribeAlarms",
         "lambda:ListFunctions"

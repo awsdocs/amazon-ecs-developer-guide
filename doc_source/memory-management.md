@@ -12,7 +12,7 @@ The Amazon ECS container agent uses the Docker `ReadMemInfo()` function to query
 The free command returns the total memory that is recognized by the operating system\.  
 
 ```
-free -b
+$ free -b
 ```
 Example output for an `m4.large` instance running the Amazon ECS\-optimized Amazon Linux AMI\.  
 
@@ -27,7 +27,7 @@ This instance has 8373026816 bytes of total memory, which translates to 7985 MiB
 The wmic command returns the total memory that is recognized by the operating system\.  
 
 ```
-wmic ComputerSystem get TotalPhysicalMemory
+C:\> wmic ComputerSystem get TotalPhysicalMemory
 ```
 Example output for an `m4.large` instance running the Amazon ECS\-optimized Windows AMI\.  
 

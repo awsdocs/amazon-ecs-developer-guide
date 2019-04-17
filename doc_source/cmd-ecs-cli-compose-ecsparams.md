@@ -23,6 +23,8 @@ task_definition:
       cpu_shares: integer
       mem_limit: string
       mem_reservation: string
+      gpu: string
+      init_process_enabled: boolean
       healthcheck:
         test: ["CMD", "curl -f http://localhost"]
         interval: string
@@ -109,6 +111,10 @@ This parameter is not supported for Windows containers or tasks using the Fargat
   + `cpu_shares` – This parameter maps to `cpu_shares` in the [Docker compose file reference](https://docs.docker.com/compose/compose-file/compose-file-v2/#cpu-and-other-resources)\. If you are using Docker compose version 3, this field is optional and must be specified in the ECS params file rather than the compose file\. In Docker compose version 2, this field can be specified in either the compose or ECS params file\. If it is specified in the ECS params file, the value overrides the value present in the compose file\.
   + `mem_limit` – This parameter maps to `mem_limit` in the [Docker compose file reference](https://docs.docker.com/compose/compose-file/compose-file-v2/#cpu-and-other-resources)\. If you are using Docker compose version 3, this field is optional and must be specified in the ECS params file rather than the compose file\. In Docker compose version 2, this field can be specified in either the compose or ECS params file\. If it is specified in the ECS params file, the value overrides the value present in the compose file\.
   + `mem_reservation` – This parameter maps to `mem_reservation` in the [Docker compose file reference](https://docs.docker.com/compose/compose-file/compose-file-v2/#cpu-and-other-resources)\. If you are using Docker compose version 3, this field is optional and must be specified in the ECS params file rather than the compose file\. In Docker compose version 2, this field can be specified in either the compose or ECS params file\. If it is specified in the ECS params file, the value overrides the value present in the compose file\.
+  + `gpu` – The number of physical GPUs the Amazon ECS container agent will reserve for the container\. This parameter maps to the `resourceRequirements` field in a task definition\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
+  + `init_process_enabled` – This parameter enables you to run an `init` process inside the container that forwards signals and reaps processes\. This parameter maps to the `--init` option to [docker run](https://docs.docker.com/engine/reference/run/)\.
+
+    This parameter requires version 1\.25 of the Docker Remote API or greater on your container instance\.
   + `healthcheck` – This parameter maps to `healthcheck` in the [Docker compose file reference](https://docs.docker.com/compose/compose-file/#healthcheck)\. The `test` field can also be specified as `command` and must be either a string or a list\. If it's a list, the first item must be either `NONE`, `CMD`, or `CMD-SHELL`\. If it's a string, it's equivalent to specifying `CMD-SHELL` followed by that string\. The `interval`, `timeout`, and `start_period` fields are specified as durations in a string format\. For example: `2.5s`, `10s`, `1m30s`, `2h23m`, or `5h34m56s`\.
 **Note**  
 If no units are specified, seconds are assumed\. For example, you can specify either `10s` or simply `10`\.

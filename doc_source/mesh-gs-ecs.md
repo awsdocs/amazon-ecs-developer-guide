@@ -50,7 +50,7 @@ You must create virtual nodes for each microservice in your application\.
 
 1. To specify any backends \(for egress traffic\) for your virtual node, or to configure inbound and outbound access logging information, choose **Additional configuration**\.
 
-   1. To specify a backend, choose **Add backend** and enter a virtual service name or full for the virtual service that your virtual node communicates with\. Repeat this step until all of your virtual node backends are accounted for\.
+   1. To specify a backend, choose **Add backend** and enter a virtual service name or full Amazon Resource Name \(ARN\) for the virtual service that your virtual node communicates with\. Repeat this step until all of your virtual node backends are accounted for\.
 
    1. To configure logging, enter the HTTP access logs path that you want Envoy to use\. We recommend the `/dev/stdout` path so that you can use Docker log drivers to export your Envoy logs to a service such as Amazon CloudWatch Logs\.
 **Note**  
@@ -252,7 +252,7 @@ The following code block shows an Envoy container definition example\.
       "healthCheck": {
         "command": [
           "CMD-SHELL",
-          "curl -s http://localhost:9901/server_info | cut -d' ' -f3 | grep -q live"
+          "curl -s http://localhost:9901/server_info | grep state | grep -q LIVE"
         ],
         "startPeriod": 10,
         "interval": 5,
@@ -331,7 +331,7 @@ The following example Amazon ECS task definition shows in context the snippets t
       "healthCheck": {
         "command": [
           "CMD-SHELL",
-          "curl -s http://localhost:9901/server_info | cut -d' ' -f3 | grep -q live"
+          "curl -s http://localhost:9901/server_info | grep state | grep -q LIVE"
         ],
         "startPeriod": 10,
         "interval": 5,

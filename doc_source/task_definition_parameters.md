@@ -275,17 +275,17 @@ The value of the environment variable\.
 ```
 
 `secrets`  
-Type: object array  
-Required: no  
-The secrets to pass to the container as environment variables\.    
+Type: Object array  
+Required: No  
+An object representing the secret to expose to your container\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.    
 `name`  
-Type: string  
-Required: yes, when `environment` is used  
+Type: String  
+Required: Yes  
 The value to set as the environment variable on the container\.  
 `valueFrom`  
-Type: string  
-Required: yes, when `environment` is used  
-The secret to expose to the container\. Supported values are either the full ARN or the name of the parameter in the AWS Systems Manager Parameter Store\.  
+Type: String  
+Required: Yes  
+The secret to expose to the container\. The supported values are either the full ARN of the AWS Secrets Manager secret or the full ARN of the parameter in the AWS Systems Manager Parameter Store\.  
 If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching then you can use either the full ARN or name of the secret\. If the parameter exists in a different Region then the full ARN must be specified\.
 
 ```
@@ -641,7 +641,7 @@ Type: Array of [ContainerDependency](https://docs.aws.amazon.com/AmazonECS/lates
 Required: no  
 The dependencies defined for container startup and shutdown\. A container can contain multiple dependencies\. When a dependency is defined for container startup, for container shutdown it is reversed\. For an example, see [Example: Container Dependency](example_task_definitions.md#example_task_definition-containerdependency)\.  
 For tasks using the EC2 launch type, the container instances require at least version 1\.26\.0 of the container agent to enable container dependencies\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version 1\.26\.0\-1 of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.  
-This parameter is available for tasks using the Fargate launch type in the Ohio \(us\-east\-2\) region only and the task or service requires platform version 1\.3\.0 or later\.  
+For tasks using the Fargate launch type, this parameter requires that the task or service uses platform version 1\.3\.0 or later\.  
 
 ```
 "dependsOn": [
@@ -671,13 +671,13 @@ Type: Integer
 Required: no  
 Time duration to wait before giving up on resolving dependencies for a container\. For example, you specify two containers in a task definition with containerA having a dependency on containerB reaching a `COMPLETE`, `SUCCESS`, or `HEALTHY` status\. If a `startTimeout` value is specified for containerB and it does not reach the desired status within that time then containerA will give up and not start\. This results in the task transitioning to a `STOPPED` state\.  
 For tasks using the EC2 launch type, the container instances require at least version 1\.26\.0 of the container agent to enable a container start timeout value\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version 1\.26\.0\-1 of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.  
-This parameter is available for tasks using the Fargate launch type in the Ohio \(us\-east\-2\) region only and the task or service requires platform version 1\.3\.0 or later\.
+For tasks using the Fargate launch type, this parameter requires that the task or service uses platform version 1\.3\.0 or later\.
 
 `stopTimeout`  
 Type: Integer  
 Required: no  
 Example values: `120`  
-Time duration \(in seconds\) to wait before the container is forcefully killed if it doesn't exit normally on its own\. For tasks using the Fargate launch type, the max stop timeout value is `120` seconds\. This parameter is available for tasks using the Fargate launch type in the Ohio \(us\-east\-2\) region only and the task or service requires platform version 1\.3\.0 or later\.  
+Time duration \(in seconds\) to wait before the container is forcefully killed if it doesn't exit normally on its own\. For tasks using the Fargate launch type, the max stop timeout value is `120` seconds\. For tasks using the Fargate launch type, this parameter requires that the task or service uses platform version 1\.3\.0 or later\.  
 For tasks using the EC2 launch type, the stop timeout value for the container takes precedence over the `ECS_CONTAINER_STOP_TIMEOUT` container agent configuration parameter, if used\. Container instances require at least version 1\.26\.0 of the container agent to enable a container stop timeout value\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version 1\.26\.0\-1 of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 
 #### System Controls<a name="container_definition_systemcontrols"></a>
@@ -883,7 +883,7 @@ Type: [ProxyConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIRefer
 Required: no  
 The configuration details for the App Mesh proxy\.  
 For tasks using the EC2 launch type, the container instances require at least version 1\.26\.0 of the container agent and at least version 1\.26\.0\-1 of the `ecs-init` package to enable a proxy configuration\. If your container instances are launched from the Amazon ECS\-optimized AMI version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.  
-This parameter is available for tasks using the Fargate launch type in the Ohio \(us\-east\-2\) region only and the task or service requires platform version 1\.3\.0 or later\.  
+For tasks using the Fargate launch type, this feature requires that the task or service uses platform version 1\.3\.0 or later\.  
 This parameter is not supported for Windows containers\.
 
 ```

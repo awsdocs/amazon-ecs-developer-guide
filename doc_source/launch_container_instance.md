@@ -96,7 +96,7 @@ For more information about this configuration, see [Storing Container Instance C
 
 1. On the **Add Storage** page, configure the storage for your container instance\.
 
-   If you are using the Amazon ECS\-optimized Amazon Linux 2 AMI, your instance a single 30 GiB volume configured, which is shared between the operating system and Docker\.
+   If you are using the Amazon ECS\-optimized Amazon Linux 2 AMI, your instance has a single 30 GiB volume configured, which is shared between the operating system and Docker\.
 
    If you are using the Amazon ECS\-optimized AMI, your instance has two volumes configured\. The **Root** volume is for the operating system's use, and the second Amazon EBS volume \(attached to `/dev/xvdcz`\) is for Docker's use\.
 

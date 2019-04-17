@@ -28,7 +28,7 @@ ecs\-cli configure \-\-cluster *cluster\_name* \-\-region *region* \[\-\-config\
 | Name | Description | 
 | --- | --- | 
 |  `--cluster, -c cluster_name`  |  Specifies the Amazon ECS cluster name to use\. Defaults to the cluster configured using the configure command\. Type: String Required: Yes  | 
-|  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the cluster configured using the configure command\. Type: String Required: Yes  | 
+|  `--region, -r region`  |  Specifies the AWS Region to use\. Defaults to the Region configured using either the ecs\-cli configure or aws configure commands\. Type: String Required: Yes  | 
 |  `--config-name config_name`  |  Specifies the name of this cluster configuration\. This is the name that can be referenced in commands using the `--cluster-config` flag\. If this option is omitted, then the name is set to `default`\. Type: String Required: No  | 
 |  `--cfn-stack-name stack_name`  |  Specifies the stack name to add to the AWS CloudFormation stack that is created on ecs\-cli up\.  It is not recommended to use this parameter\. It is included to ensure backwards compatibility with previous versions of the ECS CLI\.  Type: String Default: `amazon-ecs-cli-setup-<cluster_name>` Required: No  | 
 | \-\-default\-launch\-type launch\_type | Specifies the default launch type to use\. Valid values are FARGATE or EC2\. If not specified, no default launch type is used\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.Type: StringRequired: No | 

@@ -97,6 +97,9 @@ The time stamp for when the last container image pull finished\.
 `ExecutionStoppedAt`  
 The time stamp for when the tasks `DesiredStatus` moved to `STOPPED`\. This occurs when an essential container moves to `STOPPED`\.
 
+`AvailabilityZone`  
+The Availability Zone the task is in\.
+
 ## Example Task Metadata Response<a name="task-metadata-endpoint-v2-example-task-metadata-response"></a>
 
 The following JSON response is for a single\-container task\.
@@ -104,7 +107,7 @@ The following JSON response is for a single\-container task\.
 ```
 {
   "Cluster": "default",
-  "TaskARN": "arn:aws:ecs:us-west-2:012345678910:task/9781c248-0edd-4cdb-9a93-f63cb662a5d3",
+  "TaskARN": "arn:aws:ecs:us-east-2:012345678910:task/9781c248-0edd-4cdb-9a93-f63cb662a5d3",
   "Family": "nginx",
   "Revision": "5",
   "DesiredStatus": "RUNNING",
@@ -119,7 +122,7 @@ The following JSON response is for a single\-container task\.
       "Labels": {
         "com.amazonaws.ecs.cluster": "default",
         "com.amazonaws.ecs.container-name": "~internal~ecs~pause",
-        "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:012345678910:task/9781c248-0edd-4cdb-9a93-f63cb662a5d3",
+        "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-east-2:012345678910:task/9781c248-0edd-4cdb-9a93-f63cb662a5d3",
         "com.amazonaws.ecs.task-definition-family": "nginx",
         "com.amazonaws.ecs.task-definition-version": "5"
       },
@@ -150,7 +153,7 @@ The following JSON response is for a single\-container task\.
       "Labels": {
         "com.amazonaws.ecs.cluster": "default",
         "com.amazonaws.ecs.container-name": "nginx-curl",
-        "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:012345678910:task/9781c248-0edd-4cdb-9a93-f63cb662a5d3",
+        "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-east-2:012345678910:task/9781c248-0edd-4cdb-9a93-f63cb662a5d3",
         "com.amazonaws.ecs.task-definition-family": "nginx",
         "com.amazonaws.ecs.task-definition-version": "5"
       },
@@ -174,6 +177,7 @@ The following JSON response is for a single\-container task\.
     }
   ],
   "PullStartedAt": "2018-02-01T20:55:09.372495529Z",
-  "PullStoppedAt": "2018-02-01T20:55:10.552018345Z"
+  "PullStoppedAt": "2018-02-01T20:55:10.552018345Z",
+  "AvailabilityZone": "us-east-2b"
 }
 ```

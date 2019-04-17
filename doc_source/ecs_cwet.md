@@ -20,9 +20,7 @@ In this procedure, you create a simple Lambda function to serve as a target for 
 
    1. For **Runtime**, choose **Python 2\.7**\.
 
-   1. For **Role**, choose **Create a custom role**\. A new window pops up enabling you to create a new role for your Lambda function\.
-
-   1. On the **AWS Lambda requires access to your resources** screen, accept the defaults and choose **Allow**\.
+   1. For **Role**, choose **Create a new role with basic Lambda permissions**\.
 
 1. Choose **Create function**\.
 
@@ -41,8 +39,6 @@ In this procedure, you create a simple Lambda function to serve as a target for 
 
    This is a simple Python 2\.7 function that prints the event sent by Amazon ECS\. If everything is configured correctly, at the end of this tutorial, you see that the event details appear in the CloudWatch Logs log stream associated with this Lambda function\.
 
-1. In the **Function code** section, edit the value of **Handler** to be **eventstream\-handler\.lambda\_handler**\.
-
 1. Choose **Save**\.
 
 ## Step 2: Register Event Rule<a name="cwet_step_3"></a>
@@ -56,7 +52,7 @@ When you use the AWS Management Console to create an event rule, the console aut
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. On the navigation pane, choose **Events**, **Create rule**\.
+1. On the navigation pane, choose **Events**, **Rules**, **Create rule**\.
 
 1. For **Event Source**, choose **ECS** as the event source\. By default, the rule applies to all Amazon ECS events for all of your Amazon ECS groups\. Alternatively, you can select specific events or a specific Amazon ECS group\.
 

@@ -41,7 +41,7 @@ The `RunTask` and `CreateService` actions enable you to specify task placement c
 + [Running Tasks](ecs_run_task.md)
 + [Amazon ECS Task Placement](task-placement.md)
 + [Scheduled Tasks \(`cron`\)](scheduled_tasks.md)
-+ [Task Lifecycle](task_life_cycle.md)
++ [Task Lifecycle](task-lifecycle.md)
 + [Task Retirement](task-retirement.md)
 + [Fargate Task Recycling](task-recycle.md)
 + [Creating a Scheduled Task Using the AWS CLI](scheduled_tasks_cli_tutorial.md)

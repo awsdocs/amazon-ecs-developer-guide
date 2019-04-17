@@ -10,7 +10,7 @@ You can pass this user data into the Amazon EC2 launch wizard in [Step 7](launch
 + [Amazon ECS Container Agent](#bootstrap_container_agent)
 + [Docker Daemon](#bootstrap_docker_daemon)
 + [cloud\-init\-per Utility](#cloud-init-per)
-+ [MIME Multi Part Archive](#multi-part_user_data)
++ [Specifying Multiple User Data Blocks Using a MIME Multi Part Archive](#multi-part_user_data)
 + [Example Container Instance User Data Configuration Scripts](example_user_data_scripts.md)
 
 ## Amazon ECS Container Agent<a name="bootstrap_container_agent"></a>
@@ -100,7 +100,7 @@ Output:
 0	1488410363
 ```
 
-## MIME Multi Part Archive<a name="multi-part_user_data"></a>
+## Specifying Multiple User Data Blocks Using a MIME Multi Part Archive<a name="multi-part_user_data"></a>
 
 You can combine multiple user data blocks together into a single user data block called a MIME multi\-part file\. For example, you might want to combine a cloud boothook that configures the Docker daemon with a user data shell script that writes configuration information for the Amazon ECS container agent\. 
 

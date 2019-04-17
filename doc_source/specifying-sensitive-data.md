@@ -1,10 +1,10 @@
 # Specifying Sensitive Data<a name="specifying-sensitive-data"></a>
 
-Amazon ECS enables you to inject sensitive data into your containers by storing your sensitive data in either AWS Secrets Manager secrets or AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\.
+Amazon ECS enables you to inject sensitive data into your containers by storing your sensitive data in either AWS Secrets Manager secrets or AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\. This feature is supported by tasks using both the EC2 and Fargate launch types\.
 
-For tasks that use the Fargate launch type, the only supported method is referencing an Systems Manager Parameter Store parameter\. This feature also requires that your task use platform version 1\.3\.0 or later\. For information, see [AWS Fargate Platform Versions](platform_versions.md)\.
+For tasks that use the Fargate launch type, this feature requires that your task use platform version 1\.3\.0 or later\. For information, see [AWS Fargate Platform Versions](platform_versions.md)\.
 
-For tasks that use the EC2 launch type, both the Secrets Manager secret and Systems Manager Parameter Store parameter methods described are supported\. This feature requires that your container instance have version 1\.22\.0 or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+For tasks that use the EC2 launch type, this feature requires that your container instance have version 1\.22\.0 or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
 **Note**  
 This feature is not available in the GovCloud \(US\-East\) region\.
