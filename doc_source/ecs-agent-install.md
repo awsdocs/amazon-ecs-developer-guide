@@ -27,13 +27,13 @@ To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance usin
 1. Install and enable the `ecs` Amazon Linux extra repository\.
 
    ```
-   [ec2-user ~]$ sudo amazon-linux-extras install -y ecs; sudo systemctl enable --now ecs 
+   [ec2-user ~]$ sudo amazon-linux-extras install -y ecs; sudo systemctl enable --now ecs
    ```
 
 1. \(Optional\) You can verify that the agent is running and see some information about your new container instance with the agent introspection API\. For more information, see [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)\.
 
    ```
-   [ec2-user ~]$ curl -s http://localhost:51678/v1/metadata | python -mjson.tool
+   >[ec2-user ~]$ curl -s http://localhost:51678/v1/metadata | python -mjson.tool
    ```
 
    Output:
@@ -42,7 +42,7 @@ To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance usin
    {
        "Cluster": "default",
        "ContainerInstanceArn": "<container_instance_ARN>",
-       "Version": "Amazon ECS Agent - v1.26.0 (ebac2200)"
+       "Version": "Amazon ECS Agent - v1.27.0 (aabe65ee)"
    }
    ```
 
@@ -99,7 +99,7 @@ To install the Amazon ECS container agent on an Amazon Linux AMI EC2 instance us
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.26.0 (ebac2200)"
+     "Version": "Amazon ECS Agent - v1.27.0 (aabe65ee)"
    }
    ```
 

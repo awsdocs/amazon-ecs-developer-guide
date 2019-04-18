@@ -26,7 +26,7 @@ AWS Fargate with Amazon ECS is currently only available in the following Regions
 | Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
 
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
-+ [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)
++ [Getting Started with Amazon ECS](ECS_GetStarted.md)
 + [Tutorial: Creating a Cluster with a Fargate Task Using the AWS CLI](ECS_AWSCLI_Fargate.md)
 + [Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)
 

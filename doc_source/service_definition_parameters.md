@@ -193,7 +193,7 @@ The blue/green \(`CODE_DEPLOY`\) deployment type uses the blue/green deployment 
 The external deployment type enables you to use any third party deployment controller for full control over the deployment process for an Amazon ECS service\.
 
 `tags`  
-The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. When a service is deleted, the tags are deleted as well\. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.
+The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. When a service is deleted, the tags are deleted as well\. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.    
 `key`  
 One part of a key\-value pair that make up a tag\. A key is a general label that acts like a category for more specific tag values\.  
 `value`  

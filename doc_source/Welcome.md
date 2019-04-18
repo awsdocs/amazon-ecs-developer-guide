@@ -78,7 +78,7 @@ The *container agent* runs on each infrastructure resource within an Amazon ECS 
 
 ## How to Get Started with Amazon ECS<a name="welcome-getstarted"></a>
 
-If you are using Amazon ECS for the first time, the AWS Management Console for Amazon ECS provides a first\-run wizard that steps you through defining a task definition for a web server, configuring a service, and launching your first Fargate task\. The first\-run wizard is highly recommended for users who have no prior experience with Amazon ECS\. For more information, see the [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md) tutorial\. 
+If you are using Amazon ECS for the first time, the AWS Management Console for Amazon ECS provides a first\-run wizard that steps you through defining a task definition for a web server, configuring a service, and launching your first Fargate task\. The first\-run wizard is highly recommended for users who have no prior experience with Amazon ECS\. For more information, see the [Getting Started with Amazon ECS](ECS_GetStarted.md) tutorial\. 
 
 Alternatively, you can install the AWS Command Line Interface \(AWS CLI\) to use Amazon ECS\. For more information, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 
@@ -106,7 +106,7 @@ AWS CloudFormation gives developers and systems administrators an easy way to cr
 You can work with Amazon ECS in the following ways:
 
 **AWS Management Console**  
-The console is a browser\-based interface to manage Amazon ECS resources\. For a tutorial that guides you through the console, see [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)\.
+The console is a browser\-based interface to manage Amazon ECS resources\. For a tutorial that guides you through the console, see [Getting Started with Amazon ECS](ECS_GetStarted.md)\.
 
 **AWS command line tools**  
 You can use the AWS command line tools to issue commands at your system's command line to perform Amazon ECS and AWS tasks; this can be faster and more convenient than using the console\. The command line tools are also useful for building scripts that perform AWS tasks\.  

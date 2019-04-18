@@ -4,7 +4,7 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
 
 ## Prerequisite: Set Up a Test Cluster<a name="cwet2_step_1"></a>
 
- If you do not have a running cluster to capture events from, follow the steps in [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Amazon SNS topic and CloudWatch Events event rule correctly\. 
+ If you do not have a running cluster to capture events from, follow the steps in [Getting Started with Amazon ECS](ECS_GetStarted.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Amazon SNS topic and CloudWatch Events event rule correctly\. 
 
 ## Step 1: Create and Subscribe to an Amazon SNS Topic<a name="cwet2_step_2"></a>
 

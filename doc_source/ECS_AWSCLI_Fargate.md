@@ -2,19 +2,14 @@
 
 The following steps help you set up a cluster, register a task definition, run a task, and perform other common scenarios in Amazon ECS with the AWS CLI\. Ensure that you are using the latest version of the AWS CLI\. For more information on how to upgrade to the latest version, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 
-[Prerequisites](#AWSCLI_prereq)
-
-[Step 1: \(Optional\) Create a Cluster](#AWSCLI_create_cluster)
-
-[Step 2: Register a Task Definition](#AWSCLI_register_task_definition)
-
-[Step 3: List Task Definitions](#AWSCLI_list_task_definitions)
-
-[Step 4: Create a Service](#AWSCLI_create_service)
-
-[Step 5: List Services](#AWSCLI_list_services)
-
-[Step 6: Describe the Running Service](#AWSCLI_describe_service)
+**Topics**
++ [Prerequisites](#AWSCLI_prereq)
++ [Step 1: \(Optional\) Create a Cluster](#AWSCLI_create_cluster)
++ [Step 2: Register a Task Definition](#AWSCLI_register_task_definition)
++ [Step 3: List Task Definitions](#AWSCLI_list_task_definitions)
++ [Step 4: Create a Service](#AWSCLI_create_service)
++ [Step 5: List Services](#AWSCLI_list_services)
++ [Step 6: Describe the Running Service](#AWSCLI_describe_service)
 
 ## Prerequisites<a name="AWSCLI_prereq"></a>
 

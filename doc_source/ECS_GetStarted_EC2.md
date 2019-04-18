@@ -5,11 +5,13 @@ Get started with Amazon Elastic Container Service \(Amazon ECS\) by creating a t
 In the Regions that don't support AWS Fargate, the Amazon ECS first\-run wizard guides you through the process of getting started with tasks that use the EC2 launch type\. The wizard gives you the option of creating a cluster and launching a sample web application\. If you already have a Docker image to launch in Amazon ECS, you can create a task definition with that image and use that for your cluster instead\.
 
 **Important**  
-For information about the Amazon ECS first\-run wizard for Fargate tasks, see [Getting Started with Amazon ECS using Fargate](ECS_GetStarted.md)\.
+For information about the Amazon ECS first\-run wizard for Fargate tasks, see [Getting Started with Amazon ECS](ECS_GetStarted.md)\.
 
 You can optionally create an Amazon Elastic Container Registry \(Amazon ECR\) image repository and push an image to it\. For more information, see the *[Amazon Elastic Container Registry User Guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/)*\.
 
 Complete the following tasks to get started with Amazon ECS:
+
+**Topics**
 + [Prerequisites](#first-run-ec2-prereqs)
 + [Step 1: Choose Your Configuration Options](#first-run-ec2-options)
 + [Step 2: Create a Task Definition](#first-run-ec2-task-def)
@@ -29,10 +31,14 @@ The first\-run wizard attempts to automatically create the Amazon ECS service IA
 
 ## Step 1: Choose Your Configuration Options<a name="first-run-ec2-options"></a>
 
+1. Open the Amazon ECS console first\-run wizard at [https://console\.aws\.amazon\.com/ecs/home\#/firstRun](https://console.aws.amazon.com/ecs/home#/firstRun)\.
+
 1. Select your Amazon ECS first\-run options\.  
 ![\[Choose your configuration options\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/choose-first-run-config.png)
 
    To create an Amazon ECS cluster and deploy a container application to it, check the top option\. To create an Amazon ECR repository and push an image to it, which you can use in your Amazon ECS task definitions, check the bottom option\. Choose **Continue**\.
+**Important**  
+If you are scoped to a Region that supports AWS Fargate then you won't see these options\. For more information, see [Getting Started with Amazon ECS using Fargate](ECS_GetStarted_Fargate.md)\.
 
 1. If you've chosen to create an Amazon ECR repository, then complete the next two sections of the first\-run wizard, **Configure repository ** and **Build, tag, and push Docker image **\. If you are not creating an Amazon ECR repository, skip ahead to [Step 2: Create a Task Definition](#first-run-ec2-task-def)\.
 

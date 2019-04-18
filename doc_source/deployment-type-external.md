@@ -21,7 +21,11 @@ The number of instantiations of the specified task set task definition to place 
 `deploymentConfiguration`  
 Optional deployment parameters that control how many tasks run during a deployment and the ordering of stopping and starting tasks\. For more information, see [deploymentConfiguration](service_definition_parameters.md#deploymentConfiguration)\.  
 `tags`  
-The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. When a service is deleted, the tags are deleted as well\. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.  
+The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. When a service is deleted, the tags are deleted as well\. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.    
+`key`  
+One part of a key\-value pair that make up a tag\. A key is a general label that acts like a category for more specific tag values\.  
+`value`  
+The optional part of a key\-value pair that make up a tag\. A value acts as a descriptor within a tag category \(key\)\.  
 `enableECSManagedTags`  
 Specifies whether to enable Amazon ECS managed tags for the tasks within the service\. For more information, see [Tagging Your Resources for Billing](ecs-using-tags.md#tag-resources-for-billing)\.  
 `propagateTags`  
