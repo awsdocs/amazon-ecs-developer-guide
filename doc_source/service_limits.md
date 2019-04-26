@@ -10,7 +10,7 @@ The following table provides the default limits for Amazon ECS for an AWS accoun
 | Number of services per cluster | 1000 | 
 | Number of tasks per service \(the desired count\) | 1000 | 
 | Number of tasks using the Fargate launch type, per Region, per account | 50 | 
-| Number of public IP addresses for tasks using the Fargate launch type | 50 | 
+| Number of public IP addresses for tasks using the Fargate launch type, per Region, per account | 50 | 
 
 The following table provides other limitations for Amazon ECS that cannot be changed\.
 

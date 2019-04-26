@@ -61,7 +61,7 @@ The table below lists the current and previous versions of the Amazon ECS GPU\-o
 
 | Amazon ECS GPU\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | NVIDIA driver version | 
 | --- | --- | --- | --- | --- | 
-| 20190402 | 1\.27\.0 | 18\.06\.1\-ce | 1\.27\.0\-1 | 410\.104 | 
+| 20190402 | 1\.27\.0 | 18\.06\.1\-ce | 1\.27\.0\-1 | 418\.40\.04 | 
 | 20190321 | 1\.26\.0 | 18\.06\.1\-ce | 1\.26\.0\-1 | 410\.104 | 
 | 20190301 | 1\.26\.0 | 18\.06\.1\-ce | 1\.26\.0\-1 | 396\.26 | 
 | 20190215 | 1\.25\.3 | 18\.06\.1\-ce | 1\.25\.3\-1 | 396\.26 | 

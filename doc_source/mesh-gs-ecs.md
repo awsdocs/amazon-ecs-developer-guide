@@ -231,7 +231,7 @@ The application containers in your task definitions must wait for the Envoy prox
 Your Amazon ECS services' task definitions must contain the App Mesh custom Envoy container image\.
 
 ```
-111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.0.0-prod
+111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.1.0-prod
 ```
 
 The Envoy container definition must be marked as `essential`\. The virtual node name for the Amazon ECS service should be set to the `APPMESH_VIRTUAL_NODE_NAME`, and the `user` ID value should match the `IgnoredUID` value from the task definition proxy configuration \(in this example, we use `1337`\)\. The health check shown here waits for the Envoy container to bootstrap properly before reporting to Amazon ECS that it is healthy and ready for the application containers to start\.
@@ -241,7 +241,7 @@ The following code block shows an Envoy container definition example\.
 ```
     {
       "name": "envoy",
-      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.0.0-prod",
+      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.1.0-prod",
       "essential": true,
       "environment": [
         {
@@ -320,7 +320,7 @@ The following example Amazon ECS task definition shows in context the snippets t
     },
     {
       "name": "envoy",
-      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.0.0-prod",
+      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.1.0-prod",
       "essential": true,
       "environment": [
         {

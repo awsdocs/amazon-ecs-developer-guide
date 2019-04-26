@@ -198,7 +198,7 @@ Use the following steps to create your Amazon ECS cluster, task definition, and 
           }
        ],
        "launchType": "FARGATE",
-       "platformVersion": "1.1.0",
+       "platformVersion": "LATEST",
        "networkConfiguration": {
           "awsvpcConfiguration": {
              "assignPublicIp": "ENABLED",
@@ -210,7 +210,7 @@ Use the following steps to create your Amazon ECS cluster, task definition, and 
    }
    ```
 
-   Create your ECS service, specifying the Fargate launch type and the `1.1.0` platform version, which uses service discovery:
+   Create your ECS service, specifying the Fargate launch type and the `LATEST` platform version, which supports service discovery:
 
    ```
    aws ecs create-service --cli-input-json file://ecs-service-discovery.json --region us-east-1
@@ -235,7 +235,7 @@ Use the following steps to create your Amazon ECS cluster, task definition, and 
            "runningCount": 0,
            "pendingCount": 0,
            "launchType": "FARGATE",
-           "platformVersion": "1.1.0",
+           "platformVersion": "LATEST",
            "taskDefinition": "arn:aws:ecs:region:aws_account_id:task-definition/tutorial-task-def:1",
            "deploymentConfiguration": {
                "maximumPercent": 200,
@@ -322,7 +322,7 @@ You can verify that everything has been created properly by querying your servic
 1. Using the service discovery namespace and service, use additional parameters to query the details about the service discovery instances:
 
    ```
-   aws servicediscovery discover-instances --namespace-name tutorial --service-name myapplication --query-parameters ECS_CLUSTER_NAME=tutorial
+   aws servicediscovery discover-instances --namespace-name tutorial --service-name myapplication --query-parameters ECS_CLUSTER_NAME=tutorial --region us-east-1
    ```
 
    Output:

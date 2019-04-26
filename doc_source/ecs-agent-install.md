@@ -33,7 +33,7 @@ To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance usin
 1. \(Optional\) You can verify that the agent is running and see some information about your new container instance with the agent introspection API\. For more information, see [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)\.
 
    ```
-   >[ec2-user ~]$ curl -s http://localhost:51678/v1/metadata | python -mjson.tool
+   [ec2-user ~]$ curl -s http://localhost:51678/v1/metadata | python -mjson.tool
    ```
 
    Output:
@@ -114,21 +114,24 @@ The latest Amazon ECS container agent files, by region, are listed below for ref
 | --- | --- | --- | --- | 
 | us\-east\-2 | US East \(Ohio\) | [ECS container agent](http://s3-us-east-2.amazonaws.com/amazon-ecs-agent-us-east-2/ecs-agent-latest.tar) | [PGP signature](http://s3-us-east-2.amazonaws.com/amazon-ecs-agent-us-east-2/ecs-agent-latest.tar.asc) | 
 | us\-east\-1 | US East \(N\. Virginia\) | [ECS container agent](http://s3.amazonaws.com/amazon-ecs-agent-us-east-1/ecs-agent-latest.tar) | [PGP signature](http://s3.amazonaws.com/amazon-ecs-agent-us-east-1/ecs-agent-latest.tar.asc) | 
-| us\-west\-2 | US West \(Oregon\) | [ECS container agent](http://s3-us-west-2.amazonaws.com/amazon-ecs-agent-us-west-2/ecs-agent-latest.tar) | [PGP signature](http://s3-us-west-2.amazonaws.com/amazon-ecs-agent-us-west-2/ecs-agent-latest.tar.asc) | 
 | us\-west\-1 | US West \(N\. California\) | [ECS container agent](http://s3-us-west-1.amazonaws.com/amazon-ecs-agent-us-west-1/ecs-agent-latest.tar) | [PGP signature](http://s3-us-west-1.amazonaws.com/amazon-ecs-agent-us-west-1/ecs-agent-latest.tar.asc) | 
-| eu\-west\-3 | EU \(Paris\) | [ECS container agent](http://s3-eu-west-3.amazonaws.com/amazon-ecs-agent-eu-west-3/ecs-agent-latest.tar) | [PGP signature](http://s3-eu-west-3.amazonaws.com/amazon-ecs-agent-eu-west-3/ecs-agent-latest.tar.asc) | 
-| eu\-west\-2 | EU \(London\) | [ECS container agent](http://s3-eu-west-2.amazonaws.com/amazon-ecs-agent-eu-west-2/ecs-agent-latest.tar) | [PGP signature](http://s3-eu-west-2.amazonaws.com/amazon-ecs-agent-eu-west-2/ecs-agent-latest.tar.asc) | 
-| eu\-west\-1 | EU \(Ireland\) | [ECS container agent](http://s3-eu-west-1.amazonaws.com/amazon-ecs-agent-eu-west-1/ecs-agent-latest.tar) | [PGP signature](http://s3-eu-west-1.amazonaws.com/amazon-ecs-agent-eu-west-1/ecs-agent-latest.tar.asc) | 
-| eu\-central\-1 | EU \(Frankfurt\) | [ECS container agent](http://s3-eu-central-1.amazonaws.com/amazon-ecs-agent-eu-central-1/ecs-agent-latest.tar) | [PGP signature](http://s3-eu-central-1.amazonaws.com/amazon-ecs-agent-eu-central-1/ecs-agent-latest.tar.asc) | 
-| ap\-northeast\-2 | Asia Pacific \(Seoul\) | [ECS container agent](http://s3-ap-northeast-2.amazonaws.com/amazon-ecs-agent-ap-northeast-2/ecs-agent-latest.tar) | [PGP signature](http://s3-ap-northeast-2.amazonaws.com/amazon-ecs-agent-ap-northeast-2/ecs-agent-latest.tar.asc) | 
+| us\-west\-2 | US West \(Oregon\) | [ECS container agent](http://s3-us-west-2.amazonaws.com/amazon-ecs-agent-us-west-2/ecs-agent-latest.tar) | [PGP signature](http://s3-us-west-2.amazonaws.com/amazon-ecs-agent-us-west-2/ecs-agent-latest.tar.asc) | 
+| ap\-east\-1 | Asia Pacific \(Hong Kong\) | [ECS container agent](http://s3-ap-east-1.amazonaws.com/amazon-ecs-agent-ap-east-1/ecs-agent-latest.tar) | [PGP signature](http://s3-ap-east-1.amazonaws.com/amazon-ecs-agent-ap-east-1/ecs-agent-latest.tar.asc) | 
 | ap\-northeast\-1 | Asia Pacific \(Tokyo\) | [ECS container agent](http://s3-ap-northeast-1.amazonaws.com/amazon-ecs-agent-ap-northeast-1/ecs-agent-latest.tar) | [PGP signature](http://s3-ap-northeast-1.amazonaws.com/amazon-ecs-agent-ap-northeast-1/ecs-agent-latest.tar.asc) | 
-| ap\-southeast\-2 | Asia Pacific \(Sydney\) | [ECS container agent](http://s3-ap-southeast-2.amazonaws.com/amazon-ecs-agent-ap-southeast-2/ecs-agent-latest.tar) | [PGP signature](http://s3-ap-southeast-2.amazonaws.com/amazon-ecs-agent-ap-southeast-2/ecs-agent-latest.tar.asc) | 
-| ap\-southeast\-1 | Asia Pacific \(Singapore\) | [ECS container agent](http://s3-ap-southeast-1.amazonaws.com/amazon-ecs-agent-ap-southeast-1/ecs-agent-latest.tar) | [PGP signature](http://s3-ap-southeast-1.amazonaws.com/amazon-ecs-agent-ap-southeast-1/ecs-agent-latest.tar.asc) | 
-| ca\-central\-1 | Canada \(Central\) | [ECS container agent](http://s3-ca-central-1.amazonaws.com/amazon-ecs-agent-ca-central-1/ecs-agent-latest.tar) | [PGP signature](http://s3-ca-central-1.amazonaws.com/amazon-ecs-agent-ca-central-1/ecs-agent-latest.tar.asc) | 
+| ap\-northeast\-2 | Asia Pacific \(Seoul\) | [ECS container agent](http://s3-ap-northeast-2.amazonaws.com/amazon-ecs-agent-ap-northeast-2/ecs-agent-latest.tar) | [PGP signature](http://s3-ap-northeast-2.amazonaws.com/amazon-ecs-agent-ap-northeast-2/ecs-agent-latest.tar.asc) | 
 | ap\-south\-1 | Asia Pacific \(Mumbai\) | [ECS container agent](http://s3-ap-south-1.amazonaws.com/amazon-ecs-agent-ap-south-1/ecs-agent-latest.tar) | [PGP signature](http://s3-ap-south-1.amazonaws.com/amazon-ecs-agent-ap-south-1/ecs-agent-latest.tar.asc) | 
+| ap\-southeast\-1 | Asia Pacific \(Singapore\) | [ECS container agent](http://s3-ap-southeast-1.amazonaws.com/amazon-ecs-agent-ap-southeast-1/ecs-agent-latest.tar) | [PGP signature](http://s3-ap-southeast-1.amazonaws.com/amazon-ecs-agent-ap-southeast-1/ecs-agent-latest.tar.asc) | 
+| ap\-southeast\-2 | Asia Pacific \(Sydney\) | [ECS container agent](http://s3-ap-southeast-2.amazonaws.com/amazon-ecs-agent-ap-southeast-2/ecs-agent-latest.tar) | [PGP signature](http://s3-ap-southeast-2.amazonaws.com/amazon-ecs-agent-ap-southeast-2/ecs-agent-latest.tar.asc) | 
+| ca\-central\-1 | Canada \(Central\) | [ECS container agent](http://s3-ca-central-1.amazonaws.com/amazon-ecs-agent-ca-central-1/ecs-agent-latest.tar) | [PGP signature](http://s3-ca-central-1.amazonaws.com/amazon-ecs-agent-ca-central-1/ecs-agent-latest.tar.asc) | 
+| eu\-central\-1 | EU \(Frankfurt\) | [ECS container agent](http://s3-eu-central-1.amazonaws.com/amazon-ecs-agent-eu-central-1/ecs-agent-latest.tar) | [PGP signature](http://s3-eu-central-1.amazonaws.com/amazon-ecs-agent-eu-central-1/ecs-agent-latest.tar.asc) | 
+| eu\-west\-1 | EU \(Ireland\) | [ECS container agent](http://s3-eu-west-1.amazonaws.com/amazon-ecs-agent-eu-west-1/ecs-agent-latest.tar) | [PGP signature](http://s3-eu-west-1.amazonaws.com/amazon-ecs-agent-eu-west-1/ecs-agent-latest.tar.asc) | 
+| eu\-west\-2 | EU \(London\) | [ECS container agent](http://s3-eu-west-2.amazonaws.com/amazon-ecs-agent-eu-west-2/ecs-agent-latest.tar) | [PGP signature](http://s3-eu-west-2.amazonaws.com/amazon-ecs-agent-eu-west-2/ecs-agent-latest.tar.asc) | 
+| eu\-west\-3 | EU \(Paris\) | [ECS container agent](http://s3-eu-west-3.amazonaws.com/amazon-ecs-agent-eu-west-3/ecs-agent-latest.tar) | [PGP signature](http://s3-eu-west-3.amazonaws.com/amazon-ecs-agent-eu-west-3/ecs-agent-latest.tar.asc) | 
 | sa\-east\-1 | South America \(São Paulo\) | [ECS container agent](http://s3-sa-east-1.amazonaws.com/amazon-ecs-agent-sa-east-1/ecs-agent-latest.tar) | [PGP signature](http://s3-sa-east-1.amazonaws.com/amazon-ecs-agent-sa-east-1/ecs-agent-latest.tar.asc) | 
-| us\-gov\-west\-1 | AWS GovCloud \(US\-West\) | [ECS container agent](http://s3-us-gov-west-1.amazonaws.com/amazon-ecs-agent-us-gov-west-1/ecs-agent-latest.tar) | [PGP signature](http://s3-us-gov-west-1.amazonaws.com/amazon-ecs-agent-us-gov-west-1/ecs-agent-latest.tar.asc) | 
 | cn\-north\-1 | China \(Beijing\) | [ECS container agent](http://s3.cn-north-1.amazonaws.com.cn/amazon-ecs-agent-cn-north-1/ecs-agent-latest.tar) | [PGP signature](http://s3.cn-north-1.amazonaws.com.cn/amazon-ecs-agent-cn-north-1/ecs-agent-latest.tar.asc) | 
+| cn\-northwest\-1 | China \(Ningxia\) | [ECS container agent](http://s3.cn-northwest-1.amazonaws.com.cn/amazon-ecs-agent-cn-northwest-1/ecs-agent-latest.tar) | [PGP signature](http://s3.cn-northwest-1.amazonaws.com.cn/amazon-ecs-agent-cn-northwest-1/ecs-agent-latest.tar.asc) | 
+| us\-gov\-east\-1 | AWS GovCloud \(US\-East\) | [ECS container agent](http://s3-us-gov-east-1.amazonaws.com/amazon-ecs-agent-us-gov-east-1/ecs-agent-latest.tar) | [PGP signature](http://s3-us-gov-east-1.amazonaws.com/amazon-ecs-agent-us-gov-east-1/ecs-agent-latest.tar.asc) | 
+| us\-gov\-west\-1 | AWS GovCloud \(US\-West\) | [ECS container agent](http://s3-us-gov-west-1.amazonaws.com/amazon-ecs-agent-us-gov-west-1/ecs-agent-latest.tar) | [PGP signature](http://s3-us-gov-west-1.amazonaws.com/amazon-ecs-agent-us-gov-west-1/ecs-agent-latest.tar.asc) | 
 
 **To install the Amazon ECS container agent on a non\-Amazon Linux EC2 instance**
 

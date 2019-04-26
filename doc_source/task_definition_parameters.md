@@ -334,7 +334,7 @@ The `hostname` parameter is not supported if you are using the `awsvpc` network 
 Type: string array  
 Required: no  
 A list of DNS servers that are presented to the container\. This parameter maps to `Dns` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--dns` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers\.
+This parameter is not supported for Windows containers or tasks using the `awsvpc` network mode\.
 
 ```
 "dnsServers": ["string", ...]
@@ -912,7 +912,7 @@ Type: Array of [KeyValuePair](https://docs.aws.amazon.com/AmazonECS/latest/APIRe
 Required: No  
 The set of network configuration parameters to provide the Container Network Interface \(CNI\) plugin, specified as key\-value pairs\.  
 + `IgnoredUID` – \(Required\) The user ID \(UID\) of the proxy container as defined by the `user` parameter in a container definition\. This is used to ensure the proxy ignores its own traffic\. If `IgnoredGID` is specified, this field can be empty\.
-+ `IgnoredGID` – \(Required\) The group ID \(GID\) of the proxy container as defined by the `user` parameter in a container definition\. This is used to ensure the proxy ignores its own traffic\. If `IgnoredGID` is specified, this field can be empty\.
++ `IgnoredGID` – \(Required\) The group ID \(GID\) of the proxy container as defined by the `user` parameter in a container definition\. This is used to ensure the proxy ignores its own traffic\. If `IgnoredUID` is specified, this field can be empty\.
 + `AppPorts` – \(Required\) The list of ports that the application uses\. Network traffic to these ports is forwarded to the `ProxyIngressPort` and `ProxyEgressPort`\.
 + `ProxyIngressPort` – \(Required\) Specifies the port that incoming traffic to the `AppPorts` is directed to\.
 + `ProxyEgressPort` – \(Required\) Specifies the port that outgoing traffic from the `AppPorts` is directed to\.
