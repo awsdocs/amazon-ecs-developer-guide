@@ -49,24 +49,16 @@ After you have attached the `AmazonEC2RoleforSSM` policy to your `ecsInstanceRol
 1. Install the SSM agent RPM\. The SSM agent is available in all Regions that Amazon ECS is available in\. Each Region has its own region\-specific download URL\. The example command below works for all Regions that Amazon ECS supports\. Avoid cross\-region data transfer costs for the RPM download by substituting the Region of your container instance\.
 
    ```
-   [ec2-user ~]$ sudo yum install -y https://amazon-ssm-us-east-1.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm
+   [ec2-user ~]$ sudo yum install -y amazon-ssm-agent
    ```
 
 **To install the SSM agent on new instance launches with Amazon EC2 user data**
 + Launch one or more container instances by following the procedure in [Launching an Amazon ECS Container Instance](launch_container_instance.md), but in [Step 7](launch_container_instance.md#instance-launch-user-data-step), copy and paste the user data script below into the **User data** field\. You can also add the commands from this user data script to another existing script that you may have to perform other tasks, such as setting the cluster name for the instance to register into\.
-**Note**  
-The user data script below installs the jq JSON parser and uses that to determine the region of the container instance\. Then it downloads and installs the SSM agent\.
 
   ```
   #!/bin/bash
-  # Install JQ JSON parser
-  yum install -y jq
-  
-  # Get the current region from the instance metadata
-  region=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region)
-  
   # Install the SSM agent RPM
-  yum install -y https://amazon-ssm-$region.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm
+  yum install -y amazon-ssm-agent
   ```
 
 ## Using Run Command<a name="using_run_command"></a>
