@@ -2,6 +2,10 @@
 
 Amazon ECS enables you to inject sensitive data into your containers by storing your sensitive data in either AWS Secrets Manager secrets or AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\. This feature is supported by tasks using both the EC2 and Fargate launch types\.
 
+Secrets can be exposed to a container in the following ways:
++ To inject sensitive data into your containers as environment variables, use the `secrets` container definition parameter\.
++ To reference sensitive information in the log configuration of a container, use the `secretOptions` container definition parameter\.
+
 For tasks that use the Fargate launch type, this feature requires that your task use platform version 1\.3\.0 or later\. For information, see [AWS Fargate Platform Versions](platform_versions.md)\.
 
 For tasks that use the EC2 launch type, this feature requires that your container instance have version 1\.22\.0 or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
@@ -9,7 +13,17 @@ For tasks that use the EC2 launch type, this feature requires that your containe
 **Note**  
 This feature is not available in the GovCloud \(US\-East\) region\.
 
-Within your container definition, specify `secrets` with the name of the environment variable to set in the container and the full ARN of either the Secrets Manager secret or Systems Manager Parameter Store parameter containing the sensitive data to present to the container\. The parameter that you reference can be from a different Region than the container using it, but must be from within the same account\.
+**Topics**
++ [Injecting Sensitive Data as an Environment Variable](#secrets-envvar)
++ [Injecting Sensitive Data in a Log Configuration](#secrets-logconfig)
++ [Required IAM Permissions for Amazon ECS Secrets](#secrets-iam)
++ [Creating an AWS Secrets Manager Secret](#secrets-create-secret)
++ [Creating an AWS Systems Manager Parameter Store Parameter](#secrets-create-parameter)
++ [Creating a Task Definition that References a Secret](#secrets-create-taskdefinition)
+
+## Injecting Sensitive Data as an Environment Variable<a name="secrets-envvar"></a>
+
+Within your container definition, specify `secrets` with the name of the environment variable to set in the container and the full ARN of either the Secrets Manager secret or Systems Manager Parameter Store parameter containing the sensitive data to present to the container\. The parameter that you reference must be from within the same account but can be from a different Region than the container using the parameter\. 
 
 **Important**  
 If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the parameter\. If the parameter exists in a different Region, then the full ARN must be specified\.
@@ -17,38 +31,73 @@ If the Systems Manager Parameter Store parameter exists in the same Region as th
 The following is a snippet of a task definition showing the format when referencing an Secrets Manager secret\.
 
 ```
-"containerDefinitions": [
-    {
-        "secrets": [
-            {
-                "name": "environment_variable_name",
-                "valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name-AbCdEf"
-            }
-        ]
-    }
-]
+{
+	"containerDefinitions": [{
+		"secrets": [{
+			"name": "environment_variable_name",
+			"valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name-AbCdEf"
+		}]
+	}]
+}
 ```
 
 The following is a snippet of a task definition showing the format when referencing an Systems Manager Parameter Store parameter\.
 
 ```
-"containerDefinitions": [
-    {
-        "secrets": [
-            {
-                "name": "environment_variable_name",
-                "valueFrom": "arn:aws:ssm:region:aws_account_id:parameter/parameter_name"
-            }
-        ]
-    }
-]
+{
+	"containerDefinitions": [{
+		"secrets": [{
+			"name": "environment_variable_name",
+			"valueFrom": "arn:aws:ssm:region:aws_account_id:parameter/parameter_name"
+		}]
+	}]
+}
 ```
 
-**Topics**
-+ [Required IAM Permissions for Amazon ECS Secrets](#secrets-iam)
-+ [Creating an AWS Secrets Manager Secret](#secrets-create-secret)
-+ [Creating an AWS Systems Manager Parameter Store Parameter](#secrets-create-parameter)
-+ [Creating a Task Definition that References a Secret](#secrets-create-taskdefinition)
+## Injecting Sensitive Data in a Log Configuration<a name="secrets-logconfig"></a>
+
+Within your container definition, when specifying a `logConfiguration` you can specify `secretOptions` with the name of the log driver option to set in the container and the full ARN of either the Secrets Manager secret or Systems Manager Parameter Store parameter containing the sensitive data to present to the container\. The parameter that you reference must be from within the same account but can be from a different Region than the container using the parameter\.
+
+**Important**  
+If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the parameter\. If the parameter exists in a different Region, then the full ARN must be specified\.
+
+The following is a snippet of a task definition showing the format when referencing an Secrets Manager secret\.
+
+```
+{
+	"containerDefinitions": [{
+		"logConfiguration": [{
+			"logDriver": "splunk",
+			"options": {
+				"splunk-url": "https://cloud.splunk.com:8080"
+			},
+			"secretOptions": [{
+				"name": "splunk-token",
+				"valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name-AbCdEf"
+			}]
+		}]
+	}]
+}
+```
+
+The following is a snippet of a task definition showing the format when referencing an Systems Manager Parameter Store parameter\.
+
+```
+{
+	"containerDefinitions": [{
+		"logConfiguration": [{
+			"logDriver": "fluentd",
+			"options": {
+				"tag": "fluentd demo"
+			},
+			"secretOptions": [{
+				"name": "fluentd-address",
+				"valueFrom": "arn:aws:ssm:region:aws_account_id:parameter:parameter_name"
+			}]
+		}]
+	}]
+}
+```
 
 ## Required IAM Permissions for Amazon ECS Secrets<a name="secrets-iam"></a>
 
@@ -182,13 +231,23 @@ If the **Task execution role** field does not appear, choose **Configure via JSO
 
    1. Expand **Advanced container configuration**\.
 
-   1. Under **Environment**, for **Environment variables**, complete the following fields:
+   1. For container secrets referenced as environment variables, under **Environment**, for **Environment variables**, complete the following fields:
 
       1. For **Key**, enter the name of the environment variable to set in the container\. This corresponds to the `name` field in the `secrets` section of a container definition\.
 
       1. For **Value**, choose **ValueFrom**\. For **Add value**, enter the full ARN or the Secrets Manager secret or the name or full ARN of the AWS Systems Manager Parameter Store parameter that contains the data to present to your container as an environment variable\.
 **Note**  
 If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
+
+   1. For secrets referenced in the log configuration for a container, under **Storage and Logging**, for **Log configuration**, complete the following fields:
+
+      1. Clear the **Auto\-configure CloudWatch Logs** option\.
+
+      1. Under **Log options**, for **Key**, enter the name of the log configuration option to set\.
+
+      1. For **Value**, choose **ValueFrom**\. For **Add value**, enter the full ARN or the Secrets Manager secret or the name or full ARN of the AWS Systems Manager Parameter Store parameter that contains the data to present to your log configuration as a log option\.
+**Note**  
+If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or the name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
 
    1. Fill out the remaining required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task Definition Parameters](task_definition_parameters.md)\.
 

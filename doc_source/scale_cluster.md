@@ -24,6 +24,6 @@ If your cluster was not created with the console first\-run experience after Nov
 
 1. Choose **Scale ECS Instances**\.
 
-1. For **Desired number of instances**, enter the number of instances to which to scale your cluster to and choose **Scale**\.
+1. For **Desired number of instances**, enter the number of instances to which to scale your cluster and choose **Scale**\.
 **Note**  
 If you reduce the number of container instances in your cluster, randomly selected container instances are terminated until the desired count is achieved, and any tasks that are running on terminated instances are stopped\.

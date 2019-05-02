@@ -432,32 +432,71 @@ If this value is `true`, the container has read\-only access to the volume\. If 
 `logConfiguration`  
 Type: [LogConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LogConfiguration.html) object  
 Required: no  
-The log configuration specification for the container\.   
-If using the Fargate launch type, the only supported value is `awslogs`\. For more information on using the `awslogs` log driver in task definitions to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.  
+The log configuration specification for the container\.  
+For tasks using the Fargate launch type, the supported log drivers are `awslogs` and `splunk`\.  
+For tasks using the EC2 launch type, the supported log drivers are `awslogs`, `syslog`, `gelf`, `fluentd`, `splunk`, `journald`, and `json-file`\.  
+For more information on using the `awslogs` log driver in task definitions to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.  
+For example task definitions, see [Example Task Definitions](example_task_definitions.md)\.  
 This parameter maps to `LogConfig` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--log-driver` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. By default, containers use the same logging driver that the Docker daemon uses; however the container may use a different logging driver than the Docker daemon by specifying a log driver with this parameter in the container definition\. To use a different logging driver for a container, the log system must be configured properly on the container instance \(or on a different log server for remote logging options\)\. For more information on the options for different supported log drivers, see [Configure logging drivers](https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation\.  
-Amazon ECS currently supports a subset of the logging drivers available to the Docker daemon \(shown in the valid values below\)\. Additional log drivers may be available in future releases of the Amazon ECS container agent\.
-This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
-The Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the `ECS_AVAILABLE_LOGGING_DRIVERS` environment variable before containers placed on that instance can use these log configuration options\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+The following should be noted when specifying a log configuration for your containers:  
++ Amazon ECS currently supports a subset of the logging drivers available to the Docker daemon \(shown in the valid values below\)\. Additional log drivers may be available in future releases of the Amazon ECS container agent\.
++ This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.
++ For tasks using the EC2 launch type, the Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the `ECS_AVAILABLE_LOGGING_DRIVERS` environment variable before containers placed on that instance can use these log configuration options\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
++ For tasks using the Fargate launch type, because you do not have access to the underlying infrastructure your tasks are hosted on, any additional software needed will have to be installed outside of the task\. For example, the Fluentd output aggregators or a remote host running Logstash to send Gelf logs to\.
 
 ```
 "logConfiguration": {
       "logDriver": "json-file"|"syslog"|"journald"|"gelf"|"fluentd"|"awslogs"|"splunk",
       "options": {"string": "string"
-        ...}
+        ...},
+	"secretOptions": [{
+		"name": "string",
+		"valueFrom": "string"
+	}]
+}
 ```  
 `logDriver`  
 Type: string  
 Valid values: `"json-file" | "syslog" | "journald" | "gelf" | "fluentd" | "awslogs" | "splunk"`  
 Required: yes, when `logConfiguration` is used  
-The log driver to use for the container\. The valid values listed earlier are log drivers that the Amazon ECS container agent can communicate with by default\.   
-If using the Fargate launch type, the only supported value is `awslogs`\.  
+The log driver to use for the container\. The valid values listed earlier are log drivers that the Amazon ECS container agent can communicate with by default\.  
+For tasks using the Fargate launch type, the supported log drivers are `awslogs` and `splunk`\.  
+For tasks using the EC2 launch type, the supported log drivers are `awslogs`, `syslog`, `gelf`, `fluentd`, `splunk`, `journald`, and `json-file`\.  
 If you have a custom driver that is not listed, you can fork the Amazon ECS container agent project that is [available on GitHub](https://github.com/aws/amazon-ecs-agent) and customize it to work with that driver\. We encourage you to submit pull requests for changes that you would like to have included\. However, we do not currently provide support for running modified copies of this software\.
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 `options`  
 Type: string to string map  
 Required: no  
 The configuration options to send to the log driver\.  
-This parameter requires version 1\.19 of the Docker Remote API or greater on your container instance\.
+This parameter requires version 1\.19 of the Docker Remote API or greater on your container instance\.  
+`secretOptions`  
+Type: object array  
+Required: no  
+An object representing the secret to pass to the log configuration\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.    
+`name`  
+Type: String  
+Required: Yes  
+The value to set as the environment variable on the container\.  
+`valueFrom`  
+Type: String  
+Required: Yes  
+The secret to expose to the log configuration of the container\.
+
+```
+"logConfiguration": {
+	"logDriver": "splunk",
+	"options": {
+		"splunk-url": "https://cloud.splunk.com:8080",
+		"splunk-token": "...",
+		"tag": "...",
+		...
+	},
+	"secretOptions": [{
+		"name": "splunk-token",
+		"valueFrom": "/ecs/logconfig/splunkcred"
+	}]
+}
+```
 
 #### Security<a name="container_definition_security"></a>
 

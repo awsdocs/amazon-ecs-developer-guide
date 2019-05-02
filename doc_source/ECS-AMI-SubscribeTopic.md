@@ -14,21 +14,22 @@ The Amazon SNS topic ARNs for each region are shown below\.
 
 | AWS Region | Amazon SNS Topic ARN | 
 | --- | --- | 
-| us\-east\-1 | arn:aws:sns:us\-east\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| us\-east\-2 | arn:aws:sns:us\-east\-2:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| us\-west\-1 | arn:aws:sns:us\-west\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| us\-west\-2 | arn:aws:sns:us\-west\-2:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| ca\-central\-1 | arn:aws:sns:ca\-central\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| eu\-west\-1 | arn:aws:sns:eu\-west\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| eu\-west\-2 | arn:aws:sns:eu\-west\-2:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| eu\-west\-3 | arn:aws:sns:eu\-west\-3:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| eu\-central\-1 | arn:aws:sns:eu\-central\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| ap\-northeast\-1 | arn:aws:sns:ap\-northeast\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| ap\-northeast\-2 | arn:aws:sns:ap\-northeast\-2:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| ap\-southeast\-1 | arn:aws:sns:ap\-southeast\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| ap\-southeast\-2 | arn:aws:sns:ap\-southeast\-2:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| ap\-south\-1 | arn:aws:sns:ap\-south\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
-| sa\-east\-1 | arn:aws:sns:sa\-east\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `us-east-1` | arn:aws:sns:us\-east\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `us-east-2` | arn:aws:sns:us\-east\-2:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `us-west-1` | arn:aws:sns:us\-west\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `us-west-2` | arn:aws:sns:us\-west\-2:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `ap-east-1` | arn:aws:sns:ap\-east\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `ap-northeast-1` | arn:aws:sns:ap\-northeast\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `ap-northeast-2` | arn:aws:sns:ap\-northeast\-2:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `ap-southeast-1` | arn:aws:sns:ap\-southeast\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `ap-southeast-2` | arn:aws:sns:ap\-southeast\-2:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `ap-south-1` | arn:aws:sns:ap\-south\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `ca-central-1` | arn:aws:sns:ca\-central\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `eu-west-1` | arn:aws:sns:eu\-west\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `eu-west-2` | arn:aws:sns:eu\-west\-2:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `eu-west-3` | arn:aws:sns:eu\-west\-3:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `eu-central-1` | arn:aws:sns:eu\-central\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
+| `sa-east-1` | arn:aws:sns:sa\-east\-1:177427601217:ecs\-optimized\-amazon\-ami\-update | 
 
 **To subscribe to AMI update notification email in the AWS Management Console**
 

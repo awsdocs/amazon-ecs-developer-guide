@@ -6,6 +6,9 @@ This section provides some task definition examples that you can use to start cr
 + [Example: Webserver](#example_task_definition-webserver)
 + [Example: WordPress and MySQL](#example_task_definition-wordpress)
 + [Example: `awslogs` Log Driver](#example_task_definition-awslogs)
++ [Example: `splunk` Log Driver](#example_task_definition-splunk)
++ [Example: `fluentd` Log Driver](#example_task_definition-fluentd)
++ [Example: `gelf` Log Driver](#example_task_definition-gelf)
 + [Example: Amazon ECR Image and Task Definition IAM Role](#example_task_definition-iam)
 + [Example: Entrypoint with Command](#example_task_definition-ping)
 + [Example: Container Dependency](#example_task_definition-containerdependency)
@@ -143,6 +146,82 @@ The following example demonstrates how to use the `awslogs` log driver in a task
 }
 ```
 
+## Example: `splunk` Log Driver<a name="example_task_definition-splunk"></a>
+
+The following example demonstrates how to use the `splunk` log driver in a task definition that sends the logs to a remote service\. The Splunk token parameter is specified as a secret option because it can be treated as sensitive data\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
+
+```
+"containerDefinitions": [{
+		"logConfiguration": {
+			"logDriver": "splunk",
+			"options": {
+				"splunk-url": "https://cloud.splunk.com:8080",
+				"tag": "tag_name",
+			},
+			"secretOptions": [{
+				"name": "splunk-token",
+				"valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:splunk-token-KnrBkD"
+}],
+```
+
+## Example: `fluentd` Log Driver<a name="example_task_definition-fluentd"></a>
+
+The following example demonstrates how to use the `fluentd` log driver in a task definition that sends the logs to a remote service\. The `fluentd-address` value is specified as a secret option as it may be treated as sensitive data\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
+
+```
+"containerDefinitions": [{
+	"logConfiguration": {
+		"logDriver": "fluentd",
+		"options": {
+			"tag": "fluentd demo"
+		},
+		"secretOptions": [{
+			"name": "fluentd-address",
+			"valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:fluentd-address-KnrBkD"
+		}]
+	},
+	"entryPoint": [],
+	"portMappings": [{
+             "hostPort": 80,
+             "protocol": "tcp",
+             "containerPort": 80
+             },
+             {
+		"hostPort": 24224,
+		"protocol": "tcp",
+		"containerPort": 24224
+	}]
+}],
+```
+
+## Example: `gelf` Log Driver<a name="example_task_definition-gelf"></a>
+
+The following example demonstrates how to use the `gelf` log driver in a task definition that sends the logs to a remote host running Logstash that takes Gelf logs as an input\. For more information, see [logConfiguration](task_definition_parameters.md#ContainerDefinition-logConfiguration)\.
+
+```
+"containerDefinitions": [{
+	"logConfiguration": {
+		"logDriver": "gelf",
+		"options": {
+			"gelf-address": "udp://logstash-service-address:5000",
+			"tag": "gelf task demo"
+		}
+	},
+	"entryPoint": [],
+	"portMappings": [{
+			"hostPort": 5000,
+			"protocol": "udp",
+			"containerPort": 5000
+		},
+		{
+			"hostPort": 5000,
+			"protocol": "tcp",
+			"containerPort": 5000
+		}
+	]
+}],
+```
+
 ## Example: Amazon ECR Image and Task Definition IAM Role<a name="example_task_definition-iam"></a>
 
 The following example uses an Amazon ECR image called `aws-nodejs-sample` with the `v1` tag from the `123456789012.dkr.ecr.us-west-2.amazonaws.com` registry\. The container in this task inherits IAM permissions from the `arn:aws:iam::123456789012:role/AmazonECSTaskS3BucketRole` role\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
@@ -245,7 +324,7 @@ This example demonstrates the syntax for a task definition with multiple contain
     },
     {
       "name": "envoy",
-      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.8.0.2-beta",
+      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.1.0-prod",
       "essential": true,
       "environment": [
         {

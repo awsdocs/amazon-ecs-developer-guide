@@ -5,17 +5,19 @@ The term *Resource\-level permissions* refers to the ability to specify which re
 The following table describes the Amazon ECS API actions that currently support resource\-level permissions, as well as the supported resources, resource ARNs, and condition keys for each action\.
 
 **Important**  
-If an Amazon ECS API action is not listed in this table, then it does not support resource\-level permissions\. If an Amazon ECS API action does not support resource\-level permissions, you can grant users permission to use the action, but you have to specify a \* for the resource element of your policy statement\.
+If an Amazon ECS API action in this table is marked `N/A` for `Resource Types`, then it does not support resource\-level permissions\. If an Amazon ECS API action does not support resource\-level permissions, you can grant users permission to use the action, but you have to specify a \* for the resource element of your policy statement\.
 
 
 | Actions | Resource Types | Condition Keys | 
 | --- | --- | --- | 
 |  CreateCluster  | N/A |  aws:RequestTag  | 
 |  CreateService  |  N/A  |  N/A  | 
+|  CreateTaskSet  |  N/A  |  N/A  | 
 |  DeleteAccountSettings  |  N/A  |  N/A  | 
 |  DeleteAttributes  |  Container instance \(required\) arn:aws:ecs:*region*:*account*:container\-instance/*container\-instance\-id*  |  ecs:cluster  | 
 |  DeleteCluster  |  Cluster \(required\) arn:aws:ecs:*region*:*account*:cluster/*my\-cluster*  |  N/A  | 
 |  DeleteService  |  N/A  |  N/A  | 
+|  DeleteTaskSet  |  N/A  |  N/A  | 
 |  DeregisterContainerInstance  |  Cluster \(required\) arn:aws:ecs:*region*:*account*:cluster/*my\-cluster*  |  N/A  | 
 |  DeregisterTaskDefinition  |  N/A  |  N/A  | 
 |  DescribeClusters  |  Cluster \(required\) arn:aws:ecs:*region*:*account*:cluster/*my\-cluster1*, arn:aws:ecs:*region*:*account*:cluster/*my\-cluster2*  |  N/A  | 
@@ -23,6 +25,7 @@ If an Amazon ECS API action is not listed in this table, then it does not suppor
 |  DescribeServices  |  N/A  |  N/A  | 
 |  DescribeTaskDefinition  |  N/A  |  N/A  | 
 |  DescribeTasks  |  Task \(required\) arn:aws:ecs:*region*:*account*:task/*1abf0f6d\-a411\-4033\-b8eb\-a4eed3ad252a*, arn:aws:ecs:*region*:*account*:task/*1abf0f6d\-a411\-4033\-b8eb\-a4eed3ad252b*  |  ecs:cluster  | 
+|  DescribeTaskSets  |  N/A  |  N/A  | 
 |  DiscoverPollEndpoint  |  N/A  |  N/A  | 
 |  ListAccountSettings  |  N/A  |  N/A  | 
 |  ListAttributes  |  Cluster \(required\) arn:aws:ecs:*region*:*account*:cluster/*my\-cluster*  |  N/A  | 
@@ -50,3 +53,5 @@ If an Amazon ECS API action is not listed in this table, then it does not suppor
 |  UpdateContainerAgent  |  Container instance \(required\) arn:aws:ecs:*region*:*account*:container\-instance/*container\-instance\-id*  |  ecs:cluster  | 
 |  UpdateContainerInstancesState  |  Container instance \(required\) arn:aws:ecs:*region*:*account*:container\-instance/*container\-instance\-id*  |  ecs:cluster  | 
 |  UpdateService  |  N/A  |  N/A  | 
+|  UpdateSServicePrimaryTaskSet  |  N/A  |  N/A  | 
+|  UpdateTaskSet  |  N/A  |  N/A  | 
