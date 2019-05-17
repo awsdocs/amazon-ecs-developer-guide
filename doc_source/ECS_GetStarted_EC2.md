@@ -116,7 +116,7 @@ In this section of the wizard, you name your cluster\. Then, Amazon ECS takes ca
 
 1. For **Cluster name**, choose a name for your cluster\.
 
-1. For **EC2 instance type**, choose the instance type to use for your container instances\. Instance types with more CPU and memory resources can handle more tasks\. For more information about the different instance types, see [Amazon EC2 Instances](https://aws.amazon.com/ec2/instance-types/)\.
+1. For **EC2 instance type**, choose the instance type to use for your container instances\. Instance types with more CPU and memory resources can handle more tasks\. For more information about the different instance types, see [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/)\.
 
 1. For **Number of instances**, type the number of Amazon EC2 instances to launch into your cluster for tasksplacement\. The more instances you have in your cluster, the more tasks you can place on them\. Amazon EC2 instances incur costs while they exist in your AWS resources\. For more information, see [Amazon EC2 Pricing](http://aws.amazon.com/ec2/pricing/)\.
 **Note**  

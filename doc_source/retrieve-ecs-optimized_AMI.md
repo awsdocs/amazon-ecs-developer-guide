@@ -29,10 +29,15 @@ The following is the format of the parameter name\.
   ```
   /aws/service/ecs/optimized-ami/amazon-linux/<version>
   ```
-+  Amazon ECS\-optimized Windows AMI metadata:
++  Amazon ECS\-optimized Windows 2019 AMI metadata:
 
   ```
-  /aws/service/ecs/optimized-ami/<os family>/<os version>/<os locale>/<os sku>/<version>
+  /aws/service/ecs/optimized-ami/windows_server/2019/english/full/<version>
+  ```
++  Amazon ECS\-optimized Windows 2016 AMI metadata:
+
+  ```
+  /aws/service/ecs/optimized-ami/windows_server/2016/english/full/<version>
   ```
 
 The following parameter name format retrieves the metadata of the latest stable Amazon ECS\-optimized Amazon Linux 2 AMI by using `recommended`\.
@@ -84,10 +89,15 @@ The following parameter name format retrieves the metadata of a specific Amazon 
   ```
   /aws/service/ecs/optimized-ami/amazon-linux/amzn-ami-2017.09.l-amazon-ecs-optimized
   ```
-+ Amazon ECS\-optimized Windows AMI metadata:
++ Amazon ECS\-optimized Windows 2019 AMI metadata:
 
   ```
-  /aws/service/ecs/optimized-ami/windows_server/2016/english/full/2018.03.26
+  /aws/service/ecs/optimized-ami/windows_server/2019/english/full/2019.05.10
+  ```
++ Amazon ECS\-optimized Windows 2016 AMI metadata:
+
+  ```
+  /aws/service/ecs/optimized-ami/windows_server/2016/english/full/2019.03.07
   ```
 
 **Note**  
@@ -187,10 +197,10 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
       "InvalidParameters": []
   }
   ```
-+ **For the Amazon ECS\-optimized Windows AMI:**
++ **For the Amazon ECS\-optimized Windows 2019 AMI:**
 
   ```
-  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended --region us-east-1
+  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/windows_server/2019/english/full/recommended --region us-east-1
   ```
 
   Output:
@@ -199,21 +209,42 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   {
       "Parameters": [
           {
-              "Name": "/aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended",
+              "Name": "/aws/service/ecs/optimized-ami/windows_server/2019/english/full/recommended",
               "Type": "String",
-              "Value": "{\"image_name\":\"Windows_Server-2016-English-Full-ECS_Optimized-2018.09.19\",\"os\":\"Windows_Server-2016-English-Full\",\"schema_version\":1,\"ecs_runtime_version\":\"Docker version 18.03.1-ee-3, build b9a5c95\",\"ecs_agent_version\":\"1.20.2\",\"image_id\":\"ami-0711d16ae98c1422d\"}",
-              "Version": 8,
-              "LastModifiedDate": 1537942304.061,
-              "ARN": "arn:aws:ssm:us-east-1::parameter/aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended"
+              "Value": "{\"schema_version\":1,\"image_name\":\"Windows_Server-2019-English-Full-ECS_Optimized-2019.05.10\",\"image_id\":\"ami-0a4548e9bef884a63\",\"os\":\"Windows_Server-2019-English-Full\",\"ecs_runtime_version\":\"Docker version 18.09.4\",\"ecs_agent_version\":\"1.27.0\"}",
+              "Version": 1,
+              "LastModifiedDate": 1557785029.622,
+              "ARN": "arn:aws:ssm:us-east-2::parameter/aws/service/ecs/optimized-ami/windows_server/2019/english/full/recommended"
           }
       ],
       "InvalidParameters": []
   }
   ```
-+ **For the Amazon ECS\-optimized Windows AMI: using AWS PowerShell**
++ **For the Amazon ECS\-optimized Windows 2016 AMI:**
 
   ```
-  Get-SSMParameter -Name /aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended/image_id -region us-east-1
+  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended --re
+  ```
+
+  ```
+  {
+      "Parameters": [
+          {
+              "Name": "/aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended",
+              "Type": "String",
+              "Value": "{\"schema_version\":1,\"image_name\":\"Windows_Server-2016-English-Full-ECS_Optimized-2019.03.07\",\"image_id\":\"ami-00c56e74f090d6f65\",\"os\":\"Windows_Server-2016-English-Full\",\"ecs_runtime_version\":\"Docker version 18.03.1-ee-7\",\"ecs_agent_version\":\"1.26.0\"}",
+              "Version": 12,
+              "LastModifiedDate": 1552024433.093,
+              "ARN": "arn:aws:ssm:us-east-2::parameter/aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended"
+          }
+      ],
+      "InvalidParameters": []
+  }
+  ```
++ **For the Amazon ECS\-optimized Windows 2019 AMI: using AWS PowerShell**
+
+  ```
+  Get-SSMParameter -Name /aws/service/ecs/optimized-ami/windows_server/2019/english/full/recommended/image_id -region us-east-1
   ```
 
   Output:
@@ -221,7 +252,7 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   ```
   Name                                                                                 Type   Value        Version
   ----                                                                                 ----   -----        -------
-  /aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended/image_id String ami-4734a738 3
+  /aws/service/ecs/optimized-ami/windows_server/2019/english/full/recommended/image_id String ami-0a4548e9 3
   ```
 
 **Example Retrieving the metadata of a specific Amazon ECS\-optimized Amazon Linux AMI version**  
@@ -290,5 +321,5 @@ Parameters:
   ECSAMI:
     Description: AMI ID
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
-    Default: /aws/service/ecs/optimized-ami/windows_server/2016/english/full/recommended/image_id
+    Default: /aws/service/ecs/optimized-ami/windows_server/2019/english/full/recommended/image_id
 ```

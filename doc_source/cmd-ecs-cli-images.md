@@ -28,7 +28,7 @@ Some features described might only be available with the latest version of the A
 
 ## Using FIPS Endpoints<a name="cmd-ecs-cli-images-fips"></a>
 
-The Amazon ECS CLI supports using FIPS endpoints for calls to Amazon ECR\. To ensure you are accessing Amazon ECR using FIPS endpoints, use the `--use-fips` flag on the push, pull, or images command\. FIPS endpoints are currently available in us\-west\-1, us\-west\-2, us\-east\-1, us\-east\-2, and AWS GovCloud\. For more information, see [Federal Information Processing Standard \(FIPS\) 140\-2](https://aws.amazon.com/compliance/fips/)\.
+The Amazon ECS CLI supports using FIPS endpoints for calls to Amazon ECR\. To ensure you are accessing Amazon ECR using FIPS endpoints, use the `--use-fips` flag on the push, pull, or images command\. FIPS endpoints are currently available in us\-west\-1, us\-west\-2, us\-east\-1, us\-east\-2, and AWS GovCloud\. For more information, see [Federal Information Processing Standard \(FIPS\) 140\-2](http://aws.amazon.com/compliance/fips/)\.
 
 ## Examples<a name="cmd-ecs-cli-images-examples"></a>
 

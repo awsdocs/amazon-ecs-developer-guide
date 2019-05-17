@@ -58,6 +58,6 @@ Your Amazon ECS service can optionally be configured to use Amazon ECS Service D
 
 ## Tagging Resources<a name="cmd-ecs-cli-compose-service-create-tags"></a>
 
-The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [AWS Tagging Strategies](https://aws.amazon.com/answers/account-management/aws-tagging-strategies)\.
+The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [AWS Tagging Strategies](http://aws.amazon.com/answers/account-management/aws-tagging-strategies)\.
 
 When using the `ecs-cli compose service create` command, using the `--tags` flag allows you to add metadata tags to the task definition and service\. The tags are added to the service and task definition when the resources are created\. The tags are propogated from your task definition to tasks created by the service\. Amazon ECS managed tags are enabled by default if you have opted in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats unless you specifically disable them using the `--disable-ecs-managed-tags` flag\. For more information, see [Tagging Your Resources for Billing](ecs-using-tags.md#tag-resources-for-billing)\.

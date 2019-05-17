@@ -8,12 +8,12 @@ Download the Amazon ECS CLI binary\.
 + For macOS:
 
   ```
-  sudo curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-darwin-amd64-latest
+  sudo curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest
   ```
 + For Linux systems:
 
   ```
-  sudo curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest
+  sudo curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
   ```
 + For Windows systems:
 
@@ -21,7 +21,7 @@ Download the Amazon ECS CLI binary\.
 
   ```
   PS C:\> New-Item ‘C:\Program Files\Amazon\ECSCLI’ -type directory
-  PS C:\> Invoke-WebRequest -OutFile ‘C:\Program Files\Amazon\ECSCLI\ecs-cli.exe’ https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-windows-amd64-latest.exe
+  PS C:\> Invoke-WebRequest -OutFile ‘C:\Program Files\Amazon\ECSCLI\ecs-cli.exe’ https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe
   ```
 **Note**  
 If you encounter permissions issues, ensure that you are running PowerShell as an administrator\.
@@ -36,12 +36,12 @@ Verify the downloaded binary with the MD5 sum provided\.
 + For macOS \(compare the two output strings to verify that they match\):
 
   ```
-  curl -s https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-darwin-amd64-latest.md5 && md5 -q /usr/local/bin/ecs-cli
+  curl -s https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest.md5 && md5 -q /usr/local/bin/ecs-cli
   ```
 + For Linux systems \(look for an `OK` in the output string\):
 
   ```
-  echo "$(curl -s https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest.md5) /usr/local/bin/ecs-cli" | md5sum -c -
+  echo "$(curl -s https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.md5) /usr/local/bin/ecs-cli" | md5sum -c -
   ```
 + For Windows systems:
 
@@ -54,7 +54,7 @@ Verify the downloaded binary with the MD5 sum provided\.
   Compare that with this md5 hash:
 
   ```
-  PS C:\> Invoke-WebRequest -OutFile md5.txt https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-windows-amd64-latest.md5
+  PS C:\> Invoke-WebRequest -OutFile md5.txt https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.md5
   PS C:\> Get-Content md5.txt
   ```
 
@@ -235,17 +235,17 @@ The Amazon ECS CLI executables are cryptographically signed using PGP signatures
    + For macOS systems:
 
      ```
-     curl -o ecs-cli.asc https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-darwin-amd64-latest.asc
+     curl -o ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest.asc
      ```
    + For Linux systems:
 
      ```
-     curl -o ecs-cli.asc https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest.asc
+     curl -o ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.asc
      ```
    + For Windows systems:
 
      ```
-     PS C:\> Invoke-WebRequest -OutFile ecs-cli.asc https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-windows-amd64-latest.exe.asc
+     PS C:\> Invoke-WebRequest -OutFile ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe.asc
      ```
 
 1. Verify the signature\.

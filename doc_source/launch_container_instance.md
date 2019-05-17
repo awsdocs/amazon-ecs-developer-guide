@@ -18,7 +18,7 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 **Note**  
 For more information about Amazon ECS\-specific CoreOS installation instructions, see [Running CoreOS Container Linux with AWS EC2 Container Service](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
-      To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs\-hvm\-2\.0** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20190402\-x86\_64\-ebs** AMI\. 
+      To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs\-hvm\-2\.0** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20190510\-x86\_64\-ebs** AMI\. 
 
       The following table lists the current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by Region\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
@@ -70,6 +70,8 @@ For more information about this configuration, see [Storing Container Instance C
         aws s3 cp s3://your_bucket_name/ecs.config /etc/ecs/ecs.config
         ```
       + Specify tags for your container instance using the `ECS_CONTAINER_INSTANCE_TAGS` configuration parameter\. This creates tags that are associated with Amazon ECS only, they cannot be listed using the Amazon EC2 API\.
+**Important**  
+If you launch your container instances using an Amazon EC2 Auto Scaling group, then you should use the ECS\_CONTAINER\_INSTANCE\_TAGS agent configuration parameter to add tags\. This is due to the way in which tags are added to Amazon EC2 instances that are launched using Auto Scaling groups\.
 
         ```
         #!/bin/bash

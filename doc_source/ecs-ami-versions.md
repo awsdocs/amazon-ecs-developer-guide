@@ -9,6 +9,8 @@ The Amazon ECS\-optimized AMI metadata, including the AMI ID, for each variant c
 + [Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI Versions](#al2-arm64-ami-agent-versions)
 + [Amazon ECS GPU\-optimized AMI Versions](#al2-gpu-ami-agent-versions)
 + [Amazon ECS\-optimized Amazon Linux AMI Versions](#al1-ami-agent-versions)
++ [Amazon ECS\-optimized Windows 2019 AMI Versions](#windows-2019-ami-agent-versions)
++ [Amazon ECS\-optimized Windows 2016 AMI Versions](#windows-2016-ami-agent-versions)
 
 ## Amazon ECS\-Optimized Amazon Linux 2 AMI Versions<a name="al2ami-agent-versions"></a>
 
@@ -147,3 +149,21 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 | 2015\.03\.c | 1\.2\.0  | 1\.6\.2 | 1\.2\.0\-1 | 
 | 2015\.03\.b | 1\.1\.0 | 1\.6\.0 | 1\.0\-3 | 
 | 2015\.03\.a | 1\.0\.0 | 1\.5\.0 | 1\.0\-1 | 
+
+## Amazon ECS\-optimized Windows 2019 AMI Versions<a name="windows-2019-ami-agent-versions"></a>
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized Windows 2019 AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
+
+
+| Amazon ECS\-optimized Windows 2019 AMI | Amazon ECS container agent version | Docker version | 
+| --- | --- | --- | 
+| 2019\.05\.10 | 1\.27\.0 | 18\.09\.4 | 
+
+## Amazon ECS\-optimized Windows 2016 AMI Versions<a name="windows-2016-ami-agent-versions"></a>
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized Windows 2016 AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
+
+
+| Amazon ECS\-optimized Windows 2016 AMI | Amazon ECS container agent version | Docker version | 
+| --- | --- | --- | 
+| 2019\.03\.07 | 1\.26\.0 | 18\.03\.1\-ee\-7 | 

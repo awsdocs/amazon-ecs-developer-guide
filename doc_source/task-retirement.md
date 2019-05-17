@@ -8,7 +8,7 @@ When a task reaches its scheduled retirement date, it is stopped or terminated b
 
 ## Identifying Tasks Scheduled for Retirement<a name="task-retirement-identify"></a>
 
-If your task is scheduled for retirement, you receive an email before the event with the task ID and retirement date\. This email is sent to the address that's associated with your account, the same email address that you use to log in to the AWS Management Console\. If you use an email account that you do not check regularly, then you can use the [AWS Personal Health Dashboard](https://aws.amazon.com/premiumsupport/phd/) to determine if any of your tasks are scheduled for retirement\. To update the contact information for your account, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.
+If your task is scheduled for retirement, you receive an email before the event with the task ID and retirement date\. This email is sent to the address that's associated with your account, the same email address that you use to log in to the AWS Management Console\. If you use an email account that you do not check regularly, then you can use the [AWS Personal Health Dashboard](http://aws.amazon.com/premiumsupport/phd/) to determine if any of your tasks are scheduled for retirement\. To update the contact information for your account, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.
 
 ## Working with Tasks Scheduled for Retirement<a name="task-retirement-working"></a>
 

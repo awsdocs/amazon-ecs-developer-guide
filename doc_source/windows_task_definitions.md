@@ -4,7 +4,7 @@ Windows containers and container instances cannot support all the task definitio
 
 ## Windows Task Definition Parameters<a name="windows_task_definition_params"></a>
 
-The following matrix explains which parameters are not supported or behave differently on Windows containers than they do with Linux containers\. For more information about these parameters as they relate to Amazon ECS, see [Task Definition Parameters](task_definition_parameters.md)\.
+The following list explains which parameters are not supported or behave differently on Windows containers than they do with Linux containers\. For more information about these parameters as they relate to Amazon ECS, see [Task Definition Parameters](task_definition_parameters.md)\.
 
 `taskRoleArn`  
 Supported: Yes  
@@ -53,6 +53,8 @@ Supported: No
 Supported: Yes    
 `name`  
 Supported: Yes  
+`dockerVolumeConfiguration`  
+Supported: No  
 `host`  
 Supported: Limited  
 Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\. For example, you can mount `C:\my\path:C:\my\path` and `D:\:D:\`, but not `D:\my\path:C:\my\path` or `D:\:C:\my\path`\.
@@ -64,6 +66,15 @@ Task\-level CPU is ignored for Windows containers\. We recommend specifying cont
 `memory`  
 Supported: No  
 Task\-level memory is ignored for Windows containers\. We recommend specifying container\-level memory for Windows containers\.
+
+`proxyConfiguration`  
+Supported: No
+
+`ipcMode`  
+Supported: No
+
+`pidMode`  
+Supported: No
 
 ## Windows Sample Task Definitions<a name="windows_sample_task_defs"></a>
 

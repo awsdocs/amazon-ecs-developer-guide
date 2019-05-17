@@ -6,7 +6,7 @@ Amazon ECS lets you launch and stop container\-based applications with simple AP
 
 You can use Amazon ECS to schedule the placement of containers across your cluster based on your resource needs, isolation policies, and availability requirements\. Amazon ECS eliminates the need for you to operate your own cluster management and configuration management systems or worry about scaling your management infrastructure\.
 
-Amazon ECS can be used to create a consistent deployment and build experience, manage, and scale batch and Extract\-Transform\-Load \(ETL\) workloads, and build sophisticated application architectures on a microservices model\. For more information about Amazon ECS use cases and scenarios, see [Container Use Cases](https://aws.amazon.com/containers/)\.
+Amazon ECS can be used to create a consistent deployment and build experience, manage, and scale batch and Extract\-Transform\-Load \(ETL\) workloads, and build sophisticated application architectures on a microservices model\. For more information about Amazon ECS use cases and scenarios, see [Container Use Cases](http://aws.amazon.com/containers/)\.
 
 AWS Elastic Beanstalk can also be used to rapidly develop, test, and deploy Docker containers in conjunction with other components of your application infrastructure; however, using Amazon ECS directly provides more fine\-grained control and access to a wider set of use cases\. For more information, see the [AWS Elastic Beanstalk Developer Guide](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/)\.
 

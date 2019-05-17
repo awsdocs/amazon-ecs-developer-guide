@@ -40,16 +40,22 @@ The following task definition parameters are not valid in Fargate tasks:
 + `dnsServers`
 + `dockerSecurityOptions`
 + `extraHosts`
++ `gpu`
++ `ipcMode`
 + `links`
-+ `host` and `sourcePath`
-+ `linuxParameters`
++ `pidMode`
 + `placementConstraints`
 + `privileged`
++ `systemControls`
+
+The following task definition parameters are valid in Fargate tasks, but have limitations that should be noted:
++ `linuxParameters` – When specifying Linux\-specific options that are applied to the container, for `capabilities` the `add` parameter is not supported\. The `devices`, `sharedMemorySize`, and `tmpfs` parameters are not supported\. For more information, see [Linux Parameters](task_definition_parameters.md#container_definition_linuxparameters)\.
++ `volumes` – Fargate tasks only support bind mount host volumes, so the `dockerVolumeConfiguration` parameter is not supported\. For more information, see [Volumes](task_definition_parameters.md#volumes)\.
 
 To ensure that your task definition validates for use with the Fargate launch type, you can specify the following when you register the task definition: 
 + In the AWS Management Console, for the **Requires Compatibilities** field, specify `FARGATE`\.
 + In the AWS CLI, specify the `--requires-compatibilities` option\.
-+ In the Amazon ECS API, specify the `requiresCompatibilities` flag\. 
++ In the Amazon ECS API, specify the `requiresCompatibilities` flag\.
 
 ### Network Mode<a name="fargate-tasks-networkmode"></a>
 
@@ -72,7 +78,9 @@ Fargate task definitions require that you specify CPU and memory at the task lev
 
 ### Logging<a name="fargate-tasks-logging"></a>
 
-Fargate task definitions only support the `awslogs` log driver for the log configuration\. This configures your Fargate tasks to send log information to Amazon CloudWatch Logs\. The following shows a snippet of a task definition where the awslogs log driver is configured:
+Fargate task definitions only support the `awslogs` and `splunk` log drivers for the log configuration\. 
+
+The `awslogs` log driver configures your Fargate tasks to send log information to Amazon CloudWatch Logs\. The following shows a snippet of a task definition where the awslogs log driver is configured:
 
 ```
 "logConfiguration": { 
@@ -84,7 +92,9 @@ Fargate task definitions only support the `awslogs` log driver for the log confi
 }
 ```
 
-For more information about using the `awslogs` log driver in task definitions to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.
+For more information about using the `awslogs` log driver in a task definition to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.
+
+For more information about using the `splunk` log driver in a task definition, see [Example: `splunk` Log Driver](example_task_definitions.md#example_task_definition-splunk)\.
 
 ### Amazon ECS Task Execution IAM Role<a name="fargate-tasks-iam"></a>
 

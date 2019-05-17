@@ -2,7 +2,7 @@
 
 When Amazon ECS resources are created, we assign each resource a unique Amazon Resource Name \(ARN\) and resource identifier \(ID\)\. If you are using a command line tool or the Amazon ECS API to work with Amazon ECS, resource ARNs or IDs are required for certain commands\. For example, if you are using the [stop\-task](https://docs.aws.amazon.com/cli/latest/reference/ecs/stop-task.html) AWS CLI command to stop a task, you must specify the task ARN or ID in the command\.
 
-We're gradually introducing a new ARN and resource ID format for Amazon ECS tasks, services and container instances\. The following sections describe how the formats are changing\. For more information on the transition to the new formats, see [Amazon Elastic Container Service FAQ](https://aws.amazon.com/ecs/faqs/)\.
+We're gradually introducing a new ARN and resource ID format for Amazon ECS tasks, services and container instances\. The following sections describe how the formats are changing\. For more information on the transition to the new formats, see [Amazon Elastic Container Service FAQ](http://aws.amazon.com/ecs/faqs/)\.
 
 **Amazon Resource Name \(ARN\) Format**  
 Some resources have a friendly name \(for example, a service named `production`\)\. However, sometimes you are required to specify a resource using the Amazon Resource Name \(ARN\) format\. We're gradually introducing a new ARN format for Amazon ECS tasks, services and container instances which includes the cluster name\. For details on how to opt in to the new ARN format, see [Working with Account Settings](#ecs-resource-ids-working-with)\.

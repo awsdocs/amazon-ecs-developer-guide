@@ -128,7 +128,9 @@ Amazon ECS allows you to add or delete tags associated with your clusters, servi
 ### Adding Tags to a Container Instance<a name="instance-details-tags"></a>
 
 You can associate tags with your container instances using one of the following methods:
-+ Method 1 – When creating your container instance, specify tags by passing user data to the instance using the container agent configuration parameter `ECS_CONTAINER_INSTANCE_TAGS`\. This creates tags that are associated with Amazon ECS only, they cannot be listed using the Amazon EC2 API\. For more information, see [Bootstrapping Container Instances with Amazon EC2 User Data](bootstrap_container_instance.md)\.
++ Method 1 – When creating your container instance using the Amazon EC2 API, CLI, or console, specify tags by passing user data to the instance using the container agent configuration parameter `ECS_CONTAINER_INSTANCE_TAGS`\. This creates tags that are associated with the container instance in Amazon ECS only, they cannot be listed using the Amazon EC2 API\. For more information, see [Bootstrapping Container Instances with Amazon EC2 User Data](bootstrap_container_instance.md)\.
+**Important**  
+If you launch your container instances using an Amazon EC2 Auto Scaling group, then you should use the ECS\_CONTAINER\_INSTANCE\_TAGS agent configuration parameter to add tags\. This is due to the way in which tags are added to Amazon EC2 instances that are launched using Auto Scaling groups\.
 
   The following is an example of a user data script that would associate tags with your container instance:
 
@@ -139,9 +141,9 @@ You can associate tags with your container instances using one of the following 
   ECS_CONTAINER_INSTANCE_TAGS={"tag_key": "tag_value"}
   EOF
   ```
-+ Method 2 – When creating your container instance, specify tags using `TagSpecification.N` and then pass user data to the instance using the container agent configuration parameter `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM` which will propagate them from Amazon EC2 to Amazon ECS
++ Method 2 – When creating your container instance using the Amazon EC2 API, CLI, or console, specify tags using the `TagSpecification.N` parameter and then pass user data to the instance using the container agent configuration parameter `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM` which will propagate them from Amazon EC2 to Amazon ECS
 
-  The following is an example of a user data script that would propagate the tags associated with a container instance, as well as register the container instance with a cluster named `MyCluster`:
+  The following is an example of a user data script that would propagate the tags associated with an Amazon EC2 instance, as well as register the instance with a cluster named `MyCluster`:
 
   ```
   #!/bin/bash

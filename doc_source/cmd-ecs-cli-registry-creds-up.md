@@ -73,7 +73,7 @@ Required: No
 
 ## Tagging Resources<a name="cmd-ecs-cli-registry-creds-up-tags"></a>
 
-The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [AWS Tagging Strategies](https://aws.amazon.com/answers/account-management/aws-tagging-strategies)\.
+The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [AWS Tagging Strategies](http://aws.amazon.com/answers/account-management/aws-tagging-strategies)\.
 
 When using the `ecs-cli registry-creds up` command, using the `--tags` flag enables you to add metadata tags to the Secrets Manager secrets and then IAM roles\.
 

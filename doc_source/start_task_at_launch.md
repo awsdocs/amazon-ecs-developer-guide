@@ -28,9 +28,9 @@ The Amazon EC2 user data script in the following procedure uses the Amazon ECS i
 
    1. On the **Review policy** page, enter a name for your policy, such as `ecs-start-task` and choose **Create policy**\.
 
-1. Launch one or more container instances by following the procedure in [Launching an Amazon ECS Container Instance](launch_container_instance.md), but in [Step 7](launch_container_instance.md#instance-launch-user-data-step)\. Then, copy and paste the MIME multi\-part user data script below into the **User data** field\. Substitute *your\_cluster\_name* with the cluster for the container instance to register into and *my\_task\_def* with the task definition to run on the instance at launch\.
+1. Launch one or more container instances using the Amazon ECS\-optimized Amazon Linux 2 AMI by following the procedure in [Launching an Amazon ECS Container Instance](launch_container_instance.md), but in [Step 7](launch_container_instance.md#instance-launch-user-data-step) copy and paste the MIME multi\-part user data script below into the **User data** field\. Substitute *your\_cluster\_name* with the cluster for the container instance to register into and *my\_task\_def* with the task definition to run on the instance at launch\.
 **Note**  
-The MIME multi\-part content below uses a shell script to set configuration values and install packages\. It also uses an Upstart job to start the task after the ecs service is running and the introspection API is available\.
+The MIME multi\-part content below uses a shell script to set configuration values and install packages\. It also uses a systemd job to start the task after the ecs service is running and the introspection API is available\.
 
    ```
    Content-Type: multipart/mixed; boundary="==BOUNDARY=="
@@ -50,23 +50,17 @@ The MIME multi\-part content below uses a shell script to set configuration valu
    # Install the AWS CLI and the jq JSON parser
    yum install -y aws-cli jq
    
-   --==BOUNDARY==
-   Content-Type: text/upstart-job; charset="us-ascii"
-   
-   #upstart-job
-   description "Amazon EC2 Container Service (start task on instance boot)"
-   author "Amazon Web Services"
-   start on started ecs
-   
-   script
+   START_TASK_SCRIPT_FILE="/etc/ecs/ecs-start-task.sh"
+   cat <<- 'EOF' > ${START_TASK_SCRIPT_FILE}
    	exec 2>>/var/log/ecs/ecs-start-task.log
    	set -x
+   	# Wait for the ECS service to be responsive
    	until curl -s http://localhost:51678/v1/metadata
    	do
    		sleep 1
    	done
    
-   	# Grab the container instance ARN and AWS region from instance metadata
+   	# Grab the container instance ARN and AWS Region from instance metadata
    	instance_arn=$(curl -s http://localhost:51678/v1/metadata | jq -r '. | .ContainerInstanceArn' | awk -F/ '{print $NF}' )
    	cluster=$(curl -s http://localhost:51678/v1/metadata | jq -r '. | .Cluster' | awk -F/ '{print $NF}' )
    	region=$(curl -s http://localhost:51678/v1/metadata | jq -r '. | .ContainerInstanceArn' | awk -F: '{print $4}')
@@ -76,7 +70,27 @@ The MIME multi\-part content below uses a shell script to set configuration valu
    
    	# Run the AWS CLI start-task command to start your task on this container instance
    	aws ecs start-task --cluster $cluster --task-definition $task_definition --container-instances $instance_arn --started-by $instance_arn --region $region
-   end script
+   EOF
+   
+   # Write systemd unit file
+   UNIT="ecs-start-task.service"
+   cat <<- EOF > /etc/systemd/system/${UNIT}
+   	[Unit]
+   	Description=ECS Start Task
+   	Requires=ecs.service
+   	After=ecs.service
+   
+   	[Service]
+   	Restart=always
+   	ExecStart=/usr/bin/bash ${START_TASK_SCRIPT_FILE}
+   
+   	[Install]
+   	WantedBy=default.target
+   EOF
+   
+   # Enable our ecs.service dependent service with `--no-block` to prevent systemd deadlock
+   # See https://github.com/aws/amazon-ecs-agent/issues/1707
+   systemctl enable --now --no-block "${UNIT}"
    --==BOUNDARY==--
    ```
 
