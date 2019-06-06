@@ -1,9 +1,11 @@
 # Amazon ECS Task Execution IAM Role<a name="task_execution_IAM_role"></a>
 
-The Amazon ECS container agent makes calls to the Amazon ECS API on your behalf, so it requires an IAM policy and role for the service to know that the agent belongs to you\. The following are the use cases for when the task execution IAM role is needed:
+The Amazon ECS container agent makes calls to the Amazon ECS API on your behalf, so it requires an IAM policy and role for the service to know that the agent belongs to you\. This IAM role is referred to as a task execution IAM role\. You can have multiple task execution roles for different purposes associated with your account\.
+
+The following are common use cases for a task execution IAM role:
 + Your task uses the Fargate launch type and\.\.\.
   + is pulling a container image from Amazon ECR\.
-  + uses the awslogs log driver\.
+  + uses the `awslogs` log driver\.
 + Your tasks uses either the Fargate or EC2 launch type and\.\.\.
   + is using private registry authentication\. For more information, see [Required IAM Permissions for Private Registry Authentication](#task-execution-private-auth)\.
   + the task definition is referencing sensitive data using Secrets Manager secrets or AWS Systems Manager Parameter Store parameters\. For more information, see [Required IAM Permissions for Amazon ECS Secrets](#task-execution-secrets)\.
@@ -11,7 +13,7 @@ The Amazon ECS container agent makes calls to the Amazon ECS API on your behalf,
 **Note**  
 The task execution role is supported by Amazon ECS container agent version 1\.16\.0 and later\.
 
-The `AmazonECSTaskExecutionRolePolicy` policy is shown below\.
+Amazon ECS provides the following managed `AmazonECSTaskExecutionRolePolicy` policy which contains the permissions the common use cases described above require\.
 
 ```
 {
@@ -33,7 +35,7 @@ The `AmazonECSTaskExecutionRolePolicy` policy is shown below\.
 }
 ```
 
-The Amazon ECS task execution role is automatically created for you in the Amazon ECS console first\-run experience; however, you should manually attach the managed IAM policy for tasks to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS task execution role and to attach the managed IAM policy if needed\.<a name="procedure_check_execution_role"></a>
+An Amazon ECS task execution role is automatically created for you in the Amazon ECS console first\-run experience; however, you should manually attach the managed IAM policy for tasks to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS task execution role and to attach the managed IAM policy if needed\.<a name="procedure_check_execution_role"></a>
 
 **To check for the `ecsTaskExecutionRole` in the IAM console**
 
@@ -143,5 +145,50 @@ The following example inline policy adds the required permissions:
       ]
     }
   ]
+}
+```
+
+## Optional IAM Permissions for Fargate Tasks Pulling Amazon ECR Images over Interface Endpoints<a name="task-execution-ecr-conditionkeys"></a>
+
+When launching tasks that use the Fargate launch type that pull images from Amazon ECR when Amazon ECR is configured to use an interface VPC endpoint, you can restrict the tasks access to a specific VPC or VPC endpoint\. Do this by creating a task execution role for the tasks to use that use IAM condition keys\.
+
+Use the following IAM global condition keys to restrict access to a specific VPC or VPC endpoint\. For more information, see [AWS Global Condition Context Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html)\.
++ `aws:SourceVpc`—Restricts access to a specific VPC\.
++ `aws:SourceVpce`—Restricts access to a specific VPC endpoint\.
+
+The following task execution role policy provides an example for adding condition keys:
+
+**Important**  
+The `ecr:GetAuthorizationToken` API action cannot have the `aws:sourceVpc` or `aws:sourceVpce` condition keys applied to it because the GetAuthorizationToken API call goes through the elastic network interface owned by AWS Fargate rather than the elastic network interface of the task\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetAuthorizationToken",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:sourceVpce": "vpce-xxxxxx",
+                    "aws:sourceVpc": "vpc-xxxxx"
+                }
+            }
+        }
+    ]
 }
 ```

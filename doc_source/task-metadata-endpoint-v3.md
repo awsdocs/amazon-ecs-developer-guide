@@ -4,12 +4,12 @@ Beginning with version 1\.21\.0 of the Amazon ECS container agent, the agent inj
 
 ## Enabling Task Metadata<a name="task-metadata-endpoint-v3-enable"></a>
 
-The task metadata endpoint version 3 feature is enabled by default for tasks using the EC2 launch type and are launched on Amazon EC2 infrastructure running at least version 1\.21\.0 of the Amazon ECS container agent\. For more information, see [Amazon ECS Container Agent Versions](container_agent_versions.md)\.
+The task metadata endpoint version 3 feature is enabled by default for tasks that use the Fargate launch type on platform version v1\.3\.0 or later and tasks that use the EC2 launch type and are launched on Amazon EC2 infrastructure running at least version 1\.21\.0 of the Amazon ECS container agent\. For more information, see [Amazon ECS Container Agent Versions](container_agent_versions.md)\.
 
 You can add support for this feature on older container instances by updating the agent to the latest version\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
 **Important**  
-For tasks using the Fargate launch type, the task metadata version 2 endpoint is supported\. For more information, see [Task Metadata Endpoint version 2](task-metadata-endpoint-v2.md)\.
+For tasks using the Fargate launch type and platform versions prior to v1\.3\.0, the task metadata version 2 endpoint is supported\. For more information, see [Task Metadata Endpoint version 2](task-metadata-endpoint-v2.md)\.
 
 ## Task Metadata Endpoint version 3 Paths<a name="task-metadata-endpoint-v3-paths"></a>
 

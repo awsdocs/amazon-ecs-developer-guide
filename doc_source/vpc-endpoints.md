@@ -4,16 +4,14 @@ You can improve the security posture of your VPC by configuring Amazon ECS to us
 
 You're not required to configure PrivateLink, but we recommend it\. For more information about PrivateLink and VPC endpoints, see [Accessing Services Through AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-privatelink)\.
 
-**Topics**
-+ [Considerations for Amazon ECS VPC Endpoints](#ecs-vpc-endpoint-considerations)
-+ [Creating the VPC Endpoints for Amazon ECS](#ecs-setting-up-vpc-create)
-
 ## Considerations for Amazon ECS VPC Endpoints<a name="ecs-vpc-endpoint-considerations"></a>
 
 Before you set up interface VPC endpoints for Amazon ECS, be aware of the following considerations:
 + Tasks using the Fargate launch type don't require the interface VPC endpoints for Amazon ECS, but you might need interface VPC endpoints for Amazon ECR or Amazon CloudWatch Logs described in the following points\.
-+ To allow your tasks to pull private images from Amazon ECR, you must create the interface VPC endpoints for Amazon ECR\. For more information, see [Interface VPC Endpoints \(AWS PrivateLink\)](https://docs.aws.amazon.com/AmazonECR/latest/userguide/vpc-endpoints.html) in the *Amazon Elastic Container Registry User Guide*\.
-+ If your VPC doesn't have an internet gateway and your tasks use the `awslogs` log driver to send log information to CloudWatch Logs, you must create an interface VPC endpoint for CloudWatch Logs\. For more information, see [Using CloudWatch Logs with Interface VPC Endpoints](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html) in the *Amazon CloudWatch Logs User Guide*\.
+  + To allow your tasks to pull private images from Amazon ECR, you must create the interface VPC endpoints for Amazon ECR\. For more information, see [Interface VPC Endpoints \(AWS PrivateLink\)](https://docs.aws.amazon.com/AmazonECR/latest/userguide/vpc-endpoints.html) in the *Amazon Elastic Container Registry User Guide*\.
+**Important**  
+If you configure Amazon ECR to use an interface VPC endpoint, you can create a task execution role that includes condition keys to restrict access to a specific VPC or VPC endpoint\. For more information, see [Optional IAM Permissions for Fargate Tasks Pulling Amazon ECR Images over Interface Endpoints](task_execution_IAM_role.md#task-execution-ecr-conditionkeys)\.
+  + If your VPC doesn't have an internet gateway and your tasks use the `awslogs` log driver to send log information to CloudWatch Logs, you must create an interface VPC endpoint for CloudWatch Logs\. For more information, see [Using CloudWatch Logs with Interface VPC Endpoints](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html) in the *Amazon CloudWatch Logs User Guide*\.
 + Tasks using the EC2 launch type require that the container instances that they're launched on to run at least version `1.25.1` of the Amazon ECS container agent\. For more information, see [Amazon ECS Container Agent Versions](container_agent_versions.md)\.
 + VPC endpoints currently don't support cross\-Region requests\. Ensure that you create your endpoint in the same Region where you plan to issue your API calls to Amazon ECS\.
 + VPC endpoints only support Amazon\-provided DNS through Amazon Route 53\. If you want to use your own DNS, you can use conditional DNS forwarding\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.

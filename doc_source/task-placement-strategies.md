@@ -13,7 +13,7 @@ Place tasks based on the least available amount of CPU or memory\. This minimize
 Place tasks randomly\.
 
 `spread`  
-Place tasks evenly based on the specified value\. Accepted values are attribute key\-value pairs, `instanceId`, or `host`\. Service tasks are spread based on the tasks from that service\.
+Place tasks evenly based on the specified value\. Accepted values are attribute key\-value pairs, `instanceId`, or `host`\. Service tasks are spread based on the tasks from that service\. Standalone tasks are spread based on the tasks from the same task group\.
 
 ## Example Strategies<a name="strategy-examples"></a>
 

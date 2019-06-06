@@ -58,7 +58,7 @@ A service definition defines which task definition to use with your service, how
     "healthCheckGracePeriodSeconds": 0,
     "schedulingStrategy": "REPLICA",
     "deploymentController": {
-        "type": "ECS"
+        "type": "CODE_DEPLOY"
     },
     "tags": [
         {
@@ -67,7 +67,7 @@ A service definition defines which task definition to use with your service, how
         }
     ],
     "enableECSManagedTags": true,
-    "propagateTags": "TASK_DEFINITION"
+    "propagateTags": "SERVICE"
 }
 ```
 
@@ -141,7 +141,10 @@ If your service is using the `DAEMON` service scheduler type, the `maximumPercen
 The maximum number of tasks during a deployment is the `desiredCount` multiplied by the `maximumPercent`/100, rounded down to the nearest integer value\.  
 If a service is using either the blue/green \(`CODE_DEPLOY`\) or `EXTERNAL` deployment types and tasks that use the EC2 launch type, the **maximum percent** value is set to the default value and is used to define the upper limit on the number of the tasks in the service that remain in the `RUNNING` state while the container instances are in the `DRAINING` state\. If the tasks in the service use the Fargate launch type, the maximum percent value is not used, although it is returned when describing your service\.  
 `minimumHealthyPercent`  <a name="minimumHealthyPercent"></a>
-If a service is using the rolling update \(`ECS`\) deployment type, the `minimumHealthyPercent` represents a lower limit on the number of your service's tasks that must remain in the `RUNNING` state during a deployment, as a percentage of the `desiredCount` \(rounded up to the nearest integer\)\. This parameter enables you to deploy without using additional cluster capacity\. For example, if your service has a `desiredCount` of four tasks and a `minimumHealthyPercent` of 50%, the service scheduler may stop two existing tasks to free up cluster capacity before starting two new tasks\. Tasks for services that *do not* use a load balancer are considered healthy if they are in the `RUNNING` state\. Tasks for services that *do* use a load balancer are considered healthy if they are in the `RUNNING` state and the container instance on which the load balancer is hosted is reported as healthy\. The default value for a replica service for `minimumHealthyPercent` is 50% in the AWS Management Console and 100% for the AWS CLI, the AWS SDKs, and the APIs\. The default `minimumHealthyPercent` value for a service using the `DAEMON` service schedule is 0% for the AWS CLI, the AWS SDKs, and the APIs and 50% for the AWS Management Console\.  
+If a service is using the rolling update \(`ECS`\) deployment type, the `minimumHealthyPercent` represents a lower limit on the number of your service's tasks that must remain in the `RUNNING` state during a deployment, as a percentage of the `desiredCount` \(rounded up to the nearest integer\)\. This parameter enables you to deploy without using additional cluster capacity\. For example, if your service has a `desiredCount` of four tasks and a `minimumHealthyPercent` of 50%, the service scheduler may stop two existing tasks to free up cluster capacity before starting two new tasks\.   
+Tasks for services that *do not* use a load balancer are considered healthy if they are in the `RUNNING` state\.   
+Tasks for services that *do* use a load balancer are considered healthy if they are in the `RUNNING` state, have passed all defined health checks and are reported as healthy on the load balancer or target group\.   
+The default value for a replica service for `minimumHealthyPercent` is 50% in the AWS Management Console and 100% for the AWS CLI, the AWS SDKs, and the APIs\. The default `minimumHealthyPercent` value for a service using the `DAEMON` service schedule is 0% for the AWS CLI, the AWS SDKs, and the APIs and 50% for the AWS Management Console\.  
 The minimum number of healthy tasks during a deployment is the `desiredCount` multiplied by the `minimumHealthyPercent`/100, rounded up to the nearest integer value\.  
 If a service is using either the blue/green \(`CODE_DEPLOY`\) or `EXTERNAL` deployment types and tasks that use the EC2 launch type, the **minimum healthy percent** value is set to the default value and is used to define the lower limit on the number of the tasks in the service that remain in the `RUNNING` state while the container instances are in the `DRAINING` state\. If the tasks in the service use the Fargate launch type, the minimum healthy percent value is not used, although it is returned when describing your service\.
 

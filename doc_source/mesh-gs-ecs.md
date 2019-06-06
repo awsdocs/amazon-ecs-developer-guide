@@ -263,9 +263,15 @@ The following code block shows an Envoy container definition example\.
     }
 ```
 
-### Example Task Definition<a name="mesh-gs-ecs-task-def"></a>
+### Credentials<a name="credentials"></a>
 
-The following example Amazon ECS task definition shows in context the snippets that you can merge with your existing task groups\. Substitute your mesh name and virtual node name for the `APPMESH_VIRTUAL_NODE_NAME` value and a list of ports that your application listens on for the proxy configuration `AppPorts` value\.
+The Envoy container requires AWS Identity and Access Management credentials for signing requests that are sent to the App Mesh service\. For Amazon ECS tasks deployed with the Amazon EC2 launch type, the credentials can come from the [instance IAM role](instance_IAM_role.md) or from a [task IAM role](task-iam-roles.md)\. Amazon ECS tasks deployed with the Fargate launch type do not have access to the Amazon EC2 metadata server that supplies instance IAM profile credentials\. To supply the credentials, you must attach an IAM task role to any tasks deployed with the Fargate launch type\. The role doesn't need to have a policy attached to it, but for a task to work properly with App Mesh, the role must be attached to each task deployed with the Fargate launch type\. If a task is deployed with the Amazon EC2 launch type and access is blocked to the Amazon EC2 metadata server, as described in the *Important* annotation in [IAM Roles for Tasks](task-iam-roles.md), then a task IAM role must also be attached to the task\. 
+
+### Example Task Definitions<a name="mesh-gs-ecs-task-def"></a>
+
+The following example Amazon ECS task definitions show, in context, the snippets that you can merge with your existing task groups\. Substitute your mesh name and virtual node name for the `APPMESH_VIRTUAL_NODE_NAME` value and a list of ports that your application listens on for the proxy configuration `AppPorts` value\.
+
+If you're running an Amazon ECS task as described in [Credentials](#credentials), you need an existing [task IAM role](task-iam-roles.md)\. You should also add this line of code to the example task definitions that follow: `"taskRoleArn": "arn:aws:iam::123456789012:role/ecsTaskRole"` 
 
 **Example JSON for Amazon ECS task definition**  
 
@@ -339,6 +345,104 @@ The following example Amazon ECS task definition shows in context the snippets t
         "retries": 3
       },
       "user": "1337"
+    }
+  ],
+  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc"
+}
+```
+
+**Example JSON for Amazon ECS task definition with AWS X\-Ray**  
+X\-Ray allows you to collect data about requests that an application serves and provides tools that you can use to visualize traffic flow\. Using the X\-Ray driver for Envoy enables Envoy to report tracing information to X\-Ray\. You can enable X\-Ray tracing using the [Envoy configuration](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html)\. Based on the configuration, Envoy sends tracing data to the X\-Ray daemon running as a [sidecar](https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon-ecs.html) container and the daemon forwards the traces to the X\-Ray service\. Once the traces are published to X\-Ray, you can use the X\-Ray console to visualize the service call graph and request trace details\. The following JSON represents a task definition to enable X\-Ray integration\.  
+
+```
+{
+  "family": "appmesh-gateway",
+  "memory": "256",
+  "proxyConfiguration": {
+    "type": "APPMESH",
+    "containerName": "envoy",
+    "properties": [
+      {
+        "name": "IgnoredUID",
+        "value": "1337"
+      },
+      {
+        "name": "ProxyIngressPort",
+        "value": "15000"
+      },
+      {
+        "name": "ProxyEgressPort",
+        "value": "15001"
+      },
+      {
+        "name": "AppPorts",
+        "value": "9080"
+      },
+      {
+        "name": "EgressIgnoredIPs",
+        "value": "169.254.170.2,169.254.169.254"
+      }
+    ]
+  },
+  "containerDefinitions": [
+    {
+      "name": "app",
+      "image": "application_image",
+      "portMappings": [
+        {
+          "containerPort": 9080,
+          "hostPort": 9080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "dependsOn": [
+        {
+          "containerName": "envoy",
+          "condition": "HEALTHY"
+        }
+      ]
+    },
+    {
+      "name": "envoy",
+      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.1.0-prod",
+      "essential": true,
+      "environment": [
+        {
+          "name": "APPMESH_VIRTUAL_NODE_NAME",
+          "value": "mesh/meshName/virtualNode/virtualNodeName"
+        },
+        {
+         "name": "ENABLE_ENVOY_XRAY_TRACING",
+         "value": "1"
+        }
+      ],
+      "healthCheck": {
+        "command": [
+          "CMD-SHELL",
+          "curl -s http://localhost:9901/server_info | grep state | grep -q LIVE"
+        ],
+        "startPeriod": 10,
+        "interval": 5,
+        "timeout": 2,
+        "retries": 3
+      },
+      "user": "1337"
+    },
+    {
+      "name": "xray-daemon",
+      "image": "amazon/aws-xray-daemon",
+      "user": "1337",
+      "essential": true,
+      "cpu": 32,
+      "memoryReservation": 256,
+      "portMappings": [
+        {
+          "containerPort": 2000,
+          "protocol": "udp"
+        }
+      ]
     }
   ],
   "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",

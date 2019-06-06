@@ -56,27 +56,27 @@ The following table lists the current Amazon ECS\-optimized Amazon Linux AMI IDs
 
 | Region | AMI Name | AMI ID | EC2 Console Link | 
 | --- | --- | --- | --- | 
-| us\-east\-2 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-06a8ae0ecd30e804c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-2#LaunchInstanceWizard:ami=ami-06a8ae0ecd30e804c) | 
-| us\-east\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-0750ab1027b6314c7 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0750ab1027b6314c7) | 
-| us\-west\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-03fe84be94ca9cc17 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-03fe84be94ca9cc17) | 
-| us\-west\-2 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-043c4e6bff652b99e | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-043c4e6bff652b99e) | 
-| ap\-east\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-0d772c70a2d689e8b | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-east-1#LaunchInstanceWizard:ami=ami-0d772c70a2d689e8b) | 
-| ap\-northeast\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-062ef2a2561c9364a | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-062ef2a2561c9364a) | 
-| ap\-northeast\-2 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-0005600074f3aa4be | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-2#LaunchInstanceWizard:ami=ami-0005600074f3aa4be) | 
-| ap\-south\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-0a80c5ae873c08c64 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-south-1#LaunchInstanceWizard:ami=ami-0a80c5ae873c08c64) | 
-| ap\-southeast\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-0b78efd7fafc3f93a | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-0b78efd7fafc3f93a) | 
-| ap\-southeast\-2 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-0c5058003c511da15 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-0c5058003c511da15) | 
-| ca\-central\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-0005ff694f167b58a | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ca-central-1#LaunchInstanceWizard:ami=ami-0005ff694f167b58a) | 
-| cn\-north\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-0005ce40ccef58b98 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-north-1#LaunchInstanceWizard:ami=ami-0005ce40ccef58b98) | 
-| cn\-northwest\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-0066a513748afa1e0 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-northwest-1#LaunchInstanceWizard:ami=ami-0066a513748afa1e0) | 
-| eu\-central\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-06a20f16dd2f50741 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-06a20f16dd2f50741) | 
-| eu\-north\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-087de2c1b54c6bd93 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-north-1#LaunchInstanceWizard:ami=ami-087de2c1b54c6bd93) | 
-| eu\-west\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-09b156894255325fe | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-09b156894255325fe) | 
-| eu\-west\-2 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-03ca259ae4cb86837 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-2#LaunchInstanceWizard:ami=ami-03ca259ae4cb86837) | 
-| eu\-west\-3 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-055c29a7d5fc2d4a8 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-3#LaunchInstanceWizard:ami=ami-055c29a7d5fc2d4a8) | 
-| sa\-east\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-0d83f147ba8afa3cf | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-0d83f147ba8afa3cf) | 
-| us\-gov\-east\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-0b93f4db7ff03a1b1 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-east-1#LaunchInstanceWizard:ami=ami-0b93f4db7ff03a1b1) | 
-| us\-gov\-west\-1 | amzn\-ami\-2018\.03\.q\-amazon\-ecs\-optimized | ami\-e97a0688 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-e97a0688) | 
+| us\-east\-2 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0ff3b201db8718817 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-2#LaunchInstanceWizard:ami=ami-0ff3b201db8718817) | 
+| us\-east\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-081477ad0bee1101b | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-081477ad0bee1101b) | 
+| us\-west\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0d0c7c92665367ada | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-1#LaunchInstanceWizard:ami=ami-0d0c7c92665367ada) | 
+| us\-west\-2 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0f1e071f7210c9fef | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-0f1e071f7210c9fef) | 
+| ap\-east\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-01d16974f94e9fb7d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-east-1#LaunchInstanceWizard:ami=ami-01d16974f94e9fb7d) | 
+| ap\-northeast\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0267b4c44b04cac22 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-0267b4c44b04cac22) | 
+| ap\-northeast\-2 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-08c9b73959f79470b | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-2#LaunchInstanceWizard:ami=ami-08c9b73959f79470b) | 
+| ap\-south\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-08e11f14a85a5cc04 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-south-1#LaunchInstanceWizard:ami=ami-08e11f14a85a5cc04) | 
+| ap\-southeast\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0e824b06f84f8707d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-0e824b06f84f8707d) | 
+| ap\-southeast\-2 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-09beedd47899d6734 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-09beedd47899d6734) | 
+| ca\-central\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0ff40b496ddea60b9 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ca-central-1#LaunchInstanceWizard:ami=ami-0ff40b496ddea60b9) | 
+| cn\-north\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-00bff873c7c4d24a7 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-north-1#LaunchInstanceWizard:ami=ami-00bff873c7c4d24a7) | 
+| cn\-northwest\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0528a17d406522fb9 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-northwest-1#LaunchInstanceWizard:ami=ami-0528a17d406522fb9) | 
+| eu\-central\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0cb576474c127a755 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-0cb576474c127a755) | 
+| eu\-north\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0eef92b5452f95e82 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-north-1#LaunchInstanceWizard:ami=ami-0eef92b5452f95e82) | 
+| eu\-west\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-03c692d50c3f91f02 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-03c692d50c3f91f02) | 
+| eu\-west\-2 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0e1efa8625b557401 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-2#LaunchInstanceWizard:ami=ami-0e1efa8625b557401) | 
+| eu\-west\-3 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-03d45a3e4cd32e19c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-3#LaunchInstanceWizard:ami=ami-03d45a3e4cd32e19c) | 
+| sa\-east\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0f7d0d3d1090e86ba | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-0f7d0d3d1090e86ba) | 
+| us\-gov\-east\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-0f53d0f011a34f4cf | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-east-1#LaunchInstanceWizard:ami=ami-0f53d0f011a34f4cf) | 
+| us\-gov\-west\-1 | amzn\-ami\-2018\.03\.s\-amazon\-ecs\-optimized | ami\-60cab301 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-60cab301) | 
 
 ## Step 3: List Container Instances<a name="AWSCLI_EC2_list_container_instances"></a>
 
@@ -225,7 +225,7 @@ You can also find the Amazon EC2 instance ID that you can use to monitor the ins
 
 ## Step 5: Register a Task Definition<a name="AWSCLI_EC2_register_task_definition"></a>
 
-Before you can run a task on your ECS cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses a `busybox` image from Docker Hub and simply sleeps for 360 seconds\. For more information about the available task definition parameters, 
+Before you can run a task on your ECS cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses a `busybox` image from Docker Hub and simply sleeps for 360 seconds\. For more information about the available task definition parameters, see [Amazon ECS Task Definitions](task_definitions.md)\.
 
 ```
 {

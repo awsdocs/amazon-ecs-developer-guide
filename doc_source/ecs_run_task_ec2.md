@@ -33,15 +33,15 @@ Only private subnets are supported for the `awsvpc` network mode\. Because tasks
 
     For more information, see [Amazon ECS Task Placement](task-placement.md)\.
 
-1. \(Optional\) To send command or environment variable overrides to one or more containers in your task definition, or to specify an IAM role task override, choose **Advanced Options** and complete the following steps:
+1. \(Optional\) To send command, environment variable, task IAM role, or task execution role overrides to one or more containers in your task definition, choose **Advanced Options** and complete the following steps:
+**Note**  
+If you will be using the parameter values from your task definition there is no need to specify overrides\. These fields are only used to override the values specified in the task definition\.
 
-   1. For **Task Role Override**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
+   1. For **Task Role Override**, choose an IAM role for this task to override the task IAM role specified in the task definition\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
-      Only roles with the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
+      Only roles with the `ecs-tasks.amazonaws.com` trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
-   1. For **Task Execution Role Override**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
-
-      Only roles with the **Amazon EC2 Container Service Task Execution Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
+   1. For **Task Execution Role Override**, choose a task execution role to override the task execution role specified in the task definition\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
    1. For **Container Overrides**, choose a container to which to send a command or environment variable override\.
       + **For a command override:** For **Command override**, type the command override to send\. If your container definition does not specify an `ENTRYPOINT`, the format should be a comma\-separated list of non\-quoted strings\. For example:

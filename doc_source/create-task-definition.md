@@ -138,7 +138,7 @@ An empty task definition template is shown below\. You can use this template to 
     "family": "",
     "taskRoleArn": "",
     "executionRoleArn": "",
-    "networkMode": "none",
+    "networkMode": "host",
     "containerDefinitions": [
         {
             "name": "",
@@ -156,7 +156,7 @@ An empty task definition template is shown below\. You can use this template to 
                 {
                     "containerPort": 0,
                     "hostPort": 0,
-                    "protocol": "tcp"
+                    "protocol": "udp"
                 }
             ],
             "essential": true,
@@ -199,7 +199,7 @@ An empty task definition template is shown below\. You can use this template to 
                         "hostPath": "",
                         "containerPath": "",
                         "permissions": [
-                            "mknod"
+                            "write"
                         ]
                     }
                 ],
@@ -224,7 +224,7 @@ An empty task definition template is shown below\. You can use this template to 
             "dependsOn": [
                 {
                     "containerName": "",
-                    "condition": "SUCCESS"
+                    "condition": "START"
                 }
             ],
             "startTimeout": 0,
@@ -257,16 +257,22 @@ An empty task definition template is shown below\. You can use this template to 
             },
             "ulimits": [
                 {
-                    "name": "rss",
+                    "name": "rttime",
                     "softLimit": 0,
                     "hardLimit": 0
                 }
             ],
             "logConfiguration": {
-                "logDriver": "syslog",
+                "logDriver": "gelf",
                 "options": {
                     "KeyName": ""
-                }
+                },
+                "secretOptions": [
+                    {
+                        "name": "",
+                        "valueFrom": ""
+                    }
+                ]
             },
             "healthCheck": {
                 "command": [
@@ -327,8 +333,8 @@ An empty task definition template is shown below\. You can use this template to 
             "value": ""
         }
     ],
-    "pidMode": "host",
-    "ipcMode": "host",
+    "pidMode": "task",
+    "ipcMode": "none",
     "proxyConfiguration": {
         "type": "APPMESH",
         "containerName": "",

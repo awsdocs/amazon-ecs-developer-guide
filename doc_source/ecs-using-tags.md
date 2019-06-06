@@ -3,7 +3,7 @@
 To help you manage your Amazon ECS tasks, services, task definitions, clusters, and container instances, you can optionally assign your own metadata to each resource in the form of *tags*\. This topic describes tags and shows you how to create them\.
 
 **Important**  
-To use this feature, it requires that you opt\-in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-resource-ids.md)\.
+To use this feature, it requires that you opt\-in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\.
 
 **Topics**
 + [Tag Basics](#tag-basics)
@@ -59,7 +59,7 @@ The following basic restrictions apply to tags:
 + Maximum value length – 256 Unicode characters in UTF\-8
 + If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters\. Generally allowed characters are: letters, numbers, and spaces representable in UTF\-8, and the following characters: \+ \- = \. \_ : / @\.
 + Tag keys and values are case\-sensitive\.
-+ Don't use the `aws:` (or `AWS:` or any upper/lower case combination) prefix for either keys or values; it's reserved for AWS use\. You can't edit or delete tag keys or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\.
++ Don't use `aws:`, `AWS:`, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use\. You can't edit or delete tag keys or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\.
 
 ## Tagging Your Resources for Billing<a name="tag-resources-for-billing"></a>
 
@@ -68,7 +68,7 @@ When enabling Amazon ECS managed tags, Amazon ECS will automatically tag all new
 To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in the *AWS Billing and Cost Management User Guide*\.
 
 **Important**  
-To use this feature, it requires that you opt\-in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-resource-ids.md)\.
+To use this feature, it requires that you opt\-in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\.
 
 **Note**  
 If you've just enabled reporting, data for the current month is available for viewing after 24 hours\.

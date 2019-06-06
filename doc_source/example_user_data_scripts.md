@@ -21,15 +21,15 @@ MIME-Version: 1.0
 --==BOUNDARY==
 Content-Type: text/cloud-boothook; charset="us-ascii"
 
-# Install nfs-utils
+# Install amazon-efs-utils
 cloud-init-per once yum_update yum update -y
-cloud-init-per once install_nfs_utils yum install -y nfs-utils
+cloud-init-per once install_amazon-efs-utils yum install -y amazon-efs-utils
 
-# Create /efs folder
-cloud-init-per once mkdir_efs mkdir /efs
+# Create /mnt/efs folder
+cloud-init-per once mkdir_efs mkdir /mnt/efs
 
-# Mount /efs
-cloud-init-per once mount_efs echo -e 'fs-abcd1234.efs.us-east-1.amazonaws.com:/ /efs nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 0 0' >> /etc/fstab
+# Mount /mnt/efs
+cloud-init-per once mount_efs echo -e 'fs-12345678:/ /mnt/efs efs defaults,_netdev 0 0' >> /etc/fstab
 mount -a
 
 --==BOUNDARY==

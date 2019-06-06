@@ -1,8 +1,10 @@
 # Scheduled Tasks \(`cron`\)<a name="scheduled_tasks"></a>
 
-You can run Amazon ECS tasks on a `cron`\-like schedule using CloudWatch Events rules and targets\.
+Amazon ECS supports the ability to schedule tasks on either a `cron`\-like schedule or in a response to CloudWatch Events\. This is supported for Amazon ECS tasks using both the Fargate and EC2 launch types\.
 
 If you have tasks to run at set intervals in your cluster, such as a backup operation or a log scan, you can use the Amazon ECS console to create a CloudWatch Events rule that runs one or more tasks in your cluster at the specified times\. Your scheduled event rule can be set to either a specific interval \(run every *N* minutes, hours, or days\), or for more complicated scheduling, you can use a `cron` expression\. For more information, see [Schedule Expressions for Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) in the *Amazon CloudWatch Events User Guide*\.
+
+You can also now set your Fargate tasks as a task target in CloudWatch Events, allowing you to launch tasks in response to changes that happen\. Additionally, you can modify the network configuration when using the `awsvpc` network mode via the CloudWatch Events console and AWS CLI, giving Fargate tasks triggered by CloudWatch Events the same networking properties as Amazon EC2 instances\. For more information, see [Tutorial: Run an Amazon ECS Task When a File is Uploaded to an Amazon S3 Bucket](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatch-Events-tutorial-ECS.html) in the *Amazon CloudWatch Events User Guide*\.
 
 **Note**  
 This feature is not yet available for Fargate tasks in the following Regions:  

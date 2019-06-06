@@ -1,20 +1,8 @@
 # Task Definition Parameters<a name="task_definition_parameters"></a>
 
-Task definitions are split into separate parts: the task family, the IAM task role, the network mode, container definitions, volumes, task placement constraints, and launch types\. The family is the name of the task, and each family can have multiple revisions\. The IAM task role specifies the permissions that containers in the task should have\. The network mode determines how the networking is configured for your containers\. Container definitions specify which image to use, how much CPU and memory the container are allocated, and many more options\. Volumes allow you to share data between containers and even persist the data on the container instance when the containers are no longer running\. The task placement constraints customize how your tasks are placed within the infrastructure\. The launch type determines which infrastructure your tasks use\. 
+Task definitions are split into separate parts: the task family, the IAM task role, the network mode, container definitions, volumes, task placement constraints, and launch types\. The family and container definitions are required in a task definition, while task role, network mode, volumes, task placement constraints, and launch type are optional\.
 
-The family and container definitions are required in a task definition, while task role, network mode, volumes, task placement constraints, and launch type are optional\.
-
-**Topics**
-+ [Family](#family)
-+ [Task Role](#task_role_arn)
-+ [Task Execution Role](#execution_role_arn)
-+ [Network Mode](#network_mode)
-+ [Container Definitions](#container_definitions)
-+ [Volumes](#volumes)
-+ [Task Placement Constraints](#constraints)
-+ [Launch Types](#requires_compatibilities)
-+ [Task Size](#task_size)
-+ [Other Task Definition Parameters](#other_task_definition_params)
+The following are more detailed descriptions for each task definition parameter\.
 
 ## Family<a name="family"></a>
 
@@ -65,10 +53,20 @@ When you register a task definition, you must specify a list of container defini
 
 The following task definition parameters are either required or used in most container definitions\.
 
+**Topics**
++ [Name](#container_definition_name)
++ [Image](#container_definition_image)
++ [Memory](#container_definition_memory)
++ [Port Mappings](#container_definition_portmappings)
+
+#### Name<a name="container_definition_name"></a>
+
 `name`  
 Type: string  
 Required: yes  
 The name of a container\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. If you are linking multiple containers together in a task definition, the `name` of one container can be entered in the `links` of another container to connect the containers\.
+
+#### Image<a name="container_definition_image"></a>
 
 `image`  
 Type: string  
@@ -81,11 +79,13 @@ The image used to start a container\. This string is passed directly to the Dock
 + Images in other repositories on Docker Hub are qualified with an organization name \(for example, `amazon/amazon-ecs-agent`\)\.
 + Images in other online repositories are qualified further by a domain name \(for example, `quay.io/assemblyline/ubuntu`\)\.
 
+#### Memory<a name="container_definition_memory"></a>
+
 `memory`  
 Type: integer  
 Required: no  
-The hard limit \(in MiB\) of memory to present to the container\. If your container attempts to exceed the memory specified here, the container is killed\. This parameter maps to `Memory` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--memory` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-If your containers are part of a task using the Fargate launch type, this field is optional and the only requirement is that the total amount of memory reserved for all containers within a task be lower than the task `memory` value\.  
+The amount \(in MiB\) of memory to present to the container\. If your container attempts to exceed the memory specified here, the container is killed\. The total amount of memory reserved for all containers within a task must be lower than the task `memory` value, if one is specified\. This parameter maps to `Memory` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--memory` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+If your containers are part of a task using the Fargate launch type, this field is optional\.  
 For containers that are part of a task using the EC2 launch type, you must specify a non\-zero integer for one or both of `memory` or `memoryReservation` in container definitions\. If you specify both, `memory` must be greater than `memoryReservation`\. If you specify `memoryReservation`, then that value is subtracted from the available memory resources for the container instance on which the container is placed; otherwise, the value of `memory` is used\.  
 The Docker daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.  
 If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.
@@ -97,6 +97,8 @@ The soft limit \(in MiB\) of memory to reserve for the container\. When system m
 You must specify a non\-zero integer for one or both of `memory` or `memoryReservation` in container definitions\. If you specify both, `memory` must be greater than `memoryReservation`\. If you specify `memoryReservation`, then that value is subtracted from the available memory resources for the container instance on which the container is placed; otherwise, the value of `memory` is used\.  
 For example, if your container normally uses 128 MiB of memory, but occasionally bursts to 256 MiB of memory for short periods of time, you can set a `memoryReservation` of 128 MiB, and a `memory` hard limit of 300 MiB\. This configuration would allow the container to only reserve 128 MiB of memory from the remaining resources on the container instance, but also allow the container to consume more memory resources when needed\.  
 The Docker daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.
+
+#### Port Mappings<a name="container_definition_portmappings"></a>
 
 `portMappings`  
 Type: object array  
@@ -115,6 +117,7 @@ Required: yes, when `portMappings` are used
 The port number on the container that is bound to the user\-specified or automatically assigned host port\.  
 If using containers in a task with the Fargate launch type, exposed ports should be specified using `containerPort`\.  
 If using containers in a task with the EC2 launch type and you specify a container port and not a host port, your container automatically receives a host port in the ephemeral port range\. For more information, see `hostPort`\. Port mappings that are automatically assigned in this way do not count toward the 100 reserved ports limit of a container instance\.  
+You cannot expose the same container port for multiple protocols\. An error will be returned if this is attempted\.  
 `hostPort`  
 Type: integer  
 Required: no  
@@ -796,8 +799,7 @@ The scope for the Docker volume, which determines its lifecycle\. Docker volumes
 Type: Boolean  
 Default value: `false`  
 Required: No  
-If this value is `true`, the Docker volume is created if it does not already exist\.  
-This field is only used if the `scope` is `shared`\.  
+If this value is `true`, the Docker volume is created if it does not already exist\. This field is only used if the `scope` is `shared`\. If the `scope` is `task` then this parameter must either be omitted or set to `false`\.  
 `driver`  
 Type: String  
 Required: No  
@@ -867,8 +869,8 @@ The following parameter is allowed in a task definition:
 Type: string  
 Required: no  
 This parameter is not supported for Windows containers\.
-The number of CPU units used by the task\. It can be expressed as an integer using CPU units, for example `1024`, or as a string using vCPUs, for example `1 vCPU` or `1 vcpu`, in a task definition\. When the task definition is registered, a vCPU value is converted to an integer indicating the CPU units\.  
-If using the EC2 launch type, this field is optional\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
+The hard limit of CPU units to present for the task\. It can be expressed as an integer using CPU units, for example `1024`, or as a string using vCPUs, for example `1 vCPU` or `1 vcpu`, in a task definition\. When the task definition is registered, a vCPU value is converted to an integer indicating the CPU units\.  
+If using the EC2 launch type, this field is optional\. If your cluster does not have any registered container instances with the requested CPU units available, the task will fail\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
 If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 
@@ -876,8 +878,8 @@ If using the Fargate launch type, this field is required and you must use one of
 Type: string  
 Required: no  
 This parameter is not supported for Windows containers\.
-The amount of memory \(in MiB\) used by the task\. It can be expressed as an integer using MiB, for example `1024`, or as a string using GB, for example `1GB` or `1 GB`, in a task definition\. When the task definition is registered, a GB value is converted to an integer indicating the MiB\.  
-If using the EC2 launch type, this field is optional\.  
+The hard limit of memory \(in MiB\) to present to the task\. It can be expressed as an integer using MiB, for example `1024`, or as a string using GB, for example `1GB` or `1 GB`, in a task definition\. When the task definition is registered, a GB value is converted to an integer indicating the MiB\.  
+If using the EC2 launch type, this field is optional\. If your cluster does not have any registered container instances with the requested memory available, the task will fail\. If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.  
 If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 

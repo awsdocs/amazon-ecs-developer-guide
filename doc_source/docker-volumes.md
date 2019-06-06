@@ -1,14 +1,31 @@
 # Docker Volumes<a name="docker-volumes"></a>
 
-When using Docker volumes, the built\-in `local` driver or a third\-party volume driver can be used\. If a third\-party driver is used, it should be installed on the container instance before the task is launched\. Docker volumes are managed by Docker and a directory is created in `/var/lib/docker/volumes` on the container instance that contains the volume data\. 
+When using Docker volumes, the built\-in `local` driver or a third\-party volume driver can be used\. Docker volumes are managed by Docker and a directory is created in `/var/lib/docker/volumes` on the container instance that contains the volume data\.
 
-Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use Docker volumes, specify a `dockerVolumeConfiguration` in your task definition\. For more information, see [Using Volumes](https://docs.docker.com/storage/volumes/)\.
+To use Docker volumes, specify a `dockerVolumeConfiguration` in your task definition\. For more information, see [Using Volumes](https://docs.docker.com/storage/volumes/)\.
 
 Some common use cases for Docker volumes are:
 + To provide persistent data volumes for use with containers
 + To share a defined data volume at different locations on different containers on the same container instance
 + To define an empty, nonpersistent data volume and mount it on multiple containers within the same task
 + To provide a data volume to your task that is managed by a third\-party driver
+
+## Docker Volume Considerations<a name="docker-volume-considerations"></a>
+
+The following should be considered when using Docker volumes:
++ Docker volumes are only supported when using the EC2 launch type\.
++ Windows containers only support the use of the `local` driver\.
++ If a third\-party driver is used, it should be installed and active on the container instance prior to the container agent starting\. If the third\-party driver is not active prior to the agent starting, you can restart the container agent using one of the following commands:
+  + For the Amazon ECS\-optimized Amazon Linux 2 AMI:
+
+    ```
+    sudo systemctl restart ecs
+    ```
+  + For the Amazon ECS\-optimized Amazon Linux AMI:
+
+    ```
+    sudo stop ecs && sudo start ecs
+    ```
 
 ## Specifying a Docker Volume in your Task Definition<a name="specify-volume-config"></a>
 
@@ -66,8 +83,7 @@ The scope for the Docker volume, which determines its lifecycle\. Docker volumes
 Type: Boolean  
 Default value: `false`  
 Required: No  
-If this value is `true`, the Docker volume is created if it does not already exist\.  
-This field is only used if the `scope` is `shared`\.  
+If this value is `true`, the Docker volume is created if it does not already exist\. This field is only used if the `scope` is `shared`\. If the `scope` is `task` then this parameter must either be omitted or set to `false`\.  
 `driver`  
 Type: String  
 Required: No  
@@ -108,7 +124,7 @@ The following are examples showing the use of Docker volumes\.
 
 In this example, you want a container to use an empty data volume that you aren't interested in keeping after the task has finished\. For example, you may have a container that needs to access some scratch file storage location during a task\. This task can be achieved using a Docker volume\.
 
-1. In the task definition `volumes` section, define a data volume with `name` and `DockerVolumeConfiguration` values\. In this example, we specify the scope as `task` so the volume is deleted after the task stops, set autoprovision to `true` so that the volume is created for use, and use the built\-in `local` driver\.
+1. In the task definition `volumes` section, define a data volume with `name` and `DockerVolumeConfiguration` values\. In this example, we specify the scope as `task` so the volume is deleted after the task stops and use the built\-in `local` driver\.
 
    ```
    "volumes": [
@@ -116,7 +132,6 @@ In this example, you want a container to use an empty data volume that you aren'
            "name": "scratch",
            "dockerVolumeConfiguration" : {
                "scope": "task",
-               "autoprovision": true,
                "driver": "local",
                "labels": {
                    "scratch": "space"

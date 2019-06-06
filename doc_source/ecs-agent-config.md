@@ -85,7 +85,8 @@ The level to log at on `stdout`\.
 Example values: `/ecs-agent.log`  
 Default value on Linux: Null  
 Default value on Windows: Null  
-The path to output full debugging information to\. If blank, no logs are recorded\. If this value is set, it logs at the debug level \(regardless of `ECS_LOGLEVEL`\) are written to that file\.
+The path the variable specifies is within the container\. If you're running the agent via `ecs-init`, which is the default method when using the Amazon ECS\-optimized AMI, the in\-container path will be `/log` and `ecs-init` mounts that out to `/var/log/ecs/` on the host\.  
+The logging level is controlled by `ECS_LOGLEVEL`\. If blank, no logs are recorded\. If this value is set, it logs at the debug level \(regardless of `ECS_LOGLEVEL`\) are written to that file\.
 
 `ECS_CHECKPOINT`  
 Example values: `true` \| `false`  

@@ -128,7 +128,7 @@ You can use IAM commands from the AWS Command Line Interface to create a service
 Use the following command:
 
 ```
-$ aws iam [create\-service\-linked\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-service-linked-role.html) --aws-service-name ecs.amazonaws.com
+$ aws iam create-service-linked-role --aws-service-name ecs.amazonaws.com
 ```
 
 ## Editing a Service\-Linked Role for Amazon ECS<a name="edit-service-linked-role"></a>
@@ -173,7 +173,7 @@ You can use the IAM console to delete a service\-linked role\.
 
 1. In the navigation pane of the IAM console, choose **Roles**\. Then select the check box next to AWSServiceRoleForECS, not the name or row itself\. 
 
-1. For **Role actions** at the top of the page, choose **Delete role**\.
+1. Choose **Delete role**\.
 
 1. In the confirmation dialog box, review the service last accessed data, which shows when each of the selected roles last accessed an AWS service\. This helps you to confirm whether the role is currently active\. If you want to proceed, choose **Yes, Delete** to submit the service\-linked role for deletion\.
 
@@ -190,16 +190,16 @@ You can use IAM commands from the AWS Command Line Interface to delete a service
 
 **To delete a service\-linked role \(CLI\)**
 
-1. Because a service\-linked role cannot be deleted if it is being used or has associated resources, you must submit a deletion request\. That request can be denied if these conditions are not met\. You must capture the `deletion-task-id` from the response to check the status of the deletion task\. Type the following command to submit a service\-linked role deletion request:
+1. Because a service\-linked role cannot be deleted if it is being used or has associated resources, you must submit a deletion request\. That request can be denied if these conditions are not met\. You must capture the `deletion-task-id` from the response to check the status of the deletion task\. Enter the following command to submit a service\-linked role deletion request:
 
    ```
-   $ aws iam [delete\-service\-linked\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/delete-service-linked-role.html) --role-name AWSServiceRoleForECS+OPTIONAL-SUFFIX
+   $ aws iam delete-service-linked-role --role-name AWSServiceRoleForECS+OPTIONAL-SUFFIX
    ```
 
-1. Type the following command to check the status of the deletion task:
+1. Use the following command to check the status of the deletion task:
 
    ```
-   $ aws iam [get\-service\-linked\-role\-deletion\-status](https://docs.aws.amazon.com/cli/latest/reference/iam/get-service-linked-role-deletion-status.html) --deletion-task-id deletion-task-id
+   $ aws iam get-service-linked-role-deletion-status --deletion-task-id deletion-task-id
    ```
 
    The status of the deletion task can be `NOT_STARTED`, `IN_PROGRESS`, `SUCCEEDED`, or `FAILED`\. If the deletion fails, the call returns the reason that it failed so that you can troubleshoot\. If the deletion fails because the role is using the service's resources, then the notification includes a list of resources, if the service returns that information\. You can then [clean up the resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#service-linked-role-review-before-delete) and submit the deletion again\.

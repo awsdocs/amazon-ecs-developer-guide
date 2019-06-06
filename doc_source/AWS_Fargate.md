@@ -170,7 +170,7 @@ The following shows a snippet of a task definition where two containers are shar
             }
          ],
          "name": "database1",
-      }
+      },
       { 
          "image": "my-repo/database",
          "mountPoints": [ 
@@ -203,13 +203,13 @@ If you are using public subnets, decide whether to provide a public IP address f
 The following is an example of the networkConfiguration section for a Fargate service:
 
 ```
-   "networkConfiguration": { 
-      "awsvpcConfiguration": { 
-         "assignPublicIp": "ENABLED",
-         "securityGroups": [ "sg-12345678" ],
-         "subnets": [ "subnet-12345678" ]
-      }
+"networkConfiguration": { 
+   "awsvpcConfiguration": { 
+      "assignPublicIp": "ENABLED",
+      "securityGroups": [ "sg-12345678" ],
+      "subnets": [ "subnet-12345678" ]
    }
+}
 ```
 
 Services with tasks that use the `awsvpc` network mode \(for example, those with the Fargate launch type\) only support Application Load Balancers and Network Load Balancers\. Classic Load Balancers are not supported\. Also, when you create any target groups for these services, you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
@@ -222,12 +222,12 @@ To use private registry authentication, you create a secret with AWS Secrets Man
 
 ```
 "containerDefinitions": [
-            {
-                "image": "private-repo/private-image",
-                "repositoryCredentials": {
-                    "credentialsParameter: "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name"
-                }
-            }
+   {
+      "image": "private-repo/private-image",
+      "repositoryCredentials": {
+         "credentialsParameter: "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name"
+      }
+   }
 ]
 ```
 

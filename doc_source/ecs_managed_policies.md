@@ -323,7 +323,6 @@ This managed policy allows Application Auto Scaling to scale your Amazon ECS ser
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "Stmt1456535218000",
             "Effect": "Allow",
             "Action": [
                 "ecs:DescribeServices",
@@ -334,10 +333,10 @@ This managed policy allows Application Auto Scaling to scale your Amazon ECS ser
             ]
         },
         {
-            "Sid": "Stmt1456535243000",
             "Effect": "Allow",
             "Action": [
-                "cloudwatch:DescribeAlarms"
+                "cloudwatch:DescribeAlarms",
+                "cloudwatch:PutMetricAlarm"
             ],
             "Resource": [
                 "*"

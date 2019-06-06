@@ -5,6 +5,5 @@ Amazon ECS resources, including task definitions, clusters, tasks, services, and
 The following topics describe resources and tags, and how you can work with them\.
 
 **Topics**
-+ [Amazon Resource Names \(ARNs\) and IDs](ecs-resource-ids.md)
 + [Tagging Your Amazon ECS Resources](ecs-using-tags.md)
 + [Amazon ECS Usage Reports](usage-reports.md)

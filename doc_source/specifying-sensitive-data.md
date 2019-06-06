@@ -6,20 +6,13 @@ Secrets can be exposed to a container in the following ways:
 + To inject sensitive data into your containers as environment variables, use the `secrets` container definition parameter\.
 + To reference sensitive information in the log configuration of a container, use the `secretOptions` container definition parameter\.
 
-For tasks that use the Fargate launch type, this feature requires that your task use platform version 1\.3\.0 or later\. For information, see [AWS Fargate Platform Versions](platform_versions.md)\.
+## Considerations for Specifying Sensitive Data<a name="secrets-considerations"></a>
 
-For tasks that use the EC2 launch type, this feature requires that your container instance have version 1\.22\.0 or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
-
-**Note**  
-This feature is not available in the GovCloud \(US\-East\) region\.
-
-**Topics**
-+ [Injecting Sensitive Data as an Environment Variable](#secrets-envvar)
-+ [Injecting Sensitive Data in a Log Configuration](#secrets-logconfig)
-+ [Required IAM Permissions for Amazon ECS Secrets](#secrets-iam)
-+ [Creating an AWS Secrets Manager Secret](#secrets-create-secret)
-+ [Creating an AWS Systems Manager Parameter Store Parameter](#secrets-create-parameter)
-+ [Creating a Task Definition that References a Secret](#secrets-create-taskdefinition)
+The following should be considered when specifying sensitive data for containers:
++ For tasks that use the Fargate launch type, this feature requires that your task use platform version 1\.3\.0 or later\. For information, see [AWS Fargate Platform Versions](platform_versions.md)\.
++ For tasks that use the EC2 launch type, this feature requires that your container instance have version 1\.22\.0 or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
++ Sensitive data is injected into your container when the container is initially started\. If the secret or Parameter Store parameter is subsequently updated or rotated, the container will not receive the updated value automatically\. You must either launch a new task or if your task is part of a service you can update the service and use the **Force new deployment** option to force the service to launch a fresh task\.
++ This feature is not available in the GovCloud \(US\-East\) region\.
 
 ## Injecting Sensitive Data as an Environment Variable<a name="secrets-envvar"></a>
 
@@ -32,12 +25,12 @@ The following is a snippet of a task definition showing the format when referenc
 
 ```
 {
-	"containerDefinitions": [{
-		"secrets": [{
-			"name": "environment_variable_name",
-			"valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name-AbCdEf"
-		}]
-	}]
+  "containerDefinitions": [{
+    "secrets": [{
+      "name": "environment_variable_name",
+      "valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name-AbCdEf"
+    }]
+  }]
 }
 ```
 
@@ -45,12 +38,12 @@ The following is a snippet of a task definition showing the format when referenc
 
 ```
 {
-	"containerDefinitions": [{
-		"secrets": [{
-			"name": "environment_variable_name",
-			"valueFrom": "arn:aws:ssm:region:aws_account_id:parameter/parameter_name"
-		}]
-	}]
+  "containerDefinitions": [{
+    "secrets": [{
+      "name": "environment_variable_name",
+      "valueFrom": "arn:aws:ssm:region:aws_account_id:parameter/parameter_name"
+    }]
+  }]
 }
 ```
 
@@ -65,18 +58,18 @@ The following is a snippet of a task definition showing the format when referenc
 
 ```
 {
-	"containerDefinitions": [{
-		"logConfiguration": [{
-			"logDriver": "splunk",
-			"options": {
-				"splunk-url": "https://cloud.splunk.com:8080"
-			},
-			"secretOptions": [{
-				"name": "splunk-token",
-				"valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name-AbCdEf"
-			}]
-		}]
-	}]
+  "containerDefinitions": [{
+    "logConfiguration": [{
+      "logDriver": "splunk",
+      "options": {
+        "splunk-url": "https://cloud.splunk.com:8080"
+      },
+      "secretOptions": [{
+        "name": "splunk-token",
+        "valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:secret_name-AbCdEf"
+      }]
+    }]
+  }]
 }
 ```
 
@@ -84,18 +77,18 @@ The following is a snippet of a task definition showing the format when referenc
 
 ```
 {
-	"containerDefinitions": [{
-		"logConfiguration": [{
-			"logDriver": "fluentd",
-			"options": {
-				"tag": "fluentd demo"
-			},
-			"secretOptions": [{
-				"name": "fluentd-address",
-				"valueFrom": "arn:aws:ssm:region:aws_account_id:parameter:parameter_name"
-			}]
-		}]
-	}]
+  "containerDefinitions": [{
+    "logConfiguration": [{
+      "logDriver": "fluentd",
+      "options": {
+        "tag": "fluentd demo"
+      },
+      "secretOptions": [{
+        "name": "fluentd-address",
+        "valueFrom": "arn:aws:ssm:region:aws_account_id:parameter:parameter_name"
+      }]
+    }]
+  }]
 }
 ```
 
@@ -174,8 +167,6 @@ You can use the AWS Systems Manager console to create a Systems Manager Paramete
 1. In the navigation pane, choose **Parameter Store**, **Create parameter**\.
 
 1. For **Name**, type a hierarchy and a parameter name\. For example, type `test/database_password`\.
-**Note**  
-If you are referencing an AWS Secrets Manager secret in your parameter, the parameter name must begin with the following reserved path: `/aws/reference/secretsmanager/`\. For more information, see [Referencing AWS Secrets Manager Secrets from Parameter Store Parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/integration-ps-secretsmanager.html) in the *AWS Systems Manager User Guide*\.
 
 1. For **Description**, type an optional description\.
 
@@ -235,7 +226,7 @@ If the **Task execution role** field does not appear, choose **Configure via JSO
 
       1. For **Key**, enter the name of the environment variable to set in the container\. This corresponds to the `name` field in the `secrets` section of a container definition\.
 
-      1. For **Value**, choose **ValueFrom**\. For **Add value**, enter the full ARN or the Secrets Manager secret or the name or full ARN of the AWS Systems Manager Parameter Store parameter that contains the data to present to your container as an environment variable\.
+      1. For **Value**, choose **ValueFrom**\. For **Add value**, enter the full ARN of the Secrets Manager secret or the name or full ARN of the AWS Systems Manager Parameter Store parameter that contains the data to present to your container as an environment variable\.
 **Note**  
 If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
 

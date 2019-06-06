@@ -50,7 +50,7 @@ In this section, you create a security group for your Amazon EFS file system tha
 
 1. Choose **Inbound**, **Add rule**\.
 
-1. For **Type**, choose **All traffic**\.
+1. For **Type**, choose **NFS**\.
 
 1. For **Source**, choose **Custom** and then enter the security group ID that you identified earlier for your cluster\.
 
@@ -68,17 +68,27 @@ Amazon EFS is not available in all regions\. For more information about which re
 
 1. Choose **Create file system**\.
 
-1. On the **Configure file system access** page, choose the VPC that your  container instances are hosted in and choose **Next Step**\. By default, each subnet in the specified VPC receives a mount target that uses the default security group for that VPC\.
+1. On the **Configure file system access** page, choose the VPC that your  container instances are hosted in\. By default, each subnet in the specified VPC receives a mount target that uses the default security group for that VPC\.
 **Note**  
 Your Amazon EFS file system and your container instances must be in the same VPC\.
 
-1. For **Security groups**, add the security group that you created in the previous section\. Choose **Next step**\.
+1. Under **Create mount targets**, for **Security groups**, add the security group that you created in the previous section\. Choose **Next step**\.
 
-1. \(Optional\) Add tags for your file system\. For example, you could specify a unique name for the file system by entering that name in the **Value** column next to the **Name** key\.
+1. Configure optional settings and then choose **Next step** to proceed\.
 
-1. Choose a performance mode for your file system and choose **Next Step**\.
+   1. \(Optional\) Add tags for your file system\. For example, you could specify a unique name for the file system by entering that name in the **Value** column next to the **Name** key\.
+
+   1. \(Optional\) Enable lifecycle management to save money on infrequently accessed storage\. For more information, see [EFS Lifecycle Management](https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html) in the *Amazon Elastic File System User Guide*\.
+
+   1. Choose a throughput mode for your file system\.
+**Note**  
+**Bursting** is the default, and it is recommended for most file systems\.
+
+   1. Choose a performance mode for your file system\.
 **Note**  
 **General Purpose** is the default, and it is recommended for most file systems\.
+
+   1. \(Optional\) Enable encryption\. Select the check box to enable encryption of your Amazon EFS file system at rest\.
 
 1. Review your file system options and choose **Create File System**\.
 
@@ -93,32 +103,16 @@ After you've created your Amazon EFS file system in the same VPC as your contain
 1. Create a mount point for your Amazon EFS file system\. For example, `/efs`\.
 
    ```
-   sudo mkdir /efs
+   sudo mkdir /mnt/efs
    ```
 
-1. Install NFS client software on your container instance\.
-   + For Amazon Linux, CentOS, and Red Hat Enterprise Linux:
+1. Install the `amazon-efs-utils` client software on your container instance\.
+   + For Amazon Linux:
 
      ```
-     sudo yum install -y nfs-utils
+     sudo yum install -y amazon-efs-utils
      ```
-   + For Ubuntu and Debian:
-
-     ```
-     sudo apt-get install -y nfs-common
-     ```
-
-1. Mount your file system with the following command\. Be sure to replace the file system ID and region with your own\.
-
-   ```
-   sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 fs-613c8628.efs.us-east-1.amazonaws.com:/ /efs
-   ```
-
-1. Validate that the file system is mounted correctly with the following command\. You should see a file system entry that matches your Amazon EFS file system\. If not, see [Troubleshooting Amazon EFS](https://docs.aws.amazon.com/efs/latest/ug/troubleshooting.html) in the *Amazon Elastic File System User Guide*\.
-
-   ```
-   mount | grep efs
-   ```
+   + For other Linux distributions, see [Installing the amazon\-efs\-utils Package on Other Linux Distributions](https://docs.aws.amazon.com/efs/latest/ug/using-amazon-efs-utils.html#installing-other-distro) in the *Amazon Elastic File System User Guide*\.
 
 1. Make a backup of the `/etc/fstab` file\.
 
@@ -129,7 +123,7 @@ After you've created your Amazon EFS file system in the same VPC as your contain
 1. Update the `/etc/fstab` file to automatically mount the file system at boot\.
 
    ```
-   echo 'fs-613c8628.efs.us-east-1.amazonaws.com:/ /efs nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 0 0' | sudo tee -a /etc/fstab
+   echo 'fs-12345678:/ /mnt/efs efs defaults,_netdev 0 0' | sudo tee -a /etc/fstab
    ```
 
 1. Reload the file system table to verify that your mounts are working properly\.
@@ -139,6 +133,12 @@ After you've created your Amazon EFS file system in the same VPC as your contain
    ```
 **Note**  
 If you receive an error while running the above command, examine your `/etc/fstab` file for problems\. If necessary, restore it with the backup that you created earlier\.
+
+1. Validate that the file system is mounted correctly with the following command\. You should see a file system entry that matches your Amazon EFS file system\. If not, see [Troubleshooting Amazon EFS](https://docs.aws.amazon.com/efs/latest/ug/troubleshooting.html) in the *Amazon Elastic File System User Guide*\.
+
+   ```
+   mount | grep efs
+   ```
 
 **Bootstrap an instance to use Amazon EFS with user data**
 
@@ -155,15 +155,15 @@ You can use an Amazon EC2 user data script to bootstrap an Amazon ECS–optimize
    --==BOUNDARY==
    Content-Type: text/cloud-boothook; charset="us-ascii"
    
-   # Install nfs-utils
+   # Install amazon-efs-utils
    cloud-init-per once yum_update yum update -y
-   cloud-init-per once install_nfs_utils yum install -y nfs-utils
+   cloud-init-per once install_amazon-efs-utils yum install -y amazon-efs-utils
    
-   # Create /efs folder
-   cloud-init-per once mkdir_efs mkdir /efs
+   # Create /mnt/efs folder
+   cloud-init-per once mkdir_efs mkdir /mnt/efs
    
-   # Mount /efs
-   cloud-init-per once mount_efs echo -e 'fs-abcd1234.efs.us-east-1.amazonaws.com:/ /efs nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 0 0' >> /etc/fstab
+   # Mount /mnt/efs
+   cloud-init-per once mount_efs echo -e 'fs-12345678:/ /mnt/efs efs defaults,_netdev 0 0' >> /etc/fstab
    mount -a
    
    --==BOUNDARY==

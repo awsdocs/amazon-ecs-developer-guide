@@ -1,6 +1,6 @@
 # Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI<a name="ecs-cli-tutorial-fargate"></a>
 
-This tutorial shows you how to set up a cluster and deploy a task using the Fargate launch type\. 
+This tutorial shows you how to set up a cluster and deploy a service with tasks using the Fargate launch type\. 
 
 ## Prerequisites<a name="ECS_CLI_tutorial_fargate_prereqs"></a>
 
@@ -36,13 +36,13 @@ Amazon ECS needs permissions so that your Fargate task can store logs in CloudWa
 1. Create the task execution role:
 
    ```
-   aws iam --region us-east-1 create-role --role-name ecsTaskExecutionRole --assume-role-policy-document file://task-execution-assume-role.json
+   aws iam --region us-west-2 create-role --role-name ecsTaskExecutionRole --assume-role-policy-document file://task-execution-assume-role.json
    ```
 
 1. Attach the task execution role policy:
 
    ```
-   aws iam --region us-east-1 attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+   aws iam --region us-west-2 attach-role-policy --role-name ecsTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
    ```
 
 ## Step 2: Configure the Amazon ECS CLI<a name="ECS_CLI_tutorial_fargate_configure"></a>
@@ -54,7 +54,7 @@ The Amazon ECS CLI requires credentials in order to make API requests on your be
 1. Create a cluster configuration, which defines the AWS region to use, resource creation prefixes, and the cluster name to use with the Amazon ECS CLI:
 
    ```
-   ecs-cli configure --cluster tutorial --region us-east-1 --default-launch-type FARGATE --config-name tutorial
+   ecs-cli configure --cluster tutorial --region us-west-2 --default-launch-type FARGATE --config-name tutorial
    ```
 
 1. Create a CLI profile using your access key and secret key:
@@ -91,23 +91,23 @@ This command may take a few minutes to complete as your resources are created\. 
 
 ## Step 4: Create a Compose File<a name="ECS_CLI_tutorial_fargate_compose_create"></a>
 
-For this step, create a simple Docker compose file that creates a WordPress application\. At this time, the Amazon ECS CLI supports [Docker compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1, 2, and 3\. This tutorial uses Docker compose v3\.
+For this step, create a simple Docker compose file that creates a simple PHP web application\. At this time, the Amazon ECS CLI supports [Docker compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1, 2, and 3\. This tutorial uses Docker compose v3\.
 
-Here is the compose file, which you can name `docker-compose.yml`\. The `wordpress` container exposes port 80 for inbound traffic to the web server\. It also configures container logs to go to the CloudWatch log group created earlier\. This is the recommended best practice for Fargate tasks\.
+Here is the compose file, which you can name `docker-compose.yml`\. The `web` container exposes port 80 for inbound traffic to the web server\. It also configures container logs to go to the CloudWatch log group created earlier\. This is the recommended best practice for Fargate tasks\.
 
 ```
 version: '3'
 services:
-  wordpress:
-    image: wordpress
+  web:
+    image: amazon/amazon-ecs-sample
     ports:
       - "80:80"
     logging:
       driver: awslogs
       options: 
         awslogs-group: tutorial
-        awslogs-region: us-east-1
-        awslogs-stream-prefix: wordpress
+        awslogs-region: us-west-2
+        awslogs-stream-prefix: web
 ```
 
 In addition to the Docker compose information, there are some parameters specific to Amazon ECS that you must specify for the service\. Using the VPC, subnet, and security group IDs from the previous step, create a file named `ecs-params.yml` with the following content:
@@ -150,20 +150,18 @@ ecs-cli compose --project-name tutorial service ps --cluster-config tutorial
 Output:
 
 ```
-WARN[0000] Skipping unsupported YAML option...           option name=networks
-WARN[0000] Skipping unsupported YAML option for service...  option name=networks service name=wordpress
-Name                                            State    Ports TaskDefinition
-a06a6642-12c5-4006-b1d1-033994580605/wordpress  RUNNING  54.146.193.73:80->80/tcp  tutorial:9
+Name                                           State    Ports                     TaskDefinition  Health
+tutorial/0c2862e6e39e4eff92ca3e4f843c5b9a/web  RUNNING  34.222.202.55:80->80/tcp  tutorial:1      UNKNOWN
 ```
 
-In the above example, you can see the `wordpress` container from your compose file, and also the IP address and port of the web server\. If you point your web browser at that address, you should see the WordPress installation wizard\. Also in the output is the `task-id` value for the container\. Copy the task ID as you use it in the next step\.
+In the above example, you can see the `web` container from your compose file, and also the IP address and port of the web server\. If you point your web browser at that address, you should see the PHP web application\. Also in the output is the `task-id` value for the container\. Copy the task ID as you use it in the next step\.
 
 ## Step 7: View the Container Logs<a name="ECS_CLI_tutorial_fargate_view_running"></a>
 
 View the logs for the task:
 
 ```
-ecs-cli logs --task-id a06a6642-12c5-4006-b1d1-033994580605 --follow --cluster-config tutorial
+ecs-cli logs --task-id 0c2862e6e39e4eff92ca3e4f843c5b9a --follow --cluster-config tutorial
 ```
 
 **Note**  
@@ -186,14 +184,18 @@ ecs-cli compose --project-name tutorial service ps --cluster-config tutorial
 Output:
 
 ```
-WARN[0000] Skipping unsupported YAML option...           option name=networks
-WARN[0000] Skipping unsupported YAML option for service...  option name=networks service name=wordpress
-Name                                            State    Ports        TaskDefinition
-880f09ed-613d-44bf-99bb-42ca44f82904/wordpress  RUNNING  34.224.60.24:80->80/tcp   tutorial:9
-a06a6642-12c5-4006-b1d1-033994580/wordpress  RUNNING  54.146.193.73:80->80/tcp  tutorial:9
+Name                                           State    Ports                      TaskDefinition  Health
+tutorial/0c2862e6e39e4eff92ca3e4f843c5b9a/web  RUNNING  34.222.202.55:80->80/tcp   tutorial:1      UNKNOWN
+tutorial/d9fbbc931d2e47ae928fcf433041648f/web  RUNNING  34.220.230.191:80->80/tcp  tutorial:1      UNKNOWN
 ```
 
-## Step 9: Clean Up<a name="ECS_CLI_tutorial_fargate_cleanup"></a>
+## Step 9: \(Optional\) View your Web Application<a name="ECS_CLI_tutorial_fargate_view"></a>
+
+Enter the IP address for the task in your web browser and you should see a webpage that displays the **Simple PHP App** web application\.
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/web-app-output.png)
+
+## Step 10: Clean Up<a name="ECS_CLI_tutorial_fargate_cleanup"></a>
 
 When you are done with this tutorial, you should clean up your resources so they do not incur any more charges\. First, delete the service so that it stops the existing containers and does not try to run any more tasks\.
 

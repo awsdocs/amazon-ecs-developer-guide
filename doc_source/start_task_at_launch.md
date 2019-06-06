@@ -47,13 +47,14 @@ The MIME multi\-part content below uses a shell script to set configuration valu
    # (add any other configuration variables here also)
    echo ECS_CLUSTER=$cluster >> /etc/ecs/ecs.config
    
-   # Install the AWS CLI and the jq JSON parser
-   yum install -y aws-cli jq
-   
    START_TASK_SCRIPT_FILE="/etc/ecs/ecs-start-task.sh"
    cat <<- 'EOF' > ${START_TASK_SCRIPT_FILE}
    	exec 2>>/var/log/ecs/ecs-start-task.log
    	set -x
+   	
+   	# Install prerequisite tools
+   	yum install -y jq aws-cli
+   	
    	# Wait for the ECS service to be responsive
    	until curl -s http://localhost:51678/v1/metadata
    	do

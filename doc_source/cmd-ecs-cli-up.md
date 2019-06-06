@@ -71,7 +71,7 @@ The Amazon ECS CLI supports adding metadata in the form of resource tags to your
 If you specify resource tags when using the ecs\-cli up command, the Amazon ECS cluster as well as the following resources created by the AWS CloudFormation stack can be tagged:
 + Container instances
 **Note**  
-In order for your container instances to allow tags, you need to opt in to the new Amazon ECS resource ARN formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-resource-ids.md)\.
+In order for your container instances to allow tags, you need to opt in to the new Amazon ECS resource ARN formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\.
 + VPC
 + Subnets
 + Internet gateway

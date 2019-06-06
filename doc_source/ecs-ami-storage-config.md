@@ -14,7 +14,7 @@ The default filesystem for the Amazon ECS\-optimized Amazon Linux 2 AMI is `ext4
 
 ## Amazon ECS\-optimized Amazon Linux AMI Storage Configuration<a name="al1-ami-storage-config"></a>
 
-By default, the Amazon ECS\-optimized Amazon Linux AMI ships with 30 GiB of total storage\. You can modify this value at launch time to increase or decrease the available storage on your container instance\. This storage is used for the operating system and for Docker images and metadata\. The sections below describe the storage configuration of the Amazon ECS\-optimized Amazon Linux AMI, based on the AMI version\.
+By default, the Amazon ECS\-optimized Amazon Linux AMI ships with 30 GiB of total storage\. You can modify this value at launch time to increase the available storage on your container instance\. This storage is used for the operating system and for Docker images and metadata\. The sections below describe the storage configuration of the Amazon ECS\-optimized Amazon Linux AMI, based on the AMI version\.
 
 ### Version 2015\.09\.d and Later<a name="ecs-AMI-LVM"></a>
 

@@ -34,10 +34,10 @@ Set this value to the hostname \(or IP address\) and port number of an HTTP prox
 `Environment="NO_PROXY=169.254.169.254"`  
 Set this value to `169.254.169.254` to filter EC2 instance metadata from the proxy\. 
 
-`/etc/sysconfig/docker` \(Amazon Linux AMI only\)    
+`/etc/sysconfig/docker` \(Amazon Linux AMI and Amazon Linux 2 only\)    
 `export HTTP_PROXY=10.0.0.131:3128`  
 Set this value to the hostname \(or IP address\) and port number of an HTTP proxy to use for the Docker daemon to connect to the internet\. For example, your container instances may not have external network access through an Amazon VPC internet gateway, NAT gateway, or instance\.  
-`export NO_PROXY=169.254.169.254`  
+`export NO_PROXY=169.254.169.254,169.254.170.2`  
 Set this value to `169.254.169.254` to filter EC2 instance metadata from the proxy\. 
 
 Setting these environment variables in the above files only affects the Amazon ECS container agent, `ecs-init`, and the Docker daemon\. They do not configure any other services \(such as yum\) to use the proxy\.
@@ -80,7 +80,7 @@ if [ $OS == "AL2" ] && [ ! -f /var/lib/cloud/instance/sem/config_docker_http_pro
 [Service]
 Environment="HTTP_PROXY=http://$PROXY_HOST:$PROXY_PORT/"
 Environment="HTTPS_PROXY=https://$PROXY_HOST:$PROXY_PORT/"
-Environment="NO_PROXY=169.254.169.254"
+Environment="NO_PROXY=169.254.169.254,169.254.170.2"
 EOF
     systemctl daemon-reload
     if [ "$(systemctl is-active docker)" == "active" ] 
@@ -93,7 +93,7 @@ fi
 if [ $OS == "ALAMI" ] && [ ! -f /var/lib/cloud/instance/sem/config_docker_http_proxy ]; then
     echo "export HTTP_PROXY=http://$PROXY_HOST:$PROXY_PORT/" >> /etc/sysconfig/docker
     echo "export HTTPS_PROXY=https://$PROXY_HOST:$PROXY_PORT/" >> /etc/sysconfig/docker
-    echo "export NO_PROXY=169.254.169.254" >> /etc/sysconfig/docker
+    echo "export NO_PROXY=169.254.169.254,169.254.170.2" >> /etc/sysconfig/docker
     echo "$$: $(date +%s.%N | cut -b1-13)" > /var/lib/cloud/instance/sem/config_docker_http_proxy
 fi
 

@@ -101,7 +101,12 @@ The network mode and IP address for the container\.
 `NetworkMode`  
 The network mode for the task to which the container belongs\.  
 `IPv4Addresses`  
-The IP addresses associated with the container\.
+The IP addresses associated with the container\.  
+If your task is using the `awsvpc` network mode, the IP address of the container will not be returned\. In this case, you can retrieve the IP address by reading the /etc/hosts file with the following command:  
+
+```
+cat /etc/hosts | tail -1 | awk {'print $1'}
+```
 
 `MetadataFileStatus`  
 The status of the metadata file\. When the status is `READY`, the metadata file is current and complete\. If the file is not ready yet \(for example, the moment the task is started\), a truncated version of the file format is available\. To avoid a likely race condition where the container has started, but the metadata has not yet been written, you can parse the metadata file and wait for this parameter to be set to `READY` before depending on the metadata\. This is usually available in less than 1 second from when the container starts\.

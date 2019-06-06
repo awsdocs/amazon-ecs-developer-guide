@@ -1,14 +1,14 @@
 # Task Retirement<a name="task-retirement"></a>
 
+Amazon ECS task retirement affects tasks of both Fargate and EC2 launch types and you will be notified by email of the pending retirement\.
+
 A task can be scheduled for retirement in the following scenarios:
-+ Your Fargate tasks are running on a platform version that has a security vulnerability that requires you to launch new tasks using a patched platform version\.
 + AWS detects the irreparable failure of the underlying hardware hosting the task\.
-
-When a task reaches its scheduled retirement date, it is stopped or terminated by AWS\. If the task is part of a service, then the task is automatically stopped and the service scheduler starts a new one to replace it\. If you are using standalone tasks, then you receive notification of the task retirement and must launch new tasks to replace them\.
-
-## Identifying Tasks Scheduled for Retirement<a name="task-retirement-identify"></a>
++ Your task uses the Fargate launch type and is running on a platform version that has a security vulnerability that requires you to replace the tasks by launching new tasks using a patched platform version\.
 
 If your task is scheduled for retirement, you receive an email before the event with the task ID and retirement date\. This email is sent to the address that's associated with your account, the same email address that you use to log in to the AWS Management Console\. If you use an email account that you do not check regularly, then you can use the [AWS Personal Health Dashboard](http://aws.amazon.com/premiumsupport/phd/) to determine if any of your tasks are scheduled for retirement\. To update the contact information for your account, go to the [Account Settings](https://console.aws.amazon.com/billing/home?#/account) page\.
+
+When a task reaches its scheduled retirement date, it is stopped or terminated by AWS\. If the task is part of a service, then the task is automatically stopped and the service scheduler launches a new one to replace it\. If you are using standalone tasks, then you receive notification of the task retirement and must launch new tasks to replace them\.
 
 ## Working with Tasks Scheduled for Retirement<a name="task-retirement-working"></a>
 
