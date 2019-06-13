@@ -166,6 +166,6 @@ If the previous command does not return the `ECS_DATADIR` environment variable, 
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.28.1 (7e013ce5)"
+     "Version": "Amazon ECS Agent - v1.29.0 (a190a73f)"
    }
    ```

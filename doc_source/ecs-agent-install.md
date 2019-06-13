@@ -42,7 +42,7 @@ To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance usin
    {
        "Cluster": "default",
        "ContainerInstanceArn": "<container_instance_ARN>",
-       "Version": "Amazon ECS Agent - v1.28.1 (7e013ce5)"
+       "Version": "Amazon ECS Agent - v1.29.0 (a190a73f)"
    }
    ```
 **Note**  
@@ -101,7 +101,7 @@ To install the Amazon ECS container agent on an Amazon Linux AMI EC2 instance us
    {
      "Cluster": "default",
      "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.28.1 (7e013ce5)"
+     "Version": "Amazon ECS Agent - v1.29.0 (a190a73f)"
    }
    ```
 
