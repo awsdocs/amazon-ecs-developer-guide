@@ -63,7 +63,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Using CloudWatch Logs with Container Instances](using_cloudwatch_logs.md)
    + [Container Instance Draining](container-instance-draining.md)
    + [Container Instance Memory Management](memory-management.md)
-   + [Managing Container Instances Remotely](ec2-run-command.md)
+   + [Manage Container Instances Remotely Using AWS Systems Manager](ec2-run-command.md)
    + [Starting a Task at Container Instance Launch Time](start_task_at_launch.md)
    + [Deregister a Container Instance](deregister_container_instance.md)
 + [Amazon ECS Container Agent](ECS_agent.md)

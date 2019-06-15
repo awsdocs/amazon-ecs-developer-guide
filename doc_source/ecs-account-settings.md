@@ -4,7 +4,7 @@ Account settings allow you to opt in to or opt out of specific Amazon ECS settin
 
 Amazon ECS is introducing a new format for Amazon Resource Names \(ARNs\) and resource IDs for Amazon ECS tasks, container instances, and services\. You must opt in to the new format to use features such as resource tagging\. 
 
-Amazon ECS supports launching container instances using Amazon EC2 instance families built on the Nitro system that have increased elastic network interface \(ENI\) limits\. To enable this feature, you must opt in to the `awsvpcTrunking` account setting\.
+Amazon ECS supports launching container instances using supported Amazon EC2 instance types that have increased elastic network interface \(ENI\) limits\. To enable this feature, you must opt in to the `awsvpcTrunking` account setting\.
 
 For each Region, you can opt in to or opt out of each account setting at the account level or for a specific IAM user or role\. The available account settings to opt in to or out of include the new ARN and resource ID format and the awsvpc trunking feature\.
 
