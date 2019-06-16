@@ -54,10 +54,10 @@ Contents of the `~/.ecs/config` file after running the command:
 
 ```
 version: v1
-default: fargate
+default: ecs-cli-demo
 clusters:
   ecs-cli-demo:
     cluster: ecs-cli-demo
     region: us-east-1
-    default_launch_type: "FARGATE"
+    default_launch_type: FARGATE
 ```
