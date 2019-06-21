@@ -64,7 +64,7 @@ Amazon ECS supports launching container instances with increased ENI density usi
 
 ## Viewing Account Settings<a name="ecs-viewing-longer-id-settings"></a>
 
-You can use the AWS Management Console and AWS CLI tools to view the resource types that support the new ARN and ID formats\.
+You can use the AWS Management Console and AWS CLI tools to view the resource types that support the new ARN and ID formats or the increased ENI limits\.
 
 **To view your account settings using the console**
 
@@ -117,6 +117,8 @@ You can use the AWS Management Console and AWS CLI tools to modify the account s
 1. From the dashboard, choose **Account Settings**\.
 
 1. On the **Amazon ECS ARN and resource ID settings** and **AWSVPC Trunking** sections, you can select or deselect the check boxes for each account setting for the authenticated IAM user and role\. Choose **Save** once finished\.
+**Important**  
+IAM users and IAM roles need the `ecs:PutAccountSetting` permission to perform this action\.
 
 1. On the confirmation screen, choose **Confirm** to save the selection\.
 
@@ -133,7 +135,7 @@ Use one of the following commands to modify the default account setting for all 
 + [Write\-ECSAccountSetting](https://docs.aws.amazon.com/powershell/latest/reference/items/Write-ECSAccountSetting.html) \(AWS Tools for Windows PowerShell\)
 
   ```
-  Write-ECSAccountSettingDefault -Name serviceLongArnFormat -Value enabled -Force
+  Write-ECSAccountSettingDefault -Name serviceLongArnFormat -Value enabled -Region us-east-1 -Force
   ```
 
 **To modify the account settings for your IAM user account using the command line**
@@ -165,5 +167,5 @@ Use one of the following commands and specify the ARN of an IAM user, IAM role, 
 + [Write\-ECSAccountSetting](https://docs.aws.amazon.com/powershell/latest/reference/items/Write-ECSAccountSetting.html) \(AWS Tools for Windows PowerShell\)
 
   ```
-  Write-ECSAccountSetting -Name serviceLongArnFormat -Value enabled -PrincipalArn arn:aws:iam::aws_account_id:user/principalName -Force
+  Write-ECSAccountSetting -Name serviceLongArnFormat -Value enabled -PrincipalArn arn:aws:iam::aws_account_id:user/principalName -Region us-east-1 -Force
   ```

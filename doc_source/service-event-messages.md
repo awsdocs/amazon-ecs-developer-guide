@@ -2,6 +2,8 @@
 
 If you are troubleshooting a problem with a service, the first place you should check for diagnostic information is the service event log\.
 
+When viewing service event messages in the Amazon ECS console, duplicate service event messages are omitted until either the cause is resolved or six hours passes\. If the cause is not resolved, you will receive another service event message after six hours has passed\.
+
 **To check the service event log in the Amazon ECS console**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.

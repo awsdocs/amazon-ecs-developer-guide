@@ -3,7 +3,7 @@
 You can create an Amazon ECS cluster using the AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. If you are launching tasks with the EC2 launch type, you can register container instances into the cluster after creating it\.
 
 **Note**  
-This cluster creation wizard provides a simple way to create the resources that are needed by an Amazon ECS cluster\. It also lets you customize several common cluster configuration options\. However, this wizard does not allow you to customize every resource option\. For example, you can't use the wizard to customize the container instance AMI ID\. If your requirements extend beyond what is supported in this wizard, consider using our reference architecture at [https://github\.com/awslabs/ecs\-refarch\-cloudformation](https://github.com/awslabs/ecs-refarch-cloudformation)\.  
+This cluster creation wizard provides a simple way to create the resources that are needed by an Amazon ECS cluster\. It also lets you customize several common cluster configuration options\. However, this wizard does not allow you to customize every resource option\.  For example, you can't use the wizard to customize the container instance AMI ID\. If your requirements extend beyond what is supported in this wizard, consider using our reference architecture at [https://github\.com/awslabs/ecs\-refarch\-cloudformation](https://github.com/awslabs/ecs-refarch-cloudformation)\.  
 Do not attempt to modify the underlying resources directly after they are created by the wizard\.
 
 **To create a cluster**
