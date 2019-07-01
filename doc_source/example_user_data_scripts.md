@@ -25,11 +25,11 @@ Content-Type: text/cloud-boothook; charset="us-ascii"
 cloud-init-per once yum_update yum update -y
 cloud-init-per once install_amazon-efs-utils yum install -y amazon-efs-utils
 
-# Create /mnt/efs folder
-cloud-init-per once mkdir_efs mkdir /mnt/efs
+# Create /efs folder
+cloud-init-per once mkdir_efs mkdir /efs
 
-# Mount /mnt/efs
-cloud-init-per once mount_efs echo -e 'fs-12345678:/ /mnt/efs efs defaults,_netdev 0 0' >> /etc/fstab
+# Mount /efs
+cloud-init-per once mount_efs echo -e 'fs-12345678:/ /efs efs defaults,_netdev 0 0' >> /etc/fstab
 mount -a
 
 --==BOUNDARY==

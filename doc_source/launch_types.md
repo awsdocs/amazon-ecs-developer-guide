@@ -24,6 +24,8 @@ The AWS Fargate launch type is currently available in the following Regions:
 | Asia Pacific \(Seoul\) | ap\-northeast\-2 | 
 | Asia Pacific \(Singapore\) | ap\-southeast\-1 | 
 | Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
+| AWS GovCloud \(US\-East\) | us\-gov\-east\-1 | 
+| AWS GovCloud \(US\) | us\-gov\-west\-1 | 
 
 This diagram shows the general architecture:
 

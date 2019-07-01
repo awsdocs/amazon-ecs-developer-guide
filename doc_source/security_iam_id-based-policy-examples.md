@@ -1,19 +1,73 @@
-# Amazon ECS IAM Policy Examples<a name="IAMPolicyExamples"></a>
+# Amazon Elastic Container Service Identity\-Based Policy Examples<a name="security_iam_id-based-policy-examples"></a>
 
-The following examples show policy statements that you could use to control the permissions that IAM users have for Amazon ECS\.
+By default, IAM users and roles don't have permission to create or modify Amazon ECS resources\. They also can't perform tasks using the AWS Management Console, AWS CLI, or AWS API\. An IAM administrator must create IAM policies that grant users and roles permission to perform specific API operations on the specified resources they need\. The administrator must then attach those policies to the IAM users or groups that require those permissions\.
+
+To learn how to create an IAM identity\-based policy using these example JSON policy documents, see [Creating Policies on the JSON Tab](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-json-editor) in the *IAM User Guide*\.
 
 **Topics**
-+ [Amazon ECS First Run Wizard](#first-run-permissions)
-+ [Clusters](#IAM_cluster_policies)
-+ [Container Instances](#IAM_container_instance_policies)
-+ [Task Definitions](#IAM_task_definition_policies)
-+ [Run Tasks](#IAM_run_policies)
-+ [Start Tasks](#IAM_start_policies)
-+ [List and Describe Tasks](#IAM_task_policies)
-+ [Create Services](#IAM_create_service_policies)
-+ [Update Services](#IAM_update_service_policies)
++ [Policy Best Practices](#security_iam_service-with-iam-policy-best-practices)
++ [Allow Users to View Their Own Permissions](#security_iam_id-based-policy-examples-view-own-permissions)
++ [Amazon ECS First Run Wizard Permissions](#first-run-permissions)
++ [Cluster Examples](#IAM_cluster_policies)
++ [Container Instance Examples](#IAM_container_instance_policies)
++ [Task Definition Examples](#IAM_task_definition_policies)
++ [Run Task Example](#IAM_run_policies)
++ [Start Task Example](#IAM_start_policies)
++ [List and Describe Task Examples](#IAM_task_policies)
++ [Create Service Example](#IAM_create_service_policies)
++ [Update Service Example](#IAM_update_service_policies)
++ [Describing Amazon ECS Services Based on Tags](#security_iam_id-based-policy-examples-view-cluster-tags)
 
-## Amazon ECS First Run Wizard<a name="first-run-permissions"></a>
+## Policy Best Practices<a name="security_iam_service-with-iam-policy-best-practices"></a>
+
+Identity\-based policies are very powerful\. They determine whether someone can create, access, or delete Amazon ECS resources in your account\. These actions can incur costs for your AWS account\. When you create or edit identity\-based policies, follow these guidelines and recommendations:
++ **Get Started Using AWS Managed Policies** – To start using Amazon ECS quickly, use AWS managed policies to give your employees the permissions they need\. These policies are already available in your account and are maintained and updated by AWS\. For more information, see [Get Started Using Permissions With AWS Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-use-aws-defined-policies) in the *IAM User Guide*\.
++ **Grant Least Privilege** – When you create custom policies, grant only the permissions required to perform a task\. Start with a minimum set of permissions and grant additional permissions as necessary\. Doing so is more secure than starting with permissions that are too lenient and then trying to tighten them later\. For more information, see [Grant Least Privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) in the *IAM User Guide*\.
++ **Enable MFA for Sensitive Operations** – For extra security, require IAM users to use multi\-factor authentication \(MFA\) to access sensitive resources or API operations\. For more information, see [Using Multi\-Factor Authentication \(MFA\) in AWS](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html) in the *IAM User Guide*\.
++ **Use Policy Conditions for Extra Security** – To the extent that it's practical, define the conditions under which your identity\-based policies allow access to a resource\. For example, you can write conditions to specify a range of allowable IP addresses that a request must come from\. You can also write conditions to allow requests only within a specified date or time range, or to require the use of SSL or MFA\. For more information, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
+
+## Allow Users to View Their Own Permissions<a name="security_iam_id-based-policy-examples-view-own-permissions"></a>
+
+This example shows how you might create a policy that allows IAM users to view the inline and managed policies that are attached to their user identity\. This policy includes permissions to complete this action on the console or programmatically using the AWS CLI or AWS API\.
+
+```
+{
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Sid": "ViewOwnUserInfo",
+               "Effect": "Allow",
+               "Action": [
+                   "iam:GetUserPolicy",
+                   "iam:ListGroupsForUser",
+                   "iam:ListAttachedUserPolicies",
+                   "iam:ListUserPolicies",
+                   "iam:GetUser"
+               ],
+               "Resource": [
+                   "arn:aws:iam::*:user/${aws:username}"
+               ]
+           },
+           {
+               "Sid": "NavigateInConsole",
+               "Effect": "Allow",
+               "Action": [
+                   "iam:GetGroupPolicy",
+                   "iam:GetPolicyVersion",
+                   "iam:GetPolicy",
+                   "iam:ListAttachedGroupPolicies",
+                   "iam:ListGroupPolicies",
+                   "iam:ListPolicyVersions",
+                   "iam:ListPolicies",
+                   "iam:ListUsers"
+               ],
+               "Resource": "*"
+           }
+       ]
+   }
+```
+
+## Amazon ECS First Run Wizard Permissions<a name="first-run-permissions"></a>
 
 The Amazon ECS first\-run wizard simplifies the process of creating a cluster and running your tasks and services\. However, users require permissions to many API operations from multiple AWS services to complete the wizard\. The [AmazonECS\_FullAccess](ecs_managed_policies.md#AmazonECS_FullAccess) managed policy below shows the required permissions to complete the Amazon ECS first\-run wizard\.
 
@@ -230,7 +284,7 @@ The first run wizard also attempts to automatically create different IAM roles d
   + [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)
   + [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)
 
-## Clusters<a name="IAM_cluster_policies"></a>
+## Cluster Examples<a name="IAM_cluster_policies"></a>
 
 The following IAM policy allows permission to create and list clusters\. The `CreateCluster` and `ListClusters` actions do not accept any resources, so the resource definition is set to `*` for all resources\.
 
@@ -252,7 +306,7 @@ The following IAM policy allows permission to create and list clusters\. The `Cr
 }
 ```
 
-The following IAM policy allows permission to describe and delete a specific cluster\. The `DescribeCluster` and `DeleteCluster` actions accept cluster ARNs as resources\.
+The following IAM policy allows permission to describe and delete a specific cluster\. The `DescribeClusters` and `DeleteCluster` actions accept cluster ARNs as resources\.
 
 ```
 {
@@ -320,7 +374,7 @@ The following IAM policy can be attached to a user or group that would only allo
 }
 ```
 
-## Container Instances<a name="IAM_container_instance_policies"></a>
+## Container Instance Examples<a name="IAM_container_instance_policies"></a>
 
 Container instance registration is handled by the Amazon ECS agent, but there may be times where you want to allow a user to deregister an instance manually from a cluster\. Perhaps the container instance was accidentally registered to the wrong cluster, or the instance was terminated with tasks still running on it\.
 
@@ -368,7 +422,7 @@ The following IAM policy allows a user to list and deregister container instance
 }
 ```
 
-## Task Definitions<a name="IAM_task_definition_policies"></a>
+## Task Definition Examples<a name="IAM_task_definition_policies"></a>
 
 Task definition IAM policies do not support resource\-level permissions, but the following IAM policy allows a user to register, list, and describe task definitions:
 
@@ -391,7 +445,7 @@ Task definition IAM policies do not support resource\-level permissions, but the
 }
 ```
 
-## Run Tasks<a name="IAM_run_policies"></a>
+## Run Task Example<a name="IAM_run_policies"></a>
 
 The resources for `RunTask` are task definitions\. To limit which clusters a user can run task definitions on, you can specify them in the `Condition` block\. The advantage is that you don't have to list both task definitions and clusters in your resources to allow the appropriate access\. You can apply one, the other, or both\.
 
@@ -419,7 +473,7 @@ The following IAM policy allows permission to run any revision of a specific tas
 }
 ```
 
-## Start Tasks<a name="IAM_start_policies"></a>
+## Start Task Example<a name="IAM_start_policies"></a>
 
 The resources for `StartTask` are task definitions\. To limit which clusters and container instances a user can start task definitions on, you can specify them in the `Condition` block\. The advantage is that you don't have to list both task definitions and clusters in your resources to allow the appropriate access\. You can apply one, the other, or both\.
 
@@ -453,7 +507,7 @@ For this example, when you call the `StartTask` API with the AWS CLI or another 
 }
 ```
 
-## List and Describe Tasks<a name="IAM_task_policies"></a>
+## List and Describe Task Examples<a name="IAM_task_policies"></a>
 
 The following IAM policy allows a user to list tasks for a specified cluster:
 
@@ -503,7 +557,7 @@ The following IAM policy allows a user to describe a specified task in a specifi
 }
 ```
 
-## Create Services<a name="IAM_create_service_policies"></a>
+## Create Service Example<a name="IAM_create_service_policies"></a>
 
 The following IAM policy allows a user to create Amazon ECS services in the AWS Management Console:
 
@@ -541,7 +595,7 @@ The following IAM policy allows a user to create Amazon ECS services in the AWS 
 }
 ```
 
-## Update Services<a name="IAM_update_service_policies"></a>
+## Update Service Example<a name="IAM_update_service_policies"></a>
 
 The following IAM policy allows a user to update Amazon ECS services in the AWS Management Console:
 
@@ -578,3 +632,32 @@ The following IAM policy allows a user to update Amazon ECS services in the AWS 
   ]
 }
 ```
+
+## Describing Amazon ECS Services Based on Tags<a name="security_iam_id-based-policy-examples-view-cluster-tags"></a>
+
+You can use conditions in your identity\-based policy to control access to Amazon ECS resources based on tags\. This example shows how you might create a policy that allows describing your services\. However, permission is granted only if the service tag `Owner` has the value of that user's user name\. This policy also grants the permissions necessary to complete this action on the console\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DescribeServices",
+            "Effect": "Allow",
+            "Action": "ecs:DescribeServices",
+            "Resource": "*"
+        },
+        {
+            "Sid": "ViewServiceIfOwner",
+            "Effect": "Allow",
+            "Action": "ecs:DescribeServices",
+            "Resource": "arn:aws:ecs:*:*:service/*",
+            "Condition": {
+                "StringEquals": {"ecs:ResourceTag/Owner": "${aws:username}"}
+            }
+        }
+    ]
+}
+```
+
+You can attach this policy to the IAM users in your account\. If a user named `richard-roe` attempts to describe an Amazon ECS service, the service must be tagged `Owner=richard-roe` or `owner=richard-roe`\. Otherwise he is denied access\. The condition tag key `Owner` matches both `Owner` and `owner` because condition key names are not case\-sensitive\. For more information, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.

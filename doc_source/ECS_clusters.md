@@ -6,7 +6,7 @@ The following are general concepts about Amazon ECS clusters\.
 + Clusters are Region\-specific\.
 + Clusters can contain tasks using both the Fargate and EC2 launch types\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\. 
 + For tasks using the EC2 launch type, clusters can contain multiple different container instance types, but each container instance may only be part of one cluster at a time\.
-+ You can create custom IAM policies for your clusters to allow or restrict user access to specific clusters\. For more information, see the [Clusters](IAMPolicyExamples.md#IAM_cluster_policies) section in [Amazon ECS IAM Policy Examples](IAMPolicyExamples.md)\.
++ You can create custom IAM policies for your clusters to allow or restrict user access to specific clusters\. For more information, see the [Cluster Examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies) section in [Amazon Elastic Container Service Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
 
 **Topics**
 + [Creating a Cluster](create_cluster.md)

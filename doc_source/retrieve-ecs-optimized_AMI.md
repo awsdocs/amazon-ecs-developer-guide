@@ -1,6 +1,6 @@
 # Retrieving Amazon ECS\-Optimized AMI Metadata<a name="retrieve-ecs-optimized_AMI"></a>
 
-The AMI ID, image name, operating system, container agent version, and runtime version for the different Amazon ECS\-optimized AMIs can be programmatically retrieved by querying the SSM Parameter Store API\. For more information about the SSM Parameter Store API, see [GetParameters](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameters.html) and [GetParametersByPath](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html)\.
+The AMI ID, image name, operating system, container agent version, and runtime version for the different Amazon ECS\-optimized AMIs can be programmatically retrieved by querying the Systems Manager Parameter Store API\. For more information about the Systems Manager Parameter Store API, see [GetParameters](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameters.html) and [GetParametersByPath](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html)\.
 
 **Note**  
 Your user account must have the following IAM permissions to retrieve the Amazon ECS\-optimized AMI metadata\. These permissions have been added to the `AmazonECS_FullAccess` IAM policy\.  
@@ -262,8 +262,8 @@ Retrieve the metadata of a specific Amazon ECS\-optimized Amazon Linux AMI versi
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/amzn-ami-2017.09.l-amazon-ecs-optimized --region us-east-1
 ```
 
-**Example Retrieving the Amazon ECS\-optimized Amazon Linux AMI metadata using the SSM GetParametersByPath API**  
-Retrieve the Amazon ECS\-optimized Amazon Linux AMI metadata with the SSM GetParametersByPath API using the AWS CLI with the following command\.  
+**Example Retrieving the Amazon ECS\-optimized Amazon Linux AMI metadata using the Systems Manager GetParametersByPath API**  
+Retrieve the Amazon ECS\-optimized Amazon Linux AMI metadata with the Systems Manager GetParametersByPath API using the AWS CLI with the following command\.  
 
 ```
 aws ssm get-parameters-by-path --path /aws/service/ecs/optimized-ami/amazon-linux/ --region us-east-1
@@ -304,7 +304,7 @@ Output:
 ```
 
 **Example Using the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template**  
-You can retrieve the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template by referencing the SSM parameter store name; for example:  
+You can retrieve the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template by referencing the Systems Manager parameter store name; for example:  
 Amazon Linux 2:  
 
 ```
