@@ -35,6 +35,8 @@ If you chose the **Networking only** cluster template, continue with the followi
 
 1. In the **Tags** section, specify the key and value for each tag to associate with the cluster\. For more information, see [Tagging Your Amazon ECS Resources](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)\.
 
+1. In the **CloudWatch Container Insights** section, choose whether to enable Container Insights for the cluster\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
+
 1. Choose **Create**\.
 
 If you chose the **EC2 Linux \+ Networking** or **EC2 Windows \+ Networking** templates, complete the following steps\.
@@ -86,5 +88,7 @@ If you do not launch your container instance with the proper IAM permissions, yo
    1. If you chose the Spot Instance type earlier, the **Spot Fleet Role IAM role** section indicates that an IAM role `ecsSpotFleetRole` is created\.
 
    1. In the **Tags** section, specify the key and value for each tag to associate with the cluster\. For more information, see [Tagging Your Amazon ECS Resources](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)\.
+
+   1. In the **CloudWatch Container Insights** section, choose whether to enable Container Insights for the cluster\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
 
    1. Choose **Create**\.

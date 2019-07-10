@@ -49,7 +49,7 @@ The ENI limit for individual container instances depends on the following condit
 + If you **have not** opted in to the `awsvpcTrunking` account setting, the ENI limit for each container instance depends on the instance type\. For more information, see [IP Addresses Per Network Interface Per Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 + If you **have** opted in to the `awsvpcTrunking` account setting but you **have not** launched new container instances using a supported instance type after opting in, the ENI limit for each container instance will still be at the default value\. For more information, see [IP Addresses Per Network Interface Per Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 + If you **have** opted in to the `awsvpcTrunking` account setting and you **have** launched new container instances using a supported instance type after opting in, additional ENIs are available\. For more information, see [Supported Amazon EC2 Instance Types](container-instance-eni.md#eni-trunking-supported-instance-types)\.
-For more information about opting in to the `awsvpcTrunking` account setting, see [AWSVPC Trunking](ecs-account-settings.md#ecs-eni-trunking)\.  
+For more information about opting in to the `awsvpcTrunking` account setting, see [Elastic Network Interface Trunking](container-instance-eni.md)\.  
 You can add container instances to your cluster to provide more available network adapters\.
 
 Container instance missing required attribute  

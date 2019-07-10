@@ -7,7 +7,7 @@ ecs-cli --help
 ```
 
 **Note**  
-Ensure that you are using the latest version of the Amazon ECS CLI\. The latest version is 1\.14\.0\. For release notes, see [Changelog](https://github.com/aws/amazon-ecs-cli/blob/master/CHANGELOG.md)\.
+Ensure that you are using the latest version of the Amazon ECS CLI\. The latest version is 1\.15\.0\. For release notes, see [Changelog](https://github.com/aws/amazon-ecs-cli/blob/master/CHANGELOG.md)\.
 
 **Topics**
 + [ecs\-cli](cmd-ecs-cli.md)
@@ -25,5 +25,6 @@ Ensure that you are using the latest version of the Amazon ECS CLI\. The latest 
 + [ecs\-cli logs](cmd-ecs-cli-logs.md)
 + [ecs\-cli check\-attributes](cmd-ecs-cli-check-attributes.md)
 + [ecs\-cli registry\-creds](cmd-ecs-cli-registry-creds.md)
++ [ecs\-cli local](cmd-ecs-cli-local.md)
 + [Using Docker Compose File Syntax](cmd-ecs-cli-compose-parameters.md)
 + [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)

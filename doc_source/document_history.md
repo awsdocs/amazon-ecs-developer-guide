@@ -5,6 +5,8 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Amazon ECS CLI v1\.15\.0  |  New version of the Amazon ECS CLI released\. For more information, see [Amazon ECS CLI Changelog](https://github.com/aws/amazon-ecs-cli/blob/master/CHANGELOG.md)\.  |  9 July 2019  | 
+|  CloudWatch Container Insights  |  Amazon ECS has added support for CloudWatch Container Insights\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.  |  9 July 2019  | 
 |  Resource\-level permissions for Amazon ECS services and tasksets  |  Amazon ECS has expanded resource\-level permissions support for Amazon ECS services and tasks\. For more information, see [How Amazon Elastic Container Service Works with IAM](security_iam_service-with-iam.md)\.  |  27 June 2019  | 
 |  New Amazon ECS\-optimized AMI patched for AWS\-2019\-005  |  Amazon ECS has updated the Amazon ECS\-optimized AMI to address the vulnerabilities described in [AWS\-2019\-005](https://aws.amazon.com/security/security-bulletins/AWS-2019-005/)\.  |  17 June 2019  | 
 |  Elastic Network Interface Trunking  |  Amazon ECS introduces support for launching container instances using supported Amazon EC2 instance types that have increased elastic network interface \(ENI\) density\. Using these instance types and opting in to the `awsvpcTrunking` account setting provides increased ENI density on newly launched container instances which allows you to place more tasks on each container instance\. For more information, see [Elastic Network Interface Trunking](container-instance-eni.md)\.  |  6 June 2019  | 
