@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Specifying Sensitive Data Using Secrets Manager Secrets  |  Added tutorial for specifying sensitive data using Secrets Manager secrets\. For more information, see [Tutorial: Specifying Sensitive Data Using Secrets Manager Secrets](specifying-sensitive-data-tutorial.md)\.  |  20 July 2019  | 
 |  Amazon ECS CLI v1\.15\.0  |  New version of the Amazon ECS CLI released\. For more information, see [Amazon ECS CLI Changelog](https://github.com/aws/amazon-ecs-cli/blob/master/CHANGELOG.md)\.  |  9 July 2019  | 
 |  CloudWatch Container Insights  |  Amazon ECS has added support for CloudWatch Container Insights\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.  |  9 July 2019  | 
 |  Resource\-level permissions for Amazon ECS services and tasksets  |  Amazon ECS has expanded resource\-level permissions support for Amazon ECS services and tasks\. For more information, see [How Amazon Elastic Container Service Works with IAM](security_iam_service-with-iam.md)\.  |  27 June 2019  | 

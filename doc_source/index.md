@@ -212,6 +212,7 @@ Amazon's trademarks and trade dress may not be used in
 + [AWS Deep Learning Containers on Amazon ECS](deep-learning-containers.md)
 + [Tutorials for Amazon ECS](ecs-tutorials.md)
    + [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)
+   + [Tutorial: Specifying Sensitive Data Using Secrets Manager Secrets](specifying-sensitive-data-tutorial.md)
    + [Tutorial: Creating a Service Using a Blue/Green Deployment](create-blue-green.md)
    + [Tutorial: Continuous Deployment with CodePipeline](ecs-cd-pipeline.md)
    + [Tutorial: Using Amazon EFS File Systems with Amazon ECS](using_efs.md)

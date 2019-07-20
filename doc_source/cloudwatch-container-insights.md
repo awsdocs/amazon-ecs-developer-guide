@@ -11,13 +11,6 @@ CloudWatch Container Insights collects, aggregates, and summarizes metrics and l
 
 Operational data is collected as performance log events\. These are entries that use a structured JSON schema that enables high\-cardinality data to be ingested and stored at scale\. From this data, CloudWatch creates higher\-level aggregated metrics at the cluster and service level as CloudWatch metrics\. For more information, see [Container Insights Structured Logs for Amazon ECS](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-reference-structured-logs-ECS.html) in the *Amazon CloudWatch User Guide*\.
 
-At launch, this preview release supports Container Insights on Amazon ECS in the following Regions:
-+ US East \(Ohio\)
-+ EU \(Frankfurt\)
-+ Asia Pacific \(Tokyo\)
-
-During the public preview, we expect to add more supported Regions\.
-
 **Important**  
 CloudWatch Container Insights are provided at an additional cost\. For information about the default monitoring metrics that are provided at no additional cost, see [Amazon ECS CloudWatch Metrics](cloudwatch-metrics.md)\.
 

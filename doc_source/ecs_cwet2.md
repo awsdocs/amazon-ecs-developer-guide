@@ -12,7 +12,7 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
 
 **To create an Amazon SNS topic**
 
-1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
 
 1. Choose **Topics**, **Create new topic**\.
 

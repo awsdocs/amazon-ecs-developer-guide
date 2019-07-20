@@ -33,7 +33,7 @@ The Amazon SNS topic ARNs for each region are shown below\.
 
 **To subscribe to AMI update notification email in the AWS Management Console**
 
-1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v2/home](https://console.aws.amazon.com/sns/v2/home)\.
+1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
 
 1. In the region list, choose the same Region as the topic ARN to which to subscribe\. This example uses the `us-west-2` Region\.
 

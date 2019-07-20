@@ -16,10 +16,12 @@ The following should be considered when specifying sensitive data for containers
 
 ## Injecting Sensitive Data as an Environment Variable<a name="secrets-envvar"></a>
 
-Within your container definition, specify `secrets` with the name of the environment variable to set in the container and the full ARN of either the Secrets Manager secret or Systems Manager Parameter Store parameter containing the sensitive data to present to the container\. The parameter that you reference must be from within the same account but can be from a different Region than the container using the parameter\. 
+Within your container definition, specify `secrets` with the name of the environment variable to set in the container and the full ARN of either the Secrets Manager secret or Systems Manager Parameter Store parameter containing the sensitive data to present to the container\. The parameter that you reference must be from within the same account but can be from a different Region than the container using the parameter\.
 
 **Important**  
 If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the parameter\. If the parameter exists in a different Region, then the full ARN must be specified\.
+
+For a full tutorial on creating an Secrets Manager secret and injecting it into a container as an environment variable, see [Tutorial: Specifying Sensitive Data Using Secrets Manager Secrets](specifying-sensitive-data-tutorial.md)\.
 
 The following is a snippet of a task definition showing the format when referencing an Secrets Manager secret\.
 
