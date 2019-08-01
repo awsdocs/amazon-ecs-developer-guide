@@ -4,12 +4,6 @@ Container instances in your clusters need external network access to communicate
 
 This tutorial guides you through creating a VPC with two public subnets and two private subnets, which are provided with internet access through a NAT gateway\.
 
-**Topics**
-+ [Step 1: Create an Elastic IP Address for Your NAT Gateway](#create-EIP)
-+ [Step 2: Run the VPC Wizard](#run-VPC-wizard)
-+ [Step 3: Create Additional Subnets](#create-add-subnets)
-+ [Next Steps](#vpc-next-steps)
-
 ## Step 1: Create an Elastic IP Address for Your NAT Gateway<a name="create-EIP"></a>
 
 A NAT gateway requires an Elastic IP address in your public subnet, but the VPC wizard does not create one for you\. Create the Elastic IP address before running the VPC wizard\.

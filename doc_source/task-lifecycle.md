@@ -19,13 +19,13 @@ PENDING
 This is a transition state where Amazon ECS is waiting on the container agent to take further action\.
 
 ACTIVATING  
-Amazon ECS has to perform additional steps after the task is launched but before the task can transition to the `RUNNING` state\. For example, for tasks that have service discovery configured, the service discovery resources must be created\.
+Amazon ECS has to perform additional steps after the task is launched but before the task can transition to the `RUNNING` state\. For example, for tasks that have service discovery configured, the service discovery resources must be created\. For tasks that are part of a service that is configured to use multiple Elastic Load Balancing target groups, the target group registration occurs during this state\.
 
 RUNNING  
 The task is successfully running\.
 
 DEACTIVATING  
-Amazon ECS has to perform additional steps before the task is stopped\.
+Amazon ECS has to perform additional steps before the task is stopped\. For example, for tasks that are part of a service that is configured to use multiple Elastic Load Balancing target groups, the target group deregistration occurs during this state\.
 
 STOPPING  
 This is a transition state where Amazon ECS is waiting on the container agent to take further action\.

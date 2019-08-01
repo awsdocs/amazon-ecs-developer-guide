@@ -4,13 +4,6 @@ Docker is a technology that allows you to build, run, test, and deploy distribut
 
 The documentation in this guide assumes that readers possess a basic understanding of what Docker is and how it works\. For more information about Docker, see [What is Docker?](http://aws.amazon.com/docker/) and the [Docker overview](https://docs.docker.com/engine/docker-overview/)\.
 
-**Topics**
-+ [Installing Docker](#install_docker)
-+ [Create a Docker Image](#docker-basics-create-image)
-+ [\(Optional\) Push your image to Amazon Elastic Container Registry](#use-ecr)
-+ [\(Optional\) Clean up](#docker_cleanup)
-+ [Next Steps](#docker_next_steps)
-
 ## Installing Docker<a name="install_docker"></a>
 
 **Note**  
@@ -83,24 +76,24 @@ Amazon ECS task definitions use Docker images to launch containers on the contai
    
    # Install dependencies
    RUN apt-get update && \
-      apt-get -y install apache2
+    apt-get -y install apache2
    
    # Install apache and write hello world message
    RUN echo 'Hello World!' > /var/www/html/index.html
    
    # Configure apache
    RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
-      echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
-      echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh && \
-      echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh && \
-      chmod 755 /root/run_apache.sh
+    echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
+    echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh && \ 
+    echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh && \ 
+    chmod 755 /root/run_apache.sh
    
    EXPOSE 80
    
    CMD /root/run_apache.sh
    ```
 
-   This Dockerfile uses the Ubuntu 16\.04 image\. The `RUN` instructions update the package caches, install some software packages for the web server, and then write the "Hello World\!" content to the web server's document root\. The `EXPOSE` instruction exposes port 80 on the container, and the `CMD` instruction starts the web server\.
+   This Dockerfile uses the Ubuntu 18\.04 image\. The `RUN` instructions update the package caches, install some software packages for the web server, and then write the "Hello World\!" content to the web server's document root\. The `EXPOSE` instruction exposes port 80 on the container, and the `CMD` instruction starts the web server\.
 
 1. <a name="sample-docker-build-step"></a>Build the Docker image from your Dockerfile\.
 **Note**  

@@ -1,6 +1,6 @@
 # Amazon ECS Service Limits<a name="service_limits"></a>
 
-The following table provides the default limits for Amazon ECS for an AWS account which can be changed\. For more information on the service limits for other AWS services that you can use with Amazon ECS, such as Elastic Load Balancing and Auto Scaling, see [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *Amazon Web Services General Reference*\.
+The following table provides the default service limits, also referred to as quotas, for Amazon ECS for an AWS account which can be changed\. For more information on the service limits for other AWS services that you can use with Amazon ECS, such as Elastic Load Balancing and Auto Scaling, see [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *Amazon Web Services General Reference*\.
 
 
 | Resource | Default Limit | 
@@ -9,6 +9,7 @@ The following table provides the default limits for Amazon ECS for an AWS accoun
 | Number of container instances per cluster | 2000 | 
 | Number of services per cluster | 1000 | 
 | Number of tasks per service \(the desired count\) | 1000 | 
+| Number of Elastic Load Balancing target groups per service | 5 | 
 | Number of tasks using the Fargate launch type, per Region, per account | 50 | 
 | Number of public IP addresses for tasks using the Fargate launch type, per Region, per account | 50 | 
 
@@ -17,7 +18,7 @@ The following table provides other limitations for Amazon ECS that cannot be cha
 
 | Resource | Limit | 
 | --- | --- | 
-| Number of load balancers per service | 1 | 
+| Number of Classic Load Balancer per service | 1 | 
 | Number of tasks launched \(count\) per run\-task | 10 | 
 | Number of container instances per start\-task | 10 | 
 | Number of revisions per task definition family Deregistering a task definition revision does not exclude it from being included in this limit\.  | 1,000,000 | 

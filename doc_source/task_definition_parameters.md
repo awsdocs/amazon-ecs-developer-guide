@@ -436,10 +436,8 @@ If this value is `true`, the container has read\-only access to the volume\. If 
 Type: [LogConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LogConfiguration.html) object  
 Required: no  
 The log configuration specification for the container\.  
-For tasks using the Fargate launch type, the supported log drivers are `awslogs` and `splunk`\.  
-For tasks using the EC2 launch type, the supported log drivers are `awslogs`, `syslog`, `gelf`, `fluentd`, `splunk`, `journald`, and `json-file`\.  
 For more information on using the `awslogs` log driver in task definitions to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.  
-For example task definitions, see [Example Task Definitions](example_task_definitions.md)\.  
+For example task definitions using a log configuration, see [Example Task Definitions](example_task_definitions.md)\.  
 This parameter maps to `LogConfig` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--log-driver` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. By default, containers use the same logging driver that the Docker daemon uses; however the container may use a different logging driver than the Docker daemon by specifying a log driver with this parameter in the container definition\. To use a different logging driver for a container, the log system must be configured properly on the container instance \(or on a different log server for remote logging options\)\. For more information on the options for different supported log drivers, see [Configure logging drivers](https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation\.  
 The following should be noted when specifying a log configuration for your containers:  
 + Amazon ECS currently supports a subset of the logging drivers available to the Docker daemon \(shown in the valid values below\)\. Additional log drivers may be available in future releases of the Amazon ECS container agent\.
@@ -449,7 +447,7 @@ The following should be noted when specifying a log configuration for your conta
 
 ```
 "logConfiguration": {
-      "logDriver": "json-file"|"syslog"|"journald"|"gelf"|"fluentd"|"awslogs"|"splunk",
+      "logDriver": "awslogs","fluentd","gelf","json-file","journald","logentries","splunk","syslog",
       "options": {"string": "string"
         ...},
 	"secretOptions": [{
@@ -460,11 +458,11 @@ The following should be noted when specifying a log configuration for your conta
 ```  
 `logDriver`  
 Type: string  
-Valid values: `"json-file" | "syslog" | "journald" | "gelf" | "fluentd" | "awslogs" | "splunk"`  
+Valid values: `"awslogs","fluentd","gelf","json-file","journald","logentries","splunk","syslog"`  
 Required: yes, when `logConfiguration` is used  
 The log driver to use for the container\. The valid values listed earlier are log drivers that the Amazon ECS container agent can communicate with by default\.  
 For tasks using the Fargate launch type, the supported log drivers are `awslogs` and `splunk`\.  
-For tasks using the EC2 launch type, the supported log drivers are `awslogs`, `syslog`, `gelf`, `fluentd`, `splunk`, `journald`, and `json-file`\.  
+For tasks using the EC2 launch type, the supported log drivers are `awslogs`, `fluentd`, `gelf`, `json-file`, `journald`, `logentries`, `syslog`, `splunk`, and `syslog`\.  
 If you have a custom driver that is not listed, you can fork the Amazon ECS container agent project that is [available on GitHub](https://github.com/aws/amazon-ecs-agent) and customize it to work with that driver\. We encourage you to submit pull requests for changes that you would like to have included\. However, we do not currently provide support for running modified copies of this software\.
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 `options`  

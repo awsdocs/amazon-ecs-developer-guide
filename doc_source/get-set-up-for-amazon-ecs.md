@@ -7,20 +7,6 @@ Because Amazon ECS uses many components of Amazon EC2, you use the Amazon EC2 co
 
 Complete the following tasks to get set up for Amazon ECS\. If you have already completed any of these steps, you may skip them and move on to installing the custom AWS CLI\.
 
-1. [Sign Up for AWS](#sign-up-for-aws)
-
-1. [Create an IAM User](#create-an-iam-user)
-
-1. [Create an IAM Role](#create-an-iam-role)
-
-1. [Create a Key Pair](#create-a-key-pair)
-
-1. [Create a Virtual Private Cloud](#create-a-vpc)
-
-1. [Create a Security Group](#create-a-base-security-group)
-
-1. [Install the AWS CLI](#install_aws_cli)
-
 ## Sign Up for AWS<a name="sign-up-for-aws"></a>
 
 When you sign up for AWS, your AWS account is automatically signed up for all services, including Amazon EC2 and Amazon ECS\. You are charged only for the services that you use\.

@@ -4,16 +4,6 @@ Amazon ECS has integrated blue/green deployments into the Create Service wizard 
 
 The following tutorial shows how to create an Amazon ECS service containing a Fargate task that uses the blue/green deployment type with the AWS CLI\.
 
-**Topics**
-+ [Prerequisites](#create-blue-green-prereqs)
-+ [Step 1: Create an Application Load Balancer](#create-blue-green-loadbalancer)
-+ [Step 2: Create an Amazon ECS Cluster](#create-blue-green-cluster)
-+ [Step 3: Register a Task Definition](#create-blue-green-taskdef)
-+ [Step 4: Create an Amazon ECS Service](#create-blue-green-service)
-+ [Step 5: Create the AWS CodeDeploy Resources](#create-blue-green-codedeploy)
-+ [Step 5: Create and Monitor an CodeDeploy Deployment](#create-blue-green-verify)
-+ [Step 6: Clean Up](#create-blue-green-cleanup)
-
 ## Prerequisites<a name="create-blue-green-prereqs"></a>
 
 This tutorial assumes that you have completed the following prerequisites:

@@ -14,20 +14,11 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 
    1. Choose **Community AMIs**\.
 
-   1. Choose an AMI for your container instance\. You can choose the Amazon ECS\-optimized Amazon Linux 2 AMI, or another operating system, such as CoreOS or Ubuntu\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS Container Agent](ecs-agent-install.md)\.
+   1. Choose an AMI for your container instance\. You can choose an Amazon ECS\-optimized AMI, or another operating system, such as CoreOS or Ubuntu\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS Container Agent](ecs-agent-install.md)\.
 **Note**  
 For more information about Amazon ECS\-specific CoreOS installation instructions, see [Running CoreOS Container Linux with AWS EC2 Container Service](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
-      To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs\-hvm\-2\.0** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-x86\_64\-ebs** AMI\. 
-
-      The following table lists the current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by Region\.    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
-**Note**  
-The current Amazon ECS\-optimized Amazon Linux 2 AMI ID can be retrieved using the AWS CLI with the following command:  
-
-      ```
-      aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended
-      ```
+      For more information on the latest Amazon ECS\-optimized AMIs, see [How to Launch the Latest Amazon ECS\-Optimized Amazon Linux AMI](ecs-optimized_AMI_launch_latest.md)\.
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.
 

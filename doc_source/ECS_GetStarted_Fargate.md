@@ -9,14 +9,6 @@ For more information about the Amazon ECS first\-run wizard for EC2 tasks, see [
 
 Complete the following tasks to get started with Amazon ECS using Fargate:
 
-**Topics**
-+ [Prerequisites](#first-run-prereqs)
-+ [Step 1: Create a Task Definition](#first-run-task-def)
-+ [Step 2: Configure the Service](#first-run-service)
-+ [Step 3: Configure the Cluster](#first-run-cluster)
-+ [Step 4: Review](#first-run-review)
-+ [Step 5: \(Optional\) View your Service](#first-run-view)
-
 ## Prerequisites<a name="first-run-prereqs"></a>
 
 Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.

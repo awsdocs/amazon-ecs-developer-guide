@@ -7,15 +7,6 @@ You can use Amazon EFS file systems with Amazon ECS to export file system data a
 **Note**  
 Amazon EFS is not available in all regions\. For more information about which regions support Amazon EFS, see [Amazon Elastic File System](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) section of the *AWS General Reference*\.
 
-**Topics**
-+ [Step 1: Gather Cluster Information](#efs-cluster-info)
-+ [Step 2: Create a Security Group for an Amazon EFS File System](#efs-security-group)
-+ [Step 3: Create an Amazon EFS File System](#efs-create)
-+ [Step 4: Configure Container Instances](#efs-config-instance)
-+ [Step 5: Create a Task Definition to Use the Amazon EFS File System](#efs-task-def)
-+ [Step 6: Add Content to the Amazon EFS File System](#efs-add-content)
-+ [Step 7: Run a Task and View the Results](#efs-run-task)
-
 ## Step 1: Gather Cluster Information<a name="efs-cluster-info"></a>
 
 Before you can create all of the required resources to use Amazon EFS with your Amazon ECS cluster, gather some basic information about the cluster, such as the VPC it is hosted inside of, and the security group that it uses\.

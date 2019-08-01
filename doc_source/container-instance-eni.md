@@ -114,6 +114,12 @@ The following shows the supported Amazon EC2 instance types and how many tasks u
 
 | Instance Type | Current Task Limit per Instance | New Task Limit per Instance | 
 | --- | --- | --- | 
+| a1 instance family | 
+|  a1\.medium  | 1 | 10 | 
+|  a1\.large  | 2 | 10 | 
+|  a1\.xlarge  | 3 | 20 | 
+|  a1\.2xlarge  | 3 | 40 | 
+|  a1\.4xlarge  | 7 | 60 | 
 | c5 instance family | 
 |  c5\.large  | 2 | 10 | 
 |  c5\.xlarge  | 3 | 20 | 
@@ -121,6 +127,18 @@ The following shows the supported Amazon EC2 instance types and how many tasks u
 |  c5\.4xlarge  | 7 | 60 | 
 |  c5\.9xlarge  | 7 | 60 | 
 |  c5\.18xlarge  | 14 | 120 | 
+|  c5d\.large  | 2 | 10 | 
+|  c5d\.xlarge  | 3 | 20 | 
+|  c5d\.2xlarge  | 3 | 40 | 
+|  c5d\.4xlarge  | 7 | 60 | 
+|  c5d\.9xlarge  | 7 | 60 | 
+|  c5d\.18xlarge  | 14 | 120 | 
+|  c5n\.large  | 2 | 10 | 
+|  c5n\.xlarge  | 3 | 20 | 
+|  c5n\.2xlarge  | 3 | 40 | 
+|  c5n\.4xlarge  | 7 | 60 | 
+|  c5n\.9xlarge  | 7 | 60 | 
+|  c5n\.18xlarge  | 14 | 120 | 
 | m5 instance family | 
 |  m5\.large  | 2 | 10 | 
 |  m5\.xlarge  | 3 | 20 | 
@@ -128,6 +146,24 @@ The following shows the supported Amazon EC2 instance types and how many tasks u
 |  m5\.4xlarge  | 7 | 60 | 
 |  m5\.12xlarge  | 7 | 60 | 
 |  m5\.24xlarge  | 14 | 120 | 
+|  m5a\.large  | 2 | 10 | 
+|  m5a\.xlarge  | 3 | 20 | 
+|  m5a\.2xlarge  | 3 | 40 | 
+|  m5a\.4xlarge  | 7 | 60 | 
+|  m5a\.12xlarge  | 7 | 60 | 
+|  m5a\.24xlarge  | 14 | 120 | 
+|  m5ad\.large  | 2 | 10 | 
+|  m5ad\.xlarge  | 3 | 20 | 
+|  m5ad\.2xlarge  | 3 | 40 | 
+|  m5ad\.4xlarge  | 7 | 60 | 
+|  m5ad\.12xlarge  | 7 | 60 | 
+|  m5ad\.24xlarge  | 14 | 120 | 
+|  m5d\.large  | 2 | 10 | 
+|  m5d\.xlarge  | 3 | 20 | 
+|  m5d\.2xlarge  | 3 | 40 | 
+|  m5d\.4xlarge  | 7 | 60 | 
+|  m5d\.12xlarge  | 7 | 60 | 
+|  m5d\.24xlarge  | 14 | 120 | 
 | p3 instance family | 
 |  p3\.2xlarge  | 3 | 40 | 
 |  p3\.8xlarge  | 7 | 60 | 
@@ -140,3 +176,21 @@ The following shows the supported Amazon EC2 instance types and how many tasks u
 |  r5\.4xlarge  | 7 | 60 | 
 |  r5\.12xlarge  | 7 | 60 | 
 |  r5\.24xlarge  | 14 | 120 | 
+|  r5a\.large  | 2 | 10 | 
+|  r5a\.xlarge  | 3 | 20 | 
+|  r5a\.2xlarge  | 3 | 40 | 
+|  r5a\.4xlarge  | 7 | 60 | 
+|  r5a\.12xlarge  | 7 | 60 | 
+|  r5a\.24xlarge  | 14 | 120 | 
+|  r5ad\.large  | 2 | 10 | 
+|  r5ad\.xlarge  | 3 | 20 | 
+|  r5ad\.2xlarge  | 3 | 40 | 
+|  r5ad\.4xlarge  | 7 | 60 | 
+|  r5ad\.12xlarge  | 7 | 60 | 
+|  r5ad\.24xlarge  | 14 | 120 | 
+|  r5d\.large  | 2 | 10 | 
+|  r5d\.xlarge  | 3 | 20 | 
+|  r5d\.2xlarge  | 3 | 40 | 
+|  r5d\.4xlarge  | 7 | 60 | 
+|  r5d\.12xlarge  | 7 | 60 | 
+|  r5d\.24xlarge  | 14 | 120 | 

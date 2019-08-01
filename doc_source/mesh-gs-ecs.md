@@ -153,7 +153,7 @@ Create virtual services for each microservice in your application\.
 
 ## Update Your Microservice Task Definitions<a name="mesh-gs-ecs-update-microservices"></a>
 
-After you create your service mesh, virtual nodes, virtual routers, routes, and virtual services, you must update the Amazon ECS task definitions for your microservices to be compatible with App Mesh Complete the steps in the following sections to update your services' task definitions to work with App Mesh\. When you are finished, update your Amazon ECS services to start using App Mesh with your Amazon ECS application\.
+After you create your service mesh, virtual nodes, virtual routers, routes, and virtual services, you must update the Amazon ECS task definitions for your microservices to be compatible with App Mesh\. Complete the steps in the following sections to update your services' task definitions to work with App Mesh\. When you are finished, update your Amazon ECS services to start using App Mesh with your Amazon ECS application\.
 
 ### Proxy Configuration<a name="mesh-gs-ecs-proxyconfig"></a>
 

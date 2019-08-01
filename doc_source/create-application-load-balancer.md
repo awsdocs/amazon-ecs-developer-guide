@@ -12,7 +12,7 @@ A *listener* is a process that checks for connection requests\. It is configured
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select a region for your load balancer\. Be sure to select the same region that you selected for your Amazon ECS container instances\.
+1. From the navigation bar, select a Region for your load balancer\. Be sure to select the same Region that you selected for your Amazon ECS container instances\.
 
 1. In the navigation pane, under **LOAD BALANCING**, choose **Load Balancers**\.
 

@@ -91,7 +91,8 @@ Required: Yes
 The `family` and `revision` \(`family:revision`\) or full Amazon Resource Name \(ARN\) of the task definition to run in your service\. If a `revision` is not specified, the latest `ACTIVE` revision is used\.
 
 `loadBalancers`  
-A load balancer object representing the load balancer to use with your service\. Currently, you are limited to one load balancer or target group per service\. After you create a service, the load balancer name or target group ARN, container name, and container port specified in the service definition are immutable\.  
+A load balancer object representing the load balancers to use with your service\. For services that use an Application Load Balancer or Network Load Balancer, there is a limit of five target groups you can attach to a service\.  
+\. After you create a service, the load balancer name or target group ARN, container name, and container port specified in the service definition are immutable\.  
 For Classic Load Balancers, this object must contain the load balancer name, the container name \(as it appears in a container definition\), and the container port to access from the load balancer\. When a task from this service is placed on a container instance, the container instance is registered with the load balancer specified here\.  
 For Application Load Balancers and Network Load Balancers, this object must contain the load balancer target group ARN, the container name \(as it appears in a container definition\), and the container port to access from the load balancer\. When a task from this service is placed on a container instance, the container instance and port combination is registered as a target in the target group specified here\.    
 `targetGroupArn`  

@@ -53,7 +53,7 @@ The following parameters are supported in Compose files for the Amazon ECS CLI:
 + `command`
 + `cpu_shares`
 **Note**  
-If you're using the Compose version 3 format, `cpu_shares` should be specified in the `ecs-params.yml` file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.
+If you're using the Compose version 3\.0 format, `cpu_shares` should be specified in the `ecs-params.yml` file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.
 + `devices` \(not valid for tasks using the Fargate launch type\)
 + `dns`
 + `dns_search`
@@ -64,37 +64,37 @@ We don't recommend using plaintext environment variables for sensitive informati
 + `env_file`
 **Important**  
 We don't recommend using plaintext environment variables for sensitive information, such as credential data\.
-+ `extends` \(Compose file version 1 and 2 only\)
++ `extends` \(Compose file version 1\.0 and 2 only\)
 + `extra_hosts`
-+ `healthcheck` \(Compose file version 3 only\)
++ `healthcheck` \(Compose file version 3\.0 only\)
 **Note**  
 The `start_period` field isn't supported using the Compose file\. To specify a `start_period`, use the `ecs-params.yml` file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.
 + `hostname`
 + `image`
 + `labels`
 + `links` \(not valid for tasks using the Fargate launch type\)
-+ `log_driver` \(Compose file version 1 only\)
-+ `log_opt` \(Compose file version 1 only\)
-+ `logging` \(Compose file version 2 and 3\)
++ `log_driver` \(Compose file version 1\.0 only\)
++ `log_opt` \(Compose file version 1\.0 only\)
++ `logging` \(Compose file version 2\.0 and 3\.0\)
   + `driver`
   + `options`
 + `mem_limit` \(in bytes\)
 **Note**  
-If you're using the Compose version 3 format, `mem_limit` should be specified in the `ecs-params.yml` file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.
+If you're using the Compose version 3\.0 format, `mem_limit` should be specified in the `ecs-params.yml` file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.
 + `mem_reservation` \(in bytes\)
 **Note**  
-If you're using the Compose version 3 format, `mem_reservation` should be specified in the `ecs-params.yml` file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.
+If you're using the Compose version 3\.0 format, `mem_reservation` should be specified in the `ecs-params.yml` file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.
 + `ports`
 + `privileged` \(not valid for tasks using the Fargate launch type\)
 + `read_only`
 + `security_opt`
-+ `shm_size` \(Compose file version 1 and 2 only and not valid for tasks using the Fargate launch type\)
++ `shm_size` \(Compose file version 1\.0 and 2 only and not valid for tasks using the Fargate launch type\)
 + `tmpfs` \(not valid for tasks using the Fargate launch type\)
 + `tty`
 + `ulimits`
 + `user`
 + `volumes`
-+ `volumes_from` \(Compose file version 1 and 2 only\)
++ `volumes_from` \(Compose file version 1\.0 and 2 only\)
 + `working_dir`
 
 **Important**  

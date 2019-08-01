@@ -4,13 +4,6 @@ When you are finished experimenting with or using a particular Amazon ECS cluste
 
 Some Amazon ECS resources, such as tasks, services, clusters, and container instances, are cleaned up using the Amazon ECS console\. Other resources, such as Amazon EC2 instances, Elastic Load Balancing load balancers, and Auto Scaling groups, must be cleaned up manually in the Amazon EC2 console or by deleting the AWS CloudFormation stack that created them\.
 
-**Topics**
-+ [Scale Down Services](#cleanup-scale-down-services)
-+ [Delete Services](#cleanup-delete-services)
-+ [Deregister Container Instances](#cleanup-deregister-instances)
-+ [Delete a Cluster](#cleanup-delete-cluster)
-+ [Delete the AWS CloudFormation Stack](#cleanup-CFN-stack)
-
 ## Scale Down Services<a name="cleanup-scale-down-services"></a>
 
 If your cluster contains any services, you should first scale down the desired count of tasks in these services to 0 so that Amazon ECS does not try to start new tasks on your container instances while you are cleaning up\. Follow the procedure in [Updating a Service](update-service.md) and enter 0 in the **Number of tasks** field\.

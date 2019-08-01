@@ -11,15 +11,6 @@ You can optionally create an Amazon Elastic Container Registry \(Amazon ECR\) im
 
 Complete the following tasks to get started with Amazon ECS:
 
-**Topics**
-+ [Prerequisites](#first-run-ec2-prereqs)
-+ [Step 1: Choose Your Configuration Options](#first-run-ec2-options)
-+ [Step 2: Create a Task Definition](#first-run-ec2-task-def)
-+ [Step 3: Configure the Service](#first-run-ec2-service)
-+ [Step 4: Configure the Cluster](#first-run-ec2-cluster)
-+ [Step 5: Review](#first-run-ec2-review)
-+ [Step 6: \(Optional\) View your Service](#first-run-ec2-view)
-
 ## Prerequisites<a name="first-run-ec2-prereqs"></a>
 
 Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.

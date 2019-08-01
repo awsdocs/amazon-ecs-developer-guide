@@ -9,3 +9,4 @@ In the Regions that don't support AWS Fargate, the Amazon ECS first\-run wizard 
 **Topics**
 + [Getting Started with Amazon ECS using Fargate](ECS_GetStarted_Fargate.md)
 + [Getting Started with Amazon ECS](ECS_GetStarted_EC2.md)
++ [Cleaning Up your Amazon ECS Resources](ECS_CleaningUp.md)
