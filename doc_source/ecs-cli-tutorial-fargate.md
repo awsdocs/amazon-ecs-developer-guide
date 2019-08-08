@@ -72,7 +72,7 @@ If this is the first time that you are configuring the Amazon ECS CLI, these con
 1. Create an Amazon ECS cluster with the ecs\-cli up command\. Because you specified Fargate as your default launch type in the cluster configuration, this command creates an empty cluster and a VPC configured with two public subnets\.
 
    ```
-   ecs-cli up
+   ecs-cli up --cluster tutorial
    ```
 **Note**  
 This command may take a few minutes to complete as your resources are created\. Take note of the VPC and subnet IDs that are created as they are used later\.
