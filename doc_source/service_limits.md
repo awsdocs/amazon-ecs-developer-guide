@@ -29,3 +29,12 @@ The following table provides other limitations for Amazon ECS that cannot be cha
 | Maximum size of a shared volume used by multiple containers within a task using the Fargate launch type | 4 GB | 
 | Maximum container storage for tasks using the Fargate launch type | 10 GB | 
 | Maximum number of tags per resource \(tasks, services, task definitions, clusters, and container instances\) | 50 | 
+
+The following table provides soft limits on task launch rate for Amazon ECS and AWS Fargate. These limits apply to both standalone tasks launched via the `RunTask` API calls and tasks launched by services started via the `CreateService` API.
+
+| Resource | Limit |
+| --- | --- | 
+| AWS Fargate sustained task launches | 1 per second | 
+| AWS Fargate burst task launches | 10 per second | 
+| AWS ECS on EC2 sustained task launches | 20 per second | 
+| AWS ECS on EC2 burst task launches | 100 per second | 
