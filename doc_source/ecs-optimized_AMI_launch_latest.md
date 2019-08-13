@@ -39,6 +39,8 @@ The following table lists the current Amazon ECS\-optimized Amazon Linux 2 AMI I
 | sa\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-x86\_64\-ebs | ami\-038707d64e5b8e7ba | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-038707d64e5b8e7ba) | 
 | us\-gov\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-x86\_64\-ebs | ami\-0a224902b35f8ad6c | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-east-1#LaunchInstanceWizard:ami=ami-0a224902b35f8ad6c) | 
 | us\-gov\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-x86\_64\-ebs | ami\-04c68165 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-04c68165) | 
+| cn\-north\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-x86\_64\-ebs | ami\-0b619dec66f0fe1eb | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-north-1#LaunchInstanceWizard:ami=ami-0b619dec66f0fe1eb) | 
+| cn\-northwest\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-x86\_64\-ebs | ami\-0b619dec66f0fe1eb | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-northwest-1#LaunchInstanceWizard:ami=ami-0b619dec66f0fe1eb) | 
 
 ------
 #### [ Amazon Linux 2 \(arm64\) ]
@@ -58,10 +60,6 @@ The following table lists the current Amazon ECS\-optimized Amazon Linux 2 \(arm
 | us\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-arm64\-ebs | ami\-0b3b892651e52f03d | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0b3b892651e52f03d) | 
 | us\-west\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-arm64\-ebs | ami\-0860edcdc9c9533e3 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-0860edcdc9c9533e3) | 
 | eu\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-arm64\-ebs | ami\-0af65bdd9a59a3171 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-0af65bdd9a59a3171) | 
-| ap\-northeast\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-arm64\-ebs | ami\-0f4fac2a56f81dcd3 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-0f4fac2a56f81dcd3) | 
-| ap\-south\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-arm64\-ebs | ami\-010ec3313c5e141f8 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-south-1#LaunchInstanceWizard:ami=ami-010ec3313c5e141f8) | 
-| ap\-southeast\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-arm64\-ebs | ami\-0416f14b40116bd30 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-0416f14b40116bd30) | 
-| eu\-central\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190709\-arm64\-ebs | ami\-04e1a56398fc3d675 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-04e1a56398fc3d675) | 
 
 ------
 #### [ Amazon Linux 2 \(GPU\) ]
@@ -99,6 +97,8 @@ The following table lists the current Amazon ECS GPU\-optimized AMI IDs by Regio
 | sa\-east\-1 | amzn2\-ami\-ecs\-gpu\-hvm\-2\.0\.20190709\-x86\_64\-ebs | ami\-0a398510537094972 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-0a398510537094972) | 
 | us\-gov\-east\-1 | amzn2\-ami\-ecs\-gpu\-hvm\-2\.0\.20190709\-x86\_64\-ebs | ami\-0365a6c905c4ba391 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-east-1#LaunchInstanceWizard:ami=ami-0365a6c905c4ba391) | 
 | us\-gov\-west\-1 | amzn2\-ami\-ecs\-gpu\-hvm\-2\.0\.20190709\-x86\_64\-ebs | ami\-f8b8ff99 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-f8b8ff99) | 
+| cn\-north\-1 | amzn2\-ami\-ecs\-gpu\-hvm\-2\.0\.20190709\-x86\_64\-ebs | ami\-01143a340285bc1fb | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-north-1#LaunchInstanceWizard:ami=ami-01143a340285bc1fb) | 
+| cn\-northwest\-1 | amzn2\-ami\-ecs\-gpu\-hvm\-2\.0\.20190709\-x86\_64\-ebs | ami\-0240ef2b16197fef3 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-northwest-1#LaunchInstanceWizard:ami=ami-0240ef2b16197fef3) | 
 
 ------
 #### [ Amazon Linux AMI ]
@@ -133,6 +133,8 @@ The following table lists the current Amazon ECS\-optimized Amazon Linux AMI IDs
 | sa\-east\-1 | amzn\-ami\-2018\.03\.v\-amazon\-ecs\-optimized | ami\-0ad0be326813dda96 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-0ad0be326813dda96) | 
 | us\-gov\-east\-1 | amzn\-ami\-2018\.03\.v\-amazon\-ecs\-optimized | ami\-033b28d8ef5fe3f73 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-east-1#LaunchInstanceWizard:ami=ami-033b28d8ef5fe3f73) | 
 | us\-gov\-west\-1 | amzn\-ami\-2018\.03\.v\-amazon\-ecs\-optimized | ami\-b0bafdd1 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-b0bafdd1) | 
+| cn\-north\-1 | amzn\-ami\-2018\.03\.v\-amazon\-ecs\-optimized | ami\-041f913b515304af9 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-north-1#LaunchInstanceWizard:ami=ami-041f913b515304af9) | 
+| cn\-northwest\-1 | amzn\-ami\-2018\.03\.v\-amazon\-ecs\-optimized | ami\-0be42f3b41b17b513 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-northwest-1#LaunchInstanceWizard:ami=ami-0be42f3b41b17b513) | 
 
 ------
 #### [ Windows Server 2019 ]
@@ -165,6 +167,8 @@ The following table lists the current Amazon ECS\-optimized Windows 2019 AMI IDs
 | sa\-east\-1 | Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2019\.07\.19 | ami\-094ff1452e5849bff | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-094ff1452e5849bff) | 
 | us\-gov\-east\-1 | Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2019\.07\.19 | ami\-0e238cac0ef640949 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-east-1#LaunchInstanceWizard:ami=ami-0e238cac0ef640949) | 
 | us\-gov\-west\-1 | Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2019\.07\.19 | ami\-13fcbd72 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-13fcbd72) | 
+| cn\-north\-1 | Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2019\.07\.19 | ami\-02728cc741b470390 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-north-1#LaunchInstanceWizard:ami=ami-02728cc741b470390) | 
+| cn\-northwest\-1 | Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2019\.07\.19 | ami\-0e1cafc0e9ae3faf8 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-northwest-1#LaunchInstanceWizard:ami=ami-0e1cafc0e9ae3faf8) | 
 
 ------
 #### [ Windows Server 2016 ]
@@ -197,6 +201,8 @@ The following table lists the current Amazon ECS\-optimized Windows 2016 AMI IDs
 | sa\-east\-1 | Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2019\.07\.19 | ami\-06955dc02fc2a3b7b | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=sa-east-1#LaunchInstanceWizard:ami=ami-06955dc02fc2a3b7b) | 
 | us\-gov\-east\-1 | Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2019\.07\.19 | ami\-04c0f4fe213678f9b | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-east-1#LaunchInstanceWizard:ami=ami-04c0f4fe213678f9b) | 
 | us\-gov\-west\-1 | Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2019\.07\.19 | ami\-38fdbc59 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-gov-west-1#LaunchInstanceWizard:ami=ami-38fdbc59) | 
+| cn\-north\-1 | Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2019\.07\.19 | ami\-010da5256208bcb66 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-north-1#LaunchInstanceWizard:ami=ami-010da5256208bcb66) | 
+| cn\-northwest\-1 | Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2019\.07\.19 | ami\-0c1033d4d46070747 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=cn-northwest-1#LaunchInstanceWizard:ami=ami-0c1033d4d46070747) | 
 
 ------
 

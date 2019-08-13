@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  AWS Fargate region expansion  |  AWS Fargate with Amazon ECS has expanded to the Asia Pacific \(Hong Kong\) Region\.  |  06 Aug 2019  | 
 |  Elastic Network Interface Trunking  |  Added additional supported Amazon EC2 instance types for ENI trunking feature\. For more information, see [Supported Amazon EC2 Instance Types](container-instance-eni.md#eni-trunking-supported-instance-types)\.  |  1 Aug 2019  | 
 |  Registering Multiple Target Groups with a Service  |  Added support for specifying multiple target groups in a service definition\. For more information, see [Registering Multiple Target Groups with a Service](register-multiple-targetgroups.md)\.  |  30 July 2019  | 
 |  Specifying Sensitive Data Using Secrets Manager Secrets  |  Added tutorial for specifying sensitive data using Secrets Manager secrets\. For more information, see [Tutorial: Specifying Sensitive Data Using Secrets Manager Secrets](specifying-sensitive-data-tutorial.md)\.  |  20 July 2019  | 

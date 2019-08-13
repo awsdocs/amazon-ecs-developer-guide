@@ -1,6 +1,6 @@
 # Getting Started with Amazon ECS using Fargate<a name="ECS_GetStarted_Fargate"></a>
 
-Get started with Amazon Elastic Container Service \(Amazon ECS\) by creating a task definition that uses the Fargate launch type, scheduling tasks, and configuring a cluster in the Amazon ECS console\. 
+Get started with Amazon Elastic Container Service \(Amazon ECS\) using the Fargate launch type by creating a task definition, scheduling tasks, and configuring a cluster in the Amazon ECS console\. 
 
 In the Regions that support AWS Fargate, the Amazon ECS first\-run wizard guides you through the process of getting started with Amazon ECS using Fargate\. For more information, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\. The wizard gives you the option of creating a cluster and launching a sample web application\. If you already have a Docker image to launch in Amazon ECS, you can create a task definition with that image and use that for your cluster instead\.
 
@@ -88,3 +88,17 @@ If your service is a web\-based application, such as the **Amazon ECS sample** a
 
 1. Enter the **IPv4 Public IP** address in your web browser and you should see a webpage that displays the **Amazon ECS sample** application\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ECS_Sample_Application.png)
+
+## Step 6: Clean Up<a name="first-run-cleanup"></a>
+
+When you are finished using an Amazon ECS cluster, you should clean up the resources associated with it to avoid incurring charges for resources that you are not using\.
+
+Some Amazon ECS resources, such as tasks, services, clusters, and container instances, are cleaned up using the Amazon ECS console\. Other resources, such as Amazon EC2 instances, Elastic Load Balancing load balancers, and Auto Scaling groups, must be cleaned up manually in the Amazon EC2 console or by deleting the AWS CloudFormation stack that created them\.
+
+1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+
+1. In the navigation pane, choose **Clusters**\.
+
+1. On the **Clusters** page, select the cluster to delete\.
+
+1. Choose **Delete Cluster**\. At the confirmation prompt, enter **delete me** and then choose **Delete**\. Deleting the cluster cleans up the associated resources that were created with the cluster, including Auto Scaling groups, VPCs, or load balancers\.

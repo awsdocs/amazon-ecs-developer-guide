@@ -122,7 +122,7 @@ Create routes for each microservice in your application\.
 
 1. For **Weight**, choose a relative weight for the route\. Select **Add target** to add additional virtual nodes\. The total weight for all targets combined must be less than or equal to 100\.
 
-1. To use HTTP path\-based routing, choose **Additional configuration** and then specify the path that the route should match\. For example, if your virtual service name is `service-b.local` and you want the route to match requests to `service-b.local/metrics`, your prefix should be `/metrics`\.
+1. \(Optional\) To use HTTP path\-based routing, choose **Additional configuration** and then specify the **Prefix** that the route should match\. For example, if your virtual service name is `service-b.local` and you want the route to match requests to `service-b.local/metrics`, your prefix should be `/metrics`\.
 
 1. Choose **Create route** to finish\.
 
