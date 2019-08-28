@@ -20,15 +20,19 @@ When viewing service event messages in the Amazon ECS console, duplicate service
 ## Service Event Messages<a name="service-event-messages-list"></a>
 
 The following are examples of service event messages you may see in the console:
-+ [\(service *service\-name*\) was unable to place a task because no container instance met all of its requirements\.](#service-event-messages-1)
-+ [\(service *service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* has insufficient CPU units available\.](#service-event-messages-2)
-+ [\(service *service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* encountered error "AGENT"\.](#service-event-messages-3)
-+ [\(service *service\-name*\) \(instance *instance\-id*\) is unhealthy in \(elb *elb\-name*\) due to \(reason Instance has failed at least the UnhealthyThreshold number of health checks consecutively\.\)](#service-event-messages-4)
-+ [\(service *service\-name*\) is unable to consistently start tasks successfully\.](#service-event-messages-5)
++ [service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\.](#service-event-messages-1)
++ [service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* has insufficient CPU units available\.](#service-event-messages-2)
++ [service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* encountered error "AGENT"\.](#service-event-messages-3)
++ [service \(*service\-name*\) \(instance *instance\-id*\) is unhealthy in \(elb *elb\-name*\) due to \(reason Instance has failed at least the UnhealthyThreshold number of health checks consecutively\.\)](#service-event-messages-4)
++ [service \(*service\-name*\) is unable to consistently start tasks successfully\.](#service-event-messages-5)
 
-### \(service *service\-name*\) was unable to place a task because no container instance met all of its requirements\.<a name="service-event-messages-1"></a>
+### service \(*service\-name*\) has reached a steady state\.<a name="service-event-messages-steady"></a>
 
-In the above image, this service could not find the available resources to add another task\. The possible causes for this are:
+The service scheduler will send a `service service-name) has reached a steady state.` service event when the service is healthy and at the desired number of tasks, thus reaching a steady state\.
+
+### service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\.<a name="service-event-messages-1"></a>
+
+The service scheduler will send this event message when it could not find the available resources to add another task\. The possible causes for this are:
 
 No container instances were found in your cluster  
 If no container instances are registered in the cluster you attempt to run a task in, you will receive this error\. You should add container instances to your cluster\. For more information, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
@@ -58,11 +62,11 @@ A common cause of this error is if your service is using tasks that use the `aws
 For more information on which attributes are required for specific task definition parameters and agent configuration variables, see [Task Definition Parameters](task_definition_parameters.md) and [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.  
 Windows container instances with Amazon ECS container agent versions earlier than 1\.17\.0 do not support the `awslogs` log driver by default\. If you are unable to use the `awslogs` log driver with your Windows container instances, ensure that you are using the latest Amazon ECS\-optimized Windows AMI\.
 
-### \(service *service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* has insufficient CPU units available\.<a name="service-event-messages-2"></a>
+### service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* has insufficient CPU units available\.<a name="service-event-messages-2"></a>
 
 The closest matching container instance for task placement does not container enough CPU units to meet the requirements in the task definition\. Review the CPU requirements in both the task size and container definition parameters of the task definition\.
 
-### \(service *service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* encountered error "AGENT"\.<a name="service-event-messages-3"></a>
+### service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* encountered error "AGENT"\.<a name="service-event-messages-3"></a>
 
 The Amazon ECS container agent on the closest matching container instance for task placement is disconnected\. If you can connect to the container instance with SSH, you can examine the agent logs; for more information, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\. You should also verify that the agent is running on the instance\. If you are using the Amazon ECS\-optimized AMI, you can try stopping and restarting the agent with the following command:
 + For the Amazon ECS\-optimized Amazon Linux 2 AMI:
@@ -76,11 +80,11 @@ The Amazon ECS container agent on the closest matching container instance for ta
   sudo stop ecs && sudo start ecs
   ```
 
-### \(service *service\-name*\) \(instance *instance\-id*\) is unhealthy in \(elb *elb\-name*\) due to \(reason Instance has failed at least the UnhealthyThreshold number of health checks consecutively\.\)<a name="service-event-messages-4"></a>
+### service \(*service\-name*\) \(instance *instance\-id*\) is unhealthy in \(elb *elb\-name*\) due to \(reason Instance has failed at least the UnhealthyThreshold number of health checks consecutively\.\)<a name="service-event-messages-4"></a>
 
 This service is registered with a load balancer and the load balancer health checks are failing\. For more information, see [Troubleshooting Service Load Balancers](troubleshoot-service-load-balancers.md)\.
 
-### \(service *service\-name*\) is unable to consistently start tasks successfully\.<a name="service-event-messages-5"></a>
+### service \(*service\-name*\) is unable to consistently start tasks successfully\.<a name="service-event-messages-5"></a>
 
 This service contains tasks that have failed to start after consecutive attempts\. At this point, the service scheduler begins to incrementally increase the time between retries\. You should troubleshoot why your tasks are failing to launch\. For more information, see [Service Throttle Logic](service-throttle-logic.md)\.
 

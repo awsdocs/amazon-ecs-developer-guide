@@ -21,7 +21,7 @@ Do not attempt to modify the underlying resources directly after they are create
    + **EC2 Linux \+ Networking**– With this option you can launch a cluster of tasks using the EC2 launch type and Linux containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\.
    + **EC2 Windows \+ Networking** – With this option you can launch a cluster of tasks using the EC2 launch type using Windows containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\. For more information, see [Windows Containers](ECS_Windows.md)\.
 
-If you chose the **Networking only** cluster template, continue with the following steps\. Otherwise, you can skip to the next section\.
+If you chose the **Networking only** cluster template, continue with the following steps\. Otherwise, skip to **Using the **EC2 Linux \+ Networking** or **EC2 Windows \+ Networking** cluster template**\.
 
 **Using the **Networking only** cluster template**
 
@@ -83,7 +83,7 @@ You can also choose to create a new security group and then modify the rules aft
 
    1. In the **Container instance IAM role** section, select the IAM role to use with your container instances\. If your account has the **ecsInstanceRole** that is created for you in the console first\-run wizard, it is selected by default\. If you do not have this role in your account, you can choose to create the role, or you can choose another IAM role to use with your container instances\.
 **Important**  
-If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent does not connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+The IAM role you use must have the `AmazonEC2ContainerServiceforEC2Role` managed policy attached to it, otherwise you will receive an error during cluster creation\. If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent does not connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
    1. If you chose the Spot Instance type earlier, the **Spot Fleet Role IAM role** section indicates that an IAM role `ecsSpotFleetRole` is created\.
 

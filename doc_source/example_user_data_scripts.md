@@ -159,7 +159,7 @@ cat << EOF > /etc/systemd/system/docker-container@ecs-agent.service
 [Unit]
 Description=Docker Container %I
 Requires=docker.service
-After=docker.service
+After=cloud-final.service
 
 [Service]
 Restart=always

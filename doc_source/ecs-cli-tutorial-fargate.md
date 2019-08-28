@@ -11,7 +11,7 @@ Complete the following prerequisites:
 
 ## Step 1: Create the Task Execution IAM Role<a name="ECS_CLI_tutorial_fargate_iam_role"></a>
 
-Amazon ECS needs permissions so that your Fargate task can store logs in CloudWatch\. These permissions are covered by the task execution IAM role\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+The Amazon ECS container agent makes calls to AWS APIs on your behalf, so it requires an IAM policy and role for the service to know that the agent belongs to you\. This IAM role is referred to as a task execution IAM role\. If you already have a task execution role created to use, you can skip this step\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
 **To create the task execution IAM role using the AWS CLI**
 
@@ -54,39 +54,39 @@ The Amazon ECS CLI requires credentials in order to make API requests on your be
 1. Create a cluster configuration, which defines the AWS region to use, resource creation prefixes, and the cluster name to use with the Amazon ECS CLI:
 
    ```
-   ecs-cli configure --cluster tutorial --region us-west-2 --default-launch-type FARGATE --config-name tutorial
+   ecs-cli configure --cluster tutorial --default-launch-type FARGATE --config-name tutorial --region us-west-2
    ```
 
 1. Create a CLI profile using your access key and secret key:
 
    ```
-   ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET_ACCESS_KEY --profile-name tutorial
+   ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET_ACCESS_KEY --profile-name tutorial-profile
    ```
-**Note**  
-If this is the first time that you are configuring the Amazon ECS CLI, these configurations are marked as default\. If this is not your first time configuring the Amazon ECS CLI, see the [Amazon ECS Command Line Reference](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_reference.html) in the *Amazon Elastic Container Service Developer Guide* to set this as the default configuration and profile\.
 
-## Step 3: Create a Cluster and Security Group<a name="ECS_CLI_tutorial_fargate_cluster"></a>
+## Step 3: Create a Cluster and Configure the Security Group<a name="ECS_CLI_tutorial_fargate_cluster"></a>
 
 **To create an ECS cluster and security group**
 
 1. Create an Amazon ECS cluster with the ecs\-cli up command\. Because you specified Fargate as your default launch type in the cluster configuration, this command creates an empty cluster and a VPC configured with two public subnets\.
 
    ```
-   ecs-cli up --cluster tutorial
+   ecs-cli up --cluster-config tutorial --ecs-profile tutorial-profile
    ```
-**Note**  
-This command may take a few minutes to complete as your resources are created\. Take note of the VPC and subnet IDs that are created as they are used later\.
 
-1. Using the AWS CLI, create a security group using the VPC ID from the previous output:
+   This command may take a few minutes to complete as your resources are created\. The output of this command contains the VPC and subnet IDs that are created\. Take note of these IDs as they are used later\.
+
+1. Using the AWS CLI, retrieve the default security group ID for the VPC\. Use the VPC ID from the previous output:
 
    ```
-   aws ec2 create-security-group --group-name "my-sg" --description "My security group" --vpc-id "VPC_ID"
+   aws ec2 describe-security-groups --filters Name=vpc-id,Values=VPC_ID --region us-west-2
    ```
+
+   The output of this command contains your security group ID, which is used in the next step\.
 
 1. Using AWS CLI, add a security group rule to allow inbound access on port 80:
 
    ```
-   aws ec2 authorize-security-group-ingress --group-id "security_group_id" --protocol tcp --port 80 --cidr 0.0.0.0/0
+   aws ec2 authorize-security-group-ingress --group-id security_group_id --protocol tcp --port 80 --cidr 0.0.0.0/0 --region us-west-2
    ```
 
 ## Step 4: Create a Compose File<a name="ECS_CLI_tutorial_fargate_compose_create"></a>
@@ -109,6 +109,9 @@ services:
         awslogs-region: us-west-2
         awslogs-stream-prefix: web
 ```
+
+**Note**  
+If your account already contains a CloudWatch Logs log group named `tutorial` in the `us-west-2` Region, choose a unique name so the ECS CLI creates a new log group for this tutorial\.
 
 In addition to the Docker compose information, there are some parameters specific to Amazon ECS that you must specify for the service\. Using the VPC, subnet, and security group IDs from the previous step, create a file named `ecs-params.yml` with the following content:
 
@@ -136,7 +139,7 @@ run_params:
 After you create the compose file, you can deploy it to your cluster with ecs\-cli compose service up\. By default, the command looks for files called `docker-compose.yml` and `ecs-params.yml` in the current directory; you can specify a different docker compose file with the `--file` option, and a different ECS Params file with the `--ecs-params` option\. By default, the resources created by this command have the current directory in their titles, but you can override that with the `--project-name` option\. The `--create-log-groups` option creates the CloudWatch log groups for the container logs\.
 
 ```
-ecs-cli compose --project-name tutorial service up --create-log-groups --cluster-config tutorial
+ecs-cli compose --project-name tutorial service up --create-log-groups --cluster-config tutorial --ecs-profile tutorial-profile
 ```
 
 ## Step 6: View the Running Containers on a Cluster<a name="ECS_CLI_tutorial_fargate_view"></a>
@@ -144,7 +147,7 @@ ecs-cli compose --project-name tutorial service up --create-log-groups --cluster
 After you deploy the compose file, you can view the containers that are running in the service with ecs\-cli compose service ps\.
 
 ```
-ecs-cli compose --project-name tutorial service ps --cluster-config tutorial
+ecs-cli compose --project-name tutorial service ps --cluster-config tutorial --ecs-profile tutorial-profile
 ```
 
 Output:
@@ -161,7 +164,7 @@ In the above example, you can see the `web` container from your compose file, an
 View the logs for the task:
 
 ```
-ecs-cli logs --task-id 0c2862e6e39e4eff92ca3e4f843c5b9a --follow --cluster-config tutorial
+ecs-cli logs --task-id 0c2862e6e39e4eff92ca3e4f843c5b9a --follow --cluster-config tutorial --ecs-profile tutorial-profile
 ```
 
 **Note**  
@@ -172,13 +175,13 @@ The `--follow` option tells the Amazon ECS CLI to continuously poll for logs\.
 You can scale up your task count to increase the number of instances of your application with ecs\-cli compose service scale\. In this example, the running count of the application is increased to two\.
 
 ```
-ecs-cli compose --project-name tutorial service scale 2 --cluster-config tutorial
+ecs-cli compose --project-name tutorial service scale 2 --cluster-config tutorial --ecs-profile tutorial-profile
 ```
 
 Now you should see two more containers in your cluster:
 
 ```
-ecs-cli compose --project-name tutorial service ps --cluster-config tutorial
+ecs-cli compose --project-name tutorial service ps --cluster-config tutorial --ecs-profile tutorial-profile
 ```
 
 Output:
@@ -200,11 +203,11 @@ Enter the IP address for the task in your web browser and you should see a webpa
 When you are done with this tutorial, you should clean up your resources so they do not incur any more charges\. First, delete the service so that it stops the existing containers and does not try to run any more tasks\.
 
 ```
-ecs-cli compose --project-name tutorial service down --cluster-config tutorial
+ecs-cli compose --project-name tutorial service down --cluster-config tutorial --ecs-profile tutorial-profile
 ```
 
 Now, take down your cluster, which cleans up the resources that you created earlier with ecs\-cli up\.
 
 ```
-ecs-cli down --force --cluster-config tutorial
+ecs-cli down --force --cluster-config tutorial --ecs-profile tutorial-profile
 ```

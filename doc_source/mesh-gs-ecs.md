@@ -30,7 +30,7 @@ After you create your service mesh, you can create virtual services, virtual nod
 
 ## Step 2: Create Your Virtual Nodes<a name="mesh-gs-ecs-create-virtual-nodes"></a>
 
-A virtual node acts as a logical pointer to a particular task group, such as a Kubernetes deployment\. For more information, see [Virtual Nodes](https://docs.aws.amazon.com//app-mesh/latest/userguide/virtual_nodes.html) in the *AWS App Mesh User Guide*\.
+A virtual node acts as a logical pointer to a particular task group, such as a Kubernetes deployment or Amazon ECS service\. For more information, see [Virtual Nodes](https://docs.aws.amazon.com//app-mesh/latest/userguide/virtual_nodes.html)\.
 
 When you create a virtual node, you must specify a service discovery method for your task group\. Any inbound traffic that your virtual node expects should be specified as a *listener*\. Any outbound traffic that your virtual node expects to reach should be specified as a *backend*\.
 
@@ -47,7 +47,7 @@ You must create virtual nodes for each microservice in your application\.
 1. For **Virtual node name**, enter a name for your virtual node\. 
 
 1. For **Service discovery method**, choose one of the following options:
-   + **DNS** – Specify the DNS hostname\. 
+   + **DNS** – Specify the DNS\-registered hostname of the actual service that the virtual node represents\. 
    + **AWS Cloud Map** – Specify the service name and namespace\. Optionally, you can also specify attributes that App Mesh can query AWS Cloud Map for\. Only instances that match all of the specified key/value pairs will be returned\. To use AWS Cloud Map, your account must have the `AWSServiceRoleForAppMesh` [service\-linked role](using-service-linked-roles.md)\. 
 
 1. To specify any backends \(for egress traffic\) for your virtual node, or to configure inbound and outbound access logging information, choose **Additional configuration** 
@@ -122,7 +122,7 @@ Create routes for each microservice in your application\.
 
 1. For **Weight**, choose a relative weight for the route\. Select **Add target** to add additional virtual nodes\. The total weight for all targets combined must be less than or equal to 100\.
 
-1. \(Optional\) To use HTTP path\-based routing, choose **Additional configuration** and then specify the **Prefix** that the route should match\. For example, if your virtual service name is `service-b.local` and you want the route to match requests to `service-b.local/metrics`, your prefix should be `/metrics`\.
+1. \(Optional\) To use HTTP path\-based routing, specify the **Prefix** that the route should match\. For example, if your virtual service name is `service-b.local` and you want the route to match requests to `service-b.local/metrics`, your prefix should be `/metrics`\.
 
 1. Choose **Create route** to finish\.
 
@@ -140,7 +140,7 @@ Create virtual services for each microservice in your application\.
 
 1. Choose **Create virtual service** 
 
-1. For **Virtual service name**, choose a name for your virtual service\. We recommend that you use the service discovery name of the real service that you're targeting \(such as `service-a.default.svc.cluster.local`\)\. 
+1. For **Virtual service name**, choose a name for your virtual service\. We recommend that you use the service discovery name of the real service that you're targeting \(such as `service-a.default.svc.cluster.local`\)\. The name that you specify must resolve to a non\-loopback IP address\.
 
 1. For **Provider**, choose the provider type for your virtual service: 
    + If you want the virtual service to spread traffic across multiple virtual nodes, select **Virtual router** and then choose the virtual router to use from the drop\-down menu\. 
@@ -230,10 +230,10 @@ The application containers in your task definitions must wait for the Envoy prox
 
 ### Envoy Container Definition<a name="mesh-gs-ecs-envoy"></a>
 
-Your Amazon ECS services' task definitions must contain the App Mesh custom Envoy container image\.
+Your Amazon ECS services' task definitions must contain the App Mesh custom Envoy container image\. You can replace the *Region* with any Region that App Mesh is supported in\. For a list of supported regions, see [AWS Service Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#appmesh_region)\.
 
 ```
-111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.1.0-prod
+111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.11.1.0-prod
 ```
 
 The Envoy container definition must be marked as `essential`\. The virtual node name for the Amazon ECS service should be set to the `APPMESH_VIRTUAL_NODE_NAME`, and the `user` ID value should match the `IgnoredUID` value from the task definition proxy configuration \(in this example, we use `1337`\)\. The health check shown here waits for the Envoy container to bootstrap properly before reporting to Amazon ECS that it is healthy and ready for the application containers to start\.
@@ -243,7 +243,7 @@ The following code block shows an Envoy container definition example\.
 ```
     {
       "name": "envoy",
-      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.1.0-prod",
+      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.11.1.0-prod",
       "essential": true,
       "environment": [
         {
@@ -289,7 +289,7 @@ The Amazon ECS console assists in the process of updating your existing task def
 
       1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-      1. For **Envoy image**, use the auto\-populated Envoy container image which is 111345817488\.dkr\.ecr\.us\-west\-2\.amazonaws\.com/aws\-appmesh\-envoy:v1\.9\.1\.0\-prod\.
+      1. For **Envoy image**, use the auto\-populated Envoy container image which is 111345817488\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.11\.1\.0\-prod\.
 
       1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com//app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
@@ -364,7 +364,7 @@ If you're running an Amazon ECS task as described in [Credentials](#credentials)
     },
     {
       "name": "envoy",
-      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.1.0-prod",
+      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.11.1.0-prod",
       "essential": true,
       "environment": [
         {
@@ -444,7 +444,7 @@ X\-Ray allows you to collect data about requests that an application serves and 
     },
     {
       "name": "envoy",
-      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.9.1.0-prod",
+      "image": "111345817488.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.11.1.0-prod",
       "essential": true,
       "environment": [
         {

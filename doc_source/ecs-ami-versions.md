@@ -19,6 +19,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20190815 | 1\.30\.0 | 18\.06\.1\-ce | 1\.30\.0\-1 | 
 | 20190709 | 1\.29\.1 | 18\.06\.1\-ce | 1\.29\.1\-1 | 
 | 20190614 | 1\.29\.0 | 18\.06\.1\-ce | 1\.29\.0\-1 | 
 | 20190607 | 1\.29\.0 | 18\.06\.1\-ce | 1\.29\.0\-1 | 
@@ -47,6 +48,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20190815 | 1\.30\.0 | 18\.06\.1\-ce | 1\.30\.0\-1 | 
 | 20190709 | 1\.29\.1 | 18\.06\.1\-ce | 1\.29\.1\-1 | 
 | 20190617 | 1\.29\.0 | 18\.06\.1\-ce | 1\.29\.0\-1 | 
 | 20190607 | 1\.29\.0 | 18\.06\.1\-ce | 1\.29\.0\-1 | 
@@ -73,6 +75,7 @@ The table below lists the current and previous versions of the Amazon ECS GPU\-o
 
 | Amazon ECS GPU\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | NVIDIA driver version | 
 | --- | --- | --- | --- | --- | 
+| 20190815 | 1\.30\.0 | 18\.06\.1\-ce | 1\.30\.0\-1 | 418\.40\.04 | 
 | 20190709 | 1\.29\.1 | 18\.06\.1\-ce | 1\.29\.1\-1 | 418\.40\.04 | 
 | 20190614 | 1\.29\.0 | 18\.06\.1\-ce | 1\.29\.0\-1 | 418\.40\.04 | 
 | 20190607 | 1\.29\.0 | 18\.06\.1\-ce | 1\.29\.0\-1 | 418\.40\.04 | 
@@ -99,6 +102,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 2018\.03\.w | 1\.30\.0 | 18\.06\.1\-ce | 1\.30\.0\-1 | 
 | 2018\.03\.v | 1\.29\.1 | 18\.06\.1\-ce | 1\.29\.1\-1 | 
 | 2018\.03\.u | 1\.29\.0 | 18\.06\.1\-ce | 1\.29\.0\-1 | 
 | 2018\.03\.t | 1\.29\.0 | 18\.06\.1\-ce | 1\.29\.0\-1 | 
@@ -169,6 +173,12 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 | 2015\.03\.c | 1\.2\.0  | 1\.6\.2 | 1\.2\.0\-1 | 
 | 2015\.03\.b | 1\.1\.0 | 1\.6\.0 | 1\.0\-3 | 
 | 2015\.03\.a | 1\.0\.0 | 1\.5\.0 | 1\.0\-1 | 
+
+You can retrieve the current Amazon ECS\-optimized Amazon Linux AMI using the AWS CLI with the following command:
+
+```
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended
+```
 
 ## Amazon ECS\-optimized Windows 2019 AMI Versions<a name="windows-2019-ami-agent-versions"></a>
 

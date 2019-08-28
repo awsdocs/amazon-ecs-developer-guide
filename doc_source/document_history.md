@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Container Level Swap Configuration  |  Amazon ECS added support for controlling the usage of swap memory space on your Linux container instances at the container level\. Using a per\-container swap configuration, each container within a task definition can have swap enabled or disabled, and for those that have it enabled, the maximum amount of swap space used can be limited\. For more information, see [Managing Container Swap Space](container-swap.md)\.  |  16 Aug 2019  | 
 |  AWS Fargate region expansion  |  AWS Fargate with Amazon ECS has expanded to the Asia Pacific \(Hong Kong\) Region\.  |  06 Aug 2019  | 
 |  Elastic Network Interface Trunking  |  Added additional supported Amazon EC2 instance types for ENI trunking feature\. For more information, see [Supported Amazon EC2 Instance Types](container-instance-eni.md#eni-trunking-supported-instance-types)\.  |  1 Aug 2019  | 
 |  Registering Multiple Target Groups with a Service  |  Added support for specifying multiple target groups in a service definition\. For more information, see [Registering Multiple Target Groups with a Service](register-multiple-targetgroups.md)\.  |  30 July 2019  | 

@@ -46,7 +46,7 @@ You can launch a Windows container instance using the AWS Management Console, as
 
 1. From the console dashboard, choose **Launch Instance**\.
 
-1. On the **Choose an Amazon Machine Image \(AMI\)** page, type **ECS\_Optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2019\.07\.19** AMI\. 
+1. On the **Choose an Amazon Machine Image \(AMI\)** page, type **ECS\_Optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2019\.08\.16** AMI\. 
 
    The following table lists the current Amazon ECS\-optimized Windows 2019 AMI IDs by Region\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_Windows_getting_started.html)
