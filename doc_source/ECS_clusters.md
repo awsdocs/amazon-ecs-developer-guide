@@ -11,4 +11,5 @@ The following are general concepts about Amazon ECS clusters\.
 **Topics**
 + [Creating a Cluster](create_cluster.md)
 + [Scaling a Cluster](scale_cluster.md)
++ [Updating Cluster Settings](update-cluster-settings.md)
 + [Deleting a Cluster](delete_cluster.md)

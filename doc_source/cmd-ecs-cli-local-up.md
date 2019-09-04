@@ -7,7 +7,7 @@ Some features described might only be available with the latest version of the A
 
 ## Syntax<a name="cmd-ecs-cli-local-up-syntax"></a>
 
-ecs\-cli local create up \[\-\-task\-def\-compose *filename*\] \[\-\-task\-def\-file *filename*\] \[\-\-task\-def\-remote *value*\] \[\-\-output *output\_file*\] \[\-\-override *filename*\] 
+ecs\-cli local create up \[\-\-task\-def\-compose *filename*\] \[\-\-task\-def\-file *filename*\] \[\-\-task\-def\-remote *value*\] \[\-\-force\] \[\-\-output *output\_file*\] \[\-\-override *filename*\] 
 
 ## Options<a name="cmd-ecs-cli-local-up-options"></a>
 
@@ -17,6 +17,7 @@ ecs\-cli local create up \[\-\-task\-def\-compose *filename*\] \[\-\-task\-def\-
 |  `--task-def-compose filename`  |  Specifies the Docker Compose file to run locally\. Type: string Required: No  | 
 |  `--task-def-file filename`  |  Specifies the task definition JSON file to run locally\. If one is not specified, the ECS CLI will look for a file named `task-definition.json` in the current directory\. Type: string Required: No  | 
 |  `--task-def-remote value`  |  Specifies the full Amazon Resource Name \(ARN\) or family:revision of the task definition to convert to a Docker Compose file\. If you specify a task definition family without a revision, the latest revision is used\. Type: string Required: No  | 
+|  `--force`  |  Overwrites any existing Docker Compose output file without prompting for confirmation\.  | 
 |  `--output output_file`  |  Specifies the local filename to write the Docker Compose file to\. If one is not specified, the default is `docker-compose.local.yml`\. If the output file already exists, the CLI will prompt you with an overwrite request\. Type: string Required: No  | 
 |  `--override filename`  |  Specifies the local Docker Compose override filename to use\. Type: string Required: No  | 
 

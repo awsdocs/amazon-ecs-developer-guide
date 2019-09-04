@@ -54,7 +54,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-   1. For **Envoy image**, use the auto\-populated Envoy container image which is 111345817488\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.11\.1\.0\-prod\.
+   1. For **Envoy image**, use the auto\-populated Envoy container image which is 111345817488\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.11\.1\.1\-prod\.
 
    1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com//app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
@@ -125,7 +125,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-   1. For **Envoy image**, use the auto\-populated Envoy container image which is 111345817488\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.11\.1\.0\-prod\.
+   1. For **Envoy image**, use the auto\-populated Envoy container image which is 111345817488\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.11\.1\.1\-prod\.
 
    1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com//app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
@@ -170,7 +170,7 @@ An empty task definition template is shown below\. You can use this template to 
     "family": "",
     "taskRoleArn": "",
     "executionRoleArn": "",
-    "networkMode": "host",
+    "networkMode": "bridge",
     "containerDefinitions": [
         {
             "name": "",
@@ -188,7 +188,7 @@ An empty task definition template is shown below\. You can use this template to 
                 {
                     "containerPort": 0,
                     "hostPort": 0,
-                    "protocol": "udp"
+                    "protocol": "tcp"
                 }
             ],
             "essential": true,
@@ -245,7 +245,9 @@ An empty task definition template is shown below\. You can use this template to 
                             ""
                         ]
                     }
-                ]
+                ],
+                "maxSwap": 0,
+                "swappiness": 0
             },
             "secrets": [
                 {
@@ -256,7 +258,7 @@ An empty task definition template is shown below\. You can use this template to 
             "dependsOn": [
                 {
                     "containerName": "",
-                    "condition": "START"
+                    "condition": "COMPLETE"
                 }
             ],
             "startTimeout": 0,
@@ -289,13 +291,13 @@ An empty task definition template is shown below\. You can use this template to 
             },
             "ulimits": [
                 {
-                    "name": "rttime",
+                    "name": "cpu",
                     "softLimit": 0,
                     "hardLimit": 0
                 }
             ],
             "logConfiguration": {
-                "logDriver": "gelf",
+                "logDriver": "journald",
                 "options": {
                     "KeyName": ""
                 },
@@ -326,7 +328,13 @@ An empty task definition template is shown below\. You can use this template to 
                     "value": "",
                     "type": "GPU"
                 }
-            ]
+            ],
+            "firelensConfiguration": {
+                "type": "fluentd",
+                "options": {
+                    "KeyName": ""
+                }
+            }
         }
     ],
     "volumes": [
@@ -355,7 +363,7 @@ An empty task definition template is shown below\. You can use this template to 
         }
     ],
     "requiresCompatibilities": [
-        "FARGATE"
+        "EC2"
     ],
     "cpu": "",
     "memory": "",
@@ -365,8 +373,8 @@ An empty task definition template is shown below\. You can use this template to 
             "value": ""
         }
     ],
-    "pidMode": "task",
-    "ipcMode": "none",
+    "pidMode": "host",
+    "ipcMode": "task",
     "proxyConfiguration": {
         "type": "APPMESH",
         "containerName": "",

@@ -7,7 +7,7 @@ Some features described might only be available with the latest version of the A
 
 ## Syntax<a name="cmd-ecs-cli-local-create-syntax"></a>
 
-ecs\-cli local create \[\-\-task\-def\-file *filename*\] \[\-\-task\-def\-remote *value*\] \[\-\-output *output\_file*\] 
+ecs\-cli local create \[\-\-task\-def\-file *filename*\] \[\-\-task\-def\-remote *value*\] \[\-\-force\] \[\-\-output *output\_file*\] 
 
 ## Options<a name="cmd-ecs-cli-local-create-options"></a>
 
@@ -16,6 +16,7 @@ ecs\-cli local create \[\-\-task\-def\-file *filename*\] \[\-\-task\-def\-remote
 | --- | --- | 
 |  `--task-def-file filename`  |  Specifies the filename that contains the task definition JSON to convert to a Docker Compose file\. If one is not specified, the ECS CLI will look for a file named `task-definition.json` in the current directory\. Type: JSON Required: No  | 
 |  `--task-def-remote value`  |  Specifies the full Amazon Resource Name \(ARN\) or family:revision of the task definition to convert to a Docker Compose file\. If you specify a task definition family without a revision, the latest revision is used\. Type: string Required: No  | 
+|  `--force`  |  Overwrites any existing Docker Compose output file without prompting for confirmation\.  | 
 |  `--output output_file`  |  Specifies the local filename to write the Docker Compose file to\. If one is not specified, the default is `docker-compose.local.yml`\. Type: string Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
 

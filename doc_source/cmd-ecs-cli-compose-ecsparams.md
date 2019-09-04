@@ -43,6 +43,9 @@ task_definition:
            string: string
         labels:
            string: string
+  placement_constraints:
+      - type: string
+        expression: string
 run_params:
   network_configuration:
     awsvpc_configuration:
@@ -59,7 +62,7 @@ run_params:
         field: string
     constraints:
       - type: string
-         expression: string
+        expression: string
   service_discovery:
     container_name: string
     container_port: integer
@@ -122,13 +125,14 @@ If no units are specified, seconds are assumed\. For example, you can specify ei
     + `value_from` – This is the AWS Systems Manager Parameter Store ARN or name to expose to the container\. If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
     + `name` – The value to set as the environment variable on the container\.
 + `docker_volumes` – This parameter allows you to create docker volumes\. The `name` key is required, and `scope`, `autoprovision`, `driver`, `driver_opts` and `labels` correspond with the Docker volume configuration fields in a task definition\. For more information, see [DockerVolumeConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DockerVolumeConfiguration.html) in the *Amazon Elastic Container Service API Reference*\. Volumes defined with the `docker_volumes` key can be referenced in your compose file by name, even if they were not also specified in the compose file\.
++ `placement_constraints` – This parameter allows you to specify a list of constraints on task placement within the task definition\. For more information, see [TaskDefinitionPlacementConstraint](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TaskDefinitionPlacementConstraint.html) in the *Amazon Elastic Container Service API Reference*\. It is optional if you are using the EC2 launch type\. It is not supported if using the Fargate launch type\.
 
-The fields listed under `run_params` are for values needed as options to any API calls not specifically related to a task definition, such as `compose up` \(RunTask\) and `compose service up` \(CreateService\)\. Currently, the only supported parameter under `run_params` is `network_configuration`, which is a required parameter to use task networking and when using tasks with the Fargate launch type\.
+The fields listed under `run_params` are for values needed as options to any API calls not specifically related to a task definition, such as `compose up` \(RunTask\) and `compose service up` \(CreateService\)\.
 + `network_configuration` – Required if you specified `awsvpc` for `ecs_network_mode`\. It uses one nested parameter, `awsvpc_configuration`, which has the following subfields:
   + `subnets` – A list of subnet IDs used to associate with your tasks\. The listed subnets must be in the same VPC and Availability Zone as the instances on which to launch your tasks\.
   + `security_groups` – A list of security group IDs to associate with your tasks\. The listed security must be in the same VPC as the instances on which to launch your tasks\.
   + `assign_public_ip` – The supported values for this field are `ENABLED` or `DISABLED`\. This field is only used for tasks using the Fargate launch type\. If this field is present in tasks using task networking with the EC2 launch type, the request fails\.
-+ `task_placement` – This parameter allows you to specify task placement options\. It is optional if you are using the EC2 launch type\. It is not supported Fargate launch type\. For more information, see [Amazon ECS Task Placement](task-placement.md)\.
++ `task_placement` – This parameter allows you to specify task placement options\. It is optional if you are using the EC2 launch type\. It is not supported if using the Fargate launch type\. For more information, see [Amazon ECS Task Placement](task-placement.md)\.
 
   It has the following subfields:
   + `strategy` – A list of objects, with two keys\. Valid keys are `type` and `field`\.

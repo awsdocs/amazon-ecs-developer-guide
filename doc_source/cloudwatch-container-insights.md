@@ -1,13 +1,6 @@
 # Amazon ECS CloudWatch Container Insights<a name="cloudwatch-container-insights"></a>
 
-
-****  
-
-|  | 
-| --- |
-| CloudWatch Container Insights is in open preview\. The preview is open to all AWS accounts and you do not need to request access\. Features may be added or changed before announcing General Availability\. Don’t hesitate to contact us with any feedback or let us know if you would like to be informed when updates are made by emailing us at [containerinsightsfeedback@amazon\.com](mailto:containerinsightsfeedback@amazon.com) | 
-
-CloudWatch Container Insights collects, aggregates, and summarizes metrics and logs from your containerized applications and microservices\. The metrics include utilization for resources such as CPU, memory, disk, and network\. The metrics are available in CloudWatch automatic dashboards\. For a full list of Amazon ECS Container Insights metrics, see [Amazon ECS Container Insights Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-metrics-ECS.html) in the *Amazon CloudWatch User Guide*\.
+CloudWatch Container Insights collects, aggregates, and summarizes metrics and logs from your containerized applications and microservices\. The metrics include utilization for resources such as CPU, memory, disk, and network\. Network metrics are only available for tasks that use the `bridge` or `host` network modes\. The metrics are available in CloudWatch automatic dashboards\. For a full list of Amazon ECS Container Insights metrics, see [Amazon ECS Container Insights Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-metrics-ECS.html) in the *Amazon CloudWatch User Guide*\.
 
 Operational data is collected as performance log events\. These are entries that use a structured JSON schema that enables high\-cardinality data to be ingested and stored at scale\. From this data, CloudWatch creates higher\-level aggregated metrics at the cluster and service level as CloudWatch metrics\. For more information, see [Container Insights Structured Logs for Amazon ECS](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-reference-structured-logs-ECS.html) in the *Amazon CloudWatch User Guide*\.
 
@@ -16,8 +9,11 @@ CloudWatch Container Insights are provided at an additional cost\. For informati
 
 ## Working With Container Insights\-Enabled Clusters<a name="cloudwatch-container-insights-working"></a>
 
-Container Insights can be enabled for all clusters by opting in to the `containerInsights` account setting, or on individual clusters by enabling it using the cluster settings during cluster creation\. Opting in to the Container Insights account setting can be done with both the Amazon ECS console and the AWS CLI\. For more information on creating Amazon ECS clusters, see [Creating a Cluster](create_cluster.md)\.
+Container Insights can be enabled for all new clusters created by opting in to the `containerInsights` account setting, on individual clusters by enabling it using the cluster settings during cluster creation, or on existing clusters by using the UpdateClusterSettings API\. 
 
+Opting in to the `containerInsights` account setting can be done with both the Amazon ECS console and the AWS CLI\. For more information on creating Amazon ECS clusters, see [Creating a Cluster](create_cluster.md)\.
+
+**Important**  
 For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent\. For more information, see [Amazon ECS Container Agent Versions](container_agent_versions.md)\.
 
 **To opt in in all IAM users or roles on your account to Container Insights\-enabled clusters using the console**
@@ -66,4 +62,13 @@ The root user on an account can use one of the following commands and specify th
 
   ```
   Write-ECSAccountSetting -Name containerInsights -Value enabled -PrincipalArn arn:aws:iam::aws_account_id:user/userName -Region us-east-1 -Force
+  ```
+
+**To update the settings for an existing cluster using the command line**
+
+Use one of the following commands to update the setting for a cluster\.
++ [update\-cluster\-settings](https://docs.aws.amazon.com/cli/latest/reference/ecs/update-cluster-settings.html) \(AWS CLI\)
+
+  ```
+  aws ecs update-cluster-settings --cluster cluster_name_or_arn --settings name=containerInsights,value=enabled|disabled --region us-east-1
   ```

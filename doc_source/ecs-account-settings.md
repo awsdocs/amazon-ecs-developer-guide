@@ -13,8 +13,8 @@ Amazon ECS supports launching container instances with increased elastic network
 **CloudWatch Container Insights**  
 Resource name: `containerInsights`  
 CloudWatch Container Insights collects, aggregates, and summarizes metrics and logs from your containerized applications and microservices\. The metrics include utilization for resources such as CPU, memory, disk, and network\. Container Insights also provides diagnostic information, such as container restart failures, to help you isolate issues and resolve them quickly\. You can also set CloudWatch alarms on metrics that Container Insights collects\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.  
-Container Insights can be enabled for all clusters by opting in to the `containerInsights` account setting, or on individual clusters by enabling it using the cluster settings during cluster creation\.  
-For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent\. For more information, see [Amazon ECS Container Agent Versions](container_agent_versions.md)\.
+When the `containerInsights` account setting is opted in, all new clusters created after opting in will have Container Insights enabled unless you disable it during cluster creation\. Individual clusters can either be enabled or disabled during creation or by using the UpdateClusterSettings API\.  
+For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent to use Container Insights\. For more information, see [Amazon ECS Container Agent Versions](container_agent_versions.md)\.
 
 For each Region, you can opt in to or opt out of each account setting at the account level or for a specific IAM user or role\. The available account settings to opt in to or out of include the new ARN and resource ID format and the awsvpc trunking feature\.
 

@@ -23,6 +23,7 @@ Your entire application stack does not need to exist on a single task definition
 + [Using Data Volumes in Tasks](using_data_volumes.md)
 + [Task Networking with the `awsvpc` Network Mode](task-networking.md)
 + [Using the awslogs Log Driver](using_awslogs.md)
++ [Custom Log Routing](using_firelens.md)
 + [Private Registry Authentication for Tasks](private-auth.md)
 + [Specifying Sensitive Data](specifying-sensitive-data.md)
 + [Example Task Definitions](example_task_definitions.md)

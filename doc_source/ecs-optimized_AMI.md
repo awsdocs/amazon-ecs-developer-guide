@@ -83,6 +83,10 @@ The following table lists the current Amazon ECS\-optimized Amazon Linux 2 \(arm
 | us\-east\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190815\-arm64\-ebs | ami\-01a325c826e291b64 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-01a325c826e291b64) | 
 | us\-west\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190815\-arm64\-ebs | ami\-070f0c8512914277a | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:ami=ami-070f0c8512914277a) | 
 | eu\-west\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190815\-arm64\-ebs | ami\-07e41fbf04f9e0d6b | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-west-1#LaunchInstanceWizard:ami=ami-07e41fbf04f9e0d6b) | 
+| ap\-northeast\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190815\-arm64\-ebs | ami\-0601beebdb8cb74b6 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-northeast-1#LaunchInstanceWizard:ami=ami-0601beebdb8cb74b6) | 
+| ap\-south\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190815\-arm64\-ebs | ami\-0e322d16aeb09ff85 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-south-1#LaunchInstanceWizard:ami=ami-0e322d16aeb09ff85) | 
+| ap\-southeast\-2 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190815\-arm64\-ebs | ami\-0c617edcc4a7cbba7 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-2#LaunchInstanceWizard:ami=ami-0c617edcc4a7cbba7) | 
+| eu\-central\-1 | amzn2\-ami\-ecs\-hvm\-2\.0\.20190815\-arm64\-ebs | ami\-0b9f9dafdcf5d2740 | [Launch instance](https://console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:ami=ami-0b9f9dafdcf5d2740) | 
 
 ------
 #### [ Amazon Linux 2 \(GPU\) ]

@@ -4,14 +4,14 @@ Docker is a technology that allows you to build, run, test, and deploy distribut
 
 The documentation in this guide assumes that readers possess a basic understanding of what Docker is and how it works\. For more information about Docker, see [What is Docker?](http://aws.amazon.com/docker/) and the [Docker overview](https://docs.docker.com/engine/docker-overview/)\.
 
-## Installing Docker<a name="install_docker"></a>
+## Installing Docker on Amazon Linux 2<a name="install_docker"></a>
 
 **Note**  
 If you already have Docker installed, skip to [Create a Docker Image](#docker-basics-create-image)\.
 
 Docker is available on many different operating systems, including most modern Linux distributions, like Ubuntu, and even Mac OSX and Windows\. For more information about how to install Docker on your particular operating system, go to the [Docker installation guide](https://docs.docker.com/engine/installation/#installation)\.
 
-You don't even need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an instance and install Docker to get started\.
+You don't even need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an Amazon Linux 2 instance and install Docker to get started\.
 
 **To install Docker on an Amazon EC2 instance**
 
