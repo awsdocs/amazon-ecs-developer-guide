@@ -23,7 +23,6 @@ Amazon's trademarks and trade dress may not be used in
 + [AWS Fargate on Amazon ECS](AWS_Fargate.md)
    + [AWS Fargate Platform Versions](platform_versions.md)
 + [Working with GPUs on Amazon ECS](ecs-gpu.md)
-+ [Working with Amazon Elastic Inference on Amazon ECS](ecs-eia.md)
 + [Amazon ECS Clusters](ECS_clusters.md)
    + [Creating a Cluster](create_cluster.md)
    + [Scaling a Cluster](scale_cluster.md)

@@ -117,8 +117,8 @@ The following example shows a container metadata file in the `READY` status\.
 ```
 {
 	"Cluster": "default",
-	"ContainerInstanceARN": "arn:aws:ecs:us-west-2:012345678910:container-instance/1f73d099-b914-411c-a9ff-81633b7741dd",
-	"TaskARN": "arn:aws:ecs:us-west-2:012345678910:task/2b88376d-aba3-4950-9ddf-bcb0f388a40c",
+	"ContainerInstanceARN": "arn:aws:ecs:us-west-2:012345678910:container-instance/default/1f73d099-b914-411c-a9ff-81633b7741dd",
+	"TaskARN": "arn:aws:ecs:us-west-2:012345678910:task/default/2b88376d-aba3-4950-9ddf-bcb0f388a40c",
 	"ContainerID": "98e44444008169587b826b4cd76c6732e5899747e753af1e19a35db64f9e9c32",
 	"ContainerName": "metadata",
 	"DockerContainerName": "/ecs-metadata-7-metadata-f0edfbd6d09fdef20800",
@@ -150,8 +150,8 @@ The following example shows a container metadata file that has not yet reached t
 ```
 {
     "Cluster": "default",
-    "ContainerInstanceARN": "arn:aws:ecs:us-west-2:012345678910:container-instance/1f73d099-b914-411c-a9ff-81633b7741dd",
-    "TaskARN": "arn:aws:ecs:us-west-2:012345678910:task/d90675f8-1a98-444b-805b-3d9cabb6fcd4",
+    "ContainerInstanceARN": "arn:aws:ecs:us-west-2:012345678910:container-instance/default/1f73d099-b914-411c-a9ff-81633b7741dd",
+    "TaskARN": "arn:aws:ecs:us-west-2:012345678910:task/default/d90675f8-1a98-444b-805b-3d9cabb6fcd4",
     "ContainerName": "metadata"
 }
 ```

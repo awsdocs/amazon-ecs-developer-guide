@@ -8,23 +8,23 @@ Your container instance must have an IAM role that allows access to Amazon ECS i
 To view container instance metadata, log in to your container instance via SSH and run the following command\. Metadata includes the container instance ID, the Amazon ECS cluster in which the container instance is registered, and the Amazon ECS container agent version information\.
 
 ```
-[ec2-user ~]$ curl -s http://localhost:51678/v1/metadata | python -mjson.tool
+curl -s http://localhost:51678/v1/metadata | python -mjson.tool
 ```
 
 Output:
 
 ```
 {
-  "Cluster": "default",
-  "ContainerInstanceArn": "<container_instance_ARN>",
-  "Version": "Amazon ECS Agent - v1.30.0 (02ff320c)"
+    "Cluster": "cluster_name",
+    "ContainerInstanceArn": "arn:aws:ecs:region:aws_account_id:container-instance/cluster_name/container_instance_id",
+    "Version": "Amazon ECS Agent - v1.30.0 (02ff320c)"
 }
 ```
 
 To view information about all of the tasks that are running on a container instance, log in to your container instance via SSH and run the following command:
 
 ```
-[ec2-user ~]$ curl http://localhost:51678/v1/tasks
+curl http://localhost:51678/v1/tasks
 ```
 
 Output:
@@ -33,7 +33,7 @@ Output:
 {
   "Tasks": [
     {
-      "Arn": "arn:aws:ecs:us-east-1:<aws_account_id>:task/example5-58ff-46c9-ae05-543f8example",
+      "Arn": "arn:aws:ecs:us-west-2:012345678910:task/default/example5-58ff-46c9-ae05-543f8example",
       "DesiredStatus": "RUNNING",
       "KnownStatus": "RUNNING",
       "Family": "hello_world",
@@ -65,14 +65,14 @@ You can view information for a particular task that is running on a container in
 Amazon ECS container agents before version 1\.14\.2 require full Docker container IDs for the introspection API, not the short version that is shown with docker ps\. You can get the full Docker ID for a container by running the docker ps \-\-no\-trunc command on the container instance\.
 
 ```
-[ec2-user ~]$ curl http://localhost:51678/v1/tasks?dockerid=79c796ed2a7f
+curl http://localhost:51678/v1/tasks?dockerid=79c796ed2a7f
 ```
 
 Output:
 
 ```
 {
-    "Arn": "arn:aws:ecs:us-east-1:<aws_account_id>:task/e01d58a8-151b-40e8-bc01-22647b9ecfec",
+    "Arn": "arn:aws:ecs:us-west-2:012345678910:task/default/e01d58a8-151b-40e8-bc01-22647b9ecfec",
     "Containers": [
         {
             "DockerId": "79c796ed2a7f864f485c76f83f3165488097279d296a7c05bd5201a1c69b2920",
