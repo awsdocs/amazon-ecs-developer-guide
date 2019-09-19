@@ -192,7 +192,7 @@ tutorial/0c2862e6e39e4eff92ca3e4f843c5b9a/web  RUNNING  34.222.202.55:80->80/tcp
 tutorial/d9fbbc931d2e47ae928fcf433041648f/web  RUNNING  34.220.230.191:80->80/tcp  tutorial:1      UNKNOWN
 ```
 
-## Step 9: \(Optional\) View your Web Application<a name="ECS_CLI_tutorial_fargate_view"></a>
+## Step 9: \(Optional\) View your Web Application<a name="ECS_CLI_tutorial_fargate_view_app"></a>
 
 Enter the IP address for the task in your web browser and you should see a webpage that displays the **Simple PHP App** web application\.
 
