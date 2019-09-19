@@ -446,7 +446,7 @@ The following should be noted when specifying a log configuration for your conta
 
 ```
 "logConfiguration": {
-      "logDriver": "awslogs","fluentd","gelf","json-file","journald","splunk","syslog","awsfirelens",
+      "logDriver": "awslogs","fluentd","gelf","json-file","journald","logentries","splunk","syslog","awsfirelens",
       "options": {"string": "string"
         ...},
 	"secretOptions": [{
@@ -457,11 +457,11 @@ The following should be noted when specifying a log configuration for your conta
 ```  
 `logDriver`  
 Type: string  
-Valid values: `"awslogs","fluentd","gelf","json-file","journald","splunk","syslog","awsfirelens`  
+Valid values: `"awslogs","fluentd","gelf","json-file","journald","logentries","splunk","syslog","awsfirelens`  
 Required: yes, when `logConfiguration` is used  
 The log driver to use for the container\. The valid values listed earlier are log drivers that the Amazon ECS container agent can communicate with by default\.  
 For tasks using the Fargate launch type, the supported log drivers are `awslogs`, `splunk`, and `awsfirelens`\.  
-For tasks using the EC2 launch type, the supported log drivers are `awslogs`, `fluentd`, `gelf`, `json-file`, `journald`, `syslog`, `splunk`, and `awsfirelens`\.  
+For tasks using the EC2 launch type, the supported log drivers are `awslogs`, `fluentd`, `gelf`, `json-file`, `journald`, `logentries`,`syslog`, `splunk`, and `awsfirelens`\.  
 For more information on using the `awslogs` log driver in task definitions to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.  
 For more information about using the `awsfirelens` log driver, see [Custom Log Routing](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_firelens.html)\.  
 If you have a custom driver that is not listed, you can fork the Amazon ECS container agent project that is [available on GitHub](https://github.com/aws/amazon-ecs-agent) and customize it to work with that driver\. We encourage you to submit pull requests for changes that you would like to have included\. However, we do not currently provide support for running modified copies of this software\.

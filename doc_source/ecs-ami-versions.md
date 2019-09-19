@@ -179,6 +179,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Windows 2019 AMI | Amazon ECS container agent version | Docker version | 
 | --- | --- | --- | 
+| 2019\.09\.11 | 1\.30\.0 | 19\.03\.1 | 
 | 2019\.08\.16 | 1\.29\.1 | 19\.03\.1 | 
 | 2019\.07\.19 | 1\.29\.0 | 18\.09\.8 | 
 | 2019\.05\.10 | 1\.27\.0 | 18\.09\.4 | 
@@ -196,6 +197,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Windows 2016 AMI | Amazon ECS container agent version | Docker version | 
 | --- | --- | --- | 
+| 2019\.09\.11 | 1\.30\.0 | 19\.03\.1 | 
 | 2019\.08\.16 | 1\.29\.1 | 19\.03\.1 | 
 | 2019\.07\.19 | 1\.29\.0 | 18\.09\.8 | 
 | 2019\.03\.07 | 1\.26\.0 | 18\.03\.1 | 

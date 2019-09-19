@@ -151,10 +151,10 @@ The following table lists the current Amazon ECS\-optimized Amazon Linux AMI IDs
 #### [ Windows Server 2019 ]
 
 The current Amazon ECS\-optimized Windows 2019 AMI consists of:
-+ The AMI name is `Windows_Server-2019-English-Full-ECS_Optimized-2019.08.16`
++ The AMI name is `Windows_Server-2019-English-Full-ECS_Optimized-2019.09.11`
 + The latest version of Microsoft Windows Server 2019
 + Docker EE version `19.03.1`
-+ Amazon ECS container agent version `1.29.1`
++ Amazon ECS container agent version `1.30.0`
 
 The following table lists the current Amazon ECS\-optimized Windows 2019 AMI IDs by Region\.
 
@@ -188,10 +188,10 @@ The following table lists the current Amazon ECS\-optimized Windows 2019 AMI IDs
 #### [ Windows Server 2016 ]
 
 The current Amazon ECS\-optimized Windows 2016 AMI consists of:
-+ The AMI name is `Windows_Server-2016-English-Full-ECS_Optimized-2019.08.16`
++ The AMI name is `Windows_Server-2016-English-Full-ECS_Optimized-2019.09.11`
 + The latest version of Microsoft Windows Server 2016
 + Docker EE version `19.03.1`
-+ Amazon ECS container agent version `1.29.1`
++ Amazon ECS container agent version `1.30.0`
 
 The following table lists the current Amazon ECS\-optimized Windows 2016 AMI IDs by Region\.
 
