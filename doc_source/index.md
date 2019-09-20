@@ -50,7 +50,6 @@ Amazon's trademarks and trade dress may not be used in
    + [Modifying Account Settings](ecs-modifying-longer-id-settings.md)
 + [Amazon ECS Container Instances](ECS_instances.md)
    + [Amazon ECS-optimized AMIs](ecs-optimized_AMI.md)
-      + [How to Launch the Latest Amazon ECS-Optimized Amazon Linux AMI](ecs-optimized_AMI_launch_latest.md)
       + [Amazon ECS-optimized AMI Versions](ecs-ami-versions.md)
       + [AMI Storage Configuration](ecs-ami-storage-config.md)
    + [Retrieving Amazon ECS-Optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)

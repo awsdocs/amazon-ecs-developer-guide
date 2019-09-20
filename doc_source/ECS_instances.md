@@ -1,6 +1,6 @@
 # Amazon ECS Container Instances<a name="ECS_instances"></a>
 
-An Amazon ECS container instance is an Amazon EC2 instance that is running the Amazon ECS container agent and has been registered into a cluster\. When you run tasks with Amazon ECS, your tasks using the EC2 launch type are placed on your active container instances\.
+An Amazon ECS container instance is an Amazon EC2 instance that is running the Amazon ECS container agent and has been registered into a cluster\. When you run tasks with Amazon ECS using the EC2 launch type, your tasks are placed on your active container instances\.
 
 **Note**  
 Tasks using the Fargate launch type are deployed onto infrastructure managed by AWS, so this topic does not apply\.
