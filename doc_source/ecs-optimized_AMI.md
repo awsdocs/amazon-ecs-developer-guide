@@ -56,8 +56,8 @@ The following table lists the current Amazon ECS\-optimized Amazon Linux 2 AMI I
 |  South America \(Sao Paulo\)  | `sa-east-1` | [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Frecommended%252Fimage_id/description?region=sa-east-1#) | 
 |  AWS GovCloud \(US\-East\)  | `us-gov-east-1` | [View AMI ID](https://console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Frecommended%252Fimage_id/description?region=us-gov-east-1#) | 
 |  AWS GovCloud \(US\-West\)  | `us-gov-west-1` | [View AMI ID](https://console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Frecommended%252Fimage_id/description?region=us-gov-west-1##) | 
-|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Frecommended%252Fimage_id/description?region=cn-north-1#)  | 
-|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Frecommended%252Fimage_id/description?region=cn-northwest-1#)  | 
+|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Frecommended%252Fimage_id/description?region=cn-north-1#)  | 
+|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Frecommended%252Fimage_id/description?region=cn-northwest-1#)  | 
 
 ------
 #### [ Amazon Linux 2 \(arm64\) ]
@@ -107,10 +107,10 @@ The following table lists the current Amazon ECS GPU\-optimized AMI IDs by Regio
 |  EU \(Paris\)  | eu\-west\-3 |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Fgpu%252Frecommended%252Fimage_id/description?region=eu-west-3#)  | 
 |  Middle East \(Bahrain\)  | me\-south\-1 |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Fgpu%252Frecommended%252Fimage_id/description?region=me-south-1#)  | 
 |  South America \(Sao Paulo\)  | sa\-east\-1 |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Fgpu%252Frecommended%252Fimage_id/description?region=sa-east-1#)  | 
-|  AWS GovCloud \(US\-East\)  | us\-gov\-east\-1 |  [View AMI ID](https://us-gov-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Fgpu%252Frecommended%252Fimage_id/description?region=us-gov-east-1#)  | 
-|  AWS GovCloud \(US\-West\)  | us\-gov\-west\-1 |  [View AMI ID](https://us-gov-west-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Fgpu%252Frecommended%252Fimage_id/description?region=us-gov-west-1#)  | 
-|  China \(Beijing\)  | cn\-north\-1 |  [View AMI ID](https://cn-north-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Fgpu%252Frecommended%252Fimage_id/description?region=cn-north-1#)  | 
-|  China \(Ningxia\)  | cn\-northwest\-1 |  [View AMI ID](https://cn-northwest-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Fgpu%252Frecommended%252Fimage_id/description?region=cn-northwest-1#)  | 
+|  AWS GovCloud \(US\-East\)  | us\-gov\-east\-1 |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Fgpu%252Frecommended%252Fimage_id/description?region=us-gov-east-1#)  | 
+|  AWS GovCloud \(US\-West\)  | us\-gov\-west\-1 |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Fgpu%252Frecommended%252Fimage_id/description?region=us-gov-west-1#)  | 
+|  China \(Beijing\)  | cn\-north\-1 |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Fgpu%252Frecommended%252Fimage_id/description?region=cn-north-1#)  | 
+|  China \(Ningxia\)  | cn\-northwest\-1 |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Fgpu%252Frecommended%252Fimage_id/description?region=cn-northwest-1#)  | 
 
 ------
 #### [ Amazon Linux AMI ]
@@ -138,10 +138,10 @@ The following table lists the current Amazon ECS\-optimized Amazon Linux AMI IDs
 |  EU \(Paris\)  | eu\-west\-3 |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=eu-west-3#)  | 
 |  Middle East \(Bahrain\)  | me\-south\-1 |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=me-south-1#)  | 
 |  South America \(Sao Paulo\)  | sa\-east\-1 |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=sa-east-1#)  | 
-|  AWS GovCloud \(US\-East\)  | us\-gov\-east\-1 |  [View AMI ID](https://us-gov-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=us-gov-east-1#)  | 
-|  AWS GovCloud \(US\-West\)  | us\-gov\-west\-1 |  [View AMI ID](https://us-gov-west-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=us-gov-west-1#)  | 
-|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=cn-north-1#)  | 
-|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=cn-northwest-1#)  | 
+|  AWS GovCloud \(US\-East\)  | us\-gov\-east\-1 |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=us-gov-east-1#)  | 
+|  AWS GovCloud \(US\-West\)  | us\-gov\-west\-1 |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=us-gov-west-1#)  | 
+|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=cn-north-1#)  | 
+|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=cn-northwest-1#)  | 
 
 ------
 #### [ Windows Server 2019 ]
@@ -169,10 +169,10 @@ The following table lists the current Amazon ECS\-optimized Windows 2019 AMI IDs
 |  EU \(Paris\)  | eu\-west\-3 |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2019-English-Full-ECS_Optimized?region=eu-west-3#)  | 
 |  Middle East \(Bahrain\)  | me\-south\-1 |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2019-English-Full-ECS_Optimized?region=me-south-1#)  | 
 |  South America \(Sao Paulo\)  | sa\-east\-1 |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2019-English-Full-ECS_Optimized?region=sa-east-1#)  | 
-|  AWS GovCloud \(US\-East\)  | us\-gov\-east\-1 |  [View AMI ID](https://us-gov-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2019-English-Full-ECS_Optimized?region=us-gov-east-1#)  | 
-|  AWS GovCloud \(US\-West\)  | us\-gov\-west\-1 |  [View AMI ID](https://us-gov-west-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2019-English-Full-ECS_Optimized?region=us-gov-west-1#)  | 
-|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2019-English-Full-ECS_Optimized?region=cn-north-1#)  | 
-|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2019-English-Full-ECS_Optimized?region=cn-northwest-1#)  | 
+|  AWS GovCloud \(US\-East\)  | us\-gov\-east\-1 |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2019-English-Full-ECS_Optimized?region=us-gov-east-1#)  | 
+|  AWS GovCloud \(US\-West\)  | us\-gov\-west\-1 |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2019-English-Full-ECS_Optimized?region=us-gov-west-1#)  | 
+|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2019-English-Full-ECS_Optimized?region=cn-north-1#)  | 
+|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2019-English-Full-ECS_Optimized?region=cn-northwest-1#)  | 
 
 ------
 #### [ Windows Server 2016 ]
@@ -200,10 +200,10 @@ The following table lists the current Amazon ECS\-optimized Windows 2016 AMI IDs
 |  EU \(Paris\)  | eu\-west\-3 |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2016-English-Full-ECS_Optimized?region=eu-west-3#)  | 
 |  Middle East \(Bahrain\)  | me\-south\-1 |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2016-English-Full-ECS_Optimized?region=me-south-1#)  | 
 |  South America \(Sao Paulo\)  | sa\-east\-1 |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2016-English-Full-ECS_Optimized?region=sa-east-1#)  | 
-|  AWS GovCloud \(US\-East\)  | us\-gov\-east\-1 |  [View AMI ID](https://us-gov-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2016-English-Full-ECS_Optimized?region=us-gov-east-1#)  | 
-|  AWS GovCloud \(US\-West\)  | us\-gov\-west\-1 |  [View AMI ID](https://us-gov-west-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2016-English-Full-ECS_Optimized?region=us-gov-west-1#)  | 
-|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2016-English-Full-ECS_Optimized?region=cn-north-1#)  | 
-|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2016-English-Full-ECS_Optimized?region=cn-northwest-1#)  | 
+|  AWS GovCloud \(US\-East\)  | us\-gov\-east\-1 |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2016-English-Full-ECS_Optimized?region=us-gov-east-1#)  | 
+|  AWS GovCloud \(US\-West\)  | us\-gov\-west\-1 |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2016-English-Full-ECS_Optimized?region=us-gov-west-1#)  | 
+|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2016-English-Full-ECS_Optimized?region=cn-north-1#)  | 
+|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fami-windows-latest%252FWindows_Server-2016-English-Full-ECS_Optimized?region=cn-northwest-1#)  | 
 
 ------
 

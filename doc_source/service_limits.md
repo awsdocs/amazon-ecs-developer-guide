@@ -21,13 +21,13 @@ The following table provides other limitations for Amazon ECS that cannot be cha
 | Resource | Limit | 
 | --- | --- | 
 | Number of Classic Load Balancer per service | 1 | 
-| Number of tasks launched \(count\) per run\-task | 10 | 
+| Number of tasks launched \(`count`\) per run\-task | 10 | 
 | Number of container instances per start\-task | 10 | 
 | Number of revisions per task definition family Deregistering a task definition revision does not exclude it from being included in this limit\.  | 1,000,000 | 
 | Task definition size limit | 32 KiB | 
 | Task definition max containers | 10 | 
-| Number of subnets specified in awsvpcConfiguration | 16 | 
-| Number of security groups specified in awsvpcConfiguration | 5 | 
+| Number of subnets specified in `awsvpcConfiguration` | 16 | 
+| Number of security groups specified in `awsvpcConfiguration` | 5 | 
 | Maximum size of a shared volume used by multiple containers within a task using the Fargate launch type | 4 GB | 
 | Maximum container storage for tasks using the Fargate launch type | 10 GB | 
 | Maximum number of tags per resource \(tasks, services, task definitions, clusters, and container instances\) | 50 | 
