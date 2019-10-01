@@ -23,7 +23,7 @@ The `AmazonEC2ContainerServiceEventsRole` policy is shown below\.
 }
 ```
 
-If your scheduled tasks require the use of the task execution role or a task role override, then you must add `iam:PassRole` permissions for each task execution role or task role override to the CloudWatch Events IAM role\. For more information about the task execution role, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+If your scheduled tasks require the use of the task execution role, task role or a task role override, then you must add `iam:PassRole` permissions for each task execution role, task role or task role override to the CloudWatch Events IAM role\. For more information about the task execution role, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
 **Note**  
 Specify the full ARN of your task execution role or task role override\.
