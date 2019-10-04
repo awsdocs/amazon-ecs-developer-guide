@@ -124,7 +124,7 @@ Required: no
 The port number on the container instance to reserve for your container\.  
 If using containers in a task with the Fargate launch type, the `hostPort` can either be left blank or be the same value as `containerPort`\.  
 If using containers in a task with the EC2 launch type, you can specify a non\-reserved host port for your container port mapping \(this is referred to as *static* host port mapping\), or you can omit the `hostPort` \(or set it to `0`\) while specifying a `containerPort` and your container automatically receives a port \(this is referred to as *dynamic* host port mapping\) in the ephemeral port range for your container instance operating system and Docker version\.  
-The default ephemeral port range is `49153–65535`, and this range is used for Docker versions before 1\.6\.0\. For Docker version 1\.6\.0 and later, the Docker daemon tries to read the ephemeral port range from `/proc/sys/net/ipv4/ip_local_port_range` \(which is 32768–61000 on the latest Amazon ECS\-optimized AMI\); if this kernel parameter is unavailable, the default ephemeral port range is used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below 32768 are outside of the ephemeral port range\.  
+The default ephemeral port range Docker version 1\.6\.0 and later is listed on the instance under `/proc/sys/net/ipv4/ip_local_port_range`\. If this kernel parameter is unavailable, the default empheral port range from `49153–65535` s used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below `32768` are outside of the ephemeral port range\.  
 The default reserved ports are `22` for SSH, the Docker ports `2375` and `2376`, and the Amazon ECS container agent ports `51678-51680`\. Any host port that was previously user\-specified for a running task is also reserved while the task is running \(after a task stops, the host port is released\)\. The current reserved ports are displayed in the `remainingResources` of describe\-container\-instances output, and a container instance may have up to 100 reserved ports at a time, including the default reserved ports\. Automatically assigned ports do not count toward the 100 reserved ports limit\.  
 `protocol`  
 Type: string  
@@ -824,7 +824,7 @@ Custom metadata to add to your Docker volume\. This parameter maps to `Labels` i
 Required: No  
 This parameter is specified when using bind mounts\. To use Docker volumes, specify a `dockerVolumeConfiguration` instead\. The contents of the `host` parameter determine whether your bind mount data volume persists on the host container instance and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
 Bind mount host volumes are supported when using either the EC2 or Fargate launch types\.  
-Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\. For example, you can mount `C:\my\path:C:\my\path` and `D:\:D:\`, but not `D:\my\path:C:\my\path` or `D:\:C:\my\path`\.    
+Windows containers can mount whole directories on the same drive as `$env:ProgramData`\.    
 `sourcePath`  
 Type: String  
 Required: No  

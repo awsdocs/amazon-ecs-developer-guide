@@ -136,6 +136,12 @@ Default value on Linux: 0
 Default value on Windows: 0  
 The amount of memory, in MiB, to remove from the pool that is allocated to your tasks\. This effectively reserves that memory for critical system processes including the Docker daemon and the Amazon ECS container agent\. For example, if you specify `ECS_RESERVED_MEMORY=256`, then the agent registers the total memory minus 256 MiB for that instance, and 256 MiB of the system memory cannot be allocated by ECS tasks\. For more information, see [Container Instance Memory Management](memory-management.md)\.
 
+`ECS_ENABLE_SPOT_INSTANCE_DRAINING`  
+Example values: true \| false  
+Default value on Linux: false  
+Default value on Windows: false  
+Whether to enable Spot Instance draining for the container instance\. For more information, see [Spot Instance Draining](container-instance-spot.md#spot-instance-draining)\.
+
 `ECS_AVAILABLE_LOGGING_DRIVERS`  
 Example values: `["awslogs","fluentd","gelf","json-file","journald","splunk","logentries","syslog"]`  
 Default value on Linux: `["json-file","none"]`  

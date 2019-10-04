@@ -5,7 +5,7 @@ The Amazon Elastic Container Service \(Amazon ECS\) command line interface \(CLI
 **Important**  
 At this time, the latest version of the Amazon ECS CLI only supports the major versions of [Docker Compose file syntax](https://docs.docker.com/compose/compose-file/#versioning) versions 1, 2, and 3\. The version specified in the compose file must be the string `"1"`, `"1.0"`, `"2"`, `"2.0"`, `"3"`, or `"3.0"`\. Docker Compose minor versions are not supported\.
 
-The latest version of the Amazon ECS CLI is 1\.16\.0\. For release notes, see [Changelog](https://github.com/aws/amazon-ecs-cli/blob/master/CHANGELOG.md)\.
+The latest version of the Amazon ECS CLI is 1\.17\.0\. For release notes, see [Changelog](https://github.com/aws/amazon-ecs-cli/blob/master/CHANGELOG.md)\.
 
 **Note**  
 The source code for the Amazon ECS CLI is [available on GitHub](https://github.com/aws/amazon-ecs-cli)\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently support running modified copies of this software\.

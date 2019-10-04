@@ -55,6 +55,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Retrieving Amazon ECS-Optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)
    + [Subscribing to Amazon ECS-Optimized Amazon Linux AMI Update Notifications](ECS-AMI-SubscribeTopic.md)
    + [Launching an Amazon ECS Container Instance](launch_container_instance.md)
+   + [Using Spot Instances](container-instance-spot.md)
    + [Bootstrapping Container Instances with Amazon EC2 User Data](bootstrap_container_instance.md)
       + [Example Container Instance User Data Configuration Scripts](example_user_data_scripts.md)
    + [Elastic Network Interface Trunking](container-instance-eni.md)

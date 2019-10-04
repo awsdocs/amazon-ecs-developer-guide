@@ -6,7 +6,7 @@ Amazon ECS provides a GPU\-optimized AMI that comes ready with pre\-configured N
 
 You can designate a number of GPUs in your task definition for task placement consideration at a container level\. Amazon ECS will schedule to available GPU\-enabled container instances and pin physical GPUs to proper containers for optimal performance\. 
 
-The following Amazon EC2 GPU\-based instance types are supported\. For more information, see [Amazon EC2 P2 Instances](https://aws.amazon.com/ec2/instance-types/p2/), [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3/), and [Amazon EC2 G3 Instances](https://aws.amazon.com/ec2/instance-types/g3/)\.
+The following Amazon EC2 GPU\-based instance types are supported\. For more information, see [Amazon EC2 P2 Instances](https://aws.amazon.com/ec2/instance-types/p2/) and [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3/)\.
 
 
 |  Instance type  |  GPUs  |  GPU Memory \(GiB\)  |  vCPUs  |  Memory \(GiB\)  | 
@@ -18,10 +18,6 @@ The following Amazon EC2 GPU\-based instance types are supported\. For more info
 |  p3\.8xlarge  |  4  |  64  |  32  |  244  | 
 |  p3\.16xlarge  |  8  |  128  |  64  |  488  | 
 |  p3dn\.24xlarge  |  8  |  256  |  96  |  768  | 
-|  g3s\.xlarge  | 1 | 8 | 4 | 30\.5 | 
-|  g3\.4xlarge  | 1 | 8 | 16 | 122 | 
-|  g3\.8xlarge  | 2 | 16 | 32 | 244 | 
-|  g3\.16xlarge  | 4 | 32 | 64 | 488 | 
 
 **Topics**
 + [Considerations for Working with GPUs](#gpu-considerations)

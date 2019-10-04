@@ -74,6 +74,8 @@ The `-EnableTaskIAMRole` option is required to enable IAM roles for tasks\. For 
    Initialize-ECSAgent -Cluster 'windows' -EnableTaskIAMRole
    </powershell>
    ```
+**Important**  
+There is a known issue using the `-Version` tag with the string `latest`\. Using `-Version ‘latest’` will result in an error\. To use the latest version, remove the `-Version` flag, and the module will default to the latest version unless there is a cached version available\.
 
 1. Choose **Next: Add Storage**\.
 
