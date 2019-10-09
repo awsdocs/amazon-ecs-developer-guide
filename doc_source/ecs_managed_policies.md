@@ -29,6 +29,9 @@ This managed policy provides administrative access to Amazon ECS resources and e
                 "application-autoscaling:DescribeScalingPolicies",
                 "application-autoscaling:PutScalingPolicy",
                 "application-autoscaling:RegisterScalableTarget",
+                "appmesh:ListMeshes",
+                "appmesh:ListVirtualNodes",
+                "appmesh:DescribeVirtualNode",
                 "autoscaling:UpdateAutoScalingGroup",
                 "autoscaling:CreateAutoScalingGroup",
                 "autoscaling:CreateLaunchConfiguration",
@@ -126,7 +129,8 @@ This managed policy provides administrative access to Amazon ECS resources and e
                 "servicediscovery:GetService",
                 "servicediscovery:ListNamespaces",
                 "servicediscovery:ListServices",
-                "servicediscovery:UpdateService"
+                "servicediscovery:UpdateService",
+                "servicediscovery:DeleteService"
             ],
             "Resource": [
                 "*"
@@ -226,35 +230,35 @@ This managed policy allows full administrator access to Amazon ECS\.
 
 ```
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "autoscaling:Describe*",
-        "autoscaling:UpdateAutoScalingGroup",
-        "cloudformation:CreateStack",
-        "cloudformation:DeleteStack",
-        "cloudformation:DescribeStack*",
-        "cloudformation:UpdateStack",
-        "cloudwatch:GetMetricStatistics",
-        "ec2:Describe*",
-        "elasticloadbalancing:*",
-        "ecs:*",
-        "events:DescribeRule",
-        "events:DeleteRule",
-        "events:ListRuleNamesByTarget",
-        "events:ListTargetsByRule",
-        "events:PutRule",
-        "events:PutTargets",
-        "events:RemoveTargets",
-        "iam:ListInstanceProfiles",
-        "iam:ListRoles",
-        "iam:PassRole"
-      ],
-      "Resource": "*"
-    }
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:Describe*",
+                "autoscaling:UpdateAutoScalingGroup",
+                "cloudformation:CreateStack",
+                "cloudformation:DeleteStack",
+                "cloudformation:DescribeStack*",
+                "cloudformation:UpdateStack",
+                "cloudwatch:GetMetricStatistics",
+                "ec2:Describe*",
+                "elasticloadbalancing:*",
+                "ecs:*",
+                "events:DescribeRule",
+                "events:DeleteRule",
+                "events:ListRuleNamesByTarget",
+                "events:ListTargetsByRule",
+                "events:PutRule",
+                "events:PutTargets",
+                "events:RemoveTargets",
+                "iam:ListInstanceProfiles",
+                "iam:ListRoles",
+                "iam:PassRole"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 ```
 
@@ -264,28 +268,30 @@ This managed policy allows Amazon ECS container instances to make calls to AWS o
 
 ```
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ecs:CreateCluster",
-        "ecs:DeregisterContainerInstance",
-        "ecs:DiscoverPollEndpoint",
-        "ecs:Poll",
-        "ecs:RegisterContainerInstance",
-        "ecs:StartTelemetrySession",
-        "ecs:Submit*",
-        "ecr:GetAuthorizationToken",
-        "ecr:BatchCheckLayerAvailability",
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:BatchGetImage",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
-      ],
-      "Resource": "*"
-    }
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeTags",
+                "ecs:CreateCluster",
+                "ecs:DeregisterContainerInstance",
+                "ecs:DiscoverPollEndpoint",
+                "ecs:Poll",
+                "ecs:RegisterContainerInstance",
+                "ecs:StartTelemetrySession",
+                "ecs:UpdateContainerInstancesState",
+                "ecs:Submit*",
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 ```
 
@@ -295,22 +301,22 @@ This managed policy allows Elastic Load Balancing load balancers to register and
 
 ```
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ec2:AuthorizeSecurityGroupIngress",
-        "ec2:Describe*",
-        "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
-        "elasticloadbalancing:DeregisterTargets",
-        "elasticloadbalancing:Describe*",
-        "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
-        "elasticloadbalancing:RegisterTargets"
-      ],
-      "Resource": "*"
-    }
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:Describe*",
+                "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+                "elasticloadbalancing:DeregisterTargets",
+                "elasticloadbalancing:Describe*",
+                "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+                "elasticloadbalancing:RegisterTargets"
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 ```
 
@@ -382,6 +388,18 @@ This policy allows CloudWatch Events to run tasks on your behalf\. For more info
             "Resource": [
                 "*"
             ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": "ecs-tasks.amazonaws.com"
+                }
+            }
         }
     ]
 }

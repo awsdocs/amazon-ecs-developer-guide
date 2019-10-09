@@ -85,6 +85,9 @@ The Amazon ECS first\-run wizard simplifies the process of creating a cluster an
                 "application-autoscaling:DescribeScalingPolicies",
                 "application-autoscaling:PutScalingPolicy",
                 "application-autoscaling:RegisterScalableTarget",
+                "appmesh:ListMeshes",
+                "appmesh:ListVirtualNodes",
+                "appmesh:DescribeVirtualNode",
                 "autoscaling:UpdateAutoScalingGroup",
                 "autoscaling:CreateAutoScalingGroup",
                 "autoscaling:CreateLaunchConfiguration",
@@ -182,7 +185,8 @@ The Amazon ECS first\-run wizard simplifies the process of creating a cluster an
                 "servicediscovery:GetService",
                 "servicediscovery:ListNamespaces",
                 "servicediscovery:ListServices",
-                "servicediscovery:UpdateService"
+                "servicediscovery:UpdateService",
+                "servicediscovery:DeleteService"
             ],
             "Resource": [
                 "*"

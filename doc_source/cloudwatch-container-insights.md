@@ -16,7 +16,7 @@ Opting in to the `containerInsights` account setting can be done with both the A
 **Important**  
 For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent\. For more information, see [Amazon ECS Container Agent Versions](container_agent_versions.md)\.
 
-**To opt in in all IAM users or roles on your account to Container Insights\-enabled clusters using the console**
+**To opt in all IAM users or roles on your account to Container Insights\-enabled clusters using the console**
 
 1. As the root user of the account, open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 

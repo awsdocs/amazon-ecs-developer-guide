@@ -60,7 +60,7 @@ Only private subnets are supported for the `awsvpc` network mode\. Because tasks
 
    1. For **CloudWatch Events IAM role for this target**, choose an existing CloudWatch Events service role \(`ecsEventsRole`\) that you may have already created\. Or, choose **Create new role** to create the required IAM role that allows CloudWatch Events to make calls to Amazon ECS to run tasks on your behalf\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 **Important**  
-If your scheduled tasks require the use of the task execution role, task role or if they use a task role override, then you must add `iam:PassRole` permissions for your task execution role, task role or task role override to the CloudWatch IAM role\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
+If your scheduled tasks require the use of the task execution role, a task role, or if they use a task role override, then you must add `iam:PassRole` permissions for your task execution role, task role, or task role override to the CloudWatch IAM role\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 
    1. \(Optional\) In the **Container overrides** section, you can expand individual containers and override the command and/or environment variables for that container that are defined in the task definition\.
 

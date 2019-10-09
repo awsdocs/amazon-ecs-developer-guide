@@ -29,6 +29,8 @@ Fargate tasks are only supported in the following Regions:
 | Middle East \(Bahrain\) | me\-south\-1 | 
 | AWS GovCloud \(US\-East\) | us\-gov\-east\-1 | 
 | AWS GovCloud \(US\) | us\-gov\-west\-1 | 
+| China \(Beijing\) | cn\-north\-1 | 
+| China \(Ningxia\) | cn\-northwest\-1 | 
 
 **Topics**
 + [Prerequisites](#create-service-discovery-prereqs)

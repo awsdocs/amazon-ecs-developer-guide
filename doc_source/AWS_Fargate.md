@@ -30,6 +30,8 @@ AWS Fargate with Amazon ECS is currently only available in the following Regions
 | Middle East \(Bahrain\) | me\-south\-1 | 
 | AWS GovCloud \(US\-East\) | us\-gov\-east\-1 | 
 | AWS GovCloud \(US\) | us\-gov\-west\-1 | 
+| China \(Beijing\) | cn\-north\-1 | 
+| China \(Ningxia\) | cn\-northwest\-1 | 
 
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
 + [Getting Started with Amazon ECS](ECS_GetStarted.md)

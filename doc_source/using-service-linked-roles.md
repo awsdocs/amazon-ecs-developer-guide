@@ -58,6 +58,26 @@ The role permissions policy allows Amazon ECS to complete the following actions 
                 "ec2:CreateTags"
             ],
             "Resource": "arn:aws:ec2:*:*:network-interface/*"
+        },
+        {
+            "Sid": "CWLogGroupManagement",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:DescribeLogGroups",
+                "logs:PutRetentionPolicy"
+            ],
+            "Resource": "arn:aws:logs:*:*:log-group:/aws/ecs/*"
+        },
+        {
+            "Sid": "CWLogStreamManagement",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:log-group:/aws/ecs/*:log-stream:*"
         }
     ]
 }

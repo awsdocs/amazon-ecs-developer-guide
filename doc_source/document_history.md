@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Amazon ECS GPU\-optimized AMI Supports G4 Instances  |  Amazon ECS added support for the g4 instance type family when using the Amazon ECS GPU\-optimized AMI\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.  |  8 Oct 2019  | 
 |  Amazon ECS CLI v1\.17\.0  |  New version of the Amazon ECS CLI released\. This release added support for specifying a FireLens configuration using the ECS Parameters file\. For more information, see [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)\.  |  2 Oct 2019  | 
 |  FireLens for Amazon ECS  |  FireLens for Amazon ECS is in general availability\. FireLens for Amazon ECS enables you to use task definition parameters to route logs to an AWS service or partner destination for log storage and analytics\. For more information, see [Custom Log Routing](using_firelens.md)\.  |  30 Sept 2019  | 
 |  AWS Fargate region expansion  |  AWS Fargate with Amazon ECS has expanded to the EU \(Paris\), EU \(Stockholm\), and Middle East \(Bahrain\) regions\.  |  30 Sept 2019  | 
