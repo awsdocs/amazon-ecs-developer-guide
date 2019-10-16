@@ -29,6 +29,15 @@ Amazon ECS\-optimized Amazon Linux AMI:
      ```
      sudo service docker restart && sudo start ecs
      ```
+If you are still showing the older version running after this, then you can either restart the instance, or run the following commands on your instance:  
+Amazon ECS\-optimized Amazon Linux 2 AMI:  
+     ```
+     sudo systemctl restart ecs
+     ```
+Amazon ECS\-optimized Amazon Linux AMI:  
+     ```
+     sudo service ecs restart
+     ```
 
 ## Updating the Amazon ECS Container Agent with the `UpdateContainerAgent` API Operation<a name="agent-update-api"></a>
 
