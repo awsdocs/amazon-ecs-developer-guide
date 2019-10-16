@@ -31,10 +31,12 @@ Amazon ECS\-optimized Amazon Linux AMI:
      ```
 If you are still showing the older version running after this, then you can either restart the instance, or run the following commands on your instance:  
 Amazon ECS\-optimized Amazon Linux 2 AMI:  
+
      ```
      sudo systemctl restart ecs
      ```
 Amazon ECS\-optimized Amazon Linux AMI:  
+
      ```
      sudo service ecs restart
      ```
