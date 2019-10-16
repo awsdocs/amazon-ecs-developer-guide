@@ -4,6 +4,8 @@ FireLens for Amazon ECS enables you to use task definition parameters to route l
 
 Creating Amazon ECS task definitions with a FireLens configuration is supported using the AWS SDKs, AWS CLI, and AWS Management Console\. When using the AWS Management Console to register a new task definition, you must use the **Configure via JSON** option\.
 
+Several example task definitions are provided 
+
 ## Considerations<a name="firelens-considerations"></a>
 
 The following should be considered when using FireLens for Amazon ECS:
@@ -78,25 +80,25 @@ The **AWS for Fluent Bit** image is available on [Docker Hub](https://hub.docker
 | --- | --- | --- | 
 |  US East \(Ohio\)  |  us\-east\-2  |  `906394416424.dkr.ecr.us-east-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
 |  US East \(N\. Virginia\)  |  us\-east\-1  |  `906394416424.dkr.ecr.us-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  US West \(N\. California\)  |  us\-west\-1  | `906394416424.dkr.ecr.us-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  US West \(Oregon\)  |  us\-west\-2  | `906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  | `449074385750.dkr.ecr.ap-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1  | `906394416424.dkr.ecr.ap-northeast-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | `906394416424.dkr.ecr.ap-northeast-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Mumbai\)  |  ap\-south\-1  | `906394416424.dkr.ecr.ap-south-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | `906394416424.dkr.ecr.ap-southeast-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | `906394416424.dkr.ecr.ap-southeast-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Canada \(Central\)  |  ca\-central\-1  | `906394416424.dkr.ecr.ca-central-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  EU \(Frankfurt\)  |  eu\-central\-1  | `906394416424.dkr.ecr.eu-central-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  EU \(Stockholm\)  |  eu\-north\-1  | `906394416424.dkr.ecr.eu-north-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  EU \(Ireland\)  |  eu\-west\-1  | `906394416424.dkr.ecr.eu-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  EU \(London\)  |  eu\-west\-2  | `906394416424.dkr.ecr.eu-west-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  EU \(Paris\)  |  eu\-west\-3  | `906394416424.dkr.ecr.eu-west-3.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  South America \(Sao Paulo\)  |  sa\-east\-1  | `906394416424.dkr.ecr.sa-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  | `161423150738.dkr.ecr.us-gov-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  | `161423150738.dkr.ecr.us-gov-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  China \(Beijing\)  |  cn\-north\-1  | `128054284489.dkr.ecr.cn-north-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  China \(Ningxia\)  |  cn\-northwest\-1  | `128054284489.dkr.ecr.cn-northwest-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  US West \(N\. California\)  |  us\-west\-1  |  `906394416424.dkr.ecr.us-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  US West \(Oregon\)  |  us\-west\-2  |  `906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  |  `449074385750.dkr.ecr.ap-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1  |  `906394416424.dkr.ecr.ap-northeast-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  |  `906394416424.dkr.ecr.ap-northeast-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Asia Pacific \(Mumbai\)  |  ap\-south\-1  |  `906394416424.dkr.ecr.ap-south-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  |  `906394416424.dkr.ecr.ap-southeast-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  |  `906394416424.dkr.ecr.ap-southeast-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Canada \(Central\)  |  ca\-central\-1  |  `906394416424.dkr.ecr.ca-central-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  EU \(Frankfurt\)  |  eu\-central\-1  |  `906394416424.dkr.ecr.eu-central-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  EU \(Stockholm\)  |  eu\-north\-1  |  `906394416424.dkr.ecr.eu-north-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  EU \(Ireland\)  |  eu\-west\-1  |  `906394416424.dkr.ecr.eu-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  EU \(London\)  |  eu\-west\-2  |  `906394416424.dkr.ecr.eu-west-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  EU \(Paris\)  |  eu\-west\-3  |  `906394416424.dkr.ecr.eu-west-3.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  South America \(Sao Paulo\)  |  sa\-east\-1  |  `906394416424.dkr.ecr.sa-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  |  `161423150738.dkr.ecr.us-gov-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  |  `161423150738.dkr.ecr.us-gov-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  China \(Beijing\)  |  cn\-north\-1  |  `128054284489.dkr.ecr.cn-north-1.amazonaws.com.cn/aws-for-fluent-bit:latest`  | 
+|  China \(Ningxia\)  |  cn\-northwest\-1  |  `128054284489.dkr.ecr.cn-northwest-1.amazonaws.com.cn/aws-for-fluent-bit:latest`  | 
 
 ## Creating a Task Definition that Uses a FireLens Configuration<a name="firelens-taskdef"></a>
 
@@ -256,7 +258,7 @@ The following example demonstrates how to use this filter\.
 
 ## Example Task Definitions<a name="firelens-example-taskdefs"></a>
 
-The following are some example task definitions demonstrating common log routing options\.
+The following are some example task definitions demonstrating common log routing options\. For more examples, see [Amazon ECS FireLens Examples](https://github.com/aws-samples/amazon-ecs-firelens-examples) on GitHub\.
 
 **Topics**
 + [Forwarding Logs to CloudWatch Logs](#firelens-example-cloudwatch)

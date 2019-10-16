@@ -1,6 +1,9 @@
-# Amazon ECS Service Limits<a name="service_limits"></a>
+# Amazon ECS Service Limits<a name="service-limits"></a>
 
 The following table provides the default service limits, also referred to as quotas, for Amazon ECS for an AWS account which can be changed\. For more information on the service limits for other AWS services that you can use with Amazon ECS, such as Elastic Load Balancing and Auto Scaling, see [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *Amazon Web Services General Reference*\.
+
+**Important**  
+AWS Service Quotas enables you to view and request increases of several Amazon ECS service limits\. For more information, see [Access Management](https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html) in the *Service Quotas User Guide*\.
 
 
 | Resource | Default Limit | 

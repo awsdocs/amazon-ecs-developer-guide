@@ -6,7 +6,7 @@ When provisioned, each Fargate task receives the following storage\. Task storag
 **Note**  
 The `host` and `sourcePath` parameters are not supported for Fargate tasks\.
 
-For more information about Amazon ECS default service limits, see [Amazon ECS Service Limits](service_limits.md)\.
+For more information about Amazon ECS default service limits, see [Amazon ECS Service Limits](service-limits.md)\.
 
 **To provide nonpersistent empty storage for containers in a Fargate task**
 

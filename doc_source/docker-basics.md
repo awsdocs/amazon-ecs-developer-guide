@@ -203,5 +203,5 @@ aws ecr delete-repository --repository-name hello-repository --region region --f
 
 Now that you've created a Docker image and pushed it to an Amazon ECR repository, you can begin creating your Amazon ECS resources to get a container launched\. Use the following topics to continue:
 + Complete the prerequisites\. For more information, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
-+ For AWS CLI walkthroughs, see [Using the AWS CLI with Amazon ECS](ECS_AWSCLI.md)\.
++ For AWS CLI walkthroughs, see [Tutorials for Amazon ECS](ecs-tutorials.md)\.
 + For AWS Management Console walkthroughs, see [Getting Started with Amazon ECS](ECS_GetStarted.md)\.

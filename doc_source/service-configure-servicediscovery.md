@@ -20,7 +20,7 @@ If you are not configuring your service to use a service discovery, you can move
 
 1. Select **Enable ECS task health propagation** if you want health checks enabled for your service discovery service\.
 
-1. For **DNS record type**, select the DNS record type to create for your service\. Amazon ECS service discovery only supports A and SRV records, depending on the network mode that your task definition specifies\. For more information about these record types, see [DnsRecord](https://docs.aws.amazon.com/Route53/latest/APIReference/API_autonaming_DnsRecord.html)\.
+1. For **DNS record type**, select the DNS record type to create for your service\. Amazon ECS service discovery only supports A and SRV records, depending on the network mode that your task definition specifies\. For more information about these record types, see [Supported DNS Record Types](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html) in the *Amazon Route 53 Developer Guide*\.
    + If the task definition that your service task specifies uses the `bridge` or `host` network mode, only type SRV records are supported\. Choose a container name and port combination to associate with the record\.
    + If the task definition that your service task specifies uses the `awsvpc` network mode, select either the A or SRV record type\. If the type A DNS record is selected, skip to the next step\. If the type SRV is selected, specify either the port that the service can be found on or a container name and port combination to associate with the record\.
 

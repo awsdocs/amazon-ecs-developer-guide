@@ -20,6 +20,7 @@ Your entire application stack does not need to exist on a single task definition
 + [Creating a Task Definition](create-task-definition.md)
 + [Task Definition Parameters](task_definition_parameters.md)
 + [Amazon ECS Launch Types](launch_types.md)
++ [Working with GPUs on Amazon ECS](ecs-gpu.md)
 + [Using Data Volumes in Tasks](using_data_volumes.md)
 + [Task Networking with the `awsvpc` Network Mode](task-networking.md)
 + [Using the awslogs Log Driver](using_awslogs.md)

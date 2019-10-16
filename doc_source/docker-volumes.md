@@ -78,7 +78,7 @@ This parameter is specified when using Docker volumes\. Docker volumes are only 
 Type: String  
 Valid Values: `task` \| `shared`  
 Required: No  
-The scope for the Docker volume, which determines its lifecycle\. Docker volumes that are scoped to a `task` are automatically provisioned when the task starts and destroyed when the task stops\. Docker volumes that are scoped as `shared` persist after the task stops\.  
+The scope for the Docker volume, which determines its lifecycle\. Docker volumes that are scoped to a `task` are automatically provisioned when the task starts destroyed when the task is cleaned up\. Docker volumes that are scoped as `shared` persist after the task stops\.  
 `autoprovision`  
 Type: Boolean  
 Default value: `false`  
