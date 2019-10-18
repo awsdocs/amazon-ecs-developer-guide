@@ -209,7 +209,7 @@ Amazon's trademarks and trade dress may not be used in
          + [ecs-cli local ps](cmd-ecs-cli-local-ps.md)
       + [Using Docker Compose File Syntax](cmd-ecs-cli-compose-parameters.md)
       + [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)
-+ [Amazon ECS Service Limits](service-limits.md)
++ [Amazon ECS Service Quotas](service-quotas.md)
 + [Common Use Cases in Amazon ECS](common_use_cases.md)
 + [Getting Started with AWS App Mesh and Amazon ECS](mesh-gs-ecs.md)
 + [AWS Deep Learning Containers on Amazon ECS](deep-learning-containers.md)
