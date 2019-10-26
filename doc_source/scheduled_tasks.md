@@ -18,7 +18,7 @@ This feature is not yet available for Fargate tasks in the following Regions:
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. Choose the cluster in which to create your scheduled task\.
+1. Choose the cluster in which to create your scheduled task\. If you do not have any clusters, see [Creating a Cluster](create_cluster.md) for steps on creating a new cluster\.
 
 1. On the **Cluster: *cluster\-name*** page, choose **Scheduled Tasks**, **Create**\.
 

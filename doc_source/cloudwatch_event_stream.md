@@ -11,5 +11,3 @@ Events are relatively ordered, so that you can easily tell when an event occurre
 **Topics**
 + [Amazon ECS Events](ecs_cwe_events.md)
 + [Handling Events](ecs_cwet_handling.md)
-+ [Tutorial: Listening for Amazon ECS CloudWatch Events](ecs_cwet.md)
-+ [Tutorial: Sending Amazon Simple Notification Service Alerts for Task Stopped Events](ecs_cwet2.md)

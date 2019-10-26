@@ -14,13 +14,13 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
 
 1. Open the Amazon SNS console at [https://console\.aws\.amazon\.com/sns/v3/home](https://console.aws.amazon.com/sns/v3/home)\.
 
-1. Choose **Topics**, **Create new topic**\.
+1. Choose **Topics**, **Create topic**\.
 
-1. On the **Create new topic** window, for **Topic name**, enter **TaskStoppedAlert** and choose **Create topic**\.
+1. On the **Create topic** screen, for **Name**, enter **TaskStoppedAlert** and choose **Create topic**\.
 
-1.  On the **Topics** window, select the topic that you just created\. On the **Topic details: TaskStoppedAlert** screen, choose **Create subscription**\. 
+1. On the **TaskStoppedAlert** details screen, choose **Create subscription**\. 
 
-1.  On the **Create Subscription** window, for **Protocol**, choose **Email**\. For **Endpoint**, enter an email address to which you currently have access and choose **Create subscription**\. 
+1.  On the **Create subscription** screen, for **Protocol**, choose **Email**\. For **Endpoint**, enter an email address to which you currently have access and choose **Create subscription**\. 
 
 1.  Check your email account, and wait to receive a subscription confirmation email message\. When you receive it, choose **Confirm subscription**\. 
 
@@ -32,28 +32,26 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. On the navigation pane, choose **Events**, **Create rule**\.
+1. On the navigation pane, choose **Events**, **Rules**, **Create rule**\.
 
-1. Choose **Show advanced options**, **edit**\.
-
-1. For **Build a pattern that selects events for processing by your targets**, replace the existing text with the following text: 
+1. For Event Source, choose **Event Pattern**, select **Custom event pattern** and then replace the existing text with the following text: 
 
    ```
    {
-   "source": [
-     "aws.ecs"
-   ],
-   "detail-type": [
-     "ECS Task State Change"
-   ],
-   "detail": {
-     "lastStatus": [
-       "STOPPED"
-     ],
-     "stoppedReason" : [
-       "Essential container in task exited"
-     ]
-   }
+      "source":[
+         "aws.ecs"
+      ],
+      "detail-type":[
+         "ECS Task State Change"
+      ],
+      "detail":{
+         "lastStatus":[
+            "STOPPED"
+         ],
+         "stoppedReason":[
+            "Essential container in task exited"
+         ]
+      }
    }
    ```
 
@@ -67,23 +65,50 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
 
 ## Step 3: Test Your Rule<a name="cwet2_step_4"></a>
 
-To test your rule, you attempt to run a task that exits shortly after it starts\. If your event rule is configured correctly, you receive an email message within a few minutes with the event text\. 
+Verify that the rule is working by running a task that exits shortly after it starts\. If your event rule is configured correctly, you receive an email message within a few minutes with the event text\. If you have an existing task definition that can satisfy the rule requirements, run a task using it\. If you do not, the following steps will walk you through registering a Fargate task definition and running it that will\.
 
-**To test a rule**
+**To test the rule**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. Choose **Task Definitions**, **Create new Task Definition**\.
 
-1. For **Task Definition Name**, type **WordPressFailure** and choose **Add Container**\.
+1. For Select launch type compatibility, choose **FARGATE**, **Next step**\.
 
-1. For **Container name**, type **Wordpress**, for **Image**, type **wordpress**, and for **Maximum memory \(MB\)**, type **128**\.
+1. Choose **Configure via JSON**, copy and paste the following task definition JSON into the field and choose **Save**\.
 
-1.  Choose **Add**, **Create**\. 
+   ```
+   {
+      "containerDefinitions":[
+         {
+            "command":[
+               "sh",
+               "-c",
+               "sleep 5"
+            ],
+            "essential":true,
+            "image":"amazonlinux:2",
+            "name":"test-sleep"
+         }
+      ],
+      "cpu":"256",
+      "executionRoleArn":"arn:aws:iam::012345678910:role/ecsTaskExecutionRole",
+      "family":"fargate-task-definition",
+      "memory":"512",
+      "networkMode":"awsvpc",
+      "requiresCompatibilities":[
+         "FARGATE"
+      ]
+   }
+   ```
 
-1. On the **Task Definition** screen, choose **Actions**, **Run Task**\.
+1. Choose **Create**, **View task definition**\.
 
-1. For **Cluster**, choose **default**\. Choose **Run Task**\.
+1. For **Actions**, choose **Run Task**\.
+
+1. For Launch type, choose **FARGATE**\. For **VPC and security groups**, choose a VPC and Subnets for the task to use and then choose **Run Task**\.
+
+1.  For **Container name**, type **Wordpress**, for **Image**, type **wordpress**, and for **Maximum memory \(MB\)**, type **128**\.
 
 1. On the **Tasks** tab for your cluster, periodically choose the refresh icon until you no longer see your task running\. To verify that your task has stopped, for **Desired task status**, choose **Stopped**\.
 

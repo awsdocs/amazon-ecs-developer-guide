@@ -12,6 +12,14 @@ The following should be considered when specifying sensitive data for containers
 + For tasks that use the Fargate launch type, this feature requires that your task use platform version 1\.3\.0 or later\. For information, see [AWS Fargate Platform Versions](platform_versions.md)\.
 + For tasks that use the EC2 launch type, this feature requires that your container instance have version 1\.22\.0 or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 + Sensitive data is injected into your container when the container is initially started\. If the secret or Parameter Store parameter is subsequently updated or rotated, the container will not receive the updated value automatically\. You must either launch a new task or if your task is part of a service you can update the service and use the **Force new deployment** option to force the service to launch a fresh task\.
++ For Windows tasks that are configured to use the `awslogs` logging driver, you must also set the `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE` environment variable on your container instance\. This can be done with User Data using the following syntax:
+
+  ```
+  <powershell>
+  [Environment]::SetEnvironmentVariable("ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE", $TRUE, "Machine")
+  Initialize-ECSAgent -Cluster <cluster name> -EnableTaskIAMRole -LoggingDrivers '["json-file","awslogs"]'
+  </powershell>
+  ```
 + This feature is not available in the GovCloud \(US\-East\) region\.
 
 ## Injecting Sensitive Data as an Environment Variable<a name="secrets-envvar"></a>

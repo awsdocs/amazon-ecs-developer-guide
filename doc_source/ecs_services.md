@@ -37,6 +37,8 @@ The daemon service scheduler does not place any tasks on instances that have the
 
 If `deploymentConfiguration` is specified, the maximum percent parameter must be `100`\. The default value for a daemon service for `maximumPercent` is 100%\. The default value for a daemon service for `minimumHealthyPercent` is 0% for the AWS CLI, the AWS SDKs, and the APIs, and 50% for the AWS Management Console\.
 
+Tasks using the Fargate launch type or the `CODE_DEPLOY` or `EXTERNAL` deployment controller types don't support the daemon scheduling strategy\.
+
 **Note**  
 The daemon service scheduler does not support the use of Classic Load Balancers\.
 
