@@ -11,6 +11,9 @@ The `ecsServiceRole` allows Amazon ECS services to register container instances 
 Container instance security group  
 If your container is mapped to port 80 on your container instance, your container instance security group must allow inbound traffic on port 80 for the load balancer health checks to pass\. 
 
+Incorrect Load Balancer Scheme
+Load Balancers that are `internet-facing` require public IP addresses on the nodes they point to. If your nodes do not have public IP addresses, you will need to use the `internal` Load Balander Scheme.
+
 Elastic Load Balancing load balancer not configured for all Availability Zones  
 Your load balancer should be configured to use all of the Availability Zones in a region, or at least all of the Availability Zones in which your container instances reside\. If a service uses a load balancer and starts a task on a container instance that resides in an Availability Zone that the load balancer is not configured to use, the task never passes the health check and it is killed\.
 
