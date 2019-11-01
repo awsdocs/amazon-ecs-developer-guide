@@ -64,7 +64,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. Choose **Apply**, **Confirm**\. This will create a new Envoy proxy container to the task definition, as well as the settings to support it\. It will then pre\-populate the App Mesh proxy configuration settings for the next step\.
 
-1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see [Proxy Configuration](mesh-gs-ecs.md#mesh-gs-ecs-proxyconfig)\.
+1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see [Update microservices](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-microservices)\.
 
 1. \(Optional\) To define data volumes for your task, choose **Add volume**\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
 
@@ -135,7 +135,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. Choose **Apply**, **Confirm**\. This will create a new Envoy proxy container to the task definition, as well as the settings to support it\. It will then pre\-populate the App Mesh proxy configuration settings for the next step\.
 
-1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see [Proxy Configuration](mesh-gs-ecs.md#mesh-gs-ecs-proxyconfig)\.
+1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see [Update microservices](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-microservices)\.
 
 1. \(Optional\) To define data volumes for your task, choose **Add volume**\. You can create either a bind mount or Docker volume\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
 

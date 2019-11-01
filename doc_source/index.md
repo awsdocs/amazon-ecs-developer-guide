@@ -209,7 +209,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Using Amazon ECS Parameters](cmd-ecs-cli-compose-ecsparams.md)
 + [Amazon ECS Service Quotas](service-quotas.md)
 + [Common Use Cases in Amazon ECS](common_use_cases.md)
-+ [Getting Started with AWS App Mesh and Amazon ECS](mesh-gs-ecs.md)
++ [Getting Started with AWS App Mesh and Amazon ECS](appmesh-getting-started.md)
 + [AWS Deep Learning Containers on Amazon ECS](deep-learning-containers.md)
 + [Tutorials for Amazon ECS](ecs-tutorials.md)
    + [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)
