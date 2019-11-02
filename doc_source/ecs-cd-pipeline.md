@@ -66,7 +66,7 @@ The build specification was written for the following task definition, used by t
     "containerDefinitions": [
       {
         "name": "hello-world",
-        "image": "012345678910.dkr.ecr.us-west-2.amazonaws.com/hello-world:6a57b99",
+        "image": "012345678910.dkr.ecr.us-west-2.amazonaws.com/hello-world:latest",
         "cpu": 100,
         "portMappings": [
           {
