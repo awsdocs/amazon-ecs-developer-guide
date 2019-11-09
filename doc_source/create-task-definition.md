@@ -54,7 +54,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-   1. For **Envoy image**, use the auto\-populated Envoy container image which is 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.11\.2\.0\-prod\.
+   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.0\.0\-prod\.
 
    1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com//app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
@@ -64,7 +64,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. Choose **Apply**, **Confirm**\. This will create a new Envoy proxy container to the task definition, as well as the settings to support it\. It will then pre\-populate the App Mesh proxy configuration settings for the next step\.
 
-1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see [Update microservices](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-microservices)\.
+1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see the JSON tab in [Update Services](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-services)\.
 
 1. \(Optional\) To define data volumes for your task, choose **Add volume**\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
 
@@ -99,7 +99,7 @@ If you chose **EC2**, complete the following steps:
 **Note**  
 Only roles that have the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
-1. \(Optional\) For **Network Mode**, choose the Docker network mode to use for the containers in your task\. The available network modes correspond to those described in [Network settings](https://docs.docker.com/engine/reference/run/#/network-settings) in the Docker run reference\.
+1. \(Optional\) For **Network Mode**, choose the Docker network mode to use for the containers in your task\. The available network modes correspond to those described in [Network settings](https://docs.docker.com/engine/reference/run/#/network-settings) in the Docker run reference\. If you select **Enable App Mesh integration** in a step below, then you must select `awsvpc`\.
 
    The default Docker network mode is `bridge`\. If the network mode is set to `none`, you can't specify port mappings in your container definitions, and the task's containers do not have external connectivity\. If the network mode is `awsvpc`, the task is allocated an elastic network interface\. The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode; however, exposed container ports are mapped directly to the corresponding host port, so you cannot take advantage of dynamic host port mappings or run multiple instantiations of the same task on a single container instance if port mappings are used\.
 
@@ -125,7 +125,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-   1. For **Envoy image**, use the auto\-populated Envoy container image which is 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.11\.2\.0\-prod\.
+   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.0\.0\-prod\.
 
    1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com//app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
@@ -135,7 +135,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. Choose **Apply**, **Confirm**\. This will create a new Envoy proxy container to the task definition, as well as the settings to support it\. It will then pre\-populate the App Mesh proxy configuration settings for the next step\.
 
-1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see [Update microservices](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-microservices)\.
+1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see the JSON tab in [Update Services](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-services)\.
 
 1. \(Optional\) To define data volumes for your task, choose **Add volume**\. You can create either a bind mount or Docker volume\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
 

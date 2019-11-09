@@ -1,4 +1,4 @@
-# AWS Fargate on Amazon ECS<a name="AWS_Fargate"></a>
+# Amazon ECS on AWS Fargate<a name="AWS_Fargate"></a>
 
 AWS Fargate is a technology that you can use with Amazon ECS to run [containers](https://aws.amazon.com/what-are-containers) without having to manage servers or clusters of Amazon EC2 instances\. With AWS Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers\. This removes the need to choose server types, decide when to scale your clusters, or optimize cluster packing\.
 
@@ -162,7 +162,7 @@ When provisioned, each Fargate task receives the following storage\. Task storag
 **Note**  
 The `host` and `sourcePath` parameters are not supported\.
 
-For more information about Amazon ECS default service limits, see [Amazon ECS Service Quotas](service-quotas.md)\.
+For more information about Amazon ECS default service quotas, see [Amazon ECS Service Quotas](service-quotas.md)\.
 
 The following shows a snippet of a task definition where two containers are sharing a single volume:
 
@@ -252,3 +252,9 @@ For more information about Amazon ECS clusters, including a walkthrough for crea
 A Fargate task is scheduled to be retired when AWS detects the irreparable failure of the underlying hardware hosting the task or if a security issue needs to be patched\. Most security patches are handled transparently without requiring any action on your part or having to restart your tasks\. But for certain issues, we may require that the task be restarted\. 
 
 When a task reaches its scheduled retirement date, it is stopped or terminated by AWS\. If the task is part of a service, then the task is automatically stopped and the service scheduler starts a new one to replace it\. If you are using standalone tasks, then you receive notification of the task retirement\. For more information, see [Task Retirement](task-retirement.md)\.
+
+## Fargate Savings Plans<a name="fargate-savings-plans"></a>
+
+Savings Plans are a pricing model that offer significant savings on AWS usage\. You commit to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years, and receive a lower price for that usage\. For more information, see the [Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
+
+To create a Savings Plan for your Fargate usage, use the **Compute Savings Plans** type\. For more information, see [Savings Plans and Amazon ECS](savings-plans.md)\.

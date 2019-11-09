@@ -37,7 +37,7 @@ This diagram shows the general architecture:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-fargate.png)
 
-For more information about Amazon ECS with AWS Fargate, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\.
+For more information about Amazon ECS with AWS Fargate, see [Amazon ECS on AWS Fargate](AWS_Fargate.md)\.
 
 ## EC2 Launch Type<a name="launch-type-ec2"></a>
 

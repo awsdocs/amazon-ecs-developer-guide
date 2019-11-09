@@ -1,8 +1,8 @@
 # Getting Started with AWS App Mesh and Amazon ECS<a name="appmesh-getting-started"></a>
 
-AWS App Mesh is a service mesh based on the [Envoy](https://www.envoyproxy.io/) proxy that helps you monitor and control microservices\. App Mesh standardizes how your microservices communicate, giving you end\-to\-end visibility into and helping to ensure high\-availability for your applications\. App Mesh gives you consistent visibility and network traffic controls for every microservice in an application\. For more information, see the [AWS App Mesh User Guide](https://docs.aws.amazon.com//app-mesh/latest/userguide/)\.
+AWS App Mesh is a service mesh based on the [Envoy](https://www.envoyproxy.io/) proxy that helps you monitor and control services\. App Mesh standardizes how your services communicate, giving you end\-to\-end visibility into and helping to ensure high\-availability for your applications\. App Mesh gives you consistent visibility and network traffic controls for every service in an application\. For more information, see the [AWS App Mesh User Guide](https://docs.aws.amazon.com//app-mesh/latest/userguide/)\.
 
-This topic helps you use AWS App Mesh with an actual microservice application that is running on Amazon ECS\. 
+This topic helps you use AWS App Mesh with an actual service that is running on Amazon ECS\. 
 
 ## Scenario<a name="scenario"></a>
 
@@ -21,13 +21,11 @@ To meet your requirements, you've decided to create an App Mesh service mesh wit
 
 ## Prerequisites<a name="prerequisites"></a>
 
-App Mesh supports microservice applications that are registered with a service discovery mechanism, such as DNS\. To use this getting started guide, we recommend that you have three existing services that are registered for service discovery\. You can create a service mesh and its resources even if the services don't exist, but you can't use the mesh until you have deployed actual services\.
+App Mesh supports Linux services that are registered with DNS, AWS Cloud Map, or both\. To use this getting started guide, we recommend that you have three existing services that are registered with DNS\. You can create a service mesh and its resources even if the services don't exist, but you can't use the mesh until you have deployed actual services\.
 
 For more information about service discovery on Amazon ECS, see [Service Discovery](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html)\. To create an Amazon ECS service with service discovery, see [Tutorial: Creating a Service Using Service Discovery](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service-discovery.html)\.
 
 The remaining steps assume that the actual services are named `serviceA`, `serviceB`, and `serviceBv2` and that all services are discoverable through a namespace named `apps.local`\. 
-
-You can use the AWS Management Console or the AWS CLI version 1\.16\.266 or higher to complete the following steps\. Use the `aws --version` command to check your installed AWS CLI version\. If you don't have version 1\.16\.266 or higher installed, you must [install or update the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\.
 
 ## Step 1: Create a Mesh and Virtual Service<a name="create-mesh-and-virtual-service"></a>
 
@@ -36,6 +34,8 @@ A service mesh is a logical boundary for network traffic between the services th
 Create the following resources:
 + A mesh named `apps`, since all of the services in the scenario are registered to the `apps.local` namespace\.
 + A virtual service named `serviceb.apps.local`, since the virtual service represents a service that is discoverable with that name, and you don't want to change your code to reference another name\. A virtual service named `servicea.apps.local` is added in a later step\.
+
+You can use the AWS Management Console or the AWS CLI version 1\.16\.266 or higher to complete the following steps\. If using the AWS CLI, use the `aws --version` command to check your installed AWS CLI version\. If you don't have version 1\.16\.266 or higher installed, you must [install or update the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\. Select the tab for the tool that you want to use\.
 
 ------
 #### [ AWS Management Console ]
@@ -463,7 +463,7 @@ Before you created the service mesh, you had three actual services named `servic
 + Three virtual nodes named `serviceA`, `serviceB`, and `serviceBv2`\. The Envoy proxy uses the service discovery information configured for the virtual nodes to look up the IP addresses of the actual services\. 
 + One virtual router with one route that instructs the Envoy proxy to route 75 percent of inbound traffic to the `serviceB` virtual node and 25 percent of the traffic to the `serviceBv2` virtual node\. 
 
-## Step 6: Update Microservices<a name="update-microservices"></a>
+## Step 6: Update Services<a name="update-services"></a>
 
 After creating your mesh, you need to complete the following tasks:
 + Authorize the Envoy proxy that you deploy with each Amazon ECS task to read the configuration of one or more virtual nodes\. For more information about how to authorize the proxy, see [Proxy authorization](https://docs.aws.amazon.com//app-mesh/latest/userguide/proxy-authorization.html)\.
@@ -492,7 +492,7 @@ You can update your task definitions by using the AWS Management Console or by m
 
       1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-      1. For **Envoy image**, use the auto\-populated Envoy container image\.
+      1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.0\.0\-prod\.
 
       1. For **Mesh name**, choose the App Mesh service mesh to use\. In this topic, the name of the mesh that was created is `apps.`
 
@@ -503,6 +503,8 @@ You can update your task definitions by using the AWS Management Console or by m
       1. Choose **Apply**, and then choose **Confirm**\. A new Envoy proxy container is created and added to the task definition, and the settings to support the container are also created\. The Envoy proxy container then pre\-populates the App Mesh **Proxy Configuration** settings for the next step\.
 
    1. For **Proxy Configuration**, verify all of the pre\-populated values\.
+
+   1. For **Network Mode**, ensure that `awsvpc` is selected\. To learn more about the `awsvpc` network mode, see [Task Networking with the `awsvpc` Network Mode](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html)\.
 
 1. Choose **Create**\.
 
@@ -581,7 +583,7 @@ The application containers in your task definitions must wait for the Envoy prox
 Your Amazon ECS task definitions must contain the [App Mesh Envoy container image](https://docs.aws.amazon.com//app-mesh/latest/userguide/envoy.html) below\. You can replace the *us\-west\-2* with any Region that App Mesh is supported in\. For a list of supported regions, see [AWS Service Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#appmesh_region)\.
 
 ```
-840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.11.2.0-prod
+840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod
 ```
 
 All of the properties in the following example are required\. Some of the property values are also required, but some are *replaceable*\. The Envoy container definition must be marked as `essential`\. The virtual node name for the Amazon ECS service must be set to the value of the `APPMESH_VIRTUAL_NODE_NAME` property\. The value for the `user` setting must match the `IgnoredUID` value from the task definition proxy configuration\. In this example, we use `1337`\. The health check shown here waits for the Envoy container to bootstrap properly before reporting to Amazon ECS that the Envoy container is healthy and ready for the application containers to start\.
@@ -593,7 +595,7 @@ You must use the App Mesh Envoy container image until the Envoy project team mer
 ```
 {
 	"name": "envoy",
-	"image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.11.2.0-prod",
+	"image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod",
 	"essential": true,
 	"environment": [{
 		"name": "APPMESH_VIRTUAL_NODE_NAME",
@@ -672,7 +674,7 @@ If you're running an Amazon ECS task as described in the Credentials section, th
       },
       {         
          "name" : "envoy",
-         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.11.2.0-prod",
+         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod",
          "essential" : true,
          "environment" : [
             {
@@ -758,7 +760,7 @@ X\-Ray allows you to collect data about requests that an application serves and 
       {
          
          "name" : "envoy",
-         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.11.2.0-prod",
+         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod",
          "essential" : true,
          "environment" : [
             {
@@ -858,7 +860,7 @@ X\-Ray allows you to collect data about requests that an application serves and 
     },
     {
       "name": "envoy",
-      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.11.2.0-prod",
+      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod",
       "essential": true,
       "environment": [
         {
@@ -941,7 +943,7 @@ X\-Ray allows you to collect data about requests that an application serves and 
     },
     {
       "name": "envoy",
-      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.11.2.0-prod",
+      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod",
       "essential": true,
       "environment": [
         {

@@ -213,7 +213,7 @@ You can use the Amazon ECS console to create a task definition that references e
 
 1. On the **Select launch type compatibility** page, choose the launch type for your tasks and choose **Next step**\.
 **Note**  
-This step only applies to Regions that currently support Amazon ECS using AWS Fargate\. For more information, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\.
+This step only applies to Regions that currently support Amazon ECS using AWS Fargate\. For more information, see [Amazon ECS on AWS Fargate](AWS_Fargate.md)\.
 
 1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 

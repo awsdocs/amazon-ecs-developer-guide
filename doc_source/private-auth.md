@@ -52,7 +52,7 @@ An example inline policy adding the permissions is shown below\.
       ],
       "Resource": [
         "arn:aws:secretsmanager:<region>:<aws_account_id>:secret:secret_name",
-        "arn:aws:kms:<region>:<aws_account_id>:key:key_id"     
+        "arn:aws:kms:<region>:<aws_account_id>:key/key_id"     
       ]
     }
   ]
@@ -102,7 +102,7 @@ Use AWS Secrets Manager to create a secret for your private registry credentials
 
 1. On the **Select launch type compatibility** page, choose the launch type for your tasks and then **Next step**\.
 **Note**  
-This step only applies to regions that currently support Amazon ECS using AWS Fargate\. For more information, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\.
+This step only applies to regions that currently support Amazon ECS using AWS Fargate\. For more information, see [Amazon ECS on AWS Fargate](AWS_Fargate.md)\.
 
 1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
