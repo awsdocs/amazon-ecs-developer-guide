@@ -25,7 +25,7 @@ This tutorial uses CodeBuild to build your Docker image and push the image to Am
   + Build the Docker image and tag the image both as `latest` and with the Git commit ID\.
 + Post\-build stage:
   + Push the image to your ECR repository with both tags\.
-  + Write a file called `imagedefinitions.json` in the build root that has your Amazon ECS service's container name and the image and tag\. The deployment stage of your CD pipeline uses this information to create a new revision of your service's task definition, and then it updates the service to use the new task definition\. The `imagedefinitions.json` file is required for the CodeDeploy ECS job worker\.
+  + Write a file called `imagedefinitions.json` in the build root that has your Amazon ECS service's container name and the image and tag\. The deployment stage of your CD pipeline uses this information to create a new revision of your service's task definition, and then it updates the service to use the new task definition\. The `imagedefinitions.json` file is required for the ECS job worker\.
 
 ```
 version: 0.2

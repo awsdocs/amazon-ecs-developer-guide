@@ -31,6 +31,10 @@ task_definition:
         timeout: string
         retries: integer
         start_period: string
+      firelens_configuration:
+        type: string
+        options:
+          enable-ecs-log-metadata: boolean
       secrets:
         - value_from: string
           name: string
@@ -121,6 +125,9 @@ This parameter is not supported for Windows containers or tasks using the Fargat
   + `healthcheck` – This parameter maps to `healthcheck` in the [Docker compose file reference](https://docs.docker.com/compose/compose-file/#healthcheck)\. The `test` field can also be specified as `command` and must be either a string or a list\. If it's a list, the first item must be either `NONE`, `CMD`, or `CMD-SHELL`\. If it's a string, it's equivalent to specifying `CMD-SHELL` followed by that string\. The `interval`, `timeout`, and `start_period` fields are specified as durations in a string format\. For example: `2.5s`, `10s`, `1m30s`, `2h23m`, or `5h34m56s`\.
 **Note**  
 If no units are specified, seconds are assumed\. For example, you can specify either `10s` or simply `10`\.
+  + `firelens_configuration` – This parameter allows you to define a log configuration using the `awsfirelens` log driver\. This is used to route logs to an AWS service or partner destination for log storage and analytics\. For more information, see [Custom Log Routing](using_firelens.md)\.
+    + `type` – The log router type to use\. Supported options are `fluentbit` and `fluentd`\.
+    + `options` – The log router options to use\. This will depend on the destination you are routing your logs to\. For more information, see [Custom Log Routing](using_firelens.md)\.
   + `secrets` – This parameter allows you to inject sensitive data into your containers by storing your sensitive data in AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
     + `value_from` – This is the AWS Systems Manager Parameter Store ARN or name to expose to the container\. If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
     + `name` – The value to set as the environment variable on the container\.

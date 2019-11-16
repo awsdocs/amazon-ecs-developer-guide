@@ -20,7 +20,7 @@ The Amazon EC2 user data script in the following procedure uses the Amazon ECS i
 
    1. In the **Permissions** tab, choose **Add inline policy**\.
 
-   1. For **Service**, choose **Choose a service**, **EC2 Container Service**\.
+   1. For **Service**, choose **Choose a service**, **Elastic Container Service**\.
 
    1. For **Actions**, type **StartTask** in the search field, and then select **StartTask**\.
 
@@ -76,17 +76,18 @@ The MIME multi\-part content below uses a shell script to set configuration valu
    # Write systemd unit file
    UNIT="ecs-start-task.service"
    cat <<- EOF > /etc/systemd/system/${UNIT}
-   	[Unit]
-   	Description=ECS Start Task
-   	Requires=ecs.service
-   	After=ecs.service
+         [Unit]
+         Description=ECS Start Task
+         Requires=ecs.service
+         After=ecs.service
+    
+         [Service]
+         Restart=on-failure
+         RestartSec=30
+         ExecStart=/usr/bin/bash ${START_TASK_SCRIPT_FILE}
    
-   	[Service]
-   	Restart=always
-   	ExecStart=/usr/bin/bash ${START_TASK_SCRIPT_FILE}
-   
-   	[Install]
-   	WantedBy=default.target
+         [Install]
+         WantedBy=default.target
    EOF
    
    # Enable our ecs.service dependent service with `--no-block` to prevent systemd deadlock
@@ -99,7 +100,7 @@ The MIME multi\-part content below uses a shell script to set configuration valu
 
    1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-   1. From the navigation bar, choose the region that your cluster is in\.
+   1. From the navigation bar, choose the Region that your cluster is in\.
 
    1. In the navigation pane, choose **Clusters** and select the cluster that hosts your container instances\.
 

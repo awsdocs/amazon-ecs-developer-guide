@@ -1,4 +1,4 @@
-# Using Service\-Linked Roles for Amazon ECS<a name="using-service-linked-roles"></a>
+# Service\-Linked Roles for Amazon ECS<a name="using-service-linked-roles"></a>
 
 Amazon Elastic Container Service uses AWS Identity and Access Management \(IAM\)[ service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role)\. A service\-linked role is a unique type of IAM role that is linked directly to Amazon ECS\. Service\-linked roles are predefined by Amazon ECS and include all the permissions that the service requires to call other AWS services on your behalf\. 
 
@@ -58,6 +58,26 @@ The role permissions policy allows Amazon ECS to complete the following actions 
                 "ec2:CreateTags"
             ],
             "Resource": "arn:aws:ec2:*:*:network-interface/*"
+        },
+        {
+            "Sid": "CWLogGroupManagement",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:DescribeLogGroups",
+                "logs:PutRetentionPolicy"
+            ],
+            "Resource": "arn:aws:logs:*:*:log-group:/aws/ecs/*"
+        },
+        {
+            "Sid": "CWLogStreamManagement",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:log-group:/aws/ecs/*:log-stream:*"
         }
     ]
 }

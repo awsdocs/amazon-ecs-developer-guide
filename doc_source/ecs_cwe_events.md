@@ -200,6 +200,8 @@ The Amazon ECS container agent monitors the state of containers within tasks\. F
 
 **Example Task State Change Event**  
 Task state change events are delivered in the following format \(the `detail` section below resembles the [Task](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Task.html) object that is returned from a [DescribeTasks](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) API operation in the *Amazon Elastic Container Service API Reference*\)\. For more information about CloudWatch Events parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html) in the *Amazon CloudWatch Events User Guide*\.  
+For a tutorial walkthrough for setting up a simple AWS Lambda function that listens for Amazon ECS task events and writes them out to a CloudWatch Logs log stream, see [Tutorial: Listening for Amazon ECS CloudWatch Events](ecs_cwet.md)\.  
+For a tutorial walkthrough on creating an SNS topic to email you when a task state change event occurs, see [Tutorial: Sending Amazon Simple Notification Service Alerts for Task Stopped Events](ecs_cwet2.md)\.  
 
 ```
 {

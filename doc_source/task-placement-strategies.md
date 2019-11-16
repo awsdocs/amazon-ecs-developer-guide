@@ -68,7 +68,7 @@ The following strategy distributes tasks evenly across Availability Zones and th
 "placementStrategy": [
     {
         "field": "attribute:ecs.availability-zone",
-        "type": "spread”
+        "type": "spread"
     },
     {
         "field": "instanceId",
@@ -83,7 +83,7 @@ The following strategy distributes tasks evenly across Availability Zones and th
 "placementStrategy": [
     {
         "field": "attribute:ecs.availability-zone",
-        "type": "spread”
+        "type": "spread"
     },
     {
         "field": "memory",

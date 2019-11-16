@@ -35,6 +35,7 @@ Consider the following when using the blue/green deployment type:
   + Both the production and test listeners must belong to the same load balancer\.
   + You must define a target group for the load balancer\. The target group routes traffic to the original task set in a service through the production listener\.
 + Service auto scaling is not supported when using the blue/green deployment type\.
++ Tasks using the Fargate launch type or the `CODE_DEPLOY` deployment controller types don't support the `DAEMON` scheduling strategy\.
 + When you initially create an CodeDeploy application and deployment group, you must specify the following:
   + You must define two target groups for the load balancer\. One target group should be the initial target group defined for the load balancer when the Amazon ECS service was created\. The second target group's only requirement is that it can't be associated with a different load balancer than the one the service uses\.
 + When you create an CodeDeploy deployment for an Amazon ECS service, CodeDeploy creates a *replacement task set* \(or *green task set*\) in the deployment\. If you added a test listener to the load balancer, CodeDeploy routes your test traffic to the replacement task set\. This is when you can run any validation tests\. Then CodeDeploy reroutes the production traffic from the original task set to the replacement task set according to the traffic rerouting settings for the deployment group\.

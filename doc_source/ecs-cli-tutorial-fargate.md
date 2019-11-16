@@ -142,7 +142,7 @@ After you create the compose file, you can deploy it to your cluster with ecs\-c
 ecs-cli compose --project-name tutorial service up --create-log-groups --cluster-config tutorial --ecs-profile tutorial-profile
 ```
 
-## Step 6: View the Running Containers on a Cluster<a name="ECS_CLI_tutorial_fargate_view"></a>
+## Step 6: View the Running Containers on a Cluster<a name="ECS_CLI_tutorial_fargate_view_containers"></a>
 
 After you deploy the compose file, you can view the containers that are running in the service with ecs\-cli compose service ps\.
 
@@ -192,7 +192,7 @@ tutorial/0c2862e6e39e4eff92ca3e4f843c5b9a/web  RUNNING  34.222.202.55:80->80/tcp
 tutorial/d9fbbc931d2e47ae928fcf433041648f/web  RUNNING  34.220.230.191:80->80/tcp  tutorial:1      UNKNOWN
 ```
 
-## Step 9: \(Optional\) View your Web Application<a name="ECS_CLI_tutorial_fargate_view"></a>
+## Step 9: \(Optional\) View your Web Application<a name="ECS_CLI_tutorial_fargate_view_web"></a>
 
 Enter the IP address for the task in your web browser and you should see a webpage that displays the **Simple PHP App** web application\.
 

@@ -39,6 +39,13 @@ Tasks launched by an Amazon ECS service can only receive the new ARN and resourc
 
 When Amazon ECS resources are created, each resource is assigned a unique Amazon Resource Name \(ARN\) and resource identifier \(ID\)\. If you are using a command line tool or the Amazon ECS API to work with Amazon ECS, resource ARNs or IDs are required for certain commands\. For example, if you are using the [stop\-task](https://docs.aws.amazon.com/cli/latest/reference/ecs/stop-task.html) AWS CLI command to stop a task, you must specify the task ARN or ID in the command\.
 
+The ability to opt in to and opt out of the new Amazon Resource Name \(ARN\) and resource IDs is provided on a per\-Region basis\. Any new accounts created are opted out by default\.
+
+You can opt in or opt out of the new Amazon Resource Name \(ARN\) and resource ID format at any time\. After you have opted in, any new resources that you create use the new format\.
+
+**Note**  
+A resource ID does not change after it's created\. Therefore, opting in or out of the new format does not affect your existing resource IDs\.
+
  The following sections describe how ARN and resource ID formats are changing\. For more information on the transition to the new formats, see [Amazon Elastic Container Service FAQ](https://aws.amazon.com/ecs/faqs/)\.
 
 **Amazon Resource Name \(ARN\) Format**  
@@ -61,14 +68,3 @@ A resource ID takes the form of a unique combination of letters and numbers\. Ne
 
 **Note**  
 The new resource ID format is not available in the GovCloud \(US\-East\) region\.
-
-**Timeline**  
-There is an opt\-in period for new formats\. Following are the important dates related to this change\.
-+ From the initial format release until March 31, 2019 – The ability to opt in to and opt out of the new Amazon Resource Name \(ARN\) and resource IDs is provided on a per\-Region basis\. Any new accounts created are opted out by default\.
-+ April 1, 2019 \- December 31, 2019 – All new accounts are be opted in by default\. The ability to opt in and opt out continues to be available on a per\-Region basis\.
-+ January 1, 2020 – All accounts will be opted in by default\. All new resources created will receive the new format\.
-
-You can opt in or opt out of the new Amazon Resource Name \(ARN\) and resource ID format at any time during the opt\-in period\. After you have opted in, any new resources that you create use the new format\.
-
-**Note**  
-A resource ID does not change after it's created\. Therefore, opting in or out of the new format during the opt\-in period does not affect your existing resource IDs\.

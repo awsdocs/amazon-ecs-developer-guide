@@ -18,7 +18,7 @@ This feature is not yet available for Fargate tasks in the following Regions:
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. Choose the cluster in which to create your scheduled task\.
+1. Choose the cluster in which to create your scheduled task\. If you do not have any clusters, see [Creating a Cluster](create_cluster.md) for steps on creating a new cluster\.
 
 1. On the **Cluster: *cluster\-name*** page, choose **Scheduled Tasks**, **Create**\.
 
@@ -44,7 +44,7 @@ Platform versions are only applicable to tasks that use the Fargate launch type\
 
    1. For **Number of tasks**, enter the number of instantiations of the specified task definition to run on your cluster when the rule executes\.
 
-   1. \(Optional\) For **Task role override**, choose the IAM role to use for the task in your target, instead of the task definition default\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\. Only roles with the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\. You must add `iam:PassRole` permissions for any task role overrides to the CloudWatch IAM role\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
+   1. \(Optional\) For **Task role override**, choose the IAM role to use for the task in your target, instead of the task definition default\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\. Only roles with the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\. You must add `iam:PassRole` permissions for any task role and task role overrides to the CloudWatch IAM role\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 
    1. If your scheduled task's task definition uses the `awsvpc` network mode, you must configure a VPC, subnet, and security group settings for your scheduled task\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\. 
 
@@ -60,7 +60,7 @@ Only private subnets are supported for the `awsvpc` network mode\. Because tasks
 
    1. For **CloudWatch Events IAM role for this target**, choose an existing CloudWatch Events service role \(`ecsEventsRole`\) that you may have already created\. Or, choose **Create new role** to create the required IAM role that allows CloudWatch Events to make calls to Amazon ECS to run tasks on your behalf\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 **Important**  
-If your scheduled tasks require the use of the task execution role, or if they use a task role override, then you must add `iam:PassRole` permissions for your task execution role or task role override to the CloudWatch IAM role\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
+If your scheduled tasks require the use of the task execution role, a task role, or if they use a task role override, then you must add `iam:PassRole` permissions for your task execution role, task role, or task role override to the CloudWatch IAM role\. For more information, see [CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 
    1. \(Optional\) In the **Container overrides** section, you can expand individual containers and override the command and/or environment variables for that container that are defined in the task definition\.
 

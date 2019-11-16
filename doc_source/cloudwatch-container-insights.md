@@ -1,6 +1,6 @@
 # Amazon ECS CloudWatch Container Insights<a name="cloudwatch-container-insights"></a>
 
-CloudWatch Container Insights collects, aggregates, and summarizes metrics and logs from your containerized applications and microservices\. The metrics include utilization for resources such as CPU, memory, disk, and network\. Network metrics are only available for tasks that use the `bridge` or `host` network modes\. The metrics are available in CloudWatch automatic dashboards\. For a full list of Amazon ECS Container Insights metrics, see [Amazon ECS Container Insights Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-metrics-ECS.html) in the *Amazon CloudWatch User Guide*\.
+CloudWatch Container Insights collects, aggregates, and summarizes metrics and logs from your containerized applications and microservices\. The metrics include utilization for resources such as CPU, memory, disk, and network\. Network metrics are only available for tasks that use the `bridge` network mode\. The metrics are available in CloudWatch automatic dashboards\. For a full list of Amazon ECS Container Insights metrics, see [Amazon ECS Container Insights Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-metrics-ECS.html) in the *Amazon CloudWatch User Guide*\.
 
 Operational data is collected as performance log events\. These are entries that use a structured JSON schema that enables high\-cardinality data to be ingested and stored at scale\. From this data, CloudWatch creates higher\-level aggregated metrics at the cluster and service level as CloudWatch metrics\. For more information, see [Container Insights Structured Logs for Amazon ECS](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-reference-structured-logs-ECS.html) in the *Amazon CloudWatch User Guide*\.
 
@@ -11,12 +11,12 @@ CloudWatch Container Insights are provided at an additional cost\. For informati
 
 Container Insights can be enabled for all new clusters created by opting in to the `containerInsights` account setting, on individual clusters by enabling it using the cluster settings during cluster creation, or on existing clusters by using the UpdateClusterSettings API\. 
 
-Opting in to the `containerInsights` account setting can be done with both the Amazon ECS console and the AWS CLI\. For more information on creating Amazon ECS clusters, see [Creating a Cluster](create_cluster.md)\.
+Opting in to the `containerInsights` account setting can be done with both the Amazon ECS console and the AWS CLI\. You must be running version `1.16.200` or later of the AWS CLI to use this feature\. For more information on creating Amazon ECS clusters, see [Creating a Cluster](create_cluster.md)\.
 
 **Important**  
 For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent\. For more information, see [Amazon ECS Container Agent Versions](container_agent_versions.md)\.
 
-**To opt in in all IAM users or roles on your account to Container Insights\-enabled clusters using the console**
+**To opt in all IAM users or roles on your account to Container Insights\-enabled clusters using the console**
 
 1. As the root user of the account, open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 

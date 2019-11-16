@@ -88,7 +88,6 @@ The amount \(in MiB\) of memory to present to the container\. If your container 
 If using the Fargate launch type, this parameter is optional\.  
 If using the EC2 launch type, you must specify either a task\-level memory value or a container\-level memory value\. If you specify both a container\-level `memory` and `memoryReservation` value, `memory` must be greater than `memoryReservation`\. If you specify `memoryReservation`, then that value is subtracted from the available memory resources for the container instance on which the container is placed\. Otherwise, the value of `memory` is used\.  
 The Docker daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.  
-The Docker daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.  
 If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.
 
 `memoryReservation`  
@@ -125,7 +124,7 @@ Required: no
 The port number on the container instance to reserve for your container\.  
 If using containers in a task with the Fargate launch type, the `hostPort` can either be left blank or be the same value as `containerPort`\.  
 If using containers in a task with the EC2 launch type, you can specify a non\-reserved host port for your container port mapping \(this is referred to as *static* host port mapping\), or you can omit the `hostPort` \(or set it to `0`\) while specifying a `containerPort` and your container automatically receives a port \(this is referred to as *dynamic* host port mapping\) in the ephemeral port range for your container instance operating system and Docker version\.  
-The default ephemeral port range is `49153–65535`, and this range is used for Docker versions before 1\.6\.0\. For Docker version 1\.6\.0 and later, the Docker daemon tries to read the ephemeral port range from `/proc/sys/net/ipv4/ip_local_port_range` \(which is 32768–61000 on the latest Amazon ECS\-optimized AMI\); if this kernel parameter is unavailable, the default ephemeral port range is used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below 32768 are outside of the ephemeral port range\.  
+The default ephemeral port range Docker version 1\.6\.0 and later is listed on the instance under `/proc/sys/net/ipv4/ip_local_port_range`\. If this kernel parameter is unavailable, the default empheral port range from `49153–65535` s used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below `32768` are outside of the ephemeral port range\.  
 The default reserved ports are `22` for SSH, the Docker ports `2375` and `2376`, and the Amazon ECS container agent ports `51678-51680`\. Any host port that was previously user\-specified for a running task is also reserved while the task is running \(after a task stops, the host port is released\)\. The current reserved ports are displayed in the `remainingResources` of describe\-container\-instances output, and a container instance may have up to 100 reserved ports at a time, including the default reserved ports\. Automatically assigned ports do not count toward the 100 reserved ports limit\.  
 `protocol`  
 Type: string  
@@ -318,7 +317,7 @@ Type: string array
 Required: no  
 The `link` parameter allows containers to communicate with each other without the need for port mappings\. Only supported if the network mode of a task definition is set to `bridge`\. The `name:internalName` construct is analogous to `name:alias` in Docker links\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. For more information about linking Docker containers, go to [https://docs\.docker\.com/engine/userguide/networking/default\_network/dockerlinks/](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/)\. This parameter maps to `Links` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--link` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This parameter is not supported for Windows containers or tasks using the `awsvpc` network mode\.
-Containers that are collocated on a single container instance may be able to communicate with each other without requiring links or host port mappings\. Network isolation is achieved on the container instance using security groups and VPC settings\.
+Containers that are collocated on the same container instance may be able to communicate with each other without requiring links or host port mappings\. The network isolation on a container instance is controlled by security groups and VPC settings\.
 
 ```
 "links": ["name:internalName", ...]
@@ -437,7 +436,6 @@ If this value is `true`, the container has read\-only access to the volume\. If 
 Type: [LogConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LogConfiguration.html) object  
 Required: no  
 The log configuration specification for the container\.  
-For more information on using the `awslogs` log driver in task definitions to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.  
 For example task definitions using a log configuration, see [Example Task Definitions](example_task_definitions.md)\.  
 This parameter maps to `LogConfig` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--log-driver` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. By default, containers use the same logging driver that the Docker daemon uses; however the container may use a different logging driver than the Docker daemon by specifying a log driver with this parameter in the container definition\. To use a different logging driver for a container, the log system must be configured properly on the container instance \(or on a different log server for remote logging options\)\. For more information on the options for different supported log drivers, see [Configure logging drivers](https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation\.  
 The following should be noted when specifying a log configuration for your containers:  
@@ -448,7 +446,7 @@ The following should be noted when specifying a log configuration for your conta
 
 ```
 "logConfiguration": {
-      "logDriver": "awslogs","fluentd","gelf","json-file","journald","logentries","splunk","syslog",
+      "logDriver": "awslogs","fluentd","gelf","json-file","journald","logentries","splunk","syslog","awsfirelens",
       "options": {"string": "string"
         ...},
 	"secretOptions": [{
@@ -459,11 +457,13 @@ The following should be noted when specifying a log configuration for your conta
 ```  
 `logDriver`  
 Type: string  
-Valid values: `"awslogs","fluentd","gelf","json-file","journald","logentries","splunk","syslog"`  
+Valid values: `"awslogs","fluentd","gelf","json-file","journald","logentries","splunk","syslog","awsfirelens`  
 Required: yes, when `logConfiguration` is used  
 The log driver to use for the container\. The valid values listed earlier are log drivers that the Amazon ECS container agent can communicate with by default\.  
-For tasks using the Fargate launch type, the supported log drivers are `awslogs` and `splunk`\.  
-For tasks using the EC2 launch type, the supported log drivers are `awslogs`, `fluentd`, `gelf`, `json-file`, `journald`, `logentries`, `splunk`, and `syslog`\.  
+For tasks using the Fargate launch type, the supported log drivers are `awslogs`, `splunk`, and `awsfirelens`\.  
+For tasks using the EC2 launch type, the supported log drivers are `awslogs`, `fluentd`, `gelf`, `json-file`, `journald`, `logentries`,`syslog`, `splunk`, and `awsfirelens`\.  
+For more information on using the `awslogs` log driver in task definitions to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.  
+For more information about using the `awsfirelens` log driver, see [Custom Log Routing](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_firelens.html)\.  
 If you have a custom driver that is not listed, you can fork the Amazon ECS container agent project that is [available on GitHub](https://github.com/aws/amazon-ecs-agent) and customize it to work with that driver\. We encourage you to submit pull requests for changes that you would like to have included\. However, we do not currently provide support for running modified copies of this software\.
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 `options`  
@@ -801,7 +801,7 @@ This parameter is specified when using Docker volumes\. Docker volumes are only 
 Type: String  
 Valid Values: `task` \| `shared`  
 Required: No  
-The scope for the Docker volume, which determines its lifecycle\. Docker volumes that are scoped to a `task` are automatically provisioned when the task starts and destroyed when the task stops\. Docker volumes that are scoped as `shared` persist after the task stops\.  
+The scope for the Docker volume, which determines its lifecycle\. Docker volumes that are scoped to a `task` are automatically provisioned when the task starts destroyed when the task is cleaned up\. Docker volumes that are scoped as `shared` persist after the task stops\.  
 `autoprovision`  
 Type: Boolean  
 Default value: `false`  
@@ -824,7 +824,7 @@ Custom metadata to add to your Docker volume\. This parameter maps to `Labels` i
 Required: No  
 This parameter is specified when using bind mounts\. To use Docker volumes, specify a `dockerVolumeConfiguration` instead\. The contents of the `host` parameter determine whether your bind mount data volume persists on the host container instance and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
 Bind mount host volumes are supported when using either the EC2 or Fargate launch types\.  
-Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\. For example, you can mount `C:\my\path:C:\my\path` and `D:\:D:\`, but not `D:\my\path:C:\my\path` or `D:\:C:\my\path`\.    
+Windows containers can mount whole directories on the same drive as `$env:ProgramData`\.    
 `sourcePath`  
 Type: String  
 Required: No  
@@ -890,41 +890,7 @@ If using the EC2 launch type, this field is optional and any value can be used\.
 If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 
-## Other Task Definition Parameters<a name="other_task_definition_params"></a>
-
-The following task definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
-
-**Topics**
-+ [IPC Mode](#task_definition_ipcmode)
-+ [PID Mode](#task_definition_pidmode)
-+ [Proxy Configuration](#task_definition_proxyConfiguration)
-
-### IPC Mode<a name="task_definition_ipcmode"></a>
-
-`ipcMode`  
-Type: String  
-Required: No  
-The IPC resource namespace to use for the containers in the task\. The valid values are `host`, `task`, or `none`\. If `host` is specified, then all containers within the tasks that specified the `host` IPC mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same IPC resources\. If `none` is specified, then IPC resources within the containers of a task are private and not shared with other containers in a task or on the container instance\. If no value is specified, then the IPC resource namespace sharing depends on the Docker daemon setting on the container instance\. For more information, see [IPC settings](https://docs.docker.com/engine/reference/run/#ipc-settings---ipc) in the *Docker run reference*\.  
-If the `host` IPC mode is used, be aware that there is a heightened risk of undesired IPC namespace exposure\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.  
-If you are setting namespaced kernel parameters using `systemControls` for the containers in the task, the following will apply to your IPC resource namespace\. For more information, see [System Controls](#container_definition_systemcontrols)\.  
-+ For tasks that use the `host` IPC mode, IPC namespace related `systemControls` are not supported\.
-+ For tasks that use the `task` IPC mode, IPC namespace related `systemControls` will apply to all containers within a task\.
-
-**Note**  
-This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
-
-### PID Mode<a name="task_definition_pidmode"></a>
-
-`pidMode`  
-Type: String  
-Required: No  
-The process namespace to use for the containers in the task\. The valid values are `host` or `task`\. If `host` is specified, then all containers within the tasks that specified the `host` PID mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same process namespace\. If no value is specified, the default is a private namespace\. For more information, see [PID settings](https://docs.docker.com/engine/reference/run/#pid-settings---pid) in the *Docker run reference*\.  
-If the `host` PID mode is used, be aware that there is a heightened risk of undesired process namespace exposure\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.
-
-**Note**  
-This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
-
-### Proxy Configuration<a name="task_definition_proxyConfiguration"></a>
+## Proxy Configuration<a name="proxyConfiguration"></a>
 
 `proxyConfiguration`  
 Type: [ProxyConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ProxyConfiguration.html) object  
@@ -974,3 +940,36 @@ The name of the key\-value pair\.
 Type: String  
 Required: No  
 The value of the key\-value pair\.
+
+## Other Task Definition Parameters<a name="other_task_definition_params"></a>
+
+The following task definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
+
+**Topics**
++ [IPC Mode](#task_definition_ipcmode)
++ [PID Mode](#task_definition_pidmode)
+
+### IPC Mode<a name="task_definition_ipcmode"></a>
+
+`ipcMode`  
+Type: String  
+Required: No  
+The IPC resource namespace to use for the containers in the task\. The valid values are `host`, `task`, or `none`\. If `host` is specified, then all containers within the tasks that specified the `host` IPC mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same IPC resources\. If `none` is specified, then IPC resources within the containers of a task are private and not shared with other containers in a task or on the container instance\. If no value is specified, then the IPC resource namespace sharing depends on the Docker daemon setting on the container instance\. For more information, see [IPC settings](https://docs.docker.com/engine/reference/run/#ipc-settings---ipc) in the *Docker run reference*\.  
+If the `host` IPC mode is used, be aware that there is a heightened risk of undesired IPC namespace exposure\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.  
+If you are setting namespaced kernel parameters using `systemControls` for the containers in the task, the following will apply to your IPC resource namespace\. For more information, see [System Controls](#container_definition_systemcontrols)\.  
++ For tasks that use the `host` IPC mode, IPC namespace related `systemControls` are not supported\.
++ For tasks that use the `task` IPC mode, IPC namespace related `systemControls` will apply to all containers within a task\.
+
+**Note**  
+This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
+
+### PID Mode<a name="task_definition_pidmode"></a>
+
+`pidMode`  
+Type: String  
+Required: No  
+The process namespace to use for the containers in the task\. The valid values are `host` or `task`\. If `host` is specified, then all containers within the tasks that specified the `host` PID mode on the same container instance share the same process namespace with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same process namespace\. If no value is specified, the default is a private namespace\. For more information, see [PID settings](https://docs.docker.com/engine/reference/run/#pid-settings---pid) in the *Docker run reference*\.  
+If the `host` PID mode is used, be aware that there is a heightened risk of undesired process namespace exposure\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.
+
+**Note**  
+This parameter is not supported for Windows containers or tasks using the Fargate launch type\.

@@ -6,7 +6,10 @@ Amazon ECS provides a GPU\-optimized AMI that comes ready with pre\-configured N
 
 You can designate a number of GPUs in your task definition for task placement consideration at a container level\. Amazon ECS will schedule to available GPU\-enabled container instances and pin physical GPUs to proper containers for optimal performance\. 
 
-The following Amazon EC2 GPU\-based instance types are supported\. For more information, see [Amazon EC2 P2 Instances](https://aws.amazon.com/ec2/instance-types/p2/), [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3/), and [Amazon EC2 G3 Instances](https://aws.amazon.com/ec2/instance-types/g3/)\.
+The following Amazon EC2 GPU\-based instance types are supported\. For more information, see [Amazon EC2 P2 Instances](https://aws.amazon.com/ec2/instance-types/p2/), [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3/), [Amazon EC2 G3 Instances](https://aws.amazon.com/ec2/instance-types/g3/), and [Amazon EC2 G4 Instances](https://aws.amazon.com/ec2/instance-types/g4/)\.
+
+**Important**  
+The g4 instance type family is supported on version `20190913` and later of the Amazon ECS GPU\-optimized AMI\. For more information, see [Amazon ECS GPU\-optimized AMI Versions](ecs-ami-versions.md#al2-gpu-ami-agent-versions)\. It is currently not supported in the Create Cluster workflow in the Amazon ECS console\. To use these instance types, you must either use the Amazon EC2 console, AWS CLI, or API and manually register the instances to your cluster\.
 
 
 |  Instance type  |  GPUs  |  GPU Memory \(GiB\)  |  vCPUs  |  Memory \(GiB\)  | 
@@ -22,6 +25,12 @@ The following Amazon EC2 GPU\-based instance types are supported\. For more info
 |  g3\.4xlarge  | 1 | 8 | 16 | 122 | 
 |  g3\.8xlarge  | 2 | 16 | 32 | 244 | 
 |  g3\.16xlarge  | 4 | 32 | 64 | 488 | 
+|  g4dn\.xlarge  | 1 | 16 | 4 | 16 | 
+|  g4dn\.2xlarge  | 1 | 16 | 8 | 32 | 
+|  g4dn\.4xlarge  | 1 | 16 | 16 | 64 | 
+|  g4dn\.8xlarge  | 1 | 16 | 32 | 128 | 
+|  g4dn\.12xlarge  | 4 | 64 | 48 | 192 | 
+|  g4dn\.16xlarge  | 1 | 16 | 64 | 256 | 
 
 **Topics**
 + [Considerations for Working with GPUs](#gpu-considerations)

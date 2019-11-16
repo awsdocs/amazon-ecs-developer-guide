@@ -46,12 +46,9 @@ You can launch a Windows container instance using the AWS Management Console, as
 
 1. From the console dashboard, choose **Launch Instance**\.
 
-1. On the **Choose an Amazon Machine Image \(AMI\)** page, type **ECS\_Optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2019\.08\.16** AMI\. 
-
-   The following table lists the current Amazon ECS\-optimized Windows 2019 AMI IDs by Region\.    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_Windows_getting_started.html)
+1. On the **Choose an Amazon Machine Image \(AMI\)** page, type **ECS\_Optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2019\.09\.11** AMI\.
 **Note**  
-There are Amazon ECS\-optimized AMIs for both Windows Server 2019 and Windows Server 2016\. For more information, see [How to Launch the Latest Amazon ECS\-Optimized Amazon Linux AMI](ecs-optimized_AMI_launch_latest.md)\.
+There are Amazon ECS\-optimized AMIs for both Windows Server 2019 and Windows Server 2016\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.
 
@@ -77,6 +74,8 @@ The `-EnableTaskIAMRole` option is required to enable IAM roles for tasks\. For 
    Initialize-ECSAgent -Cluster 'windows' -EnableTaskIAMRole
    </powershell>
    ```
+**Important**  
+There is a known issue using the `-Version` tag with the string `latest`\. Using `-Version ‘latest’` will result in an error\. To use the latest version, remove the `-Version` flag, and the module will default to the latest version unless there is a cached version available\.
 
 1. Choose **Next: Add Storage**\.
 

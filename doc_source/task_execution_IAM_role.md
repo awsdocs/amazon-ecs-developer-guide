@@ -109,7 +109,7 @@ An example inline policy adding the permissions is shown below\.
       ],
       "Resource": [
         "arn:aws:secretsmanager:<region>:<aws_account_id>:secret:secret_name",
-        "arn:aws:kms:<region>:<aws_account_id>:key:key_id"     
+        "arn:aws:kms:<region>:<aws_account_id>:key/key_id"     
       ]
     }
   ]

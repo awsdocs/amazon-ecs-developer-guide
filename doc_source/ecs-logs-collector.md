@@ -22,7 +22,7 @@ The source code for the Amazon ECS logs collector is available on GitHub for bot
 
 1. Run the script to collect the logs and create the archive\.
 **Note**  
-To enable the debug mode for the Docker daemon and the Amazon ECS container agent, add the `--mode=debug` option to the command below\. This may restart the Docker daemon, which kills all containers that are running on the instance\. Consider draining the container instance and moving any important tasks to other container instances before enabling debug mode\. For more information, see [Container Instance Draining](container-instance-draining.md)\.
+To enable the debug mode for the Docker daemon and the Amazon ECS container agent, add the `--mode=enable-debug` option to the command below\. This may restart the Docker daemon, which kills all containers that are running on the instance\. Consider draining the container instance and moving any important tasks to other container instances before enabling debug mode\. For more information, see [Container Instance Draining](container-instance-draining.md)\.
 
    ```
    [ec2-user ~]$ sudo bash ./ecs-logs-collector.sh

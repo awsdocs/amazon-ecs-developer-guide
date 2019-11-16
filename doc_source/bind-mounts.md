@@ -51,7 +51,7 @@ The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers,
 Required: No  
 This parameter is specified when using bind mounts\. To use Docker volumes, specify a `dockerVolumeConfiguration` instead\. The contents of the `host` parameter determine whether your bind mount data volume persists on the host container instance and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
 Bind mount host volumes are supported when using either the EC2 or Fargate launch types\.  
-Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\. For example, you can mount `C:\my\path:C:\my\path` and `D:\:D:\`, but not `D:\my\path:C:\my\path` or `D:\:C:\my\path`\.    
+Windows containers can mount whole directories on the same drive as `$env:ProgramData`\.    
 `sourcePath`  
 Type: String  
 Required: No  

@@ -7,7 +7,7 @@ ecs-cli --help
 ```
 
 **Note**  
-Ensure that you are using the latest version of the Amazon ECS CLI\. The latest version is 1\.16\.0\. For release notes, see [Changelog](https://github.com/aws/amazon-ecs-cli/blob/master/CHANGELOG.md)\.
+Ensure that you are using the latest version of the Amazon ECS CLI\. The latest version is 1\.17\.0\. For release notes, see [Changelog](https://github.com/aws/amazon-ecs-cli/blob/master/CHANGELOG.md)\.
 
 **Topics**
 + [ecs\-cli](cmd-ecs-cli.md)

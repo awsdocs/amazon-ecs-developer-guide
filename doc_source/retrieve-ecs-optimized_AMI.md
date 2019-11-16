@@ -29,12 +29,12 @@ The following is the format of the parameter name\.
   ```
   /aws/service/ecs/optimized-ami/amazon-linux/<version>
   ```
-+  Amazon ECS\-optimized Windows 2019 AMI metadata:
++  Amazon ECS\-optimized Windows 2019 Full AMI metadata:
 
   ```
   /aws/service/ami-windows-latest/Windows_Server-2019-English-Full-ECS_Optimized
   ```
-+  Amazon ECS\-optimized Windows 2016 AMI metadata:
++  Amazon ECS\-optimized Windows 2016 Full AMI metadata:
 
   ```
   /aws/service/ami-windows-latest/Windows_Server-2016-English-Full-ECS_Optimized
@@ -115,12 +115,12 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   ```
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended --region us-east-1
   ```
-+ **For the Amazon ECS\-optimized Windows 2019 AMI:**
++ **For the Amazon ECS\-optimized Windows 2019 Full AMI:**
 
   ```
   aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2019-English-Full-ECS_Optimized --region us-east-1
   ```
-+ **For the Amazon ECS\-optimized Windows 2016 AMI:**
++ **For the Amazon ECS\-optimized Windows 2016 Full AMI:**
 
   ```
   aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2016-English-Full-ECS_Optimized --region us-east-1

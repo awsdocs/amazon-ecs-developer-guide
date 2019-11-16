@@ -26,7 +26,7 @@ A task definition is like a blueprint for your application\. Each time that you 
 
 1. Open the Amazon ECS console first\-run wizard at [https://console\.aws\.amazon\.com/ecs/home\#/firstRun](https://console.aws.amazon.com/ecs/home#/firstRun)\.
 
-1. From the navigation bar, select the **EU \(Paris\)** Region\.
+1. From the navigation bar, select the **South America \(Sao Paulo\)** Region\.
 
 1. Configure your task definition parameters\.
 

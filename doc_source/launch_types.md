@@ -25,14 +25,19 @@ The AWS Fargate launch type is currently available in the following Regions:
 | EU \(Frankfurt\) | eu\-central\-1 | 
 | EU \(Ireland\) | eu\-west\-1 | 
 | EU \(London\) | eu\-west\-2 | 
+| EU \(Paris\) | eu\-west\-3 | 
+| EU \(Stockholm\) | eu\-north\-1 | 
+| Middle East \(Bahrain\) | me\-south\-1 | 
 | AWS GovCloud \(US\-East\) | us\-gov\-east\-1 | 
 | AWS GovCloud \(US\) | us\-gov\-west\-1 | 
+| China \(Beijing\) | cn\-north\-1 | 
+| China \(Ningxia\) | cn\-northwest\-1 | 
 
 This diagram shows the general architecture:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-fargate.png)
 
-For more information about Amazon ECS with AWS Fargate, see [AWS Fargate on Amazon ECS](AWS_Fargate.md)\.
+For more information about Amazon ECS with AWS Fargate, see [Amazon ECS on AWS Fargate](AWS_Fargate.md)\.
 
 ## EC2 Launch Type<a name="launch-type-ec2"></a>
 

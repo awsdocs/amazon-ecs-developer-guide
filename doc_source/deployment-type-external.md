@@ -8,8 +8,13 @@ The `UpdateTaskSet` API action updates only the scale parameter for a task set\.
 
 The `UpdateServicePrimaryTaskSet` API action modifies which task set in a service is the primary task set\. When you call the `DescribeServices` API action, it returns all fields specified for a primary task set\. If the primary task set for a service is updated, any task set parameter values that exist on the new primary task set that differ from the old primary task set in a service are updated to the new value when a new primary task set is defined\. If no primary task set is defined for a service, when describing the service, the task set fields are null\.
 
-**Important**  
-Service auto scaling is not supported when using an external deployment controller\.
+## External Deployment Considerations<a name="deployment-type-external-considerations"></a>
+
+Consider the following when using the external deployment type:
++ Service auto scaling is not supported when using an external deployment controller\.
++ Tasks using the Fargate launch type or `EXTERNAL` deployment controller types don't support the `DAEMON` scheduling strategy\.
+
+## External Deployment Workflow<a name="deployment-type-external-workflow"></a>
 
 The following is the basic workflow to managing an external deployment on Amazon ECS\.
 

@@ -11,6 +11,7 @@ The trunk network interface is fully managed by Amazon ECS and is deleted when y
 There are several things to consider when using the ENI trunking feature\.
 + Only Linux variants of the Amazon ECS\-optimized AMI, or other Amazon Linux variants with version `1.28.1` or later of the container agent and version `1.28.1-2` or later of the ecs\-init package, support the increased ENI limits\. If you use the latest Linux variant of the Amazon ECS\-optimized AMI, these requirements will be met\. Windows containers are not supported at this time\.
 + Only new Amazon EC2 instances launched after opting in to `awsvpcTrunking` receive the increased ENI limits and the trunk network interface\. Previously launched instances do not receive these features regardless of the actions taken\.
++ Amazon EC2 instances in shared subnets are not supported\. They will fail to register to a cluster if they are used\.
 + Your Amazon ECS tasks must use the `awsvpc` network mode and the EC2 launch type\. Tasks using the Fargate launch type always received a dedicated ENI regardless of how many are launched, so this feature is not needed\.
 + When launching a new container instance, the instance transitions to a `REGISTERING` status while the trunk elastic network interface is provisioned for the instance\. If the registration fails, the instance transitions to a `REGISTRATION_FAILED` status\. You can describe the container instance and see the reason for failure in the `statusReason` parameter\.
 + Once the container instance is terminated, the instance transitions to a `DEREGISTERING` status while the trunk elastic network interface is deprovisioned\. The instance then transitions to an `INACTIVE` status\.
@@ -19,7 +20,7 @@ There are several things to consider when using the ENI trunking feature\.
 ## Working With Container Instances With Increased ENI Limits<a name="eni-trunking-launching"></a>
 
 Before you launch a container instance with the increased ENI limits, the following prerequisites must be completed\.
-+ The service\-linked role for Amazon ECS must be created\. The Amazon ECS service\-linked role provides Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster, or if you create or update a service in the AWS Management Console\. For more information, see [Using Service\-Linked Roles for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command\.
++ The service\-linked role for Amazon ECS must be created\. The Amazon ECS service\-linked role provides Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster, or if you create or update a service in the AWS Management Console\. For more information, see [Service\-Linked Roles for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command\.
 
   ```
   aws iam [create\-service\-linked\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-service-linked-role.html) --aws-service-name ecs.amazonaws.com
@@ -111,6 +112,9 @@ Each container instance has a default network interface, referred to as a trunk 
 
 The following shows the supported Amazon EC2 instance types and how many tasks using the `awsvpc` network mode can be launched on each instance type before and after opting in to the `awsvpcTrunking` account setting\. For the elastic network interface \(ENI\) limits on each instance type, add one to the current task limit, as the primary network interface counts against the limit, and add two to the new task limit, as both the primary network interface and the trunk network instance count again the limit\.
 
+**Important**  
+The `c5n`, `m5n`, `m5dn`, `r5n`, and `r5dn` instance types are not supported\.
+
 
 | Instance Type | Current Task Limit per Instance | New Task Limit per Instance | 
 | --- | --- | --- | 
@@ -133,12 +137,6 @@ The following shows the supported Amazon EC2 instance types and how many tasks u
 |  c5d\.4xlarge  | 7 | 60 | 
 |  c5d\.9xlarge  | 7 | 60 | 
 |  c5d\.18xlarge  | 14 | 120 | 
-|  c5n\.large  | 2 | 10 | 
-|  c5n\.xlarge  | 3 | 20 | 
-|  c5n\.2xlarge  | 3 | 40 | 
-|  c5n\.4xlarge  | 7 | 60 | 
-|  c5n\.9xlarge  | 7 | 60 | 
-|  c5n\.18xlarge  | 14 | 120 | 
 | m5 instance family | 
 |  m5\.large  | 2 | 10 | 
 |  m5\.xlarge  | 3 | 20 | 
@@ -168,7 +166,6 @@ The following shows the supported Amazon EC2 instance types and how many tasks u
 |  p3\.2xlarge  | 3 | 40 | 
 |  p3\.8xlarge  | 7 | 60 | 
 |  p3\.16xlarge  | 7 | 120 | 
-|  p3dn\.24xlarge  | 14 | 120 | 
 | r5 instance family | 
 |  r5\.large  | 2 | 10 | 
 |  r5\.xlarge  | 3 | 20 | 
