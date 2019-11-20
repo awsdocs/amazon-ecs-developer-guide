@@ -54,7 +54,8 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"hello-world","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
-    files: imagedefinitions.json
+    files: 
+      - imagedefinitions.json
 ```
 
 The build specification was written for the following task definition, used by the Amazon ECS service for this tutorial\. The `REPOSITORY_URI` value corresponds to the `image` repository \(without any image tag\), and the `hello-world` value near the end of the file corresponds to the container name in the service's task definition\. 
