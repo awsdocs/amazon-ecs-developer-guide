@@ -37,7 +37,7 @@ If you chose **Fargate**, complete the following steps:
 **Note**  
 Only roles that have the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
-1. For **Task execution IAM role**, either select your task execution role or choose **Create new role** so that the console can create one for you\. For more information, see[Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+1. For **Task execution IAM role**, either select your task execution role or choose **Create new role** so that the console can create one for you\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
 1. For **Task size**, choose a value for **Task memory \(GB\)** and **Task CPU \(vCPU\)**\. The table below shows the valid combinations\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-task-definition.html)
