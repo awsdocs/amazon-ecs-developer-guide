@@ -85,7 +85,7 @@ Fargate task definitions require that you specify CPU and memory at the task lev
 | 4096 \(4 vCPU\) | Between 8 GB and 30 GB in 1\-GB increments | 
 
 ### Task Resource Limits (`ulimits`)
-By default Fargate configures some restrictions on the number of open files that a container can utilize. This is protect users from tasks opening up too many files and making the task unresponsive. These limits are set using the `nofile` resource limit and there is by default a hard limit of 1024 and a soft limit of 4096.
+By default Fargate configures some restrictions on the number of open files that a container can utilize. This is protect users from tasks opening up too many files and making the task unresponsive. These limits are set using the `nofile` resource limit and there is by default a soft limit of 1024 and a hard limit of 4096.
 
 If you tasks needs to handle a large amount of files in Fargate it is recommend you adjust these limits in your task definition. The following shows a snippet of a task definition where the `nofile` limits have been doubled from the default:
 
