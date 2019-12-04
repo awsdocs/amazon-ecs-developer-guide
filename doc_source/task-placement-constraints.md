@@ -33,7 +33,12 @@ The Availability Zone for the instance\. An example value for this attribute is 
 The instance type for the instance\. An example value for this attribute is "g2\.2xlarge"\.
 
 `ecs.os-type`  
-The operating system for the instance\. The possible values for this attribute are "linux" and "windows"\.
+The operating system for the instance\. The possible values for this attribute are "linux" and "windows"\.Optional Attributes
+
+Amazon ECS may add the following attribute to your container instances\.
+
+`ecs.outpost-arn`  
+If this attribute exists, it contains the Amazon Resource Name \(ARN\) of the Outpost\. For more information, see [Amazon Elastic Container Service on AWS Outposts](ecs-on-outposts.md)\.
 
 **Custom Attributes**  
 You can apply custom attributes to your container instances\. For example, you can define an attribute with the name "stack" and a value of "prod"\.

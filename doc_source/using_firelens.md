@@ -2,9 +2,7 @@
 
 FireLens for Amazon ECS enables you to use task definition parameters to route logs to an AWS service or AWS Partner Network \(APN\) destination for log storage and analytics\. FireLens works with [Fluentd](https://www.fluentd.org/) and [Fluent Bit](https://fluentbit.io/)\. We provide the AWS for Fluent Bit image or you can use your own Fluentd or Fluent Bit image\.
 
-Creating Amazon ECS task definitions with a FireLens configuration is supported using the AWS SDKs, AWS CLI, and AWS Management Console\. When using the AWS Management Console to register a new task definition, you must use the **Configure via JSON** option\.
-
-Several example task definitions are provided 
+Creating Amazon ECS task definitions with a FireLens configuration is supported using the AWS SDKs, AWS CLI, and AWS Management Console\.
 
 ## Considerations<a name="firelens-considerations"></a>
 
@@ -38,7 +36,7 @@ The following example IAM policy adds the required permissions for routing logs 
 ```
 
 Your task may also require the Amazon ECS task execution role under the following conditions\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
-+ If your task uses the Fargate launch type and you are pulling container images from Amazon ECR or referencing sensitive data from AWS Secrets Manager in your log configuration, then your must include the task execution IAM role\.\.
++ If your task uses the Fargate launch type and you are pulling container images from Amazon ECR or referencing sensitive data from AWS Secrets Manager in your log configuration, then you must include the task execution IAM role\.
 + If you are specifying a custom configuration file that is hosted in Amazon S3, your task execution IAM role must include the `s3:GetObject` permission for the configuration file and the `s3:GetBucketLocation` permission on the Amazon S3 bucket that the file is in\. For more information, see [Specifying Permissions in a Policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
   The following example IAM policy adds the required permissions for retrieving a file from Amazon S3\. Specify the name of your Amazon S3 bucket and configuration file name\.
@@ -108,6 +106,8 @@ To use custom log routing with FireLens you must specify the following in your t
 + One or more application containers that contain a log configuration specifying the `awsfirelens` log driver\.
 + A task IAM role ARN containing the permissions needed for the task to route the logs\.
 
+When creating a new task definition using the AWS Management Console, there is a FireLens integration section that makes it easy to add a log router container\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
+
 Amazon ECS converts the log configuration and generates the Fluentd or Fluent Bit output configuration\. The output configuration is mounted in the log routing container at `/fluent-bit/etc/fluent-bit.conf` for Fluent Bit and `/fluentd/etc/fluent.conf` for Fluentd\.
 
 To demonstrate how this works, the following is an example task definition example containing a log router container that uses Fluent Bit to route its logs to CloudWatch Logs and an application container that uses a log configuration to route logs to Amazon Kinesis Data Firehose\.
@@ -153,7 +153,7 @@ To demonstrate how this works, the following is an example task definition examp
 }
 ```
 
-The key value pairs specified as options in the `logConfiguration` object are used to generate the Fluentd or Fluent Bit output configuration\. The following is a code example from a Fluent Bit output definition\.
+The key\-value pairs specified as options in the `logConfiguration` object are used to generate the Fluentd or Fluent Bit output configuration\. The following is a code example from a Fluent Bit output definition\.
 
 ```
 [OUTPUT]
@@ -173,6 +173,26 @@ When specifying a FireLens configuration in a task definition, you can optionall
 + `ecs_task_arn` – The full ARN of the task that the container is part of\.
 + `ecs_task_definition` – The task definition name and revision that the task is using\.
 + `ec2_instance_id` – The Amazon EC2 instance ID that the container is hosted on\. This field is only valid for tasks using the EC2 launch type\.
+
+The following shows the syntax required when specifying an Amazon ECS log metadata setting value:
+
+```
+{
+   "containerDefinitions":[
+      {
+         "essential":true,
+         "image":"906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest",
+         "name":"log_router",
+         "firelensConfiguration":{
+            "type":"fluentbit",
+            "options":{
+               "enable-ecs-log-metadata":"true | false"
+            }
+         }
+      }
+   ]
+}
+```
 
 ### Specifying a Custom Configuration File<a name="firelens-taskdef-customconfig"></a>
 
@@ -270,7 +290,7 @@ The following are some example task definitions demonstrating common log routing
 
 The following task definition example demonstrates how to specify a log configuration that forwards logs to a CloudWatch Logs log group\. For more information, see [What Is Amazon CloudWatch Logs?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch Logs User Guide*\.
 
-In the log configuration options, specify the log group name and the Region it exists in\. To have Fluent Bit create the log group on your behalf, specify `"auto_create_group":"true"`\. You can also specify a log stream prefix which assists in filtering\. For more information, see [Fluent Bit Plugin for CloudWatch Logs](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit/blob/master/README.md)\.
+In the log configuration options, specify the log group name and the Region it exists in\. To have Fluent Bit create the log group on your behalf, specify `"auto_create_group":"true"`\. You can also specify a log stream prefix, which assists in filtering\. For more information, see [Fluent Bit Plugin for CloudWatch Logs](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit/blob/master/README.md)\.
 
 ```
 {

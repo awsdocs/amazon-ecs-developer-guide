@@ -54,7 +54,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.0\.0\-prod\.
+   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.1\.1\-prod\.
 
    1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com//app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
@@ -65,6 +65,14 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
    1. Choose **Apply**, **Confirm**\. This will create a new Envoy proxy container to the task definition, as well as the settings to support it\. It will then pre\-populate the App Mesh proxy configuration settings for the next step\.
 
 1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see the JSON tab in [Update Services](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-services)\.
+
+1. \(Optional\) For **Log Router Integration**, you can add a custom log routing configuration\. Choose **Enable FireLens integration** and then do the following:
+
+   1. For **Type**, choose the log router type to use\.
+
+   1. For **Image**, type the image URI for your log router container\. If you chose the `fluentbit` log router type, the **Image** field prepopulates with the AWS for Fluent Bit image\. For more information, see [Using the AWS for Fluent Bit Image](using_firelens.md#firelens-using-fluentbit)\.
+
+   1. Choose **Apply**\. This creates a new log router container to the task definition named `log_router`, and applies the settings to support it\. If you make changes to the log router integration fields, choose **Apply** again to update the FireLens container\.
 
 1. \(Optional\) To define data volumes for your task, choose **Add volume**\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
 
@@ -125,7 +133,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.0\.0\-prod\.
+   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.1\.1\-prod\.
 
    1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com//app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
@@ -136,6 +144,14 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
    1. Choose **Apply**, **Confirm**\. This will create a new Envoy proxy container to the task definition, as well as the settings to support it\. It will then pre\-populate the App Mesh proxy configuration settings for the next step\.
 
 1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see the JSON tab in [Update Services](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-services)\.
+
+1. \(Optional\) For **Log Router Integration**, you can add a custom log routing configuration\. Choose **Enable FireLens integration** and then do the following:
+
+   1. For **Type**, choose the log router type to use\.
+
+   1. For **Image**, type the image URI for your log router container\. If you chose the `fluentbit` log router type, the **Image** field prepopulates with the AWS for Fluent Bit image\. For more information, see [Using the AWS for Fluent Bit Image](using_firelens.md#firelens-using-fluentbit)\.
+
+   1. Choose **Apply**\. This creates a new log router container to the task definition named `log_router`, and applies the settings to support it\. If you make changes to the log router integration fields, choose **Apply** again to update the FireLens container\.
 
 1. \(Optional\) To define data volumes for your task, choose **Add volume**\. You can create either a bind mount or Docker volume\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
 

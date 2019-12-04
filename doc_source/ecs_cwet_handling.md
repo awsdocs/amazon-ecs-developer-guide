@@ -1,14 +1,14 @@
 # Handling Events<a name="ecs_cwet_handling"></a>
 
-Amazon ECS sends events on an "at least once" basis\. This means you may receive more than a single copy of a given event\. Additionally, events may not be delivered to your event listeners in the order in which the events occurred\.
+Amazon ECS sends events on an *at least once* basis\. This means you may receive more than a single copy of a given event\. Additionally, events may not be delivered to your event listeners in the order in which the events occurred\.
 
 To enable proper ordering of events, the `detail` section of each event contains a `version` property\. Events with a higher version property number should be treated as occurring later than events with lower version numbers\. Events with matching version numbers can be treated as duplicates\.
 
 ## Example: Handling Events in an AWS Lambda Function<a name="ecs_cwet_handling_example"></a>
 
-The following example shows a Lambda function written in Python 2\.7 that captures both task and container instance state change events, and saves them to one of two Amazon DynamoDB tables:
-+ *ECSCtrInstanceState*: Stores the latest state for a container instance\. The table ID is the `containerInstanceArn` value of the container instance\.
-+ *ECSTaskState*: Stores the latest state for a task\. The table ID is the `taskArn` value of the task\.
+The following example shows a Lambda function written in Python 2\.7 that captures both task and container instance state change events and saves them to one of two Amazon DynamoDB tables:
++ *ECSCtrInstanceState* – Stores the latest state for a container instance\. The table ID is the `containerInstanceArn` value of the container instance\.
++ *ECSTaskState* – Stores the latest state for a task\. The table ID is the `taskArn` value of the task\.
 
 ```
 import json

@@ -28,6 +28,7 @@ Fargate Platform Version‐1\.3\.0
 + Beginning on May 1, 2019, any new Fargate task that is launched supports referencing sensitive data in the log configuration of a container using the `secretOptions` container definition parameter\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
 + Beginning on May 1, 2019, any new Fargate task that is launched supports the `splunk` log driver in addition to the `awslogs` log driver\. For more information, see [Storage and Logging](task_definition_parameters.md#container_definition_storage)\.
 + Beginning on July 9, 2019, any new Fargate tasks that is launched supports CloudWatch Container Insights\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
++ Beginning on December 3, 2019, the Fargate Spot capacity provider is supported\. For more information, see [Using AWS Fargate Capacity Providers](fargate-capacity-providers.md)\.
 
 Fargate Platform Version‐1\.2\.0  
 + Added support for private registry authentication using AWS Secrets Manager\. For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.

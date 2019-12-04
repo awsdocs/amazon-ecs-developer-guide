@@ -11,7 +11,7 @@ Monitor, store, and access the log files from the containers in your Amazon ECS 
 You can also monitor, store, and access the operating system and Amazon ECS container agent log files from your Amazon ECS container instances\. This method for accessing logs can be used for containers using the EC2 launch type\. For more information, see [Using CloudWatch Logs with Container Instances](using_cloudwatch_logs.md)\.
 
 **Amazon CloudWatch Events**  
-Match events and route them to one or more target functions or streams to make changes, capture state information, and take corrective action\. For more information, see [Amazon ECS Event Stream for CloudWatch Events](cloudwatch_event_stream.md) in this guide and [What Is Amazon CloudWatch Events?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch Events User Guide*\.
+Match events and route them to one or more target functions or streams to make changes, capture state information, and take corrective action\. For more information, see [Amazon ECS Events and EventBridge](cloudwatch_event_stream.md) in this guide and [What Is Amazon CloudWatch Events?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch Events User Guide*\.
 
 **AWS CloudTrail Logs**  
 CloudTrail provides a record of actions taken by a user, role, or an AWS service in Amazon ECS\. Using the information collected by CloudTrail, you can determine the request that was made to Amazon ECS, the IP address from which the request was made, who made the request, when it was made, and additional details\. For more information, see [Logging Amazon ECS API Calls with AWS CloudTrail](logging-using-cloudtrail.md)\.

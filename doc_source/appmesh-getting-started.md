@@ -492,7 +492,7 @@ You can update your task definitions by using the AWS Management Console or by m
 
       1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-      1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.0\.0\-prod\.
+      1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.1\.1\-prod\.
 
       1. For **Mesh name**, choose the App Mesh service mesh to use\. In this topic, the name of the mesh that was created is `apps.`
 
@@ -583,7 +583,7 @@ The application containers in your task definitions must wait for the Envoy prox
 Your Amazon ECS task definitions must contain the [App Mesh Envoy container image](https://docs.aws.amazon.com//app-mesh/latest/userguide/envoy.html) below\. You can replace the *us\-west\-2* with any Region that App Mesh is supported in\. For a list of supported regions, see [AWS Service Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#appmesh_region)\.
 
 ```
-840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod
+840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.1.1-prod
 ```
 
 All of the properties in the following example are required\. Some of the property values are also required, but some are *replaceable*\. The Envoy container definition must be marked as `essential`\. The virtual node name for the Amazon ECS service must be set to the value of the `APPMESH_VIRTUAL_NODE_NAME` property\. The value for the `user` setting must match the `IgnoredUID` value from the task definition proxy configuration\. In this example, we use `1337`\. The health check shown here waits for the Envoy container to bootstrap properly before reporting to Amazon ECS that the Envoy container is healthy and ready for the application containers to start\.
@@ -595,7 +595,7 @@ You must use the App Mesh Envoy container image until the Envoy project team mer
 ```
 {
 	"name": "envoy",
-	"image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod",
+	"image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.1.1-prod",
 	"essential": true,
 	"environment": [{
 		"name": "APPMESH_VIRTUAL_NODE_NAME",
@@ -674,7 +674,7 @@ If you're running an Amazon ECS task as described in the Credentials section, th
       },
       {         
          "name" : "envoy",
-         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod",
+         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.1.1-prod",
          "essential" : true,
          "environment" : [
             {
@@ -760,7 +760,7 @@ X\-Ray allows you to collect data about requests that an application serves and 
       {
          
          "name" : "envoy",
-         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod",
+         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.1.1-prod",
          "essential" : true,
          "environment" : [
             {
@@ -860,7 +860,7 @@ X\-Ray allows you to collect data about requests that an application serves and 
     },
     {
       "name": "envoy",
-      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod",
+      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.1.1-prod",
       "essential": true,
       "environment": [
         {
@@ -943,7 +943,7 @@ X\-Ray allows you to collect data about requests that an application serves and 
     },
     {
       "name": "envoy",
-      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod",
+      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.1.1-prod",
       "essential": true,
       "environment": [
         {

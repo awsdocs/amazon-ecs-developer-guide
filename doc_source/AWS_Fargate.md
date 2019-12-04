@@ -11,8 +11,8 @@ AWS Fargate with Amazon ECS is currently only available in the following Regions
 
 | Region Name | Region | 
 | --- | --- | 
-| US East \(N\. Virginia\) | us\-east\-1 | 
 | US East \(Ohio\) | us\-east\-2 | 
+| US East \(N\. Virginia\) | us\-east\-1 | 
 | US West \(N\. California\) | us\-west\-1 | 
 | US West \(Oregon\) | us\-west\-2 | 
 | Asia Pacific \(Hong Kong\) | ap\-east\-1 | 
@@ -22,16 +22,17 @@ AWS Fargate with Amazon ECS is currently only available in the following Regions
 | Asia Pacific \(Sydney\) | ap\-southeast\-2 | 
 | Asia Pacific \(Tokyo\) | ap\-northeast\-1 | 
 | Canada \(Central\) | ca\-central\-1 | 
+| China \(Beijing\) | cn\-north\-1 | 
+| China \(Ningxia\) | cn\-northwest\-1 | 
 | EU \(Frankfurt\) | eu\-central\-1 | 
 | EU \(Ireland\) | eu\-west\-1 | 
 | EU \(London\) | eu\-west\-2 | 
 | EU \(Paris\) | eu\-west\-3 | 
 | EU \(Stockholm\) | eu\-north\-1 | 
+| South America \(São Paulo\) | sa\-east\-1 | 
 | Middle East \(Bahrain\) | me\-south\-1 | 
 | AWS GovCloud \(US\-East\) | us\-gov\-east\-1 | 
 | AWS GovCloud \(US\) | us\-gov\-west\-1 | 
-| China \(Beijing\) | cn\-north\-1 | 
-| China \(Ningxia\) | cn\-northwest\-1 | 
 
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
 + [Getting Started with Amazon ECS](ECS_GetStarted.md)
@@ -86,7 +87,7 @@ Fargate task definitions require that you specify CPU and memory at the task lev
 
 ### Logging<a name="fargate-tasks-logging"></a>
 
-Fargate task definitions only support the `awslogs` and `splunk` log drivers for the log configuration\. 
+Fargate task definitions support the `awslogs`, `splunk`, `firelens`, and `fluentd` log drivers for the log configuration\. 
 
 The `awslogs` log driver configures your Fargate tasks to send log information to Amazon CloudWatch Logs\. The following shows a snippet of a task definition where the awslogs log driver is configured:
 
@@ -101,6 +102,8 @@ The `awslogs` log driver configures your Fargate tasks to send log information t
 ```
 
 For more information about using the `awslogs` log driver in a task definition to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.
+
+For more information about the `firelens` log driver in a task definition, see [Custom Log Routing](using_firelens.md)\.
 
 For more information about using the `splunk` log driver in a task definition, see [Example: `splunk` Log Driver](example_task_definitions.md#example_task_definition-splunk)\.
 
@@ -245,7 +248,13 @@ For more information, see [Private Registry Authentication for Tasks](private-au
 
 Clusters can contain tasks using both the Fargate and EC2 launch types\. When viewing your clusters in the AWS Management Console, Fargate and EC2 task counts are displayed separately\.
 
-For more information about Amazon ECS clusters, including a walkthrough for creating a cluster, see [Amazon ECS Clusters](ECS_clusters.md)\.
+For more information about Amazon ECS clusters, including a walkthrough for creating a cluster, see [Amazon ECS Clusters](clusters.md)\.
+
+## Fargate Spot<a name="fargate-spot"></a>
+
+Amazon ECS capacity providers enable you to use both Fargate and Fargate Spot capacity with your Amazon ECS tasks\. 
+
+With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discounted rate compared to the Fargate price\. Fargate Spot runs tasks on spare compute capacity\. When AWS needs the capacity back, your tasks will be interrupted with a two\-minute warning\. For more information, see [Using AWS Fargate Capacity Providers](fargate-capacity-providers.md)\.
 
 ## Fargate Task Retirement<a name="fargate-task-retirement"></a>
 

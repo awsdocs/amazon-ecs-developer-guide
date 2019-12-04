@@ -324,7 +324,7 @@ This example demonstrates the syntax for a task definition with multiple contain
     },
     {
       "name": "envoy",
-      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.0.0-prod",
+      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.1.1-prod",
       "essential": true,
       "environment": [
         {
