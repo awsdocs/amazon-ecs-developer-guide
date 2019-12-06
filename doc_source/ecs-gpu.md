@@ -1,6 +1,6 @@
 # Working with GPUs on Amazon ECS<a name="ecs-gpu"></a>
 
-Amazon ECS supports workloads that take advantage of GPUs by enabling you to create clusters with GPU\-enabled container instances\. Amazon EC2 GPU\-based container instances using the p2 and p3 instance types provide access to NVIDIA GPUs\. For more information, see [Linux Accelerated Computing Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+Amazon ECS supports workloads that take advantage of GPUs by enabling you to create clusters with GPU\-enabled container instances\. Amazon EC2 GPU\-based container instances using the p2, p3, g3, and g4 instance types provide access to NVIDIA GPUs\. For more information, see [Linux Accelerated Computing Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 Amazon ECS provides a GPU\-optimized AMI that comes ready with pre\-configured NVIDIA kernel drivers and a Docker GPU runtime\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 
@@ -46,13 +46,10 @@ Before you begin working with GPUs on Amazon ECS, be aware of the following cons
 
   ```
   aws ecs run-task --cluster default --task-definition ecs-gpu-task-def \
-  --placement-constraints type=memberOf,expression="attribute:ecs.instance-type == p2.xlarge" --region us-east-2
+       --placement-constraints type=memberOf,expression="attribute:ecs.instance-type == p2.xlarge" --region us-east-2
   ```
-+ When using the Docker CLI, the `--runtime` parameter can be used to specify the NVIDIA runtime when running a container\. For example:
-
-  ```
-  docker run --runtime=nvidia --rm nvidia/cuda:9.0-base nvidia-smi
-  ```
++ For each container that has a GPU resource requirement specified in the container definition, Amazon ECS sets the container runtime to be the NVIDIA container runtime\.
++ The NVIDIA container runtime requires some environment variables to be set in the container in order to work\. For a list of these environment variables, see [nvidia\-container\-runtime](https://github.com/NVIDIA/nvidia-container-runtime)\. Amazon ECS sets the `NVIDIA_VISIBLE_DEVICES` environment variable value to be a list of the GPU device IDs that Amazon ECS assigns to the container\. For the other required environment variables, Amazon ECS does not set them and you should ensure that your container image sets them or they should be set in the container definition\.
 
 ## Specifying GPUs in Your Task Definition<a name="ecs-gpu-specifying"></a>
 

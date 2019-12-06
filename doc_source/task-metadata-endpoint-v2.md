@@ -98,7 +98,8 @@ The time stamp for when the last container image pull finished\.
 The time stamp for when the tasks `DesiredStatus` moved to `STOPPED`\. This occurs when an essential container moves to `STOPPED`\.
 
 `AvailabilityZone`  
-The Availability Zone the task is in\.
+The Availability Zone the task is in\.  
+The Availability Zone metadata is not available for tasks using the Fargate launch type\.
 
 ## Example Task Metadata Response<a name="task-metadata-endpoint-v2-example-task-metadata-response"></a>
 

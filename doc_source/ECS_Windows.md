@@ -7,8 +7,10 @@ Windows container instances use their own version of the Amazon ECS container ag
 The source code for the Amazon ECS container agent is [available on GitHub](https://github.com/aws/amazon-ecs-agent)\. We encourage you to submit pull requests for changes that you would like to have included\. However, we do not currently provide support for running modified copies of this software\. You can view open issues for Amazon ECS and Windows on our [GitHub issues page](https://github.com/aws/amazon-ecs-agent/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aopen%20label%3Aos/windows)\.
 
 Amazon ECS vends AMIs that are optimized for Windows containers in the following variants\.
-+ **Amazon ECS\-optimized Windows 2019 Full AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\.
-+ **Amazon ECS\-optimized Windows 2016 Full AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
++ **Amazon ECS\-optimized Windows 2019 Full AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows Containers](#ECS_Windows)\.
++ **Amazon ECS\-optimized Windows 2019 Core AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows Containers](#ECS_Windows)\.
++ **Amazon ECS\-optimized Windows 1909 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows Containers](#ECS_Windows)\.
++ **Amazon ECS\-optimized Windows 2016 Full AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows Containers](#ECS_Windows)\.
 
 **Topics**
 + [Windows Container Caveats](#windows_caveats)
@@ -16,6 +18,7 @@ Amazon ECS vends AMIs that are optimized for Windows containers in the following
 + [Windows Task Definitions](windows_task_definitions.md)
 + [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)
 + [Pushing Windows Images to Amazon ECR](windows_ecr.md)
++ [Using gMSAs for Windows Containers](windows-gmsa.md)
 
 ## Windows Container Caveats<a name="windows_caveats"></a>
 

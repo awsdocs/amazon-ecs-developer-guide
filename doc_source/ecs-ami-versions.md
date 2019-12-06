@@ -231,6 +231,21 @@ The current Amazon ECS\-optimized Windows 2019 Full AMI can be retrieved using t
 aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2019-English-Core-ECS_Optimized
 ```
 
+## Amazon ECS\-optimized Windows 1909 Core AMI Versions<a name="windows-1909-core-ami-agent-versions"></a>
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized Windows 1909 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
+
+
+|  Amazon ECS\-optimized Windows 1909 Core AMI  |  Amazon ECS container agent version  |  Docker version  | 
+| --- | --- | --- | 
+|  **2019\.11\.25**  |  `1.34.0`  |  `19.03.4`  | 
+
+The current can be retrieved using the AWS CLI with the following command:
+
+```
+aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized
+```
+
 ## Amazon ECS\-optimized Windows 2016 Full AMI Versions<a name="windows-2016-ami-agent-versions"></a>
 
 The table below lists the current and previous versions of the Amazon ECS\-optimized Windows 2016 Full AMI and their corresponding versions of the Amazon ECS container agent and Docker\.

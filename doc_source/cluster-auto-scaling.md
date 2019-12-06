@@ -88,6 +88,8 @@ Use the following steps to create a new capacity provider for an existing Amazon
 1. For **Managed termination protection**, choose your managed termination protection option\. When managed termination protection is enabled, Amazon ECS prevents Amazon EC2 instances that contain tasks and that are in an Auto Scaling group from being terminated during a scale\-in action\. Managed termination protection can only be enabled if the Auto Scaling group also has instance protection from scale in enabled\. Managed termination protection is only supported on standalone tasks or tasks in a service using the replica scheduling strategy\. For tasks in a service using the daemon scheduling strategy, the instances are not protected\.
 
 1. Choose **Create** to complete the capacity provider creation\.
+**Important**  
+If you receive an error during this step, try logging out and back in to the console\. If the error does not clear, we recommend using the AWS CLI instead\. For more information, see [To create a capacity provider \(AWS CLI\)](#create-capacity-provider-cli)\.
 
 #### To create a capacity provider \(AWS CLI\)<a name="create-capacity-provider-cli"></a>
 
@@ -95,7 +97,10 @@ Use the following command to create a new capacity provider\.
 + [create\-capacity\-provider](https://docs.aws.amazon.com/cli/latest/reference/ecs/create-capacity-provider.html) \(AWS CLI\)
 
   ```
-  aws ecs create-capacity-provider --name CapacityProviderName --auto-scaling-group-provider autoScalingGroupArn="AutoScalingGroupARN",managedScaling={status='ENABLED|DISABLED',targetCapacity=integer,minimumScalingStepSize=integer,maximumScalingStepSize=integer},managedTerminationProtection="ENABLED|DISABLED" --region us-east-2
+  aws ecs create-capacity-provider \
+       --name CapacityProviderName \
+       --auto-scaling-group-provider autoScalingGroupArn="AutoScalingGroupARN",managedScaling={status='ENABLED|DISABLED',targetCapacity=integer,minimumScalingStepSize=integer,maximumScalingStepSize=integer},managedTerminationProtection="ENABLED|DISABLED" \
+       --region us-east-2
   ```
 
   If you prefer to use a JSON input file with the `create-capacity-provider` command, use the following command to generate a CLI skeleton\.
@@ -116,7 +121,11 @@ Use the following command to create a new capacity provider\.
 + [create\-cluster](https://docs.aws.amazon.com/cli/latest/reference/ecs/create-cluster.html) \(AWS CLI\)
 
   ```
-  aws ecs create-cluster --cluster-name ASGCluster --capacity-providers CapacityProviderA CapacityProviderB --default-capacity-provider-strategy capacityProvider=CapacityProviderA,weight=1,base=1 capacityProvider=CapacityProviderB,weight=1 --region us-west-2
+  aws ecs create-cluster \
+       --cluster-name ASGCluster \
+       --capacity-providers CapacityProviderA CapacityProviderB \
+       --default-capacity-provider-strategy capacityProvider=CapacityProviderA,weight=1,base=1 capacityProvider=CapacityProviderB,weight=1 \
+       --region us-west-2
   ```
 
   If you prefer to use a JSON input file with the `create-cluster` command, use the following command to generate a CLI skeleton\.

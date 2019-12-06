@@ -14,6 +14,5 @@ The following are general concepts about Amazon ECS clusters\.
 + [Amazon ECS Cluster Capacity Providers](cluster-capacity-providers.md)
 + [Amazon ECS Cluster Auto Scaling](cluster-auto-scaling.md)
 + [Using AWS Fargate Capacity Providers](fargate-capacity-providers.md)
-+ [Scaling a Cluster](scale_cluster.md)
 + [Updating Cluster Settings](update-cluster-settings.md)
 + [Deleting a Cluster](delete_cluster.md)
