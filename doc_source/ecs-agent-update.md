@@ -25,7 +25,7 @@ You can check the version of the container agent that is running on your contain
 1. Note the **Agent version** column for your container instances\. If the container instance does not contain the latest version of the container agent, the console alerts you with a message and flags the outdated agent version\.  
 ![\[Container instance agent version\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/cluster_container_instance_tab.png)
 
-   If your agent version is 1\.32\.0, you are running the latest container agent\. If your agent version is below 1\.32\.0, you can update your container agent with the following procedures:
+   If your agent version is outdated, you can update your container agent with the following procedures:
    + If your container instance is running an Amazon ECS\-optimized AMI, see [Updating the Amazon ECS Container Agent on an Amazon ECS\-optimized AMI](agent-update-ecs-ami.md)\.
    + If your container instance is not running an Amazon ECS\-optimized AMI, see [Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
 **Important**  

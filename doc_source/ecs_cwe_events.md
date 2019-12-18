@@ -305,10 +305,12 @@ The service scheduler has been throttled due to the Amazon ECS API throttle limi
 The service scheduler has been throttled due to the AWS Cloud Map API throttle limits\. This can occur on services configured to use service discovery\.
 
 `SERVICE_TASK_PLACEMENT_FAILURE`  
-The service scheduler is unable to place a task\. The cause will be described in the `reason` field\.
+The service scheduler is unable to place a task\. The cause will be described in the `reason` field\.  
+A common cause for this service event being triggered is because of a lack of resources in the cluster to place the task\. For example, not enough CPU or memory capacity on the available container instances or no container instances being available\. Another common cause is when the Amazon ECS container agent is disconnected on the container instance, causing the scheduler to be unable to place the task\.
 
 `SERVICE_TASK_CONFIGURATION_FAILURE`  
-The service scheduler is unable to place a task due to a configuration error\. The cause will be described in the `reason` field\.
+The service scheduler is unable to place a task due to a configuration error\. The cause will be described in the `reason` field\.  
+A common cause of this service event being triggered is because tags were being applied to the service but the user or role had not opted in to the new Amazon Resource Name \(ARN\) format in the Region\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\. Another common cause is that Amazon ECS was unable to assume the task IAM role provided\.
 
 **Example Service Steady State Event**  
 Service steady state events are delivered in the following format\. For more information about EventBridge parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  

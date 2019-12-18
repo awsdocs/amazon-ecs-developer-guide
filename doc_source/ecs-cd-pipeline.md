@@ -121,41 +121,47 @@ Use the CodePipeline wizard to create your pipeline stages and connect your sour
 
    If this is your first time using CodePipeline, an introductory page appears instead of **Welcome**\. Choose **Get Started Now**\.
 
-1. On the **Step 1: Name** page, for **Pipeline name**, type the name for your pipeline and choose **Next step**\. For this tutorial, the pipeline name is **hello\-world**\.
+1. On the **Step 1: Name** page, for **Pipeline name**, type the name for your pipeline and choose **Next**\. For this tutorial, the pipeline name is **hello\-world**\.
 
-1. On the **Step 2: Source** page, for **Source provider**, choose **CodeCommit**\.
+1. On the **Step 2: Add source stage** page, for **Source provider**, choose **AWS CodeCommit**\.
 
    1. For **Repository name**, choose the name of the CodeCommit repository to use as the source location for your pipeline\.
 
-   1. For **Branch name**, choose the branch to use and choose **Next step**\.
+   1. For **Branch name**, choose the branch to use and choose **Next**\.
 
-1. On the **Step 3: Build** page, choose **CodeBuild**, and then choose **Create a new build project**\.
+1. On the **Step 3: Add build stage** page, for **Build provider** choose **AWS CodeBuild**, and then choose **Create project**\.
 
    1. For **Project name**, choose a unique name for your build project\. For this tutorial, the project name is **hello\-world**\.
 
-   1. For **Operating system**, choose **Ubuntu**\.
+   1. For **Environment image**, choose **Custom image**\.
 
-   1. For **Runtime**, choose **Docker**\.
+   1. For **Environment type**, choose **Linux**\.
 
-   1. For **Version**, choose **aws/codebuild/docker:17\.09\.0 **\.
+   1. For **Image registry**, choose **Amazon ECR**\.
 
-   1. Choose **Save build project**\.
+   1. For **ECR account**, choose **My ECR account**\.
 
-   1. Choose **Next step**\.
+   1. For **Amazon ECR repository**, select the repository you pushed your image to\.
+
+   1. For **Amazon ECR image**, select your image\.
+
+   1. Select **Enable this flag if you want to build Docker images or want your builds to get elevated privileges**\.
+
+   1. Deselect **CloudWatch logs**\.
+
+   1. Choose **Continue to CodePipeline**\.
+
+   1. Choose **Next**\.
 **Note**  
 The wizard creates an CodeBuild service role for your build project, called **code\-build\-*build\-project\-name*\-service\-role**\. Note this role name, as you add Amazon ECR permissions to it later\.
 
-1. On the **Step 4: Deploy** page, for **Deployment provider**, choose **Amazon ECS**\.
+1. On the **Step 4: Add deploy stage** page, for **Deployment provider**, choose **Amazon ECS**\.
 
    1. For **Cluster name**, choose the Amazon ECS cluster in which your service is running\. For this tutorial, the cluster is **default**\.
 
-   1. For **Service name**, choose the service to update and choose **Next step**\. For this tutorial, the service name is **hello\-world**\.
+   1. For **Service name**, choose the service to update and choose **Next**\. For this tutorial, the service name is **hello\-world**\.
 
-1. On the **Step 5: Service Role** page, choose **Create role**\. On the IAM console page that describes the role to be created for you, choose **Allow**\. 
-
-1. Choose **Next step**\.
-
-1. On the **Step 6: Review** page, review your pipeline configuration and choose **Create pipeline** to create the pipeline\.
+1. On the **Step 5: Review** page, review your pipeline configuration and choose **Create pipeline** to create the pipeline\.
 **Note**  
 Now that the pipeline has been created, it attempts to run through the different pipeline stages\. However, the default CodeBuild role created by the wizard does not have permissions to execute all of the commands contained in the `buildspec.yml` file, so the build stage fails\. The next section adds the permissions for the build stage\.
 
@@ -169,9 +175,9 @@ The CodePipeline wizard created an IAM role for the CodeBuild build project, cal
 
 1. In the left navigation pane, choose **Roles**\.
 
-1. In the search box, type **code\-build\-** and choose the role that was created by the CodePipeline wizard\. For this tutorial, the role name is **code\-build\-hello\-world\-service\-role**\.
+1. In the search box, type **codebuild\-** and choose the role that was created by the CodePipeline wizard\. For this tutorial, the role name is **codebuild\-hello\-world\-service\-role**\.
 
-1. On the **Summary** page, choose **Attach policy**\.
+1. On the **Summary** page, choose **Attach policies**\.
 
 1. Select the box to the left of the **AmazonEC2ContainerRegistryPowerUser** policy, and choose **Attach policy**\.
 

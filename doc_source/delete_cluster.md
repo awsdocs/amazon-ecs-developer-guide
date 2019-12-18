@@ -2,7 +2,7 @@
 
 If you are finished using a cluster, you can delete it\. When you delete a cluster in the Amazon ECS console, the associated resources that are deleted with it vary depending on how the cluster was created\. [Step 5](#step-delete-cluster) of the following procedure changes based on that condition\.
 
-If your cluster was created with the console first\-run experience described in [Getting Started with Amazon ECS](ECS_GetStarted.md) after November 24, 2015, or the cluster creation wizard described in [Creating a Cluster](create_cluster.md), then the AWS CloudFormation stack that was created for your cluster is also deleted when you delete your cluster\. 
+If your cluster was created with the AWS Management Console then the AWS CloudFormation stack that was created for your cluster is also deleted when you delete your cluster\.
 
 If your cluster was created manually \(without the cluster creation wizard\) or with the console first\-run experience before November 24, 2015, then you must deregister \(or terminate\) any container instances associated with the cluster before you can delete it\. For more information, see [Deregister a Container Instance](deregister_container_instance.md)\. In this case, after the cluster is deleted, you should delete any remaining AWS CloudFormation stack resources or Auto Scaling groups associated with the cluster to avoid incurring any future charges for those resources\. You can visit the AWS CloudFormation console at [https://console\.aws\.amazon\.com/cloudformation/](https://console.aws.amazon.com/cloudformation/) to update or delete any of these resources\.
 

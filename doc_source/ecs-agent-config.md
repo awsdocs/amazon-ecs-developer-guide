@@ -12,7 +12,7 @@ If you are manually starting the Amazon ECS container agent \(for non\-Amazon EC
 
 ## Available Parameters<a name="ecs-agent-availparam"></a>
 
-The following are the available environment keys:
+The following are the available Amazon ECS container agent configuration parameters\. There are undocumented variables that the agent uses internally that may be visible, but are not intended for customer use\. For more information, see [Amazon ECS Container Agent](https://github.com/aws/amazon-ecs-agent/blob/master/README.md) on GitHub\.
 
 `ECS_CLUSTER`  
 Example values: `MyCluster`  

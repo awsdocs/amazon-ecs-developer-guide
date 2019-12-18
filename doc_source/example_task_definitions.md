@@ -2,6 +2,8 @@
 
 This section provides some task definition examples that you can use to start creating your own task definitions\. For more information, see [Task Definition Parameters](task_definition_parameters.md) and [Creating a Task Definition](create-task-definition.md)\.
 
+For additional task definition examples, see [AWS Sample Task Definitions](https://github.com/aws-samples/aws-containers-task-definitions) on GitHub\.
+
 **Topics**
 + [Example: Webserver](#example_task_definition-webserver)
 + [Example: WordPress and MySQL](#example_task_definition-wordpress)

@@ -46,6 +46,10 @@ This managed policy allows power user access to Amazon ECR, which allows read an
                 "ecr:ListImages",
                 "ecr:DescribeImages",
                 "ecr:BatchGetImage",
+                "ecr:GetLifecyclePolicy",
+                "ecr:GetLifecyclePolicyPreview",
+                "ecr:ListTagsForResource",
+                "ecr:DescribeImageScanFindings",
                 "ecr:InitiateLayerUpload",
                 "ecr:UploadLayerPart",
                 "ecr:CompleteLayerUpload",
@@ -75,7 +79,11 @@ This managed policy allows read\-only access to Amazon ECR, such as the ability 
                 "ecr:DescribeRepositories",
                 "ecr:ListImages",
                 "ecr:DescribeImages",
-                "ecr:BatchGetImage"
+                "ecr:BatchGetImage",
+                "ecr:GetLifecyclePolicy",
+                "ecr:GetLifecyclePolicyPreview",
+                "ecr:ListTagsForResource",
+                "ecr:DescribeImageScanFindings"
             ],
             "Resource": "*"
         }

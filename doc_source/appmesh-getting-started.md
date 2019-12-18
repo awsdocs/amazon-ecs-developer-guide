@@ -531,6 +531,9 @@ Specify any ingress ports that your application containers listen on\. In this e
 `EgressIgnoredIPs`  
 Envoy doesn't proxy traffic to these IP addresses\. Set this value to `169.254.170.2,169.254.169.254`, which ignores the Amazon EC2 metadata server and the Amazon ECS task metadata endpoint\. The metadata endpoint provides IAM roles for tasks credentials\. You can add additional addresses\.
 
+`EgressIgnoredPorts`  
+You can add a comma separated list of ports\. Envoy doesn't proxy traffic to these ports\. Even if you list no ports, port 22 is ignored\.
+
 ```
 "proxyConfiguration": {
 	"type": "APPMESH",
@@ -554,6 +557,10 @@ Envoy doesn't proxy traffic to these IP addresses\. Set this value to `169.254.1
 		{
 			"name": "EgressIgnoredIPs",
 			"value": "169.254.170.2,169.254.169.254"
+		},
+		{
+			"name": "EgressIgnoredPorts",
+			"value": "22"
 		}
 	]
 }
@@ -644,6 +651,10 @@ If you're running an Amazon ECS task as described in the Credentials section, th
             "value" : "169.254.170.2,169.254.169.254"
          },
          {
+            "name": "EgressIgnoredPorts",
+            "value": "22"
+         },
+         {
             "name" : "IgnoredUID",
             "value" : "1337"
          },
@@ -727,6 +738,10 @@ X\-Ray allows you to collect data about requests that an application serves and 
          {
             "name" : "EgressIgnoredIPs",
             "value" : "169.254.170.2,169.254.169.254"
+         },
+         {
+            "name": "EgressIgnoredPorts",
+            "value": "22"
          },
          {
             "name" : "IgnoredUID",
@@ -836,6 +851,10 @@ X\-Ray allows you to collect data about requests that an application serves and 
       {
         "name": "EgressIgnoredIPs",
         "value": "169.254.170.2,169.254.169.254"
+      },
+      {
+        "name": "EgressIgnoredPorts",
+        "value": "22"
       }
     ]
   },
@@ -919,6 +938,10 @@ X\-Ray allows you to collect data about requests that an application serves and 
       {
         "name": "EgressIgnoredIPs",
         "value": "169.254.170.2,169.254.169.254"
+      },
+      {
+        "name": "EgressIgnoredPorts",
+        "value": "22"
       }
     ]
   },

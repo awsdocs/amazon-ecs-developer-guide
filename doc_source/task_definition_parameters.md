@@ -392,7 +392,7 @@ This parameter is not supported for Windows containers\.
 ```
 
 `mountPoints`  
-Type: Object  
+Type: Object Array  
 Required: No  
 The mount points for data volumes in your container\.   
 This parameter maps to `Volumes` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--volume` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
@@ -411,8 +411,8 @@ Required: No
 If this value is `true`, the container has read\-only access to the volume\. If this value is `false`, then the container can write to the volume\. The default value is `false`\.
 
 `volumesFrom`  
-Type: object array  
-Required: no  
+Type: Object Array  
+Required: No  
 Data volumes to mount from another container\. This parameter maps to `VolumesFrom` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--volumes-from` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.    
 `sourceContainer`  
 Type: string  
@@ -433,7 +433,7 @@ If this value is `true`, the container has read\-only access to the volume\. If 
 ```
 
 `logConfiguration`  
-Type: [LogConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LogConfiguration.html) object  
+Type: [LogConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LogConfiguration.html) Object  
 Required: no  
 The log configuration specification for the container\.  
 For example task definitions using a log configuration, see [Example Task Definitions](example_task_definitions.md)\.  
@@ -533,9 +533,9 @@ This parameter is not supported for Windows containers\.
 `dockerSecurityOptions`  
 Type: string array  
 Required: no  
-A list of strings to provide custom labels for SELinux and AppArmor multi\-level security systems\.   
+A list of strings to provide custom labels for SELinux and AppArmor multi\-level security systems\. This field is not valid for containers in tasks using the Fargate launch type\.  
+With Windows containers, this parameter can be used to reference a credential spec file when configuring a container for Active Directory authentication\. For more information, see [Using gMSAs for Windows Containers](windows-gmsa.md)\.  
 This parameter maps to `SecurityOpt` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--security-opt` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
 
 ```
 "dockerSecurityOptions": ["string", ...]
@@ -547,7 +547,8 @@ The Amazon ECS container agent running on a container instance must register wit
 `ulimits`  
 Type: object array  
 Required: no  
-A list of `ulimits` to set in the container\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.   
+A list of `ulimits` to set in the container\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+Fargate tasks use the default resource limit values with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096` for Fargate tasks\. These limits can be adjusted in a task definition if your tasks needs to handle a larger number of files\. For more information, see [Task Resource Limits](AWS_Fargate.md#fargate-resource-limits)\.  
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 This parameter is not supported for Windows containers\.
 

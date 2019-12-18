@@ -28,3 +28,4 @@ The following should be considered when using cluster capacity providers:
 + A cluster may contain a mix of both Auto Scaling group capacity providers and Fargate capacity providers, however when specifying a capacity provider strategy they may only contain one or the other but not both\.
 + A cluster may contain a mix of tasks and services using both capacity providers and launch types\. A service may also be updated to use a capacity provider strategy rather than a launch type, however you must force a new deployment when doing so\.
 + When you specify a capacity provider strategy, the `base` value is only supported when running tasks\. When creating a service, the capacity provider strategy `base` parameter is not supported\.
++ When using managed termination protection, managed scaling must also be used otherwise managed termination protection will not work\.

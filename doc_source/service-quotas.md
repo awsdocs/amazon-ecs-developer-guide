@@ -2,7 +2,7 @@
 
 Amazon Elastic Container Service \(Amazon ECS\) has integrated with Service Quotas, an AWS service that enables you to view and manage your quotas from a central location\. Service quotas are also referred to as limits\. For more information, see [What Is Service Quotas?](https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html) in the *Service Quotas User Guide*\.
 
-Amazon ECS service quotas specific to tasks using the Fargate launch type are not visible in the Service Quotas console\. For a full list of Amazon ECS service quotas, see [Amazon ECS Service Quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_ecs) in the *Amazon Web Services General Reference*\.
+Amazon ECS service quotas specific to tasks using the Fargate launch type are not visible in the Service Quotas console\. For a full list of Amazon ECS service quotas, see [Amazon ECS Service Quotas](https://docs.aws.amazon.com/general/latest/gr/ecs-service.html#limits_ecs) in the *Amazon Web Services General Reference*\.
 
 Service Quotas makes it easy to look up the value of all of the Amazon ECS service quotas\.
 

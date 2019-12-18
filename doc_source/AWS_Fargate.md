@@ -41,7 +41,7 @@ The following walkthroughs help you get started using AWS Fargate with Amazon EC
 
 ## Task Definitions<a name="fargate-task-defs"></a>
 
-Tasks that use the Fargate launch type do not support all of the task definition parameters that are available\. Some parameters are not supported at all, and others behave differently for Fargate tasks\.
+Amazon ECS tasks on Fargate do not support all of the task definition parameters that are available\. Some parameters are not supported at all, and others behave differently for Fargate tasks\.
 
 The following task definition parameters are not valid in Fargate tasks:
 + `disableNetworking`
@@ -61,20 +61,20 @@ The following task definition parameters are valid in Fargate tasks, but have li
 + `linuxParameters` – When specifying Linux\-specific options that are applied to the container, for `capabilities` the `add` parameter is not supported\. The `devices`, `sharedMemorySize`, and `tmpfs` parameters are not supported\. For more information, see [Linux Parameters](task_definition_parameters.md#container_definition_linuxparameters)\.
 + `volumes` – Fargate tasks only support bind mount host volumes, so the `dockerVolumeConfiguration` parameter is not supported\. For more information, see [Volumes](task_definition_parameters.md#volumes)\.
 
-To ensure that your task definition validates for use with the Fargate launch type, you can specify the following when you register the task definition: 
+To ensure that your task definition validates for use with Fargate, you can specify the following when you register the task definition: 
 + In the AWS Management Console, for the **Requires Compatibilities** field, specify `FARGATE`\.
 + In the AWS CLI, specify the `--requires-compatibilities` option\.
 + In the Amazon ECS API, specify the `requiresCompatibilities` flag\.
 
 ### Network Mode<a name="fargate-tasks-networkmode"></a>
 
-Fargate task definitions require that the network mode is set to `awsvpc`\. The `awsvpc` network mode provides each task with its own elastic network interface\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
+Amazon ECS task definitions for Fargate require that the network mode is set to `awsvpc`\. The `awsvpc` network mode provides each task with its own elastic network interface\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
 
 A network configuration is also required when creating a service or manually running tasks\. For more information, see [Task Networking](#fargate-tasks-services-networking)\.
 
 ### Task CPU and Memory<a name="fargate-tasks-size"></a>
 
-Fargate task definitions require that you specify CPU and memory at the task level\. Although you can also specify CPU and memory at the container level for Fargate tasks, this is optional\. Most use cases are satisfied by only specifying these resources at the task level\. The table below shows the valid combinations of task\-level CPU and memory\.
+Amazon ECS task definitions for Fargate require that you specify CPU and memory at the task level\. Although you can also specify CPU and memory at the container level for Fargate tasks, this is optional\. Most use cases are satisfied by only specifying these resources at the task level\. The table below shows the valid combinations of task\-level CPU and memory\.
 
 
 | CPU value | Memory value | 
@@ -85,24 +85,27 @@ Fargate task definitions require that you specify CPU and memory at the task lev
 | 2048 \(2 vCPU\) | Between 4 GB and 16 GB in 1\-GB increments | 
 | 4096 \(4 vCPU\) | Between 8 GB and 30 GB in 1\-GB increments | 
 
-### Task Resource Limits (`ulimits`)
-By default Fargate configures some restrictions on the number of open files that a container can utilize. This is protect users from tasks opening up too many files and making the task unresponsive. These limits are set using the `nofile` resource limit and there is by default a soft limit of 1024 and a hard limit of 4096.
+### Task Resource Limits<a name="fargate-resource-limits"></a>
 
-If you tasks needs to handle a large amount of files in Fargate it is recommend you adjust these limits in your task definition. The following shows a snippet of a task definition where the `nofile` limits have been doubled from the default:
+Amazon ECS task definitions for Fargate support the `ulimits` parameter to define the resource limits to set for a container\.
+
+Fargate tasks use the default resource limit values with the exception of the `nofile` resource limit parameter, which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096` for Fargate tasks\. These limits can be adjusted in a task definition if your tasks needs to handle a larger number of files\. The following shows a snippet of a task definition where the `nofile` limit has been doubled:
 
 ```
 "ulimits": [
     {
        "name": "nofile",
        "softLimit": 2048,
-        "hardLimit": 8192
+       "hardLimit": 8192
     }
 ]
 ```
 
+For more information on the other resource limits that can be adjusted, see [Resource Limits](task_definition_parameters.md#container_definition_limits)\.
+
 ### Logging<a name="fargate-tasks-logging"></a>
 
-Fargate task definitions support the `awslogs`, `splunk`, `firelens`, and `fluentd` log drivers for the log configuration\. 
+Amazon ECS task definitions for Fargate support the `awslogs`, `splunk`, `firelens`, and `fluentd` log drivers for the log configuration\.
 
 The `awslogs` log driver configures your Fargate tasks to send log information to Amazon CloudWatch Logs\. The following shows a snippet of a task definition where the awslogs log driver is configured:
 
@@ -218,11 +221,11 @@ The following shows a snippet of a task definition where two containers are shar
 
 ## Tasks and Services<a name="fargate-tasks-services"></a>
 
-After you have your Fargate task definition prepared, there are some decisions to make when creating your service\.
+After you have your Amazon ECS task definitions for Fargate prepared, there are some decisions to make when creating your service\.
 
 ### Task Networking<a name="fargate-tasks-services-networking"></a>
 
-Tasks using the Fargate launch type require the `awsvpc` network mode, which provides each task with an elastic network interface\. When you run a task or create a service with this network mode, you must specify one or more subnets to attach the network interface and one or more security groups to apply to the network interface\. 
+Amazon ECS tasks for Fargate require the `awsvpc` network mode, which provides each task with an elastic network interface\. When you run a task or create a service with this network mode, you must specify one or more subnets to attach the network interface and one or more security groups to apply to the network interface\. 
 
 If you are using public subnets, decide whether to provide a public IP address for the network interface\. For a Fargate task in a public subnet to pull container images, a public IP address needs to be assigned to the task's elastic network interface, with a route to the internet or a NAT gateway that can route requests to the internet\. For a Fargate task in a private subnet to pull container images, the private subnet requires a NAT gateway be attached to route requests to the internet\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
 
@@ -242,7 +245,7 @@ Services with tasks that use the `awsvpc` network mode \(for example, those with
 
 ## Private Registry Authentication<a name="fargate-private-auth-reg"></a>
 
-Fargate tasks can authenticate with private image registries, including Docker Hub, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\.
+Amazon ECS tasks for Fargate can authenticate with private image registries, including Docker Hub, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\.
 
 To use private registry authentication, you create a secret with AWS Secrets Manager containing the credentials for your private registry\. Then, within your container definition, you specify `repositoryCredentials` with the full ARN of the secret that you created\. The following snippet of a task definition shows the required parameters:
 
@@ -261,13 +264,13 @@ For more information, see [Private Registry Authentication for Tasks](private-au
 
 ## Clusters<a name="fargate-clusters"></a>
 
-Clusters can contain tasks using both the Fargate and EC2 launch types\. When viewing your clusters in the AWS Management Console, Fargate and EC2 task counts are displayed separately\.
+Clusters may contain tasks using both the Fargate and EC2 launch types\. When viewing your clusters in the AWS Management Console, Fargate and EC2 task counts are displayed separately\.
 
 For more information about Amazon ECS clusters, including a walkthrough for creating a cluster, see [Amazon ECS Clusters](clusters.md)\.
 
 ## Fargate Spot<a name="fargate-spot"></a>
 
-Amazon ECS capacity providers enable you to use both Fargate and Fargate Spot capacity with your Amazon ECS tasks\. 
+Amazon ECS capacity providers enable you to use both Fargate and Fargate Spot capacity with your Amazon ECS tasks\.
 
 With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discounted rate compared to the Fargate price\. Fargate Spot runs tasks on spare compute capacity\. When AWS needs the capacity back, your tasks will be interrupted with a two\-minute warning\. For more information, see [Using AWS Fargate Capacity Providers](fargate-capacity-providers.md)\.
 

@@ -12,7 +12,7 @@ Amazon ECS cluster auto scaling enables you to have more control over how you sc
 
 The following should be considered when using cluster auto scaling:
 + The Amazon ECS service\-linked IAM role is required to use cluster auto scaling\. For more information, see [Service\-Linked Roles for Amazon ECS](using-service-linked-roles.md)\.
-+ When using capacity providers with Auto Scaling groups, the `autoscaling:CreateOrUpdateTags` permission is needed\. This is because Amazon ECS adds a tag to the Auto Scaling group when it associates it with the capacity provider\.
++ When using capacity providers with Auto Scaling groups, the `autoscaling:CreateOrUpdateTags` permission is needed on the IAM user creating the capacity provider\. This is because Amazon ECS adds a tag to the Auto Scaling group when it associates it with the capacity provider\.
 
 ## Auto Scaling Group Capacity Providers<a name="asg-capacity-providers"></a>
 
@@ -31,6 +31,7 @@ The following should be considered when using Auto Scaling group capacity provid
 + It is recommended that you create a new Auto Scaling group to use with a capacity provider rather than using an existing one\. If you use an existing Auto Scaling group, any Amazon EC2 instances associated with the group that were already running and registered to an Amazon ECS cluster prior to the Auto Scaling group being used to create a capacity provider may not be properly registered with the capacity provider\. This may cause issues when using the capacity provider in a capacity provider strategy\. The DescribeContainerInstances API can confirm that a container instance is associated with a capacity provider\.
 + An Auto Scaling group must have a `MaxSize` greater than zero to scale out\.
 + Managed scaling is only supported in Regions that AWS Auto Scaling is available in\. For a list of supported Regions, see [AWS Auto Scaling Regions](https://docs.aws.amazon.com/general/latest/gr/rande.html#autoscaling_region) in the *Amazon Web Services General Reference*\.
++ When using managed termination protection, managed scaling must also be used otherwise managed termination protection will not work\.
 
 ### Using Managed Scaling<a name="asg-capacity-providers-managed-scaling"></a>
 
@@ -85,7 +86,7 @@ Use the following steps to create a new capacity provider for an existing Amazon
 
 1. For **Target capacity %**, if managed scaling is enabled, specify an integer between `1` and `100`\. The target capacity value is used as the target value for the CloudWatch metric used in the Amazon ECS\-managed target tracking scaling policy\. This target capacity value is matched on a best effort basis\. For example, a value of `100` will result in the Amazon EC2 instances in your Auto Scaling group being completely utilized and any instances not running any tasks will be scaled in, but this behavior is not guaranteed at all times\.
 
-1. For **Managed termination protection**, choose your managed termination protection option\. When managed termination protection is enabled, Amazon ECS prevents Amazon EC2 instances that contain tasks and that are in an Auto Scaling group from being terminated during a scale\-in action\. Managed termination protection can only be enabled if the Auto Scaling group also has instance protection from scale in enabled\. Managed termination protection is only supported on standalone tasks or tasks in a service using the replica scheduling strategy\. For tasks in a service using the daemon scheduling strategy, the instances are not protected\.
+1. For **Managed termination protection**, choose your managed termination protection option\. When managed termination protection is enabled, Amazon ECS prevents Amazon EC2 instances that contain tasks and that are in an Auto Scaling group from being terminated during a scale\-in action\. Managed termination protection can only be enabled if the Auto Scaling group also has instance protection from scale in enabled and if managed scaling is enabled\. Managed termination protection is only supported on standalone tasks or tasks in a service using the replica scheduling strategy\. For tasks in a service using the daemon scheduling strategy, the instances are not protected\.
 
 1. Choose **Create** to complete the capacity provider creation\.
 **Important**  
@@ -99,7 +100,7 @@ Use the following command to create a new capacity provider\.
   ```
   aws ecs create-capacity-provider \
        --name CapacityProviderName \
-       --auto-scaling-group-provider autoScalingGroupArn="AutoScalingGroupARN",managedScaling={status='ENABLED|DISABLED',targetCapacity=integer,minimumScalingStepSize=integer,maximumScalingStepSize=integer},managedTerminationProtection="ENABLED|DISABLED" \
+       --auto-scaling-group-provider autoScalingGroupArn="AutoScalingGroupARN",managedScaling=\{status='ENABLED|DISABLED',targetCapacity=integer,minimumScalingStepSize=integer,maximumScalingStepSize=integer\},managedTerminationProtection="ENABLED|DISABLED" \
        --region us-east-2
   ```
 

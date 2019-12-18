@@ -5,6 +5,7 @@ Your Amazon ECS service can optionally be configured to use Service Auto Scaling
 Amazon ECS Service Auto Scaling supports the following types of scaling policies:
 + [Target Tracking Scaling Policies](service-autoscaling-targettracking.md)—Increase or decrease the number of tasks that your service runs based on a target value for a specific CloudWatch metric\. This is similar to the way that your thermostat maintains the temperature of your home\. You select temperature and the thermostat does the rest\.
 + [Step Scaling Policies](service-autoscaling-stepscaling.md)—Increase or decrease the number of tasks that your service runs in response to CloudWatch alarms\. Step scaling is based on a set of scaling adjustments, known as step adjustments, which vary based on the size of the alarm breach\.
++ [Scheduled Scaling](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html)—Scaling based on a schedule allows you to set your own scaling schedule for predictable load changes\. For example, every week the traffic to your web application starts to increase on Wednesday, remains high on Thursday, and starts to decrease on Friday\. You can configure Application Auto Scaling to increase capacity on Wednesday and decrease capacity on Friday\.
 
 ## Service Auto Scaling Required IAM Permissions<a name="auto-scaling-IAM"></a>
 

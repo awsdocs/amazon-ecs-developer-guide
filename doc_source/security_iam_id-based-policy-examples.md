@@ -319,7 +319,7 @@ The following IAM policy allows permission to describe and delete a specific clu
     {
       "Effect": "Allow",
       "Action": [
-        "ecs:DescribeCluster",
+        "ecs:DescribeClusters",
         "ecs:DeleteCluster"
       ],
       "Resource": [
