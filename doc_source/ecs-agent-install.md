@@ -177,6 +177,7 @@ The Amazon Linux AMI always includes the recommended version of Docker for use w
 1. Run the following commands on your container instance to enable IAM roles for tasks\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
    ```
+   ubuntu:~$ sudo apt-get install iptables-persistent
    ubuntu:~$ sudo iptables -t nat -A PREROUTING -p tcp -d 169.254.170.2 --dport 80 -j DNAT --to-destination 127.0.0.1:51679
    ubuntu:~$ sudo iptables -t nat -A OUTPUT -d 169.254.170.2 -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 51679
    ```

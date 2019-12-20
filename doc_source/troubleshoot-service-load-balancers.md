@@ -6,7 +6,7 @@ Amazon ECS services can register tasks with an Elastic Load Balancing load balan
 Container health checks are not supported for tasks that are part of a service that is configured to use a Classic Load Balancer\. The Amazon ECS service scheduler ignores tasks in an `UNHEALTHY` state that are behind a Classic Load Balancer\.
 
 Improper IAM permissions for the `ecsServiceRole` IAM role  
-The `ecsServiceRole` allows Amazon ECS services to register container instances with Elastic Load Balancing load balancers\. You must have the proper permissions set for this role\. For more information, see [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md)\.
+The `ecsServiceRole` allows Amazon ECS services to register container instances with Elastic Load Balancing load balancers\. You must have the proper permissions set for this role\. For more information, see [Service Scheduler IAM Role](ecs-legacy-iam-roles.md#service_IAM_role)\.
 
 Container instance security group  
 If your container is mapped to port 80 on your container instance, your container instance security group must allow inbound traffic on port 80 for the load balancer health checks to pass\. 

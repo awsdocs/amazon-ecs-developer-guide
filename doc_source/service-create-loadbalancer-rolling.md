@@ -26,7 +26,7 @@ Requires static host port mappings \(only one task allowed per container instanc
 
 1. For **Select IAM role for service**, choose **Create new role** to create a new role for your service, or select an existing IAM role to use for your service \(by default, this is `ecsServiceRole`\)\.
 **Important**  
-If you choose to use an existing `ecsServiceRole` IAM role, you must verify that the role has the proper permissions to use Application Load Balancers and Classic Load Balancers\. For more information, see [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md)\.
+If you choose to use an existing `ecsServiceRole` IAM role, you must verify that the role has the proper permissions to use Application Load Balancers and Classic Load Balancers\. For more information, see [Service Scheduler IAM Role](ecs-legacy-iam-roles.md#service_IAM_role)\.
 
 1. For **ELB Name**, choose the name of the load balancer to use with your service\. Only load balancers that correspond to the load balancer type you selected earlier are visible here\.
 

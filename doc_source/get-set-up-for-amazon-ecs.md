@@ -85,19 +85,6 @@ To verify the sign\-in link for IAM users for your account, open the IAM console
 
 For more information about IAM, see the [AWS Identity and Access Management User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
-## Create an IAM Role<a name="create-an-iam-role"></a>
-
-Before the Amazon ECS container agent can make calls to the Amazon ECS API actions on your behalf, it requires an IAM policy and role for the service to know that the agent belongs to you\.
-
-For tasks using the EC2 launch type, you can create an IAM role that allows the agent to know which account it should register your container instances with\. When you launch a container instance with the Amazon ECS\-optimized AMI provided by Amazon using this role, the agent automatically registers the container instance into your `default` cluster\. This role is referred to as the Amazon ECS container instance IAM role\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
-
-The Amazon ECS container agent also makes calls to the Amazon EC2 and Elastic Load Balancing APIs on your behalf, so container instances can be registered and deregistered with load balancers\. Before you can attach a load balancer to an Amazon ECS service, you must create an IAM role for your services to use before you start them\. This requirement applies to any Amazon ECS service that you plan to use with a load balancer\. This role is referred to as the Amazon ECS service scheduler IAM role\. For more information, see [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md)\.
-
-For tasks using the Fargate launch type, you can create an IAM role that allows the agent to pull container images from Amazon ECR or to use the awslogs log driver, which is currently the only supported logging option for this launch type\. This role is referred to as the Amazon ECS task execution IAM role\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
-
-**Note**  
-These IAM roles are automatically created for you in the Amazon ECS console first\-run experience, so if you intend to use the console, you can move ahead to the next section\. If you do not intend to use the console, and instead plan to use the AWS CLI, these IAM roles will need to be manually created\.
-
 ## Create a Key Pair<a name="create-a-key-pair"></a>
 
 For Amazon ECS, a key pair is only needed if you intend on using the EC2 launch type\.

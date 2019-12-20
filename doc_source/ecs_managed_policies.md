@@ -297,7 +297,7 @@ This managed policy allows Amazon ECS container instances to make calls to AWS o
 
 ## AmazonEC2ContainerServiceRole<a name="AmazonEC2ContainerServiceRole"></a>
 
-This managed policy allows Elastic Load Balancing load balancers to register and deregister Amazon ECS container instances on your behalf\. For more information, see [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md)\.
+This managed policy allows Elastic Load Balancing load balancers to register and deregister Amazon ECS container instances on your behalf\. For more information, see [Service Scheduler IAM Role](ecs-legacy-iam-roles.md#service_IAM_role)\.
 
 ```
 {
@@ -322,7 +322,7 @@ This managed policy allows Elastic Load Balancing load balancers to register and
 
 ## AmazonEC2ContainerServiceAutoscaleRole<a name="AmazonEC2ContainerServiceAutoscaleRole"></a>
 
-This managed policy allows Application Auto Scaling to scale your Amazon ECS service's desired count up and down in response to CloudWatch alarms on your behalf\. For more information, see [Amazon ECS Service Auto Scaling IAM Role](autoscale_IAM_role.md)\.
+This managed policy allows Application Auto Scaling to scale your Amazon ECS service's desired count up and down in response to CloudWatch alarms on your behalf\. For more information, see [Service Auto Scaling IAM Role](ecs-legacy-iam-roles.md#autoscale_IAM_role)\.
 
 ```
 {
@@ -354,7 +354,7 @@ This managed policy allows Application Auto Scaling to scale your Amazon ECS ser
 
 ## AmazonEC2ContainerServiceTaskRole<a name="AmazonEC2ContainerServiceTaskRole"></a>
 
-This IAM trust relationship policy allows containers in your Amazon ECS tasks to make calls to the AWS APIs on your behalf\. For more information, see [**Amazon ECS Task Role**](task_IAM_role.md)\.
+This IAM trust relationship policy allows containers in your Amazon ECS tasks to make calls to the AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
 ```
 {

@@ -11,7 +11,7 @@ Amazon ECS cluster auto scaling enables you to have more control over how you sc
 ## Cluster Auto Scaling Considerations<a name="cluster-auto-scaling-considerations"></a>
 
 The following should be considered when using cluster auto scaling:
-+ The Amazon ECS service\-linked IAM role is required to use cluster auto scaling\. For more information, see [Service\-Linked Roles for Amazon ECS](using-service-linked-roles.md)\.
++ The Amazon ECS service\-linked IAM role is required to use cluster auto scaling\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\.
 + When using capacity providers with Auto Scaling groups, the `autoscaling:CreateOrUpdateTags` permission is needed on the IAM user creating the capacity provider\. This is because Amazon ECS adds a tag to the Auto Scaling group when it associates it with the capacity provider\.
 
 ## Auto Scaling Group Capacity Providers<a name="asg-capacity-providers"></a>

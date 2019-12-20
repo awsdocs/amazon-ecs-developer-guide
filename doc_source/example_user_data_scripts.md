@@ -57,7 +57,7 @@ You can use this script for your own container instances, provided that they are
 ```
 #!/bin/bash
 # Install Docker
-apt-get update -y && apt-get install -y docker.io
+apt-get update -y && apt-get install -y docker.io iptables-persistent
 
 # Set iptables rules
 echo 'net.ipv4.conf.all.route_localnet = 1' >> /etc/sysctl.conf

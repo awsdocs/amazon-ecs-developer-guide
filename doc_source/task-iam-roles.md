@@ -89,10 +89,25 @@ You must create an IAM policy for your tasks to use that specifies the permissio
 
 You must also create a role for your tasks to use before you can specify it in your task definitions\. You can create the role using the **Amazon Elastic Container Service Task Role** service role in the IAM console\. Then you can attach your specific IAM policy to the role that gives the containers in your task the permissions you desire\. The procedures below describe how to do this\.
 
-**Note**  
-To view the trust relationship for this role, see [**Amazon ECS Task Role**](task_IAM_role.md)\.
-
 If you have multiple task definitions or services that require IAM permissions, you should consider creating a role for each specific task definition or service with the minimum required permissions for the tasks to operate so that you can minimize the access that you provide for each task\. 
+
+The Amazon ECS Task Role trust relationship is shown below\.
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
 
 **To create an IAM policy for your tasks**
 
@@ -111,11 +126,9 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
 
 1. For **Actions**, expand the **Read** option and select **GetObject**\.
 
-1. For **Resources**, select **Add ARN** and enter the full ARN of your Amazon S3 bucket\.
+1. For **Resources**, select **Add ARN** and enter the full Amazon Resource Name \(ARN\) of your Amazon S3 bucket, and then choose **Review policy**\.
 
-1. Choose **Review policy**\.
-
-1. In the **Review policy** section, for **Name** type your own unique name, such as `AmazonECSTaskS3BucketPolicy`\.
+1. On the **Review policy** page, for **Name** type your own unique name, such as `AmazonECSTaskS3BucketPolicy`\.
 
 1. Choose **Create policy** to finish\.
 
@@ -141,7 +154,7 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
    }
    ```
 
-1. Choose **Create Policy**\. 
+1. Choose **Create policy**\. 
 
 ------
 
@@ -149,15 +162,19 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles**, **Create New Role**\. 
+1. In the navigation pane, choose **Roles**, **Create role**\. 
 
-1. In the **Select Role Type** section, for the **Amazon Elastic Container Service Task Role ** service role, choose **Select**\.
-**Note**  
-To view the trust relationship for this role, see [**Amazon ECS Task Role**](task_IAM_role.md)\.
+1. For **Select type of trusted entity** section, choose **AWS service**\.
 
-1. In the **Attach Policy** section, select the policy to use for your tasks \(in this example `AmazonECSTaskS3BucketPolicy`, and then choose **Next Step**\.
+1. For **Choose the service that will use this role**, choose **Elastic Container Service**\.
 
-1. For **Role Name**, enter a name for your role\. For this example, type `AmazonECSTaskS3BucketRole` to name the role, and then choose **Create Role** to finish\.
+1. For **Select your use case**, choose **Elastic Container Service Task** and choose **Next: Permissions**\.
+
+1. For **Attach permissions policy**, select the policy to use for your tasks \(in this example `AmazonECSTaskS3BucketPolicy`, and then choose **Next: Tags**\.
+
+1. For **Add tags \(optional\)**, enter any metadata tags you want to associate with the IAM role, and then choose **Next: Review**\.
+
+1. For **Role name**, enter a name for your role\. For this example, type `AmazonECSTaskS3BucketRole` to name the role, and then choose **Create role** to finish\.
 
 ## Using a Supported AWS SDK<a name="task-iam-roles-minimum-sdk"></a>
 

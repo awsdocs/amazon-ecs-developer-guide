@@ -10,7 +10,7 @@ In most cases, the Amazon ECS service role is automatically created for you in t
 
 1. In the navigation pane, choose **Roles**\. 
 
-1. Search the list of roles for `ecsServiceRole`\. If the role does not exist, see [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md) to create the role\. If the role does exist, select the role to view the attached policies\.
+1. Search the list of roles for `ecsServiceRole`\. If the role does not exist, see [Service Scheduler IAM Role](ecs-legacy-iam-roles.md#service_IAM_role) to create the role\. If the role does exist, select the role to view the attached policies\.
 
 1. Choose **Permissions**\.
 

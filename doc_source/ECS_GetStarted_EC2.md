@@ -18,7 +18,7 @@ Before you begin, be sure that you've completed the steps in [Setting Up with Am
 The first\-run wizard attempts to automatically create the Amazon ECS service IAM and container instance IAM role\. To ensure that the first\-run experience is able to create these IAM roles, one of the following must be true:
 + Your user has administrator access\. For more information, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 + Your user has the IAM permissions to create a service role\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
-+ A user with administrator access has manually created these IAM roles so that they are available on the account to be used\. For more information, see [Amazon ECS Service Scheduler IAM Role](service_IAM_role.md) and [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\. 
++ A user with administrator access has manually created these IAM roles so that they are available on the account to be used\. For more information, see [Service Scheduler IAM Role](ecs-legacy-iam-roles.md#service_IAM_role) and [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\. 
 
 ## Step 1: Create a Task Definition<a name="first-run-ec2-task-def"></a>
 

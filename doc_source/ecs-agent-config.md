@@ -365,6 +365,12 @@ Default value on Linux: `nvidia`
 Default value on Windows: `n/a`  
 The runtime to be used to pass NVIDIA GPU devices to containers\. This parameter should not be specified as an environment variable in a task definition if the GPU resource requirements are already specified\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
 
+`ECS_ENABLE_SPOT_INSTANCE_DRAINING`  
+Example values: `true`  
+Default value on Linux: `false`  
+Default value on Windows: `false`  
+Whether to enable Spot Instance draining for the container instance\. When true, if the container instance receives a Spot interruption notice, the agent will set the instance status to `DRAINING`, which gracefully shuts down and replaces all tasks running on the instance that are part of a service\. It is recommended that this be set to true when using Spot instances\. For more information, see [Container Instance Draining](container-instance-draining.md)\.
+
 ## Storing Container Instance Configuration in Amazon S3<a name="ecs-config-s3"></a>
 
 Amazon ECS container agent configuration is controlled with the environment variables described above\. Linux variants of the Amazon ECS\-optimized AMI look for these variables in `/etc/ecs/ecs.config` when the container agent starts and configures the agent accordingly\. Certain innocuous environment variables, such as `ECS_CLUSTER`, can be passed to the container instance at launch through Amazon EC2 user data and written to this file without consequence\. However, other sensitive information, such as your AWS credentials or the `ECS_ENGINE_AUTH_DATA` variable, should never be passed to an instance in user data or written to `/etc/ecs/ecs.config` in a way that they would show up in a `.bash_history` file\.

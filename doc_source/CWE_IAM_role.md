@@ -1,4 +1,4 @@
-# CloudWatch Events IAM Role<a name="CWE_IAM_role"></a>
+# Amazon ECS CloudWatch Events IAM Role<a name="CWE_IAM_role"></a>
 
 Before you can use Amazon ECS scheduled tasks with CloudWatch Events rules and targets, the CloudWatch Events service needs permissions to run Amazon ECS tasks on your behalf\. These permissions are provided by the CloudWatch Events IAM role \(`ecsEventsRole`\)\.
 

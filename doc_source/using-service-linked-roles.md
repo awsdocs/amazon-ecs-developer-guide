@@ -1,21 +1,16 @@
-# Service\-Linked Roles for Amazon ECS<a name="using-service-linked-roles"></a>
+# Service\-Linked Role for Amazon ECS<a name="using-service-linked-roles"></a>
 
-Amazon Elastic Container Service uses AWS Identity and Access Management \(IAM\)[ service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role)\. A service\-linked role is a unique type of IAM role that is linked directly to Amazon ECS\. Service\-linked roles are predefined by Amazon ECS and include all the permissions that the service requires to call other AWS services on your behalf\. 
+Amazon Elastic Container Service uses a service\-linked role for the permissions it requires to call other AWS services on your behalf\. For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
-A service\-linked role makes setting up Amazon ECS easier because you don’t have to manually add the necessary permissions\. Amazon ECS defines the permissions of its service\-linked roles, and unless defined otherwise, only Amazon ECS can assume its roles\. The defined permissions include the trust policy and the permissions policy, and that permissions policy cannot be attached to any other IAM entity\.
+Prior to the introduction of a service\-linked role for Amazon ECS, you were required to create an IAM role for your Amazon ECS services which granted Amazon ECS the permission it needed\. This role is no longer required, however it is available if needed\. For more information, see [](ecs-legacy-iam-roles.md)\.
 
-You can delete the roles only after first deleting their related resources\. This protects your Amazon ECS resources because you can't inadvertently remove permission to access the resources\.
+## Permissions Granted by the Service\-Linked Role<a name="service-linked-role-permissions"></a>
 
-For information about other services that support service\-linked roles, see [AWS Services That Work with IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html) and look for the services that have **Yes **in the **Service\-Linked Role** column\. Choose a **Yes** with a link to view the service\-linked role documentation for that service\.
+Amazon ECS uses the service\-linked role named **AWSServiceRoleForECS** to enable Amazon ECS to call AWS APIs on your behalf\.
 
-## Service\-Linked Role Permissions for Amazon ECS<a name="service-linked-role-permissions"></a>
+The **AWSServiceRoleForECS** service\-linked role trusts the `ecs.amazonaws.com` service principal to assume the role\.
 
-Amazon ECS uses the service\-linked role named **AWSServiceRoleForECS** – Role to enable Amazon ECS to manage your cluster\.\.
-
-The AWSServiceRoleForECS service\-linked role trusts the following services to assume the role:
-+ `ecs.amazonaws.com`
-
-The role permissions policy allows Amazon ECS to complete the following actions on the specified resources:
+The role permissions policy allows Amazon ECS to complete the following actions on resources\.
 
 ```
 {
@@ -52,6 +47,50 @@ The role permissions policy allows Amazon ECS to complete the following actions 
             "Resource": "*"
         },
         {
+            "Sid": "AutoScaling",
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:Describe*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "AutoScalingManagement",
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:DeletePolicy",
+                "autoscaling:PutScalingPolicy",
+                "autoscaling:SetInstanceProtection",
+                "autoscaling:UpdateAutoScalingGroup"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "Null": {
+                    "autoscaling:ResourceTag/AmazonECSManaged": "false"
+                }
+            }
+        },
+        {
+            "Sid": "AutoScalingPlanManagement",
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling-plans:CreateScalingPlan",
+                "autoscaling-plans:DeleteScalingPlan",
+                "autoscaling-plans:DescribeScalingPlans"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "CWAlarmManagement",
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:DeleteAlarms",
+                "cloudwatch:DescribeAlarms",
+                "cloudwatch:PutMetricAlarm"
+            ],
+            "Resource": "arn:aws:cloudwatch:*:*:alarm:*"
+        },
+        {
             "Sid": "ECSTagging",
             "Effect": "Allow",
             "Action": [
@@ -83,6 +122,10 @@ The role permissions policy allows Amazon ECS to complete the following actions 
 }
 ```
 
+## Create the Service\-Linked Role<a name="create-service-linked-role"></a>
+
+Under most circumstances, you don't need to manually create the service\-linked role\. For example, when you create a new cluster \(for example, with the Amazon ECS first\-run experience, the cluster creation wizard, or the AWS CLI or SDKs\), or create or update a service in the AWS Management Console, Amazon ECS creates the service\-linked role for you, if it does not already exist\.
+
 You must configure permissions to allow an IAM entity \(such as a user, group, or role\) to create, edit, or delete a service\-linked role\.
 
 **To allow an IAM entity to create the AWSServiceRoleForECS service\-linked role**
@@ -101,6 +144,22 @@ Add the following statement to the permissions policy for the IAM entity that ne
 }
 ```
 
+### Creating a Service\-Linked Role in IAM \(AWS CLI\)<a name="create-service-linked-role-iam-cli"></a>
+
+You can use IAM commands from the AWS Command Line Interface to create a service\-linked role with the trust policy and inline policies that the service needs to assume the role\.
+
+**To create a service\-linked role \(CLI\)**
+
+Use the following command:
+
+```
+$ aws iam create-service-linked-role --aws-service-name ecs.amazonaws.com
+```
+
+## Edit the Service\-Linked Role<a name="edit-service-linked-role"></a>
+
+Amazon ECS does not allow you to edit the AWSServiceRoleForECS service\-linked role\. After you create a service\-linked role, you cannot change the name of the role because various entities might reference the role\. You can, however, edit the description of the role\. For more information, see [Modifying a Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_manage_modify.html) in the *IAM User Guide*\.
+
 **To allow an IAM entity to edit the description of the AWSServiceRoleForECS service\-linked role**
 
 Add the following statement to the permissions policy for the IAM entity that needs to edit the description of a service\-linked role:
@@ -115,6 +174,10 @@ Add the following statement to the permissions policy for the IAM entity that ne
     "Condition": {"StringLike": {"iam:AWSServiceName": "ecs.amazonaws.com"}}
 }
 ```
+
+## Delete the Service\-Linked Role<a name="delete-service-linked-role"></a>
+
+If you no longer use Amazon ECS, we recommend that you delete the service\-linked role\. That way you don’t have an unused entity that is not actively monitored or maintained\. However, you must delete all Amazon ECS clusters in all regions before you can delete the service\-linked role\.
 
 **To allow an IAM entity to delete the AWSServiceRoleForECS service\-linked role**
 
@@ -131,33 +194,6 @@ Add the following statement to the permissions policy for the IAM entity that ne
     "Condition": {"StringLike": {"iam:AWSServiceName": "ecs.amazonaws.com"}}
 }
 ```
-
-## Creating a Service\-Linked Role for Amazon ECS<a name="create-service-linked-role"></a>
-
-Under most circumstances, you don't need to manually create a service\-linked role\. For example, when you create a new cluster \(for example, with the Amazon ECS first run, the cluster creation wizard, or the AWS CLI or SDKs\), or create or update a service in the AWS Management Console, Amazon ECS creates the service\-linked role for you, if it does not already exist\.
-
-**Important**  
-The IAM entity that is creating the cluster must have the appropriate IAM permissions to create the service\-linked role and apply a policy to it\. Otherwise, the automatic creation fails\.
-
-### Creating a Service\-Linked Role in IAM \(AWS CLI\)<a name="create-service-linked-role-iam-cli"></a>
-
-You can use IAM commands from the AWS Command Line Interface to create a service\-linked role with the trust policy and inline policies that the service needs to assume the role\.
-
-**To create a service\-linked role \(CLI\)**
-
-Use the following command:
-
-```
-$ aws iam create-service-linked-role --aws-service-name ecs.amazonaws.com
-```
-
-## Editing a Service\-Linked Role for Amazon ECS<a name="edit-service-linked-role"></a>
-
-Amazon ECS does not allow you to edit the AWSServiceRoleForECS service\-linked role\. After you create a service\-linked role, you cannot change the name of the role because various entities might reference the role\. You can, however, edit the description of the role\. For more information, see [Modifying a Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_manage_modify.html) in the *IAM User Guide*\.
-
-## Deleting a Service\-Linked Role for Amazon ECS<a name="delete-service-linked-role"></a>
-
-If you no longer use Amazon ECS, we recommend that you delete the role\. That way you don’t have an unused entity that is not actively monitored or maintained\. However, you must delete all Amazon ECS clusters in all regions before you can delete the service\-linked role\.
 
 ### Cleaning up a Service\-Linked Role<a name="service-linked-role-review-before-delete"></a>
 

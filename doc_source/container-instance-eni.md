@@ -20,7 +20,7 @@ There are several things to consider when using the ENI trunking feature\.
 ## Working With Container Instances With Increased ENI Limits<a name="eni-trunking-launching"></a>
 
 Before you launch a container instance with the increased ENI limits, the following prerequisites must be completed\.
-+ The service\-linked role for Amazon ECS must be created\. The Amazon ECS service\-linked role provides Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster, or if you create or update a service in the AWS Management Console\. For more information, see [Service\-Linked Roles for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command\.
++ The service\-linked role for Amazon ECS must be created\. The Amazon ECS service\-linked role provides Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster, or if you create or update a service in the AWS Management Console\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command\.
 
   ```
   aws iam [create\-service\-linked\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-service-linked-role.html) --aws-service-name ecs.amazonaws.com
