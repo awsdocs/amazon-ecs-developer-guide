@@ -8,4 +8,4 @@ In the Regions that don't support AWS Fargate, the Amazon ECS first\-run wizard 
 
 **Topics**
 + [Getting Started with Amazon ECS using Fargate](ECS_GetStarted_Fargate.md)
-+ [Getting Started with Amazon ECS](ECS_GetStarted_EC2.md)
++ [Getting Started with Amazon ECS Using Amazon EC2](ECS_GetStarted_EC2.md)

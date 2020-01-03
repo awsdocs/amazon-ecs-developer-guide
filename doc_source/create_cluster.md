@@ -1,10 +1,10 @@
 # Creating a Cluster<a name="create_cluster"></a>
 
-You can create an Amazon ECS cluster using the AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. If you are launching tasks with the EC2 launch type, you can register container instances into the cluster after creating it\.
+You can create an Amazon ECS cluster using the AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. You can register Amazon EC2 instances during cluster creationg or register additional instances with the cluster after creating it\.
 
-**Note**  
-This cluster creation wizard provides a simple way to create the resources that are needed by an Amazon ECS cluster\. It also lets you customize several common cluster configuration options\. However, this wizard does not allow you to customize every resource option\.  For example, you can't use the wizard to customize the container instance AMI ID\. If your requirements extend beyond what is supported in this wizard, consider using our reference architecture at [https://github\.com/awslabs/ecs\-refarch\-cloudformation](https://github.com/awslabs/ecs-refarch-cloudformation)\.  
-Do not attempt to modify the underlying resources directly after they are created by the wizard\.
+The console cluster creation wizard provides a simple way to create the resources that are needed by an Amazon ECS cluster by creating a AWS CloudFormation stack\. It also lets you customize several common cluster configuration options\. However, the wizard does not allow you to customize every resource option\. For example, you can't use the wizard to customize the container instance AMI ID\. If your requirements extend beyond what is supported in this wizard, consider using our reference architecture at [https://github\.com/awslabs/ecs\-refarch\-cloudformation](https://github.com/awslabs/ecs-refarch-cloudformation)\.
+
+If you add or modify the underlying cluster resources directly after they are created by the wizard you may receive an error when attempting to delete the cluster\. AWS CloudFormation refers to this as *stack drift*\. For more information on detecting drift on an existing AWS CloudFormation stack, see [Detect Drift on an Entire CloudFormation Stack](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/detect-drift-stack.html) in the *AWS CloudFormation User Guide*\.
 
 **To create a cluster**
 
@@ -17,11 +17,15 @@ Do not attempt to modify the underlying resources directly after they are create
 1. On the **Clusters** page, choose **Create Cluster**\.
 
 1. For **Select cluster compatibility**, choose one of the following options and then choose **Next Step**:
-   + **Networking only**– With this option, you can launch a cluster of tasks using the Fargate launch type\. The Fargate launch type allows you to run your containerized applications without the need to provision and manage the backend infrastructure\. When you register your task definition, Fargate launches the container for you\.
-   + **EC2 Linux \+ Networking**– With this option you can launch a cluster of tasks using the EC2 launch type and Linux containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\.
+   + **Networking only**– With this option, you can launch a cluster with a new VPC to use for Fargate tasks\. The `FARGATE` and `FARGATE_SPOT` capacity providers will be automatically associated with the cluster\. For more information, see [Using AWS Fargate Capacity Providers](fargate-capacity-providers.md)\.
+
+     You can run tasks using the Fargate launch type\. The Fargate launch type allows you to run your containerized applications without the need to provision and manage the backend infrastructure\. When you run a task with a Fargate\-compatible task definition, Fargate launches the containers for you\.
+   + **EC2 Linux \+ Networking**– With this option you can launch a cluster of tasks using the EC2 launch type using Linux containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\.
    + **EC2 Windows \+ Networking** – With this option you can launch a cluster of tasks using the EC2 launch type using Windows containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\. For more information, see [Windows Containers](ECS_Windows.md)\.
 
-If you chose the **Networking only** cluster template, continue with the following steps\. Otherwise, skip to **Using the **EC2 Linux \+ Networking** or **EC2 Windows \+ Networking** cluster template**\.
+## Using The Networking Only Template<a name="create-cluster-fargate"></a>
+
+If you chose the **Networking only** cluster template, complete the following steps\. Otherwise, skip to [Using The EC2 Linux or EC2 Windows Plus Networking Template](#create-cluster-ec2)\.
 
 **Using the **Networking only** cluster template**
 
@@ -38,6 +42,8 @@ If you chose the **Networking only** cluster template, continue with the followi
 1. In the **CloudWatch Container Insights** section, choose whether to enable Container Insights for the cluster\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
 
 1. Choose **Create**\.
+
+## Using The EC2 Linux or EC2 Windows Plus Networking Template<a name="create-cluster-ec2"></a>
 
 If you chose the **EC2 Linux \+ Networking** or **EC2 Windows \+ Networking** templates, complete the following steps\.
 

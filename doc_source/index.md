@@ -1,7 +1,7 @@
 # Amazon Elastic Container Service Developer Guide
 
 -----
-*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -19,7 +19,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Docker Basics for Amazon ECS](docker-basics.md)
 + [Getting Started with Amazon ECS](ECS_GetStarted.md)
    + [Getting Started with Amazon ECS using Fargate](ECS_GetStarted_Fargate.md)
-   + [Getting Started with Amazon ECS](ECS_GetStarted_EC2.md)
+   + [Getting Started with Amazon ECS Using Amazon EC2](ECS_GetStarted_EC2.md)
 + [Amazon ECS on AWS Fargate](AWS_Fargate.md)
    + [AWS Fargate Platform Versions](platform_versions.md)
 + [Amazon ECS Clusters](clusters.md)
@@ -73,7 +73,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Deregister a Container Instance](deregister_container_instance.md)
 + [Amazon ECS Container Agent](ECS_agent.md)
    + [Installing the Amazon ECS Container Agent](ecs-agent-install.md)
-   + [Amazon ECS Container Agent Versions](container_agent_versions.md)
+   + [Amazon ECS Container Agent Versions](ecs-agent-versions.md)
    + [Updating the Amazon ECS Container Agent](ecs-agent-update.md)
       + [Updating the Amazon ECS Container Agent on an Amazon ECS-optimized AMI](agent-update-ecs-ami.md)
       + [Manually Updating the Amazon ECS Container Agent (for Non-Amazon ECS-Optimized AMIs)](manually_update_agent.md)

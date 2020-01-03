@@ -56,7 +56,10 @@ Any user on an account can use one of the following commands to modify the defau
 + [put\-account\-setting\-default](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting-default.html) \(AWS CLI\)
 
   ```
-  aws ecs put-account-setting-default --name awsvpcTrunking --value enabled --region us-east-1
+  aws ecs put-account-setting-default \
+        --name awsvpcTrunking \
+        --value enabled \
+        --region us-east-1
   ```
 + [Write\-ECSAccountSettingDefault](https://docs.aws.amazon.com/powershell/latest/reference/items/Write-ECSAccountSettingDefault.html) \(AWS Tools for Windows PowerShell\)
 
@@ -72,13 +75,21 @@ The root user on an account can use one of the following commands and specify th
   The following example is for modifying the account setting of a specific IAM user:
 
   ```
-  aws ecs put-account-setting --name awsvpcTrunking --value enabled --principal-arn arn:aws:iam::aws_account_id:user/userName --region us-east-1
+  aws ecs put-account-setting \
+        --name awsvpcTrunking \
+        --value enabled \
+        --principal-arn arn:aws:iam::aws_account_id:user/userName \
+        --region us-east-1
   ```
 
   The following example is for modifying the account setting of a specific container instance IAM role:
 
   ```
-  aws ecs put-account-setting --name awsvpcTrunking --value enabled --principal-arn arn:aws:iam::aws_account_id:role/ecsInstanceRole --region us-east-1
+  aws ecs put-account-setting \
+        --name awsvpcTrunking \
+        --value enabled \
+        --principal-arn arn:aws:iam::aws_account_id:role/ecsInstanceRole \
+        --region us-east-1
   ```
 + [Write\-ECSAccountSetting](https://docs.aws.amazon.com/powershell/latest/reference/items/Write-ECSAccountSetting.html) \(AWS Tools for Windows PowerShell\)
 
@@ -100,7 +111,11 @@ Each container instance has a default network interface, referred to as a trunk 
 + [list\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-attributes.html) \(AWS CLI\)
 
   ```
-  aws ecs list-attributes --target-type container-instance --attribute-name ecs.awsvpc-trunk-id --region us-east-1
+  aws ecs list-attributes \
+        --target-type container-instance \
+        --attribute-name ecs.awsvpc-trunk-id \
+        --cluster cluster_name \
+        --region us-east-1
   ```
 + [Get\-ECSAttributeList](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-ECSAttributeList.html) \(AWS Tools for Windows PowerShell\)
 

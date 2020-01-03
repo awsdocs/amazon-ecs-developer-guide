@@ -8,6 +8,7 @@ Creating Amazon ECS task definitions with a FireLens configuration is supported 
 
 The following should be considered when using FireLens for Amazon ECS:
 + FireLens for Amazon ECS is supported for tasks using both the Fargate and EC2 launch types\.
++ FireLens for Amazon ECS is supported in AWS CloudFormation templates\. For more information, see [AWS::ECS::TaskDefinition FirelensConfiguration](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-firelensconfiguration.html) in the *AWS CloudFormation User Guide*
 + For tasks that use the `bridge` network mode, the container with the FireLens configuration must start before any application containers that rely on it start\. To control the start order of your containers, use dependency conditions in your task definition\. For more information, see [Container Dependency](task_definition_parameters.md#container_definition_dependson)\.
 **Note**  
 If you use dependency condition parameters in container definitions with a FireLens configuration, ensure that each container has a `START` or `HEALTHY` condition requirement\.

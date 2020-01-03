@@ -1,4 +1,4 @@
-# Getting Started with Amazon ECS<a name="ECS_GetStarted_EC2"></a>
+# Getting Started with Amazon ECS Using Amazon EC2<a name="ECS_GetStarted_EC2"></a>
 
 Get started with Amazon Elastic Container Service \(Amazon ECS\) using the EC2 launch type by creating a task definition, scheduling tasks, and configuring a cluster in the Amazon ECS console\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
 

@@ -27,8 +27,6 @@ A *listener* is a process that checks for connection requests\. It is configured
    1. For **Scheme**, choose either **internet\-facing** or **internal**\. An internet\-facing load balancer routes requests from clients over the internet to targets\. An internal load balancer routes requests to targets using private IP addresses\.
 
    1. For **Listeners**, the default is a listener that accepts TCP traffic on port 80\. You can keep the default listener settings, modify the protocol or port of the listener, or choose **Add listener** to add another listener\.
-**Note**  
-If you plan on routing traffic to more than one target group, see [ListenerRules](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-listeners.html) for details on how to add host or path\-based rules\.
 
    1. For **Availability Zones**, select the VPC that you used for your Amazon EC2 instances\. For each Availability Zone that you used to launch your Amazon EC2 instances, select an Availability Zone and then select the public subnet for that Availability Zone\. To associate an Elastic IP address with the subnet, select it from **Elastic IP**\.
 

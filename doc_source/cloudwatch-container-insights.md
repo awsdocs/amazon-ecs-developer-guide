@@ -14,7 +14,7 @@ Container Insights can be enabled for all new clusters created by opting in to t
 Opting in to the `containerInsights` account setting can be done with both the Amazon ECS console and the AWS CLI\. You must be running version `1.16.200` or later of the AWS CLI to use this feature\. For more information on creating Amazon ECS clusters, see [Creating a Cluster](create_cluster.md)\.
 
 **Important**  
-For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent\. For more information, see [Amazon ECS Container Agent Versions](container_agent_versions.md)\.
+For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent\. For more information, see [Amazon ECS Container Agent Versions](ecs-agent-versions.md)\.
 
 **To opt in all IAM users or roles on your account to Container Insights\-enabled clusters using the console**
 
