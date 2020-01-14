@@ -1,18 +1,19 @@
 # Tutorial: Scaling Container Instances with CloudWatch Alarms<a name="cloudwatch_alarm_autoscaling"></a>
 
-The following procedures help you to create an Auto Scaling group for an Amazon ECS cluster\. The Auto Scaling group contains container instances that you can scale up \(and down\) using CloudWatch alarms\. 
+**Note**  
+In December 2019, Amazon ECS launched cluster auto scaling, which provides an alternative method for scaling container instances\. For more information, see [Amazon ECS Cluster Auto Scaling](cluster-auto-scaling.md)\. 
+
+The following procedures help you to create an Auto Scaling group for an Amazon ECS cluster\. The Auto Scaling group contains container instances that you can scale out \(and in\) using CloudWatch alarms\. 
 
 Depending on the Amazon EC2 instance types that you use in your clusters, and quantity of container instances that you have in a cluster, your tasks have a limited amount of resources that they can use while running\. Amazon ECS monitors the resources available in the cluster to work with the schedulers to place tasks\. If your cluster runs low on any of these resources, such as memory, you are eventually unable to launch more tasks until you add more container instances, reduce the number of desired tasks in a service, or stop some of the running tasks in your cluster to free up the constrained resource\.
 
-In this tutorial, you create a CloudWatch alarm using the `MemoryReservation` metric for your cluster\. When the memory reservation of your cluster rises above 75% \(meaning that only 25% of the memory in your cluster is available to for new tasks to reserve\), the alarm triggers the Auto Scaling group to add another instance and provide more resources for your tasks and services\.
+In this tutorial, you create a CloudWatch alarm and a step scaling policy using the `MemoryReservation` metric for your cluster\. When the memory reservation of your cluster rises above 75% \(meaning that only 25% of the memory in your cluster is available to for new tasks to reserve\), the alarm triggers the Auto Scaling group to add another instance and provide more resources for your tasks and services\.
 
 ## Prerequisites<a name="as-cw-tutorial-prereqs"></a>
 
-This tutorial assumes that you have enabled CloudWatch metrics for your clusters and services\. Metrics are not available until the clusters and services send the metrics to CloudWatch, and you cannot create CloudWatch alarms for metrics that do not exist yet\.
+This tutorial assumes that you have enabled CloudWatch metrics for your clusters and services\. Metrics are not available until the clusters and services send the metrics to CloudWatch, and you cannot create CloudWatch alarms for metrics that do not exist yet\. For more information, see [Enabling CloudWatch Metrics](cloudwatch-metrics.md#enable_cloudwatch)\.
 
-Your Amazon ECS container instances require at least version 1\.4\.0 of the container agent to enable CloudWatch metrics\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
-
-Your Amazon ECS container instances also require `ecs:StartTelemetrySession` permission on the IAM role that you launch your container instances with\. If you created your Amazon ECS container instance role before CloudWatch metrics were available for Amazon ECS, then you might need to add this permission\. For information about checking your Amazon ECS container instance role and attaching the managed IAM policy for container instances, see [To check for the `ecsInstanceRole` in the IAM console](instance_IAM_role.md#procedure_check_instance_role)\.
+Wherever possible, you should scale on Amazon EC2 instance metrics with a 1\-minute frequency because that ensures a faster response to utilization changes\. 
 
 ## Step 1: Create a CloudWatch Alarm for a Metric<a name="create-cw-alarms"></a>
 
@@ -45,7 +46,7 @@ For this tutorial, you create an alarm on the cluster `MemoryReservation` metric
 
 ## Step 2: Create a Launch Configuration for an Auto Scaling Group<a name="create-as-group"></a>
 
-Now that you have enabled CloudWatch metrics and created an alarm based on one of those metrics, you can create a launch configuration and an Auto Scaling group for your cluster\. For more information and other configuration options, see the [Amazon EC2 Auto Scaling User Guide](https://docs.aws.amazon.com/autoscaling/latest/userguide/)\.
+Now that you have enabled CloudWatch metrics and created an alarm based on one of those metrics, you can create a launch configuration and an Auto Scaling group for your cluster\. For more information and other configuration options, see [Launch Configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 **To create an Auto Scaling launch configuration**
 
@@ -85,11 +86,11 @@ Now that you have enabled CloudWatch metrics and created an alarm based on one o
 
 1. Select a private key to use for connecting to your instances with SSH and choose **Create launch configuration**\. Move on to creating an Auto Scaling group with your new launch configuration\.
 
-## Step 3: Create an Auto Scaling Group for your Cluster<a name="create-as-group-cluster"></a>
+## Step 3: Create an Auto Scaling Group with Step Scaling Policies<a name="create-as-group-cluster"></a>
 
 After the launch configuration is complete, continue with the following procedure to create an Auto Scaling group that uses your launch configuration\.
 
-**To create an Auto Scaling group**
+**To create an Auto Scaling group with step scaling policies**
 
 1. On the **Configure Auto Scaling group details** step of the **Create Auto Scaling Group** wizard, enter the following information and then choose **Next: Configure scaling policies**:
    + **Group name:** Enter a name for your Auto Scaling group\.
@@ -101,9 +102,11 @@ After the launch configuration is complete, continue with the following procedur
 
 1. Enter the minimum and maximum number of container instances for your Auto Scaling group\. 
 
+1. Choose **Scale the Auto Scaling group using step or simple scaling policies**\.
+
 1. In the **Increase Group Size** section, enter the following information:
    + **Execute policy when:** Select the `memory-above-75-pct` CloudWatch alarm that you configured earlier\.
-   + **Take the action:** Enter the number of instances to add to your cluster when the alarm is triggered\.
+   + **Take the action:** Enter the number of capacity units \(instances\) to add to your cluster when the alarm is triggered\.
 
 1. If you configured an alarm to trigger a group size reduction, set that alarm in the **Decrease Group Size** section and specify how many instances to remove if that alarm is triggered\. Otherwise, collapse the **Decrease Group Size** section by choosing the **X** in the upper\-right\-hand corner of the section\.
 **Note**  
@@ -118,6 +121,30 @@ Now that you've created your Auto Scaling group, you should be able to see your 
 To test that your Auto Scaling group is configured properly, create some tasks that consume a considerable amount of memory and start launching them into your cluster\. After your cluster exceeds the 75% memory reservation from the CloudWatch alarm for the specified number of periods, you should see a new instance launch in the Amazon EC2 console\.
 
 ## Step 5: Cleaning Up<a name="cleanup-as"></a>
+
+After you no longer need a step scaling policy, you can delete it\. You also need to delete the CloudWatch alarms\. Deleting a step scaling policy deletes the underlying alarm action, but does not delete the CloudWatch alarm associated with the scaling policy, even if it no longer has an associated action\. 
+
+**To delete a step scaling policy and its associated CloudWatch alarm**
+
+1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
+
+1. On the navigation pane, under **Auto Scaling**, choose **Auto Scaling Groups**\.
+
+1. Select the Auto Scaling group\.
+
+1. On the **Scaling Policies** tab, choose **Actions**, **Delete**\. 
+
+1. When prompted for confirmation, choose **Yes, Delete**\.
+
+1. Do the following to delete the CloudWatch alarm that was associated with the policy\.
+
+   1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+
+   1. On the navigation pane, choose **Alarms**\.
+
+   1. Choose the alarm and choose **Action**, **Delete**\.
+
+   1. When prompted for confirmation, choose **Delete**\.
 
 When you have completed this tutorial, you may choose to keep your Auto Scaling group and Amazon EC2 instances in service for your cluster\. However, if you are not actively using these resources, you should consider cleaning them up so your account does not incur unnecessary charges\. You can delete your Auto Scaling group to terminate the Amazon EC2 instances within it, but your launch configuration remains intact\. You can create a new Auto Scaling group with the launch configuration later, if you choose\.
 

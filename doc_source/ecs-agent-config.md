@@ -4,7 +4,7 @@ The Amazon ECS container agent supports a number of configuration options, most 
 
 If your container instance was launched with a Linux variant of the Amazon ECS\-optimized AMI, you can set these environment variables in the `/etc/ecs/ecs.config` file and then restart the agent\. You can also write these configuration variables to your container instances with Amazon EC2 user data at launch time\. For more information, see [Bootstrapping Container Instances with Amazon EC2 User Data](bootstrap_container_instance.md)\.
 
-If you are manually starting the Amazon ECS container agent \(for non\-Amazon ECS\-optimized AMIs\), you can use these environment variables in the docker run command that you use to start the agent with the syntax `--env=VARIABLE_NAME=VARIABLE_VALUE`\. For sensitive information, such as authentication credentials for private repositories, you should store your agent environment variables in a file and pass them all at one time with the `--env-file path_to_env_file` option\.
+If you are manually starting the Amazon ECS container agent \(for non Amazon ECS\-optimized AMIs\), you can use these environment variables in the docker run command that you use to start the agent\. Use these variables with the syntax `--env=VARIABLE_NAME=VARIABLE_VALUE`\. For sensitive information, such as authentication credentials for private repositories, you should store your agent environment variables in a file and pass them all at one time with the `--env-file path_to_env_file` option\.
 
 **Topics**
 + [Available Parameters](#ecs-agent-availparam)
@@ -12,13 +12,13 @@ If you are manually starting the Amazon ECS container agent \(for non\-Amazon EC
 
 ## Available Parameters<a name="ecs-agent-availparam"></a>
 
-The following are the available Amazon ECS container agent configuration parameters\. There are undocumented variables that the agent uses internally that may be visible, but are not intended for customer use\. For more information, see [Amazon ECS Container Agent](https://github.com/aws/amazon-ecs-agent/blob/master/README.md) on GitHub\.
+The following are the available Amazon ECS container agent configuration parameters\. There are undocumented variables that the agent uses internally that may be visible but that are not intended for customer use\. For more information, see [Amazon ECS Container Agent](https://github.com/aws/amazon-ecs-agent/blob/master/README.md) on GitHub\.
 
 `ECS_CLUSTER`  
 Example values: `MyCluster`  
 Default value on Linux: `default`  
 Default value on Windows: `default`  
-The cluster that this agent should check into\. If this value is undefined, then the `default` cluster is assumed\. If the `default` cluster does not exist, the Amazon ECS container agent attempts to create it\. If a non\-`default` cluster is specified and it does not exist, registration fails\.
+The cluster that this agent should check into\. If this value is undefined, then the `default` cluster is assumed\. If the `default` cluster does not exist, the Amazon ECS container agent attempts to create it\. If a non\-`default` cluster is specified and it does not exist, then registration fails\.
 
 `ECS_RESERVED_PORTS`  
 Example values: `[22, 80, 5000, 8080]`  
@@ -44,29 +44,29 @@ Example values:
 + `ECS_ENGINE_AUTH_TYPE=docker`: `{"https://index.docker.io/v1/":{"username":"my_name","password":"my_password","email":"email@example.com"}}`
 Default value on Linux: Null  
 Default value on Windows: Null  
-Required for private registry authentication\. If `ECS_ENGINE_AUTH_TYPE=dockercfg`, then the `ECS_ENGINE_AUTH_DATA` value should be the contents of a Docker configuration file \(`~/.dockercfg` or `~/.docker/config.json`\) created by running docker login\. If `ECS_ENGINE_AUTH_TYPE=docker`, then the `ECS_ENGINE_AUTH_DATA` value should be a JSON representation of the registry server to authenticate against, as well as the authentication parameters required by that registry \(such as user name, password, and email address for that account\)\. For more information, see [Authentication Formats](private-auth-container-instances.md#docker-auth-formats)\.
+Required for private registry authentication\. If `ECS_ENGINE_AUTH_TYPE=dockercfg`, then the `ECS_ENGINE_AUTH_DATA` value should be the contents of a Docker configuration file \(`~/.dockercfg` or `~/.docker/config.json`\) created by running docker login\. If `ECS_ENGINE_AUTH_TYPE=docker`, then the `ECS_ENGINE_AUTH_DATA` value should be a JSON representation of the registry server to authenticate against, as well as the authentication parameters required by that registry such as user name, password, and email address for that account\. For more information, see [Authentication Formats](private-auth-container-instances.md#docker-auth-formats)\.
 
 `AWS_DEFAULT_REGION`  
 Example values: `us-east-1`  
-Default value on Linux: Taken from EC2 instance metadata\.  
-Default value on Windows: Taken from EC2 instance metadata\.  
+Default value on Linux: Taken from Amazon EC2 instance metadata\.  
+Default value on Windows: Taken from Amazon EC2 instance metadata\.  
 The region to be used in API requests as well as to infer the correct backend host\.
 
 `AWS_ACCESS_KEY_ID`  
 Example values: `AKIAIOSFODNN7EXAMPLE`  
-Default value on Linux: Taken from EC2 instance metadata\.  
-Default value on Windows: Taken from EC2 instance metadata\.  
+Default value on Linux: Taken from Amazon EC2 instance metadata\.  
+Default value on Windows: Taken from Amazon EC2 instance metadata\.  
 The [access key](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html) used by the agent for all calls\.
 
 `AWS_SECRET_ACCESS_KEY`  
 Example values: `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`  
-Default value on Linux: Taken from EC2 instance metadata\.  
-Default value on Windows: Taken from EC2 instance metadata\.  
+Default value on Linux: Taken from Amazon EC2 instance metadata\.  
+Default value on Windows: Taken from Amazon EC2 instance metadata\.  
 The [secret key](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html) used by the agent for all calls\.
 
 `AWS_SESSION_TOKEN`  
-Default value on Linux: Taken from EC2 instance metadata\.  
-Default value on Windows: Taken from EC2 instance metadata\.  
+Default value on Linux: Taken from Amazon EC2 instance metadata\.  
+Default value on Windows: Taken from Amazon EC2 instance metadata\.  
 The [session token](https://docs.aws.amazon.com/STS/latest/UsingSTS/Welcome.html) used for temporary credentials\.
 
 `DOCKER_HOST`  
@@ -75,18 +75,17 @@ Default value on Linux: `unix:///var/run/docker.sock`
 Default value on Windows: `npipe:////./pipe/docker_engine`  
 Used to create a connection to the Docker daemon; behaves similarly to the environment variable as used by the Docker client\.
 
-`ECS_LOGLEVEL`  
-Example values: `crit | error | warn | info | debug`  
-Default value on Linux: `info`  
-Default value on Windows: `info`  
-The level to log at on `stdout`\.
-
 `ECS_LOGFILE`  
 Example values: `/ecs-agent.log`  
 Default value on Linux: Null  
 Default value on Windows: Null  
-The path the variable specifies is within the container\. If you're running the agent via `ecs-init`, which is the default method when using the Amazon ECS\-optimized AMI, the in\-container path will be `/log` and `ecs-init` mounts that out to `/var/log/ecs/` on the host\.  
-The logging level is controlled by `ECS_LOGLEVEL`\. If blank, no logs are recorded\. If this value is set, it logs at the debug level \(regardless of `ECS_LOGLEVEL`\) are written to that file\.
+Determines the location where agent logs are written\. If you are running the agent via `ecs-init`, which is the default method when using the Amazon ECS\-optimized AMI, the in\-container path will be `/log`, and `ecs-init` mounts that out to `/var/log/ecs/` on the host\.
+
+`ECS_LOGLEVEL`  
+Example values: `crit`, `error`, `warn`, `info`, `debug`  
+Default value on Linux: `info`  
+Default value on Windows: `info`  
+The level to log at on `stdout`\.
 
 `ECS_CHECKPOINT`  
 Example values: `true` \| `false`  
@@ -104,13 +103,13 @@ The name of the persistent data directory on the container that is running the A
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-Whether to exit for ECS agent updates when they are requested\.
+Whether to exit for Amazon ECS agent updates when they are requested\.
 
 `ECS_UPDATE_DOWNLOAD_DIR`  
 Example values: `/cache`  
 Default value on Linux: Null  
 Default value on Windows: Null  
-The filesystem location to place update tarballs within the container when they are downloaded\.
+The file system location to place update tarballs within the container when they are downloaded\.
 
 `ECS_DISABLE_METRICS`  
 Example values: `true` \| `false`  
@@ -134,7 +133,7 @@ Time to wait to poll for new CloudWatch metrics for a task\. Only used when `ECS
 Example values: 32  
 Default value on Linux: 0  
 Default value on Windows: 0  
-The amount of memory, in MiB, to remove from the pool that is allocated to your tasks\. This effectively reserves that memory for critical system processes including the Docker daemon and the Amazon ECS container agent\. For example, if you specify `ECS_RESERVED_MEMORY=256`, then the agent registers the total memory minus 256 MiB for that instance, and 256 MiB of the system memory cannot be allocated by ECS tasks\. For more information, see [Container Instance Memory Management](memory-management.md)\.
+The amount of memory, in MiB, to remove from the pool that is allocated to your tasks\. This effectively reserves that memory for critical system processes including the Docker daemon and the Amazon ECS container agent\. For example, if you specify `ECS_RESERVED_MEMORY=256`, then the agent registers the total memory minus 256 MiB for that instance, and 256 MiB of the system memory cannot be allocated by Amazon ECS tasks\. For more information, see [Container Instance Memory Management](memory-management.md)\.
 
 `ECS_ENABLE_SPOT_INSTANCE_DRAINING`  
 Example values: true \| false  
@@ -171,25 +170,25 @@ Whether AppArmor is available on the container instance\.
 Example values: `1h` \(Valid time units are "ns", "us" \(or "µs"\), "ms", "s", "m", and "h"\.\)  
 Default value on Linux: `3h`  
 Default value on Windows: `3h`  
-Time duration to wait from when a task is stopped until the Docker container is removed\. As this removes the Docker container data, be aware that if this value is set too low, you may not be able to inspect your stopped containers or view the logs before they are removed\. The minimum duration is `1m`; any value shorter than 1 minute is ignored\.
+Time to wait from when a task is stopped until the Docker container is removed\. As this removes the Docker container data, be aware that if this value is set too low, you may not be able to inspect your stopped containers or view the logs before they are removed\. The minimum duration is `1m`; any value shorter than 1 minute is ignored\.
 
 `ECS_CONTAINER_STOP_TIMEOUT`  
 Example values: `10m` \(Valid time units are "ns", "us" \(or "µs"\), "ms", "s", "m", and "h"\.\)  
 Default value on Linux: `30s`  
 Default value on Windows: `30s`  
-Time duration to wait from when a task is stopped before its containers are forcefully killed if they do not exit normally on their own\.
+Time to wait from when a task is stopped before its containers are forcefully stopped if they do not exit normally on their own\.
 
 `ECS_CONTAINER_START_TIMEOUT`  
 Example values: `10m` \(Valid time units are "ns", "us" \(or "µs"\), "ms", "s", "m", and "h"\.\)  
 Default value on Linux: `3m`  
 Default value on Windows: `8m`  
-Time duration to wait before giving up on starting a container\.
+Time to wait before giving up on starting a container\.
 
 `HTTP_PROXY`  
 Example values: `10.0.0.131:3128`  
 Default value on Linux: Null  
 Default value on Windows: Null  
-The hostname \(or IP address\) and port number of an HTTP proxy to use for the ECS agent to connect to the internet \(for example, if your container instances do not have external network access through an Amazon VPC internet gateway or NAT gateway or instance\)\. If this variable is set, you must also set the `NO_PROXY` variable to filter EC2 instance metadata and Docker daemon traffic from the proxy\. For more information, see [HTTP Proxy Configuration](http_proxy_config.md)\.
+The hostname \(or IP address\) and port number of an HTTP proxy to use for the Amazon ECS agent to connect to the internet\. For example, this proxy will be used if your container instances do not have external network access through an Amazon VPC internet gateway or NAT gateway or instance\. If this variable is set, you must also set the `NO_PROXY` variable to filter Amazon EC2 instance metadata and Docker daemon traffic from the proxy\. For more information, see [HTTP Proxy Configuration](http_proxy_config.md)\.
 
 `NO_PROXY`  
 Example values:   
@@ -197,7 +196,7 @@ Example values:
 + Windows: `169.254.169.254,169.254.170.2,\\.\pipe\docker_engine`
 Default value on Linux: Null  
 Default value on Windows: Null  
-The HTTP traffic that should not be forwarded to the specified `HTTP_PROXY`\. You must specify `169.254.169.254,/var/run/docker.sock` to filter EC2 instance metadata and Docker daemon traffic from the proxy\. For more information, see [HTTP Proxy Configuration](http_proxy_config.md)\.
+The HTTP traffic that should not be forwarded to the specified `HTTP_PROXY`\. You must specify `169.254.169.254,/var/run/docker.sock` to filter Amazon EC2 instance metadata and Docker daemon traffic from the proxy\. For more information, see [HTTP Proxy Configuration](http_proxy_config.md)\.
 
 `ECS_ENABLE_TASK_IAM_ROLE`  
 Example values: `true` \| `false`  
@@ -257,10 +256,10 @@ The time to wait after docker pulls complete waiting for extraction of a contain
 Example values: `{"custom_attribute": "custom_attribute_value"}`  
 Default value on Linux: Null  
 Default value on Windows: Null  
-A list of custom attributes, in JSON form, to apply to your container instances\. Using this attribute at instance registration adds the custom attributes, allowing you to skip the manual method of adding custom attributes via the AWS Management Console\.  
-Attributes added do not apply to container instances that are already registered\. To add custom attributes to already registered container instances, see [Adding an Attribute](task-placement-constraints.md#add-attribute)\.
+A list of custom attributes, in JSON format, to apply to your container instances\. Using this attribute at instance registration adds the custom attributes, allowing you to skip the manual method of adding custom attributes through the AWS Management Console\.  
+Attributes added do not apply to container instances that are already registered\. To add custom attributes to already\-registered container instances, see [Adding an Attribute](task-placement-constraints.md#add-attribute)\.
 For information about custom attributes to use, see [Attributes](task-placement-constraints.md#attributes)\.  
-An invalid JSON value for this variable causes the agent to exit with a code of `5`\. A message appears in the agent logs\. The JSON value may be valid but there is an issue detected when validating the attribute \(for example if the value is too long or contains invalid characters\)\. In that case, the container instance registration happens but the agent exits with a code of `5` and a message is written to the agent logs\. For information about how to locate the agent logs, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\.
+An invalid JSON value for this variable causes the agent to exit with a code of `5`\. A message appears in the agent logs\. The JSON value may be valid but there is an issue detected when validating the attribute, such as when the value is too long or contains invalid characters\. In that case, the container instance registration happens, but the agent exits with a code of `5` and a message is written to the agent logs\. For information about how to locate the agent logs, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\.
 
 `ECS_ENABLE_TASK_ENI`  
 Example values: `true` \| `false`  
@@ -296,7 +295,7 @@ When `true`, the agent creates a file describing the container's metadata\. The 
 Example values: `/var/lib/ecs`  
 Default value on Linux: `/var/lib/ecs`  
 Default value on Windows: Not applicable  
-The source directory on the host from which `ECS_DATADIR` is mounted\. We use this to determine the source mount path for container metadata files in the case the ECS agent is running as a container\. We do not use this value in Windows because the ECS agent does not run as a container\.
+The source directory on the host from which `ECS_DATADIR` is mounted\. We use this to determine the source mount path for container metadata files when the Amazon ECS agent is running as a container\. We do not use this value in Windows because the Amazon ECS agent does not run as a container\.
 
 `ECS_ENABLE_TASK_CPU_MEM_LIMIT`  
 Example values: `true` \| `false`  
@@ -308,13 +307,13 @@ Whether to enable task\-level CPU and memory limits\.
 Example values: `/sys/fs/cgroup`  
 Default value on Linux: `/sys/fs/cgroup`  
 Default value on Windows: Not applicable  
-The root cgroup path that is expected by the ECS agent\. This is the path that accessible from the agent mount\.
+The root cgroup path that is expected by the Amazon ECS agent\. This is the path that is accessible from the agent mount\.
 
 `ECS_ENABLE_CPU_UNBOUNDED_WINDOWS_WORKAROUND`  
 Example values: `true` \| `false`  
 Default value on Linux: Not applicable  
 Default value on Windows: `false`  
-When `true`, ECS allows CPU\-unbounded \(CPU=`0`\) tasks to run along with CPU\-bounded tasks in Windows\.
+When `true`, Amazon ECS allows CPU\-unbounded \(CPU=`0`\) tasks to run along with CPU\-bounded tasks in Windows\.
 
 `ECS_TASK_METADATA_RPS_LIMIT`  
 Example values: `100,150`  
@@ -345,19 +344,19 @@ If container instance tags are propagated using the `ECS_CONTAINER_INSTANCE_PROP
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-Whether to allow the ECS agent to delete containers and images that are not part of Amazon ECS tasks\.
+Whether to allow the Amazon ECS agent to delete containers and images that are not part of Amazon ECS tasks\.
 
 `ECS_EXCLUDE_UNTRACKED_IMAGE`  
 Example values: `{"alpine":"latest"}`  
 Default value on Linux: `{}`  
 Default value on Windows: `{}`  
-Comma separated list of images \(`imageName:tag`\) that should not be deleted by the ECS agent if `ECS_ENABLE_UNTRACKED_IMAGE_CLEANUP` is `true`\.
+Comma separated list of images \(`imageName:tag`\) that should not be deleted by the Amazon ECS agent if `ECS_ENABLE_UNTRACKED_IMAGE_CLEANUP` is `true`\.
 
 `ECS_DISABLE_DOCKER_HEALTH_CHECK`  
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-Whether to disable the Docker container health check for the ECS Agent\.
+Whether to disable the Docker container health check for the Amazon ECS agent\.
 
 `ECS_NVIDIA_RUNTIME`  
 Example values: `nvidia`  
@@ -369,19 +368,43 @@ The runtime to be used to pass NVIDIA GPU devices to containers\. This parameter
 Example values: `true`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-Whether to enable Spot Instance draining for the container instance\. When true, if the container instance receives a Spot interruption notice, the agent will set the instance status to `DRAINING`, which gracefully shuts down and replaces all tasks running on the instance that are part of a service\. It is recommended that this be set to true when using Spot instances\. For more information, see [Container Instance Draining](container-instance-draining.md)\.
+Whether to enable Spot Instance draining for the container instance\. When true, if the container instance receives a Spot interruption notice, then the agent sets the instance status to `DRAINING`, which gracefully shuts down and replaces all tasks running on the instance that are part of a service\. It is recommended that this be set to true when using Spot instances\. For more information, see [Container Instance Draining](container-instance-draining.md)\.
+
+`ECS_LOG_ROLLOVER_TYPE`  
+Example values: `size`, `hourly`  
+Default value on Linux: `hourly`  
+Default value on Windows: `hourly`  
+Determines whether the container agent log file will be rotated hourly or based on size\. By default, the agent log file is rotated each hour\.
+
+`ECS_LOG_OUTPUT_FORMAT`  
+Example values: `logfmt`, `json`  
+Default value on Linux: `logfmt`  
+Default value on Windows: `logfmt`  
+Determines the log output format\. When the `json` format is used, each line in the log will be a structured JSON map\.
+
+`ECS_LOG_MAX_FILE_SIZE_MB`  
+Example values: `10`  
+Default value on Linux: `10`  
+Default value on Windows: `10`  
+When the `ECS_LOG_ROLLOVER_TYPE` variable is set to `size`, this variable determines the maximum size \(in MB\) of the log file before it is rotated\. If the rollover type is set to `hourly`, then this variable is ignored\.
+
+`ECS_LOG_MAX_ROLL_COUNT`  
+Example values: `24`  
+Default value on Linux: `24`  
+Default value on Windows: `24`  
+Determines the number of rotated log files to keep\. Older log files are deleted once this limit is reached\.
 
 ## Storing Container Instance Configuration in Amazon S3<a name="ecs-config-s3"></a>
 
-Amazon ECS container agent configuration is controlled with the environment variables described above\. Linux variants of the Amazon ECS\-optimized AMI look for these variables in `/etc/ecs/ecs.config` when the container agent starts and configures the agent accordingly\. Certain innocuous environment variables, such as `ECS_CLUSTER`, can be passed to the container instance at launch through Amazon EC2 user data and written to this file without consequence\. However, other sensitive information, such as your AWS credentials or the `ECS_ENGINE_AUTH_DATA` variable, should never be passed to an instance in user data or written to `/etc/ecs/ecs.config` in a way that they would show up in a `.bash_history` file\.
+Amazon ECS container agent configuration is controlled with the environment variables described in the previous section\. Linux variants of the Amazon ECS\-optimized AMI look for these variables in `/etc/ecs/ecs.config` when the container agent starts and configure the agent accordingly\. Certain innocuous environment variables, such as `ECS_CLUSTER`, can be passed to the container instance at launch through Amazon EC2 user data and written to this file without consequence\. However, other sensitive information, such as your AWS credentials or the `ECS_ENGINE_AUTH_DATA` variable, should never be passed to an instance in user data or written to `/etc/ecs/ecs.config` in a way that would allow them to show up in a `.bash_history` file\.
 
-Storing configuration information in a private bucket in Amazon S3 and granting read\-only access to your container instance IAM role is a secure and convenient way to allow container instance configuration at launch\. You can store a copy of your `ecs.config` file in a private bucket, and then use Amazon EC2 user data to install the AWS CLI and copy your configuration information to `/etc/ecs/ecs.config` when the instance launches\.
+Storing configuration information in a private bucket in Amazon S3 and granting read\-only access to your container instance IAM role is a secure and convenient way to allow container instance configuration at launch\. You can store a copy of your `ecs.config` file in a private bucket\. You can then use Amazon EC2 user data to install the AWS CLI and copy your configuration information to `/etc/ecs/ecs.config` when the instance launches\.
 
 **To allow Amazon S3 read\-only access for your container instance role**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles** and select the IAM role to use for your container instances \(this role is likely titled `ecsInstanceRole`\)\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\. 
+1. In the navigation pane, choose **Roles** and select the IAM role to use for your container instances\. This role is likely titled `ecsInstanceRole`\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\. 
 
 1. Under **Managed Policies**, choose **Attach Policy**\.
 

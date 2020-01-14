@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Amazon ECS container agent logging behavior updated  |  The Amazon ECS container agent logging locations and rotation behavior has been updated\. For more information, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\.  |  13 Jan 2020  | 
 |  Fargate Spot  |  Amazon ECS added support for running tasks using Fargate Spot\. For more information, see [Using AWS Fargate Capacity Providers](fargate-capacity-providers.md)\.  |  3 Dec 2019  | 
 |  Cluster Auto Scaling  |  Amazon ECS cluster auto scaling enables you to have more control over how you scale tasks within a cluster\. For more information, see [Amazon ECS Cluster Auto Scaling](cluster-auto-scaling.md)\.  |  3 Dec 2019  | 
 |  Cluster Capacity Providers  |  Amazon ECS cluster capacity providers determine the infrastructure to use for your tasks\. For more information, see [Amazon ECS Cluster Capacity Providers](cluster-capacity-providers.md)\.  |  3 Dec 2019  | 

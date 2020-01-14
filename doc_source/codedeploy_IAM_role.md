@@ -106,7 +106,7 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
 
 1. For **Choose the service that will use this role**, choose **CodeDeploy**\.
 
-1. For **Select your use case**, choose **CodeDeploy**, **Next: Permissions**\.
+1. For **Select your use case**, choose **CodeDeploy \- ECS**, **Next: Permissions**\.
 
 1. Choose **Next: Tags**\.
 

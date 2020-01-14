@@ -6,7 +6,7 @@ Amazon EventBridge enables you to automate your AWS services and respond automat
 + Invoking Amazon EC2 Run Command
 + Relaying the event to Amazon Kinesis Data Streams
 + Activating an AWS Step Functions state machine
-+ Notifying an Amazon SNS topic or an AWS SQS queue
++ Notifying an Amazon SNS topic or an Amazon Simple Queue Service \(Amazon SQS\) queue
 
 For more information, see [Getting Started with Amazon EventBridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-getting-set-up.html) in the *Amazon EventBridge User Guide*\.
 

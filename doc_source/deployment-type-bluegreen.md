@@ -58,7 +58,7 @@ When you use the Amazon ECS console to create an Amazon ECS service using the bl
 |  Deployment group load balancer info  |  The load balancer production listener, optional test listener, and target groups specified are added to the deployment group configuration\.  | 
 |  Traffic rerouting settings  |  Traffic rerouting – The default setting is **Reroute traffic immediately**\. You can change it on the CodeDeploy console or by updating the `TrafficRoutingConfig`\. For more information, see [CreateDeploymentConfig](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeploymentConfig.html) in the *AWS CodeDeploy API Reference*\.  | 
 |  Original revision termination settings  |  The original revision termination settings are configured to wait 1 hour after traffic has been rerouted before terminating the blue task set\.  | 
-|  Deployment configuration  |  The deployment configuration is set to `CodeDeployDefault.AllAtOnce`, which routes all traffic at one time from the blue task set to the green task set\. You can't change this setting\.  | 
+|  Deployment configuration  |  The deployment configuration is set to `CodeDeployDefault.ECSAllAtOnce`, which routes all traffic at one time from the blue task set to the green task set\. You can't change this setting\.  | 
 |  Automatic rollback configuration  |  If a deployment fails, the automatic rollback settings are configured to roll it back\.  | 
 
 To view details of an Amazon ECS service using the blue/green deployment type, use the **Deployments** tab on the Amazon ECS console\.
