@@ -41,6 +41,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Fargate Task Storage](fargate-task-storage.md)
       + [Docker Volumes](docker-volumes.md)
       + [Bind Mounts](bind-mounts.md)
+      + [Amazon EFS Volumes](efs-volumes.md)
    + [Task Networking with the awsvpc Network Mode](task-networking.md)
    + [Using the awslogs Log Driver](using_awslogs.md)
    + [Custom Log Routing](using_firelens.md)

@@ -23,3 +23,4 @@ Before the release of the Amazon ECS\-optimized AMI version 2017\.03\.a, only fi
 + [Fargate Task Storage](fargate-task-storage.md)
 + [Docker Volumes](docker-volumes.md)
 + [Bind Mounts](bind-mounts.md)
++ [Amazon EFS Volumes](efs-volumes.md)

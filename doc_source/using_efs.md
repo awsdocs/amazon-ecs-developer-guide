@@ -1,8 +1,13 @@
 # Tutorial: Using Amazon EFS File Systems with Amazon ECS<a name="using_efs"></a>
 
+
+|  | 
+| --- |
+| Using the efsVolumeConfiguration task definition parameter remains in preview and is a Beta Service as defined by and subject to the Beta Service Participation Service Terms located at [https://aws\.amazon\.com/service\-terms](https://aws.amazon.com/service-terms) \("Beta Terms"\)\. These Beta Terms apply to your participation in this preview of the efsVolumeConfiguration task definition parameter\. | 
+
 Amazon Elastic File System \(Amazon EFS\) provides simple, scalable file storage for use with Amazon EC2 instances\. With Amazon EFS, storage capacity is elastic, growing and shrinking automatically as you add and remove files\. Your applications can have the storage they need, when they need it\. 
 
-You can use Amazon EFS file systems with Amazon ECS to export file system data across your fleet of container instances\. That way, your tasks have access to the same persistent storage, no matter the instance on which they land\. However, you must configure your container instance AMI to mount the Amazon EFS file system before the Docker daemon starts\. Also, your task definitions must reference volume mounts on the container instance to use the file system\. The following sections help you get started using Amazon EFS with Amazon ECS\.
+You can use Amazon EFS file systems with Amazon ECS to export file system data across your fleet of container instances\. That way, your tasks have access to the same persistent storage, no matter the instance on which they land\. The following sections help you get started using Amazon EFS with Amazon ECS\.
 
 **Note**  
 Amazon EFS is not available in all regions\. For more information about which regions support Amazon EFS, see [Amazon Elastic File System](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) section of the *AWS General Reference*\.
@@ -83,91 +88,7 @@ Your Amazon EFS file system and your container instances must be in the same VPC
 
 1. Review your file system options and choose **Create File System**\.
 
-## Step 4: Configure Container Instances<a name="efs-config-instance"></a>
-
-After you've created your Amazon EFS file system in the same VPC as your container instances, you must configure the container instances to access and use the file system\.
-
-**Configure a running container instance to use an Amazon EFS file system**
-
-1. Log in to the container instance via SSH\. For more information, see [Connect to Your Container Instance](instance-connect.md)\.
-
-1. Create a mount point for your Amazon EFS file system\. For example, `/efs`\.
-
-   ```
-   sudo mkdir /mnt/efs
-   ```
-
-1. Install the `amazon-efs-utils` client software on your container instance\.
-   + For Amazon Linux:
-
-     ```
-     sudo yum install -y amazon-efs-utils
-     ```
-   + For other Linux distributions, see [Installing the amazon\-efs\-utils Package on Other Linux Distributions](https://docs.aws.amazon.com/efs/latest/ug/using-amazon-efs-utils.html#installing-other-distro) in the *Amazon Elastic File System User Guide*\.
-
-1. Make a backup of the `/etc/fstab` file\.
-
-   ```
-   sudo cp /etc/fstab /etc/fstab.bak
-   ```
-
-1. Update the `/etc/fstab` file to automatically mount the file system at boot\.
-
-   ```
-   echo 'fs-12345678:/ /mnt/efs efs defaults,_netdev 0 0' | sudo tee -a /etc/fstab
-   ```
-
-1. Reload the file system table to verify that your mounts are working properly\.
-
-   ```
-   sudo mount -a
-   ```
-**Note**  
-If you receive an error while running the above command, examine your `/etc/fstab` file for problems\. If necessary, restore it with the backup that you created earlier\.
-
-1. Validate that the file system is mounted correctly with the following command\. You should see a file system entry that matches your Amazon EFS file system\. If not, see [Troubleshooting Amazon EFS](https://docs.aws.amazon.com/efs/latest/ug/troubleshooting.html) in the *Amazon Elastic File System User Guide*\.
-
-   ```
-   mount | grep efs
-   ```
-
-**Bootstrap an instance to use Amazon EFS with user data**
-
-You can use an Amazon EC2 user data script to bootstrap an Amazon ECS–optimized AMI at boot\. For more information, see [Bootstrapping Container Instances with Amazon EC2 User Data](bootstrap_container_instance.md)\.
-
-1. Follow the container instance launch instructions at [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
-
-1. On [Step 7](launch_container_instance.md#instance-launch-user-data-step), pass the following user data to configure your instance\. If you are not using the `default` cluster, be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name\.
-
-   ```
-   Content-Type: multipart/mixed; boundary="==BOUNDARY=="
-   MIME-Version: 1.0
-   
-   --==BOUNDARY==
-   Content-Type: text/cloud-boothook; charset="us-ascii"
-   
-   # Install amazon-efs-utils
-   cloud-init-per once yum_update yum update -y
-   cloud-init-per once install_amazon-efs-utils yum install -y amazon-efs-utils
-   
-   # Create /efs folder
-   cloud-init-per once mkdir_efs mkdir /efs
-   
-   # Mount /efs
-   cloud-init-per once mount_efs echo -e 'fs-12345678:/ /efs efs defaults,_netdev 0 0' >> /etc/fstab
-   mount -a
-   
-   --==BOUNDARY==
-   Content-Type: text/x-shellscript; charset="us-ascii"
-   
-   #!/bin/bash
-   # Set any ECS agent configuration options
-   echo "ECS_CLUSTER=default" >> /etc/ecs/ecs.config
-   
-   --==BOUNDARY==--
-   ```
-
-## Step 5: Create a Task Definition to Use the Amazon EFS File System<a name="efs-task-def"></a>
+## Step 4: Create a Task Definition to Use the Amazon EFS File System<a name="efs-task-def"></a>
 
 Because the file system is mounted on the host container instance, you must create a volume mount in your Amazon ECS task definition that allows your containers to access the file system\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
 
@@ -175,36 +96,37 @@ The following task definition creates a data volume called `efs-html` at `/efs/h
 
 ```
 {
-  "containerDefinitions": [
-    {
-      "memory": 128,
-      "portMappings": [
+    "containerDefinitions": [
         {
-          "hostPort": 80,
-          "containerPort": 80,
-          "protocol": "tcp"
+            "memory": 128,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "mountPoints": [
+                {
+                    "containerPath": "/usr/share/nginx/html",
+                    "sourceVolume": "efs-html"
+                }
+            ],
+            "name": "nginx",
+            "image": "nginx"
         }
-      ],
-      "essential": true,
-      "mountPoints": [
+    ],
+    "volumes": [
         {
-          "containerPath": "/usr/share/nginx/html",
-          "sourceVolume": "efs-html"
+            "name": "efs-html",
+            "efsVolumeConfiguration": {
+                "fileSystemId": "fs-1234",
+                "rootDirectory": "/path/to/my/data"
+            }
         }
-      ],
-      "name": "nginx",
-      "image": "nginx"
-    }
-  ],
-  "volumes": [
-    {
-      "host": {
-        "sourcePath": "/efs/html"
-      },
-      "name": "efs-html"
-    }
-  ],
-  "family": "nginx-efs"
+    ],
+    "family": "nginx-efs"
 }
 ```
 
@@ -214,7 +136,7 @@ You can save this task definition to a file called `nginx-efs.json` and register
 aws ecs register-task-definition --cli-input-json file://nginx-efs.json
 ```
 
-## Step 6: Add Content to the Amazon EFS File System<a name="efs-add-content"></a>
+## Step 5: Add Content to the Amazon EFS File System<a name="efs-add-content"></a>
 
 For the NGINX example task, you created a directory at `/efs/html` on the container instance to host the web content\. Before the NGINX containers can serve any web content, you must add the content to the file system\. In this section, you log in to a container instance and add an `index.html` file\.
 
@@ -235,7 +157,7 @@ For the NGINX example task, you created a directory at `/efs/html` on the contai
    EOF
    ```
 
-## Step 7: Run a Task and View the Results<a name="efs-run-task"></a>
+## Step 6: Run a Task and View the Results<a name="efs-run-task"></a>
 
 Now that your Amazon EFS file system is available on your container instances and there is web content for the NGINX containers to serve, you can run a task using the task definition that you created earlier\. The NGINX web servers serve your simple HTML page\. If you update the content in your Amazon EFS file system, those changes are propagated to any containers that have also mounted that file system\.
 

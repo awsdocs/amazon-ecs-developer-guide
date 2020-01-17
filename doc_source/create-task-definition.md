@@ -186,7 +186,7 @@ An empty task definition template is shown below\. You can use this template to 
     "family": "",
     "taskRoleArn": "",
     "executionRoleArn": "",
-    "networkMode": "bridge",
+    "networkMode": "host",
     "containerDefinitions": [
         {
             "name": "",
@@ -204,7 +204,7 @@ An empty task definition template is shown below\. You can use this template to 
                 {
                     "containerPort": 0,
                     "hostPort": 0,
-                    "protocol": "tcp"
+                    "protocol": "udp"
                 }
             ],
             "essential": true,
@@ -274,7 +274,7 @@ An empty task definition template is shown below\. You can use this template to 
             "dependsOn": [
                 {
                     "containerName": "",
-                    "condition": "COMPLETE"
+                    "condition": "HEALTHY"
                 }
             ],
             "startTimeout": 0,
@@ -313,7 +313,7 @@ An empty task definition template is shown below\. You can use this template to 
                 }
             ],
             "logConfiguration": {
-                "logDriver": "journald",
+                "logDriver": "splunk",
                 "options": {
                     "KeyName": ""
                 },
@@ -342,7 +342,7 @@ An empty task definition template is shown below\. You can use this template to 
             "resourceRequirements": [
                 {
                     "value": "",
-                    "type": "GPU"
+                    "type": "InferenceAccelerator"
                 }
             ],
             "firelensConfiguration": {
@@ -360,7 +360,7 @@ An empty task definition template is shown below\. You can use this template to 
                 "sourcePath": ""
             },
             "dockerVolumeConfiguration": {
-                "scope": "task",
+                "scope": "shared",
                 "autoprovision": true,
                 "driver": "",
                 "driverOpts": {
@@ -369,6 +369,10 @@ An empty task definition template is shown below\. You can use this template to 
                 "labels": {
                     "KeyName": ""
                 }
+            },
+            "efsVolumeConfiguration": {
+                "fileSystemId": "",
+                "rootDirectory": ""
             }
         }
     ],
@@ -379,7 +383,7 @@ An empty task definition template is shown below\. You can use this template to 
         }
     ],
     "requiresCompatibilities": [
-        "EC2"
+        "FARGATE"
     ],
     "cpu": "",
     "memory": "",
@@ -389,8 +393,8 @@ An empty task definition template is shown below\. You can use this template to 
             "value": ""
         }
     ],
-    "pidMode": "host",
-    "ipcMode": "task",
+    "pidMode": "task",
+    "ipcMode": "host",
     "proxyConfiguration": {
         "type": "APPMESH",
         "containerName": "",
@@ -400,7 +404,13 @@ An empty task definition template is shown below\. You can use this template to 
                 "value": ""
             }
         ]
-    }
+    },
+    "inferenceAccelerators": [
+        {
+            "deviceName": "",
+            "deviceType": ""
+        }
+    ]
 }
 ```
 

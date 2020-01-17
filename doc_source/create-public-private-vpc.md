@@ -26,7 +26,7 @@ The VPC wizard automatically creates and configures most of your VPC resources f
 
 1. In the left navigation pane, choose **VPC Dashboard**\.
 
-1. Choose **Start VPC Wizard**, **VPC with Public and Private Subnets**, **Select**\.
+1. Choose **Launch VPC Wizard**, **VPC with Public and Private Subnets**, **Select**\.
 
 1. For **VPC name**, give your VPC a unique name\.
 
@@ -35,6 +35,18 @@ The VPC wizard automatically creates and configures most of your VPC resources f
 1. Choose **Create VPC**\.
 
 1. When the wizard is finished, choose **OK**\. Note the Availability Zone in which your VPC subnets were created\. Your additional subnets should be created in a different Availability Zone\.
+
+   Non\-default subnets, such as those created by the VPC wizard, are not auto\-assigned public IPv4 addresses\. Instances launched in the public subnet must be assigned a public IPv4 address to communicate with the Amazon ECS service endpoint\.
+
+**To modify your public subnet's IPv4 addressing behavior**
+
+1. In the left navigation pane, choose **Subnets**\.
+
+1. Select the public subnet for your VPC By default, the name created by the VPC wizard is **Public subnet**\.
+
+1. Choose **Actions**, **Modify auto\-assign IP settings**\.
+
+1. Select the **Enable auto\-assign public IPv4 address** check box, and then choose **Save**\.
 
 ## Step 3: Create Additional Subnets<a name="create-add-subnets"></a>
 

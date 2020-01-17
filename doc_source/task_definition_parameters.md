@@ -794,6 +794,16 @@ Type: String
 Required: No  
 The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints`\.
 
+`host`  
+Required: No  
+This parameter is specified when using bind mounts\. To use Docker volumes, specify a `dockerVolumeConfiguration` instead\. The contents of the `host` parameter determine whether your bind mount data volume persists on the host container instance and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
+Bind mount host volumes are supported when using either the EC2 or Fargate launch types\.  
+Windows containers can mount whole directories on the same drive as `$env:ProgramData`\.    
+`sourcePath`  
+Type: String  
+Required: No  
+When the `host` parameter is used, specify a `sourcePath` to declare the path on the host container instance that is presented to the container\. If this parameter is empty, then the Docker daemon has assigned a host path for you\. If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host container instance until you delete it manually\. If the `sourcePath` value does not exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\.
+
 `dockerVolumeConfiguration`  
 Type: Object  
 Required: No  
@@ -821,15 +831,18 @@ Type: String
 Required: No  
 Custom metadata to add to your Docker volume\. This parameter maps to `Labels` in the [Create a volume](https://docs.docker.com/engine/api/v1.38/#operation/VolumeCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--label` option to [https://docs.docker.com/engine/reference/commandline/volume_create/](https://docs.docker.com/engine/reference/commandline/volume_create/)\.
 
-`host`  
+`efsVolumeConfiguration`  
+Type: Object  
 Required: No  
-This parameter is specified when using bind mounts\. To use Docker volumes, specify a `dockerVolumeConfiguration` instead\. The contents of the `host` parameter determine whether your bind mount data volume persists on the host container instance and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
-Bind mount host volumes are supported when using either the EC2 or Fargate launch types\.  
-Windows containers can mount whole directories on the same drive as `$env:ProgramData`\.    
-`sourcePath`  
+This parameter is specified when using Amazon EFS volumes\. Amazon EFS volumes are only supported when using the EC2 launch type\.    
+`fileSystemId`  
+Type: String  
+Required: Yes  
+The Amazon EFS file system ID to use\.  
+`rootDirectory`  
 Type: String  
 Required: No  
-When the `host` parameter is used, specify a `sourcePath` to declare the path on the host container instance that is presented to the container\. If this parameter is empty, then the Docker daemon has assigned a host path for you\. If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host container instance until you delete it manually\. If the `sourcePath` value does not exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\.
+The directory within the Amazon EFS file system to mount as the root directory inside the host\.
 
 ## Task Placement Constraints<a name="constraints"></a>
 
