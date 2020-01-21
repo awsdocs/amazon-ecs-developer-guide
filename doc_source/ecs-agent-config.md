@@ -394,6 +394,12 @@ Default value on Linux: `24`
 Default value on Windows: `24`  
 Determines the number of rotated log files to keep\. Older log files are deleted once this limit is reached\.
 
+`NON_ECS_IMAGE_MINIMUM_CLEANUP_AGE`
+Example values: `30m`
+Default value on Linux: `1h`
+Default Value on Windows: `1h`
+The minimum time interval between when a non ECS image is pulled and when it can be considered for automated cleanup\.
+
 ## Storing Container Instance Configuration in Amazon S3<a name="ecs-config-s3"></a>
 
 Amazon ECS container agent configuration is controlled with the environment variables described in the previous section\. Linux variants of the Amazon ECS\-optimized AMI look for these variables in `/etc/ecs/ecs.config` when the container agent starts and configure the agent accordingly\. Certain innocuous environment variables, such as `ECS_CLUSTER`, can be passed to the container instance at launch through Amazon EC2 user data and written to this file without consequence\. However, other sensitive information, such as your AWS credentials or the `ECS_ENGINE_AUTH_DATA` variable, should never be passed to an instance in user data or written to `/etc/ecs/ecs.config` in a way that would allow them to show up in a `.bash_history` file\.
