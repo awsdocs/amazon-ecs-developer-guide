@@ -34,7 +34,7 @@ A *listener* is a process that checks for connection requests\. It is configured
 
 ## Configure Routing<a name="nlb-configure-routing"></a>
 
-You register targets, such as Amazon EC2 instances, with a target group\. The target group that you configure in this step is used as the target group in the listener rule, which forwards requests to the target group\. For more information, see [Target Groups for Your Network Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html)\.
+You register targets, such as Amazon EC2 instances, with a target group\. The target group that you configure in this step is used as the target group in the listener rule, which forwards requests to the target group\. For more information, see [Target Groups for Your Network Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html) in the *User Guide for Network Load Balancers*\.
 
 **To configure your target group**
 

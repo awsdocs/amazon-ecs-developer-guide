@@ -4,8 +4,9 @@ Service discovery has been integrated into the Create Service wizard in the Amaz
 
 The following tutorial shows how to create an ECS service containing a Fargate task that uses service discovery with the AWS CLI\.
 
-**Note**  
-Fargate tasks are only supported in the following Regions:  
+For a list of Regions that support service discovery, see [Service Discovery](service-discovery.md)\.
+
+Fargate tasks are only supported in the following Regions:
 
 
 | Region Name | Region | 
@@ -23,22 +24,15 @@ Fargate tasks are only supported in the following Regions:
 | Canada \(Central\) | ca\-central\-1 | 
 | China \(Beijing\) | cn\-north\-1 | 
 | China \(Ningxia\) | cn\-northwest\-1 | 
-| EU \(Frankfurt\) | eu\-central\-1 | 
-| EU \(Ireland\) | eu\-west\-1 | 
-| EU \(London\) | eu\-west\-2 | 
-| EU \(Paris\) | eu\-west\-3 | 
-| EU \(Stockholm\) | eu\-north\-1 | 
+| Europe \(Frankfurt\) | eu\-central\-1 | 
+| Europe \(Ireland\) | eu\-west\-1 | 
+| Europe \(London\) | eu\-west\-2 | 
+| Europe \(Paris\) | eu\-west\-3 | 
+| Europe \(Stockholm\) | eu\-north\-1 | 
 | South America \(São Paulo\) | sa\-east\-1 | 
 | Middle East \(Bahrain\) | me\-south\-1 | 
 | AWS GovCloud \(US\-East\) | us\-gov\-east\-1 | 
-| AWS GovCloud \(US\) | us\-gov\-west\-1 | 
-
-**Topics**
-+ [Prerequisites](#create-service-discovery-prereqs)
-+ [Step 1: Create the Service Discovery Resources](#create-service-discovery-namespace)
-+ [Step 2: Create the Amazon ECS Resources](#create-service-discovery-cluster)
-+ [Step 3: Verify Service Discovery](#create-service-discovery-verify)
-+ [Step 4: Clean Up](#create-service-discovery-cleanup)
+| AWS GovCloud \(US\-West\) | us\-gov\-west\-1 | 
 
 ## Prerequisites<a name="create-service-discovery-prereqs"></a>
 

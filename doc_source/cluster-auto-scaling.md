@@ -13,6 +13,8 @@ Amazon ECS cluster auto scaling enables you to have more control over how you sc
 The following should be considered when using cluster auto scaling:
 + The Amazon ECS service\-linked IAM role is required to use cluster auto scaling\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\.
 + When using capacity providers with Auto Scaling groups, the `autoscaling:CreateOrUpdateTags` permission is needed on the IAM user creating the capacity provider\. This is because Amazon ECS adds a tag to the Auto Scaling group when it associates it with the capacity provider\.
+**Important**  
+Ensure any tooling you use does not remove the `AmazonECSManaged` tag from the Auto Scaling group\. If this tag is removed, Amazon ECS is not able to manage it when scaling your cluster\.
 
 ## Auto Scaling Group Capacity Providers<a name="asg-capacity-providers"></a>
 
@@ -30,7 +32,7 @@ Amazon ECS capacity providers use Auto Scaling groups to manage the Amazon EC2 i
 The following should be considered when using Auto Scaling group capacity providers\.
 + It is recommended that you create a new Auto Scaling group to use with a capacity provider rather than using an existing one\. If you use an existing Auto Scaling group, any Amazon EC2 instances associated with the group that were already running and registered to an Amazon ECS cluster prior to the Auto Scaling group being used to create a capacity provider may not be properly registered with the capacity provider\. This may cause issues when using the capacity provider in a capacity provider strategy\. The DescribeContainerInstances API can confirm that a container instance is associated with a capacity provider\.
 + An Auto Scaling group must have a `MaxSize` greater than zero to scale out\.
-+ Managed scaling is only supported in Regions that AWS Auto Scaling is available in\. For a list of supported Regions, see [AWS Auto Scaling Regions](https://docs.aws.amazon.com/general/latest/gr/rande.html#autoscaling_region) in the *Amazon Web Services General Reference*\.
++ Managed scaling is only supported in Regions that AWS Auto Scaling is available in\. For a list of supported Regions, see [AWS Auto Scaling Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/autoscaling_region.html) in the *Amazon Web Services General Reference*\.
 + When using managed termination protection, managed scaling must also be used otherwise managed termination protection will not work\.
 
 ### Using Managed Scaling<a name="asg-capacity-providers-managed-scaling"></a>

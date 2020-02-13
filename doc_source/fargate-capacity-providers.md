@@ -125,8 +125,8 @@ Use the following command to run a task using the Fargate and Fargate Spot capac
        --capacity-provider-strategy capacityProvider=FARGATE,weight=1 capacityProvider=FARGATE_SPOT,weight=1 \
        --cluster FargateCluster \
        --task-definition task-def-family:revision \
-       --count integer \
        --network-configuration "awsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}" \
+       --count integer \
        --region us-west-2
   ```
 
@@ -141,7 +141,7 @@ Use the following command to create a service using the Fargate and Fargate Spot
        --cluster FargateCluster \
        --service-name FargateService \
        --task-definition task-def-family:revision \
-       --desired-count integer \
        --network-configuration "awsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}" \
+       --desired-count integer \
        --region us-west-2
   ```

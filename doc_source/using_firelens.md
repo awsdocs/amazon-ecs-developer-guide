@@ -88,13 +88,13 @@ The **AWS for Fluent Bit** image is available on [Docker Hub](https://hub.docker
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  |  `906394416424.dkr.ecr.ap-southeast-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
 |  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1  |  `906394416424.dkr.ecr.ap-northeast-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
 |  Canada \(Central\)  |  ca\-central\-1  |  `906394416424.dkr.ecr.ca-central-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  EU \(Frankfurt\)  |  eu\-central\-1  |  `906394416424.dkr.ecr.eu-central-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  EU \(Ireland\)  |  eu\-west\-1  |  `906394416424.dkr.ecr.eu-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  EU \(London\)  |  eu\-west\-2  |  `906394416424.dkr.ecr.eu-west-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  EU \(Paris\)  |  eu\-west\-3  |  `906394416424.dkr.ecr.eu-west-3.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  EU \(Stockholm\)  |  eu\-north\-1  |  `906394416424.dkr.ecr.eu-north-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Europe \(Frankfurt\)  |  eu\-central\-1  |  `906394416424.dkr.ecr.eu-central-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Europe \(Ireland\)  |  eu\-west\-1  |  `906394416424.dkr.ecr.eu-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Europe \(London\)  |  eu\-west\-2  |  `906394416424.dkr.ecr.eu-west-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Europe \(Paris\)  |  eu\-west\-3  |  `906394416424.dkr.ecr.eu-west-3.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  Europe \(Stockholm\)  |  eu\-north\-1  |  `906394416424.dkr.ecr.eu-north-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  |  `741863432321.dkr.ecr.me-south-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  South America \(Sao Paulo\)  |  sa\-east\-1  |  `906394416424.dkr.ecr.sa-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
+|  South America \(São Paulo\)  |  sa\-east\-1  |  `906394416424.dkr.ecr.sa-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
 |  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  |  `161423150738.dkr.ecr.us-gov-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
 |  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  |  `161423150738.dkr.ecr.us-gov-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
 |  China \(Beijing\)  |  cn\-north\-1  |  `128054284489.dkr.ecr.cn-north-1.amazonaws.com.cn/aws-for-fluent-bit:latest`  | 

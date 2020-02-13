@@ -51,34 +51,6 @@ Output:
 
 You must have an Amazon ECS container instance in your cluster before you can run tasks on it\. If you do not have any container instances in your cluster, see [Launching an Amazon ECS Container Instance](launch_container_instance.md) for more information\.
 
-The following table lists the current Amazon ECS\-optimized Amazon Linux AMI IDs by Region\.
-
-
-|  Region Name  |  Region  |  AMI ID  | 
-| --- | --- | --- | 
-|  US East \(Ohio\)  |  `us-east-2`  |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=us-east-2#)  | 
-|  US East \(N\. Virginia\)  |  `us-east-1`  |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=us-east-1#)  | 
-|  US West \(N\. California\)  |  `us-west-1`  |  [View AMI ID](https://us-west-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=us-west-1#)  | 
-|  US West \(Oregon\)  |  `us-west-2`  |  [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=us-west-2#)  | 
-|  Asia Pacific \(Hong Kong\)  |  `ap-east-1`  |  [View AMI ID](https://ap-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=ap-east-1#)  | 
-|  Asia Pacific \(Tokyo\)  | ap\-northeast\-1 |  [View AMI ID](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=ap-northeast-1#)  | 
-|  Asia Pacific \(Seoul\)  | ap\-northeast\-2 |  [View AMI ID](https://ap-northeast-2.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=ap-northeast-2#)  | 
-|  Asia Pacific \(Mumbai\)  | ap\-south\-1 |  [View AMI ID](https://ap-south-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=ap-south-1#)  | 
-|  Asia Pacific \(Singapore\)  | ap\-southeast\-1 |  [View AMI ID](https://ap-southeast-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=ap-southeast-1#)  | 
-|  Asia Pacific \(Sydney\)  | ap\-southeast\-2 |  [View AMI ID](https://ap-southeast-2.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=ap-southeast-2#)  | 
-|  Canada \(Central\)  | ca\-central\-1 |  [View AMI ID](https://ca-central-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=ca-central-1#)  | 
-|  EU \(Frankfurt\)  | eu\-central\-1 |  [View AMI ID](https://eu-central-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=eu-central-1#)  | 
-|  EU \(Stockholm\)  | eu\-north\-1 |  [View AMI ID](https://eu-north-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=eu-north-1#)  | 
-|  EU \(Ireland\)  | eu\-west\-1 |  [View AMI ID](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=eu-west-1#)  | 
-|  EU \(London\)  | eu\-west\-2 |  [View AMI ID](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=eu-west-2#)  | 
-|  EU \(Paris\)  | eu\-west\-3 |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=eu-west-3#)  | 
-|  Middle East \(Bahrain\)  | me\-south\-1 |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=me-south-1#)  | 
-|  South America \(Sao Paulo\)  | sa\-east\-1 |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=sa-east-1#)  | 
-|  AWS GovCloud \(US\-East\)  | us\-gov\-east\-1 |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=us-gov-east-1#)  | 
-|  AWS GovCloud \(US\-West\)  | us\-gov\-west\-1 |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=us-gov-west-1#)  | 
-|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=cn-north-1#)  | 
-|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux%252Frecommended%252Fimage_id/description?region=cn-northwest-1#)  | 
-
 ## Step 3: List Container Instances<a name="AWSCLI_EC2_list_container_instances"></a>
 
 Within a few minutes of launching your container instance, the Amazon ECS agent registers the instance with your default cluster\. You can list the container instances in a cluster by running the following command:

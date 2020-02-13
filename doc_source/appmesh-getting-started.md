@@ -1,6 +1,6 @@
 # Getting Started with AWS App Mesh and Amazon ECS<a name="appmesh-getting-started"></a>
 
-AWS App Mesh is a service mesh based on the [Envoy](https://www.envoyproxy.io/) proxy that helps you monitor and control services\. App Mesh standardizes how your services communicate, giving you end\-to\-end visibility into and helping to ensure high\-availability for your applications\. App Mesh gives you consistent visibility and network traffic controls for every service in an application\. For more information, see the [AWS App Mesh User Guide](https://docs.aws.amazon.com//app-mesh/latest/userguide/)\.
+AWS App Mesh is a service mesh based on the [Envoy](https://www.envoyproxy.io/) proxy that helps you monitor and control services\. App Mesh standardizes how your services communicate, giving you end\-to\-end visibility into and helping to ensure high\-availability for your applications\. App Mesh gives you consistent visibility and network traffic controls for every service in an application\. For more information, see the [AWS App Mesh User Guide](https://docs.aws.amazon.com/app-mesh/latest/userguide/)\.
 
 This topic helps you use AWS App Mesh with an actual service that is running on Amazon ECS\. 
 
@@ -29,7 +29,7 @@ The remaining steps assume that the actual services are named `serviceA`, `servi
 
 ## Step 1: Create a Mesh and Virtual Service<a name="create-mesh-and-virtual-service"></a>
 
-A service mesh is a logical boundary for network traffic between the services that reside within it\. For more information, see [Service Meshes](https://docs.aws.amazon.com//app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\. A virtual service is an abstraction of an actual service\. For more information, see [Virtual Services](https://docs.aws.amazon.com//app-mesh/latest/userguide/virtual_services.html) in the *AWS App Mesh User Guide*\. 
+A service mesh is a logical boundary for network traffic between the services that reside within it\. For more information, see [Service Meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\. A virtual service is an abstraction of an actual service\. For more information, see [Virtual Services](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_services.html) in the *AWS App Mesh User Guide*\. 
 
 Create the following resources:
 + A mesh named `apps`, since all of the services in the scenario are registered to the `apps.local` namespace\.
@@ -67,7 +67,7 @@ You can use the AWS Management Console or the AWS CLI version 1\.16\.266 or high
 
 ## Step 2: Create a Virtual Node<a name="create-virtual-node"></a>
 
-A virtual node acts as a logical pointer to an actual service\. For more information, see [Virtual Nodes](https://docs.aws.amazon.com//app-mesh/latest/userguide/virtual_nodes.html) *in the AWS App Mesh User Guide*\. 
+A virtual node acts as a logical pointer to an actual service\. For more information, see [Virtual Nodes](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_nodes.html) *in the AWS App Mesh User Guide*\. 
 
 Create a virtual node named `serviceB`, since one of the virtual nodes represents the actual service named `serviceB`\. The actual service that the virtual node represents is discoverable through `DNS` with a hostname of `serviceb.apps.local`\. Alternately, you can discover actual services using AWS Cloud Map\. The virtual node will listen for traffic using the HTTP/2 protocol on port 80\. Other protocols are also supported, as are health checks\. You will create virtual nodes for `serviceA` and `serviceBv2` in a later step\.
 
@@ -119,7 +119,7 @@ Create a virtual node named `serviceB`, since one of the virtual nodes represent
 
 ## Step 3: Create a Virtual Router and Route<a name="create-virtual-router-and-route"></a>
 
-Virtual routers route traffic for one or more virtual services within your mesh\. For more information, see [Virtual Routers](https://docs.aws.amazon.com//app-mesh/latest/userguide/virtual_routers.html) and [Routes](https://docs.aws.amazon.com//app-mesh/latest/userguide/routes.html) in the *AWS App Mesh User Guide*\.
+Virtual routers route traffic for one or more virtual services within your mesh\. For more information, see [Virtual Routers](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_routers.html) and [Routes](https://docs.aws.amazon.com/app-mesh/latest/userguide/routes.html) in the *AWS App Mesh User Guide*\.
 
 Create the following resources:
 + A virtual router named `serviceB`, since the `serviceB.apps.local` virtual service doesn't initiate outbound communication with any other service\. Remember that the virtual service that you created previously is an abstraction of your actual `serviceb.apps.local` service\. The virtual service sends traffic to the virtual router\. The virtual router will listen for traffic using the HTTP/2 protocol on port 80\. Other protocols are also supported\. 
@@ -466,11 +466,11 @@ Before you created the service mesh, you had three actual services named `servic
 ## Step 6: Update Services<a name="update-services"></a>
 
 After creating your mesh, you need to complete the following tasks:
-+ Authorize the Envoy proxy that you deploy with each Amazon ECS task to read the configuration of one or more virtual nodes\. For more information about how to authorize the proxy, see [Proxy authorization](https://docs.aws.amazon.com//app-mesh/latest/userguide/proxy-authorization.html)\.
++ Authorize the Envoy proxy that you deploy with each Amazon ECS task to read the configuration of one or more virtual nodes\. For more information about how to authorize the proxy, see [Proxy authorization](https://docs.aws.amazon.com/app-mesh/latest/userguide/proxy-authorization.html)\.
 + Update each of your existing Amazon ECS task definitions to use the Envoy proxy\. 
 
 **Credentials**  
-The Envoy container requires AWS Identity and Access Management credentials for signing requests that are sent to the App Mesh service\. For Amazon ECS tasks deployed with the Amazon EC2 launch type, the credentials can come from the [instance role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html) or from a [task IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)\. Amazon ECS tasks deployed with the Fargate launch type do not have access to the Amazon EC2 metadata server that supplies instance IAM profile credentials\. To supply the credentials, you must attach an IAM task role to any tasks deployed with the Fargate launch type\. If a task is deployed with the Amazon EC2 launch type and access is blocked to the Amazon EC2 metadata server, as described in the *Important* annotation in [IAM Role for Tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html), then a task IAM role must also be attached to the task\. The role that you assign to the instance or task must have an IAM policy attached to it as described in [Proxy authorization](https://docs.aws.amazon.com//app-mesh/latest/userguide/proxy-authorization.html)\.
+The Envoy container requires AWS Identity and Access Management credentials for signing requests that are sent to the App Mesh service\. For Amazon ECS tasks deployed with the Amazon EC2 launch type, the credentials can come from the [instance role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html) or from a [task IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)\. Amazon ECS tasks deployed with the Fargate launch type do not have access to the Amazon EC2 metadata server that supplies instance IAM profile credentials\. To supply the credentials, you must attach an IAM task role to any tasks deployed with the Fargate launch type\. If a task is deployed with the Amazon EC2 launch type and access is blocked to the Amazon EC2 metadata server, as described in the *Important* annotation in [IAM Role for Tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html), then a task IAM role must also be attached to the task\. The role that you assign to the instance or task must have an IAM policy attached to it as described in [Proxy authorization](https://docs.aws.amazon.com/app-mesh/latest/userguide/proxy-authorization.html)\.
 
 **Update task definitions**  
 You can update your task definitions by using the AWS Management Console or by modifying the JSON file for a task definition\. The following steps only show updating the `taskB` task for the scenario\. You also need to update the `taskBv2` and `taskA` tasks by changing the values appropriately\. Select the method you prefer to use to update the task definition\.
@@ -492,7 +492,7 @@ You can update your task definitions by using the AWS Management Console or by m
 
       1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-      1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.2\.1\-prod\.
+      1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.2\.1\-prod\. You can replace *us\-west\-2* with any Region that App Mesh is supported in, except for the `me-south-1` Region\. For a list of supported Regions, see [App Mesh Endpoints and Quotas](https://docs.aws.amazon.com/general/latest/gr/appmesh.html)\. To use the image for the `me-south-1` Region, replace *840364872350* with `772975370895` and replace *us\-west\-2* with `me-south-1`\.
 
       1. For **Mesh name**, choose the App Mesh service mesh to use\. In this topic, the name of the mesh that was created is `apps.`
 
@@ -587,7 +587,7 @@ The application containers in your task definitions must wait for the Envoy prox
 ```
 
 **Envoy Container Definition**  
-Your Amazon ECS task definitions must contain the [App Mesh Envoy container image](https://docs.aws.amazon.com//app-mesh/latest/userguide/envoy.html) below\. You can replace the *us\-west\-2* with any Region that App Mesh is supported in\. For a list of supported regions, see [AWS Service Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#appmesh_region)\.
+Your Amazon ECS task definitions must contain the [App Mesh Envoy container image](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html) below\. You can replace *us\-west\-2* with any Region that App Mesh is supported in, except for the `me-south-1` Region\. For a list of supported Regions, see [App Mesh Endpoints and Quotas](https://docs.aws.amazon.com/general/latest/gr/appmesh.html)\. To use the image for the `me-south-1` Region, replace *840364872350* with `772975370895` and replace *us\-west\-2* with `me-south-1`\.
 
 ```
 840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.2.1-prod
@@ -595,9 +595,7 @@ Your Amazon ECS task definitions must contain the [App Mesh Envoy container imag
 
 All of the properties in the following example are required\. Some of the property values are also required, but some are *replaceable*\. The Envoy container definition must be marked as `essential`\. The virtual node name for the Amazon ECS service must be set to the value of the `APPMESH_VIRTUAL_NODE_NAME` property\. The value for the `user` setting must match the `IgnoredUID` value from the task definition proxy configuration\. In this example, we use `1337`\. The health check shown here waits for the Envoy container to bootstrap properly before reporting to Amazon ECS that the Envoy container is healthy and ready for the application containers to start\.
 
-The following code shows an Envoy container definition example\. You can replace *us\-west\-2* with any Region that App Mesh is supported in\. For a list of supported regions, see [AWS Service Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#appmesh_region)\.
-
-You must use the App Mesh Envoy container image until the Envoy project team merges changes that support App Mesh\. For additional details, see the [GitHub roadmap issue](https://github.com/aws/aws-app-mesh-roadmap/issues/10)\.
+The following code shows an Envoy container definition example\.
 
 ```
 {
@@ -623,7 +621,7 @@ You must use the App Mesh Envoy container image until the Envoy project team mer
 ```
 
 **Example Task Definitions**  
-The following example Amazon ECS task definitions show how to merge the examples from above into a task definition for `taskB`\. Examples are provided for creating tasks for both Amazon ECS launch types with or without using AWS X\-Ray\. Change the *replaceable* values, as appropriate, to create task definitions for the tasks named `taskBv2` and `taskA` from the scenario\. Substitute your mesh name and virtual node name for the `APPMESH_VIRTUAL_NODE_NAME` value and a list of ports that your application listens on for the proxy configuration `AppPorts` value\. All of the properties in the following examples are required\. Some of the property values are also required, but some are *replaceable*\. 
+The following example Amazon ECS task definitions show how to merge the examples from above into a task definition for `taskB`\. Examples are provided for creating tasks for both Amazon ECS launch types with or without using AWS X\-Ray\. Change the *replaceable* values, as appropriate, to create task definitions for the tasks named `taskBv2` and `taskA` from the scenario\. Substitute your mesh name and virtual node name for the `APPMESH_VIRTUAL_NODE_NAME` value and a list of ports that your application listens on for the proxy configuration `AppPorts` value\. All of the properties in the following examples are required\. Some of the property values are also required, but some are *replaceable*\.
 
 If you're running an Amazon ECS task as described in the Credentials section, then you need to add an existing [task IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html), to the examples\.
 
@@ -715,7 +713,7 @@ If you're running an Amazon ECS task as described in the Credentials section, th
 ```
 
 **Example JSON for Amazon ECS task definition with AWS X\-Ray \- Fargate launch type**  
-X\-Ray allows you to collect data about requests that an application serves and provides tools that you can use to visualize traffic flow\. Using the X\-Ray driver for Envoy enables Envoy to report tracing information to X\-Ray\. You can enable X\-Ray tracing using the [Envoy configuration](https://docs.aws.amazon.com//app-mesh/latest/userguide/envoy.html)\. Based on the configuration, Envoy sends tracing data to the X\-Ray daemon running as a [sidecar](https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon-ecs.html) container and the daemon forwards the traces to the X\-Ray service\. Once the traces are published to X\-Ray, you can use the X\-Ray console to visualize the service call graph and request trace details\. The following JSON represents a task definition to enable X\-Ray integration\.  
+X\-Ray allows you to collect data about requests that an application serves and provides tools that you can use to visualize traffic flow\. Using the X\-Ray driver for Envoy enables Envoy to report tracing information to X\-Ray\. You can enable X\-Ray tracing using the [Envoy configuration](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html)\. Based on the configuration, Envoy sends tracing data to the X\-Ray daemon running as a [sidecar](https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon-ecs.html) container and the daemon forwards the traces to the X\-Ray service\. Once the traces are published to X\-Ray, you can use the X\-Ray console to visualize the service call graph and request trace details\. The following JSON represents a task definition to enable X\-Ray integration\.  
 
 ```
 {
@@ -908,7 +906,7 @@ X\-Ray allows you to collect data about requests that an application serves and 
 ```
 
 **Example JSON for Amazon ECS task definition with AWS X\-Ray \- EC2 launch type**  
-X\-Ray allows you to collect data about requests that an application serves and provides tools that you can use to visualize traffic flow\. Using the X\-Ray driver for Envoy enables Envoy to report tracing information to X\-Ray\. You can enable X\-Ray tracing using the [Envoy configuration](https://docs.aws.amazon.com//app-mesh/latest/userguide/envoy.html)\. Based on the configuration, Envoy sends tracing data to the X\-Ray daemon running as a [sidecar](https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon-ecs.html) container and the daemon forwards the traces to the X\-Ray service\. Once the traces are published to X\-Ray, you can use the X\-Ray console to visualize the service call graph and request trace details\. The following JSON represents a task definition to enable X\-Ray integration\.  
+X\-Ray allows you to collect data about requests that an application serves and provides tools that you can use to visualize traffic flow\. Using the X\-Ray driver for Envoy enables Envoy to report tracing information to X\-Ray\. You can enable X\-Ray tracing using the [Envoy configuration](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html)\. Based on the configuration, Envoy sends tracing data to the X\-Ray daemon running as a [sidecar](https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon-ecs.html) container and the daemon forwards the traces to the X\-Ray service\. Once the traces are published to X\-Ray, you can use the X\-Ray console to visualize the service call graph and request trace details\. The following JSON represents a task definition to enable X\-Ray integration\.  
 
 ```
 {

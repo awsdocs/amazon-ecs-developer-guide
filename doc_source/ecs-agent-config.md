@@ -224,6 +224,12 @@ Default value on Linux: `1h`
 Default value on Windows: `1h`  
 The minimum time interval between when an image is pulled and when it can be considered for automated image cleanup\.
 
+`NON_ECS_IMAGE_MINIMUM_CLEANUP_AGE`  
+Example values: `30m`  
+Default value on Linux: `1h`  
+Default value on Windows: `1h`  
+The minimum time interval between when a non\-Amazon ECS image is created and when it can be considered for automated image cleanup\.
+
 `ECS_NUM_IMAGES_DELETE_PER_CYCLE`  
 Example values: `5`  
 Default value on Linux: `5`  
@@ -387,12 +393,6 @@ Example values: `24`
 Default value on Linux: `24`  
 Default value on Windows: `24`  
 Determines the number of rotated log files to keep\. Older log files are deleted once this limit is reached\.
-
-`NON_ECS_IMAGE_MINIMUM_CLEANUP_AGE`
-Example values: `30m`
-Default value on Linux: `1h`
-Default Value on Windows: `1h`
-The minimum time interval between when a non ECS image is pulled and when it can be considered for automated cleanup\.
 
 ## Storing Container Instance Configuration in Amazon S3<a name="ecs-config-s3"></a>
 

@@ -159,13 +159,3 @@ If the previous command does not return the `ECS_DATADIR` environment variable, 
    ```
    curl http://localhost:51678/v1/metadata
    ```
-
-   Output:
-
-   ```
-   {
-     "Cluster": "default",
-     "ContainerInstanceArn": "<container_instance_ARN>",
-     "Version": "Amazon ECS Agent - v1.32.0 (a7f81040)"
-   }
-   ```

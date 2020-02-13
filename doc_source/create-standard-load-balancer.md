@@ -59,9 +59,9 @@ Also assign this security group to container instances in your service, or anoth
 
 For this tutorial, you can choose **Next: Configure Health Check** to continue to the next step\. For more information about creating an HTTPS load balancer and using additional security features, see [HTTPS Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-https-load-balancers.html) in the *User Guide for Classic Load Balancers*\.
 
-## Configure Health Checks for Your EC2 Instances<a name="configure-health-check"></a>
+## Configure Health Checks for Your Amazon EC2 Instances<a name="configure-health-check"></a>
 
-Elastic Load Balancing automatically checks the health of the tasks in your service\. If Elastic Load Balancing finds an unhealthy task, it stops sending traffic to the instance and reroutes traffic to healthy instances\. Amazon ECS stops your unhealthy task and starts another instance of that task\. 
+Elastic Load Balancing automatically checks the health of the tasks in your service\. If Elastic Load Balancing finds an unhealthy task, it stops sending traffic to the Amazon EC2 instance hosting that task and reroutes the traffic to a healthy instance\.
 
 **Note**  
 The following procedure configures an HTTP \(port 80\) load balancer, but you can modify these values for your application\.

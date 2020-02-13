@@ -1,6 +1,9 @@
 # Subscribing to Amazon ECS\-Optimized Amazon Linux AMI Update Notifications<a name="ECS-AMI-SubscribeTopic"></a>
 
-The Amazon ECS\-optimized Amazon Linux AMI receives regular updates for agent changes, Docker version updates, and Linux kernel security updates\. You can subscribe to the AMI update Amazon SNS topic to receive notifications when a new Amazon ECS\-optimized Amazon Linux AMI is available\. Notifications are available in all formats that Amazon SNS supports\. 
+**Important**  
+The Amazon SNS alert is only sent when there is a new Amazon ECS\-optimized Amazon Linux AMI deployed\. Generally when a new Amazon ECS\-optimized Amazon Linux AMI is deployed, a new AMI for each of the other Amazon ECS\-optimized AMIs are deployed as well although there are not separate Amazon SNS alerts for them\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+
+The Amazon ECS\-optimized Amazon Linux AMI receives regular updates for agent changes, Docker version updates, and Linux kernel security updates\. You can subscribe to the AMI update Amazon SNS topic to receive notifications when a new Amazon ECS\-optimized Amazon Linux AMI is available\. Notifications are available in all formats that Amazon SNS supports\.
 
 **Note**  
 Your user account must have `sns::subscribe` IAM permissions to subscribe to an SNS topic\.

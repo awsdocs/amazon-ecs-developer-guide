@@ -55,13 +55,13 @@ If you chose the **EC2 Linux \+ Networking** or **EC2 Windows \+ Networking** te
 
 1. For **Provisioning model**, choose one of the following instance types:
    + **On\-Demand Instance**– With On\-Demand Instances, you pay for compute capacity by the hour with no long\-term commitments or upfront payments\.
-   + **Spot**– Spot Instances allow you to bid on spare Amazon EC2 computing capacity for up to 90% off the On\-Demand price\. For more information, see [Spot Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide//using-spot-instances.html)\.
+   + **Spot**– Spot Instances allow you to bid on spare Amazon EC2 computing capacity for up to 90% off the On\-Demand price\. For more information, see [Spot Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html)\.
 **Note**  
-Spot Instances are subject to possible interruptions\. We recommend that you avoid Spot Instances for applications that can't be interrupted\. For more information, see [Spot Instance Interruptions](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide//spot-interruptions.html)\.
+Spot Instances are subject to possible interruptions\. We recommend that you avoid Spot Instances for applications that can't be interrupted\. For more information, see [Spot Instance Interruptions](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html)\.
 
 1. For Spot Instances, do the following; otherwise, skip to the next step\.
 
-   1. For **Spot Instance allocation strategy**, choose the strategy that meets your needs\. For more information, see [Spot Fleet Allocation Strategy](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide//spot-fleet.html#spot-fleet-allocation-strategy)\.
+   1. For **Spot Instance allocation strategy**, choose the strategy that meets your needs\. For more information, see [Spot Fleet Allocation Strategy](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html#spot-fleet-allocation-strategy)\.
 
    1. For **Maximum bid price \(per instance/hour\)**, specify a bid price\. If your bid price is lower than the Spot price for the instance types that you selected, your Spot Instances are not launched\.
 

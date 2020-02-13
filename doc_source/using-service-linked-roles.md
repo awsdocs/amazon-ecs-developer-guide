@@ -2,7 +2,7 @@
 
 Amazon Elastic Container Service uses a service\-linked role for the permissions it requires to call other AWS services on your behalf\. For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
 
-Prior to the introduction of a service\-linked role for Amazon ECS, you were required to create an IAM role for your Amazon ECS services which granted Amazon ECS the permission it needed\. This role is no longer required, however it is available if needed\. For more information, see [](ecs-legacy-iam-roles.md)\.
+Prior to the introduction of a service\-linked role for Amazon ECS, you were required to create an IAM role for your Amazon ECS services which granted Amazon ECS the permission it needed\. This role is no longer required, however it is available if needed\. For more information, see [Legacy IAM Roles for Amazon ECS](ecs-legacy-iam-roles.md)\.
 
 ## Permissions Granted by the Service\-Linked Role<a name="service-linked-role-permissions"></a>
 

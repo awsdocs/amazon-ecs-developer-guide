@@ -1,11 +1,11 @@
-# Getting Started with Amazon ECS Using Amazon EC2<a name="ECS_GetStarted_EC2"></a>
+# Getting Started with Amazon ECS Using Amazon EC2<a name="getting-started-ecs-ec2"></a>
 
 Get started with Amazon Elastic Container Service \(Amazon ECS\) using the EC2 launch type by creating a task definition, scheduling tasks, and configuring a cluster in the Amazon ECS console\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
 
 In the Regions that don't support AWS Fargate, the Amazon ECS first\-run wizard guides you through the process of getting started with tasks that use the EC2 launch type\. The wizard gives you the option of creating a cluster and launching a sample web application\. If you already have a Docker image to launch in Amazon ECS, you can create a task definition with that image and use that for your cluster instead\.
 
 **Important**  
-For information about the Amazon ECS first\-run wizard for Fargate tasks, see [Getting Started with Amazon ECS](ECS_GetStarted.md)\.
+For information about the Amazon ECS first\-run wizard for Fargate tasks, see [Getting Started with Amazon ECS using Fargate](getting-started-fargate.md)\.
 
 You can optionally create an Amazon Elastic Container Registry \(Amazon ECR\) image repository and push an image to it\. For more information, see the *[Amazon Elastic Container Registry User Guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/)*\.
 

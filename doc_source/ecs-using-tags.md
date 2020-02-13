@@ -1,6 +1,6 @@
 # Tagging Your Amazon ECS Resources<a name="ecs-using-tags"></a>
 
-To help you manage your Amazon ECS tasks, services, task definitions, clusters, and container instances, you can optionally assign your own metadata to each resource in the form of *tags*\. This topic describes tags and shows you how to create them\.
+To help you manage your Amazon ECS tasks, services, task sets, task definitions, clusters, and container instances, you can optionally assign your own metadata to each resource in the form of *tags*\. This topic describes tags and shows you how to create them\.
 
 **Important**  
 To use this feature, it requires that you opt\-in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\.
@@ -46,6 +46,7 @@ The following table describes the Amazon ECS resources that can be tagged, and t
 | --- | --- | --- | --- | 
 |  Amazon ECS tasks  |  Yes  | Yes, from the task definition\. |  Yes  | 
 |  Amazon ECS services  |  Yes  | Yes, from either the task definition or the service to the tasks in the service\. |  Yes  | 
+|  Amazon ECS task sets  |  Yes  |  No  |  Yes  | 
 |  Amazon ECS task definitions  |  Yes  | No |  Yes  | 
 |  Amazon ECS clusters  |  Yes  | No |  Yes  | 
 |  Amazon ECS container instances  |  Yes  |  Yes, from the Amazon EC2 instance\. For more information, see [Adding Tags to a Container Instance](#instance-details-tags)\.   |  Yes  | 
@@ -93,6 +94,7 @@ The following resources allow you to specify tags when you create the resource\.
 | --- | --- | 
 |  Run one or more tasks\.   |  [Running Tasks](ecs_run_task.md)  | 
 |  Create a service\.  |  [Creating a Service](create-service.md)  | 
+|  Create a task set\.  |  [External Deployment](deployment-type-external.md)  | 
 |  Register a task definition\.  |  [Creating a Task Definition](create-task-definition.md)  | 
 |  Create a cluster\.  |  [Creating a Cluster](create_cluster.md)  | 
 |  Run one or more container instances\.  |  [Launching an Amazon ECS Container Instance](launch_container_instance.md)  | 
@@ -215,6 +217,7 @@ Some resource\-creating actions enable you to specify tags when you create the r
 | --- | --- | --- | --- | 
 |  Run one or more tasks\.   |  [run\-task](https://docs.aws.amazon.com/cli/latest/reference/run-task.html)  |  [Start\-ECSTask](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-ECSTask.html)  |  [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)  | 
 |  Create a service\.  |  [create\-service](https://docs.aws.amazon.com/cli/latest/reference/create-service.html)  |  [New\-ECSService](https://docs.aws.amazon.com/powershell/latest/reference/items/New-ECSService.html)  |  [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html)  | 
+|  Create a task set\.  |  [create\-task\-set](https://docs.aws.amazon.com/cli/latest/reference/create-task-set.html)  |  [New\-ECSTaskSet](https://docs.aws.amazon.com/powershell/latest/reference/items/New-ECSTaskSet.html)  |  [CreateTaskSet](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html)  | 
 |  Register a task definition\.  |  [register\-task\-definition](https://docs.aws.amazon.com/cli/latest/reference/register-task-definition.html)  |  [Register\-ECSTaskDefinition](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-ECSTaskDefinition.html)  |  [RegisterTaskDefinition](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html)  | 
 |  Create a cluster\.  |  [create\-cluster](https://docs.aws.amazon.com/cli/latest/reference/create-cluster.html)  |  [New\-ECSCluster](https://docs.aws.amazon.com/powershell/latest/reference/items/New-ECSCluster.html)  |  [CreateCluster](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateCluster.html)  | 
 |  Run one or more container instances\.  |  [run\-instances](https://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/run-instances.html)  |  [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html)  |  [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)  | 

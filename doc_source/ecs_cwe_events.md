@@ -1,22 +1,17 @@
 # Amazon ECS Events<a name="ecs_cwe_events"></a>
 
-Amazon ECS sends three types of events to EventBridge: container instance state change events, task state change events, and service action events\. Container instance events are only sent if you are using the EC2 launch type for your tasks\. For tasks using the Fargate launch type, you only receive task state change and service action events\. Amazon ECS tracks the state of container instances, tasks, and services\. If these resources change, an event is triggered\. These events are classified as either container instance state change, task state change, or service action events\. These events and their possible causes are described in greater detail in the following sections\.
+Amazon ECS sends three types of events to EventBridge: container instance state change events, task state change events, and service action events\. If these resources change, an event is triggered\. These events and their possible causes are described in greater detail in the following sections\.
 
 **Note**  
 Amazon ECS may add other event types, sources, and details in the future\. If you are programmatically deserializing event JSON data, make sure that your application is prepared to handle unknown properties to avoid issues if and when these additional properties are added\.
 
 In some cases, multiple events are triggered for the same activity\. For example, when a task is started on a container instance, a task state change event is triggered for the new task\. A container instance state change event is triggered to account for the change in available resources, such as CPU, memory, and available ports, on the container instance\. Likewise, if a container instance is terminated, events are triggered for the container instance, the container agent connection status, and every task that was running on the container instance\.
 
-Container state change and task state change events contain two `version` fields: one in the main body of the event, and one in the `detail` object of the event\.
-+ The version in the main body of the event is set to `0` on all events\. For more information about EventBridge parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.
-+ The version in the `detail` object of the event describes the version of the associated resource\. Each time a resource changes state, this version is incremented\. Because events can be sent multiple times, this field allows you to identify duplicate events\. Duplicate events have the same version in the `detail` object\. If you are replicating your Amazon ECS container instance and task state with EventBridge, you can compare the version of a resource reported by the Amazon ECS APIs with the version reported in EventBridge for the resource \(inside the `detail` object\) to verify that the version in your event stream is current\.
+Container state change and task state change events contain two `version` fields: one in the main body of the event, and one in the `detail` object of the event\. The following describes the differences between these two fields:
++ The `version` field in the main body of the event is set to `0` on all events\. For more information about EventBridge parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.
++ The `version` field in the `detail` object of the event describes the version of the associated resource\. Each time a resource changes state, this version is incremented\. Because events can be sent multiple times, this field allows you to identify duplicate events\. Duplicate events have the same version in the `detail` object\. If you are replicating your Amazon ECS container instance and task state with EventBridge, you can compare the version of a resource reported by the Amazon ECS APIs with the version reported in EventBridge for the resource \(inside the `detail` object\) to verify that the version in your event stream is current\.
 
 Service action events only contain the `version` field in the main body\.
-
-**Topics**
-+ [Container Instance State Change Events](#ecs_container_instance_events)
-+ [Task State Change Events](#ecs_task_events)
-+ [Service Action Events](#ecs_service_events)
 
 ## Container Instance State Change Events<a name="ecs_container_instance_events"></a>
 
@@ -205,54 +200,99 @@ A task using the Fargate Spot capacity provider receives a termination notice\.
 When a task is using the `FARGATE_SPOT` capacity provider and is stopped due to a Spot interruption, a task state change event is triggered\.
 
 **Example Task State Change Event**  
-Task state change events are delivered in the following format\. The `detail` section below resembles the [Task](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Task.html) object that is returned from a [DescribeTasks](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) API operation in the *Amazon Elastic Container Service API Reference*\. For more information about CloudWatch Events parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  
-For a tutorial walkthrough of setting up a simple AWS Lambda function that listens for Amazon ECS task events and writes them out to a CloudWatch Logs log stream, see [Tutorial: Listening for Amazon ECS CloudWatch Events](ecs_cwet.md)\.  
-For a tutorial walkthrough of creating an SNS topic to email you when a task state change event occurs, see [Tutorial: Sending Amazon Simple Notification Service Alerts for Task Stopped Events](ecs_cwet2.md)\.  
+Task state change events are delivered in the following format\. The `detail` section below resembles the [Task](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Task.html) object that is returned from a [DescribeTasks](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) API operation in the *Amazon Elastic Container Service API Reference*\. If your containers are using an image hosted with Amazon ECR, the `imageDigest` field is returned\.  
+The values for the `createdAt`, `connectivityAt`, `pullStartedAt`, `startedAt`, `pullStoppedAt`, and `updatedAt` fields are UNIX timestamps in the response of a DescribeTasks action whereas in the task state change event they are ISO string timestamps\.
+For more information about CloudWatch Events parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  
 
 ```
 {
-  "version": "0",
-  "id": "9bcdac79-b31f-4d3d-9410-fbd727c29fab",
-  "detail-type": "ECS Task State Change",
-  "source": "aws.ecs",
-  "account": "111122223333",
-  "time": "2016-12-06T16:41:06Z",
-  "region": "us-east-1",
-  "resources": [
-    "arn:aws:ecs:us-east-1:111122223333:task/b99d40b3-5176-4f71-9a52-9dbd6f1cebef"
-  ],
-  "detail": {
-    "clusterArn": "arn:aws:ecs:us-east-1:111122223333:cluster/default",
-    "containerInstanceArn": "arn:aws:ecs:us-east-1:111122223333:container-instance/b54a2a04-046f-4331-9d74-3f6d7f6ca315",
-    "containers": [
-      {
-        "containerArn": "arn:aws:ecs:us-east-1:111122223333:container/3305bea1-bd16-4217-803d-3e0482170a17",
-        "exitCode": 0,
-        "lastStatus": "STOPPED",
-        "name": "xray",
-        "taskArn": "arn:aws:ecs:us-east-1:111122223333:task/b99d40b3-5176-4f71-9a52-9dbd6f1cebef"
-      }
+    "version": "0",
+    "id": "3317b2af-7005-947d-b652-f55e762e571a",
+    "detail-type": "ECS Task State Change",
+    "source": "aws.ecs",
+    "account": "111122223333",
+    "time": "2020-01-23T17:57:58Z",
+    "region": "us-west-2",
+    "resources": [
+        "arn:aws:ecs:us-west-2:111122223333:task/FargateCluster/c13b4cb40f1f4fe4a2971f76ae5a47ad"
     ],
-    "createdAt": "2016-12-06T16:41:05.702Z",
-    "desiredStatus": "RUNNING",
-    "group": "task-group",
-    "lastStatus": "RUNNING",
-    "overrides": {
-      "containerOverrides": [
-        {
-          "name": "xray"
-        }
-      ]
-    },
-    "startedAt": "2016-12-06T16:41:06.8Z",
-    "startedBy": "ecs-svc/9223370556150183303",
-    "updatedAt": "2016-12-06T16:41:06.975Z",
-    "taskArn": "arn:aws:ecs:us-east-1:111122223333:task/b99d40b3-5176-4f71-9a52-9dbd6f1cebef",
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:111122223333:task-definition/xray:2",
-    "version": 4
-  }
+    "detail": {
+        "attachments": [
+            {
+                "id": "1789bcae-ddfb-4d10-8ebe-8ac87ddba5b8",
+                "type": "eni",
+                "status": "ATTACHED",
+                "details": [
+                    {
+                        "name": "subnetId",
+                        "value": "subnet-abcd1234"
+                    },
+                    {
+                        "name": "networkInterfaceId",
+                        "value": "eni-abcd1234"
+                    },
+                    {
+                        "name": "macAddress",
+                        "value": "0a:98:eb:a7:29:ba"
+                    },
+                    {
+                        "name": "privateIPv4Address",
+                        "value": "10.0.0.139"
+                    }
+                ]
+            }
+        ],
+        "availabilityZone": "us-west-2c",
+        "clusterArn": "arn:aws:ecs:us-west-2:111122223333:cluster/FargateCluster",
+        "containers": [
+            {
+                "containerArn": "arn:aws:ecs:us-west-2:111122223333:container/cf159fd6-3e3f-4a9e-84f9-66cbe726af01",
+                "lastStatus": "RUNNING",
+                "name": "FargateApp",
+                "image": "111122223333.dkr.ecr.us-west-2.amazonaws.com/hello-repository:latest",
+                "imageDigest": "sha256:74b2c688c700ec95a93e478cdb959737c148df3fbf5ea706abe0318726e885e6",
+                "runtimeId": "ad64cbc71c7fb31c55507ec24c9f77947132b03d48d9961115cf24f3b7307e1e",
+                "taskArn": "arn:aws:ecs:us-west-2:111122223333:task/FargateCluster/c13b4cb40f1f4fe4a2971f76ae5a47ad",
+                "networkInterfaces": [
+                    {
+                        "attachmentId": "1789bcae-ddfb-4d10-8ebe-8ac87ddba5b8",
+                        "privateIpv4Address": "10.0.0.139"
+                    }
+                ],
+                "cpu": "0"
+            }
+        ],
+        "createdAt": "2020-01-23T17:57:34.402Z",
+        "launchType": "FARGATE",
+        "cpu": "256",
+        "memory": "512",
+        "desiredStatus": "RUNNING",
+        "group": "family:sample-fargate",
+        "lastStatus": "RUNNING",
+        "overrides": {
+            "containerOverrides": [
+                {
+                    "name": "FargateApp"
+                }
+            ]
+        },
+        "connectivity": "CONNECTED",
+        "connectivityAt": "2020-01-23T17:57:38.453Z",
+        "pullStartedAt": "2020-01-23T17:57:52.103Z",
+        "startedAt": "2020-01-23T17:57:58.103Z",
+        "pullStoppedAt": "2020-01-23T17:57:55.103Z",
+        "updatedAt": "2020-01-23T17:57:58.103Z",
+        "taskArn": "arn:aws:ecs:us-west-2:111122223333:task/FargateCluster/c13b4cb40f1f4fe4a2971f76ae5a47ad",
+        "taskDefinitionArn": "arn:aws:ecs:us-west-2:111122223333:task-definition/sample-fargate:1",
+        "version": 4,
+        "platformVersion": "1.3.0"
+    }
 }
 ```
+
+For a tutorial walkthrough of setting up a simple AWS Lambda function that listens for Amazon ECS task events and writes them out to a CloudWatch Logs log stream, see [Tutorial: Listening for Amazon ECS CloudWatch Events](ecs_cwet.md)\.
+
+For a tutorial walkthrough of creating an SNS topic to email you when a task state change event occurs, see [Tutorial: Sending Amazon Simple Notification Service Alerts for Task Stopped Events](ecs_cwet2.md)\.
 
 ## Service Action Events<a name="ecs_service_events"></a>
 

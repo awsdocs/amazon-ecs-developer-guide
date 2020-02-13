@@ -2,6 +2,11 @@
 
 The *blue/green* deployment type uses the blue/green deployment model controlled by CodeDeploy\. This deployment type enables you to verify a new deployment of a service before sending production traffic to it\. For more information, see [What Is CodeDeploy?](https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html) in the *AWS CodeDeploy User Guide*\.
 
+There are three ways traﬃc can shift during a blue/green deployment:
++ **Canary** — Traﬃc is shifted in two increments\. You can choose from predeﬁned canary options that specify the percentage of traﬃc shifted to your updated task set in the ﬁrst increment and the interval, in minutes, before the remaining traﬃc is shifted in the second increment\.
++ **Linear** — Traﬃc is shifted in equal increments with an equal number of minutes between each increment\. You can choose from predeﬁned linear options that specify the percentage of traﬃc shifted in each increment and the number of minutes between each increment\.
++ **All\-at\-once** — All traﬃc is shifted from the original task set to the updated task set all at once\.
+
 The following are components of CodeDeploy that Amazon ECS uses when a service uses the blue/green deployment type:
 
 **CodeDeploy application**  
@@ -20,7 +25,8 @@ The deployment settings\. This consists of the following:
 For more information, see [Working with Deployment Groups](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups.html) in the *AWS CodeDeploy User Guide*\.
 
 **CodeDeploy deployment configuration**  
-Specifies how CodeDeploy routes production traffic to your replacement task set during a deployment\. The only supported value at this time is `CodeDeployDefault.AllAtOnce`, which means all traffic is routed from the original task set to the replacement task set at the same time\. For more information, see [Working with Deployment Configurations](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html) in the *AWS CodeDeploy User Guide*\.
+Specifies how CodeDeploy routes production traffic to your replacement task set during a deployment\. The following pre\-defined linear and canary deployment configuration are available\. You can also create custom defined linear and canary deployments as well\. For more information, see [Working with Deployment Configurations](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html) in the *AWS CodeDeploy User Guide*\.      
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-bluegreen.html)
 
 **Revision**  
 A revision is the CodeDeploy application specification file \(AppSpec file\)\. In the AppSpec file, you specify the full ARN of the task definition and the container and port of your replacement task set where traffic is to be routed when a new deployment is created\. The container name must be one of the container names referenced in your task definition\. If the network configuration or platform version has been updated in the service definition, you must also specify those details in the AppSpec file\. You can also specify the Lambda functions to run during the deployment lifecycle events\. The Lambda functions allow you to run tests and return metrics during the deployment\. For more information, see [AppSpec File Reference](https://docs.aws.amazon.com/codedeploy/latest/userguide/reference-appspec-file.html) in the *AWS CodeDeploy User Guide*\.
@@ -37,9 +43,9 @@ Consider the following when using the blue/green deployment type:
 + Service auto scaling is not supported when using the blue/green deployment type\.
 + Capacity providers are not supported when using the blue/green deployment type\.
 + Tasks using the Fargate launch type or the `CODE_DEPLOY` deployment controller types don't support the `DAEMON` scheduling strategy\.
-+ When you initially create an CodeDeploy application and deployment group, you must specify the following:
++ When you initially create a CodeDeploy application and deployment group, you must specify the following:
   + You must define two target groups for the load balancer\. One target group should be the initial target group defined for the load balancer when the Amazon ECS service was created\. The second target group's only requirement is that it can't be associated with a different load balancer than the one the service uses\.
-+ When you create an CodeDeploy deployment for an Amazon ECS service, CodeDeploy creates a *replacement task set* \(or *green task set*\) in the deployment\. If you added a test listener to the load balancer, CodeDeploy routes your test traffic to the replacement task set\. This is when you can run any validation tests\. Then CodeDeploy reroutes the production traffic from the original task set to the replacement task set according to the traffic rerouting settings for the deployment group\.
++ When you create a CodeDeploy deployment for an Amazon ECS service, CodeDeploy creates a *replacement task set* \(or *green task set*\) in the deployment\. If you added a test listener to the load balancer, CodeDeploy routes your test traffic to the replacement task set\. This is when you can run any validation tests\. Then CodeDeploy reroutes the production traffic from the original task set to the replacement task set according to the traffic rerouting settings for the deployment group\.
 
 ## Amazon ECS Console Experience<a name="deployment-type-bluegreen-console"></a>
 
@@ -59,14 +65,14 @@ When you use the Amazon ECS console to create an Amazon ECS service using the bl
 |  Deployment group load balancer info  |  The load balancer production listener, optional test listener, and target groups specified are added to the deployment group configuration\.  | 
 |  Traffic rerouting settings  |  Traffic rerouting – The default setting is **Reroute traffic immediately**\. You can change it on the CodeDeploy console or by updating the `TrafficRoutingConfig`\. For more information, see [CreateDeploymentConfig](https://docs.aws.amazon.com/codedeploy/latest/APIReference/API_CreateDeploymentConfig.html) in the *AWS CodeDeploy API Reference*\.  | 
 |  Original revision termination settings  |  The original revision termination settings are configured to wait 1 hour after traffic has been rerouted before terminating the blue task set\.  | 
-|  Deployment configuration  |  The deployment configuration is set to `CodeDeployDefault.ECSAllAtOnce`, which routes all traffic at one time from the blue task set to the green task set\. You can't change this setting\.  | 
+|  Deployment configuration  |  The deployment configuration is set to `CodeDeployDefault.ECSAllAtOnce` by default, which routes all traffic at one time from the blue task set to the green task set\. The deployment configuration can be changed using the AWS CodeDeploy console after the service is created\.  | 
 |  Automatic rollback configuration  |  If a deployment fails, the automatic rollback settings are configured to roll it back\.  | 
 
 To view details of an Amazon ECS service using the blue/green deployment type, use the **Deployments** tab on the Amazon ECS console\.
 
-To view the details of an CodeDeploy deployment group in the CodeDeploy console, see [View Deployment Group Details with CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups-view-details.html) in the *AWS CodeDeploy User Guide*\.
+To view the details of a CodeDeploy deployment group in the CodeDeploy console, see [View Deployment Group Details with CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups-view-details.html) in the *AWS CodeDeploy User Guide*\.
 
-To modify the settings for an CodeDeploy deployment group in the CodeDeploy console, see [Change Deployment Group Settings with CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups-edit.html) in the *AWS CodeDeploy User Guide*\.
+To modify the settings for a CodeDeploy deployment group in the CodeDeploy console, see [Change Deployment Group Settings with CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups-edit.html) in the *AWS CodeDeploy User Guide*\.
 
 ## Blue/Green Deployment Required IAM Permissions<a name="deployment-type-bluegreen-IAM"></a>
 

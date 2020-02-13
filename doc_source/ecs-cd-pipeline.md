@@ -140,11 +140,11 @@ Use the CodePipeline wizard to create your pipeline stages and connect your sour
 
    1. For **Operating system**, choose **Amazon Linux 2**\.
 
-   1. For **Runtime(s)**, choose **Standard**\.
+   1. For **Runtime\(s\)**, choose **Standard**\.
 
-   1. For **Image**, choose **aws/codebuild/amazonlinux2-x86_64-standard:2.0**\.
+   1. For **Image**, choose **aws/codebuild/amazonlinux2\-x86\_64\-standard:2\.0**\.
 
-   1. Use the default values for **Image version** and **Environment type**\.
+   1. For **Image version** and **Environment type**, use the default values\.
 
    1. Select **Enable this flag if you want to build Docker images or want your builds to get elevated privileges**\.
 

@@ -1,9 +1,9 @@
 # Step 5: \(Optional\) Configuring Your Service to Use Service Auto Scaling<a name="service-configure-auto-scaling"></a>
 
-Your Amazon ECS service can optionally be configured to use Auto Scaling to adjust its desired count up or down in response to CloudWatch alarms\. 
+Your Amazon ECS service can optionally be configured to use Auto Scaling to adjust its desired count of tasks in your Amazon ECS service up or down in response to CloudWatch alarms\. 
 
 Amazon ECS Service Auto Scaling supports the following types of scaling policies:
-+ [Target Tracking Scaling Policies](service-autoscaling-targettracking.md)—Increase or decrease  the number of tasks that your service runs based on a target value for a specific metric\. This is similar to the way that your thermostat maintains the temperature of your home\. You select temperature and the thermostat does the rest\.
++ [Target Tracking Scaling Policies](service-autoscaling-targettracking.md) \(Recommended\)—Increase or decrease  the number of tasks that your service runs based on a target value for a specific metric\. This is similar to the way that your thermostat maintains the temperature of your home\. You select temperature and the thermostat does the rest\.
 + [Step Scaling Policies](service-autoscaling-stepscaling.md)—Increase or decrease the number of tasks that your service runs based on a set of scaling adjustments, known as step adjustments, which vary based on the size of the alarm breach\.
 
 For more information, see [Service Auto Scaling](service-auto-scaling.md)\.
@@ -20,11 +20,11 @@ For more information, see [Service Auto Scaling](service-auto-scaling.md)\.
 
 1. For **Maximum number of tasks**, enter the upper limit of the number of tasks for Service Auto Scaling to use\. Your service's desired count is not automatically adjusted above this amount\.
 
-1. For **IAM role for Service Auto Scaling**, choose an IAM role to authorize the Application Auto Scaling service to adjust your service's desired count on your behalf\. If you have not previously created such a role, choose **Create new role** and the role is created for you\. For future reference, the role that is created for you is called `ecsAutoscaleRole`\. For more information, see [Service Auto Scaling IAM Role](ecs-legacy-iam-roles.md#autoscale_IAM_role)\.
+1. For **IAM role for Service Auto Scaling**, choose the `ecsAutoscaleRole`\. If this role does not exist, choose **Create new role** to have the console create it for you\.
 
 1. The following procedures provide steps for creating either target tracking or step scaling policies for your service\. Choose your desired scaling policy type\.
 
-These steps help you create target tracking scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. You can create a scale\-out alarm to increase the desired count of your service, and a scale\-in alarm to decrease the desired count of your service\.
+These steps help you create target tracking scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. 
 
 **To configure target tracking scaling policies for your service**
 
@@ -32,13 +32,16 @@ These steps help you create target tracking scaling policies and CloudWatch alar
 
 1. For **Policy name**, enter a descriptive name for your policy\.
 
-1. For **ECS service metric**, choose the metric to track\.
+1. For **ECS service metric**, choose the metric to track\. The following metrics are available: 
+   + **ECSServiceAverageCPUUtilization**—Average CPU utilization of the service\.
+   + **ECSServiceAverageMemoryUtilization**—Average memory utilization of the service\.
+   + **ALBRequestCountPerTarget**—Number of requests completed per target in an Application Load Balancer target group\.
 
-1. For **Target value**, enter the metric value that the policy should maintain\.
+1. For **Target value**, enter the metric value that the policy should maintain\. For example, use a target value of `1000` for `ALBRequestCountPerTarget`, or a target value of `75`\(%\) for `ECSServiceAverageCPUUtilization`\.
 
-1. For **Scale\-out cooldown period**, enter the amount of time, in seconds, after a scale\-out activity completes before another scale\-out activity can start\. During this time, resources that have been launched do not contribute to the Auto Scaling group metrics\.
+1. For **Scale\-out cooldown period**, enter the amount of time, in seconds, after a scale\-out activity completes before another scale\-out activity can start\. While the scale\-out cooldown period is in effect, the capacity that has been added by the previous scale\-out activity that initiated the cooldown is calculated as part of the desired capacity for the next scale out\. The intention is to continuously \(but not excessively\) scale out\.
 
-1. For **Scale\-in cooldown period**, enter the amount of time, in seconds, after a scale\-in activity completes before another scale\-in activity can start\. During this time, resources that have been launched do not contribute to the Auto Scaling group metrics\.
+1. For **Scale\-in cooldown period**, enter the amount of time, in seconds, after a scale\-in activity completes before another scale\-in activity can start\. The scale\-in cooldown period is used to block subsequent scale\-in requests until it has expired\. The intention is to scale in conservatively to protect your application's availability\. However, if another alarm triggers a scale out activity during the cooldown period after a scale\-in, Service Auto Scaling scales out your scalable target immediately\. 
 
 1. \(Optional\) To disable the scale\-in actions for this policy, choose **Disable scale\-in**\. This allows you to create a separate scaling policy for scale\-in later\.
 
@@ -60,7 +63,7 @@ These steps help you create step scaling policies and CloudWatch alarms that can
 
    1. For **Alarm name**, enter a descriptive name for your alarm\. For example, if your alarm should trigger when your service CPU utilization exceeds 75%, you could call the alarm `service_name-cpu-gt-75`\.
 
-   1. For **ECS service metric**, choose the service metric to use for your alarm\. For more information, see [Service Utilization](cloudwatch-metrics.md#service_utilization)\.
+   1. For **ECS service metric**, choose the service metric to use for your alarm\. For more information, see [Service Auto Scaling](service-auto-scaling.md)\.
 
    1. For **Alarm threshold**, enter the following information to configure your alarm:
       + Choose the CloudWatch statistic for your alarm \(the default value of **Average** works in many cases\)\. For more information, see [Statistics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic) in the *Amazon CloudWatch User Guide*\.

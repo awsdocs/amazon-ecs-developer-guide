@@ -42,15 +42,5 @@ You can also use the Amazon ECS container agent introspection API to check the a
    ```
    [ec2-user ~]$ curl -s 127.0.0.1:51678/v1/metadata | python -mjson.tool
    ```
-
-   Output:
-
-   ```
-   {
-       "Cluster": "default",
-       "ContainerInstanceArn": "arn:aws:ecs:us-west-2:<aws_account_id>:container-instance/4d3910c1-27c8-410c-b1df-f5d06fab4305",
-       "Version": "Amazon ECS Agent - v1.32.0 (a7f81040)"
-   }
-   ```
 **Note**  
 The introspection API added `Version` information in the version v1\.0\.0 of the Amazon ECS container agent\. If `Version` is not present when querying the introspection API, or the introspection API is not present in your agent at all, then the version you are running is v0\.0\.3 or earlier\. You should update your version\.

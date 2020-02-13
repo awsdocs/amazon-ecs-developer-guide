@@ -1,4 +1,4 @@
-# API `failures` Error Messages<a name="api_failures_messages"></a>
+# API Error Messages<a name="api_failures_messages"></a>
 
 In some cases, an API call that you have triggered through the Amazon ECS console or the AWS CLI exits with a `failures` error message\. The following possible API `failures` error messages are explained below for each API call\. The failures occur on a particular resource, and the resource in parentheses is the resource associated with the failure\.
 
@@ -23,8 +23,7 @@ The number of GPUs requested by the task are unavailable on the given container 
 `AGENT` \(container instance ID\)  
 The container instance that you attempted to launch a task onto has an agent that is currently disconnected\. To prevent extended wait times for task placement, the request was rejected\.  
 `ATTRIBUTE` \(container instance ID\)  
-Your task definition contains a parameter that requires a specific container instance attribute that is not available on your container instances\. For example, if your task uses the `awsvpc` network mode, but there are no instances in your specified subnets with the `ecs.capability.task-eni` attribute\. For more information about which attributes are required for specific task definition parameters and agent configuration variables, see [Task Definition Parameters](task_definition_parameters.md) and [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.  
-Windows container instances with Amazon ECS container agent versions earlier than 1\.17\.0 do not support the `awslogs` log driver by default\. If you are unable to use the `awslogs` log driver with your Windows container instances, ensure that you are using the latest Amazon ECS\-optimized Windows AMI\.
+Your task definition contains a parameter that requires a specific container instance attribute that is not available on your container instances\. For example, if your task uses the `awsvpc` network mode, but there are no instances in your specified subnets with the `ecs.capability.task-eni` attribute\. For more information about which attributes are required for specific task definition parameters and agent configuration variables, see [Task Definition Parameters](task_definition_parameters.md) and [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 + `StartTask`  
 `MISSING` \(container instance ID\)  
 The container instance you attempted to launch the task onto does not exist\. Perhaps the wrong cluster or region has been specified, or the container instance ARN or ID is misspelled\.  

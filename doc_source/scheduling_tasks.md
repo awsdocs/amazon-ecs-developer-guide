@@ -20,7 +20,7 @@ The service scheduler optionally also makes sure that tasks are registered again
 
 **Manually Running Tasks**
 
-The `RunTask` action is ideally suited for processes such as batch jobs that perform work and then stop\. For example, you could have a process call `RunTask` when work comes into a queue\. The task pulls work from the queue, performs the work, and then exits\. Using `RunTask`, you can allow the default task placement strategy to distribute tasks randomly across your cluster, which minimizes the chances that a single instance gets a disproportionate number of tasks\. Alternatively, you can use `RunTask` to customize how the scheduler places tasks using task placement strategies and constraints\. For more information, see [Running Tasks](ecs_run_task.md) and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference//API_RunTask.html) in the *Amazon Elastic Container Service API Reference*\.
+The `RunTask` action is ideally suited for processes such as batch jobs that perform work and then stop\. For example, you could have a process call `RunTask` when work comes into a queue\. The task pulls work from the queue, performs the work, and then exits\. Using `RunTask`, you can allow the default task placement strategy to distribute tasks randomly across your cluster, which minimizes the chances that a single instance gets a disproportionate number of tasks\. Alternatively, you can use `RunTask` to customize how the scheduler places tasks using task placement strategies and constraints\. For more information, see [Running Tasks](ecs_run_task.md) and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html) in the *Amazon Elastic Container Service API Reference*\.
 
 **Running Tasks on a `cron`\-like Schedule**
 
@@ -28,7 +28,7 @@ If you have tasks to run at set intervals in your cluster, such as a backup oper
 
 **Custom Schedulers**
 
-Amazon ECS allows you to create your own schedulers that meet the needs of your business, or to leverage third party schedulers\. [Blox](https://blox.github.io/) is an open\-source project that gives you more control over how your containerized applications run on Amazon ECS\. It enables you to build schedulers and integrate third\-party schedulers with Amazon ECS while leveraging Amazon ECS to fully manage and scale your clusters\. Custom schedulers use the [StartTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference//API_StartTask.html) API operation to place tasks on specific container instances within your cluster\. 
+Amazon ECS allows you to create your own schedulers that meet the needs of your business, or to leverage third party schedulers\. [Blox](https://blox.github.io/) is an open\-source project that gives you more control over how your containerized applications run on Amazon ECS\. It enables you to build schedulers and integrate third\-party schedulers with Amazon ECS while leveraging Amazon ECS to fully manage and scale your clusters\. Custom schedulers use the [StartTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_StartTask.html) API operation to place tasks on specific container instances within your cluster\. 
 
 **Note**  
 Custom schedulers are only compatible with tasks using the EC2 launch type\. If you are using the Fargate launch type for your tasks, the StartTask API does not work\.

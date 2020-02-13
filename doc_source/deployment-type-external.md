@@ -12,6 +12,7 @@ The `UpdateServicePrimaryTaskSet` API action modifies which task set in a servic
 
 Consider the following when using the external deployment type:
 + Service auto scaling is not supported when using an external deployment controller\.
++ If using a load balancer for the task task, the supported load balancer types are either an Application Load Balancer or a Network Load Balancer\.
 + Tasks using the Fargate launch type or `EXTERNAL` deployment controller types don't support the `DAEMON` scheduling strategy\.
 
 ## External Deployment Workflow<a name="deployment-type-external-workflow"></a>
@@ -39,7 +40,8 @@ Specifies whether to enable Amazon ECS managed tags for the tasks within the ser
 `propagateTags`  
 Specifies whether to copy the tags from the task definition or the service to the tasks in the service\. If no value is specified, the tags are not copied\. Tags can only be copied to the tasks within the service during service creation\. To add tags to a task after service creation, use the `TagResource` API action\.  
 `healthCheckGracePeriodSeconds`  
-The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks, container health checks, and Route 53 health checks after a task enters a `RUNNING` state\. This is only valid if your service is configured to use a load balancer\. If your service's tasks take a while to start and respond to health checks, you can specify a health check grace period of up to 2,147,483,647 seconds during which the ECS service scheduler ignores the health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\.  
+The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks, container health checks, and Route 53 health checks after a task enters a `RUNNING` state\. This is only valid if your service is configured to use a load balancer\. If your service has a load balancer defined and you do not specify a health check grace period value, the default value of `0` is used\.  
+If your service's tasks take a while to start and respond to health checks, you can specify a health check grace period of up to 2,147,483,647 seconds during which the ECS service scheduler ignores the health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\.  
 `schedulingStrategy`  
 The scheduling strategy to use\. Services using an external deployment controller support only the `REPLICA` scheduling strategy\. For more information, see [Service Scheduler Concepts](ecs_services.md#service_scheduler)\.  
 `placementConstraints`  
@@ -47,7 +49,7 @@ An array of placement constraint objects to use for tasks in your service\. You 
 `placementStrategy`  
 The placement strategy objects to use for tasks in your service\. You can specify a maximum of four strategy rules per service\.
 
-   The following is an example service definition for a service using an external deployment controller\.
+   The following is an example service definition for creating a service using an external deployment controller\.
 
    ```
    {
@@ -98,11 +100,74 @@ AWS Fargate platform versions are used to refer to a specific runtime environmen
 Platform versions are not specified for tasks using the EC2 launch type\.  
 `loadBalancers`  
 A load balancer object representing the load balancer to use with your service\. When using an external deployment controller, only Application Load Balancers and Network Load Balancers are supported\. If you're using an Application Load Balancer, only one Application Load Balancer target group is allowed per task set\.  
+The following snippet shows an example loadBalancer object to use\.  
+
+   ```
+   "loadBalancers": [
+           {
+               "targetGroupArn": "",
+               "containerName": "",
+               "containerPort": 0
+           }
+   ]
+   ```
+When specifying a `loadBalancer` object, you must specify a `targetGroupArn` and omit the `loadBalancerName` parameters\.  
 `networkConfiguration`  
 The network configuration for the service\. This parameter is required for task definitions that use the `awsvpc` network mode to receive their own elastic network interface, and it's not supported for other network modes\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.  
 `serviceRegistries`  
 The details of the service discovery registries to assign to this service\. For more information, see [Service Discovery](service-discovery.md)\.  
 `scale`  
 A floating\-point percentage of the desired number of tasks to place and keep running in the task set\. The value is specified as a percent total of a service's `desiredCount`\. Accepted values are numbers between 0 and 100\.
+
+   The following is a JSON example for creating a task set for an external deployment controller\.
+
+   ```
+   {
+       "service": "",
+       "cluster": "",
+       "externalId": "",
+       "taskDefinition": "",
+       "networkConfiguration": {
+           "awsvpcConfiguration": {
+               "subnets": [
+                   ""
+               ],
+               "securityGroups": [
+                   ""
+               ],
+               "assignPublicIp": "DISABLED"
+           }
+       },
+       "loadBalancers": [
+           {
+               "targetGroupArn": "",
+               "containerName": "",
+               "containerPort": 0
+           }
+       ],
+       "serviceRegistries": [
+           {
+               "registryArn": "",
+               "port": 0,
+               "containerName": "",
+               "containerPort": 0
+           }
+       ],
+       "launchType": "EC2",
+       "capacityProviderStrategy": [
+           {
+               "capacityProvider": "",
+               "weight": 0,
+               "base": 0
+           }
+       ],
+       "platformVersion": "",
+       "scale": {
+           "value": null,
+           "unit": "PERCENT"
+       },
+       "clientToken": ""
+   }
+   ```
 
 1. When service changes are needed, use the `UpdateService`, `UpdateTaskSet`, or `CreateTaskSet` API action depending on which parameters you're updating\. If you created a task set, use the `scale` parameter for each task set in a service to determine how many tasks to keep running in the service\. For example, if you have a service that contains `tasksetA` and you create a `tasksetB`, you might test the validity of `tasksetB` before wanting to transition production traffic to it\. You could set the `scale` for both task sets to `100`, and when you were ready to transition all production traffic to `tasksetB`, you could update the `scale` for `tasksetA` to `0` to scale it down\.

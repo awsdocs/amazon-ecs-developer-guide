@@ -15,5 +15,5 @@ You may need to troubleshoot issues with your load balancers, tasks, services, o
 + [Amazon ECS Logs Collector](ecs-logs-collector.md)
 + [Agent Introspection Diagnostics](introspection-diag.md)
 + [Docker Diagnostics](docker-diags.md)
-+ [API `failures` Error Messages](api_failures_messages.md)
++ [API Error Messages](api_failures_messages.md)
 + [Troubleshooting IAM Roles for Tasks](troubleshoot-task-iam-roles.md)

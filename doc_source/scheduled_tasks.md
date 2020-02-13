@@ -15,8 +15,8 @@ This feature is not yet available for Fargate tasks in the following Regions:
 | Asia Pacific \(Hong Kong\) | ap\-east\-1 | 
 | China \(Beijing\) | cn\-north\-1 | 
 | China \(Ningxia\) | cn\-northwest\-1 | 
-| EU \(Paris\) | eu\-west\-3 | 
-| EU \(Stockholm\) | eu\-north\-1 | 
+| Europe \(Paris\) | eu\-west\-3 | 
+| Europe \(Stockholm\) | eu\-north\-1 | 
 | South America \(São Paulo\) | sa\-east\-1 | 
 | Middle East \(Bahrain\) | me\-south\-1 | 
 

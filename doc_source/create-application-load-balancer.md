@@ -50,7 +50,7 @@ If you created a secure listener in the previous step, complete the **Configure 
 
 1. If you have a certificate ready to upload, choose **Upload a new SSL Certificate to AWS Identity and Access Management \(IAM\)**\. For **Certificate name**, type a name for the certificate\. For **Private Key**, copy and paste the contents of the private key file \(PEM\-encoded\)\. In **Public Key Certificate**, copy and paste the contents of the public key certificate file \(PEM\-encoded\)\. In **Certificate Chain**, copy and paste the contents of the certificate chain file \(PEM\-encoded\), unless you are using a self\-signed certificate and it's not important that browsers implicitly accept the certificate\.
 
-1. For **Select policy**, choose a predefined security policy\. For details on the security policies, see [Security Policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/application//create-https-listener.html#describe-ssl-policies)\.
+1. For **Select policy**, choose a predefined security policy\. For details on the security policies, see [Security Policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies) in the *User Guide for Application Load Balancers*\.
 
 1. Choose **Next: Configure Security Groups**\.
 

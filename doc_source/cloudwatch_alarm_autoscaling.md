@@ -1,19 +1,17 @@
 # Tutorial: Scaling Container Instances with CloudWatch Alarms<a name="cloudwatch_alarm_autoscaling"></a>
 
 **Note**  
-In December 2019, Amazon ECS launched cluster auto scaling, which provides an alternative method for scaling container instances\. For more information, see [Amazon ECS Cluster Auto Scaling](cluster-auto-scaling.md)\. 
+In December 2019, Amazon ECS launched cluster auto scaling, as an alternative method for scaling container instances\. For more information, see [Amazon ECS Cluster Auto Scaling](cluster-auto-scaling.md)\. 
 
 The following procedures help you to create an Auto Scaling group for an Amazon ECS cluster\. The Auto Scaling group contains container instances that you can scale out \(and in\) using CloudWatch alarms\. 
 
 Depending on the Amazon EC2 instance types that you use in your clusters, and quantity of container instances that you have in a cluster, your tasks have a limited amount of resources that they can use while running\. Amazon ECS monitors the resources available in the cluster to work with the schedulers to place tasks\. If your cluster runs low on any of these resources, such as memory, you are eventually unable to launch more tasks until you add more container instances, reduce the number of desired tasks in a service, or stop some of the running tasks in your cluster to free up the constrained resource\.
 
-In this tutorial, you create a CloudWatch alarm and a step scaling policy using the `MemoryReservation` metric for your cluster\. When the memory reservation of your cluster rises above 75% \(meaning that only 25% of the memory in your cluster is available to for new tasks to reserve\), the alarm triggers the Auto Scaling group to add another instance and provide more resources for your tasks and services\.
+In this tutorial, you create a CloudWatch alarm and a step scaling policy using the `MemoryReservation` metric for your cluster\. When the memory reservation of your cluster rises above 75% \(meaning that only 25% of the memory in your cluster is available for new tasks to reserve\), the alarm triggers the Auto Scaling group to add another instance and provide more resources for your tasks and services\.
 
 ## Prerequisites<a name="as-cw-tutorial-prereqs"></a>
 
 This tutorial assumes that you have enabled CloudWatch metrics for your clusters and services\. Metrics are not available until the clusters and services send the metrics to CloudWatch, and you cannot create CloudWatch alarms for metrics that do not exist yet\. For more information, see [Enabling CloudWatch Metrics](cloudwatch-metrics.md#enable_cloudwatch)\.
-
-Wherever possible, you should scale on Amazon EC2 instance metrics with a 1\-minute frequency because that ensures a faster response to utilization changes\. 
 
 ## Step 1: Create a CloudWatch Alarm for a Metric<a name="create-cw-alarms"></a>
 
@@ -64,9 +62,6 @@ Now that you have enabled CloudWatch metrics and created an alarm based on one o
 
    To use the Amazon ECS\-optimized Amazon Linux 2 AMI, type **amzn2\-ami\-ecs** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **amzn2\-ami\-ecs\-hvm\-2\.0\.20191014\-x86\_64\-ebs** AMI\.
 
-   The following table lists the current Amazon ECS\-optimized Amazon Linux 2 AMI IDs by Region\.    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch_alarm_autoscaling.html)
-
 1. On the **Choose Instance Type** step of the **Create Auto Scaling Group** wizard, choose an instance type for your Auto Scaling group and choose **Next: Configure details**\.
 
 1. On the **Configure details** step of the **Create Auto Scaling Group** wizard, enter the following information\. The other fields are optional\. For more information, see [Creating Launch Configurations](https://docs.aws.amazon.com/autoscaling/latest/userguide/WorkingWithLaunchConfig.html) in the *Amazon EC2 Auto Scaling User Guide*\.
@@ -74,7 +69,14 @@ Now that you have enabled CloudWatch metrics and created an alarm based on one o
    + **IAM role:** Select the `ecsInstanceRole` for your container instances\. If you do not have this role configured, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
    + **IP Address Type:** Select the IP address type option for your container instances\. To allow external traffic to be able to reach your containers, choose **Assign a public IP address to every instance\.**
 
-1. \(Optional\) If you have configuration information to pass to your container instances with Amazon EC2 user data, choose **Advanced Details** and enter your user data in the **User data** field\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+1. Expand the **Advanced Details** section to specify user data for your Amazon ECS container instances\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+
+   Paste the following script into the **User data** field\. Reference the cluster name that you are working with\. 
+
+   ```
+   #!/bin/bash
+   echo ECS_CLUSTER=my-cluster >> /etc/ecs/ecs.config
+   ```
 
 1. Choose **Next: Add Storage**\.
 
@@ -116,7 +118,9 @@ If you configure your Auto Scaling group to remove container instances, any task
 
 ## Step 4: Verify and Test your Auto Scaling Group<a name="verify-as-group"></a>
 
-Now that you've created your Auto Scaling group, you should be able to see your instances launching in the Amazon EC2 console **Instances** page\. These instances should register into your Amazon ECS cluster as well after they launch\.
+Now that you've created your Auto Scaling group, you should see your instances launching in the Amazon EC2 console **Instances** page\. These instances should register into your ECS cluster as well after they launch\. 
+
+Verify that the EC2 instances are registered with the cluster\. From the ECS console, select the cluster that you registered your instances with\. On the **Cluster** page, choose **ECS Instances**\. Verify that the **Agent Connected** value is **True** for the instances displayed\.
 
 To test that your Auto Scaling group is configured properly, create some tasks that consume a considerable amount of memory and start launching them into your cluster\. After your cluster exceeds the 75% memory reservation from the CloudWatch alarm for the specified number of periods, you should see a new instance launch in the Amazon EC2 console\.
 

@@ -34,7 +34,7 @@ You can specify multiple actions using wildcards \(\*\)\. For example, to specif
 
 
 
-To see a list of Amazon ECS actions, see [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)\.
+To see a list of Amazon ECS actions, see [Actions, Resources, and Condition Keys for Amazon Elastic Container Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonelasticcontainerservice.html) in the *IAM User Guide*
 
 ### Resources<a name="security_iam_service-with-iam-id-based-policies-resources"></a>
 

@@ -24,18 +24,18 @@ AWS Fargate with Amazon ECS is currently only available in the following Regions
 | Canada \(Central\) | ca\-central\-1 | 
 | China \(Beijing\) | cn\-north\-1 | 
 | China \(Ningxia\) | cn\-northwest\-1 | 
-| EU \(Frankfurt\) | eu\-central\-1 | 
-| EU \(Ireland\) | eu\-west\-1 | 
-| EU \(London\) | eu\-west\-2 | 
-| EU \(Paris\) | eu\-west\-3 | 
-| EU \(Stockholm\) | eu\-north\-1 | 
+| Europe \(Frankfurt\) | eu\-central\-1 | 
+| Europe \(Ireland\) | eu\-west\-1 | 
+| Europe \(London\) | eu\-west\-2 | 
+| Europe \(Paris\) | eu\-west\-3 | 
+| Europe \(Stockholm\) | eu\-north\-1 | 
 | South America \(São Paulo\) | sa\-east\-1 | 
 | Middle East \(Bahrain\) | me\-south\-1 | 
 | AWS GovCloud \(US\-East\) | us\-gov\-east\-1 | 
-| AWS GovCloud \(US\) | us\-gov\-west\-1 | 
+| AWS GovCloud \(US\-West\) | us\-gov\-west\-1 | 
 
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
-+ [Getting Started with Amazon ECS](ECS_GetStarted.md)
++ [Getting Started with Amazon ECS using Fargate](getting-started-fargate.md)
 + [Tutorial: Creating a Cluster with a Fargate Task Using the AWS CLI](ECS_AWSCLI_Fargate.md)
 + [Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)
 

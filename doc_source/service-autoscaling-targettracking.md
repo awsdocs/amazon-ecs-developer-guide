@@ -16,9 +16,9 @@ Keep the following considerations in mind:
 
 The following procedures help you to create an Amazon ECS cluster and a service that uses target tracking to scale out \(and in\) automatically based on demand\. 
 
-In this tutorial, you create a cluster and a service \(that runs behind an Elastic Load Balancing load balancer\) using the Amazon ECS first run wizard\. Then you configure a target tracking scaling policy that scales your service automatically based on the current application load as measured by the service's average CPU utilization\. 
+In this tutorial, you use the Amazon ECS first\-run wizard to create a cluster and a service that runs behind an Elastic Load Balancing load balancer\. Then you configure a target tracking scaling policy that scales your service automatically based on the current application load as measured by the service's CPU utilization \(from the **ECS, ClusterName, ServiceName** category in CloudWatch\)\.
 
-When the average CPU utilization of your service rises above 75% \(meaning that more than 75% of the CPU that is reserved for the service is being used\), the scale\-out alarm triggers Service Auto Scaling to add another task to your service to help out with the increased load\. Conversely, when the average CPU utilization of your service drops below 75%, the scale\-in alarm triggers a decrease in the service's desired count to free up those cluster resources for other tasks and services\.
+When the average CPU utilization of your service rises above 75% \(meaning that more than 75% of the CPU that is reserved for the service is being used\), a scale\-out alarm triggers Service Auto Scaling to add another task to your service to help out with the increased load\. Conversely, when the average CPU utilization of your service drops below the target utilization for a sustained period of time, a scale\-in alarm triggers a decrease in the service's desired count to free up those cluster resources for other tasks and services\.
 
 ## Prerequisites<a name="tt-prereqs"></a>
 
@@ -87,9 +87,9 @@ Now that you have launched a cluster and created a service in that cluster that 
 
    1. For **Target value**, enter `75`\.
 
-   1. For **Scale\-out cooldown period**, enter `60`\. A scale\-out activity increases the number of your service's tasks\. A scale\-out cooldown period specifies the amount of time, in seconds, after a scale\-out activity completes before another scale\-out activity can start\.
+   1. For **Scale\-out cooldown period**, enter `60` seconds\. A scale\-out activity increases the number of your service's tasks\. While the scale\-out cooldown period is in effect, the capacity that has been added by the previous scale\-out activity that initiated the cooldown is calculated as part of the desired capacity for the next scale out\. The intention is to continuously \(but not excessively\) scale out\.
 
-   1. For **Scale\-in cooldown period**, enter `60`\. A scale\-in activity reduces the number of your service's tasks\. A scale\-in cooldown period specifies the amount of time, in seconds, after a scale\-in activity completes before another scale\-in activity can start\.
+   1. For **Scale\-in cooldown period**, enter `60` seconds\. A scale\-in activity reduces the number of your service's tasks\. The scale\-in cooldown period is used to block subsequent scale\-in requests until it has expired\. The intention is to scale in conservatively to protect your application's availability\. However, if another alarm triggers a scale out activity during the cooldown period after a scale\-in, Service Auto Scaling scales out your scalable target immediately\. 
 
    1. Choose **Save**\.
 
@@ -131,7 +131,18 @@ This command is installed by default on macOS, and it is available for many Linu
 
 1. Shortly after your ab HTTP requests complete \(between 1 and 2 minutes\), your scale in alarm should trigger and the scale in policy reduces your service's desired count back to 1\.
 
-## Step 4: Cleaning Up<a name="tt-cleanup"></a>
+## Step 4: Next Steps<a name="tt-next-steps"></a>
+
+Go to the next step if you would like to delete the basic infrastructure that you just created for this tutorial\. Otherwise, you can use this infrastructure as your base and try one or more of the following: 
++ To view these scaling activities from the Amazon ECS console, choose the **Events** tab of the service\. When scaling events occur, you see informational messages here\. For example:
+
+  ```
+  Message: Successfully set desired count to 1. Change successfully fulfilled by ecs. Cause: monitor alarm TargetTracking-service/service-autoscaling/sample-webapp-AlarmLow-fcd80aef-5161-4890-aeb4-35dde11ff42c in state ALARM triggered policy TargetTrackingPolicy
+  ```
++ If you have CloudWatch Container Insights set up and it's collecting Amazon ECS metrics, you can view metric data on the CloudWatch automatic dashboards\. For more information, see [Introducing Amazon CloudWatch Container Insights for Amazon ECS](http://aws.amazon.com/blogs/mt/introducing-container-insights-for-amazon-ecs/) in the *AWS Compute Blog*\. 
++ Learn how to set up CloudWatch Container Insights\. Additional charges apply\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md) and [Updating Cluster Settings](update-cluster-settings.md)\.
+
+## Step 5: Cleaning Up<a name="tt-cleanup"></a>
 
 When you have completed this tutorial, you may choose to keep your cluster, Auto Scaling group, load balancer, target tracking scaling policy, and CloudWatch alarms\. However, if you are not actively using these resources, you should consider cleaning them up so that your account does not incur unnecessary charges\.
 

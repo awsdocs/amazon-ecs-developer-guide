@@ -40,6 +40,9 @@ If no container instances are registered in the cluster you attempt to run a tas
 Not enough ports  
 If your task uses fixed host port mapping \(for example, your task uses port 80 on the host for a web server\), you must have at least one container instance per task, because only one container can use a single host port at a time\. You should add container instances to your cluster or reduce your number of desired tasks\.
 
+Too many ports registered  
+The closest matching container instance for task placement can not exceed the maximum allowed reserved port limit of 100 host ports per container instance\. Using Dynamic host port mapping may remediate the issue\.
+
 Not enough memory  
 If your task definition specifies 1000 MiB of memory, and the container instances in your cluster each have 1024 MiB of memory, you can only run one copy of this task per container instance\. You can experiment with less memory in your task definition so that you could launch more than one task per container instance, or launch more container instances into your cluster\.  
 If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.
@@ -59,8 +62,7 @@ You can add container instances to your cluster to provide more available networ
 Container instance missing required attribute  
 Some task definition parameters require a specific Docker remote API version to be installed on the container instance\. Others, such as the logging driver options, require the container instances to register those log drivers with the `ECS_AVAILABLE_LOGGING_DRIVERS` agent configuration variable\. If your task definition contains a parameter that requires a specific container instance attribute, and you do not have any available container instances that can satisfy this requirement, the task cannot be placed\.  
 A common cause of this error is if your service is using tasks that use the `awsvpc` network mode and the EC2 launch type and the cluster you specified does not have a container instance registered to it in the same subnet that was specified in the `awsvpcConfiguration` when the service was created\.  
-For more information on which attributes are required for specific task definition parameters and agent configuration variables, see [Task Definition Parameters](task_definition_parameters.md) and [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.  
-Windows container instances with Amazon ECS container agent versions earlier than 1\.17\.0 do not support the `awslogs` log driver by default\. If you are unable to use the `awslogs` log driver with your Windows container instances, ensure that you are using the latest Amazon ECS\-optimized Windows AMI\.
+For more information on which attributes are required for specific task definition parameters and agent configuration variables, see [Task Definition Parameters](task_definition_parameters.md) and [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 
 ### service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* has insufficient CPU units available\.<a name="service-event-messages-2"></a>
 

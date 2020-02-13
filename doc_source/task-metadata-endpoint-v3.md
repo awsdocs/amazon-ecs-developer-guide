@@ -100,7 +100,51 @@ The time stamp for when the tasks `DesiredStatus` moved to `STOPPED`\. This occu
 The Availability Zone the task is in\.  
 The Availability Zone metadata is not available for tasks using the Fargate launch type\.
 
-## Example Task Metadata Response<a name="task-metadata-endpoint-v3-example-task-metadata-response"></a>
+## Examples<a name="task-metadata-endpoint-v3-examples"></a>
+
+The following examples show sample outputs from the task metadata endpoints\.
+
+### Example Container Metadata Response<a name="task-metadata-endpoint-v3-example-container-metadata-response"></a>
+
+When querying the `${ECS_CONTAINER_METADATA_URI}` endpoint you are returned only metadata about the container itself\. The following is an example output\.
+
+```
+{
+    "DockerId": "43481a6ce4842eec8fe72fc28500c6b52edcc0917f105b83379f88cac1ff3946",
+    "Name": "nginx-curl",
+    "DockerName": "ecs-nginx-5-nginx-curl-ccccb9f49db0dfe0d901",
+    "Image": "nrdlngr/nginx-curl",
+    "ImageID": "sha256:2e00ae64383cfc865ba0a2ba37f61b50a120d2d9378559dcd458dc0de47bc165",
+    "Labels": {
+        "com.amazonaws.ecs.cluster": "default",
+        "com.amazonaws.ecs.container-name": "nginx-curl",
+        "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-east-2:012345678910:task/9781c248-0edd-4cdb-9a93-f63cb662a5d3",
+        "com.amazonaws.ecs.task-definition-family": "nginx",
+        "com.amazonaws.ecs.task-definition-version": "5"
+    },
+    "DesiredStatus": "RUNNING",
+    "KnownStatus": "RUNNING",
+    "Limits": {
+        "CPU": 512,
+        "Memory": 512
+    },
+    "CreatedAt": "2018-02-01T20:55:10.554941919Z",
+    "StartedAt": "2018-02-01T20:55:11.064236631Z",
+    "Type": "NORMAL",
+    "Networks": [
+        {
+            "NetworkMode": "awsvpc",
+            "IPv4Addresses": [
+                "10.0.2.106"
+            ]
+        }
+    ]
+}
+```
+
+### Example Task Metadata Response<a name="task-metadata-endpoint-v3-example-task-metadata-response"></a>
+
+When querying the `${ECS_CONTAINER_METADATA_URI}/task` endpoint you are returned metadata about the task the container is part of\. The following is an example output\.
 
 The following JSON response is for a single\-container task\.
 

@@ -5,9 +5,9 @@
 Amazon ECS publishes CloudWatch metrics with your service’s average CPU and memory usage\. For more information, see [Service Utilization](cloudwatch-metrics.md#service_utilization)\. You can use these and other CloudWatch metrics to scale out your service \(add more tasks\) to deal with high demand at peak times, and to scale in your service \(run fewer tasks\) to reduce costs during periods of low utilization\. 
 
 Amazon ECS Service Auto Scaling supports the following types of automatic scaling:
-+ [Target Tracking Scaling Policies](service-autoscaling-targettracking.md)—Increase or decrease the number of tasks that your service runs based on a target value for a specific CloudWatch metric\. This is similar to the way that your thermostat maintains the temperature of your home\. You select temperature and the thermostat does the rest\.
-+ [Step Scaling Policies](service-autoscaling-stepscaling.md)—Increase or decrease the number of tasks that your service runs in response to CloudWatch alarms\. Step scaling is based on a set of scaling adjustments, known as step adjustments, which vary based on the size of the alarm breach\.
-+ [Scheduled Scaling](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html)—Scaling based on a schedule allows you to set your own scaling schedule for predictable load changes\. For example, every week the traffic to your web application starts to increase on Wednesday, remains high on Thursday, and starts to decrease on Friday\. You can configure Application Auto Scaling to increase the desired count of your Amazon ECS service on Wednesday and decrease it on Friday\.
++ [Target Tracking Scaling Policies](service-autoscaling-targettracking.md)—Increase or decrease the number of tasks that your service runs based on a target value for a specific metric\. This is similar to the way that your thermostat maintains the temperature of your home\. You select temperature and the thermostat does the rest\.
++ [Step Scaling Policies](service-autoscaling-stepscaling.md)—Increase or decrease the number of tasks that your service runs based on a set of scaling adjustments, known as step adjustments, that vary based on the size of the alarm breach\. 
++ [Scheduled Scaling](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html)—Increase or decrease the number of tasks that your service runs based on the date and time\. 
 
 ## IAM Permissions Required for Service Auto Scaling<a name="auto-scaling-IAM"></a>
 
@@ -24,7 +24,7 @@ In addition to the standard IAM permissions for creating and updating services, 
       "Action": [
         "application-autoscaling:*",
         "ecs:DescribeServices",
-        "ecs:UpdateServices",
+        "ecs:UpdateService",
         "cloudwatch:DescribeAlarms",
         "cloudwatch:PutMetricAlarm",
         "cloudwatch:DeleteAlarms",

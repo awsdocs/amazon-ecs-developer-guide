@@ -173,17 +173,19 @@ This section requires the following:
    docker tag hello-world aws_account_id.dkr.ecr.region.amazonaws.com/hello-repository
    ```
 
-1. Run the aws ecr get\-login \-\-no\-include\-email command to get the docker login authentication command string for your registry\. 
-**Note**  
-The get\-login command is available in the AWS CLI starting with version 1\.9\.15; however, we recommend version 1\.11\.91 or later for recent versions of Docker \(17\.06 or later\)\. You can check your AWS CLI version with the aws \-\-version command\. If you are using Docker version 17\.06 or later, include the `--no-include-email` option after `get-login`\. If you receive an `Unknown options: --no-include-email` error, install the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+1. Run the aws ecr get\-login\-password command\. Specify the registry URI you want to authenticate to\. For more information, see [Registry Authentication](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth) in the *Amazon Elastic Container Registry User Guide*\.
 
    ```
-   aws ecr get-login --no-include-email --region region
+   aws ecr get-login-password | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.us-east-1.amazonaws.com
    ```
 
-1. Run the docker login command that was returned in the previous step\. This command provides an authorization token that is valid for 12 hours\.
+   Output:
+
+   ```
+   Login Succeeded
+   ```
 **Important**  
-When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way\. They could use the credentials to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
+If you receive an error, install or upgrade to the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
 1. Push the image to Amazon ECR with the `repositoryUri` value from the earlier step\.
 
@@ -204,4 +206,4 @@ aws ecr delete-repository --repository-name hello-repository --region region --f
 Now that you've created a Docker image and pushed it to an Amazon ECR repository, you can begin creating your Amazon ECS resources to get a container launched\. Use the following topics to continue:
 + Complete the prerequisites\. For more information, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 + For AWS CLI walkthroughs, see [Tutorials for Amazon ECS](ecs-tutorials.md)\.
-+ For AWS Management Console walkthroughs, see [Getting Started with Amazon ECS](ECS_GetStarted.md)\.
++ For AWS Management Console walkthroughs, see [Getting Started with Amazon ECS using Fargate](getting-started-fargate.md) and [Getting Started with Amazon ECS Using Amazon EC2](getting-started-ecs-ec2.md)\.
