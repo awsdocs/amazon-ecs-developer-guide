@@ -370,7 +370,7 @@ Use the following steps to create and upload an application specification file \
       ```
       aws deploy get-deployment-target \
            --deployment-id "d-IMJU3A8TW" \
-           --target-id tutorial-bluegreen-app:service-bluegreen \
+           --target-id tutorial-bluegreen-cluster:service-bluegreen \
            --region us-east-1
       ```
 
