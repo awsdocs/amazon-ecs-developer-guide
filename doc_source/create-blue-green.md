@@ -230,7 +230,7 @@ Use the following steps to create your CodeDeploy application, the Application L
 
    ```
    {
-      "applicationName": "tutorial-bluegreen=app",
+      "applicationName": "tutorial-bluegreen-app",
       "autoRollbackConfiguration": {
          "enabled": true,
          "events": [ "DEPLOYMENT_FAILURE" ]
