@@ -20,8 +20,8 @@ Download the Amazon ECS CLI binary\.
   Open Windows PowerShell and run the following commands:
 
   ```
-  PS C:\> New-Item ‘C:\Program Files\Amazon\ECSCLI’ -type directory
-  PS C:\> Invoke-WebRequest -OutFile ‘C:\Program Files\Amazon\ECSCLI\ecs-cli.exe’ https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe
+  PS C:\> New-Item -Path 'C:\Program Files\Amazon\ECSCLI' -ItemType Directory
+  PS C:\> Invoke-WebRequest -OutFile 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe' https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe
   ```
 **Note**  
 If you encounter permissions issues, ensure that you are running PowerShell as an administrator\.
