@@ -105,12 +105,6 @@ Default value on Linux: `false`
 Default value on Windows: `false`  
 Whether to exit for Amazon ECS agent updates when they are requested\.
 
-`ECS_UPDATE_DOWNLOAD_DIR`  
-Example values: `/cache`  
-Default value on Linux: Null  
-Default value on Windows: Null  
-The file system location to place update tarballs within the container when they are downloaded\.
-
 `ECS_DISABLE_METRICS`  
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
@@ -368,7 +362,7 @@ The runtime to be used to pass NVIDIA GPU devices to containers\. This parameter
 Example values: `true`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-Whether to enable Spot Instance draining for the container instance\. When true, if the container instance receives a Spot interruption notice, then the agent sets the instance status to `DRAINING`, which gracefully shuts down and replaces all tasks running on the instance that are part of a service\. It is recommended that this be set to true when using Spot instances\. For more information, see [Container Instance Draining](container-instance-draining.md)\.
+Whether to enable Spot Instance draining for the container instance\. When true, if the container instance receives a Spot interruption notice, then the agent sets the instance status to `DRAINING`, which gracefully shuts down and replaces all tasks running on the instance that are part of a service\. It is recommended that this be set to true when using Spot Instances\. For more information, see [Container Instance Draining](container-instance-draining.md)\.
 
 `ECS_LOG_ROLLOVER_TYPE`  
 Example values: `size`, `hourly`  

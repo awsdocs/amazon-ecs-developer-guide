@@ -32,7 +32,7 @@ The following considerations are specific to Amazon ECS services using Applicati
 + After you create a service, the target group ARN or load balancer name, container name, and container port specified in the service definition are immutable\. You cannot add, remove, or change the load balancer configuration of an existing service\. If you update the task definition for the service, the container name and container port that were specified when the service was created must remain in the task definition\. 
 + If a service's task fails the load balancer health check criteria, the task is stopped and restarted\. This process continues until your service reaches the number of desired running tasks\.
 + The Application Load Balancer slow start mode is supported\. For more information, see [Application Load Balancer Slow Start Mode Considerations](#alb-slowstart-considerations)\. about slow start mode, see [Target Groups for Your Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html)\.
-+ If you are experiencing problems with your load balancer\-enabled services, see [Troubleshooting Service Load Balancers](troubleshoot-service-load-balancers.md)\.
++ If you are experiencing problems with your load balancer\-enabled services, see [Troubleshooting service load balancers](troubleshoot-service-load-balancers.md)\.
 
 ### Application Load Balancer Slow Start Mode Considerations<a name="alb-slowstart-considerations"></a>
 

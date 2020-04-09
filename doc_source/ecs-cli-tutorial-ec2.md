@@ -136,7 +136,7 @@ Now you can create your service\.
 ecs-cli compose service up --cluster-config ec2-tutorial --ecs-profile ec2-tutorial-profile
 ```
 
-## Step 8: \(Optional\) View your Web Application<a name="ECS_CLI_tutorial_view"></a>
+## Step 8: View your Web Application<a name="ECS_CLI_tutorial_view"></a>
 
 Enter the IP address for the task in your web browser and you should see a webpage that displays the **Simple PHP App** web application\.
 

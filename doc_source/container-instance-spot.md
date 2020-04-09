@@ -27,7 +27,7 @@ For more information, see [Launching an Amazon ECS Container Instance](launch_co
 
 **To enable Spot Instance draining for an existing container instance**
 
-1. Connect to the Spot instance over SSH\.
+1. Connect to the Spot Instance over SSH\.
 
 1. Edit the `/etc/ecs/ecs.config` file and add the following:
 

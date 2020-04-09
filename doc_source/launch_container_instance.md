@@ -42,7 +42,7 @@ Container instances need access to communicate with the Amazon ECS service endpo
 For more information about interface VPC endpoints, see [Amazon ECS Interface VPC Endpoints \(AWS PrivateLink\)](vpc-endpoints.md)\.  
 If you do not have an interface VPC endpoint configured and your container instances do not have public IP addresses, then they must use network address translation \(NAT\) to provide this access\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide* and [HTTP Proxy Configuration](http_proxy_config.md) in this guide\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
 
-   1. Select the `ecsInstanceRole` **IAM role** value that you created for your container instances in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
+   1. Select your container instance IAM role\. This is usually named `ecsInstanceRole`\.
 **Important**  
 If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent cannot connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 

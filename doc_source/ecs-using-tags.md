@@ -5,14 +5,6 @@ To help you manage your Amazon ECS tasks, services, task sets, task definitions,
 **Important**  
 To use this feature, it requires that you opt\-in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\.
 
-**Topics**
-+ [Tag Basics](#tag-basics)
-+ [Tagging Your Resources](#tag-resources)
-+ [Tag Restrictions](#tag-restrictions)
-+ [Tagging Your Resources for Billing](#tag-resources-for-billing)
-+ [Working with Tags Using the Console](#tag-resources-console)
-+ [Working with Tags Using the CLI or API](#tag-resources-api-sdk)
-
 ## Tag Basics<a name="tag-basics"></a>
 
 A tag is a label that you assign to an AWS resource\. Each tag consists of a *key* and an optional *value*, both of which you define\.

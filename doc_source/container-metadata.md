@@ -61,7 +61,7 @@ The full Amazon Resource Name \(ARN\) of the host container instance\.
 The full Amazon Resource Name \(ARN\) of the task that the container belongs to\.
 
 `TaskDefinitionFamily`  
-The name of the task definitino family the container is using\.
+The name of the task definition family the container is using\.
 
 `TaskDefinitionRevision`  
 The task definition revision the container is using\.

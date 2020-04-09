@@ -54,7 +54,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.2\.1\-prod\.
+   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.2\.1\-prod\.
 
    1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
@@ -107,7 +107,7 @@ If you chose **EC2**, complete the following steps:
 **Note**  
 Only roles that have the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
-1. \(Optional\) For **Network Mode**, choose the Docker network mode to use for the containers in your task\. The available network modes correspond to those described in [Network settings](https://docs.docker.com/engine/reference/run/#/network-settings) in the Docker run reference\. If you select **Enable App Mesh integration** in a step below, then you must select `awsvpc`\.
+1. \(Optional\) For **Network Mode**, choose the Docker network mode to use for the containers in your task\. The available network modes correspond to those described in [Network settings](https://docs.docker.com/engine/reference/run/#/network-settings) in the Docker run reference\. If you select **Enable App Mesh integration** in a following step, then you must select `awsvpc`\.
 
    The default Docker network mode is `bridge`\. If the network mode is set to `none`, you can't specify port mappings in your container definitions, and the task's containers do not have external connectivity\. If the network mode is `awsvpc`, the task is allocated an elastic network interface\. The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode; however, exposed container ports are mapped directly to the corresponding host port, so you cannot take advantage of dynamic host port mappings or run multiple instantiations of the same task on a single container instance if port mappings are used\.
 
@@ -133,7 +133,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.2\.1\-prod\.
+   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.2\.1\-prod\.
 
    1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
@@ -247,7 +247,7 @@ An empty task definition template is shown below\. You can use this template to 
                         "hostPath": "",
                         "containerPath": "",
                         "permissions": [
-                            "write"
+                            "read"
                         ]
                     }
                 ],
@@ -274,7 +274,7 @@ An empty task definition template is shown below\. You can use this template to 
             "dependsOn": [
                 {
                     "containerName": "",
-                    "condition": "HEALTHY"
+                    "condition": "COMPLETE"
                 }
             ],
             "startTimeout": 0,
@@ -307,13 +307,13 @@ An empty task definition template is shown below\. You can use this template to 
             },
             "ulimits": [
                 {
-                    "name": "cpu",
+                    "name": "rtprio",
                     "softLimit": 0,
                     "hardLimit": 0
                 }
             ],
             "logConfiguration": {
-                "logDriver": "splunk",
+                "logDriver": "gelf",
                 "options": {
                     "KeyName": ""
                 },
@@ -342,7 +342,7 @@ An empty task definition template is shown below\. You can use this template to 
             "resourceRequirements": [
                 {
                     "value": "",
-                    "type": "InferenceAccelerator"
+                    "type": "GPU"
                 }
             ],
             "firelensConfiguration": {
@@ -360,7 +360,7 @@ An empty task definition template is shown below\. You can use this template to 
                 "sourcePath": ""
             },
             "dockerVolumeConfiguration": {
-                "scope": "shared",
+                "scope": "task",
                 "autoprovision": true,
                 "driver": "",
                 "driverOpts": {
@@ -372,7 +372,13 @@ An empty task definition template is shown below\. You can use this template to 
             },
             "efsVolumeConfiguration": {
                 "fileSystemId": "",
-                "rootDirectory": ""
+                "rootDirectory": "",
+                "transitEncryption": "DISABLED",
+                "transitEncryptionPort": 0,
+                "authorizationConfig": {
+                    "accessPointId": "",
+                    "iam": "ENABLED"
+                }
             }
         }
     ],
@@ -383,7 +389,7 @@ An empty task definition template is shown below\. You can use this template to 
         }
     ],
     "requiresCompatibilities": [
-        "FARGATE"
+        "EC2"
     ],
     "cpu": "",
     "memory": "",
@@ -394,7 +400,7 @@ An empty task definition template is shown below\. You can use this template to 
         }
     ],
     "pidMode": "task",
-    "ipcMode": "host",
+    "ipcMode": "none",
     "proxyConfiguration": {
         "type": "APPMESH",
         "containerName": "",

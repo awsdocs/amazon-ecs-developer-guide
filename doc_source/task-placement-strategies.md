@@ -1,6 +1,6 @@
 # Amazon ECS Task Placement Strategies<a name="task-placement-strategies"></a>
 
-A *task placement strategy* is an algorithm for selecting instances for task placement or tasks for termination\. Task placement strategies can be specified when either running a task or creating a new service\. For more information, see [Amazon ECS Task Placement](task-placement.md)\.
+A *task placement strategy* is an algorithm for selecting instances for task placement or tasks for termination\. Task placement strategies can be specified when either running a task or creating a new service\. The task placement strategies can be updated for existing services as well\. For more information, see [Amazon ECS Task Placement](task-placement.md)\.
 
 ## Strategy Types<a name="strategy-types"></a>
 
@@ -17,7 +17,7 @@ Place tasks evenly based on the specified value\. Accepted values are `instanceI
 
 ## Example Strategies<a name="strategy-examples"></a>
 
-You can specify task placement strategies with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html) and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
+You can specify task placement strategies with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [UpdateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html), and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
 
 The following strategy distributes tasks evenly across Availability Zones\.
 

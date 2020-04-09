@@ -79,4 +79,4 @@ If you specify a tag with the same `key` in the **Tags** section, it will overri
 
 1. Review your task information and choose **Run Task**\.
 **Note**  
-If your task moves from `PENDING` to `STOPPED`, or if it displays a `PENDING` status and then disappears from the listed tasks, your task may be stopping due to an error\. For more information, see [Checking Stopped Tasks for Errors](stopped-task-errors.md) in the troubleshooting section\.
+If your task moves from `PENDING` to `STOPPED`, or if it displays a `PENDING` status and then disappears from the listed tasks, your task may be stopping due to an error\. For more information, see [Checking stopped tasks for errors](stopped-task-errors.md) in the troubleshooting section\.

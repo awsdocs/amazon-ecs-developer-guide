@@ -23,23 +23,37 @@ The following is the basic workflow to managing an external deployment on Amazon
 
 1. Create an Amazon ECS service\. The only required parameter is the service name\. You can specify the following parameters when creating a service using an external deployment controller\. All other service parameters are specified when creating a task set within the service\.  
 `serviceName`  
-The name of your service\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. Service names must be unique within a cluster, but you can have similarly named services in multiple clusters within a Region or across multiple Regions\.  
+Type: String  
 Required: Yes  
+The name of your service\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. Service names must be unique within a cluster, but you can have similarly named services in multiple clusters within a Region or across multiple Regions\.  
 `desiredCount`  
 The number of instantiations of the specified task set task definition to place and keep running within the service\.  
 `deploymentConfiguration`  
 Optional deployment parameters that control how many tasks run during a deployment and the ordering of stopping and starting tasks\. For more information, see [deploymentConfiguration](service_definition_parameters.md#deploymentConfiguration)\.  
 `tags`  
-The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. When a service is deleted, the tags are deleted as well\. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.    
+Type: Array of objects  
+Required: No  
+The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. When a service is deleted, the tags are deleted as well\. A maximum of 50 tags can be applied to the service\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.    
 `key`  
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Required: No  
 One part of a key\-value pair that make up a tag\. A key is a general label that acts like a category for more specific tag values\.  
 `value`  
+Type: String  
+Length Constraints: Minimum length of 0\. Maximum length of 256\.  
+Required: No  
 The optional part of a key\-value pair that make up a tag\. A value acts as a descriptor within a tag category \(key\)\.  
 `enableECSManagedTags`  
 Specifies whether to enable Amazon ECS managed tags for the tasks within the service\. For more information, see [Tagging Your Resources for Billing](ecs-using-tags.md#tag-resources-for-billing)\.  
 `propagateTags`  
+Type: String  
+Valid values: `TASK_DEFINITION` \| `SERVICE`  
+Required: No  
 Specifies whether to copy the tags from the task definition or the service to the tasks in the service\. If no value is specified, the tags are not copied\. Tags can only be copied to the tasks within the service during service creation\. To add tags to a task after service creation, use the `TagResource` API action\.  
 `healthCheckGracePeriodSeconds`  
+Type: Integer  
+Required: No  
 The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks, container health checks, and Route 53 health checks after a task enters a `RUNNING` state\. This is only valid if your service is configured to use a load balancer\. If your service has a load balancer defined and you do not specify a health check grace period value, the default value of `0` is used\.  
 If your service's tasks take a while to start and respond to health checks, you can specify a health check grace period of up to 2,147,483,647 seconds during which the ECS service scheduler ignores the health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\.  
 `schedulingStrategy`  
@@ -93,8 +107,14 @@ The placement strategy objects to use for tasks in your service\. You can specif
 `taskDefinition`  
 The task definition for the tasks in the task set to use\.  
 `launchType`  
-The launch type on which to run your service\. Accepted values are `FARGATE` or `EC2`\. If a launch type is not specified, `EC2` is used by default\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.   
+Type: String  
+Valid values: `EC2` \| `FARGATE`  
+Required: No  
+The launch type on which to run your service\. If a launch type is not specified, `EC2` is used by default\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.  
+If a `launchType` is specified, the `capacityProviderStrategy` parameter must be omitted\.  
 `platformVersion`  
+Type: String  
+Required: No  
 The platform version on which your tasks in the service are running\. A platform version is only specified for tasks using the Fargate launch type\. If one is not specified, the latest version \(`LATEST`\) is used by default\.  
 AWS Fargate platform versions are used to refer to a specific runtime environment for the Fargate task infrastructure\. When specifying the `LATEST` platform version when running a task or creating a service, you get the most current platform version available for your tasks\. When you scale up your service, those tasks receive the platform version that was specified on the service's current deployment\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.  
 Platform versions are not specified for tasks using the EC2 launch type\.  
@@ -113,7 +133,7 @@ The following snippet shows an example loadBalancer object to use\.
    ```
 When specifying a `loadBalancer` object, you must specify a `targetGroupArn` and omit the `loadBalancerName` parameters\.  
 `networkConfiguration`  
-The network configuration for the service\. This parameter is required for task definitions that use the `awsvpc` network mode to receive their own elastic network interface, and it's not supported for other network modes\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.  
+The network configuration for the service\. This parameter is required for task definitions that use the `awsvpc` network mode to receive their own elastic network interface, and it's not supported for other network modes\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.\.  
 `serviceRegistries`  
 The details of the service discovery registries to assign to this service\. For more information, see [Service Discovery](service-discovery.md)\.  
 `scale`  

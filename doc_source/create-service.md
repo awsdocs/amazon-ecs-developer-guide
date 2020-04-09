@@ -10,6 +10,6 @@ The following documents take you through each step of the create service wizard 
 + [Step 1: Configuring Basic Service Parameters](basic-service-params.md)
 + [Step 2: Configure a Network](service-configure-network.md)
 + [Step 3: Configuring Your Service to Use a Load Balancer](service-create-loadbalancer.md)
-+ [Step 4: \(Optional\) Configuring Your Service to Use Service Discovery](service-configure-servicediscovery.md)
-+ [Step 5: \(Optional\) Configuring Your Service to Use Service Auto Scaling](service-configure-auto-scaling.md)
++ [Step 4: Configuring Your Service to Use Service Discovery](service-configure-servicediscovery.md)
++ [Step 5: Configuring Your Service to Use Service Auto Scaling](service-configure-auto-scaling.md)
 + [Step 6: Review and Create Your Service](create-service-review.md)

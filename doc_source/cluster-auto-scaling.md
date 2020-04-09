@@ -4,7 +4,7 @@ Amazon ECS cluster auto scaling enables you to have more control over how you sc
 
 **Topics**
 + [Cluster Auto Scaling Considerations](#cluster-auto-scaling-considerations)
-+ [Auto Scaling Group Capacity Providers](#asg-capacity-providers)
++ [Auto Scaling group Capacity Providers](#asg-capacity-providers)
 + [Tutorial: Using Cluster Auto Scaling with the AWS Management Console](tutorial-cluster-auto-scaling-console.md)
 + [Tutorial: Using Cluster Auto Scaling with the AWS CLI](tutorial-cluster-auto-scaling-cli.md)
 
@@ -16,23 +16,23 @@ The following should be considered when using cluster auto scaling:
 **Important**  
 Ensure any tooling you use does not remove the `AmazonECSManaged` tag from the Auto Scaling group\. If this tag is removed, Amazon ECS is not able to manage it when scaling your cluster\.
 
-## Auto Scaling Group Capacity Providers<a name="asg-capacity-providers"></a>
+## Auto Scaling group Capacity Providers<a name="asg-capacity-providers"></a>
 
 Amazon ECS capacity providers use Auto Scaling groups to manage the Amazon EC2 instances registered to their clusters\.
 
 **Topics**
-+ [Auto Scaling Group Capacity Providers Considerations](#asg-capacity-providers-considerations)
++ [Auto Scaling group Capacity Providers Considerations](#asg-capacity-providers-considerations)
 + [Using Managed Scaling](#asg-capacity-providers-managed-scaling)
-+ [Creating an Auto Scaling Group](#asg-capacity-providers-create-auto-scaling-group)
++ [Creating an Auto Scaling group](#asg-capacity-providers-create-auto-scaling-group)
 + [Creating a Capacity Provider](#asg-capacity-providers-create-capacity-provider)
 + [Creating a Cluster](#asg-capacity-providers-create-cluster)
 
-### Auto Scaling Group Capacity Providers Considerations<a name="asg-capacity-providers-considerations"></a>
+### Auto Scaling group Capacity Providers Considerations<a name="asg-capacity-providers-considerations"></a>
 
 The following should be considered when using Auto Scaling group capacity providers\.
 + It is recommended that you create a new Auto Scaling group to use with a capacity provider rather than using an existing one\. If you use an existing Auto Scaling group, any Amazon EC2 instances associated with the group that were already running and registered to an Amazon ECS cluster prior to the Auto Scaling group being used to create a capacity provider may not be properly registered with the capacity provider\. This may cause issues when using the capacity provider in a capacity provider strategy\. The DescribeContainerInstances API can confirm that a container instance is associated with a capacity provider\.
 + An Auto Scaling group must have a `MaxSize` greater than zero to scale out\.
-+ Managed scaling is only supported in Regions that AWS Auto Scaling is available in\. For a list of supported Regions, see [AWS Auto Scaling Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/autoscaling_region.html) in the *Amazon Web Services General Reference*\.
++ Managed scaling is only supported in Regions that AWS Auto Scaling is available in\. For more information, see [AWS Auto Scaling Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/autoscaling_region.html) in the *Amazon Web Services General Reference*\.
 + When using managed termination protection, managed scaling must also be used otherwise managed termination protection will not work\.
 
 ### Using Managed Scaling<a name="asg-capacity-providers-managed-scaling"></a>
@@ -41,7 +41,7 @@ When creating a capacity provider, you can optionally enable managed scaling\. W
 
 Managed scaling is only supported in Regions that AWS Auto Scaling is available in\. For a list of supported Regions, see [AWS Auto Scaling Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/autoscaling_region.html) in the *Amazon Web Services General Reference*\.
 
-### Creating an Auto Scaling Group<a name="asg-capacity-providers-create-auto-scaling-group"></a>
+### Creating an Auto Scaling group<a name="asg-capacity-providers-create-auto-scaling-group"></a>
 
 When creating an Auto Scaling group, you use either a launch template or launch configuration\. The launch template or launch configuration specifies the Amazon EC2 instance configuration, including the AMI, the instance type, a key pair, security groups, and the other parameters that you use to launch Amazon EC2 instances\.
 
@@ -55,7 +55,7 @@ For more information on creating an Amazon EC2 Auto Scaling launch configuration
 
 For more information on creating an Amazon EC2 Auto Scaling launch template, see [Launch Templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchTemplates.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
-For more information on creating an Amazon EC2 Auto Scaling launch template, see [Auto Scaling Groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+For more information on creating an Amazon EC2 Auto Scaling launch template, see [Auto Scaling groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 ### Creating a Capacity Provider<a name="asg-capacity-providers-create-capacity-provider"></a>
 
@@ -82,7 +82,7 @@ Use the following steps to create a new capacity provider for an existing Amazon
 
 1. For **Capacity provider name**, enter a capacity provider name\.
 
-1. For **Auto Scaling group**, select the Auto Scaling group to associate with the capacity provider\. The Auto Scaling group must already be created\. For more information, see [Creating an Auto Scaling Group](#asg-capacity-providers-create-auto-scaling-group)\.
+1. For **Auto Scaling group**, select the Auto Scaling group to associate with the capacity provider\. The Auto Scaling group must already be created\. For more information, see [Creating an Auto Scaling group](#asg-capacity-providers-create-auto-scaling-group)\.
 
 1. For **Managed scaling**, choose your managed scaling option\. When managed scaling is enabled, Amazon ECS manages the scale\-in and scale\-out actions of the Auto Scaling group through the use of AWS Auto Scaling scaling plans\. When managed scaling is disabled, you manage your Auto Scaling groups yourself\.
 

@@ -33,7 +33,7 @@ This endpoint returns Docker stats JSON for the specified Docker container ID\. 
 The following information is returned from the task metadata endpoint \(`169.254.170.2/v2/metadata`\) JSON response\.
 
 `Cluster`  
-The Amazon ECS cluster to which the task belongs\.
+The full Amazon Resource Name \(ARN\) of the Amazon ECS cluster to which the task belongs\.
 
 `TaskARN`  
 The full Amazon Resource Name \(ARN\) of the task to which the container belongs\.
@@ -49,6 +49,19 @@ The desired status for the task from Amazon ECS\.
 
 `KnownStatus`  
 The known status for the task from Amazon ECS\.
+
+`Limits`  
+The resource limits specified at the task level \(such as CPU and memory\)\. This parameter is omitted if no resource limits are defined\.
+
+`PullStartedAt`  
+The timestamp for when the first container image pull began\.
+
+`PullStoppedAt`  
+The timestamp for when the last container image pull finished\.
+
+`AvailabilityZone`  
+The Availability Zone the task is in\.  
+The Availability Zone metadata is only available for Fargate tasks using platform version 1\.4 or later\.
 
 `Containers`  
 A list of container metadata for each container associated with the task\.    
@@ -85,21 +98,8 @@ The type of the container\. Containers that are specified in your task definitio
 `Networks`  
 The network information for the container, such as the network mode and IP address\. This parameter is omitted if no network information is defined\.
 
-`Limits`  
-The resource limits specified at the task level \(such as CPU and memory\)\. This parameter is omitted if no resource limits are defined\.
-
-`PullStartedAt`  
-The time stamp for when the first container image pull began\.
-
-`PullStoppedAt`  
-The time stamp for when the last container image pull finished\.
-
 `ExecutionStoppedAt`  
 The time stamp for when the tasks `DesiredStatus` moved to `STOPPED`\. This occurs when an essential container moves to `STOPPED`\.
-
-`AvailabilityZone`  
-The Availability Zone the task is in\.  
-The Availability Zone metadata is not available for tasks using the Fargate launch type\.
 
 ## Example Task Metadata Response<a name="task-metadata-endpoint-v2-example-task-metadata-response"></a>
 

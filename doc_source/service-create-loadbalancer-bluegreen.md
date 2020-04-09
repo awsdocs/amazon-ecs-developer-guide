@@ -42,7 +42,7 @@ If your service's task definition uses the `awsvpc` network mode \(which is requ
 
    1. Repeat the steps for target group 2\.
 
-   1. When you are finished configuring your Application Load Balancer, choose **Next step**\. Navigate to [Step 4: \(Optional\) Configuring Your Service to Use Service Discovery](service-configure-servicediscovery.md)\.<a name="create-service-configure-nlb-bluegreen"></a>
+   1. When you are finished configuring your Application Load Balancer, choose **Next step**\. Navigate to [Step 4: Configuring Your Service to Use Service Discovery](service-configure-servicediscovery.md)\.<a name="create-service-configure-nlb-bluegreen"></a>
 
 **To configure a Network Load Balancer for the blue/green deployment type**
 
@@ -59,4 +59,4 @@ If your service's task definition uses the `awsvpc` network mode \(which is requ
    + For **Target group protocol**, enter the protocol to use for routing traffic to your tasks\.
    + For **Health check path**, enter the path to which the load balancer should send health check pings\.
 
-1. When you are finished configuring your Network Load Balancer, choose **Next Step**\. Navigate to [Step 4: \(Optional\) Configuring Your Service to Use Service Discovery](service-configure-servicediscovery.md)\.
+1. When you are finished configuring your Network Load Balancer, choose **Next Step**\. Navigate to [Step 4: Configuring Your Service to Use Service Discovery](service-configure-servicediscovery.md)\.

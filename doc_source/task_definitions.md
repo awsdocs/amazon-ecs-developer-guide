@@ -29,4 +29,4 @@ Your entire application stack does not need to exist on a single task definition
 + [Specifying Sensitive Data](specifying-sensitive-data.md)
 + [Example Task Definitions](example_task_definitions.md)
 + [Updating a Task Definition](update-task-definition.md)
-+ [Deregistering Task Definitions](deregister-task-definition.md)
++ [Deregistering Task Definition Revisions](deregister-task-definition.md)

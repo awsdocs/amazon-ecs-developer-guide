@@ -11,15 +11,26 @@ New platform versions are released as the runtime environment evolves, for examp
 ## Platform Version Considerations<a name="platform-version-considerations"></a>
 
 The following should be considered when specifying a platform version:
-+ When specifying a platform version, you can use either the version number \(for example, `1.3.0`\) or `LATEST`\.
-+ To use a specific platform version, specify the version number when creating or updating your service\. If you specify `LATEST`, your tasks use the most current platform version available, which may not be the most recent platform version\.
-+ In the China \(Beijing\) and China \(Ningxia\) Regions, the only supported platform version is `1.3.0`\. The AWS Management Console displays older platform versions but an error will be returned if they are chosen\. The `LATEST` platform version is supported because it uses the `1.3.0` platform version\.
++ When specifying a platform version, you can use either the version number \(for example, `1.4.0`\) or `LATEST`\.
++ To use a specific platform version, specify the version number when creating or updating your service\. If you specify `LATEST`, your tasks use platform version `1.3.0`\.
++ In the China \(Beijing\) and China \(Ningxia\) Regions, the only supported platform versions are `1.4.0` and `1.3.0`\. The AWS Management Console displays older platform versions but an error will be returned if they are chosen\. The `LATEST` platform version is supported because it uses the `1.3.0` platform version\.
 + If you have a service with running tasks and want to update their platform version, you can update your service, specify a new platform version, and choose **Force new deployment**\. Your tasks are redeployed with the latest platform version\. For more information, see [Updating a Service](update-service.md)\.
 + If your service is scaled up without updating the platform version, those tasks receive the platform version that was specified on the service's current deployment\.
 
 ## Available AWS Fargate Platform Versions<a name="available_pv"></a>
 
 The following is a list of the platform versions currently available:
+
+Fargate Platform Version‐1\.4\.0  
++ Added support for using Amazon EFS file system volumes for persistent task storage\. For more information, see [Amazon EFS Volumes](efs-volumes.md)\.
++ The ephemeral task storage has been increased to 20 GB\. For more information, see [Fargate Task Storage](fargate-task-storage.md)\.
++ The network traffic behavior to and from tasks has been updated\. Starting with platform version 1\.4, all Fargate tasks receive a single elastic network interface \(referred to as the task ENI\) and all network traffic flows through that ENI within your VPC and will be visible to you through your VPC flow logs\. For more information, see [Fargate Task Networking](https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-task-networking.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
++ Task ENIs add support for jumbo frames\. Network interfaces are configured with a maximum transmission unit \(MTU\), which is the size of the largest payload that fits within a single frame\. The larger the MTU, the more application payload can fit within a single frame, which reduces per\-frame overhead and increases efficiency\. Supporting jumbo frames will reduce overhead when the network path between your task and the destination supports jumbo frames, such as all traffic that remains within your VPC\.
++ CloudWatch Container Insights will include network performance metrics for Fargate tasks\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
++ Added support for the task metadata endpoint v4 which provides additional information for your Fargate tasks, including network stats for the task and which Availability Zone the task is running in\. For more information, see [Task Metadata Endpoint version 4](task-metadata-endpoint-v4.md)\.
++ Added support for the `SYS_PTRACE` Linux parameter in container definitions\. For more information, see [Linux Parameters](task_definition_parameters.md#container_definition_linuxparameters)\.
++ The Fargate container agent replaces the use of the Amazon ECS container agent for all Fargate tasks\. This change should not have an effect on how your tasks run\.
++ The container runtime is now using Containerd instead of Docker\. This change should not have an effect on how your tasks run\. You will notice that some error messages that originate with the container runtime will change from mentioning Docker to more general errors\. For more information, see [Stopped tasks error codes](https://docs.aws.amazon.com/AmazonECS/latest/userguide/stopped-task-error-codes.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
 Fargate Platform Version‐1\.3\.0  
 + Beginning on Sept 30, 2019, any new Fargate task that is launched supports the `awsfirelens` log driver\. FireLens for Amazon ECS enables you to use task definition parameters to route logs to an AWS service or AWS Partner Network \(APN\) destination for log storage and analytics\. For more information, see [Custom Log Routing](using_firelens.md)\.

@@ -1,10 +1,10 @@
-# Docker Diagnostics<a name="docker-diags"></a>
+# Docker diagnostics<a name="docker-diags"></a>
 
 Docker provides several diagnostic tools that help you troubleshoot problems with your containers and tasks\. For more information about all of the available Docker command line utilities, see the [Docker Command Line](https://docs.docker.com/engine/reference/commandline/cli/) topic in the Docker documentation\. You can access the Docker command line utilities by connecting to a container instance using SSH\. For more information, see [Connect to Your Container Instance](instance-connect.md)\.
 
 The exit codes that Docker containers report can also provide some diagnostic information \(for example, exit code 137 means that the container received a `SIGKILL` signal\)\. For more information, see [Exit Status](https://docs.docker.com/engine/reference/run/#exit-status) in the Docker documentation\.
 
-## List Docker Containers<a name="docker-ps"></a>
+## List Docker containers<a name="docker-ps"></a>
 
 You can use the docker ps command on your container instance to list the running containers\. In the below example, only the Amazon ECS container agent is running\. For more information, see [docker ps](https://docs.docker.com/engine/reference/commandline/cli/#ps) in the Docker documentation\.
 

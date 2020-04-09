@@ -1,6 +1,6 @@
 # Task Metadata Endpoint version 3<a name="task-metadata-endpoint-v3"></a>
 
-Beginning with version 1\.21\.0 of the Amazon ECS container agent, the agent injects an environment variable called `ECS_CONTAINER_METADATA_URI` into each container in a task\. When you query the task metadata version 3 endpoint, various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) are available to tasks\.
+Beginning with version 1\.21\.0 of the Amazon ECS container agent, the agent injects an environment variable called `ECS_CONTAINER_METADATA_URI` into each container in a task\. When you query the task metadata version 3 endpoint, various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) are available to tasks\. For tasks that use the `bridge` network mode, network metrics are available when querying the `/stats` endpoints\.
 
 ## Enabling Task Metadata<a name="task-metadata-endpoint-v3-enable"></a>
 
@@ -32,7 +32,7 @@ This path returns Docker stats JSON for all of the containers associated with th
 The following information is returned from the task metadata endpoint \(`${ECS_CONTAINER_METADATA_URI}/task`\) JSON response\.
 
 `Cluster`  
-The Amazon ECS cluster to which the task belongs\.
+The full Amazon Resource Name \(ARN\) of the Amazon ECS cluster to which the task belongs\.
 
 `TaskARN`  
 The full Amazon Resource Name \(ARN\) of the task to which the container belongs\.
@@ -48,6 +48,19 @@ The desired status for the task from Amazon ECS\.
 
 `KnownStatus`  
 The known status for the task from Amazon ECS\.
+
+`Limits`  
+The resource limits specified at the task level \(such as CPU and memory\)\. This parameter is omitted if no resource limits are defined\.
+
+`PullStartedAt`  
+The timestamp for when the first container image pull began\.
+
+`PullStoppedAt`  
+The timestamp for when the last container image pull finished\.
+
+`AvailabilityZone`  
+The Availability Zone the task is in\.  
+The Availability Zone metadata is only available for Fargate tasks using platform version 1\.4 or later\.
 
 `Containers`  
 A list of container metadata for each container associated with the task\.    
@@ -84,21 +97,8 @@ The type of the container\. Containers that are specified in your task definitio
 `Networks`  
 The network information for the container, such as the network mode and IP address\. This parameter is omitted if no network information is defined\.
 
-`Limits`  
-The resource limits specified at the task level \(such as CPU and memory\)\. This parameter is omitted if no resource limits are defined\.
-
-`PullStartedAt`  
-The time stamp for when the first container image pull began\.
-
-`PullStoppedAt`  
-The time stamp for when the last container image pull finished\.
-
 `ExecutionStoppedAt`  
 The time stamp for when the tasks `DesiredStatus` moved to `STOPPED`\. This occurs when an essential container moves to `STOPPED`\.
-
-`AvailabilityZone`  
-The Availability Zone the task is in\.  
-The Availability Zone metadata is not available for tasks using the Fargate launch type\.
 
 ## Examples<a name="task-metadata-endpoint-v3-examples"></a>
 

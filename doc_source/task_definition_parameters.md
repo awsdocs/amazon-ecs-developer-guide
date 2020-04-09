@@ -169,9 +169,18 @@ The following advanced container definition parameters provide extended capabili
 #### Health Check<a name="container_definition_healthcheck"></a>
 
 `healthCheck`  
-The health check command and associated configuration parameters for the container\. This parameter maps to `HealthCheck` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `HEALTHCHECK` parameter of [docker run](https://docs.docker.com/engine/reference/run/)\.   
+The container health check command and associated configuration parameters for the container\. This parameter maps to `HealthCheck` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `HEALTHCHECK` parameter of [docker run](https://docs.docker.com/engine/reference/run/)\.   
 The Amazon ECS container agent only monitors and reports on the health checks specified in the task definition\. Amazon ECS does not monitor Docker health checks that are embedded in a container image and not specified in the container definition\. Health check parameters that are specified in a container definition override any Docker health checks that exist in the container image\.
-Task health is reported by the `healthStatus` of the task, which is determined by the health of the essential containers in the task\. If all essential containers in the task are reporting as `HEALTHY`, then the task status also reports as `HEALTHY`\. If any essential containers in the task are reporting as `UNHEALTHY` or `UNKNOWN`, then the task status also reports as `UNHEALTHY` or `UNKNOWN`, accordingly\. If a service's task reports as unhealthy, it is removed from a service and replaced\.  
+You can view the health status of both individual containers and a task with the DescribeTasks API operation or when viewing the task details in the console\.  
+The following describes the possible `healthStatus` values for a container:  
++ `HEALTHY`—The container health check has passed successfully\.
++ `UNHEALTHY`—The container health check has failed\.
++ `UNKNOWN`—The container health check is being evaluated or there is no container health check defined\.
+The following describes the possible `healthStatus` values for a task\. The container health check status of nonessential containers do not have an effect on the health status of a task\.  
++ `HEALTHY`—All essential containers within the task have passed their health checks\.
++ `UNHEALTHY`—One or more essential containers have failed their health check\.
++ `UNKNOWN`—The essential containers within the task are still having their health checks evaluated or there are no container health checks defined\.
+If a task is run manually, and not as part of a service, the task will continue its lifecycle regardless of its health status\. For tasks that are part of a service, if the task reports as unhealthy then the task will be stopped and the service scheduler will replace it\.  
 The following are notes about container health check support:  
 + Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 + Container health checks are supported for Fargate tasks if you are using platform version 1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
@@ -621,13 +630,13 @@ This parameter is not supported for Windows containers\.
 Type: [KernelCapabilities](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html) object  
 Required: no  
 The Linux capabilities for the container that are added to or dropped from the default configuration provided by Docker\. For more information about the default capabilities and the non\-default available capabilities, see [Runtime privilege and Linux capabilities](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) in the *Docker run reference*\. For more detailed information about these Linux capabilities, see the [capabilities\(7\)](http://man7.org/linux/man-pages/man7/capabilities.7.html) Linux manual page\.  
-If you are using tasks that use the Fargate launch type, `capabilities` is supported but the `add` parameter described below is not supported\.  
+For tasks that use the Fargate launch type, `capabilities` is supported for all platform versions but the `add` parameter is only supported if using platform version 1\.4\.0 or later\.  
 `add`  
 Type: string array  
 Valid values: `"ALL" | "AUDIT_CONTROL" | "AUDIT_READ" | "AUDIT_WRITE" | "BLOCK_SUSPEND" | "CHOWN" | "DAC_OVERRIDE" | "DAC_READ_SEARCH" | "FOWNER" | "FSETID" | "IPC_LOCK" | "IPC_OWNER" | "KILL" | "LEASE" | "LINUX_IMMUTABLE" | "MAC_ADMIN" | "MAC_OVERRIDE" | "MKNOD" | "NET_ADMIN" | "NET_BIND_SERVICE" | "NET_BROADCAST" | "NET_RAW" | "SETFCAP" | "SETGID" | "SETPCAP" | "SETUID" | "SYS_ADMIN" | "SYS_BOOT" | "SYS_CHROOT" | "SYS_MODULE" | "SYS_NICE" | "SYS_PACCT" | "SYS_PTRACE" | "SYS_RAWIO" | "SYS_RESOURCE" | "SYS_TIME" | "SYS_TTY_CONFIG" | "SYSLOG" | "WAKE_ALARM"`  
 Required: no  
 The Linux capabilities for the container to add to the default configuration provided by Docker\. This parameter maps to `CapAdd` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--cap-add` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
-If you are using tasks that use the Fargate launch type, the `add` parameter is not supported\.  
+If you are using tasks that use the Fargate launch type and platform version 1\.4\.0, the only supported `add` parameter value is `SYS_PTRACE`\.  
 `drop`  
 Type: string array  
 Valid values: `"ALL" | "AUDIT_CONTROL" | "AUDIT_WRITE" | "BLOCK_SUSPEND" | "CHOWN" | "DAC_OVERRIDE" | "DAC_READ_SEARCH" | "FOWNER" | "FSETID" | "IPC_LOCK" | "IPC_OWNER" | "KILL" | "LEASE" | "LINUX_IMMUTABLE" | "MAC_ADMIN" | "MAC_OVERRIDE" | "MKNOD" | "NET_ADMIN" | "NET_BIND_SERVICE" | "NET_BROADCAST" | "NET_RAW" | "SETFCAP" | "SETGID" | "SETPCAP" | "SETUID" | "SYS_ADMIN" | "SYS_BOOT" | "SYS_CHROOT" | "SYS_MODULE" | "SYS_NICE" | "SYS_PACCT" | "SYS_PTRACE" | "SYS_RAWIO" | "SYS_RESOURCE" | "SYS_TIME" | "SYS_TTY_CONFIG" | "SYSLOG" | "WAKE_ALARM"`  
@@ -835,7 +844,7 @@ Custom metadata to add to your Docker volume\. This parameter maps to `Labels` i
 `efsVolumeConfiguration`  
 Type: Object  
 Required: No  
-This parameter is specified when using Amazon EFS volumes\. Amazon EFS volumes are only supported when using the EC2 launch type\.    
+This parameter is specified when using Amazon EFS volumes\.    
 `fileSystemId`  
 Type: String  
 Required: Yes  
@@ -843,7 +852,29 @@ The Amazon EFS file system ID to use\.
 `rootDirectory`  
 Type: String  
 Required: No  
-The directory within the Amazon EFS file system to mount as the root directory inside the host\.
+The directory within the Amazon EFS file system to mount as the root directory inside the host\. If this parameter is omitted, the root of the Amazon EFS volume will be used\. Specifying `/` will have the same effect as omitting this parameter\.  
+`transitEncryption`  
+Type: String  
+Valid values: `ENABLED` \| `DISABLED`  
+Required: No  
+Whether or not to enable encryption for Amazon EFS data in transit between the Amazon ECS host and the Amazon EFS server\. Transit encryption must be enabled if Amazon EFS IAM authorization is used\. If this parameter is omitted, the default value of `DISABLED` is used\. For more information, see [Encrypting Data in Transit](https://docs.aws.amazon.com/efs/latest/ug/encryption-in-transit.html) in the *Amazon Elastic File System User Guide*\.  
+`transitEncryptionPort`  
+Type: Integer  
+Required: No  
+The port to use when sending encrypted data between the Amazon ECS host and the Amazon EFS server\. If you do not specify a transit encryption port, it will use the port selection strategy that the Amazon EFS mount helper uses\. For more information, see [EFS Mount Helper](https://docs.aws.amazon.com/efs/latest/ug/efs-mount-helper.html) in the *Amazon Elastic File System User Guide*\.  
+`authorizationConfig`  
+Type: Object  
+Required: No  
+The authorization configuration details for the Amazon EFS file system\.    
+`accessPointId`  
+Type: String  
+Required: No  
+The access point ID to use\. If an access point is specified, the root directory value will be relative to the directory set for the access point\. If specified, transit encryption must be enabled in the `EFSVolumeConfiguration`\. For more information, see [Working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) in the *Amazon Elastic File System User Guide*\.  
+`iam`  
+Type: String  
+Valid values: `ENABLED` \| `DISABLED`  
+Required: No  
+Whether or not to use the Amazon ECS task IAM role defined in a task definition when mounting the Amazon EFS file system\. If enabled, transit encryption must be enabled in the `EFSVolumeConfiguration`\. If this parameter is omitted, the default value of `DISABLED` is used\. For more information, see [IAM Roles for Tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)\.
 
 ## Task Placement Constraints<a name="constraints"></a>
 

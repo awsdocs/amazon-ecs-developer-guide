@@ -217,7 +217,7 @@ This step will walk you through creating two Amazon ECS capacity providers and o
       }
       ```
 
-1. Create a second Amazon ECS capacity provider with the following steps\. The purpose of the second capacity provider will be to provide burst capacity to the cluster\. In production you may use Amazon EC2 Spot Instances, but for the purposes of this tutorial we will be using On\-Demand Instances\.
+1. Create a second Amazon ECS capacity provider with the following steps\. The purpose of the second capacity provider will be to provide burst capacity to the cluster\. In production you may use Amazon EC2 Spot Instances, but for the purposes of this tutorial we will be using On\-Demand Instance\.
 
    1. Create a file named `CLItutorial-capacityprovider-burst.json` with the following contents\. Replace the `autoScalingGroupArn` value with the full Amazon Resource Name \(ARN\) of the second Auto Scaling group you created in step 1\.
 

@@ -124,7 +124,7 @@ For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWS
 **To connect to your instance using your key pair**  
 To connect to your Linux instance from a computer running macOS or Linux, specify the `.pem` file to your SSH client with the `-i` option and the path to your private key\. To connect to your Linux instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you need to install it and use the following procedure to convert the `.pem` file to a `.ppk` file\.<a name="prepare-for-putty"></a>
 
-**\(Optional\) To prepare to connect to a Linux instance from Windows using PuTTY**
+**To prepare to connect to a Linux instance from Windows using PuTTY**
 
 1. Download and install PuTTY from [ http://www\.chiark\.greenend\.org\.uk/\~sgtatham/putty/](http://www.chiark.greenend.org.uk/~sgtatham/putty/)\. Be sure to install the entire suite\.
 

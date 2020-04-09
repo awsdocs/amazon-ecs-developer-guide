@@ -9,7 +9,7 @@ Cluster capacity providers consist of the following components\.
 Capacity provider  
 A *capacity provider* is used in association with a cluster to determine the infrastructure that a task runs on\.  
 For Amazon ECS on AWS Fargate users, the `FARGATE` and `FARGATE_SPOT` capacity providers are provided automatically\. For more information, see [Using AWS Fargate Capacity Providers](fargate-capacity-providers.md)\.  
-For Amazon ECS on Amazon EC2 users, a capacity provider consists of a name, an Auto Scaling group, and the settings for managed scaling and managed termination protection\. This type of capacity provider is used in cluster auto scaling\. For more information, see [Auto Scaling Group Capacity Providers](cluster-auto-scaling.md#asg-capacity-providers)\.  
+For Amazon ECS on Amazon EC2 users, a capacity provider consists of a name, an Auto Scaling group, and the settings for managed scaling and managed termination protection\. This type of capacity provider is used in cluster auto scaling\. For more information, see [Auto Scaling group Capacity Providers](cluster-auto-scaling.md#asg-capacity-providers)\.  
 One or more capacity providers are specified in a capacity provider strategy, which is then associated with a cluster\.
 
 Capacity provider strategy  

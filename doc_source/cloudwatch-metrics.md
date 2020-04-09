@@ -39,27 +39,48 @@ Amazon ECS sends the following metrics to CloudWatch every minute\. When Amazon 
 
 The `AWS/ECS` namespace includes the following metrics\.
 
+`CPUReservation`  
+The percentage of CPU units that are reserved by running tasks in the cluster\.  
+Cluster CPU reservation \(this metric can only be filtered by `ClusterName`\) is measured as the total CPU units that are reserved by Amazon ECS tasks on the cluster, divided by the total CPU units that were registered for all of the container instances in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect CPU reservation metrics\. This metric is only used for tasks using the EC2 launch type\.  
+Valid dimensions: `ClusterName`\.  
+Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\.  
+Unit: Percent\.
 
-| Metric | Description | 
-| --- | --- | 
-|  `CPUReservation`  | The percentage of CPU units that are reserved by running tasks in the cluster\.Cluster CPU reservation \(this metric can only be filtered by `ClusterName`\) is measured as the total CPU units that are reserved by Amazon ECS tasks on the cluster, divided by the total CPU units that were registered for all of the container instances in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect CPU reservation metrics\. This metric is only used for tasks using the EC2 launch type\.Valid dimensions: `ClusterName`\.Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\.Unit: Percent\. | 
-|  `CPUUtilization`  |  The percentage of CPU units that are used in the cluster or service\. Cluster CPU utilization \(metrics that are filtered by `ClusterName` without `ServiceName`\) is measured as the total CPU units in use by Amazon ECS tasks on the cluster, divided by the total CPU units that were registered for all of the container instances in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect CPU utilization metrics\. Cluster CPU utilization metrics are only used for tasks using the EC2 launch type\. Service CPU utilization \(metrics that are filtered by `ClusterName` and `ServiceName`\) is measured as the total CPU units in use by the tasks that belong to the service, divided by the total number of CPU units that are reserved for the tasks that belong to the service\. Service CPU utilization metrics are used for tasks using both the Fargate and the EC2 launch type\. Valid dimensions: `ClusterName`, `ServiceName`\. Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\. Unit: Percent\.  | 
-|  `MemoryReservation`  |  The percentage of memory that is reserved by running tasks in the cluster\. Cluster memory reservation \(this metric can only be filtered by `ClusterName`\) is measured as the total memory that is reserved by Amazon ECS tasks on the cluster, divided by the total amount of memory that was registered for all of the container instances in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect memory reservation metrics\. This metric is only used for tasks using the EC2 launch type\. Valid dimensions: `ClusterName`\. Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\. Unit: Percent\.  | 
-|  `MemoryUtilization`  |  The percentage of memory that is used in the cluster or service\.  Cluster memory utilization \(metrics that are filtered by `ClusterName` without `ServiceName`\) is measured as the total memory in use by Amazon ECS tasks on the cluster, divided by the total amount of memory that was registered for all of the container instances in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect memory utilization metrics\. Cluster memory utilization metrics are only used for tasks using the EC2 launch type\. Service memory utilization \(metrics that are filtered by `ClusterName` and `ServiceName`\) is measured as the total memory in use by the tasks that belong to the service, divided by the total memory that is reserved for the tasks that belong to the service\. Service memory utilization metrics are used for tasks using both the Fargate and EC2 launch types\. Valid dimensions: `ClusterName`, `ServiceName`\. Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\. Unit: Percent\.  | 
-|  `GPUReservation`  |  The percentage of total available GPUs that are reserved by running tasks in the cluster\. Cluster GPU reservation is measured as the number of GPUs reserved by Amazon ECS tasks on the cluster, divided by the total number of GPUs that was available on all of the GPU\-enabled container instances in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect GPU reservation metrics\. Valid dimensions: `ClusterName`\. Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\. Unit: Percent\.  | 
+`CPUUtilization`  
+The percentage of CPU units that are used in the cluster or service\.  
+Cluster CPU utilization \(metrics that are filtered by `ClusterName` without `ServiceName`\) is measured as the total CPU units in use by Amazon ECS tasks on the cluster, divided by the total CPU units that were registered for all of the container instances in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect CPU utilization metrics\. Cluster CPU utilization metrics are only used for tasks using the EC2 launch type\.  
+Service CPU utilization \(metrics that are filtered by `ClusterName` and `ServiceName`\) is measured as the total CPU units in use by the tasks that belong to the service, divided by the total number of CPU units that are reserved for the tasks that belong to the service\. Service CPU utilization metrics are used for tasks using both the Fargate and the EC2 launch type\.  
+Valid dimensions: `ClusterName`, `ServiceName`\.  
+Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\.  
+Unit: Percent\.
+
+`MemoryReservation`  
+The percentage of memory that is reserved by running tasks in the cluster\.  
+Cluster memory reservation \(this metric can only be filtered by `ClusterName`\) is measured as the total memory that is reserved by Amazon ECS tasks on the cluster, divided by the total amount of memory that was registered for all of the container instances in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect memory reservation metrics\. This metric is only used for tasks using the EC2 launch type\.  
+Valid dimensions: `ClusterName`\.  
+Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\.  
+Unit: Percent\.
+
+`MemoryUtilization`  
+The percentage of memory that is used in the cluster or service\.   
+Cluster memory utilization \(metrics that are filtered by `ClusterName` without `ServiceName`\) is measured as the total memory in use by Amazon ECS tasks on the cluster, divided by the total amount of memory that was registered for all of the container instances in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect memory utilization metrics\. Cluster memory utilization metrics are only used for tasks using the EC2 launch type\.  
+Service memory utilization \(metrics that are filtered by `ClusterName` and `ServiceName`\) is measured as the total memory in use by the tasks that belong to the service, divided by the total memory that is reserved for the tasks that belong to the service\. Service memory utilization metrics are used for tasks using both the Fargate and EC2 launch types\.  
+Valid dimensions: `ClusterName`, `ServiceName`\.  
+Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\.  
+Unit: Percent\.
 
 **Note**  
 If you're using tasks with the EC2 launch type and have Linux container instances, the Amazon ECS container agent relies on Docker `stats` metrics to gather CPU and memory data for each container running on the instance\. For burstable performance instances \(T3, T3a, and T2 instances\), the CPU utilization metric may reflect different data compared to instance\-level CPU metrics\.
 
 ### Dimensions for Amazon ECS Metrics<a name="ecs-metrics-dimensions"></a>
 
-Amazon ECS metrics use the `AWS/ECS` namespace and provide metrics for the following dimensions\.
+Amazon ECS metrics use the `AWS/ECS` namespace and provide metrics for the following dimensions\. Metrics for a dimension only reflect the resources with running tasks during a period\. For example, if you have a cluster with one service in it but that service has no tasks in a `RUNNING` state, there will be no metrics sent to CloudWatch\. If you have two services and one of them has running tasks and the other doesn't, only the metrics for the service with running tasks would be sent\.
 
+`ClusterName`  
+This dimension filters the data that you request for all resources in a specified cluster\. All Amazon ECS metrics are filtered by `ClusterName`\.
 
-| Dimension | Description | 
-| --- | --- | 
-|  `ClusterName`  |  This dimension filters the data that you request for all resources in a specified cluster\. All Amazon ECS metrics are filtered by `ClusterName`\.  | 
-|  `ServiceName`  |  This dimension filters the data that you request for all resources in a specified service within a specified cluster\.  | 
+`ServiceName`  
+This dimension filters the data that you request for all resources in a specified service within a specified cluster\.
 
 ## Cluster Reservation<a name="cluster_reservation"></a>
 

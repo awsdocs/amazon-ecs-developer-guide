@@ -1,4 +1,4 @@
-# Cannot Pull Container Image Error<a name="task_cannot_pull_image"></a>
+# CannotPullContainer task errors<a name="task_cannot_pull_image"></a>
 
 The following Docker errors indicate that when creating a task, the container image specified could not be retrieved\.
 

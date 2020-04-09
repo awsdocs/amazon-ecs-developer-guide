@@ -1,20 +1,25 @@
 # Amazon EFS Volumes<a name="efs-volumes"></a>
 
-
-|  | 
-| --- |
-| Using the efsVolumeConfiguration task definition parameter remains in preview and is a Beta Service as defined by and subject to the Beta Service Participation Service Terms located at [https://aws\.amazon\.com/service\-terms](https://aws.amazon.com/service-terms) \("Beta Terms"\)\. These Beta Terms apply to your participation in this preview of the efsVolumeConfiguration task definition parameter\. | 
-
 Amazon Elastic File System \(Amazon EFS\) provides simple, scalable file storage for use with Amazon EC2 instances\. With Amazon EFS, storage capacity is elastic, growing and shrinking automatically as you add and remove files\. Your applications can have the storage they need, when they need it\.
 
 You can use Amazon EFS file systems with Amazon ECS to export file system data across your fleet of container instances\. That way, your tasks have access to the same persistent storage, no matter the instance on which they land\. However, you must configure your container instance AMI to mount the Amazon EFS file system before the Docker daemon starts\. Also, your task definitions must reference volume mounts on the container instance to use the file system\. The following sections help you get started using Amazon EFS with Amazon ECS\.
 
-For a tutorial, see [Tutorial: Using Amazon EFS File Systems with Amazon ECS](using_efs.md)\.
+For a tutorial, see [Tutorial: Using Amazon EFS File Systems with Amazon ECS](tutorial-efs-volumes.md)\.
 
 ## Amazon EFS Volume Considerations<a name="efs-volume-considerations"></a>
 
 The following should be considered when using Amazon EFS volumes:
-+ Amazon EFS volumes are only supported when using the EC2 launch type\.
++ For tasks that use the EC2 launch type, Amazon EFS file system support was added with the ECS agent version 1\.35\.0\. However, make sure that your container instance is using the ECS agent version 1\.38\.0 or later to take advantage the Amazon EFS access point and IAM authorization features with your Amazon EFS file system\.
++ Amazon EFS file systems are supported for tasks using the Fargate launch type that also use platform version 1\.4 or later\.
++ When specifying Amazon EFS volumes in tasks using the Fargate launch type, Fargate creates a supervisor container that is responsible for managing the Amazon EFS volume\. The supervisor container uses a small amount of the task's memory\. The supervisor container is visible when querying the task metadata version 4 endpoint, but is not visible in CloudWatch Container Insights\.
+
+## Using Amazon EFS Access Points<a name="efs-volume-accesspoints"></a>
+
+Amazon EFS access points are application\-specific entry points into an EFS file system that make it easier to manage application access to shared datasets\. For more information on Amazon EFS access points and how to control access to them, see [Working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) in the *Amazon Elastic File System User Guide*\.
+
+Access points can enforce a user identity, including the user's POSIX groups, for all file system requests that are made through the access point\. Access points can also enforce a different root directory for the file system so that clients can only access data in the specified directory or its subdirectories\.
+
+You can use an Amazon ECS task IAM role to enforce that specific applications use a specific access point\. By combining IAM policies with access points, you can easily provide secure access to specific datasets for your applications\. For more information on using task IAM roles, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
 ## Specifying an Amazon EFS File System in your Task Definition<a name="specify-efs-config"></a>
 
@@ -47,7 +52,12 @@ In order to use Amazon EFS file system volumes for your containers, you must spe
             "name": "myEfsVolume",
             "efsVolumeConfiguration": {
                 "fileSystemId": "fs-1234",
-                "rootDirectory": "/path/to/my/data"
+                "rootDirectory": "/path/to/my/data",
+                "tranitEncryption": "ENABLED",
+                "transitEncryptionPort: {
+                    "accessPointId": "fsap-1234",
+                    "iam": "ENABLED"
+                }
             }
         }
     ]
@@ -57,7 +67,7 @@ In order to use Amazon EFS file system volumes for your containers, you must spe
 `efsVolumeConfiguration`  
 Type: Object  
 Required: No  
-This parameter is specified when using Amazon EFS volumes\. Amazon EFS volumes are only supported when using the EC2 launch type\.    
+This parameter is specified when using Amazon EFS volumes\.    
 `fileSystemId`  
 Type: String  
 Required: Yes  
@@ -65,4 +75,26 @@ The Amazon EFS file system ID to use\.
 `rootDirectory`  
 Type: String  
 Required: No  
-The directory within the Amazon EFS file system to mount as the root directory inside the host\.
+The directory within the Amazon EFS file system to mount as the root directory inside the host\. If this parameter is omitted, the root of the Amazon EFS volume will be used\. Specifying `/` will have the same effect as omitting this parameter\.  
+`transitEncryption`  
+Type: String  
+Valid values: `ENABLED` \| `DISABLED`  
+Required: No  
+Whether or not to enable encryption for Amazon EFS data in transit between the Amazon ECS host and the Amazon EFS server\. Transit encryption must be enabled if Amazon EFS IAM authorization is used\. If this parameter is omitted, the default value of `DISABLED` is used\. For more information, see [Encrypting Data in Transit](https://docs.aws.amazon.com/efs/latest/ug/encryption-in-transit.html) in the *Amazon Elastic File System User Guide*\.  
+`transitEncryptionPort`  
+Type: Integer  
+Required: No  
+The port to use when sending encrypted data between the Amazon ECS host and the Amazon EFS server\. If you do not specify a transit encryption port, it will use the port selection strategy that the Amazon EFS mount helper uses\. For more information, see [EFS Mount Helper](https://docs.aws.amazon.com/efs/latest/ug/efs-mount-helper.html) in the *Amazon Elastic File System User Guide*\.  
+`authorizationConfig`  
+Type: Object  
+Required: No  
+The authorization configuration details for the Amazon EFS file system\.    
+`accessPointId`  
+Type: String  
+Required: No  
+The access point ID to use\. If an access point is specified, the root directory value will be relative to the directory set for the access point\. If specified, transit encryption must be enabled in the `EFSVolumeConfiguration`\. For more information, see [Working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) in the *Amazon Elastic File System User Guide*\.  
+`iam`  
+Type: String  
+Valid values: `ENABLED` \| `DISABLED`  
+Required: No  
+Whether or not to use the Amazon ECS task IAM role defined in a task definition when mounting the Amazon EFS file system\. If enabled, transit encryption must be enabled in the `EFSVolumeConfiguration`\. If this parameter is omitted, the default value of `DISABLED` is used\. For more information, see [IAM Roles for Tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)\.

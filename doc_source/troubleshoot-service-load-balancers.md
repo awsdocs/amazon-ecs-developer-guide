@@ -1,4 +1,4 @@
-# Troubleshooting Service Load Balancers<a name="troubleshoot-service-load-balancers"></a>
+# Troubleshooting service load balancers<a name="troubleshoot-service-load-balancers"></a>
 
 Amazon ECS services can register tasks with an Elastic Load Balancing load balancer\. Load balancer configuration errors are common causes for stopped tasks\. If your stopped tasks were started by services that use a load balancer, consider the following possible causes\.
 

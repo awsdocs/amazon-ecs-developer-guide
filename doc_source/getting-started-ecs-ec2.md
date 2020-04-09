@@ -82,7 +82,7 @@ In this section of the wizard, you configure your cluster\. Then, Amazon ECS tak
 
 1. After the launch is complete, choose **View service**\.
 
-## Step 5: \(Optional\) View your Service<a name="first-run-ec2-view"></a>
+## Step 5: View your Service<a name="first-run-ec2-view"></a>
 
 If your service is a web\-based application, such as the `simple-app` application, you can view its containers with a web browser\.
 

@@ -4,7 +4,7 @@ The following example user data scripts configure an Amazon ECS container instan
 
 ## Amazon ECS\-Optimized Amazon Linux AMI Container Instance with Amazon EFS File System<a name="alinux-efs"></a>
 
-This example user data script configures an instance launched from the Amazon ECS\-optimized Amazon Linux AMI to use an existing Amazon EFS file system\. For more information, see [Tutorial: Using Amazon EFS File Systems with Amazon ECS](using_efs.md)
+This example user data script configures an instance launched from the Amazon ECS\-optimized Amazon Linux AMI to use an existing Amazon EFS file system\. For more information, see [Amazon EFS Volumes](efs-volumes.md)
 
 This script does the following:
 + Install the `nfs-utils` package, which installs an NFS client\.
@@ -22,7 +22,6 @@ MIME-Version: 1.0
 Content-Type: text/cloud-boothook; charset="us-ascii"
 
 # Install amazon-efs-utils
-cloud-init-per once yum_update yum update -y
 cloud-init-per once install_amazon-efs-utils yum install -y amazon-efs-utils
 
 # Create /efs folder

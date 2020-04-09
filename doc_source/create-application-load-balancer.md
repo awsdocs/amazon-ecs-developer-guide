@@ -38,7 +38,7 @@ If you plan on routing traffic to more than one target group, see [ListenerRules
 
    1. Choose **Next: Configure Security Settings**\.
 
-## \(Optional\) Configure Security Settings<a name="alb-configure-security-settings"></a>
+## Configure Security Settings<a name="alb-configure-security-settings"></a>
 
 If you created a secure listener in the previous step, complete the **Configure Security Settings** page as follows; otherwise, choose **Next: Configure Security Groups**\.
 

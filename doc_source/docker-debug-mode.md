@@ -1,4 +1,4 @@
-# Enabling Docker Debug Output<a name="docker-debug-mode"></a>
+# Enabling Docker debug output<a name="docker-debug-mode"></a>
 
 If you are having trouble with Docker containers or images, you can enable debug mode on your Docker daemon\. Enabling debugging provides more verbose output from the daemon and you can use this information to find out more about why your containers or images are having issues\.
 

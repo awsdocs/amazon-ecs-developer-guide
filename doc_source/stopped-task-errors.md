@@ -1,4 +1,4 @@
-# Checking Stopped Tasks for Errors<a name="stopped-task-errors"></a>
+# Checking stopped tasks for errors<a name="stopped-task-errors"></a>
 
 If you have trouble starting a task, your task might be stopping because of an error\. For example, you run the task and the task displays a `PENDING` status and then disappears\. You can view errors like this in the Amazon ECS console by displaying the stopped task and inspecting it for error messages\.
 
@@ -17,7 +17,7 @@ If you have trouble starting a task, your task might be stopping because of an e
 
    Some possible reasons and their explanations are listed below:  
 Task failed ELB health checks in \(elb elb\-name\)  
-The current task failed the Elastic Load Balancing health check for the load balancer that is associated with the task's service\. For more information, see [Troubleshooting Service Load Balancers](troubleshoot-service-load-balancers.md)\.  
+The current task failed the Elastic Load Balancing health check for the load balancer that is associated with the task's service\. For more information, see [Troubleshooting service load balancers](troubleshoot-service-load-balancers.md)\.  
 Scaling activity initiated by \(deployment deployment\-id\)  
 When you reduce the desired count of a stable service, some tasks must be stopped in order to reach the desired number\. Tasks that are stopped by downscaling services have this stopped reason\.   
 Host EC2 \(instance *id*\) stopped/terminated  

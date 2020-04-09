@@ -4,7 +4,7 @@ The following steps help you set up a cluster, register a task definition, run a
 
 **Topics**
 + [Prerequisites](#AWSCLI_prereq)
-+ [Step 1: \(Optional\) Create a Cluster](#AWSCLI_create_cluster)
++ [Step 1: Create a Cluster](#AWSCLI_create_cluster)
 + [Step 2: Register a Task Definition](#AWSCLI_register_task_definition)
 + [Step 3: List Task Definitions](#AWSCLI_list_task_definitions)
 + [Step 4: Create a Service](#AWSCLI_create_service)
@@ -19,7 +19,7 @@ This tutorial assumes that the following prerequisites have been completed:
 + Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 
-## Step 1: \(Optional\) Create a Cluster<a name="AWSCLI_create_cluster"></a>
+## Step 1: Create a Cluster<a name="AWSCLI_create_cluster"></a>
 
 By default, your account receives a `default` cluster\.
 

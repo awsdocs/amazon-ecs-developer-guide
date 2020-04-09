@@ -63,7 +63,7 @@ To have your service use a newly updated Docker image with the same tag as in th
 
    1. Under **Optional configurations**, choose **Configure Service Auto Scaling**\.
 
-   1. Proceed to [Step 5: \(Optional\) Configuring Your Service to Use Service Auto Scaling](service-configure-auto-scaling.md)\.
+   1. Proceed to [Step 5: Configuring Your Service to Use Service Auto Scaling](service-configure-auto-scaling.md)\.
 
    1. Complete the steps in that section and then return\.
 

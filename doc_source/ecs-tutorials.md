@@ -12,4 +12,4 @@ The following tutorials show you how to perform common tasks when using Amazon E
 + [Tutorial: Continuous Deployment with CodePipeline](ecs-cd-pipeline.md)
 + [Tutorial: Listening for Amazon ECS CloudWatch Events](ecs_cwet.md)
 + [Tutorial: Sending Amazon Simple Notification Service Alerts for Task Stopped Events](ecs_cwet2.md)
-+ [Tutorial: Using Amazon EFS File Systems with Amazon ECS](using_efs.md)
++ [Tutorial: Using Amazon EFS File Systems with Amazon ECS](tutorial-efs-volumes.md)

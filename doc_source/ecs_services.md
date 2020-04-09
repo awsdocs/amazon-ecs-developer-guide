@@ -8,13 +8,13 @@ In addition to maintaining the desired count of tasks in your service, you can o
 + [Service Scheduler Concepts](#service_scheduler)
 + [Additional Service Concepts](#service_concepts)
 + [Service Definition Parameters](service_definition_parameters.md)
++ [Creating a Service](create-service.md)
++ [Updating a Service](update-service.md)
++ [Deleting a Service](delete-service.md)
 + [Amazon ECS Deployment Types](deployment-types.md)
 + [Service Load Balancing](service-load-balancing.md)
 + [Service Auto Scaling](service-auto-scaling.md)
 + [Service Discovery](service-discovery.md)
-+ [Creating a Service](create-service.md)
-+ [Updating a Service](update-service.md)
-+ [Deleting a Service](delete-service.md)
 + [Service Throttle Logic](service-throttle-logic.md)
 
 ## Service Scheduler Concepts<a name="service_scheduler"></a>
@@ -25,13 +25,13 @@ The service scheduler includes logic that throttles how often tasks are restarte
 
 There are two service scheduler strategies available:
 + `REPLICA`—The replica scheduling strategy places and maintains the desired number of tasks across your cluster\. By default, the service scheduler spreads tasks across Availability Zones\. You can use task placement strategies and constraints to customize task placement decisions\. For more information, see [Replica](#service_scheduler_replica)\.
-+ `DAEMON`—The daemon scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints that you specify in your cluster\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\. For more information, see [Daemon](#service_scheduler_daemon)\.
++ `DAEMON`—The daemon scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints that you specify in your cluster\. The service scheduler evaluates the task placement constraints for running tasks and will stop tasks that do not meet the placement constraints\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\. For more information, see [Daemon](#service_scheduler_daemon)\.
 **Note**  
 Fargate tasks do not support the `DAEMON` scheduling strategy\.
 
 ### Daemon<a name="service_scheduler_daemon"></a>
 
-The daemon scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints specified in your cluster\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\.
+The daemon scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints specified in your cluster\. The service scheduler also evaluates the task placement constraints for running tasks and will stop tasks that do not meet the placement constraints\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\.
 
 The daemon service scheduler does not place any tasks on instances that have the `DRAINING` status\. If a container instance transitions to `DRAINING`, the daemon tasks on it are stopped\. It also monitors when new container instances are added to your cluster and adds the daemon tasks to them\.
 

@@ -55,7 +55,7 @@ Also assign this security group to container instances in your service, or anoth
 
 1. Choose **Next: Configure Security Settings** to go to the next page in the wizard\.
 
-## \(Optional\) Configure Security Settings<a name="configure-security-settings"></a>
+## Configure Security Settings<a name="configure-security-settings"></a>
 
 For this tutorial, you can choose **Next: Configure Health Check** to continue to the next step\. For more information about creating an HTTPS load balancer and using additional security features, see [HTTPS Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-https-load-balancers.html) in the *User Guide for Classic Load Balancers*\.
 
@@ -93,7 +93,7 @@ Your load balancer distributes traffic between the instances that are registered
 
 1. Choose **Next: Add Tags** to go to the next page in the wizard\.
 
-## Tag Your Load Balancer \(Optional\)<a name="elb-add-tags"></a>
+## Tag Your Load Balancer<a name="elb-add-tags"></a>
 
 You can tag your load balancer, or continue to the next step\. You can tag your load balancer later on\. For more information, see [Tag Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html) in the *User Guide for Classic Load Balancers*\.
 

@@ -23,9 +23,9 @@ If you add or modify the underlying cluster resources directly after they are cr
    + **EC2 Linux \+ Networking**– With this option you can launch a cluster of tasks using the EC2 launch type using Linux containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\.
    + **EC2 Windows \+ Networking** – With this option you can launch a cluster of tasks using the EC2 launch type using Windows containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\. For more information, see [Windows Containers](ECS_Windows.md)\.
 
-## Using The Networking Only Template<a name="create-cluster-fargate"></a>
+## Using The Networking only Template<a name="create-cluster-fargate"></a>
 
-If you chose the **Networking only** cluster template, complete the following steps\. Otherwise, skip to [Using The EC2 Linux or EC2 Windows Plus Networking Template](#create-cluster-ec2)\.
+If you chose the **Networking only** cluster template, complete the following steps\. Otherwise, skip to [Using the EC2 Linux \+ Networking or EC2 Windows \+ Networking template](#create-cluster-ec2)\.
 
 **Using the **Networking only** cluster template**
 
@@ -43,7 +43,7 @@ If you chose the **Networking only** cluster template, complete the following st
 
 1. Choose **Create**\.
 
-## Using The EC2 Linux or EC2 Windows Plus Networking Template<a name="create-cluster-ec2"></a>
+## Using the EC2 Linux \+ Networking or EC2 Windows \+ Networking template<a name="create-cluster-ec2"></a>
 
 If you chose the **EC2 Linux \+ Networking** or **EC2 Windows \+ Networking** templates, complete the following steps\.
 

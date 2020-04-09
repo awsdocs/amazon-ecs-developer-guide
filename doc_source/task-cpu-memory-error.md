@@ -1,4 +1,4 @@
-# Invalid CPU or Memory Value Specified<a name="task-cpu-memory-error"></a>
+# Invalid CPU or memory value specified<a name="task-cpu-memory-error"></a>
 
 When registering a task, if you specify an invalid `cpu` or `memory` value, you receive the following error:
 

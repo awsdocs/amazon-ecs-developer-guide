@@ -382,7 +382,7 @@ Use the following steps to create and upload an application specification file \
               "deploymentTargetType": "ECSTarget",
               "ecsTarget": {
                   "deploymentId": "d-RPCR1U3TW",
-                  "targetId": "tutorial-bluegreen-app:service-bluegreen",
+                  "targetId": "tutorial-bluegreen-cluster:service-bluegreen",
                   "targetArn": "arn:aws:ecs:region:aws_account_id:service/service-bluegreen",
                   "lastUpdatedAt": 1543431490.226,
                   "lifecycleEvents": [

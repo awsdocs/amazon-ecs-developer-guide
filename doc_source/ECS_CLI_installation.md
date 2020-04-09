@@ -26,7 +26,7 @@ Download the Amazon ECS CLI binary\.
 **Note**  
 If you encounter permissions issues, ensure that you are running PowerShell as an administrator\.
 
-## Step 2: \(Optional\) Verify the Amazon ECS CLI<a name="ECS_CLI_install"></a>
+## Step 2: Verify the Amazon ECS CLI<a name="ECS_CLI_install"></a>
 
 To verify the validity of the Amazon ECS CLI file, you can either use the provided MD5 sum or the PGP signatures\. Both methods are described in the following sections\.
 

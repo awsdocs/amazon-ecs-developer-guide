@@ -76,7 +76,7 @@ In this section of the wizard, you name your cluster, and then Amazon ECS takes 
 
 1. After the launch is complete, choose **View service**\.
 
-## Step 5: \(Optional\) View your Service<a name="first-run-view"></a>
+## Step 5: View your Service<a name="first-run-view"></a>
 
 If your service is a web\-based application, such as the **Amazon ECS sample** application, you can view its containers with a web browser\.
 

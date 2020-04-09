@@ -13,7 +13,7 @@ To see which features and enhancements are included with each agent release, see
 The Amazon ECS\-optimized Amazon Linux 2 AMI comes prepackaged with the Amazon ECS container agent, Docker, and the `ecs-init` `systemd` service that controls the starting and stopping of the agent at boot and shutdown\. The following table lists the container agent version, the `ecs-init` version, and the Docker version that is tested and packaged with each Amazon ECS\-optimized Amazon Linux 2 AMI\.
 
 **Note**  
-As new Amazon ECS\-optimized Amazon Linux 2 AMIs and Amazon ECS agent versions are released, older versions are still available for launch in Amazon EC2\. However, we encourage you to [update to the latest version](ecs-agent-update.md) of the Amazon ECS agent and to keep your container instance software up\-to\-date\. If you request support for an older version of the Amazon ECS agent through AWS Support, you may be asked to move to the latest version as a part of the support process\.
+As new Amazon ECS\-optimized Amazon Linux 2 AMIs and Amazon ECS agent versions are released, older versions are still available for launch in Amazon EC2\. However, we encourage you to [update to the latest version](ecs-agent-update.md) of the Amazon ECS agent and to keep your container instance software up to date\. If you request support for an older version of the Amazon ECS agent through AWS Support, you may be asked to move to the latest version as a part of the support process\.
 
 **Important**  
 Amazon ECS agent versions 1\.20\.0 and later have deprecated support for Docker versions older than 1\.9\.0\.
@@ -21,6 +21,9 @@ Amazon ECS agent versions 1\.20\.0 and later have deprecated support for Docker 
 
 | Amazon ECS\-optimized Amazon Linux 2 AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20200402 | 1\.39\.0 | 18\.09\.9\-ce | 1\.39\.0\-1 | 
+| 20200319 | 1\.38\.0 | 18\.09\.9\-ce | 1\.38\.0\-1 | 
+| 20200218 | 1\.37\.0 | 18\.09\.9\-ce | 1\.37\.0\-2 | 
 | 20200205 | 1\.36\.2 | 18\.09\.9\-ce | 1\.36\.2\-1 | 
 | 20200115 | 1\.36\.1 | 18\.09\.9\-ce | 1\.36\.1\-1 | 
 | 20200108 | 1\.36\.0 | 18\.09\.9\-ce | 1\.36\.0\-1 | 
@@ -46,7 +49,7 @@ Amazon ECS agent versions 1\.20\.0 and later have deprecated support for Docker 
 | 20181112 | 1\.22\.0 | 18\.06\.1\-ce | 1\.22\.0\-1 | 
 | 20181016 | 1\.20\.3 | 18\.06\.1\-ce | 1\.21\.0\-1 | 
 
-For more information about the Amazon ECS\-optimized Amazon Linux 2 AMI, including AMI IDs for the latest version in each region, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+For more information about the Amazon ECS\-optimized Amazon Linux 2 AMI, including AMI IDs for the latest version in each Region, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 
 ## Amazon ECS\-Optimized Amazon Linux AMI Container Agent Versions<a name="ecs-optimized-ami-agent-versions"></a>
 
@@ -61,6 +64,9 @@ Amazon ECS agent versions 1\.20\.0 and later have deprecated support for Docker 
 
 | Amazon ECS\-optimized Amazon Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 2018\.03\.20200402 | 1\.39\.0 | 18\.09\.9\-ce | 1\.39\.0\-1 | 
+| 2018\.03\.20200319 | 1\.38\.0 | 18\.09\.9\-ce | 1\.38\.0\-1 | 
+| 2018\.03\.20200218 | 1\.37\.0 | 18\.09\.9\-ce | 1\.37\.0\-2 | 
 | 2018\.03\.20200205 | 1\.36\.2 | 18\.09\.9\-ce | 1\.36\.2\-1 | 
 | 2018\.03\.20200115 | 1\.36\.1 | 18\.09\.9\-ce | 1\.36\.1\-1 | 
 | 2018\.03\.20200108 | 1\.36\.0 | 18\.09\.9\-ce | 1\.36\.0\-1 | 
@@ -144,4 +150,4 @@ Amazon ECS agent versions 1\.20\.0 and later have deprecated support for Docker 
 | 2015\.03\.b | 1\.1\.0 | 1\.6\.0 | 1\.0\-3 | 
 | 2015\.03\.a | 1\.0\.0 | 1\.5\.0 | 1\.0\-1 | 
 
-For more information about the Amazon ECS\-optimized Amazon Linux AMI, including AMI IDs for the latest version in each region, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+For more information about the Amazon ECS\-optimized Amazon Linux AMI, including AMI IDs for the latest version in each Region, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.

@@ -1,6 +1,6 @@
 # Amazon ECS Task Placement Constraints<a name="task-placement-constraints"></a>
 
-A *task placement constraint* is a rule that is considered during task placement\. For more information, see [Amazon ECS Task Placement](task-placement.md)\.
+A *task placement constraint* is a rule that is considered during task placement\. Task placement constraints can be specified when either running a task or creating a new service\. The task placement constraints can be updated for existing services as well\. For more information, see [Amazon ECS Task Placement](task-placement.md)\.
 
 ## Constraint Types<a name="constraint-types"></a>
 
@@ -24,7 +24,7 @@ You can add custom metadata to your container instances, known as *attributes*\.
 Amazon ECS automatically applies the following attributes to your container instances\.
 
 `ecs.ami-id`  
-The ID of the AMI used to launch the instance\. An example value for this attribute is "ami\-eca289fb"\.
+The ID of the AMI used to launch the instance\. An example value for this attribute is "ami\-1234abcd"\.
 
 `ecs.availability-zone`  
 The Availability Zone for the instance\. An example value for this attribute is "us\-east\-1a"\.
@@ -157,7 +157,7 @@ For tasks launched by the service scheduler, the task group name is the name of 
 
 The following are task placement constraint examples\.
 
-This example uses the `memberOf` constraint to place tasks on T2 instances\. It can be specified with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [RegisterTaskDefinition](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html), and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
+This example uses the `memberOf` constraint to place tasks on T2 instances\. It can be specified with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [UpdateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html), [RegisterTaskDefinition](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html), and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
 
 ```
 "placementConstraints": [
@@ -168,7 +168,7 @@ This example uses the `memberOf` constraint to place tasks on T2 instances\. It 
 ]
 ```
 
-The example uses the `memberOf` constraint to place tasks on instances in the `databases` task group\. It can be specified with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [RegisterTaskDefinition](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html), and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
+The example uses the `memberOf` constraint to place tasks on instances in the `databases` task group\. It can be specified with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [UpdateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html), [RegisterTaskDefinition](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html), and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
 
 ```
 "placementConstraints": [
@@ -179,7 +179,7 @@ The example uses the `memberOf` constraint to place tasks on instances in the `d
 ]
 ```
 
-The `distinctInstance` constraint places each task in the group on a different instance\. It can be specified with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html) and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)
+The `distinctInstance` constraint places each task in the group on a different instance\. It can be specified with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [UpdateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html), and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)
 
 ```
 "placementConstraints": [

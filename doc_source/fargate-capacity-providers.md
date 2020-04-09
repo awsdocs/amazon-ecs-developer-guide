@@ -76,7 +76,7 @@ The following is an event pattern that is used to create an EventBridge rule for
 
 When a new Amazon ECS cluster is created, you specify one or more capacity providers to associate with the cluster\. The associated capacity providers determine the infrastructure to run your tasks on\.
 
-When using the AWS Management Console, the `FARGATE` and `FARGATE_SPOT` capacity providers are associated with the cluster automatically when using the **Networking Only** cluster template\. For more information, see [Creating a Cluster](create_cluster.md)\.
+When using the AWS Management Console, the `FARGATE` and `FARGATE_SPOT` capacity providers are associated with the cluster automatically when using the **Networking only** cluster template\. For more information, see [Creating a Cluster](create_cluster.md)\.
 
 ### To create an Amazon ECS cluster using Fargate capacity providers \(AWS CLI\)<a name="fargate-capacity-providers-create-cluster-cli"></a>
 

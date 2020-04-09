@@ -1,6 +1,6 @@
 # Amazon ECS Task Execution IAM Role<a name="task_execution_IAM_role"></a>
 
-The Amazon ECS container agent makes calls to the Amazon ECS API on your behalf, so it requires an IAM policy and role for the service to know that the agent belongs to you\. This IAM role is referred to as a task execution IAM role\. You can have multiple task execution roles for different purposes associated with your account\.
+The Amazon ECS container agent, and the Fargate agent for your Fargate tasks, make calls to the Amazon ECS API on your behalf\. The agent requires an IAM role for the service to know that the agent belongs to you\. This IAM role is referred to as a task execution IAM role\. You can have multiple task execution roles for different purposes associated with your account\.
 
 The following are common use cases for a task execution IAM role:
 + Your task uses the Fargate launch type and\.\.\.
@@ -13,7 +13,7 @@ The following are common use cases for a task execution IAM role:
 **Note**  
 The task execution role is supported by Amazon ECS container agent version 1\.16\.0 and later\.
 
-Amazon ECS provides the following managed `AmazonECSTaskExecutionRolePolicy` policy which contains the permissions the common use cases described above require\.
+Amazon ECS provides the managed policy named `AmazonECSTaskExecutionRolePolicy` which contains the permissions the common use cases described above require\. It may be necessary to add inline policies to your task execution role for special use cases which are outlined below\.
 
 ```
 {
@@ -43,11 +43,11 @@ An Amazon ECS task execution role is automatically created for you in the Amazon
 
 1. In the navigation pane, choose **Roles**\. 
 
-1. Search the list of roles for `ecsTaskExecutionRole`\. If the role does not exist, use the procedure below to create the role\. If the role does exist, select the role to view the attached policies\.
+1. Search the list of roles for `ecsTaskExecutionRole`\. If the role does not exist, see [Creating the task execution IAM role](#create-task-execution-role)\. If the role does exist, select the role to view the attached policies\.
 
-1. Choose **Permissions**\. Ensure that the **AmazonECSTaskExecutionRolePolicy** managed policy is attached to the role\. If the policy is attached, your Amazon ECS task execution role is properly configured\. If not, follow the substeps below to attach the policy\.
+1. On the **Permissions** tab, ensure that the **AmazonECSTaskExecutionRolePolicy** managed policy is attached to the role\. If the policy is attached, your Amazon ECS task execution role is properly configured\. If not, follow the substeps below to attach the policy\.
 
-   1. Choose **Attach policy**\.
+   1. Choose **Attach policies**\.
 
    1. To narrow the available policies to attach, for **Filter**, type **AmazonECSTaskExecutionRolePolicy**\.
 
@@ -72,6 +72,10 @@ An Amazon ECS task execution role is automatically created for you in the Amazon
      ]
    }
    ```
+
+## Creating the task execution IAM role<a name="create-task-execution-role"></a>
+
+If your account does not already have a task execution role, use the following steps to create the role\.
 
 **To create the `ecsTaskExecutionRole` IAM role**
 

@@ -84,7 +84,7 @@ The Amazon ECS container agent on the closest matching container instance for ta
 
 ### service \(*service\-name*\) \(instance *instance\-id*\) is unhealthy in \(elb *elb\-name*\) due to \(reason Instance has failed at least the UnhealthyThreshold number of health checks consecutively\.\)<a name="service-event-messages-4"></a>
 
-This service is registered with a load balancer and the load balancer health checks are failing\. For more information, see [Troubleshooting Service Load Balancers](troubleshoot-service-load-balancers.md)\.
+This service is registered with a load balancer and the load balancer health checks are failing\. For more information, see [Troubleshooting service load balancers](troubleshoot-service-load-balancers.md)\.
 
 ### service \(*service\-name*\) is unable to consistently start tasks successfully\.<a name="service-event-messages-5"></a>
 
