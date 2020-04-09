@@ -54,7 +54,7 @@ In order to use Amazon EFS file system volumes for your containers, you must spe
                 "fileSystemId": "fs-1234",
                 "rootDirectory": "/path/to/my/data",
                 "tranitEncryption": "ENABLED",
-                "transitEncryptionPort: {
+                "authorizationConfig: {
                     "accessPointId": "fsap-1234",
                     "iam": "ENABLED"
                 }
