@@ -17,8 +17,7 @@ In this example, you may have two database containers that need to access the sa
    ```
      "volumes": [
        {
-         "name": "database_scratch",
-         "host": {}
+         "name": "database_scratch"
        }
      ]
    ```
