@@ -30,3 +30,4 @@ The following should be considered when using cluster capacity providers:
 + When you specify a capacity provider strategy, the `base` value is only supported when running tasks\. When creating a service, the capacity provider strategy `base` parameter is not supported\.
 + When using managed termination protection, managed scaling must also be used otherwise managed termination protection will not work\.
 + Using cluster capacity providers is not supported when using the blue/green deployment type for your services\.
++ Using cluster capacity providers is not supported when using Classic Load Balancers for your services\.

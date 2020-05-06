@@ -57,7 +57,7 @@ Required: No
 The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks, container health checks, and Route 53 health checks after a task enters a `RUNNING` state\. This is only valid if your service is configured to use a load balancer\. If your service has a load balancer defined and you do not specify a health check grace period value, the default value of `0` is used\.  
 If your service's tasks take a while to start and respond to health checks, you can specify a health check grace period of up to 2,147,483,647 seconds during which the ECS service scheduler ignores the health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\.  
 `schedulingStrategy`  
-The scheduling strategy to use\. Services using an external deployment controller support only the `REPLICA` scheduling strategy\. For more information, see [Service Scheduler Concepts](ecs_services.md#service_scheduler)\.  
+The scheduling strategy to use\. Services using an external deployment controller support only the `REPLICA` scheduling strategy\. For more information, see [Service scheduler concepts](ecs_services.md#service_scheduler)\.  
 `placementConstraints`  
 An array of placement constraint objects to use for tasks in your service\. You can specify a maximum of 10 constraints per task \(this limit includes constraints in the task definition and those specified at run time\)\. If you are using the Fargate launch type, task placement constraints aren't supported\.  
 `placementStrategy`  

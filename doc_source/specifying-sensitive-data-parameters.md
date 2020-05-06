@@ -51,9 +51,9 @@ The following example inline policy adds the required permissions:
         "kms:Decrypt"
       ],
       "Resource": [
-        "arn:aws:ssm:<region>:<aws_account_id>:parameter/parameter_name",
-        "arn:aws:secretsmanager:<region>:<aws_account_id>:secret:secret_name",
-        "arn:aws:kms:<region>:<aws_account_id>:key/key_id"
+        "arn:aws:ssm:<region>:<aws_account_id>:parameter/<parameter_name>",
+        "arn:aws:secretsmanager:<region>:<aws_account_id>:secret:<secret_name>",
+        "arn:aws:kms:<region>:<aws_account_id>:key/<key_id>"
       ]
     }
   ]

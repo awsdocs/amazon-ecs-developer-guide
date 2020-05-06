@@ -51,9 +51,6 @@ A resource ID does not change after it's created\. Therefore, opting in or out o
 **Amazon Resource Name \(ARN\) Format**  
 Some resources have a friendly name, such as a service named `production`\. In other cases, you must specify a resource using the Amazon Resource Name \(ARN\) format\. The new ARN format for Amazon ECS tasks, services, and container instances includes the cluster name\. For details about opting in to the new ARN format, see [Modifying Account Settings](ecs-modifying-longer-id-settings.md)\.
 
-**Note**  
-The new ARN format is not available in the GovCloud \(US\-East\) region\.
-
 The following table shows both the current \(old\) format and the new format for each resource type\.
 
 
@@ -65,6 +62,3 @@ The following table shows both the current \(old\) format and the new format for
 
 **Resource ID Length**  
 A resource ID takes the form of a unique combination of letters and numbers\. New resource ID formats include shorter IDs for Amazon ECS tasks and container instances\. The old resource ID format was 36 characters long\. The new IDs are in a 32\-character format that does not include any hyphens\. For details about opting in to the new resource ID format, see [Modifying Account Settings](ecs-modifying-longer-id-settings.md)\.
-
-**Note**  
-The new resource ID format is not available in the GovCloud \(US\-East\) region\.

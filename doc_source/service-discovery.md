@@ -68,9 +68,9 @@ The following should be considered when using service discovery:
 
 ## Amazon ECS Console Experience<a name="service-discovery-console"></a>
 
-The service create and service update workflows in the Amazon ECS console supports service discovery\.
+The service creation workflow in the Amazon ECS console supports service discovery\. service discovery can only be configured when first creating a service\. Updating existing services to configure service discovery for the first time or change the current configuration is not supported\.
 
-To create a new Amazon ECS service that uses service discovery, see [Creating a Service](create-service.md)\.
+To create a new Amazon ECS service that uses service discovery, see [Creating a service](create-service.md)\.
 
 ## Service Discovery Pricing<a name="service-discovery-pricing"></a>
 

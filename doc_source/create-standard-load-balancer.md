@@ -119,4 +119,4 @@ Before you create the load balancer, review the settings that you selected\. Aft
 
 ## Create an Amazon ECS Service<a name="load-balancer-create-service"></a>
 
-After your load balancer is created, you can specify it in a service definition when you create a service\. For more information, see [Creating a Service](create-service.md)\.
+After your load balancer is created, you can specify it in a service definition when you create a service\. For more information, see [Creating a service](create-service.md)\.

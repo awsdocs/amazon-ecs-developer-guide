@@ -69,6 +69,13 @@ Valid dimensions: `ClusterName`, `ServiceName`\.
 Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\.  
 Unit: Percent\.
 
+`GPUReservation`  
+The percentage of total available GPUs that are reserved by running tasks in the cluster\.  
+Cluster GPU reservation is measured as the number of GPUs reserved by Amazon ECS tasks on the cluster, divided by the total number of GPUs that was available on all of the GPU\-enabled container instances in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect GPU reservation metrics\.  
+Valid dimensions: `ClusterName`\.  
+Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\.  
+Unit: Percent\.
+
 **Note**  
 If you're using tasks with the EC2 launch type and have Linux container instances, the Amazon ECS container agent relies on Docker `stats` metrics to gather CPU and memory data for each container running on the instance\. For burstable performance instances \(T3, T3a, and T2 instances\), the CPU utilization metric may reflect different data compared to instance\-level CPU metrics\.
 

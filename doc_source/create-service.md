@@ -1,4 +1,4 @@
-# Creating a Service<a name="create-service"></a>
+# Creating a service<a name="create-service"></a>
 
 When you create an Amazon ECS service, you specify the basic parameters that define what makes up your service and how it should behave\. These parameters create a service definition\.
 

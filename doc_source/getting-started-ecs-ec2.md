@@ -1,112 +1,177 @@
 # Getting Started with Amazon ECS Using Amazon EC2<a name="getting-started-ecs-ec2"></a>
 
-Get started with Amazon Elastic Container Service \(Amazon ECS\) using the EC2 launch type by creating a task definition, scheduling tasks, and configuring a cluster in the Amazon ECS console\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
+Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage your containers\. You can host your containers on a serverless infrastructure that is managed by Amazon ECS by launching your services or tasks using the Fargate launch type\. For more control, you can host your tasks on a cluster of Amazon EC2 instances that you manage by using the EC2 launch type\. For a broad overview on Amazon ECS, see [What is Amazon Elastic Container Service?](Welcome.md)\.
 
-In the Regions that don't support AWS Fargate, the Amazon ECS first\-run wizard guides you through the process of getting started with tasks that use the EC2 launch type\. The wizard gives you the option of creating a cluster and launching a sample web application\. If you already have a Docker image to launch in Amazon ECS, you can create a task definition with that image and use that for your cluster instead\.
+Get started with Amazon ECS using the EC2 launch type by registering a task definition, creating a cluster, and creating a service in the Amazon ECS console\.
 
 **Important**  
-For information about the Amazon ECS first\-run wizard for Fargate tasks, see [Getting Started with Amazon ECS using Fargate](getting-started-fargate.md)\.
+For information about getting started with Amazon ECS using the Fargate launch type, see [Getting Started with Amazon ECS using Fargate](getting-started-fargate.md)\.
 
-You can optionally create an Amazon Elastic Container Registry \(Amazon ECR\) image repository and push an image to it\. For more information, see the *[Amazon Elastic Container Registry User Guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/)*\.
+Complete the following steps to get started with Amazon ECS using the EC2 launch type\.
 
-Complete the following tasks to get started with Amazon ECS:
+## Prerequisites<a name="getting-started-ec2-prereqs"></a>
 
-## Prerequisites<a name="first-run-ec2-prereqs"></a>
+Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 
-Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
+## Step 1: Register a task definition<a name="getting-started-ec2-task-def"></a>
 
-The first\-run wizard attempts to automatically create the Amazon ECS service IAM and container instance IAM role\. To ensure that the first\-run experience is able to create these IAM roles, one of the following must be true:
-+ Your user has administrator access\. For more information, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
-+ Your user has the IAM permissions to create a service role\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
-+ A user with administrator access has manually created these IAM roles so that they are available on the account to be used\. For more information, see [Service Scheduler IAM Role](ecs-legacy-iam-roles.md#service_IAM_role) and [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\. 
+A task definition is like a blueprint for your application\. Each time that you launch a task in Amazon ECS, you specify a task definition\. The service then knows which Docker image to use for containers, how many containers to use in the task, and the resource allocation for each container\. For more information about task definitions, see [Amazon ECS Task Definitions](task_definitions.md)\.
 
-## Step 1: Create a Task Definition<a name="first-run-ec2-task-def"></a>
+The following steps walk you through creating a task definition that will deploy a simple web application\.
 
-A task definition is like a blueprint for your application\. Each time that you launch a task in Amazon ECS, you specify a task definition\. The service then knows which Docker image to use for containers, how many containers to use in the task, and the resource allocation for each container\.
+**To register a task definition**
 
-1. Open the Amazon ECS console first\-run wizard at [https://console\.aws\.amazon\.com/ecs/home\#/firstRun](https://console.aws.amazon.com/ecs/home#/firstRun)\.
+1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. From the navigation bar, select the **South America \(Sao Paulo\)** Region\.
+1. From the navigation bar, select the Region you want to use\.
 
-1. Configure your task definition parameters\.
+1. In the navigation pane, choose **Task Definitions**, **Create new Task Definition**\.
 
-   The first\-run wizard comes preloaded with a task definition named `console-sample-app-static`, and you can see the `simple-app` container defined in the console\. You can optionally rename the task definition or review and edit the resources used by the container \(such as CPU units and memory limits\)\. Choose the container name and editing the values shown \(CPU units are under the **Advanced options** menu\)\. Task definitions created in the first\-run wizard are limited to a single container for simplicity\. You can create multi\-container task definitions later in the Amazon ECS console\.
+1. On the **Select launch type compatibility** page, select **EC2** and choose **Next step**\.
 
-   For more information about what each of these task definition parameters does, see [Task Definition Parameters](task_definition_parameters.md)\.
-**Note**  
-If you are using an Amazon ECR image in your container definition, be sure to use the full `registry/repository:tag` naming for your Amazon ECR images\. For example, `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app:latest`\.
+1. On the **Select launch type compatibility** page, choose **Configure via JSON**\.
 
-1. Choose **Next step**\.
+1. Copy and paste the following example task definition into the box and then choose **Save**\.
 
-## Step 2: Configure the Service<a name="first-run-ec2-service"></a>
+   ```
+   {
+       "containerDefinitions": [
+           {
+               "entryPoint": [
+                   "sh",
+                   "-c"
+               ],
+               "portMappings": [
+                   {
+                       "hostPort": 80,
+                       "protocol": "tcp",
+                       "containerPort": 80
+                   }
+               ],
+               "command": [
+                   "/bin/sh -c \"echo '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p> </div></body></html>' >  /usr/local/apache2/htdocs/index.html && httpd-foreground\""
+               ],
+               "cpu": 10,
+               "memory": 300,
+               "image": "httpd:2.4",
+               "name": "simple-app"
+           }
+       ],
+       "family": "console-sample-app-static"
+   }
+   ```
 
-In this section of the wizard, you select how you would like to configure the Amazon ECS service that is created from your task definition\. A service launches and maintains a specified number of copies of the task definition in your cluster\. The `simple-app` application is a web\-based Hello World–style application that is meant to run indefinitely\. By running it as a service, it restarts if the task becomes unhealthy or unexpectedly stops\.
+1. Choose **Create**\.
 
-The first\-run wizard comes preloaded with a service definition, and you can see the `sample-webapp` service defined in the console\. You can optionally rename the service or review and edit the details by doing the following:
+## Step 2: Create a cluster<a name="getting-started-ec2-cluster"></a>
 
-1. For **Service name**, select a name for your service\.
+An Amazon ECS cluster is a logical grouping of tasks, services, and container instances\. When creating a cluster using the console, Amazon ECS creates a AWS CloudFormation stack that takes care of the Amazon EC2 instance creation, networking and IAM configuration for you\. For more information about clusters, see [Amazon ECS Clusters](clusters.md)\.
 
-1. For **Desired number of tasks**, enter the number of tasks to launch with your specified task definition\.
+The following steps walk you through creating a cluster with one Amazon EC2 instance registered to it which will enable us to run a task on it\. If a specific field is not mentioned, leave the default value the console uses\.
 
-1. \(Optional\) You can choose to use an Application Load Balancer with your service\. When a task is launched from a service that is configured to use a load balancer, the task is registered with the load balancer\. Traffic from the load balancer is distributed across the instances in the load balancer\. For more information, see [Introduction to Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)\.
-**Important**  
-Application Load Balancers do incur cost while they exist in your AWS resources\. For more information, see [Application Load Balancer Pricing](http://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/pricing/)\.
+**To create a cluster**
 
-   1. Choose the **Application Load Balancer listener port**\. The default value here is set up for the sample application, but you can configure different listener options for the load balancer\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
+1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-   1. In the **Application Load Balancer target group name** field, specify a name for the target group\.
+1. From the navigation bar, select the same Region you used in the previous step\.
 
-1. Review your service settings and choose **Next step**\.
+1. In the navigation pane, choose **Clusters**\.
 
-## Step 3: Configure the Cluster<a name="first-run-ec2-cluster"></a>
+1. On the **Clusters** page, choose **Create Cluster**\.
 
-In this section of the wizard, you configure your cluster\. Then, Amazon ECS takes care of the networking and IAM configuration for you\.
+1. On the **Select cluster template** page, choose **EC2 Linux \+ Networking**\.
 
 1. For **Cluster name**, choose a name for your cluster\.
 
-1. For **EC2 instance type**, choose the instance type to use for your container instances\. Instance types with more CPU and memory resources can handle more tasks\. For more information about the different instance types, see [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/)\.
+1. In the **Instance configuration** section, do the following:
 
-1. For **Number of instances**, type the number of Amazon EC2 instances to launch into your cluster for task placement\. The more instances you have in your cluster, the more tasks you can place on them\. Amazon EC2 instances incur costs while they exist in your AWS resources\. For more information, see [Amazon EC2 Pricing](http://aws.amazon.com/ec2/pricing/)\.
+   1. For **EC2 instance type**, choose either the **t2\.micro** or **t3\.micro** instance type to use for the container instance\. Instance types with more CPU and memory resources can handle more tasks, but that is unnecessary for this getting started guide\. For more information about the different instance types, see [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/)\.
 
-1. Select a key pair name to use with your container instances\. This is required for you to log into your instances with SSH\. If you do not specify a key pair here, you cannot connect to your container instances with SSH\. If you do not have a key pair, you can create one in the Amazon EC2 console\. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)\.
+   1. For **Number of instances**, type **1**\. Amazon EC2 instances incur costs while they exist in your AWS resources\. For more information, see [Amazon EC2 Pricing](http://aws.amazon.com/ec2/pricing/)\.
 
-1. \(Optional\) In the **Security Group** section, you can choose a CIDR block that restricts access to your instances\. The default value \(**Anywhere**\) allows access from the entire internet\.
+   1. For **EC2 Ami Id**, use the default value which is the Amazon Linux 2 Amazon ECS\-optimized AMI\. For more information about the Amazon ECS\-optimized AMI, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 
-1. In the **Container instance IAM role** section, choose an existing Amazon ECS container instance \(`ecsInstanceRole`\) role that you have already created, or choose **Create new role** to create the required IAM role for your container instances\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+1. In the **Networking** section, for **VPC** choose either **Create a new VPC** to have Amazon ECS create a new VPC for the cluster to use, or choose an existing VPC to use\. For more information on creating your own VPC, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
 
-1. Choose **Review & launch**\.
+1. In the **Container instance IAM role** section, choose **Create new role** to have Amazon ECS create a new IAM role for your container instances, or choose an existing Amazon ECS container instance \(`ecsInstanceRole`\) role that you have already created\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
-## Step 4: Review<a name="first-run-ec2-review"></a>
+1. Choose **Create**\.
 
-1. Review your task definition, task configuration, and cluster configurations and click **Launch instance & run service** to finish\. You are directed to a **Launch status** page that shows the status of your launch\. It describes each step of the process \(this can take a few minutes to complete while your Auto Scaling group is created and populated\)\.
+## Step 3: Create a Service<a name="getting-started-ec2-service"></a>
 
-1. After the launch is complete, choose **View service**\.
+An Amazon ECS service enables you to run and maintain a specified number of instances of a task definition simultaneously in an Amazon ECS cluster\. If any of your tasks should fail or stop for any reason, the Amazon ECS service scheduler launches another instance of your task definition to replace it in order to maintain the desired number of tasks in the service\. For more information on services, see [Amazon ECS services](ecs_services.md)\.
 
-## Step 5: View your Service<a name="first-run-ec2-view"></a>
+**To create a service**
 
-If your service is a web\-based application, such as the `simple-app` application, you can view its containers with a web browser\.
+1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. On the **Service: *service\-name*** page, choose **Tasks**\.
+1. From the navigation bar, select the same Region you used in the previous step\.
 
-1. Choose a task from the list of tasks in your service\.
+1. In the navigation pane, choose **Clusters**\.
+
+1. Select the cluster you created in the previous step\.
+
+1. On the **Services** tab, choose **Create**\.
+
+1. In the **Configure service** section, do the following:
+
+   1. For **Task definition**, select the **console\-sample\-app\-static** task definition you created in step 1\.
+
+   1. For **Cluster**, select the cluster you created in step 2\.
+
+   1. For **Service name**, select a name for your service\.
+
+   1. For **Number of tasks**, enter `1`\.
+
+1. Use the default values for the rest of the fields and choose **Next step**\.
+
+1. In the **Configure network** section, leave the default values and choose **Next step**\.
+
+1. In the **Set Auto Scaling** section, leave the default value and choose **Next step**\.
+
+1. Review the options and choose **Create service**\.
+
+1. Choose **View service** to review your service\.
+
+## Step 4: View your Service<a name="getting-started-ec2-view"></a>
+
+The service is a web\-based application so you can view its containers with a web browser\.
+
+**To view the service details**
+
+1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+
+1. From the navigation bar, select the same Region you used in the previous step\.
+
+1. In the navigation pane, choose **Clusters**\.
+
+1. Select the cluster you created step 2\.
+
+1. On the **Services** tab, choose the service you created in step 3\.
+
+1. On the **Service: *service\-name*** page, choose the **Tasks** tab\.
+
+1. Confirm that the task is in a **RUNNING** state\. If it is, select the task to view the task details\. If it is not in a **RUNNING** status, refresh the service details screen until it is\.
 
 1. In the **Containers** section, expand the container details\. In the **Network bindings** section, for **External Link** you will see the **IPv4 Public IP** address to use to access the web application\.
 
 1. Enter the **IPv4 Public IP** address in your web browser and you should see a webpage that displays the **Amazon ECS sample** application\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ECS_Sample_Application.png)
 
-## Step 6: Clean Up<a name="first-run-ec2-cleanup"></a>
+## Step 5: Clean Up<a name="getting-started-ec2-cleanup"></a>
 
-When you are finished using an Amazon ECS cluster, you should clean up the resources associated with it to avoid incurring charges for resources that you are not using\.
+When you are finished using an Amazon ECS cluster, you can clean up the resources associated with it to avoid incurring charges for resources that you are not using\.
 
-Some Amazon ECS resources, such as tasks, services, clusters, and container instances, are cleaned up using the Amazon ECS console\. Other resources, such as Amazon EC2 instances, Elastic Load Balancing load balancers, and Auto Scaling groups, must be cleaned up manually in the Amazon EC2 console or by deleting the AWS CloudFormation stack that created them\.
+The Amazon ECS resources created in this getting started guide, such as the cluster and service can be cleaned up using the Amazon ECS console\.
+
+**To clean up the resources**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Clusters**\.
 
-1. On the **Clusters** page, select the cluster to delete\.
-**Note**  
-If your cluster has registered container instances, you must deregister or terminate them\. For more information, see [Deregister a Container Instance](deregister_container_instance.md)\.
+1. Select the cluster you created step 2\.
 
-1. Choose **Delete Cluster**\. At the confirmation prompt, enter **delete me** and then choose **Delete**\. Deleting the cluster cleans up the associated resources that were created with the cluster, including Auto Scaling groups, VPCs, or load balancers\.
+1. On the **Services** tab, select the service you created in step 3 and choose **Delete**\. At the confirmation prompt, enter **delete me** and then choose **Delete**\.
+
+1. On the cluster details page, choose **Delete cluster**\. At the confirmation prompt, enter **delete me** and then choose **Delete**\. Deleting the cluster cleans up the associated resources that were created with the cluster, including the VPC and Amazon EC2 instances\.

@@ -1,6 +1,6 @@
 # Tutorial: Creating a Service Using a Blue/Green Deployment<a name="create-blue-green"></a>
 
-Amazon ECS has integrated blue/green deployments into the Create Service wizard on the Amazon ECS console\. For more information, see [Creating a Service](create-service.md)\.
+Amazon ECS has integrated blue/green deployments into the Create Service wizard on the Amazon ECS console\. For more information, see [Creating a service](create-service.md)\.
 
 The following tutorial shows how to create an Amazon ECS service containing a Fargate task that uses the blue/green deployment type with the AWS CLI\.
 

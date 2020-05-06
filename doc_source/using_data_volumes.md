@@ -2,7 +2,9 @@
 
 There are several use cases for using data volumes in Amazon ECS task definitions\. We give the following guidance, broken down by launch type\.
 
-Fargate tasks only support nonpersistent storage volumes\. For more information, see [Fargate Task Storage](fargate-task-storage.md)\.
+For Fargate tasks, the following data volume formats are supported:
++ Amazon EFS volumes for persistent storage\. For more information, see [Amazon EFS Volumes](efs-volumes.md)\.
++ Ephemeral storage for nonpersistent storage\. For more information, see [Fargate Task Storage](fargate-task-storage.md)\.
 
 For EC2 tasks, use data volumes in the following common examples: 
 + To provide persistent data volumes for use with a container

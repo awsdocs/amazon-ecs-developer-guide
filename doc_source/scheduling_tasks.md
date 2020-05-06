@@ -16,7 +16,7 @@ There are two service scheduler strategies available:
 **Note**  
 Fargate tasks do not support the `DAEMON` scheduling strategy\.
 
-The service scheduler optionally also makes sure that tasks are registered against an Elastic Load Balancing load balancer\. You can update your services that are maintained by the service scheduler, such as deploying a new task definition, or changing the running number of desired tasks\. By default, the service scheduler spreads tasks across Availability Zones, but you can use task placement strategies and constraints to customize task placement decisions\. For more information, see [Services](ecs_services.md)\.
+The service scheduler optionally also makes sure that tasks are registered against an Elastic Load Balancing load balancer\. You can update your services that are maintained by the service scheduler, such as deploying a new task definition, or changing the running number of desired tasks\. By default, the service scheduler spreads tasks across Availability Zones, but you can use task placement strategies and constraints to customize task placement decisions\. For more information, see [Amazon ECS services](ecs_services.md)\.
 
 **Manually Running Tasks**
 

@@ -40,8 +40,8 @@ Consider the following when using the blue/green deployment type:
   + An optional test listener can be added to the load balancer, which is used to route test traffic\. If you specify a test listener, CodeDeploy routes your test traffic to the replacement task set during a deployment\.
   + Both the production and test listeners must belong to the same load balancer\.
   + You must define a target group for the load balancer\. The target group routes traffic to the original task set in a service through the production listener\.
-+ Service auto scaling is not supported when using the blue/green deployment type\.
-+ Capacity providers are not supported when using the blue/green deployment type\.
++ Amazon ECS service auto scaling is not supported when using the blue/green deployment type\. As a workaround, you can suspend scaling processes on the Amazon EC2 Auto Scaling groups created for your service before the service deployment, then resume the processes once the deployment has completed\. For more information, see [Suspending and resuming scaling processes](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html) in the *Amazon EC2 Auto Scaling User Guide*\.
++ Cluster capacity providers are not supported when using the blue/green deployment type\.
 + Tasks using the Fargate launch type or the `CODE_DEPLOY` deployment controller types don't support the `DAEMON` scheduling strategy\.
 + When you initially create a CodeDeploy application and deployment group, you must specify the following:
   + You must define two target groups for the load balancer\. One target group should be the initial target group defined for the load balancer when the Amazon ECS service was created\. The second target group's only requirement is that it can't be associated with a different load balancer than the one the service uses\.
@@ -51,7 +51,7 @@ Consider the following when using the blue/green deployment type:
 
 The service create and service update workflows in the Amazon ECS console supports blue/green deployments\.
 
-To create an Amazon ECS service that uses the blue/green deployment type, see [Creating a Service](create-service.md)\.
+To create an Amazon ECS service that uses the blue/green deployment type, see [Creating a service](create-service.md)\.
 
 To update an existing Amazon ECS service that is using the blue/green deployment type, see [Updating a Service](update-service.md)\.
 

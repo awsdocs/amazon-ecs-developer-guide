@@ -155,7 +155,7 @@ In the Amazon ECS console, the log configuration for the `wordpress` container i
 
 ![\[Console log configuration\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/awslogs-console-config.png)
 
-After you have registered a task definition with the `awslogs` log driver in a container definition log configuration, you can run a task or create a service with that task definition to start sending logs to CloudWatch Logs\. For more information, see [Running Tasks](ecs_run_task.md) and [Creating a Service](create-service.md)\.
+After you have registered a task definition with the `awslogs` log driver in a container definition log configuration, you can run a task or create a service with that task definition to start sending logs to CloudWatch Logs\. For more information, see [Running Tasks](ecs_run_task.md) and [Creating a service](create-service.md)\.
 
 ## Viewing awslogs Container Logs in CloudWatch Logs<a name="viewing_awslogs"></a>
 

@@ -9,9 +9,23 @@ For a tutorial, see [Tutorial: Using Amazon EFS File Systems with Amazon ECS](tu
 ## Amazon EFS Volume Considerations<a name="efs-volume-considerations"></a>
 
 The following should be considered when using Amazon EFS volumes:
-+ For tasks that use the EC2 launch type, Amazon EFS file system support was added with the ECS agent version 1\.35\.0\. However, make sure that your container instance is using the ECS agent version 1\.38\.0 or later to take advantage the Amazon EFS access point and IAM authorization features with your Amazon EFS file system\.
-+ Amazon EFS file systems are supported for tasks using the Fargate launch type that also use platform version 1\.4 or later\.
-+ When specifying Amazon EFS volumes in tasks using the Fargate launch type, Fargate creates a supervisor container that is responsible for managing the Amazon EFS volume\. The supervisor container uses a small amount of the task's memory\. The supervisor container is visible when querying the task metadata version 4 endpoint, but is not visible in CloudWatch Container Insights\.
++ For tasks using the EC2 launch type, Amazon EFS file system support was added as a public preview with Amazon ECS\-optimized AMI version `20191212` with container agent version 1\.35\.0\. However, Amazon EFS file system support entered general availability with Amazon ECS\-optimized AMI version `20200319` with container agent version 1\.38\.0, which contained the Amazon EFS access point and IAM authorization features\. It is recommended you use Amazon ECS\-optimized AMI version `20200319` or later to take advantage of these features\. For more information, see [Amazon ECS\-optimized AMI Versions](ecs-ami-versions.md)\.
+**Note**  
+If you create your own AMI, you must use container agent 1\.38\.0 or later, `ecs-init` version 1\.38\.0\-1 or later, and run the following commands on your Amazon EC2 instance to enable the Amazon ECS volume plugin\. The commands will be dependent on whether you are using Amazon Linux 2 or Amazon Linux as your base image\.  
+Amazon Linux 2  
+
+  ```
+  yum install amazon-efs-utils
+  systemctl enable --now amazon-ecs-volume-plugin
+  ```
+Amazon Linux  
+
+  ```
+  yum install amazon-efs-utils
+  sudo shutdown -r now
+  ```
++ For tasks using the Fargate launch type, Amazon EFS file system support was added when using platform version 1\.4\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
++ When specifying Amazon EFS volumes in tasks using the Fargate launch type, Fargate creates a supervisor container that is responsible for managing the Amazon EFS volume\. The supervisor container uses a small amount of the task's memory\. The supervisor container is visible when querying the task metadata version 4 endpoint, but is not visible in CloudWatch Container Insights\. For more information, see [Task Metadata Endpoint version 4](task-metadata-endpoint-v4.md)\.
 
 ## Using Amazon EFS Access Points<a name="efs-volume-accesspoints"></a>
 

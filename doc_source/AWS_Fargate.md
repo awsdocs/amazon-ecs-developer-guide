@@ -177,47 +177,22 @@ The following is an example task definition that sets up a web server using the 
 
 ### Task Storage<a name="fargate-tasks-storage"></a>
 
-When provisioned, each Fargate task receives the following storage\. Task storage is ephemeral\. After a Fargate task stops, the storage is deleted\.
+For Fargate tasks, the following data volume formats are supported:
++ Amazon EFS volumes for persistent storage\. For more information, see [Amazon EFS Volumes](efs-volumes.md)\.
++ Ephemeral storage for nonpersistent storage\.
+
+When provisioned, each Fargate task receives the following ephemeral storage\. The storage configuration depends on which platform version the task is using\. After a Fargate task stops, the storage is deleted\.
+
+For tasks using platform version 1\.4\.0 or later, each task receives the following:
++ 20 GB of storage
+
+For tasks using platform version 1\.3\.0 or earlier, each task receives the following:
 + 10 GB of Docker layer storage
-+ An additional 4 GB for volume mounts\. This can be mounted and shared among containers using the `volumes`, `mountPoints`, and `volumesFrom` parameters in the task definition\.
++ An additional 4 GB for volume mounts\. This can be mounted and shared among containers using the `volumes`, `mountPoints` and `volumesFrom` parameters in the task definition\.
 **Note**  
-The `host` and `sourcePath` parameters are not supported\.
+The `host` and `sourcePath` parameters are not supported for Fargate tasks\.
 
-For more information about Amazon ECS default service quotas, see [Amazon ECS Service Quotas](service-quotas.md)\.
-
-The following shows a snippet of a task definition where two containers are sharing a single volume:
-
-```
-{
-   "containerDefinitions": [ 
-      { 
-         "image": "my-repo/database",
-         "mountPoints": [ 
-            { 
-               "containerPath": "/var/scratch",
-               "sourceVolume": "database_scratch"
-            }
-         ],
-         "name": "database1",
-      },
-      { 
-         "image": "my-repo/database",
-         "mountPoints": [ 
-            { 
-               "containerPath": "/var/scratch",
-               "sourceVolume": "database_scratch"
-            }
-         ],
-         "name": "database2",
-      }
-   ],
-   "volumes": [ 
-      { 
-         "name": "database_scratch"
-      }
-   ]
-}
-```
+For more information about Amazon ECS default service limits, see [Amazon ECS Service Quotas](service-quotas.md)\.
 
 ## Tasks and Services<a name="fargate-tasks-services"></a>
 

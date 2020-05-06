@@ -126,4 +126,4 @@ After your Application Load Balancer has been created, you must add an inbound r
 
 ## Create an Amazon ECS Service<a name="alb-create-service"></a>
 
-After your load balancer and target group are created, you can specify the target group in a service definition when you create a service\. When each task for your service is started, the container and port combination specified in the service definition is registered with your target group and traffic is routed from the load balancer to that container\. For more information, see [Creating a Service](create-service.md)\.
+After your load balancer and target group are created, you can specify the target group in a service definition when you create a service\. When each task for your service is started, the container and port combination specified in the service definition is registered with your target group and traffic is routed from the load balancer to that container\. For more information, see [Creating a service](create-service.md)\.

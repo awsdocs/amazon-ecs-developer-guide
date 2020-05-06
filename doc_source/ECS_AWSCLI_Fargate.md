@@ -3,23 +3,28 @@
 The following steps help you set up a cluster, register a task definition, run a task, and perform other common scenarios in Amazon ECS with the AWS CLI\. Ensure that you are using the latest version of the AWS CLI\. For more information on how to upgrade to the latest version, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 
 **Topics**
-+ [Prerequisites](#AWSCLI_prereq)
-+ [Step 1: Create a Cluster](#AWSCLI_create_cluster)
-+ [Step 2: Register a Task Definition](#AWSCLI_register_task_definition)
-+ [Step 3: List Task Definitions](#AWSCLI_list_task_definitions)
-+ [Step 4: Create a Service](#AWSCLI_create_service)
-+ [Step 5: List Services](#AWSCLI_list_services)
-+ [Step 6: Describe the Running Service](#AWSCLI_describe_service)
++ [Prerequisites](#ECS_AWSCLI_Fargate_prereq)
++ [Step 1: Create a Cluster](#ECS_AWSCLI_Fargate_create_cluster)
++ [Step 2: Register a Task Definition](#ECS_AWSCLI_Fargate_register_task_definition)
++ [Step 3: List Task Definitions](#ECS_AWSCLI_Fargate_list_task_definitions)
++ [Step 4: Create a Service](#ECS_AWSCLI_Fargate_create_service)
++ [Step 5: List Services](#ECS_AWSCLI_Fargate_list_services)
++ [Step 6: Describe the Running Service](#ECS_AWSCLI_Fargate_describe_service)
++ [Step 7: Clean Up](#ECS_AWSCLI_Fargate_clean_up)
 
-## Prerequisites<a name="AWSCLI_prereq"></a>
+## Prerequisites<a name="ECS_AWSCLI_Fargate_prereq"></a>
 
-This tutorial assumes that the following prerequisites have been completed:
+This tutorial assumes that the following prerequisites have been completed\.
 + The latest version of the AWS CLI is installed and configured\. For more information about installing or upgrading your AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 + The steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
-+ You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
++ You have a VPC and security group created to use\. This tutorial uses a container image hosted on Docker Hub so your task must have internet access\. To give your task a route to the internet, use one of the following options\.
+  + Use a private subnet with a NAT gateway that has an elastic IP address\.
+  + Use a public subnet and assign a public IP address to the task\.
 
-## Step 1: Create a Cluster<a name="AWSCLI_create_cluster"></a>
+  For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
+
+## Step 1: Create a Cluster<a name="ECS_AWSCLI_Fargate_create_cluster"></a>
 
 By default, your account receives a `default` cluster\.
 
@@ -49,9 +54,9 @@ Output:
 }
 ```
 
-## Step 2: Register a Task Definition<a name="AWSCLI_register_task_definition"></a>
+## Step 2: Register a Task Definition<a name="ECS_AWSCLI_Fargate_register_task_definition"></a>
 
-Before you can run a task on your ECS cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that creates a PHP web app\. For more information about the available task definition parameters, see [Amazon ECS Task Definitions](task_definitions.md)\.
+Before you can run a task on your ECS cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that creates a PHP web app using the httpd container image hosted on Docker Hub\. For more information about the available task definition parameters, see [Amazon ECS Task Definitions](task_definitions.md)\.
 
 ```
 {
@@ -94,65 +99,9 @@ To use a JSON file for container definitions:
 aws ecs register-task-definition --cli-input-json file://$HOME/tasks/fargate-task.json
 ```
 
-The register\-task\-definition returns a description of the task definition after it completes its registration\.
+The register\-task\-definition command returns a description of the task definition after it completes its registration\.
 
-```
-{
-    "taskDefinition": {
-        "status": "ACTIVE", 
-        "networkMode": "awsvpc", 
-        "family": "sample-fargate", 
-        "placementConstraints": [], 
-        "requiresAttributes": [
-            {
-                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-            }, 
-            {
-                "name": "ecs.capability.task-eni"
-            }
-        ], 
-        "cpu": "256", 
-        "compatibilities": [
-            "EC2", 
-            "FARGATE"
-        ], 
-        "volumes": [], 
-        "memory": "512", 
-        "requiresCompatibilities": [
-            "FARGATE"
-        ], 
-        "taskDefinitionArn": "arn:aws:ecs:region:aws_account_id:task-definition/sample-fargate:2", 
-        "containerDefinitions": [
-            {
-                "environment": [], 
-                "name": "fargate-app", 
-                "mountPoints": [], 
-                "image": "httpd:2.4", 
-                "cpu": 0, 
-                "portMappings": [
-                    {
-                        "protocol": "tcp", 
-                        "containerPort": 80, 
-                        "hostPort": 80
-                    }
-                ], 
-                "entryPoint": [
-                    "sh", 
-                    "-c"
-                ], 
-                "command": [
-                    "/bin/sh -c \"echo '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p> </div></body></html>' >  /usr/local/apache2/htdocs/index.html && httpd-foreground\""
-                ], 
-                "essential": true, 
-                "volumesFrom": []
-            }
-        ], 
-        "revision": 2
-    }
-}
-```
-
-## Step 3: List Task Definitions<a name="AWSCLI_list_task_definitions"></a>
+## Step 3: List Task Definitions<a name="ECS_AWSCLI_Fargate_list_task_definitions"></a>
 
 You can list the task definitions for your account at any time with the list\-task\-definitions command\. The output of this command shows the `family` and `revision` values that you can use together when calling run\-task or start\-task\.
 
@@ -165,86 +114,30 @@ Output:
 ```
 {
     "taskDefinitionArns": [
-        "arn:aws:ecs:region:aws_account_id:task-definition/sample-fargate:1", 
-        "arn:aws:ecs:region:aws_account_id:task-definition/sample-fargate:2"
+        "arn:aws:ecs:region:aws_account_id:task-definition/sample-fargate:1"
     ]
 }
 ```
 
-## Step 4: Create a Service<a name="AWSCLI_create_service"></a>
+## Step 4: Create a Service<a name="ECS_AWSCLI_Fargate_create_service"></a>
 
-After you have registered a task for your account, you can create a service for the registered task in your cluster\. For this example, you create a service where at least two instances of the `sample-fargate:1` task definition are kept running in your cluster\.
+After you have registered a task for your account, you can create a service for the registered task in your cluster\. For this example, you create a service with one instance of the `sample-fargate:1` task definition running in your cluster\. The task requires a route to the internet, so there are two ways you can achieve this\. One way is to use a private subnet configured with a NAT gateway with an elastic IP address in a public subnet\. Another way is to use a public subnet and assign a public IP address to your task\. We provide both examples below\. 
 
-```
-aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:1 --desired-count 2 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-abcd1234],securityGroups=[sg-abcd1234]}"
-```
-
-Output:
+Example using a private subnet\.
 
 ```
-{
-    "service": {
-        "status": "ACTIVE", 
-        "taskDefinition": "arn:aws:ecs:region:aws_account_id:task-definition/sample-fargate:1", 
-        "pendingCount": 0, 
-        "launchType": "FARGATE", 
-        "loadBalancers": [], 
-        "roleArn": "arn:aws:iam::aws_account_id:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS", 
-        "placementConstraints": [], 
-        "createdAt": 1510811361.128, 
-        "desiredCount": 2, 
-        "networkConfiguration": {
-            "awsvpcConfiguration": {
-                "subnets": [
-                    "subnet-abcd1234"
-                ], 
-                "securityGroups": [
-                    "sg-abcd1234"
-                ], 
-                "assignPublicIp": "DISABLED"
-            }
-        }, 
-        "platformVersion": "LATEST", 
-        "serviceName": "fargate-service", 
-        "clusterArn": "arn:aws:ecs:region:aws_account_id:cluster/fargate-cluster", 
-        "serviceArn": "arn:aws:ecs:region:aws_account_id:service/fargate-service", 
-        "deploymentConfiguration": {
-            "maximumPercent": 200, 
-            "minimumHealthyPercent": 100
-        }, 
-        "deployments": [
-            {
-                "status": "PRIMARY", 
-                "networkConfiguration": {
-                    "awsvpcConfiguration": {
-                        "subnets": [
-                            "subnet-abcd1234"
-                        ], 
-                        "securityGroups": [
-                            "sg-abcd1234"
-                        ], 
-                        "assignPublicIp": "DISABLED"
-                    }
-                }, 
-                "pendingCount": 0, 
-                "launchType": "FARGATE", 
-                "createdAt": 1510811361.128, 
-                "desiredCount": 2, 
-                "taskDefinition": "arn:aws:ecs:region:aws_account_id:task-definition/sample-fargate:1", 
-                "updatedAt": 1510811361.128, 
-                "platformVersion": "0.0.1", 
-                "id": "ecs-svc/9223370526043414679", 
-                "runningCount": 0
-            }
-        ], 
-        "events": [], 
-        "runningCount": 0, 
-        "placementStrategy": []
-    }
-}
+aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:1 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-abcd1234],securityGroups=[sg-abcd1234]}"
 ```
 
-## Step 5: List Services<a name="AWSCLI_list_services"></a>
+Example using a public subnet\.
+
+```
+aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:1 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-abcd1234],securityGroups=[sg-abcd1234],assignPublicIp=ENABLED}"
+```
+
+The create\-service command returns a description of the task definition after it completes its registration\.
+
+## Step 5: List Services<a name="ECS_AWSCLI_Fargate_list_services"></a>
 
 List the services for your cluster\. You should see the service that you created in the previous section\. You can take the service name or the full ARN that is returned from this command and use it to describe the service later\.
 
@@ -262,7 +155,7 @@ Output:
 }
 ```
 
-## Step 6: Describe the Running Service<a name="AWSCLI_describe_service"></a>
+## Step 6: Describe the Running Service<a name="ECS_AWSCLI_Fargate_describe_service"></a>
 
 Describe the service using the service name retrieved earlier to get more information about the task\.
 
@@ -270,7 +163,7 @@ Describe the service using the service name retrieved earlier to get more inform
 aws ecs describe-services --cluster fargate-cluster --services fargate-service
 ```
 
-Output:
+If successful, this will return a description of the service failures and services\. For example, in services section, you will find information on deployments, such as the status of the tasks as running or pending\. You may also find information on the task definition, the network configuration and time\-stamped events\. In the failures section, you will find information on failures, if any, associated with the call\. For troubleshooting, see [Service Event Messages](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-event-messages.html)\. For more information about the service description, see [Describe Services](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeServices)\. 
 
 ```
 {
@@ -352,4 +245,20 @@ Output:
     ], 
     "failures": []
 }
+```
+
+## Step 7: Clean Up<a name="ECS_AWSCLI_Fargate_clean_up"></a>
+
+When you are finished with this tutorial, you should clean up the associated resources to avoid incurring charges for unused resources\.
+
+Delete the service\.
+
+```
+aws ecs delete-service --cluster fargate-cluster --service fargate-service --force
+```
+
+Delete the cluster\.
+
+```
+aws ecs delete-cluster --cluster fargate-cluster
 ```

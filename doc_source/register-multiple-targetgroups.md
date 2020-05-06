@@ -4,7 +4,7 @@ Your Amazon ECS service can serve traffic from multiple load balancers and expos
 
 To create a service specifying multiple target groups, you must create the service using the Amazon ECS API, SDK, AWS CLI, or an AWS CloudFormation template\. After the service is created, you can view the service and the target groups registered to it with the AWS Management Console\. It is not possible to update the load balancing configuration of an existing service\.
 
-Multiple target groups can be specified in a service definition using the following format\.
+Multiple target groups can be specified in a service definition using the following format\. For the full syntax of a service definition, see [Service Definition Template](service_definition_parameters.md#sd-template)\.
 
 ```
 "loadBalancers":[
@@ -31,7 +31,7 @@ The following should be considered when you specify multiple target groups in a 
 
 ## Example Service Definitions<a name="multiple-targetgroups-examples"></a>
 
-Following are a few example use cases for specifying multiple target groups in a service definition\.
+Following are a few example use cases for specifying multiple target groups in a service definition\. For the full syntax of a service definition, see [Service Definition Template](service_definition_parameters.md#sd-template)\.
 
 ### Example: Having separate load balancers for internal and external traffic<a name="multiple-targetgroups-example1"></a>
 

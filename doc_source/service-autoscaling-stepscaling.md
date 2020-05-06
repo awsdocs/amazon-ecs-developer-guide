@@ -18,7 +18,7 @@ With step scaling policies, you create and manage the CloudWatch alarms that tri
 
 Service Auto Scaling is disabled by default\. You can enable it by configuring scaling policies from the **Auto Scaling** tab of your services in the AWS Management Console for Amazon ECS\. 
 
-For step\-by\-step guidance for working with scaling policies from the console, see [Creating a Service](create-service.md) and [Updating a Service](update-service.md)\. For more information about step scaling and a walkthrough, see [Automatic Scaling with Amazon ECS](http://aws.amazon.com/blogs/compute/automatic-scaling-with-amazon-ecs/) in the *AWS Compute Blog*\. For a target tracking walkthrough, see [Target Tracking Scaling Policies](service-autoscaling-targettracking.md)\.
+For step\-by\-step guidance for working with scaling policies from the console, see [Creating a service](create-service.md) and [Updating a Service](update-service.md)\. For more information about step scaling and a walkthrough, see [Automatic Scaling with Amazon ECS](http://aws.amazon.com/blogs/compute/automatic-scaling-with-amazon-ecs/) in the *AWS Compute Blog*\. For a target tracking walkthrough, see [Target Tracking Scaling Policies](service-autoscaling-targettracking.md)\.
 
 When you configure scaling policies for a service in the Amazon ECS console, your service is automatically registered as a scalable target with Application Auto Scaling, and your scaling policies are automatically in force as soon as they're successfully created\. 
 

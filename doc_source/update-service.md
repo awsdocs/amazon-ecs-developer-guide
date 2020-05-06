@@ -37,7 +37,7 @@ Amazon ECS does not automatically update the security groups associated with Ela
 
 1. Check the box to the left of the service to update and choose **Update**\.
 
-1. On the **Configure service** page, your service information is pre\-populated\. Change the task definition, platform version, deployment configuration, or number of desired tasks \(or any combination of these\) and choose **Next step**\.
+1. On the **Configure service** page, your service information is pre\-populated\. Change the task definition, capacity provider strategy, platform version, deployment configuration, or number of desired tasks \(or any combination of these\) and choose **Next step**\.
 **Note**  
 To have your service use a newly updated Docker image with the same tag as in the existing task definition \(for example, `my_image:latest`\) or keep the current settings for your service, select **Force new deployment**\. The new tasks launched by the deployment pull the current image/tag combination from your repository when they start\. The **Force new deployment** option is also used when updating a Fargate task to use a more current platform version when you specify `LATEST`\. For example, if you specified `LATEST` and your running tasks are using the `1.0.0` platform version and you want them to relaunch using a newer platform version\.
 

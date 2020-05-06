@@ -75,7 +75,7 @@ The name of your service\. Up to 255 letters \(uppercase and lowercase\), number
 Type: String  
 Valid values: `REPLICA` \| `DAEMON`  
 Required: No  
-The scheduling strategy to use\. If no scheduling strategy is specified, the `REPLICA` strategy is used\. For more information, see [Service Scheduler Concepts](ecs_services.md#service_scheduler)\.  
+The scheduling strategy to use\. If no scheduling strategy is specified, the `REPLICA` strategy is used\. For more information, see [Service scheduler concepts](ecs_services.md#service_scheduler)\.  
 There are two service scheduler strategies available:  
 + `REPLICA`—The replica scheduling strategy places and maintains the desired number of tasks across your cluster\. By default, the service scheduler spreads tasks across Availability Zones\. You can use task placement strategies and constraints to customize task placement decisions\. For more information, see [Replica](ecs_services.md#service_scheduler_replica)\.
 + `DAEMON`—The daemon scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints that you specify in your cluster\. The service scheduler evaluates the task placement constraints for running tasks and will stop tasks that do not meet the placement constraints\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\. For more information, see [Daemon](ecs_services.md#service_scheduler_daemon)\.
