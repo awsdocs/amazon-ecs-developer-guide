@@ -31,7 +31,8 @@ Add the following section to the container JSON you wish to secure while creatin
                         "SYS_PTRACE"
                     ],
                     "drop": null
-                },
+                }
+            },
 ```
 
 ## Installing Falco
