@@ -12,7 +12,7 @@ Falco can be configured to send alerts to STDOUT such that ECS can consume the l
 
 In order to begin securing a task in ECS a few components need to be installed within the container.
 
- - Falco userspace daemon
+ - [Falco](https://github.com/falcosecurity/falco) userspace daemon
  - Falco pdig tracing utility
  
 After these components are installed in the container, Falco can be used in the following ways.
