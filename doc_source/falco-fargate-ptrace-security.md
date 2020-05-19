@@ -113,7 +113,7 @@ After Falco is logging to a file you can run your application.
 ```bash
 pdig -a ./myapp &
 falco -u --daemon 
-tail -f /var/log/faclo.log &
+tail -f /var/log/falco.log &
 ```
 
 The logs will now be picked up by ECR and can be used with other AWS services. 
