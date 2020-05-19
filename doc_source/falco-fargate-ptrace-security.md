@@ -2,7 +2,7 @@
 
 ECS Fargate `1.4.0` [announced support](https://aws.amazon.com/about-aws/whats-new/2020/04/aws-fargate-launches-platform-version-14/) for the `CAP_SYS_PTRACE` linux capability.
 
-This new feature can be implemented with [Falco](falco.org), an open source runtime security project originally built by Sysdig, Inc and later donated to the Cloud Native Computing Foundation.
+This new feature can be implemented with [Falco](falco.org), an [open source runtime security project](https://github.com/falcosecurity/falco) originally built by Sysdig, Inc and later donated to the Cloud Native Computing Foundation.
 
 Falco uses `ptrace(2)` with Fargate in ECS to detect anomalous behavior at runtime. 
 
