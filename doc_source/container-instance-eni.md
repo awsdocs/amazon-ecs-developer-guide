@@ -129,7 +129,7 @@ Each container instance has a default network interface, referred to as a trunk 
 The following shows the supported Amazon EC2 instance types and how many tasks using the `awsvpc` network mode can be launched on each instance type before and after opting in to the `awsvpcTrunking` account setting\. For the elastic network interface \(ENI\) limits on each instance type, add one to the current task limit, as the primary network interface counts against the limit, and add two to the new task limit, as both the primary network interface and the trunk network instance count again the limit\.
 
 **Important**  
-The `c5n`, `m5n`, `m5dn`, `r5n`, and `r5dn` instance types are not supported\.
+The `t2`, `t3`, `c5n`, `m5n`, `m5dn`, `r5n`, and `r5dn` instance types are not supported\.
 
 
 | Instance Type | Current Task Limit per Instance | New Task Limit per Instance | 
