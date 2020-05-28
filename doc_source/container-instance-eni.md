@@ -178,6 +178,15 @@ The `c5n`, `m5n`, `m5dn`, `r5n`, and `r5dn` instance types are not supported\.
 |  m5d\.4xlarge  | 7 | 60 | 
 |  m5d\.12xlarge  | 7 | 60 | 
 |  m5d\.24xlarge  | 14 | 120 | 
+| m6 instance family |
+|  m6g\.medium  | 1 | 10 |
+|  m6g\.large  | 2 | 10 |
+|  m6g\.xlarge  | 3 | 20 |
+|  m6g\.2xlarge  | 3 | 40 |
+|  m6g\.4xlarge  | 7 | 60 |
+|  m6g\.8xlarge  | 7 | 60 |
+|  m6g\.12xlarge  | 7 | 60 |
+|  m6g\.16xlarge  | 14 | 120 |
 | p3 instance family | 
 |  p3\.2xlarge  | 3 | 40 | 
 |  p3\.8xlarge  | 7 | 60 | 
