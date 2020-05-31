@@ -116,8 +116,7 @@ Type: integer
 Required: yes, when `portMappings` are used  
 The port number on the container that is bound to the user\-specified or automatically assigned host port\.  
 If using containers in a task with the Fargate launch type, exposed ports should be specified using `containerPort`\.  
-If using containers in a task with the EC2 launch type and you specify a container port and not a host port, your container automatically receives a host port in the ephemeral port range\. For more information, see `hostPort`\. Port mappings that are automatically assigned in this way do not count toward the 100 reserved ports limit of a container instance\.  
-You cannot expose the same container port for multiple protocols\. An error will be returned if this is attempted\.  
+If using containers in a task with the EC2 launch type and you specify a container port and not a host port, your container automatically receives a host port in the ephemeral port range\. For more information, see `hostPort`\. Port mappings that are automatically assigned in this way do not count toward the 100 reserved ports limit of a container instance\.    
 `hostPort`  
 Type: integer  
 Required: no  
