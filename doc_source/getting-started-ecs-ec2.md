@@ -29,7 +29,7 @@ The following steps walk you through creating a task definition that will deploy
 
 1. On the **Select launch type compatibility** page, select **EC2** and choose **Next step**\.
 
-1. On the **Select launch type compatibility** page, choose **Configure via JSON**\.
+1. On the **Select configure task and container definitions** page, choose **Configure via JSON**\.
 
 1. Copy and paste the following example task definition into the box and then choose **Save**\.
 

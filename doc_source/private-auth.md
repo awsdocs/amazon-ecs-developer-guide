@@ -126,7 +126,7 @@ If the **Task execution role** field does not appear, choose **Configure via JSO
 
    1. For **Secrets manager ARN**, enter the full Amazon Resource Name \(ARN\) of the secret that you created earlier\. The value must be between 20 and 2048 characters\.
 
-   1. Fill out the remaining required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task Definition Parameters](task_definition_parameters.md)\.
+   1. Fill out the remaining required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
 
    1. Choose **Add**\.
 

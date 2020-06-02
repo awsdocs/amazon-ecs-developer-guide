@@ -13,8 +13,8 @@ To request a quota increase, see [Requesting a Quota Increase](https://docs.aws.
 |  Container instances per cluster  |  The maximum number of container instances per cluster\.  |  2,000  | 
 |  Services per cluster  |  The maximum number of services per cluster\.  |  1,000  | 
 |  Tasks using the EC2 launch type per service \(the desired count\)  |  The maximum number of tasks using the EC2 launch type per service \(the desired count\)\. This limit applies to both standalone tasks and tasks launched as part of a service\.  |  1,000  | 
-|  Tasks using the Fargate launch type, per Region, per account  |  The maximum number of tasks using the Fargate launch type, per Region\. This limit applies to both standalone tasks and tasks launched as part of a service\.  |  100  | 
-|  Fargate Spot tasks, per Region, per account  |  The maximum number of Fargate Spot tasks, per Region\.  |  250  | 
+|  Tasks using the Fargate launch type or the `FARGATE` capacity provider, per Region, per account  |  The maximum number of tasks using the Fargate launch type or the `FARGATE` capacity provider, per Region\. This limit applies to both standalone tasks and tasks launched as part of a service\.  |  100  | 
+|  Fargate Spot tasks, per Region, per account  |  The maximum number of tasks using the `FARGATE_SPOT` capacity provider, per Region\.  |  250  | 
 |  Public IP addresses for tasks using the Fargate launch type  | The maximum number of public IP addresses used by tasks using the Fargate launch type, per Region\. |  100  | 
 
 The following table provides other limitations for Amazon ECS that cannot be changed\.

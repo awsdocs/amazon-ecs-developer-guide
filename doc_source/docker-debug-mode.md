@@ -44,7 +44,7 @@ If the Docker options statement begins with a `#`, remove that character to unco
 1. Restart the Amazon ECS agent\.
 
    ```
-   sudo start ecs
+   sudo service ecs restart
    ```
 
 Your Docker logs should now show more verbose output\. For example:

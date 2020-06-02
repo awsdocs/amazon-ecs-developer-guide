@@ -4,7 +4,7 @@ Windows containers and container instances cannot support all the task definitio
 
 ## Windows Task Definition Parameters<a name="windows_task_definition_params"></a>
 
-The following list explains which parameters are not supported or behave differently on Windows containers than they do with Linux containers\. For more information about these parameters as they relate to Amazon ECS, see [Task Definition Parameters](task_definition_parameters.md)\.
+The following list explains which parameters are not supported or behave differently on Windows containers than they do with Linux containers\. For more information about these parameters as they relate to Amazon ECS, see [Task definition parameters](task_definition_parameters.md)\.
 
 `taskRoleArn`  
 Supported: Yes  

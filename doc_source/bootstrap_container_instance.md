@@ -4,7 +4,7 @@ When you launch an Amazon ECS container instance, you have the option of passing
 
 You can pass multiple types of user data to Amazon EC2, including cloud boothooks, shell scripts, and `cloud-init` directives\. For more information about these and other format types, see the [Cloud\-Init documentation](https://cloudinit.readthedocs.io/en/latest/topics/format.html)\. 
 
-You can pass this user data into the Amazon EC2 launch wizard in [Step 6, item vii](launch_container_instance.md#instance-launch-user-data-step) of [Launching an Amazon ECS Container Instance](launch_container_instance.md)\. 
+You can pass this user data when using the Amazon EC2 launch wizard\. For more information, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
 
 **Topics**
 + [Amazon ECS Container Agent](#bootstrap_container_agent)

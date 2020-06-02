@@ -11,14 +11,14 @@ A task definition is required to run Docker containers in Amazon ECS\. Some of t
 + Any data volumes that should be used with the containers in the task
 + The IAM role that your tasks should use
 
-You can define multiple containers in a task definition\. The parameters that you use depend on the launch type you choose for the task\. Not all parameters are valid\. For more information about the parameters available and which launch types they are valid for in a task definition, see [Task Definition Parameters](task_definition_parameters.md)\.
+You can define multiple containers in a task definition\. The parameters that you use depend on the launch type you choose for the task\. Not all parameters are valid\. For more information about the parameters available and which launch types they are valid for in a task definition, see [Task definition parameters](task_definition_parameters.md)\.
 
 Your entire application stack does not need to exist on a single task definition, and in most cases it should not\. Your application can span multiple task definitions by combining related containers into their own task definitions, each representing a single component\. For more information, see [Application Architecture](application_architecture.md)\.
 
 **Topics**
 + [Application Architecture](application_architecture.md)
 + [Creating a Task Definition](create-task-definition.md)
-+ [Task Definition Parameters](task_definition_parameters.md)
++ [Task definition parameters](task_definition_parameters.md)
 + [Amazon ECS Launch Types](launch_types.md)
 + [Working with GPUs on Amazon ECS](ecs-gpu.md)
 + [Using Data Volumes in Tasks](using_data_volumes.md)
@@ -27,6 +27,7 @@ Your entire application stack does not need to exist on a single task definition
 + [Custom Log Routing](using_firelens.md)
 + [Private Registry Authentication for Tasks](private-auth.md)
 + [Specifying Sensitive Data](specifying-sensitive-data.md)
++ [Specifying environment variables](taskdef-envfiles.md)
 + [Example Task Definitions](example_task_definitions.md)
 + [Updating a Task Definition](update-task-definition.md)
 + [Deregistering Task Definition Revisions](deregister-task-definition.md)

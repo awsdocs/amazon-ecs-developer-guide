@@ -89,13 +89,13 @@ run_params:
 ```
 
 The fields listed under `task_definition` correspond to fields to be included in your Amazon ECS task definition\.
-+ `ecs_network_mode` – Corresponds to `networkMode` in an ECS task definition\. Supported values are `none`, `bridge`, `host`, or `awsvpc`\. The default value is `bridge`\. If you are using task networking, this field must be set to `awsvpc`\. For more information, see [Network Mode](task_definition_parameters.md#network_mode)\.
-+ `task_role_arn` – The name or full ARN of an IAM role to be associated with the task\. For more information, see [Task Role](task_definition_parameters.md#task_role_arn)\.
++ `ecs_network_mode` – Corresponds to `networkMode` in an ECS task definition\. Supported values are `none`, `bridge`, `host`, or `awsvpc`\. The default value is `bridge`\. If you are using task networking, this field must be set to `awsvpc`\. For more information, see [Network mode](task_definition_parameters.md#network_mode)\.
++ `task_role_arn` – The name or full ARN of an IAM role to be associated with the task\. For more information, see [Task role](task_definition_parameters.md#task_role_arn)\.
 + `task_execution_role` – The name or full ARN of the task execution role\. This is a required field if you want your tasks to be able to store container application logs in CloudWatch or allow your tasks to pull container images from Amazon ECR\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 + `task_size` – The CPU and memory values for the task\. If you are using the EC2 launch type, this field is optional and any value can be used\. If using the Fargate launch type, this field is required and you must use one of the following sets of values for the `cpu` and `memory` parameters\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/cmd-ecs-cli-compose-ecsparams.html)
 
-  For more information, see [Task Size](task_definition_parameters.md#task_size)\.
+  For more information, see [Task size](task_definition_parameters.md#task_size)\.
 + `pid_mode` – The process namespace to use for the containers in the task\. The valid values are `host` or `task`\. If `host` is specified, then all containers within the tasks that specified the `host` PID mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same process namespace\. If no value is specified, the default is a private namespace\. For more information, see [PID settings](https://docs.docker.com/engine/reference/run/#pid-settings) in the *Docker run reference*\.
 
   If the `host` PID mode is used, be aware that there is a heightened risk of undesired process namespace expose\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.

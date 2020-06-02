@@ -22,6 +22,7 @@ The following should be considered when using Secrets Manager to specify sensiti
   + To inject a secret using a specific JSON key or version of a secret, your container instance must have version 1\.37\.0 or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
     To inject the full contents of a secret as an environment variable or to inject a secret in a log configuration, your container instance must have version 1\.22\.0 or later of the container agent\.
++ When using a task definition that references Secrets Manager secrets to retrieve sensitive data for your containers, if you are also using interface VPC endpoints, you must create the interface VPC endpoints for Secrets Manager\. For more information, see [Using Secrets Manager with VPC Endpoints](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html) in the *AWS Secrets Manager User Guide*\.
 + Sensitive data is injected into your container when the container is initially started\. If the secret is subsequently updated or rotated, the container will not receive the updated value automatically\. You must either launch a new task or if your task is part of a service you can update the service and use the **Force new deployment** option to force the service to launch a fresh task\.
 + For Windows tasks that are configured to use the `awslogs` logging driver, you must also set the `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE` environment variable on your container instance\. This can be done with User Data using the following syntax:
 
@@ -317,7 +318,7 @@ If the **Task execution role** field does not appear, choose **Configure via JSO
 
       1. For **Value**, choose **ValueFrom**\. For **Add value**, enter the full ARN of the Secrets Manager secret that contains the data to present to your log configuration as a log option\.
 
-   1. Fill out the remaining required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task Definition Parameters](task_definition_parameters.md)\.
+   1. Fill out the remaining required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
 
    1. Choose **Add**\.
 

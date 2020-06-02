@@ -25,7 +25,7 @@ The container instance that you attempted to launch a task onto has an agent tha
 `LOCATION` \(container instance ID\)  
 The container instance that you attempted to launch a task onto is in a different Availability Zone than the subnet\(s\) you specified in your `awsVpcConfiguration`\.  
 `ATTRIBUTE` \(container instance ID\)  
-Your task definition contains a parameter that requires a specific container instance attribute that is not available on your container instances\. For example, if your task uses the `awsvpc` network mode, but there are no instances in your specified subnets with the `ecs.capability.task-eni` attribute\. For more information about which attributes are required for specific task definition parameters and agent configuration variables, see [Task Definition Parameters](task_definition_parameters.md) and [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+Your task definition contains a parameter that requires a specific container instance attribute that is not available on your container instances\. For example, if your task uses the `awsvpc` network mode, but there are no instances in your specified subnets with the `ecs.capability.task-eni` attribute\. For more information about which attributes are required for specific task definition parameters and agent configuration variables, see [Task definition parameters](task_definition_parameters.md) and [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 + `StartTask`  
 `MISSING` \(container instance ID\)  
 The container instance you attempted to launch the task onto does not exist\. Perhaps the wrong cluster or region has been specified, or the container instance ARN or ID is misspelled\.  

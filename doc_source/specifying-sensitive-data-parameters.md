@@ -187,7 +187,7 @@ If the Systems Manager Parameter Store parameter exists in the same Region as th
 **Note**  
 If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or the name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
 
-   1. Fill out the remaining required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task Definition Parameters](task_definition_parameters.md)\.
+   1. Fill out the remaining required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
 
    1. Choose **Add**\.
 

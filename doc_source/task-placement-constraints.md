@@ -24,18 +24,30 @@ You can add custom metadata to your container instances, known as *attributes*\.
 Amazon ECS automatically applies the following attributes to your container instances\.
 
 `ecs.ami-id`  
-The ID of the AMI used to launch the instance\. An example value for this attribute is "ami\-1234abcd"\.
+The ID of the AMI used to launch the instance\. An example value for this attribute is `ami-1234abcd`\.
 
 `ecs.availability-zone`  
-The Availability Zone for the instance\. An example value for this attribute is "us\-east\-1a"\.
+The Availability Zone for the instance\. An example value for this attribute is `us-east-1a`\.
 
 `ecs.instance-type`  
-The instance type for the instance\. An example value for this attribute is "g2\.2xlarge"\.
+The instance type for the instance\. An example value for this attribute is `g2.2xlarge`\.
 
 `ecs.os-type`  
-The operating system for the instance\. The possible values for this attribute are "linux" and "windows"\.Optional Attributes
+The operating system for the instance\. The possible values for this attribute are `linux` and `windows`\.
+
+`ecs.cpu-architecture`  
+The CPU architecture for the instance\. The possible values for this attribute are `x86_64` and `arm64`\.
+
+`ecs.vpc-id`  
+The VPC the instance was launched into\. An example value for this attribute is `vpc-1234abcd`\.
+
+`ecs.subnet-id`  
+The subnet the instance is using\. An example value for this attribute is `subnet-1234abcd`\.Optional Attributes
 
 Amazon ECS may add the following attribute to your container instances\.
+
+`ecs.awsvpc-trunk-id`  
+If this attribute exists, the instance has a trunk network interface\. For more information, see [Elastic Network Interface Trunking](container-instance-eni.md)\.
 
 `ecs.outpost-arn`  
 If this attribute exists, it contains the Amazon Resource Name \(ARN\) of the Outpost\. For more information, see [Amazon Elastic Container Service on AWS Outposts](ecs-on-outposts.md)\.

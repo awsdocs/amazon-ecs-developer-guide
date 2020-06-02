@@ -1,6 +1,6 @@
 # What is Amazon Elastic Container Service?<a name="Welcome"></a>
 
-Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster\. You can host your cluster on a serverless infrastructure that is managed by Amazon ECS by launching your services or tasks using the Fargate launch type\. For more control you can host your tasks on a cluster of Amazon Elastic Compute Cloud \(Amazon EC2\) instances that you manage by using the EC2 launch type\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
+Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster\. You can host your cluster on a serverless infrastructure that is managed by Amazon ECS by launching your services or tasks using the Fargate launch type\. For more control over your infrastructure, you can host your tasks on a cluster of Amazon Elastic Compute Cloud \(Amazon EC2\) instances that you manage by using the EC2 launch type\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
 
 Amazon ECS lets you launch and stop container\-based applications with simple API calls, allows you to get the state of your cluster from a centralized service, and gives you access to many familiar Amazon EC2 features\.
 
@@ -9,6 +9,8 @@ You can use Amazon ECS to schedule the placement of containers across your clust
 Amazon ECS can be used to create a consistent deployment and build experience, manage, and scale batch and Extract\-Transform\-Load \(ETL\) workloads, and build sophisticated application architectures on a microservices model\. For more information about Amazon ECS use cases and scenarios, see [Container Use Cases](http://aws.amazon.com/containers/)\.
 
 AWS Elastic Beanstalk can also be used to rapidly develop, test, and deploy Docker containers in conjunction with other components of your application infrastructure; however, using Amazon ECS directly provides more fine\-grained control and access to a wider set of use cases\. For more information, see the [AWS Elastic Beanstalk Developer Guide](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/)\.
+
+The AWS container services team maintains a public roadmap on GitHub\. It contains information about what the teams are working on and allows all AWS customers the ability to give direct feedback\. For more information, see [AWS Containers Roadmap](https://github.com/aws/containers-roadmap)\.
 
 ## Features of Amazon ECS<a name="welcome-features"></a>
 

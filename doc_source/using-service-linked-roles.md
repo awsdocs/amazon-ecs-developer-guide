@@ -136,8 +136,7 @@ Add the following statement to the permissions policy for the IAM entity that ne
 {
     "Effect": "Allow",
     "Action": [
-        "iam:CreateServiceLinkedRole",
-        "iam:PutRolePolicy"
+        "iam:CreateServiceLinkedRole"
     ],
     "Resource": "arn:aws:iam::*:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS*",
     "Condition": {"StringLike": {"iam:AWSServiceName": "ecs.amazonaws.com"}}

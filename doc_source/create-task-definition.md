@@ -1,6 +1,6 @@
 # Creating a Task Definition<a name="create-task-definition"></a>
 
-Before you can run Docker containers on Amazon ECS, you must create a task definition\. You can define multiple containers and data volumes in a task definition\. For more information about the parameters available in a task definition, see [Task Definition Parameters](task_definition_parameters.md)\.
+Before you can run Docker containers on Amazon ECS, you must create a task definition\. You can define multiple containers and data volumes in a task definition\. For more information about the parameters available in a task definition, see [Task definition parameters](task_definition_parameters.md)\.
 
 **To create a new task definition**
 
@@ -46,7 +46,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. Choose **Add container**\.
 
-   1. Fill out each required field and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task Definition Parameters](task_definition_parameters.md)\.
+   1. Fill out each required field and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
 
    1. Choose **Add** to add your container to the task definition\.
 
@@ -123,7 +123,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. Choose **Add container**\.
 
-   1. Fill out each required field and any optional fields to use in your container definitions \(more container definition parameters are available in the **Advanced container configuration** menu\)\. For more information, see [Task Definition Parameters](task_definition_parameters.md)\.
+   1. Fill out each required field and any optional fields to use in your container definitions \(more container definition parameters are available in the **Advanced container configuration** menu\)\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
 
    1. Choose **Add** to add your container to the task definition\.
 
@@ -179,14 +179,14 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
 ## Task Definition Template<a name="task-definition-template"></a>
 
-An empty task definition template is shown below\. You can use this template to create your task definition, which can then be pasted into the console JSON input area or saved to a file and used with the AWS CLI `--cli-input-json` option\. For more information, see [Task Definition Parameters](task_definition_parameters.md)\.
+An empty task definition template is shown below\. You can use this template to create your task definition, which can then be pasted into the console JSON input area or saved to a file and used with the AWS CLI `--cli-input-json` option\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
 
 ```
 {
     "family": "",
     "taskRoleArn": "",
     "executionRoleArn": "",
-    "networkMode": "host",
+    "networkMode": "awsvpc",
     "containerDefinitions": [
         {
             "name": "",
@@ -204,7 +204,7 @@ An empty task definition template is shown below\. You can use this template to 
                 {
                     "containerPort": 0,
                     "hostPort": 0,
-                    "protocol": "udp"
+                    "protocol": "tcp"
                 }
             ],
             "essential": true,
@@ -218,6 +218,12 @@ An empty task definition template is shown below\. You can use this template to 
                 {
                     "name": "",
                     "value": ""
+                }
+            ],
+            "environmentFiles": [
+                {
+                    "value": "",
+                    "type": "s3"
                 }
             ],
             "mountPoints": [
@@ -274,7 +280,7 @@ An empty task definition template is shown below\. You can use this template to 
             "dependsOn": [
                 {
                     "containerName": "",
-                    "condition": "COMPLETE"
+                    "condition": "HEALTHY"
                 }
             ],
             "startTimeout": 0,
@@ -307,13 +313,13 @@ An empty task definition template is shown below\. You can use this template to 
             },
             "ulimits": [
                 {
-                    "name": "rtprio",
+                    "name": "msgqueue",
                     "softLimit": 0,
                     "hardLimit": 0
                 }
             ],
             "logConfiguration": {
-                "logDriver": "gelf",
+                "logDriver": "awslogs",
                 "options": {
                     "KeyName": ""
                 },
@@ -373,7 +379,7 @@ An empty task definition template is shown below\. You can use this template to 
             "efsVolumeConfiguration": {
                 "fileSystemId": "",
                 "rootDirectory": "",
-                "transitEncryption": "DISABLED",
+                "transitEncryption": "ENABLED",
                 "transitEncryptionPort": 0,
                 "authorizationConfig": {
                     "accessPointId": "",

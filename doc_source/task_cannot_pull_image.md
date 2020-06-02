@@ -12,6 +12,9 @@ To resolve this issue, you can:
 + For tasks in public subnets, specify **ENABLED** for **Auto\-assign public IP** when launching the task\. For more information, see [Running Tasks](ecs_run_task.md)\.
 + For tasks in private subnets, specify **DISABLED** for **Auto\-assign public IP** when launching the task, and configure a NAT Gateway in your VPC to route requests to the internet\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide*\. For more information about creating a VPC with public and private subnets, including a NAT gateway for the private subnets, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
 
+Context canceled  
+The common cause for this error is because the VPC your task is using does not have a route to pull the container image from Amazon ECR\.
+
 Image not found  
 When you specify an Amazon ECR image in your container definition, you must use the full ARN or URI of your ECR repository along with the image name in that repository\. If the repository or image cannot be found, you receive the following error:  
 

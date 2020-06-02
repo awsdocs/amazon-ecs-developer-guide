@@ -1,4 +1,4 @@
-# Task Definition Parameters<a name="task_definition_parameters"></a>
+# Task definition parameters<a name="task_definition_parameters"></a>
 
 Task definitions are split into separate parts: the task family, the IAM task role, the network mode, container definitions, volumes, task placement constraints, and launch types\. The family and container definitions are required in a task definition, while task role, network mode, volumes, task placement constraints, and launch type are optional\.
 
@@ -11,7 +11,7 @@ Type: string
 Required: yes  
 When you register a task definition, you give it a family, which is similar to a name for multiple versions of the task definition, specified with a revision number\. The first task definition that is registered into a particular family is given a revision of 1, and any task definitions registered after that are given a sequential revision number\.
 
-## Task Role<a name="task_role_arn"></a>
+## Task role<a name="task_role_arn"></a>
 
 `taskRoleArn`  
 Type: string  
@@ -19,14 +19,14 @@ Required: no
 When you register a task definition, you can provide a task role for an IAM role that allows the containers in the task permission to call the AWS APIs that are specified in its associated policies on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  
 IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the Amazon ECS\-optimized Windows AMI\. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)\.
 
-## Task Execution Role<a name="execution_role_arn"></a>
+## Task execution role<a name="execution_role_arn"></a>
 
 `executionRoleArn`  
 Type: string  
 Required: no  
-When you register a task definition, you can provide a task execution role that allows the containers in the task to pull container images and publish container logs to CloudWatch on your behalf\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+When you register a task definition, you can provide a task execution role that grants the container agent permission to make AWS API calls on your behalf\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
-## Network Mode<a name="network_mode"></a>
+## Network mode<a name="network_mode"></a>
 
 `networkMode`  
 Type: string  
@@ -116,7 +116,7 @@ Type: integer
 Required: yes, when `portMappings` are used  
 The port number on the container that is bound to the user\-specified or automatically assigned host port\.  
 If using containers in a task with the Fargate launch type, exposed ports should be specified using `containerPort`\.  
-If using containers in a task with the EC2 launch type and you specify a container port and not a host port, your container automatically receives a host port in the ephemeral port range\. For more information, see `hostPort`\. Port mappings that are automatically assigned in this way do not count toward the 100 reserved ports limit of a container instance\.    
+If using containers in a task with the EC2 launch type and you specify a container port and not a host port, your container automatically receives a host port in the ephemeral port range\. For more information, see `hostPort`\. Port mappings that are automatically assigned in this way do not count toward the 100 reserved ports limit of a container instance\.  
 `hostPort`  
 Type: integer  
 Required: no  
@@ -264,18 +264,34 @@ The working directory in which to run commands inside the container\. This param
 "workingDirectory": "string"
 ```
 
+`environmentFiles`  
+Type: object array  
+Required: no  
+A list of files containing the environment variables to pass to a container\. This parameter maps to the `--env-file` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+You can specify up to ten environment files\. The file must have a `.env` file extension\. Each line in an environment file should contain an environment variable in `VARIABLE=VALUE` format\. Lines beginning with `#` are treated as comments and are ignored\. For more information on the environment variable file syntax, see [Declare default environment variables in file](https://docs.docker.com/compose/env-file/)\.  
+If there are individual environment variables specified in the container definition, they take precedence over the variables contained within an environment file\. If multiple environment files are specified that contain the same variable, they are processed from the top down\. It is recommended to use unique variable names\. For more information, see [Specifying environment variables](taskdef-envfiles.md)\.  
+This field is not valid for containers in tasks using the Fargate launch type\.    
+`value`  
+Type: String  
+Required: Yes  
+The Amazon Resource Name \(ARN\) of the Amazon S3 object containing the environment variable file\.  
+`type`  
+Type: String  
+Required: Yes  
+The file type to use\. The only supported value is `s3`\.
+
 `environment`  
 Type: object array  
 Required: no  
 The environment variables to pass to a container\. This parameter maps to `Env` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--env` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 We do not recommend using plaintext environment variables for sensitive information, such as credential data\.  
 `name`  
-Type: string  
-Required: yes, when `environment` is used  
+Type: String  
+Required: Yes, when `environment` is used  
 The name of the environment variable\.  
 `value`  
-Type: string  
-Required: yes, when `environment` is used  
+Type: String  
+Required: Yes, when `environment` is used  
 The value of the environment variable\.
 
 ```
@@ -748,7 +764,7 @@ A list of namespaced kernel parameters to set in the container\. This parameter 
 It is not recommended that you specify network\-related `systemControls` parameters for multiple containers in a single task that also uses either the `awsvpc` or `host` network mode for the following reasons:  
 + For tasks that use the `awsvpc` network mode, if you set `systemControls` for any container it will apply to all containers in the task\. If you set different `systemControls` for multiple containers in a single task, the container that is started last will determine which `systemControls` take effect\.
 + For tasks that use the `host` network mode, the network namespace `systemControls` are not supported\.
-If you are setting an IPC resource namespace to use for the containers in the task, the following will apply to your system controls\. For more information, see [IPC Mode](#task_definition_ipcmode)\.  
+If you are setting an IPC resource namespace to use for the containers in the task, the following will apply to your system controls\. For more information, see [IPC mode](#task_definition_ipcmode)\.  
 + For tasks that use the `host` IPC mode, IPC namespace `systemControls` are not supported\.
 + For tasks that use the `task` IPC mode, IPC namespace `systemControls` values will apply to all containers within a task\.
 This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
@@ -875,7 +891,7 @@ Valid values: `ENABLED` \| `DISABLED`
 Required: No  
 Whether or not to use the Amazon ECS task IAM role defined in a task definition when mounting the Amazon EFS file system\. If enabled, transit encryption must be enabled in the `EFSVolumeConfiguration`\. If this parameter is omitted, the default value of `DISABLED` is used\. For more information, see [IAM Roles for Tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)\.
 
-## Task Placement Constraints<a name="constraints"></a>
+## Task placement constraints<a name="constraints"></a>
 
 When you register a task definition, you can provide task placement constraints that customize how Amazon ECS places tasks\.
 
@@ -895,7 +911,7 @@ Type: string
 Required: yes  
 The type of constraint\. Use `memberOf` to restrict the selection to a group of valid candidates\.
 
-## Launch Types<a name="requires_compatibilities"></a>
+## Launch types<a name="requires_compatibilities"></a>
 
 When you register a task definition, you specify the launch type to use for your task\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
 
@@ -908,7 +924,7 @@ Valid Values: `EC2` \| `FARGATE`
 The launch type the task is using\. This enables a check to ensure that all of the parameters used in the task definition meet the requirements of the launch type\.  
 Valid values are `FARGATE` and `EC2`\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
 
-## Task Size<a name="task_size"></a>
+## Task size<a name="task_size"></a>
 
 When you register a task definition, you can specify the total cpu and memory used for the task\. This is separate from the `cpu` and `memory` values at the container definition level\. If using the EC2 launch type, these fields are optional\. If using the Fargate launch type, these fields are required and there are specific values for both `cpu` and `memory` that are supported\.
 
@@ -935,7 +951,7 @@ If using the EC2 launch type, this field is optional and any value can be used\.
 If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 
-## Proxy Configuration<a name="proxyConfiguration"></a>
+## Proxy configuration<a name="proxyConfiguration"></a>
 
 `proxyConfiguration`  
 Type: [ProxyConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ProxyConfiguration.html) object  
@@ -986,15 +1002,15 @@ Type: String
 Required: No  
 The value of the key\-value pair\.
 
-## Other Task Definition Parameters<a name="other_task_definition_params"></a>
+## Other task definition parameters<a name="other_task_definition_params"></a>
 
 The following task definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
 
 **Topics**
-+ [IPC Mode](#task_definition_ipcmode)
-+ [PID Mode](#task_definition_pidmode)
++ [IPC mode](#task_definition_ipcmode)
++ [PID mode](#task_definition_pidmode)
 
-### IPC Mode<a name="task_definition_ipcmode"></a>
+### IPC mode<a name="task_definition_ipcmode"></a>
 
 `ipcMode`  
 Type: String  
@@ -1008,7 +1024,7 @@ If you are setting namespaced kernel parameters using `systemControls` for the c
 **Note**  
 This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
 
-### PID Mode<a name="task_definition_pidmode"></a>
+### PID mode<a name="task_definition_pidmode"></a>
 
 `pidMode`  
 Type: String  

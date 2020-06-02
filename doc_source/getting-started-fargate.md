@@ -34,7 +34,7 @@ You can complete this first\-run wizard using these steps for any Region that su
 **Note**  
 If you are using an Amazon ECR image in your container definition, be sure to use the full `registry/repository:tag` naming for your Amazon ECR images\. For example, `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app:latest`\.
 
-1. For **Task definition**, the first\-run wizard defines a task definition to use with the preloaded container definitions\. You can optionally rename the task definition and edit the resources used by the task \(such as the **Task memory** and **Task CPU** values\) by choosing **Edit** and editing the values shown\. For more information, see [Task Definition Parameters](task_definition_parameters.md)\.
+1. For **Task definition**, the first\-run wizard defines a task definition to use with the preloaded container definitions\. You can optionally rename the task definition and edit the resources used by the task \(such as the **Task memory** and **Task CPU** values\) by choosing **Edit** and editing the values shown\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
 
    Task definitions created in the first\-run wizard are limited to a single container for simplicity\. You can create multi\-container task definitions later in the Amazon ECS console\.
 

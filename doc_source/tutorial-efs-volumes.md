@@ -151,7 +151,7 @@ In this step, you mount the Amazon EFS file system to an Amazon EC2 instance and
 
 1. On the **Select an existing key pair or create a new key pair** dialog box, select **Choose an existing key pair** and choose your key pair\. Select the acknowledgment check box, and choose **Launch Instances**\.
 
-1. In the navigation pane, choose **Instances** to see the status of your instances\. Initially, their status is `pending`\. After the status changes to `running`, your instances are ready for use\.
+1. On the **Launch Status** page, choose **View Instances** to see the status of your instances\. Initially, their status is `pending`\. After the status changes to `running`, your instances are ready for use\.
 
 Now, you connect to the Amazon EC2 instance and add content to the Amazon EFS file system\.
 

@@ -4,7 +4,7 @@ If your service's task definition uses the `awsvpc` network mode, you must confi
 
 If your service's task definition does not use the `awsvpc` network mode, you can move on to the next step, [Step 3: Configuring Your Service to Use a Load Balancer](service-create-loadbalancer.md)\.
 
-The `awsvpc` network mode does not provide task ENIs with public IP addresses for tasks that use the EC2 launch type\. To access the internet, tasks that use the EC2 launch type must be launched in a private subnet that is configured to use a NAT gateway\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide*\. Inbound network access must be from within the VPC using the private IP address or DNS hostname, or routed through a load balancer from within the VPC\. Tasks launched within public subnets do not have outbound network access\.
+The `awsvpc` network mode does not provide task ENIs with public IP addresses for tasks that use the EC2 launch type\. To access the internet, tasks that use the EC2 launch type must be launched in a private subnet that is configured to use a NAT gateway\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide*\. Inbound network access must be from within the VPC using the private IP address or DNS hostname, or routed through a load balancer from within the VPC\. Tasks launched within public subnets do not have internet access\.
 
 **Note**  
 The above limitation does not apply to tasks that use the Fargate launch type\. You can configure these tasks to receive public IP addresses\.
