@@ -8,7 +8,9 @@ When provisioned, each Amazon ECS task on Fargate receives the following ephemer
 
 ## Fargate tasks using platform version 1\.4\.0 or later<a name="fargate-task-storage-pv14"></a>
 
-All Amazon ECS on Fargate tasks using platform version 1\.4\.0 or later receive 20 GB of ephemeral storage\.
+All Amazon ECS on Fargate tasks using platform version 1\.4\.0 or later receive a minimum of 20 GB of ephemeral storage.\.
+**Note**
+The storage limit on Fargate tasks is not adjustable.
 
 For tasks using platform version 1\.4\.0 or later that are launched on May 28, 2020 or later, the ephemeral storage is encrypted with an AES\-256 encryption algorithm using an AWS Fargate\-managed encryption key\.
 
