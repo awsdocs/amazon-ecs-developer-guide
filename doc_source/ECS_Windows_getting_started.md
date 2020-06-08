@@ -1,17 +1,16 @@
-# Getting Started with Windows Containers<a name="ECS_Windows_getting_started"></a>
+# Getting started with Windows containers<a name="ECS_Windows_getting_started"></a>
 
-This tutorial walks you through manually getting Windows containers running on Amazon ECS with the Amazon ECS\-optimized Windows AMI\. You create a cluster for your Windows container instances, launch one or more container instances into your cluster, register a task definition that uses a Windows container image, create a service that uses that task definition, and then view the sample webpage that the container runs\.
+This tutorial walks you through getting Windows containers running on Amazon ECS with the Amazon ECS\-optimized Windows AMI in the AWS Management Console\. You create a cluster for your Windows container instances, launch one or more container instances into your cluster, register a task definition that uses a Windows container image, create a service that uses that task definition, and then view the sample webpage that the container runs\.
 
 **Topics**
-+ [Step 1: Create a Windows Cluster](#create_windows_cluster)
-+ [Step 2: Launching a Windows Container Instance into your Cluster](#launch_windows_container_instance)
-+ [Step 3: Register a Windows Task Definition](#register_windows_task_def)
-+ [Step 4: Create a Service with Your Task Definition](#create_windows_service)
-+ [Step 5: View Your Service](#view_windows_service)
++ [Step 1: Create a Windows cluster](#create_windows_cluster)
++ [Step 2: Register a Windows task definition](#register_windows_task_def)
++ [Step 3: Create a service with your task definition](#create_windows_service)
++ [Step 4: View your service](#view_windows_service)
 
-## Step 1: Create a Windows Cluster<a name="create_windows_cluster"></a>
+## Step 1: Create a Windows cluster<a name="create_windows_cluster"></a>
 
-You should create a new cluster for your Windows containers\. Linux container instances cannot run Windows containers, and vice versa, so proper task placement is best accomplished by running Windows and Linux container instances in separate clusters\. In this tutorial, you create a cluster called `windows` for your Windows containers\.
+You can create a new cluster for your Windows containers\. Amazon EC2 instances using the Linux Amazon ECS\-optimized AMIs cannot run Windows containers, and vice versa, so proper task placement is best accomplished by running Windows and Linux container instances in separate clusters\. In this tutorial, you create a cluster called `windows` and register one or more Amazon EC2 instances into the cluster for your Windows containers\.
 
 **To create a cluster with the AWS Management Console**
 
@@ -25,87 +24,57 @@ You should create a new cluster for your Windows containers\. Linux container in
 
 1. For **Cluster name** enter a name for your cluster \(in this example, `windows` is the name of the cluster\)\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
-1. Choose **Create an empty cluster**, **Create**\.
+1. In the **Instance configuation** section, complete the following steps\.
 
-**To create a cluster with the AWS CLI**
-+ You can create a cluster using the AWS CLI with the following command:
-
-  ```
-  aws ecs create-cluster --cluster-name windows
-  ```
-
-## Step 2: Launching a Windows Container Instance into your Cluster<a name="launch_windows_container_instance"></a>
-
-You can launch a Windows container instance using the AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. After you've launched your instance, you can use it to run tasks\.
-
-**To launch a Windows container instance**
-
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. From the navigation bar, select the region to use\.
-
-1. From the console dashboard, choose **Launch Instance**\.
-
-1. On the **Choose an Amazon Machine Image \(AMI\)** page, type **ECS\_Optimized** in the **Search community AMIs** field and press the **Enter** key\. Choose **Select** next to the **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2019\.09\.11** AMI\.
+   1. For **Provisioning model**, choose one of the following instance types:
+      + **On\-Demand Instance**– With On\-Demand Instances, you pay for compute capacity by the hour with no long\-term commitments or upfront payments\.
+      + **Spot**– Spot Instances allow you to bid on spare Amazon EC2 computing capacity for up to 90% off the On\-Demand price\. For more information, see [Spot Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html)\.
 **Note**  
-There are Amazon ECS\-optimized AMIs for both Windows Server 2019 and Windows Server 2016\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+Spot Instances are subject to possible interruptions\. We recommend that you avoid Spot Instances for applications that can't be interrupted\. For more information, see [Spot Instance Interruptions](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html)\.
 
-1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.
+   1. For Spot Instances, do the following; otherwise, skip to the next step\.
 
-1. Choose **Next: Configure Instance Details**\.
+      1. For **Spot Instance allocation strategy**, choose the strategy that meets your needs\. For more information, see [Spot Fleet Allocation Strategy](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html#spot-fleet-allocation-strategy)\.
 
-1. On the **Configure Instance Details** page, set the **Auto\-assign Public IP** check box depending on whether to make your instance accessible from the public internet\. If your instance should be accessible from the internet, verify that the **Auto\-assign Public IP** field is set to **Enable**\. If your instance should not be accessible from the Internet, choose **Disable**\.
+      1. For **Maximum bid price \(per instance/hour\)**, specify a bid price\. If your bid price is lower than the Spot price for the instance types that you selected, your Spot Instances are not launched\.
+
+   1. For **EC2 instance type** page, choose the hardware configuration of your instance\. The instance type that you select determines the resources available for your tasks to run on\.
+
+   1. For **Number of instances**, choose the number of Amazon EC2 instances to launch into your cluster\.
+
+   1. For **EC2 AMI Id**, choose the Amazon ECS\-optimized AMI to use for your container instances\. The available AMIs will be determined by the Region and instance type you chose\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+
+   1. For **EBS storage \(GiB\)**, choose the size of the Amazon EBS volume to use for data storage on your container instances\. You can increase the size of the data volume to allow for greater image and container storage\.
+
+   1. For **Key pair**, choose an Amazon EC2 key pair to use with your container instances for RDP access\. If you do not specify a key pair, you cannot connect to your container instances with RDP\. For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+
+1. In the **Networking** section, configure the VPC to launch your container instances into\. By default, the cluster creation wizard creates a new VPC with two subnets in different Availability Zones, and a security group open to the internet on port 80\. This is a basic setup that works well for an HTTP service\. However, you can modify these settings by following the substeps below\.
+
+   1. For **VPC**, create a new VPC, or select an existing VPC\.
+
+   1. \(Optional\) If you chose to create a new VPC, for **CIDR Block**, select a CIDR block for your VPC\. For more information, see [Your VPC and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
+
+   1. For **Subnets**, select the subnets to use for your VPC\. If you chose to create a new VPC, you can keep the default settings or you can modify them to meet your needs\. If you chose to use an existing VPC, select one or more subnets in that VPC to use for your cluster\.
+
+   1. For **Security group**, select the security group to attach to the container instances in your cluster\. If you choose to create a new security group, you can specify a CIDR block to allow inbound traffic from\. The default port 0\.0\.0\.0/0 is open to the internet\. You can also select a single port or a range of contiguous ports to open on the container instance\. For more complicated security group rules, you can choose an existing security group that you have already created\.
 **Note**  
-Container instances need access to communicate with the Amazon ECS service endpoint\. This can be through an interface VPC endpoint or through your container instances having public IP addresses\.  
-For more information about interface VPC endpoints, see [Amazon ECS interface VPC endpoints \(AWS PrivateLink\)](vpc-endpoints.md)\.  
-If you do not have an interface VPC endpoint configured and your container instances do not have public IP addresses, then they must use network address translation \(NAT\) to provide this access\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide* and [HTTP Proxy Configuration](http_proxy_config.md) in this guide\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
+You can also choose to create a new security group and then modify the rules after the cluster is created\. For more information, see [Amazon EC2 security groups for Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-security-groups.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-1. On the **Configure Instance Details** page, select the `ecsInstanceRole` **IAM role** value that you created for your container instances in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
+   1. In the **Container instance IAM role** section, select the IAM role to use with your container instances\. If your account has the **ecsInstanceRole** that is created for you in the console first\-run wizard, it is selected by default\. If you do not have this role in your account, you can choose to create the role, or you can choose another IAM role to use with your container instances\.
 **Important**  
-If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent does not connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+The IAM role you use must have the `AmazonEC2ContainerServiceforEC2Role` managed policy attached to it, otherwise you will receive an error during cluster creation\. If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent does not connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
-1. <a name="windows-instance-launch-user-data-step"></a>Expand the **Advanced Details** section and paste the provided user data PowerShell script into the **User data** field\. By default, this script registers your container instance into the `windows` cluster that you created earlier\. To launch into another cluster instead of `windows`, replace the red text in the script below with the name of your cluster\.
+   1. If you chose the Spot Instance type earlier, the **Spot Fleet Role IAM role** section indicates that an IAM role `ecsSpotFleetRole` is created\.
+
+1. In the **Tags** section, specify the key and value for each tag to associate with the cluster\. For more information, see [Tagging Your Amazon ECS Resources](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)\.
+
+1. In the **CloudWatch Container Insights** section, choose whether to enable Container Insights for the cluster\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
+
+1. Choose **Create**\.
 **Note**  
-The `-EnableTaskIAMRole` option is required to enable IAM roles for tasks\. For more information, see [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)\.
+It can take up to 15 minutes for your Windows container instances to register with your cluster\.
 
-   ```
-   <powershell>
-   Import-Module ECSTools
-   Initialize-ECSAgent -Cluster 'windows' -EnableTaskIAMRole
-   </powershell>
-   ```
-
-1. Choose **Next: Add Storage**\.
-
-1. On the **Add Storage** page, configure the storage for your container instance\. The Windows OS and container images are large \(approximately 9 GiB for the Windows server core base layers\), and just a few images and containers quickly fill up the default 50\-GiB volume size for the Amazon ECS\-optimized Windows AMI\. A larger root volume size \(for example, 200 GiB\) allows for more containers and images on your instance\.
-
-   You can optionally increase or decrease the volume size for your instance to meet your application needs\.
-
-1. Choose **Review and Launch**\.
-
-1. On the **Review Instance Launch** page, under **Security Groups**, you see that the wizard created and selected a security group for you\. By default, you should have port 3389 for RDP connectivity\. To have your containers to receive inbound traffic from the internet, open those ports as well\.
-
-   1. Choose **Edit security groups**\.
-
-   1. On the **Configure Security Group** page, ensure that the **Create a new security group** option is selected\.
-
-   1. Add rules for any other ports that your containers may need and choose **Review and Launch**\. The sample task definition later in this walk through uses port 8080, so you should open that to **Anywhere**\.
-
-1. On the **Review Instance Launch** page, choose **Launch**\.
-
-1. In the **Select an existing key pair or create a new key pair** dialog box, choose **Choose an existing key pair**, then select the key pair that you created when getting set up\. 
-
-   When you are ready, select the acknowledgment field, and then choose **Launch Instances**\. 
-
-1. A confirmation page lets you know that your instance is launching\. Choose **View Instances** to close the confirmation page and return to the console\.
-
-1. On the **Instances** screen, you can view the status of your instance\. It takes a short time for an instance to launch\. When you launch an instance, its initial state is `pending`\. After the instance starts, its state changes to `running`, and it receives a public DNS name\. \(If the **Public DNS** column is hidden, choose the **Show/Hide** icon and choose **Public DNS**\.\)
-
-1. After your instance has launched, you can view your cluster in the Amazon ECS console to see that your container instance has registered with it\.
-**Note**  
-It can take up to 15 minutes for your Windows container instance to register with your cluster\.
-
-## Step 3: Register a Windows Task Definition<a name="register_windows_task_def"></a>
+## Step 2: Register a Windows task definition<a name="register_windows_task_def"></a>
 
 Before you can run Windows containers in your Amazon ECS cluster, you must register a task definition\. The following task definition example displays a simple webpage on port 8080 of a container instance with the `microsoft/iis` container image\.
 
@@ -165,7 +134,7 @@ Make sure that your AWS CLI is configured to use the same region that your Windo
    aws ecs register-task-definition --cli-input-json file://windows-simple-iis.json
    ```
 
-## Step 4: Create a Service with Your Task Definition<a name="create_windows_service"></a>
+## Step 3: Create a service with your task definition<a name="create_windows_service"></a>
 
 After you have registered your task definition, you can place tasks in your cluster with it\. The following procedure creates a service with your task definition and places one task on your cluster\.
 
@@ -188,7 +157,7 @@ After you have registered your task definition, you can place tasks in your clus
   aws ecs create-service --cluster windows --task-definition windows-simple-iis --desired-count 1 --service-name windows-simple-iis
   ```
 
-## Step 5: View Your Service<a name="view_windows_service"></a>
+## Step 4: View your service<a name="view_windows_service"></a>
 
 After your service has launched a task into your cluster, you can view the service and open the IIS test page in a browser to verify that the container is running\.
 

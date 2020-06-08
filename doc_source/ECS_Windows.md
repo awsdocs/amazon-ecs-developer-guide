@@ -1,4 +1,4 @@
-# Windows Containers<a name="ECS_Windows"></a>
+# Windows containers<a name="ECS_Windows"></a>
 
 Amazon ECS now supports Windows containers on container instances that are launched with the Amazon ECS\-optimized Windows AMI\. 
 
@@ -13,19 +13,19 @@ Amazon ECS vends AMIs that are optimized for Windows containers in the following
 + **Amazon ECS\-optimized Windows 2016 Full AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
 
 **Topics**
-+ [Windows Container Caveats](#windows_caveats)
-+ [Getting Started with Windows Containers](ECS_Windows_getting_started.md)
-+ [Windows Task Definitions](windows_task_definitions.md)
-+ [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)
-+ [Pushing Windows Images to Amazon ECR](windows_ecr.md)
++ [Windows container caveats](#windows_caveats)
++ [Getting started with Windows containers](ECS_Windows_getting_started.md)
++ [Windows task definitions](windows_task_definitions.md)
++ [Windows IAM roles for tasks](windows_task_IAM_roles.md)
++ [Pushing Windows images to Amazon ECR](windows_ecr.md)
 + [Using gMSAs for Windows Containers](windows-gmsa.md)
 
-## Windows Container Caveats<a name="windows_caveats"></a>
+## Windows container caveats<a name="windows_caveats"></a>
 
 Here are some things you should know about Windows containers and Amazon ECS\.
 + Windows containers cannot run on Linux container instances and vice versa\. To ensure proper task placement for Windows and Linux tasks, you should keep Windows and Linux container instances in separate clusters, and only place Windows tasks on Windows clusters\. You can ensure that Windows task definitions are only placed on Windows instances by setting the following placement constraint: `memberOf(ecs.os-type=='windows')`\.
 + Windows containers are only supported for tasks that use the EC2 launch type\. The Fargate launch type is not currently supported for Windows containers\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
-+ Windows containers and container instances cannot support all the task definition parameters that are available for Linux containers and container instances\. For some parameters, they are not supported at all, and others behave differently on Windows than they do on Linux\. For more information, see [Windows Task Definitions](windows_task_definitions.md)\.
-+ The IAM roles for tasks feature requires that you configure your Windows container instances to allow the feature at launch, and your containers must run some provided PowerShell code when they use the feature\. For more information, see [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)\.
++ Windows containers and container instances cannot support all the task definition parameters that are available for Linux containers and container instances\. For some parameters, they are not supported at all, and others behave differently on Windows than they do on Linux\. For more information, see [Windows task definitions](windows_task_definitions.md)\.
++ The IAM roles for tasks feature requires that you configure your Windows container instances to allow the feature at launch, and your containers must run some provided PowerShell code when they use the feature\. For more information, see [Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
 + The IAM roles for tasks feature uses a credential proxy to provide credentials to the containers\. This credential proxy occupies port 80 on the container instance, so if you use IAM roles for tasks, port 80 is not available for tasks\. For web service containers, you can use an Application Load Balancer and dynamic port mapping to provide standard HTTP port 80 connections to your containers\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
 + The Windows server Docker images are large \(9 GiB\), so your container instances require more storage space than Linux container instances, which typically have smaller image sizes\.

@@ -17,14 +17,14 @@ When you register a task definition, you give it a family, which is similar to a
 Type: string  
 Required: no  
 When you register a task definition, you can provide a task role for an IAM role that allows the containers in the task permission to call the AWS APIs that are specified in its associated policies on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  
-IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the Amazon ECS\-optimized Windows AMI\. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)\.
+IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the Amazon ECS\-optimized Windows AMI\. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
 
 ## Task execution role<a name="execution_role_arn"></a>
 
 `executionRoleArn`  
 Type: string  
 Required: no  
-When you register a task definition, you can provide a task execution role that grants the container agent permission to make AWS API calls on your behalf\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+The Amazon Resource Name \(ARN\) of the task execution role that grants the Amazon ECS container agent permission to make AWS API calls on your behalf\. The task execution IAM role is required depending on the requirements of your task\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
 ## Network mode<a name="network_mode"></a>
 
@@ -689,7 +689,7 @@ Type: Integer
 This allows you to tune a container's memory swappiness behavior\. A `swappiness` value of `0` will cause swapping to not happen unless absolutely necessary\. A `swappiness` value of `100` will cause pages to be swapped very aggressively\. Accepted values are whole numbers between `0` and `100`\. If the `swappiness` parameter is not specified, a default value of `60` is used\. If a value is not specified for `maxSwap` then this parameter is ignored\. This parameter maps to the `--memory-swappiness` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
 If you are using tasks that use the Fargate launch type, the `swappiness` parameter is not supported\.  
 `tmpfs`  
-The container path, mount options, and size \(in MiB\) of the tmpfs mount\. This parameter maps to the `--tmpfs` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
+The container path, mount options, and maximum size \(in MiB\) of the tmpfs mount\. This parameter maps to the `--tmpfs` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
 If you are using tasks that use the Fargate launch type, the `tmpfs` parameter is not supported\.
 Type: Array of [Tmpfs](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Tmpfs.html) objects  
 Required: No    
@@ -703,7 +703,7 @@ Type: Array of strings
 Required: No  
 Valid Values: `"defaults" | "ro" | "rw" | "suid" | "nosuid" | "dev" | "nodev" | "exec" | "noexec" | "sync" | "async" | "dirsync" | "remount" | "mand" | "nomand" | "atime" | "noatime" | "diratime" | "nodiratime" | "bind" | "rbind" | "unbindable" | "runbindable" | "private" | "rprivate" | "shared" | "rshared" | "slave" | "rslave" | "relatime" | "norelatime" | "strictatime" | "nostrictatime" | "mode" | "uid" | "gid" | "nr_inodes" | "nr_blocks" | "mpol"`  
 `size`  
-The size \(in MiB\) of the tmpfs volume\.  
+The maximum size \(in MiB\) of the tmpfs volume\.  
 Type: Integer  
 Required: Yes
 
@@ -733,8 +733,8 @@ Type: String
 Required: Yes  
 The dependency condition of the container\. The following are the available conditions and their behavior:  
 + `START` – This condition emulates the behavior of links and volumes today\. It validates that a dependent container is started before permitting other containers to start\.
-+ `COMPLETE` – This condition validates that a dependent container runs to completion \(exits\) before permitting other containers to start\. This can be useful for nonessential containers that run a script and then exit\.
-+ `SUCCESS` – This condition is the same as `COMPLETE`, but it also requires that the container exits with a `zero` status\.
++ `COMPLETE` – This condition validates that a dependent container runs to completion \(exits\) before permitting other containers to start\. This can be useful for nonessential containers that run a script and then exit\. This condition cannot be set on an essential container\.
++ `SUCCESS` – This condition is the same as `COMPLETE`, but it also requires that the container exits with a `zero` status\. This condition cannot be set on an essential container\.
 + `HEALTHY` – This condition validates that the dependent container passes its Docker healthcheck before permitting other containers to start\. This requires that the dependent container has health checks configured\. This condition is confirmed only at task startup\.
 
 #### Container Timeouts<a name="container_definition_timeout"></a>

@@ -47,6 +47,14 @@ task_definition:
            string: string
         labels:
            string: string
+  efs_volumes:
+      - name: string
+        filesystem_id: string
+        root_directory: string
+        transit_encryption: string
+        transit_encryption_port: int64
+        access_point: string
+        iam: string
   placement_constraints:
       - type: string
         expression: string
@@ -132,6 +140,14 @@ If no units are specified, seconds are assumed\. For example, you can specify ei
     + `value_from` – This is the AWS Systems Manager Parameter Store ARN or name to expose to the container\. If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
     + `name` – The value to set as the environment variable on the container\.
 + `docker_volumes` – This parameter allows you to create docker volumes\. The `name` key is required, and `scope`, `autoprovision`, `driver`, `driver_opts` and `labels` correspond with the Docker volume configuration fields in a task definition\. For more information, see [DockerVolumeConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DockerVolumeConfiguration.html) in the *Amazon Elastic Container Service API Reference*\. Volumes defined with the `docker_volumes` key can be referenced in your compose file by name, even if they were not also specified in the compose file\.
++ `efs_volumes` – This parameter enables you to mount Amazon EFS file systems\. The `name` and `filesystem_id` keys are required\.
+  + `name` – The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the sourceVolume parameter of container definition mountPoints\.
+  + `filesystem_id` – The ID of the file system for which to create the mount target\.
+  + `root_directory` – The directory within the Amazon EFS file system to mount as the root directory inside the host\. If this parameter is omitted, the root of the Amazon EFS volume will be used\. Specifying / will have the same effect as omitting this parameter\.
+  + `transit_encryption` – Whether or not to enable encryption for Amazon EFS data in transit between the Amazon ECS host and the Amazon EFS server\. This parameter is required if IAM is enabled or an access point ID is specified\. Valid values are `ENABLED or DISABLED. DISABLED` is the default\.
+  + `transit_encryption_port` – The port to use when sending encrypted data between the Amazon ECS host and the Amazon EFS server\. If you do not specify a transit encryption port, it will use the port selection strategy that the Amazon EFS mount helper uses\. This parameter is required if `transit_encryption` is enabled\.
+  + `access_point` – The ID of the Amazon EFS access point to use\. If an access point is specified, the root directory value will be relative to the directory set for the access point\. If specified, `transit_encryption` must be enabled\.
+  + `iam` – Whether or not to use the Amazon ECS task IAM role defined in a task definition when mounting the Amazon EFS file system\. If enabled, `transit encryption` must be enabled in the EFSVolumeConfiguration\. Valid values are `ENABLED or DISABLED. DISABLED` is the default\.
 + `placement_constraints` – This parameter allows you to specify a list of constraints on task placement within the task definition\. For more information, see [TaskDefinitionPlacementConstraint](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TaskDefinitionPlacementConstraint.html) in the *Amazon Elastic Container Service API Reference*\. It is optional if you are using the EC2 launch type\. It is not supported if using the Fargate launch type\.
 
 The fields listed under `run_params` are for values needed as options to any API calls not specifically related to a task definition, such as `compose up` \(RunTask\) and `compose service up` \(CreateService\)\.

@@ -1,14 +1,14 @@
-# Windows Task Definitions<a name="windows_task_definitions"></a>
+# Windows task definitions<a name="windows_task_definitions"></a>
 
 Windows containers and container instances cannot support all the task definition parameters that are available for Linux containers and container instances\. For some parameters, they are not supported at all, and others behave differently on Windows than they do on Linux\.
 
-## Windows Task Definition Parameters<a name="windows_task_definition_params"></a>
+## Windows task definition parameters<a name="windows_task_definition_params"></a>
 
 The following list explains which parameters are not supported or behave differently on Windows containers than they do with Linux containers\. For more information about these parameters as they relate to Amazon ECS, see [Task definition parameters](task_definition_parameters.md)\.
 
 `taskRoleArn`  
 Supported: Yes  
-IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the Amazon ECS\-optimized Windows AMI\. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM Roles for Tasks](windows_task_IAM_roles.md)\.
+IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the Amazon ECS\-optimized Windows AMI\. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
 
 `networkMode`  
 Supported: No  
@@ -76,7 +76,7 @@ Supported: No
 `pidMode`  
 Supported: No
 
-## Windows Sample Task Definitions<a name="windows_sample_task_defs"></a>
+## Windows sample task definitions<a name="windows_sample_task_defs"></a>
 
 Below is a sample task definition to help you get started with Windows containers on Amazon ECS\.
 

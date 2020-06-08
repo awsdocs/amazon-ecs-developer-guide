@@ -7,13 +7,15 @@ A *task placement strategy* is an algorithm for selecting instances for task pla
 Amazon ECS supports the following task placement strategies:
 
 `binpack`  
-Place tasks based on the least available amount of CPU or memory\. This minimizes the number of instances in use\.
+Tasks are placed on container instances so as to leave the least amount of unused CPU or memory\. This strategy minimizes the number of container instances in use\.  
+When this strategy is used and a scale\-in action is taken, Amazon ECS will terminate tasks based on the amount of resources that will be left on the container instance after the task is terminated\. The contianer instance that will have the most available resources left after task termination will have that task terminated\.
 
 `random`  
-Place tasks randomly\.
+Tasks are placed randomly\.
 
 `spread`  
-Place tasks evenly based on the specified value\. Accepted values are `instanceId` \(or `host`, which has the same effect\), or any platform or custom attribute that is applied to a container instance, such as `attribute:ecs.availability-zone`\. Service tasks are spread based on the tasks from that service\. Standalone tasks are spread based on the tasks from the same task group\.
+Tasks are placed evenly based on the specified value\. Accepted values are `instanceId` \(or `host`, which has the same effect\), or any platform or custom attribute that is applied to a container instance, such as `attribute:ecs.availability-zone`\. Service tasks are spread based on the tasks from that service\. Standalone tasks are spread based on the tasks from the same task group\.  
+When this strategy is used and a scale\-in action is taken, Amazon ECS will terminate tasks based on age, with the newest tasks being terminated first\. If age cannot be considered because multiple tasks have the same age, then the tasks will be chosen at random\.
 
 ## Example Strategies<a name="strategy-examples"></a>
 

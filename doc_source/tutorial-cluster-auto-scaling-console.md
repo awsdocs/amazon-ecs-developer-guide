@@ -246,6 +246,8 @@ After you have registered a task definition for your account, you can run a task
 
 1. Use the following steps to complete the run task workflow\.
 
+   1. For **Capacity provider strategy**, the default capacity provider strategy for the cluster must be selected\.
+
    1. For **Cluster**, select your **ConsoleTutorial\-cluster** cluster\.
 
    1. For **Number of tasks**, enter `5`\.

@@ -62,6 +62,10 @@ Your IAM policy must include the `logs:CreateLogGroup` permission before you att
 Required: Yes  
 Specify the region to which the `awslogs` log driver should send your Docker logs\. You can choose to send all of your logs from clusters in different regions to a single region in CloudWatch Logs so that they are all visible in one location, or you can separate them by region for more granularity\. Be sure that the specified log group exists in the region that you specify with this option\.
 
+`awslogs-endpoint`  
+Required: No  
+By default, Docker uses either the `awslogs-region` log option or the detected Region to construct the remote CloudWatch Logs API endpoint\. Use the `awslogs-endpoint` log option to override the default endpoint with the provided endpoint\.
+
 `awslogs-group`  
 Required: Yes  
 You must specify a log group to which the `awslogs` log driver sends its log streams\. For more information, see [Creating a Log Group](#create_awslogs_loggroups)\.

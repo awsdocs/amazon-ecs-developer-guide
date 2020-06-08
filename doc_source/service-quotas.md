@@ -1,8 +1,12 @@
-# Amazon ECS Service Quotas<a name="service-quotas"></a>
+# Amazon ECS service quotas<a name="service-quotas"></a>
 
-The following table provides the default service quotas, also referred to as limits, for Amazon ECS for an AWS account which can be changed\. For more information on the service limits for other AWS services that you can use with Amazon ECS, such as Elastic Load Balancing and Auto Scaling, see [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *Amazon Web Services General Reference*\.
+The following table provides the default service quotas, also referred to as limits, for Amazon ECS for an AWS account\. For more information on the service quotas for other AWS services that you can use with Amazon ECS, such as Elastic Load Balancing and Auto Scaling, see [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *Amazon Web Services General Reference*\.
 
-To request a quota increase, see [Requesting a Quota Increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-increase.html) in the *Service Quotas User Guide*\.
+## Adjustable service quotas<a name="service-quotas-adjustable"></a>
+
+The following service quotas are adjustable\.
+
+To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-increase.html) in the *Service Quotas User Guide*\.
 
 
 ****  
@@ -17,15 +21,16 @@ To request a quota increase, see [Requesting a Quota Increase](https://docs.aws.
 |  Fargate Spot tasks, per Region, per account  |  The maximum number of tasks using the `FARGATE_SPOT` capacity provider, per Region\.  |  250  | 
 |  Public IP addresses for tasks using the Fargate launch type  | The maximum number of public IP addresses used by tasks using the Fargate launch type, per Region\. |  100  | 
 
-The following table provides other limitations for Amazon ECS that cannot be changed\.
+## Nonadjustable service quotas<a name="service-quotas-nonadjustable"></a>
+
+The following are other limitations for Amazon ECS that cannot be changed\.
 
 **Note**  
-The quotas for Fargate task storage are dependent on the platform version used by the task\. For more information, see [Fargate Task Storage](fargate-task-storage.md)\.
+The quotas for Fargate task storage are nonadjustable and are dependent on the platform version used by the task\. For more information, see [Fargate Task Storage](fargate-task-storage.md)\.
 
 
 |  Service quota  |  Description  |  Default quota value  | 
 | --- | --- | --- | 
-|  Classic Load Balancers per service  |  The maximum number of Classic Load Balancers per service\.  |  1  | 
 |  Tasks launched \(`count`\) per run\-task  |  The maximum number of tasks that can be launched per `RunTask` API action\.  |  10  | 
 |  Container instances per start\-task  |  The maximum number of container instances specified in a `StartTask` API action\.  |  10  | 
 |  Revisions per task definition family  |  The maximum number of revisions per task definition family\. Deregistering a task definition revision does not exclude it from being included in this limit\.  |  1,000,000  | 
@@ -33,6 +38,7 @@ The quotas for Fargate task storage are dependent on the platform version used b
 |  Task definition max containers  |  The maximum number of containers definitions within a a task definition\.  |  10  | 
 |  Subnets specified in an `awsvpcConfiguration`  |  The maximum number of subnets specified within an `awsvpcConfiguration`\.  |  16  | 
 |  Security groups specified in an `awsvpcConfiguration`  |  The maximum number of security groups specified within an `awsvpcConfiguration`\.  |  5  | 
+|  Classic Load Balancers per service  |  The maximum number of Classic Load Balancers per service\.  |  1  | 
 |  Tags per resource  |  The maximum number of tags per resource\. This applies to tasks, services, task definitions, clusters, and container instances\.  |  50  | 
 
 ## Using Service Quotas<a name="using-service-quotas"></a>

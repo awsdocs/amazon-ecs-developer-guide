@@ -45,6 +45,9 @@ Output:
 }
 ```
 
+**Note**  
+The default expiration time for the generated IAM role credentials is 6 hours\.
+
 If your container instance is using at least version 1\.11\.0 of the container agent and a supported version of the AWS CLI or SDKs, then the SDK client will see that the `AWS_CONTAINER_CREDENTIALS_RELATIVE_URI` variable is available, and it will use the provided credentials to make calls to the AWS APIs\. For more information, see [Enabling Task IAM Roles on your Container Instances](#enable_task_iam_roles) and [Using a Supported AWS SDK](#task-iam-roles-minimum-sdk)\.
 
 Each time the credential provider is used, the request is logged locally on the host container instance at `/var/log/ecs/audit.log.YYYY-MM-DD-HH`\. For more information, see [IAM Roles for Tasks Credential Audit Log](logs.md#task_iam_roles-logs)\.

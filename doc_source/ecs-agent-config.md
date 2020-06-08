@@ -79,13 +79,13 @@ Used to create a connection to the Docker daemon; behaves similarly to the envir
 Example values: `/ecs-agent.log`  
 Default value on Linux: Null  
 Default value on Windows: Null  
-Determines the location where agent logs should be written\. If you are running the agent via `ecs-init`, which is the default method when using the Amazon ECS\-optimized AMI, the in\-container path will be `/log` and `ecs-init` mounts that out to `/var/log/ecs/` on the host\.
+The location where agent logs should be written\. If you are running the agent via `ecs-init`, which is the default method when using the Amazon ECS\-optimized AMI, the in\-container path will be `/log` and `ecs-init` mounts that out to `/var/log/ecs/` on the host\.
 
 `ECS_LOGLEVEL`  
 Example values: `crit`, `error`, `warn`, `info`, `debug`  
 Default value on Linux: `info`  
 Default value on Windows: `info`  
-The level to log at on `stdout`\.
+The level of detail to log\.
 
 `ECS_CHECKPOINT`  
 Example values: `true` \| `false`  
