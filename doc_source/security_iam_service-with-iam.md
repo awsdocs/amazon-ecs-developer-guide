@@ -137,7 +137,7 @@ Amazon ECS does not support resource\-based policies\.
 
 You can attach tags to Amazon ECS resources or pass tags in a request to Amazon ECS\. To control access based on tags, you provide tag information in the [condition element](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) of a policy using the  `aws:RequestTag/key-name` or `aws:TagKeys` condition keys\. For more information, see [Controlling Access Using Tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *IAM User Guide*\.
 
-For more information about tagging Amazon ECS resources, see [Resources and Tags](ecs-resource-tagging.md)\.
+For more information about tagging Amazon ECS resources, see [Resources and tags](ecs-resource-tagging.md)\.
 
 To view an example identity\-based policy for limiting access to a resource based on the tags on that resource, see [Describing Amazon ECS Services Based on Tags](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-view-cluster-tags)\.
 

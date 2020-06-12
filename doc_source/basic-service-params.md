@@ -20,7 +20,7 @@ If your cluster is configured with a default capacity provider strategy, you wil
 1. Review the task definition, and choose **Actions**, **Create Service**\.
 
 1. On the **Configure service** page, fill out the following parameters accordingly:
-   + **Capacity provider strategy**: Choose whether your service should use the default capacity provider strategy defined for the cluster or a custom capacity provider strategy\. A capacity provider must already be associated with the cluster in order to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS Cluster Capacity Providers](cluster-capacity-providers.md)\.
+   + **Capacity provider strategy**: Choose whether your service should use the default capacity provider strategy defined for the cluster or a custom capacity provider strategy\. A capacity provider must already be associated with the cluster in order to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS cluster capacity providers](cluster-capacity-providers.md)\.
    + **Launch type**: Choose whether your service should run tasks on Fargate infrastructure, or Amazon EC2 container instances that you maintain\. This option is available if your cluster has no default capacity provider defined\. For more information, see [Amazon ECS Launch Types](launch_types.md)\. 
    + **Platform version**: If you chose the Fargate launch type, then select the platform version to use\.
 **Note**  

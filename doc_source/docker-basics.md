@@ -1,4 +1,4 @@
-# Docker Basics for Amazon ECS<a name="docker-basics"></a>
+# Docker basics for Amazon ECS<a name="docker-basics"></a>
 
 Docker is a technology that allows you to build, run, test, and deploy distributed applications that are based on Linux containers\. Amazon ECS uses Docker images in task definitions to launch containers on Amazon EC2 instances in your clusters\. For Amazon ECS product details, featured customer case studies, and FAQs, see the [Amazon Elastic Container Service product detail pages](http://aws.amazon.com/ecs)\.
 
@@ -11,11 +11,11 @@ If you already have Docker installed, skip to [Create a Docker Image](#docker-ba
 
 Docker is available on many different operating systems, including most modern Linux distributions, like Ubuntu, and even Mac OSX and Windows\. For more information about how to install Docker on your particular operating system, go to the [Docker installation guide](https://docs.docker.com/engine/installation/#installation)\.
 
-You don't even need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an Amazon Linux 2 instance and install Docker to get started\.
+You don't even need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an Amazon EC2 instance with an Amazon Linux 2 or Amazon Linux AMI and install Docker to get started\.
 
 **To install Docker on an Amazon EC2 instance**
 
-1. Launch an instance with the Amazon Linux 2 AMI\. For more information, see [Launching an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. Launch an instance with the Amazon Linux 2 or Amazon Linux AMI\. For more information, see [Launching an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Connect to your instance\. For more information, see [Connect to Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
@@ -27,8 +27,16 @@ You don't even need a local development system to use Docker\. If you are using 
 
 1. Install the most recent Docker Community Edition package\.
 
+   Amazon Linux 2
+
    ```
    sudo amazon-linux-extras install docker
+   ```
+
+   Amazon Linux\.
+
+   ```
+   sudo yum install docker
    ```
 
 1. Start the Docker service\.

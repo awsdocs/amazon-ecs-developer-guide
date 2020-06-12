@@ -5,9 +5,8 @@ An Amazon ECS cluster is a logical grouping of tasks or services\. If you are ru
 **Topics**
 + [Cluster Concepts](#clusters-concepts)
 + [Creating a Cluster](create_cluster.md)
-+ [Amazon ECS Cluster Capacity Providers](cluster-capacity-providers.md)
-+ [Amazon ECS Cluster Auto Scaling](cluster-auto-scaling.md)
-+ [Using AWS Fargate Capacity Providers](fargate-capacity-providers.md)
++ [Amazon ECS cluster capacity providers](cluster-capacity-providers.md)
++ [Amazon ECS cluster auto scaling](cluster-auto-scaling.md)
 + [Updating Cluster Settings](update-cluster-settings.md)
 + [Deleting a Cluster](delete_cluster.md)
 
@@ -27,6 +26,6 @@ The cluster has capacity providers associated with it and the resources needed f
 INACTIVE  
 The cluster has been deleted\. Clusters with an `INACTIVE` status may remain discoverable in your account for a period of time\. However, this behavior is subject to change in the future, so you should not rely on `INACTIVE` clusters persisting\.
 + A cluster may contain a mix of tasks using either the Fargate or EC2 launch types\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
-+ A cluster may contain a mix of both Auto Scaling group capacity providers and Fargate capacity providers, however when specifying a capacity provider strategy they may only contain one or the other but not both\. For more information, see [Amazon ECS Cluster Capacity Providers](cluster-capacity-providers.md)\.
++ A cluster may contain a mix of both Auto Scaling group capacity providers and Fargate capacity providers, however when specifying a capacity provider strategy they may only contain one or the other but not both\. For more information, see [Amazon ECS cluster capacity providers](cluster-capacity-providers.md)\.
 + For tasks using the EC2 launch type, clusters can contain multiple different container instance types, but each container instance may only be registered to one cluster at a time\.
 + Custom IAM policies may be created to allow or restrict user access to specific clusters\. For more information, see the [Cluster Examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies) section in [Amazon Elastic Container Service Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.

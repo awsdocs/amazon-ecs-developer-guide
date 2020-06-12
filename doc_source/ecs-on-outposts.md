@@ -30,7 +30,7 @@ An Outpost is an extension of an AWS Region, and you can extend an Amazon VPC in
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/network-components.png)
 
-**AWS CLI**
+ **AWS CLI** 
 
  To create an Amazon ECS cluster on an Outpost with the AWS CLI, specify a security group and a subnet that is associated with your Outpost\.
 

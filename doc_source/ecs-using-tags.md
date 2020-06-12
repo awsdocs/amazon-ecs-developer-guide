@@ -56,7 +56,7 @@ The following basic restrictions apply to tags:
 
 ## Tagging Your Resources for Billing<a name="tag-resources-for-billing"></a>
 
-When enabling Amazon ECS managed tags, Amazon ECS will automatically tag all newly launched tasks with the cluster name\. For tasks that belong to a service, they will be tagged with the service name as well\. These managed tags are helpful when reviewing cost allocation after enabling them in your Cost & Usage Report\. For more information, see [Amazon ECS Usage Reports](usage-reports.md)\.
+When enabling Amazon ECS managed tags, Amazon ECS will automatically tag all newly launched tasks with the cluster name\. For tasks that belong to a service, they will be tagged with the service name as well\. These managed tags are helpful when reviewing cost allocation after enabling them in your Cost & Usage Report\. For more information, see [Amazon ECS usage reports](usage-reports.md)\.
 
 To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in the *AWS Billing and Cost Management User Guide*\.
 

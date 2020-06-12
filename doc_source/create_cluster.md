@@ -17,7 +17,7 @@ If you add or modify the underlying cluster resources directly after they are cr
 1. On the **Clusters** page, choose **Create Cluster**\.
 
 1. For **Select cluster compatibility**, choose one of the following options and then choose **Next Step**:
-   + **Networking only**– With this option, you can launch a cluster with a new VPC to use for Fargate tasks\. The `FARGATE` and `FARGATE_SPOT` capacity providers will be automatically associated with the cluster\. For more information, see [Using AWS Fargate Capacity Providers](fargate-capacity-providers.md)\.
+   + **Networking only**– With this option, you can launch a cluster with a new VPC to use for Fargate tasks\. The `FARGATE` and `FARGATE_SPOT` capacity providers will be automatically associated with the cluster\. For more information, see [AWS Fargate capacity providers](fargate-capacity-providers.md)\.
 
      You can run tasks using the Fargate launch type\. The Fargate launch type allows you to run your containerized applications without the need to provision and manage the backend infrastructure\. When you run a task with a Fargate\-compatible task definition, Fargate launches the containers for you\.
    + **EC2 Linux \+ Networking**– With this option you can launch a cluster of tasks using the EC2 launch type using Linux containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\.

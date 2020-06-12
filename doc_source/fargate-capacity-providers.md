@@ -1,20 +1,14 @@
-# Using AWS Fargate Capacity Providers<a name="fargate-capacity-providers"></a>
+# AWS Fargate capacity providers<a name="fargate-capacity-providers"></a>
 
-Amazon ECS cluster capacity providers enable you to use both Fargate and Fargate Spot capacity with your Amazon ECS tasks\. For more information about cluster capacity providers, see [Amazon ECS Cluster Capacity Providers](cluster-capacity-providers.md)\.
+Amazon ECS on AWS Fargate cluster capacity providers enable you to use both Fargate and Fargate Spot capacity with your Amazon ECS tasks\. For more information about cluster capacity providers, see [Amazon ECS cluster capacity providers](cluster-capacity-providers.md)\.
 
 With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discounted rate compared to the Fargate price\. Fargate Spot runs tasks on spare compute capacity\. When AWS needs the capacity back, your tasks will be interrupted with a two\-minute warning\. This is described in further detail below\.
 
-**Topics**
-+ [Fargate Capacity Provider Considerations](#fargate-capacity-providers-considerations)
-+ [Handling Fargate Spot Termination Notices](#fargate-capacity-providers-termination)
-+ [Creating a New Cluster That Uses Fargate Capacity Providers](#fargate-capacity-providers-create-cluster)
-+ [Adding Fargate Capacity Providers To An Existing Cluster](#fargate-capacity-providers-existing-cluster)
-+ [Running Tasks Using a Fargate Capacity Provider](#fargate-capacity-providers-run-task)
-
-## Fargate Capacity Provider Considerations<a name="fargate-capacity-providers-considerations"></a>
+## Fargate capacity provider considerations<a name="fargate-capacity-providers-considerations"></a>
 
 The following should be considered when using Fargate capacity providers\.
 + The Fargate and Fargate Spot capacity providers do not need to be created\. They are available to all accounts and only need to be associated with a cluster to be available for use\.
++ The Fargate and Fargate Spot capacity providers are reserved and cannot be deleted\. You can disassociate them from a cluster using the PutClusterCapacityProviders API\.
 + When a new cluster is created using the Amazon ECS console along with the **Networking only** cluster template, the `FARGATE` and `FARGATE_SPOT` capacity providers are associated with the new cluster automatically\.
 + To add the `FARGATE` and `FARGATE_SPOT` capacity providers to an existing cluster, you must use the AWS CLI or API\. For more information, see [Adding Fargate Capacity Providers To An Existing Cluster](#fargate-capacity-providers-existing-cluster)\.
 + Using Fargate Spot requires that your task use platform version 1\.3\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.

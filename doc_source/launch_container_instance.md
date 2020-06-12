@@ -99,7 +99,7 @@ If you launch your container instances using an Amazon EC2 Auto Scaling group, t
 
    When done configuring your volumes, choose **Next: Add Tags**\.
 
-1. On the **Add Tags** page, specify tags by providing key and value combinations for the container instance\. Choose **Add another tag** to add more than one tag to your container instance\. For more information resource tags, see [Resources and Tags](ecs-resource-tagging.md)\.
+1. On the **Add Tags** page, specify tags by providing key and value combinations for the container instance\. Choose **Add another tag** to add more than one tag to your container instance\. For more information resource tags, see [Resources and tags](ecs-resource-tagging.md)\.
 
    Choose **Next: Configure Security Group** when you are done\.
 

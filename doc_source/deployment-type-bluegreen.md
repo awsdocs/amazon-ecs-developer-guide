@@ -74,6 +74,10 @@ To view the details of a CodeDeploy deployment group in the CodeDeploy console, 
 
 To modify the settings for a CodeDeploy deployment group in the CodeDeploy console, see [Change Deployment Group Settings with CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups-edit.html) in the *AWS CodeDeploy User Guide*\.
 
+A tutorial walking through the steps needed to create a service using the blue/green deployment type is provided\. For more information, see [Tutorial: Creating a Service Using a Blue/Green Deployment](create-blue-green.md)\.
+
+Support for performing a blue/green deployment has been added for AWS CloudFormation\. For more information, see [Perform Amazon ECS blue/green deployments through CodeDeploy using AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/blue-green.html) in the *AWS CloudFormation User Guide*\.
+
 ## Blue/Green Deployment Required IAM Permissions<a name="deployment-type-bluegreen-IAM"></a>
 
 Amazon ECS blue/green deployments are made possible by a combination of the Amazon ECS and CodeDeploy APIs\. IAM users must have the appropriate permissions for these services before they can use Amazon ECS blue/green deployments in the AWS Management Console or with the AWS CLI or SDKs\. 

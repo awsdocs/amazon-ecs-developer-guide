@@ -1,7 +1,7 @@
 # Tutorial: Scaling Container Instances with CloudWatch Alarms<a name="cloudwatch_alarm_autoscaling"></a>
 
 **Note**  
-In December 2019, Amazon ECS launched cluster auto scaling, as an alternative method for scaling container instances\. For more information, see [Amazon ECS Cluster Auto Scaling](cluster-auto-scaling.md)\. 
+In December 2019, Amazon ECS launched cluster auto scaling, as an alternative method for scaling container instances\. For more information, see [Amazon ECS cluster auto scaling](cluster-auto-scaling.md)\. 
 
 The following procedures help you to create an Auto Scaling group for an Amazon ECS cluster\. The Auto Scaling group contains container instances that you can scale out \(and in\) using CloudWatch alarms\. 
 

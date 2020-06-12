@@ -36,7 +36,7 @@ Amazon ECS on AWS Fargate is supported in the following Regions\. The supported 
 |  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  | 
 
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
-+ [Getting Started with Amazon ECS using Fargate](getting-started-fargate.md)
++ [Getting started with Amazon ECS using Fargate](getting-started-fargate.md)
 + [Tutorial: Creating a Cluster with a Fargate Task Using the AWS CLI](ECS_AWSCLI_Fargate.md)
 + [Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)
 
@@ -251,7 +251,7 @@ For more information about Amazon ECS clusters, including a walkthrough for crea
 
 Amazon ECS capacity providers enable you to use both Fargate and Fargate Spot capacity with your Amazon ECS tasks\.
 
-With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discounted rate compared to the Fargate price\. Fargate Spot runs tasks on spare compute capacity\. When AWS needs the capacity back, your tasks will be interrupted with a two\-minute warning\. For more information, see [Using AWS Fargate Capacity Providers](fargate-capacity-providers.md)\.
+With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discounted rate compared to the Fargate price\. Fargate Spot runs tasks on spare compute capacity\. When AWS needs the capacity back, your tasks will be interrupted with a two\-minute warning\. For more information, see [AWS Fargate capacity providers](fargate-capacity-providers.md)\.
 
 ## Fargate Task Retirement<a name="fargate-task-retirement"></a>
 
