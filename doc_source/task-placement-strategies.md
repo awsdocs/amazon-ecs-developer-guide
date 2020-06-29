@@ -8,7 +8,7 @@ Amazon ECS supports the following task placement strategies:
 
 `binpack`  
 Tasks are placed on container instances so as to leave the least amount of unused CPU or memory\. This strategy minimizes the number of container instances in use\.  
-When this strategy is used and a scale\-in action is taken, Amazon ECS will terminate tasks based on the amount of resources that will be left on the container instance after the task is terminated\. The contianer instance that will have the most available resources left after task termination will have that task terminated\.
+When this strategy is used and a scale\-in action is taken, Amazon ECS will terminate tasks based on the amount of resources that will be left on the container instance after the task is terminated\. The container instance that will have the most available resources left after task termination will have that task terminated\.
 
 `random`  
 Tasks are placed randomly\.
