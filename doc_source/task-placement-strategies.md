@@ -1,8 +1,8 @@
-# Amazon ECS Task Placement Strategies<a name="task-placement-strategies"></a>
+# Amazon ECS task placement strategies<a name="task-placement-strategies"></a>
 
-A *task placement strategy* is an algorithm for selecting instances for task placement or tasks for termination\. Task placement strategies can be specified when either running a task or creating a new service\. The task placement strategies can be updated for existing services as well\. For more information, see [Amazon ECS Task Placement](task-placement.md)\.
+A *task placement strategy* is an algorithm for selecting instances for task placement or tasks for termination\. Task placement strategies can be specified when either running a task or creating a new service\. The task placement strategies can be updated for existing services as well\. For more information, see [Amazon ECS task placement](task-placement.md)\.
 
-## Strategy Types<a name="strategy-types"></a>
+## Strategy types<a name="strategy-types"></a>
 
 Amazon ECS supports the following task placement strategies:
 
@@ -17,7 +17,7 @@ Tasks are placed randomly\.
 Tasks are placed evenly based on the specified value\. Accepted values are `instanceId` \(or `host`, which has the same effect\), or any platform or custom attribute that is applied to a container instance, such as `attribute:ecs.availability-zone`\. Service tasks are spread based on the tasks from that service\. Standalone tasks are spread based on the tasks from the same task group\.  
 When this strategy is used and a scale\-in action is taken, Amazon ECS will terminate tasks based on age, with the newest tasks being terminated first\. If age cannot be considered because multiple tasks have the same age, then the tasks will be chosen at random\.
 
-## Example Strategies<a name="strategy-examples"></a>
+## Example strategies<a name="strategy-examples"></a>
 
 You can specify task placement strategies with the following actions: [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html), [UpdateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html), and [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html)\.
 

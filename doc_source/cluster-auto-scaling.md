@@ -7,7 +7,7 @@ For each of the Auto Scaling group capacity providers with managed scaling enabl
 **Note**  
 Managed scaling is only supported in Regions that AWS Auto Scaling is available in\. For a list of supported Regions, see [AWS Auto Scaling Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/autoscaling_region.html) in the *Amazon Web Services General Reference*\.
 
-Each cluster has one or more Auto Scaling group capacity providers and an optional default capacity provider strategy\. The capacity providers determine the infrastructure to use for the tasks, and the capacity provider strategy determines how the tasks are spread across the capacity providers\. When you run a task or create a service, you may either use the cluster's default capacity provider strategy or specify a capacity provider strategy that overrides the cluster's default strategy\. For more information about cluster capacity providers, see [Amazon ECS cluster capacity providers](cluster-capacity-providers.md)\.
+Each cluster has one or more Auto Scaling group capacity providers and an optional default capacity provider strategy\. The capacity providers determine the infrastructure to use for the tasks, and the capacity provider strategy determines how the tasks are spread across the capacity providers\. When you run a task or create a service, you may either use the cluster's default capacity provider strategy or specify a capacity provider strategy that overrides the cluster's default strategy\. For more information about capacity providers, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
 
 ## Cluster auto scaling considerations<a name="cluster-auto-scaling-considerations"></a>
 

@@ -1,4 +1,4 @@
-# Container Instance Draining<a name="container-instance-draining"></a>
+# Container instance draining<a name="container-instance-draining"></a>
 
 There are times when you might need to remove a container instance from a cluster; for example, to perform system updates, update the Docker daemon, or scale down the cluster size\. Container instance draining enables you to remove a container instance from a cluster without impacting tasks in your cluster\.
 
@@ -8,7 +8,7 @@ Service tasks on the container instance that are in the `RUNNING` state are stop
 + If `minimumHealthyPercent` is below 100%, the scheduler can ignore `desiredCount` temporarily during task replacement\. For example, `desiredCount` is four tasks, a minimum of 50% allows the scheduler to stop two existing tasks before starting two new tasks\. If the minimum is 100%, the service scheduler can't remove existing tasks until the replacement tasks are considered healthy\. If tasks for services that do not use a load balancer are in the `RUNNING` state, they are considered healthy\. Tasks for services that use a load balancer are considered healthy if they are in the `RUNNING` state and the container instance they are hosted on is reported as healthy by the load balancer\.
 + The `maximumPercent` parameter represents an upper limit on the number of running tasks during task replacement, which enables you to define the replacement batch size\. For example, if `desiredCount` of four tasks, a maximum of 200% starts four new tasks before stopping the four tasks to be drained \(provided that the cluster resources required to do this are available\)\. If the maximum is 100%, then replacement tasks can't start until the draining tasks have stopped\.
 
-For more information, see [Service Definition Parameters](service_definition_parameters.md)\.
+For more information, see [Service definition parameters](service_definition_parameters.md)\.
 
 Any `PENDING` or `RUNNING` tasks that do not belong to a service are unaffected; you must wait for them to finish or stop them manually\.
 
@@ -16,7 +16,7 @@ A container instance has completed draining when there are no more `RUNNING` tas
 
 When you change the status of a container instance from `DRAINING` to `ACTIVE`, the Amazon ECS scheduler can schedule tasks on the instance again\.
 
-## Draining Instances<a name="drain-instances"></a>
+## Draining instances<a name="drain-instances"></a>
 
 You can use the [UpdateContainerInstancesState](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateContainerInstancesState.html) API action or the [update\-container\-instances\-state](https://docs.aws.amazon.com/cli/latest/reference/ecs/update-container-instances-state.html) command to change the status of a container instance to `DRAINING`\.
 

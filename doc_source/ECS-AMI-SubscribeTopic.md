@@ -1,18 +1,20 @@
-# Subscribing to Amazon ECS\-Optimized Amazon Linux AMI Update Notifications<a name="ECS-AMI-SubscribeTopic"></a>
+# Subscribing to Amazon ECS\-optimized AMI update notifications<a name="ECS-AMI-SubscribeTopic"></a>
 
 **Important**  
-The Amazon SNS alert is only sent when there is a new Amazon ECS\-optimized Amazon Linux AMI deployed\. Generally when a new Amazon ECS\-optimized Amazon Linux AMI is deployed, a new AMI for each of the other Amazon ECS\-optimized AMIs are deployed as well although there are not separate Amazon SNS alerts for them\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+For the Linux variants of the Amazon ECS\-optimized AMI, the Amazon SNS alert is only sent when there is a new Amazon ECS\-optimized Amazon Linux AMI deployed\. Generally when a new Amazon ECS\-optimized Amazon Linux AMI is deployed, a new AMI for each of the other Linux variants of the Amazon ECS\-optimized AMI are deployed as well although there are not separate Amazon SNS alerts for them\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 
-The Amazon ECS\-optimized Amazon Linux AMI receives regular updates for agent changes, Docker version updates, and Linux kernel security updates\. You can subscribe to the AMI update Amazon SNS topic to receive notifications when a new Amazon ECS\-optimized Amazon Linux AMI is available\. Notifications are available in all formats that Amazon SNS supports\.
+The Amazon ECS\-optimized AMIs receive regular updates for Amazon ECS container agent changes, Docker version updates, and Windows or Linux kernel security updates\. You can subscribe to the AMI update Amazon SNS topic for the Windows and Linux Amazon ECS\-optimized AMIs to receive notifications when a new Amazon ECS\-optimized AMI is available\. Notifications are available in all formats that Amazon SNS supports\.
 
 **Note**  
 Your user account must have `sns::subscribe` IAM permissions to subscribe to an SNS topic\.
 
-You can subscribe an Amazon SQS queue to this notification topic, but you must use a topic ARN that is in the same region\. For more information, see [Tutorial: Subscribing an Amazon SQS Queue to an Amazon SNS Topic](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-subscribe-queue-sns-topic.html) in the *Amazon Simple Queue Service Developer Guide*\.
+You can subscribe an Amazon SQS queue to this notification topic, but you must use a topic ARN that is in the same Region as the Amazon SNS topic\. For more information, see [Tutorial: Subscribing an Amazon SQS Queue to an Amazon SNS Topic](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-subscribe-queue-sns-topic.html) in the *Amazon Simple Queue Service Developer Guide*\.
 
 You can also use an AWS Lambda function to trigger events when notifications are received\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-lambda-as-subscriber.html) in the *Amazon Simple Notification Service Developer Guide*\.
 
-The Amazon SNS topic ARNs for each region are shown below\.
+## Linux Amazon ECS\-optimized AMIs<a name="sns-topic-linux"></a>
+
+The Amazon SNS topic ARNs for the Linux variants of the Amazon ECS\-optimized AMI for each region are shown below\.
 
 
 | AWS Region | Amazon SNS Topic ARN | 
@@ -64,7 +66,7 @@ The Amazon SNS topic ARNs for each region are shown below\.
 
    Your web browser displays a confirmation response from Amazon SNS\.
 
-## Amazon SNS Message Format<a name="ECS-AMI-Notification-format"></a>
+### Amazon SNS Message Format<a name="ECS-AMI-Notification-format"></a>
 
 An example AMI update notification message is shown below:
 
@@ -170,3 +172,7 @@ The parsed `Message` value \(with escaped quotes removed\) is shown below:
   ]
 }
 ```
+
+## Windows Amazon ECS\-optimized AMIs<a name="sns-topic-windows"></a>
+
+AWS provides two Amazon SNS topic ARNs for variants of the Windows Amazon ECS\-optimized AMI\. One topic sends update notifications when new Windows AMIs are released\. The other topic sends notifications when previously released Windows AMIs are made private\. For more information on subscribing to Windows AMI notifications, see [Subscribing to Windows AMI notifications](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-ami-version-history.html#subscribe-notifications) in the *Amazon EC2 User Guide for Windows Instances*\.

@@ -5,7 +5,7 @@ The Amazon ECS container agent, and the Fargate agent for your Fargate tasks, ma
 The following are common use cases for a task execution IAM role:
 + Your task uses the Fargate launch type and\.\.\.
   + is pulling a container image from Amazon ECR\.
-  + uses the `awslogs` or `awsfirelens` log driver\. For more information, see [Using the awslogs Log Driver](using_awslogs.md) and [Custom Log Routing](using_firelens.md)\.
+  + uses the `awslogs` or `awsfirelens` log driver\. For more information, see [Using the awslogs Log Driver](using_awslogs.md) and [Custom log routing](using_firelens.md)\.
 + Your tasks uses either the Fargate or EC2 launch type and\.\.\.
   + is using private registry authentication\. For more information, see [Required IAM Permissions for Private Registry Authentication](#task-execution-private-auth)\.
   + the task definition is referencing sensitive data using Secrets Manager secrets or AWS Systems Manager Parameter Store parameters\. For more information, see [Required IAM Permissions for Amazon ECS Secrets](#task-execution-secrets)\.
@@ -93,7 +93,7 @@ If your account does not already have a task execution role, use the following s
 
 ## Required IAM Permissions for Private Registry Authentication<a name="task-execution-private-auth"></a>
 
-The Amazon ECS task execution role is required to use the private registry authentication feature\. This allows the container agent to pull the container image\. For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.
+The Amazon ECS task execution role is required to use the private registry authentication feature\. This allows the container agent to pull the container image\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
 
 To provide access to the secrets that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
 + `secretsmanager:GetSecretValue`
@@ -122,7 +122,7 @@ An example inline policy adding the permissions is shown below\.
 
 ## Required IAM Permissions for Amazon ECS Secrets<a name="task-execution-secrets"></a>
 
-To use the Amazon ECS secrets feature, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary AWS Systems Manager or Secrets Manager resources\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
+To use the Amazon ECS secrets feature, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary AWS Systems Manager or Secrets Manager resources\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.
 
 To provide access to the AWS Systems Manager Parameter Store parameters that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
 + `ssm:GetParameters`—Required if you are referencing a Systems Manager Parameter Store parameter in a task definition\.

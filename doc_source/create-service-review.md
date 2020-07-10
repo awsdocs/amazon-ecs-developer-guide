@@ -1,4 +1,4 @@
-# Step 6: Review and Create Your Service<a name="create-service-review"></a>
+# Step 6: Review and create your service<a name="create-service-review"></a>
 
 After you have configured your basic service definition parameters and optionally configured your service's networking, load balancer, service discovery, and automatic scaling, you can review your configuration\. Then, choose **Create Service** to finish creating your service\.
 

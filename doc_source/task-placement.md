@@ -1,4 +1,4 @@
-# Amazon ECS Task Placement<a name="task-placement"></a>
+# Amazon ECS task placement<a name="task-placement"></a>
 
 When a task that uses the EC2 launch type is launched, Amazon ECS must determine where to place the task based on the requirements specified in the task definition, such as CPU and memory\. Similarly, when you scale down the task count, Amazon ECS must determine which tasks to terminate\. You can apply task placement strategies and constraints to customize how Amazon ECS places and terminates tasks\. Task placement strategies and constraints are not supported for tasks using the Fargate launch type\. By default, Fargate tasks are spread across Availability Zones\.
 
@@ -22,6 +22,6 @@ When Amazon ECS places tasks, it uses the following process to select container 
 1. Select the instances for task placement\.
 
 **Topics**
-+ [Amazon ECS Task Placement Strategies](task-placement-strategies.md)
-+ [Amazon ECS Task Placement Constraints](task-placement-constraints.md)
-+ [Cluster Query Language](cluster-query-language.md)
++ [Amazon ECS task placement strategies](task-placement-strategies.md)
++ [Amazon ECS task placement constraints](task-placement-constraints.md)
++ [Cluster query language](cluster-query-language.md)

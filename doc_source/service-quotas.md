@@ -15,8 +15,8 @@ To request a quota increase, see [Requesting a quota increase](https://docs.aws.
 | --- | --- | --- | 
 |  Clusters per account  |  The maximum number of clusters per Region, per account\.  |  10,000  | 
 |  Container instances per cluster  |  The maximum number of container instances per cluster\.  |  2,000  | 
-|  Services per cluster  |  The maximum number of services per cluster\.  |  1,000  | 
-|  Tasks using the EC2 launch type per service \(the desired count\)  |  The maximum number of tasks using the EC2 launch type per service \(the desired count\)\. This limit applies to both standalone tasks and tasks launched as part of a service\.  |  1,000  | 
+|  Services per cluster  |  The maximum number of services per cluster\.  |  2,000  | 
+|  Tasks using the EC2 launch type per service \(the desired count\)  |  The maximum number of tasks using the EC2 launch type per service \(the desired count\)\. This limit applies to both standalone tasks and tasks launched as part of a service\.  |  2,000  | 
 |  Tasks using the Fargate launch type or the `FARGATE` capacity provider, per Region, per account  |  The maximum number of tasks using the Fargate launch type or the `FARGATE` capacity provider, per Region\. This limit applies to both standalone tasks and tasks launched as part of a service\.  |  100  | 
 |  Fargate Spot tasks, per Region, per account  |  The maximum number of tasks using the `FARGATE_SPOT` capacity provider, per Region\.  |  250  | 
 |  Public IP addresses for tasks using the Fargate launch type  | The maximum number of public IP addresses used by tasks using the Fargate launch type, per Region\. |  100  | 
@@ -38,6 +38,7 @@ The quotas for Fargate task storage are nonadjustable and are dependent on the p
 |  Task definition max containers  |  The maximum number of containers definitions within a a task definition\.  |  10  | 
 |  Subnets specified in an `awsvpcConfiguration`  |  The maximum number of subnets specified within an `awsvpcConfiguration`\.  |  16  | 
 |  Security groups specified in an `awsvpcConfiguration`  |  The maximum number of security groups specified within an `awsvpcConfiguration`\.  |  5  | 
+|  Target groups per service  |  The maximum number of target groups per service, if using an Application Load Balancer or a Network Load Balancer\.  |  5  | 
 |  Classic Load Balancers per service  |  The maximum number of Classic Load Balancers per service\.  |  1  | 
 |  Tags per resource  |  The maximum number of tags per resource\. This applies to tasks, services, task definitions, clusters, and container instances\.  |  50  | 
 

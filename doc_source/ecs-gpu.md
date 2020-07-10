@@ -9,7 +9,7 @@ You can designate a number of GPUs in your task definition for task placement co
 The following Amazon EC2 GPU\-based instance types are supported\. For more information, see [Amazon EC2 P2 Instances](https://aws.amazon.com/ec2/instance-types/p2/), [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3/), [Amazon EC2 G3 Instances](https://aws.amazon.com/ec2/instance-types/g3/), and [Amazon EC2 G4 Instances](https://aws.amazon.com/ec2/instance-types/g4/)\.
 
 **Important**  
-The g4 instance type family is supported on version `20190913` and later of the Amazon ECS GPU\-optimized AMI\. For more information, see [Amazon ECS GPU\-optimized AMI Versions](ecs-ami-versions.md#al2-gpu-ami-agent-versions)\. It is currently not supported in the Create Cluster workflow in the Amazon ECS console\. To use these instance types, you must either use the Amazon EC2 console, AWS CLI, or API and manually register the instances to your cluster\.
+The g4 instance type family is supported on version `20190913` and later of the Amazon ECS GPU\-optimized AMI\. For more information, see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\. It is currently not supported in the Create Cluster workflow in the Amazon ECS console\. To use these instance types, you must either use the Amazon EC2 console, AWS CLI, or API and manually register the instances to your cluster\.
 
 
 |  Instance type  |  GPUs  |  GPU Memory \(GiB\)  |  vCPUs  |  Memory \(GiB\)  | 
@@ -33,14 +33,14 @@ The g4 instance type family is supported on version `20190913` and later of the 
 |  g4dn\.16xlarge  | 1 | 16 | 64 | 256 | 
 
 **Topics**
-+ [Considerations for Working with GPUs](#gpu-considerations)
-+ [Specifying GPUs in Your Task Definition](#ecs-gpu-specifying)
++ [Considerations for working with GPUs](#gpu-considerations)
++ [Specifying GPUs in your task definition](#ecs-gpu-specifying)
 
-## Considerations for Working with GPUs<a name="gpu-considerations"></a>
+## Considerations for working with GPUs<a name="gpu-considerations"></a>
 
 Before you begin working with GPUs on Amazon ECS, be aware of the following considerations:
 + Your clusters can contain a mix of GPU and non\-GPU container instances\. 
-+ When running a task or creating a service, you can use instance type attributes when configuring task placement constraints to ensure which of your container instances the task is launched on\. This will enable you to effectively use your resources\. For more information, see [Amazon ECS Task Placement](task-placement.md)\.
++ When running a task or creating a service, you can use instance type attributes when configuring task placement constraints to ensure which of your container instances the task is launched on\. This will enable you to effectively use your resources\. For more information, see [Amazon ECS task placement](task-placement.md)\.
 
   The following example launches a task on a `p2.xlarge` container instance in your default cluster\.
 
@@ -51,9 +51,9 @@ Before you begin working with GPUs on Amazon ECS, be aware of the following cons
 + For each container that has a GPU resource requirement specified in the container definition, Amazon ECS sets the container runtime to be the NVIDIA container runtime\.
 + The NVIDIA container runtime requires some environment variables to be set in the container in order to work\. For a list of these environment variables, see [nvidia\-container\-runtime](https://github.com/NVIDIA/nvidia-container-runtime)\. Amazon ECS sets the `NVIDIA_VISIBLE_DEVICES` environment variable value to be a list of the GPU device IDs that Amazon ECS assigns to the container\. For the other required environment variables, Amazon ECS does not set them and you should ensure that your container image sets them or they should be set in the container definition\.
 
-## Specifying GPUs in Your Task Definition<a name="ecs-gpu-specifying"></a>
+## Specifying GPUs in your task definition<a name="ecs-gpu-specifying"></a>
 
-To take advantage of the GPUs on a container instance and the Docker GPU runtime, ensure you designate the number of GPUs your container requires in the task definition\. As GPU\-enabled containers are placed, the Amazon ECS container agent will pin the desired number of physical GPUs to the appropriate container\. The number of GPUs reserved for all containers in a task should not exceed the number of available GPUs on the container instance the task is launched on\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
+To take advantage of the GPUs on a container instance and the Docker GPU runtime, ensure you designate the number of GPUs your container requires in the task definition\. As GPU\-enabled containers are placed, the Amazon ECS container agent will pin the desired number of physical GPUs to the appropriate container\. The number of GPUs reserved for all containers in a task should not exceed the number of available GPUs on the container instance the task is launched on\. For more information, see [Creating a task definition](create-task-definition.md)\.
 
 **Important**  
 If your GPU requirements are not specified in the task definition, the task will use the default Docker runtime\.

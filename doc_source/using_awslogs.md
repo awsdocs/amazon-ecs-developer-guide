@@ -5,7 +5,7 @@ You can configure the containers in your tasks to send log information to CloudW
 **Note**  
 The type of information that is logged by the containers in your task depends mostly on their `ENTRYPOINT` command\. By default, the logs that are captured show the command output that you would normally see in an interactive terminal if you ran the container locally, which are the `STDOUT` and `STDERR` I/O streams\. The `awslogs` log driver simply passes these logs from Docker to CloudWatch Logs\. For more information on how Docker logs are processed, including alternative ways to capture different file data or streams, see [View logs for a container or service](https://docs.docker.com/config/containers/logging/) in the Docker documentation\.
 
-To send system logs from your Amazon ECS container instances to CloudWatch Logs, see [Using CloudWatch Logs with Container Instances](using_cloudwatch_logs.md)\. For more information about CloudWatch Logs, see [Monitoring Log Files](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch User Guide*\.
+To send system logs from your Amazon ECS container instances to CloudWatch Logs, see [Using CloudWatch Logs with container instances](using_cloudwatch_logs.md)\. For more information about CloudWatch Logs, see [Monitoring Log Files](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch User Guide*\.
 
 ## Enabling the awslogs Log Driver for Your Containers<a name="enable_awslogs"></a>
 
@@ -98,7 +98,7 @@ Multiline logging performs regular expression parsing and matching of all log me
 
 ## Specifying a Log Configuration in your Task Definition<a name="specify-log-config"></a>
 
-Before your containers can send logs to CloudWatch, you must specify the `awslogs` log driver for containers in your task definition\. This section describes the log configuration for a container to use the `awslogs` log driver\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
+Before your containers can send logs to CloudWatch, you must specify the `awslogs` log driver for containers in your task definition\. This section describes the log configuration for a container to use the `awslogs` log driver\. For more information, see [Creating a task definition](create-task-definition.md)\.
 
 The task definition JSON shown below has a `logConfiguration` object specified for each container; one for the WordPress container that sends logs to a log group called `awslogs-wordpress`, and one for a MySQL container that sends logs to a log group called `awslogs-mysql`\. Both containers use the `awslogs-example` log stream prefix\.
 
@@ -159,7 +159,7 @@ In the Amazon ECS console, the log configuration for the `wordpress` container i
 
 ![\[Console log configuration\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/awslogs-console-config.png)
 
-After you have registered a task definition with the `awslogs` log driver in a container definition log configuration, you can run a task or create a service with that task definition to start sending logs to CloudWatch Logs\. For more information, see [Running Tasks](ecs_run_task.md) and [Creating a service](create-service.md)\.
+After you have registered a task definition with the `awslogs` log driver in a container definition log configuration, you can run a task or create a service with that task definition to start sending logs to CloudWatch Logs\. For more information, see [Running tasks](ecs_run_task.md) and [Creating a service](create-service.md)\.
 
 ## Viewing awslogs Container Logs in CloudWatch Logs<a name="viewing_awslogs"></a>
 

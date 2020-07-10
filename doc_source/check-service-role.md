@@ -1,4 +1,4 @@
-# Creating the Service Role for Your Account<a name="check-service-role"></a>
+# Creating the service role for your account<a name="check-service-role"></a>
 
 Amazon ECS needs permissions to register and deregister container instances with your load balancer when tasks are created and stopped\.
 

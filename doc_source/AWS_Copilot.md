@@ -1,66 +1,93 @@
-# Installing the Amazon ECS CLI<a name="ECS_CLI_installation"></a>
+# Using the AWS Copilot command line interface<a name="AWS_Copilot"></a>
 
-Follow these instructions to install the Amazon ECS CLI on your macOS, Linux, or Windows system\.
 
-## Step 1: Download the Amazon ECS CLI<a name="ECS_CLI_install"></a>
+|  | 
+| --- |
+|  AWS Copilot is governed as a preview program under the [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Report issues with AWS Copilot by connecting with us at [GitHub](https://github.com/aws/amazon-ecs-cli-v2) where you can open issues, provide feedback and report bugs\.  | 
 
-Download the Amazon ECS CLI binary\.
-+ For macOS:
+The AWS Copilot command line interface \(CLI\) provides application\-first, high\-level commands to simplify modeling, creating, releasing, and managing production\-ready containerized applications on Amazon ECS from a local development environment\. Provisioned with application templates, infrastructure as code, and CI/CD pipeline options, the AWS Copilot CLI aligns with application workflows that support modern application best practices\. Use the AWS Copilot CLI as part of your everyday development and testing cycle as an alternative to the AWS Management Console\.
 
-  ```
-  sudo curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest
-  ```
-+ For Linux systems:
+The latest version of the AWS Copilot CLI is 0\.1\.0\. For release notes, see [Releases](https://github.com/aws/amazon-ecs-cli-v2/releases)\.
 
-  ```
-  sudo curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
-  ```
-+ For Windows systems:
-
-  Open Windows PowerShell and run the following commands:
-
-  ```
-  PS C:\> New-Item -Path 'C:\Program Files\Amazon\ECSCLI' -ItemType Directory
-  PS C:\> Invoke-WebRequest -OutFile 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe' https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe
-  ```
 **Note**  
-If you encounter permissions issues, ensure that you are running PowerShell as an administrator\.
+The source code for the AWS Copilot CLI is available on [GitHub](https://github.com/aws/amazon-ecs-cli-v2)\. We encourage you to submit issues and pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently support running modified copies of AWS Copilot code\.
 
-## Step 2: Verify the Amazon ECS CLI<a name="ECS_CLI_install"></a>
+**Topics**
++ [Installing the AWS Copilot CLI](#copilot-install)
++ [Getting started with AWS Copilot by deploying an Amazon ECS application](getting-started-aws-copilot-cli.md)
 
-To verify the validity of the Amazon ECS CLI file, you can either use the provided MD5 sum or the PGP signatures\. Both methods are described in the following sections\.
+## Installing the AWS Copilot CLI<a name="copilot-install"></a>
 
-### Verify Using the MD5 Sum<a name="ECS_CLI_verify_md5"></a>
+The AWS Copilot CLI can be installed either by using Homebrew or by manually downloading the binary\. Use the following steps with your preferred installation method\.
+
+### Installing the AWS Copilot CLI using Homebrew<a name="copilot-install-homebrew"></a>
+
+The following command is used to install the AWS Copilot CLI on your macOS or Linux system using Homebrew\. Prior to installation, you should have Homebrew installed\. For more information, see [Homebrew](https://brew.sh/)\.
+
+```
+brew install aws/tap/copilot-cli
+```
+
+### Manually installing the AWS Copilot CLI<a name="copilot-install-manual"></a>
+
+As an alternative to Homebrew, you can manually install the AWS Copilot CLI on your macOS or Linux system\. Use the following command for your operating system to download the binary, apply execute permissions to it, and then verify it works by querying the help file\.
+
+------
+#### [ macOS ]
+
+For macOS:
+
+```
+sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-darwin-v0.1.0 \
+   && sudo chmod +x /usr/local/bin/copilot \
+   && copilot --help
+```
+
+------
+#### [ Linux ]
+
+For Linux systems:
+
+```
+sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-linux-v0.1.0  \
+   && sudo chmod +x /usr/local/bin/copilot \
+   && copilot --help
+```
+
+------
+
+#### \(Optional\) Verify the AWS Copilot CLI<a name="ECS_Copilot_validate"></a>
+
+To verify the validity of the AWS Copilot CLI binary file, you can either use the provided MD5 sum or the PGP signatures\. Both methods are described in the following sections\.
+
+##### Verify using the MD5 sum<a name="ECS_Copilot_verify_md5"></a>
 
 Verify the downloaded binary with the MD5 sum provided\.
-+ For macOS \(compare the two output strings to verify that they match\):
 
-  ```
-  curl -s https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest.md5 && md5 -q /usr/local/bin/ecs-cli
-  ```
-+ For Linux systems \(look for an `OK` in the output string\):
+------
+#### [ macOS ]
 
-  ```
-  echo "$(curl -s https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.md5) /usr/local/bin/ecs-cli" | md5sum -c -
-  ```
-+ For Windows systems:
+For macOS, compare the two output strings to verify that they match\.
 
-  Open Windows PowerShell and find the md5 hash of the executable that you downloaded:
+```
+curl -s https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-darwin-v0.1.0.md5 \
+   && md5 -q /usr/local/bin/copilot
+```
 
-  ```
-  PS C:\> Get-FileHash "C:\Program Files\Amazon\ECSCLI\ecs-cli.exe" -Algorithm MD5
-  ```
+------
+#### [ Linux ]
 
-  Compare that with this md5 hash:
+For Linux systems, look for an `OK` in the output string\.
 
-  ```
-  PS C:\> Invoke-WebRequest -OutFile md5.txt https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.md5
-  PS C:\> Get-Content md5.txt
-  ```
+```
+echo "$(curl -s https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-linux-v0.1.0.md5) /usr/local/bin/copilot" | md5sum -c -
+```
 
-### Verify Using the PGP Signature<a name="ECS_CLI_verify_pgp"></a>
+------
 
-The Amazon ECS CLI executables are cryptographically signed using PGP signatures\. You can use the following steps to verify the signatures using the GnuPG tool\.
+##### Verify using the PGP signature<a name="ECS_Copilot_verify_pgp"></a>
+
+The AWS Copilot CLI executables are cryptographically signed using PGP signatures\. You can use the following steps to verify the signatures using the GnuPG tool\.
 
 1. Download and install GnuPG\. For more information, see the [GnuPG website](https://www.gnupg.org)\.
    + For macOS, we recommend using Homebrew\. Install Homebrew using the instructions from their website\. For more information, see [Homebrew](https://brew.sh/)\. After Homebrew is installed, use the following command from your macOS terminal\.
@@ -231,33 +258,33 @@ The Amazon ECS CLI executables are cryptographically signed using PGP signatures
       gpg --import <public_key_filename>
       ```
 
-1. Download the Amazon ECS CLI signatures\. The signatures are ASCII detached PGP signatures stored in files with the extension `.asc`\. The signatures file has the same name as its corresponding executable, with `.asc` appended\.
-   + For macOS systems:
+1. Download the AWS Copilot CLI signatures\. The signatures are ASCII detached PGP signatures stored in files with the extension `.asc`\. The signatures file has the same name as its corresponding executable, with `.asc` appended\.
 
-     ```
-     curl -o ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest.asc
-     ```
-   + For Linux systems:
+------
+#### [ macOS ]
 
-     ```
-     curl -o ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.asc
-     ```
-   + For Windows systems:
+   For macOS systems, run the following command\.
 
-     ```
-     PS C:\> Invoke-WebRequest -OutFile ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe.asc
-     ```
+   ```
+   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-darwin-v0.1.0.asc
+   ```
 
-1. Verify the signature\.
+------
+#### [ Linux ]
+
+   For Linux systems, run the following command\.
+
+   ```
+   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-linux-v0.1.0.asc
+   ```
+
+------
+
+1. Verify the signature with the following command\.
    + For macOS and Linux systems:
 
      ```
-     gpg --verify ecs-cli.asc /usr/local/bin/ecs-cli
-     ```
-   + For Windows systems:
-
-     ```
-     PS C:\> gpg --verify ecs-cli.asc 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe'
+     gpg --verify copilot.asc /usr/local/bin/copilot
      ```
 
    Expected output:
@@ -273,36 +300,3 @@ The Amazon ECS CLI executables are cryptographically signed using PGP signatures
    ```
 **Important**  
 The warning in the output is expected and is not problematic\. It occurs because there is not a chain of trust between your personal PGP key \(if you have one\) and the Amazon ECS PGP key\. For more information, see [Web of trust](https://en.wikipedia.org/wiki/Web_of_trust)\.
-
-## Step 3: Apply Execute Permissions to the Binary<a name="ECS_CLI_install_execute"></a>
-
-Apply execute permissions to the binary\.
-+ For macOS and Linux systems:
-
-  ```
-  sudo chmod +x /usr/local/bin/ecs-cli
-  ```
-+ For Windows systems:
-
-  Edit the environment variables and add `C:\Program Files\Amazon\ECSCLI` to the `PATH` variable field, separated from existing entries by using a semicolon\. For example:
-
-  ```
-  PS C:\> setx path "%path%;C:\Program Files\Amazon\ECSCLI"
-  ```
-
-  Restart PowerShell \(or the command prompt\) so the changes go into effect\.
-**Note**  
-Once the `PATH` variable is set, the Amazon ECS CLI can be used from either Windows PowerShell or the command prompt\.
-
-## Step 4: Complete the Installation<a name="ECS_CLI_install_verify"></a>
-
-Verify that the CLI is working properly\.
-
-```
-ecs-cli --version
-```
-
-Proceed to [Configuring the Amazon ECS CLI](ECS_CLI_Configuration.md)\.
-
-**Important**  
-You must configure the Amazon ECS CLI with your AWS credentials, an AWS region, and an Amazon ECS cluster name before you can use it\.

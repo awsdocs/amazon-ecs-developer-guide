@@ -1,4 +1,4 @@
-# Updating a Service<a name="update-service"></a>
+# Updating a service<a name="update-service"></a>
 
 You can update an existing service to change some of the service configuration parameters, such as the number of tasks that are maintained by a service, which task definition is used by the tasks, or if your tasks are using the Fargate launch type, you can change the platform version your service uses\. If you have an application that needs more capacity, you can scale up your service\. If you have unused capacity to scale down, you can reduce the number of desired tasks in your service and free up resources\.
 
@@ -58,7 +58,7 @@ Amazon ECS does not automatically update the security groups associated with Ela
 
    1. Under **Optional configurations**, choose **Configure Service Auto Scaling**\.
 
-   1. Proceed to [Step 5: Configuring Your Service to Use Service Auto Scaling](service-configure-auto-scaling.md)\.
+   1. Proceed to [Step 5: Configuring your service to use Service Auto Scaling](service-configure-auto-scaling.md)\.
 
    1. Complete the steps in that section and then return\.
 

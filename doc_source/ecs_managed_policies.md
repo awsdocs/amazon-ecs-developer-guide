@@ -374,7 +374,7 @@ This IAM trust relationship policy allows containers in your Amazon ECS tasks to
 
 ## AmazonEC2ContainerServiceEventsRole<a name="AmazonEC2ContainerServiceEventsRole"></a>
 
-This policy allows CloudWatch Events to run tasks on your behalf\. For more information, see [Scheduled Tasks \(`cron`\)](scheduled_tasks.md)\.
+This policy allows CloudWatch Events to run tasks on your behalf\. For more information, see [Scheduled tasks \(`cron`\)](scheduled_tasks.md)\.
 
 ```
 {

@@ -1,6 +1,6 @@
 # ecs\-cli registry\-creds<a name="cmd-ecs-cli-registry-creds"></a>
 
-Facilitates the creation and use of private registry credentials within Amazon ECS\. For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.
+Facilitates the creation and use of private registry credentials within Amazon ECS\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
 
 **Important**  
 Some features described might only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.

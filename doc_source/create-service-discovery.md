@@ -1,4 +1,4 @@
-# Tutorial: Creating a Service Using Service Discovery<a name="create-service-discovery"></a>
+# Tutorial: Creating a service using Service Discovery<a name="create-service-discovery"></a>
 
 Service discovery has been integrated into the Create Service wizard in the Amazon ECS console\. For more information, see [Creating a service](create-service.md)\.
 
@@ -17,18 +17,19 @@ Fargate tasks are only supported in the following Regions:
 |  US West \(Oregon\)  |  us\-west\-2  | 
 |  Africa \(Cape Town\)  |  af\-south\-1  | 
 |  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  | 
-|  Asia Pacific \(Mumbai\)  |  ap\-south\-1 \(`aps1-az1` & `aps1-az3` only\)  | 
-|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
+|  Asia Pacific \(Mumbai\)  |  ap\-south\-1  | 
+|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2 \(`apne2-az1`, `apne2-az2` & `apne2-az3` only\)  | 
 |  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
 |  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1  | 
-|  Canada \(Central\)  |  ca\-central\-1  | 
-|  China \(Beijing\)  |  cn\-north\-1  | 
+|  Canada \(Central\)  |  ca\-central\-1 \(`cac1-az1` & `cac1-az2` only\)  | 
+|  China \(Beijing\)  |  cn\-north\-1 \(`cnn1-az1`, `cnn1-az2` & `cnn1-az3` only\)  | 
 |  China \(Ningxia\)  |  cn\-northwest\-1  | 
 |  Europe \(Frankfurt\)  |  eu\-central\-1  | 
 |  Europe \(Ireland\)  |  eu\-west\-1  | 
 |  Europe \(London\)  |  eu\-west\-2  | 
 |  Europe \(Paris\)  |  eu\-west\-3  | 
+|  Europe \(Milan\)  |  eu\-south\-1  | 
 |  Europe \(Stockholm\)  |  eu\-north\-1  | 
 |  South America \(São Paulo\)  |  sa\-east\-1  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  | 
@@ -39,11 +40,11 @@ Fargate tasks are only supported in the following Regions:
 
 This tutorial assumes that the following prerequisites have been completed:
 + The latest version of the AWS CLI is installed and configured\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
-+ The steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
++ The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 
-## Step 1: Create the Service Discovery Resources<a name="create-service-discovery-namespace"></a>
+## Step 1: Create the Service Discovery resources<a name="create-service-discovery-namespace"></a>
 
 Use the following steps to create your service discovery namespace and service discovery service\.
 
@@ -117,7 +118,7 @@ Use the following steps to create your service discovery namespace and service d
    }
    ```
 
-## Step 2: Create the Amazon ECS Resources<a name="create-service-discovery-cluster"></a>
+## Step 2: Create the Amazon ECS resources<a name="create-service-discovery-cluster"></a>
 
 Use the following steps to create your Amazon ECS cluster, task definition, and service\.
 
@@ -449,7 +450,7 @@ You can verify that everything has been created properly by querying your servic
    172.31.87.2
    ```
 
-## Step 4: Clean Up<a name="create-service-discovery-cleanup"></a>
+## Step 4: Clean up<a name="create-service-discovery-cleanup"></a>
 
 When you are finished with this tutorial, you should clean up the associated resources to avoid incurring charges for unused resources\.
 

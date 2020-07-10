@@ -1,16 +1,16 @@
-# Tutorial: Specifying Sensitive Data Using Secrets Manager Secrets<a name="specifying-sensitive-data-tutorial"></a>
+# Tutorial: Specifying sensitive data using Secrets Manager secrets<a name="specifying-sensitive-data-tutorial"></a>
 
-Amazon ECS enables you to inject sensitive data into your containers by storing your sensitive data in AWS Secrets Manager secrets and then referencing them in your container definition\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
+Amazon ECS enables you to inject sensitive data into your containers by storing your sensitive data in AWS Secrets Manager secrets and then referencing them in your container definition\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.
 
 The following tutorial shows how to create an Secrets Manager secret, reference the secret in an Amazon ECS task definition, and then verify it worked by querying the environment variable inside a container showing the contents of the secret\.
 
 ## Prerequisites<a name="specifying-sensitive-data-tutorial-prereqs"></a>
 
 This tutorial assumes that the following prerequisites have been completed:
-+ The steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
++ The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required IAM permissions to create the Secrets Manager and Amazon ECS resources described\.
 
-## Step 1: Create an Secrets Manager Secret<a name="specifying-sensitive-data-tutorial-create-secret"></a>
+## Step 1: Create an Secrets Manager secret<a name="specifying-sensitive-data-tutorial-create-secret"></a>
 
 You can use the Secrets Manager console to create a secret for your sensitive data\. In this tutorial we will be creating a basic secret for storing a username and password to reference later in a container\. For more information, see [Creating a Basic Secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html) in the *AWS Secrets Manager User Guide*\.
 
@@ -40,7 +40,7 @@ Use Secrets Manager to create a secret for your sensitive data\.
 
 1. Select the secret you just created and save the **Secret ARN** to reference in your task execution IAM policy and task definition in later steps\.
 
-## Step 2: Update Your Task Execution IAM Role<a name="specifying-sensitive-data-tutorial-update-iam"></a>
+## Step 2: Update your task execution IAM role<a name="specifying-sensitive-data-tutorial-update-iam"></a>
 
 In order for Amazon ECS to retrieve the sensitive data from your Secrets Manager secret, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary Secrets Manager resources\. If you have not already created your task execution IAM role, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
@@ -79,7 +79,7 @@ Use the IAM console to update your task execution role with the required permiss
 
 1. Choose **Review policy**\. For **Name** specify `ECSSecretsTutorial`, then choose **Create policy**\.
 
-## Step 3: Create an Amazon ECS Task Definition<a name="specifying-sensitive-data-tutorial-create-taskdef"></a>
+## Step 3: Create an Amazon ECS task definition<a name="specifying-sensitive-data-tutorial-create-taskdef"></a>
 
 You can use the Amazon ECS console to create a task definition that references a Secrets Manager secret\.
 
@@ -135,7 +135,7 @@ The value for the secret name in the task definition must match the name you spe
 
 1. Review the settings and then choose **Create**\.
 
-## Step 4: Create an Amazon ECS Cluster<a name="specifying-sensitive-data-tutorial-create-cluster"></a>
+## Step 4: Create an Amazon ECS cluster<a name="specifying-sensitive-data-tutorial-create-cluster"></a>
 
 You can use the Amazon ECS console to create a cluster containing a container instance to run the task on\. If you have an existing cluster with at least one container instance registered to it with the available resources to run one instance of the task definition created for this tutorial you can skip to the next step\.
 
@@ -161,7 +161,7 @@ A key pair is required to complete the tutorial, so if you do not already have a
 
 1. Leave all other fields at their default values and choose **Create**\.
 
-## Step 5: Run an Amazon ECS Task<a name="specifying-sensitive-data-tutorial-run-task"></a>
+## Step 5: Run an Amazon ECS task<a name="specifying-sensitive-data-tutorial-run-task"></a>
 
 You can use the Amazon ECS console to run a task using the task definition you created\. For this tutorial we will be running a task using the EC2 launch type, using the cluster we created in the previous step\.
 
@@ -237,7 +237,7 @@ For more information about any issues while connecting to your instance, see [Tr
 **Note**  
 Alternatively, you can list all environment variables in your container using the `env` \(or `printenv`\) command\.
 
-## Step 7: Clean Up<a name="specifying-sensitive-data-tutorial-cleanup"></a>
+## Step 7: Clean up<a name="specifying-sensitive-data-tutorial-cleanup"></a>
 
 When you are finished with this tutorial, you should clean up the associated resources to avoid incurring charges for unused resources\.
 

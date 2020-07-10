@@ -1,4 +1,4 @@
-# Creating a Task Definition<a name="create-task-definition"></a>
+# Creating a task definition<a name="create-task-definition"></a>
 
 Before you can run Docker containers on Amazon ECS, you must create a task definition\. You can define multiple containers and data volumes in a task definition\. For more information about the parameters available in a task definition, see [Task definition parameters](task_definition_parameters.md)\.
 
@@ -6,7 +6,7 @@ Before you can run Docker containers on Amazon ECS, you must create a task defin
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. In the navigation pane, choose **Task Definitions**, **Create new Task Definition**\.
+1. In the navigation pane, choose **task definitions**, **Create new task definition**\.
 
 1. On the **Select compatibilities** page, select the launch type that your task should use and choose **Next step**\.
 **Note**  
@@ -54,7 +54,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.3\.0\-prod\.
+   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*region\-code*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.4\.0\-prod\.
 
    1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
@@ -70,11 +70,11 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. For **Type**, choose the log router type to use\.
 
-   1. For **Image**, type the image URI for your log router container\. If you chose the `fluentbit` log router type, the **Image** field prepopulates with the AWS for Fluent Bit image\. For more information, see [Using the AWS for Fluent Bit Image](using_firelens.md#firelens-using-fluentbit)\.
+   1. For **Image**, type the image URI for your log router container\. If you chose the `fluentbit` log router type, the **Image** field prepopulates with the AWS for Fluent Bit image\. For more information, see [Using the AWS for Fluent Bit image](using_firelens.md#firelens-using-fluentbit)\.
 
    1. Choose **Apply**\. This creates a new log router container to the task definition named `log_router`, and applies the settings to support it\. If you make changes to the log router integration fields, choose **Apply** again to update the FireLens container\.
 
-1. \(Optional\) To define data volumes for your task, choose **Add volume**\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
+1. \(Optional\) To define data volumes for your task, choose **Add volume**\. For more information, see [Using data volumes in tasks](using_data_volumes.md)\.
 
    1. For **Name**, type a name for your volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
@@ -99,7 +99,7 @@ If you chose **EC2**, complete the following steps:
 
    Scroll to the bottom of the page and choose **Configure via JSON**\.
 
-1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
+1. For **task definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
 1. \(Optional\) For **Task Role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
@@ -127,13 +127,13 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. Choose **Add** to add your container to the task definition\.
 
-1. \(Optional\) For **Constraint**, define how tasks that are created from this task definition are placed in your cluster\. For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS Task Placement Constraints](task-placement-constraints.md)\.
+1. \(Optional\) For **Constraint**, define how tasks that are created from this task definition are placed in your cluster\. For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS task placement constraints](task-placement-constraints.md)\.
 
 1. \(Optional\) For **Service Integration**, to configure the parameters for App Mesh integration choose **Enable App Mesh integration** and then do the following:
 
    1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
-   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.3\.0\-prod\.
+   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*region\-code*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.4\.0\-prod\.
 
    1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
@@ -149,11 +149,11 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. For **Type**, choose the log router type to use\.
 
-   1. For **Image**, type the image URI for your log router container\. If you chose the `fluentbit` log router type, the **Image** field prepopulates with the AWS for Fluent Bit image\. For more information, see [Using the AWS for Fluent Bit Image](using_firelens.md#firelens-using-fluentbit)\.
+   1. For **Image**, type the image URI for your log router container\. If you chose the `fluentbit` log router type, the **Image** field prepopulates with the AWS for Fluent Bit image\. For more information, see [Using the AWS for Fluent Bit image](using_firelens.md#firelens-using-fluentbit)\.
 
    1. Choose **Apply**\. This creates a new log router container to the task definition named `log_router`, and applies the settings to support it\. If you make changes to the log router integration fields, choose **Apply** again to update the FireLens container\.
 
-1. \(Optional\) To define data volumes for your task, choose **Add volume**\. You can create either a bind mount or Docker volume\. For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
+1. \(Optional\) To define data volumes for your task, choose **Add volume**\. You can create either a bind mount or Docker volume\. For more information, see [Using data volumes in tasks](using_data_volumes.md)\.
 
    1. For **Name**, type a name for your volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
@@ -177,7 +177,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
 ------
 
-## Task Definition Template<a name="task-definition-template"></a>
+## Task definition template<a name="task-definition-template"></a>
 
 An empty task definition template is shown below\. You can use this template to create your task definition, which can then be pasted into the console JSON input area or saved to a file and used with the AWS CLI `--cli-input-json` option\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
 

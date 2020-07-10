@@ -1,6 +1,6 @@
 # Getting started with Windows containers<a name="ECS_Windows_getting_started"></a>
 
-This tutorial walks you through getting Windows containers running on Amazon ECS with the Amazon ECS\-optimized Windows AMI in the AWS Management Console\. You create a cluster for your Windows container instances, launch one or more container instances into your cluster, register a task definition that uses a Windows container image, create a service that uses that task definition, and then view the sample webpage that the container runs\.
+This tutorial walks you through getting Windows containers running on Amazon ECS with the Amazon ECS\-optimized Windows Server AMI in the AWS Management Console\. You create a cluster for your Windows container instances, launch one or more container instances into your cluster, register a task definition that uses a Windows container image, create a service that uses that task definition, and then view the sample webpage that the container runs\.
 
 **Topics**
 + [Step 1: Create a Windows cluster](#create_windows_cluster)

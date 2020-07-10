@@ -12,7 +12,7 @@ The `UpdateServicePrimaryTaskSet` API action modifies which task set in a servic
 
 Consider the following when using the external deployment type:
 + Service auto scaling is not supported when using an external deployment controller\.
-+ If using a load balancer for the task task, the supported load balancer types are either an Application Load Balancer or a Network Load Balancer\.
++ If using a load balancer for the task, the supported load balancer types are either an Application Load Balancer or a Network Load Balancer\.
 + Tasks using the Fargate launch type or `EXTERNAL` deployment controller types don't support the `DAEMON` scheduling strategy\.
 
 ## External Deployment Workflow<a name="deployment-type-external-workflow"></a>
@@ -110,7 +110,7 @@ The task definition for the tasks in the task set to use\.
 Type: String  
 Valid values: `EC2` \| `FARGATE`  
 Required: No  
-The launch type on which to run your service\. If a launch type is not specified, `EC2` is used by default\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.  
+The launch type on which to run your service\. If a launch type is not specified, `EC2` is used by default\. For more information, see [Amazon ECS launch types](launch_types.md)\.  
 If a `launchType` is specified, the `capacityProviderStrategy` parameter must be omitted\.  
 `platformVersion`  
 Type: String  

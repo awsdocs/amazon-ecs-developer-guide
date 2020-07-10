@@ -113,9 +113,11 @@ Whether to disable CloudWatch metrics for Amazon ECS\. If this value is set to `
 
 `ECS_POLL_METRICS`  
 Example values: `true` \| `false`  
-Default value on Linux: `false`  
-Default value on Windows: `false`  
-Whether to poll or stream when gathering CloudWatch metrics for tasks\.
+Default value on Linux: `true` \(see description below\)  
+Default value on Windows: `true` \(see description below\)  
+Whether to poll or stream when gathering CloudWatch metrics for tasks\.  
+In agent versions prior to 1\.40\.0, the default value was `false`\. Starting with agent version 1\.40\.0, the default value is `true`\.  
+Setting `ECS_POLL_METRICS` to false will result in high CPU utilization by the agent, dockerd, and containerd when your Amazon EC2 instance is hosting multiple containers\.
 
 `ECS_POLLING_METRICS_WAIT_DURATION`  
 Example values: `30s`  
@@ -251,7 +253,7 @@ Example values: `{"custom_attribute": "custom_attribute_value"}`
 Default value on Linux: Null  
 Default value on Windows: Null  
 A list of custom attributes, in JSON format, to apply to your container instances\. Using this attribute at instance registration adds the custom attributes, allowing you to skip the manual method of adding custom attributes through the AWS Management Console\.  
-Attributes added do not apply to container instances that are already registered\. To add custom attributes to already\-registered container instances, see [Adding an Attribute](task-placement-constraints.md#add-attribute)\.
+Attributes added do not apply to container instances that are already registered\. To add custom attributes to already\-registered container instances, see [Adding an attribute](task-placement-constraints.md#add-attribute)\.
 For information about custom attributes to use, see [Attributes](task-placement-constraints.md#attributes)\.  
 An invalid JSON value for this variable causes the agent to exit with a code of `5`\. A message appears in the agent logs\. The JSON value may be valid but there is an issue detected when validating the attribute, such as when the value is too long or contains invalid characters\. In that case, the container instance registration happens, but the agent exits with a code of `5` and a message is written to the agent logs\. For information about how to locate the agent logs, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\.
 
@@ -319,7 +321,7 @@ Comma\-separated integer values for steady state and burst throttle limits for t
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-When `dockerVolumeConfiguration` is specified in a task definition and the `autoprovision` flag is used, the Amazon ECS container agent compares the details of the Docker volume with the details of existing Docker volumes\. When `ECS_SHARED_VOLUME_MATCH_FULL_CONFIG` is `true`, the container agent compares the full configuration of the volume \(`name`, `driverOpts`, and `labels`\) to verify that the volumes are identical\. When it is `false`, the container agent uses Docker's default behavior, which verifies the volume `name` only\. If a volume is shared across container instances, this should be set to `false`\. For more information, see [Docker Volumes](docker-volumes.md)\.
+When `dockerVolumeConfiguration` is specified in a task definition and the `autoprovision` flag is used, the Amazon ECS container agent compares the details of the Docker volume with the details of existing Docker volumes\. When `ECS_SHARED_VOLUME_MATCH_FULL_CONFIG` is `true`, the container agent compares the full configuration of the volume \(`name`, `driverOpts`, and `labels`\) to verify that the volumes are identical\. When it is `false`, the container agent uses Docker's default behavior, which verifies the volume `name` only\. If a volume is shared across container instances, this should be set to `false`\. For more information, see [Docker volumes](docker-volumes.md)\.
 
 `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM`  
 Example values: `ec2_instance`  
@@ -362,7 +364,7 @@ The runtime to be used to pass NVIDIA GPU devices to containers\. This parameter
 Example values: `true`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-Whether to enable Spot Instance draining for the container instance\. When true, if the container instance receives a Spot interruption notice, then the agent sets the instance status to `DRAINING`, which gracefully shuts down and replaces all tasks running on the instance that are part of a service\. It is recommended that this be set to true when using Spot Instances\. For more information, see [Container Instance Draining](container-instance-draining.md)\.
+Whether to enable Spot Instance draining for the container instance\. When true, if the container instance receives a Spot interruption notice, then the agent sets the instance status to `DRAINING`, which gracefully shuts down and replaces all tasks running on the instance that are part of a service\. It is recommended that this be set to true when using Spot Instances\. For more information, see [Container instance draining](container-instance-draining.md)\.
 
 `ECS_LOG_ROLLOVER_TYPE`  
 Example values: `size`, `hourly`  
@@ -414,7 +416,7 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
 
 **To store an `ecs.config` file in Amazon S3**
 
-1. Create an `ecs.config` file with valid environment variables and values from [Amazon ECS Container Agent Configuration](#ecs-agent-config) using the following format\. This example configures private registry authentication\. For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.
+1. Create an `ecs.config` file with valid environment variables and values from [Amazon ECS Container Agent Configuration](#ecs-agent-config) using the following format\. This example configures private registry authentication\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
 
    ```
    ECS_ENGINE_AUTH_TYPE=dockercfg

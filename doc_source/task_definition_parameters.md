@@ -17,7 +17,7 @@ When you register a task definition, you give it a family, which is similar to a
 Type: string  
 Required: no  
 When you register a task definition, you can provide a task role for an IAM role that allows the containers in the task permission to call the AWS APIs that are specified in its associated policies on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  
-IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the Amazon ECS\-optimized Windows AMI\. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
+IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the Amazon ECS\-optimized Windows Server AMI\. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
 
 ## Task execution role<a name="execution_role_arn"></a>
 
@@ -73,7 +73,7 @@ Type: string
 Required: yes  
 The image used to start a container\. This string is passed directly to the Docker daemon\. Images in the Docker Hub registry are available by default\. You can also specify other repositories with either `repository-url/image:tag` or `repository-url/image@digest`\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, underscores, colons, periods, forward slashes, and number signs are allowed\. This parameter maps to `Image` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `IMAGE` parameter of [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 + When a new task starts, the Amazon ECS container agent pulls the latest version of the specified image and tag for the container to use\. However, subsequent updates to a repository image are not propagated to already running tasks\.
-+ Images in private registries are supported\. For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.
++ Images in private registries are supported\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
 + Images in Amazon ECR repositories can be specified by using either the full `registry/repository:tag` or `registry/repository@digest` naming convention\. For example, `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app:latest` or `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app@sha256:94afd1f2e64d908bc90dbca0035a5b567EXAMPLE`
 + Images in official repositories on Docker Hub use a single name \(for example, `ubuntu` or `mongo`\)\.
 + Images in other repositories on Docker Hub are qualified with an organization name \(for example, `amazon/amazon-ecs-agent`\)\.
@@ -230,7 +230,7 @@ This parameter is not supported for Windows containers or tasks using the Fargat
 Type: Boolean  
 Required: no  
 If the `essential` parameter of a container is marked as `true`, and that container fails or stops for any reason, all other containers that are part of the task are stopped\. If the `essential` parameter of a container is marked as `false`, then its failure does not affect the rest of the containers in a task\. If this parameter is omitted, a container is assumed to be essential\.  
-All tasks must have at least one essential container\. If you have an application that is composed of multiple containers, you should group containers that are used for a common purpose into components, and separate the different components into multiple task definitions\. For more information, see [Application Architecture](application_architecture.md)\.  
+All tasks must have at least one essential container\. If you have an application that is composed of multiple containers, you should group containers that are used for a common purpose into components, and separate the different components into multiple task definitions\. For more information, see [Application architecture](application_architecture.md)\.  
 
 ```
 "essential": true|false
@@ -304,7 +304,7 @@ The value of the environment variable\.
 `secrets`  
 Type: Object array  
 Required: No  
-An object representing the secret to expose to your container\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.    
+An object representing the secret to expose to your container\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.    
 `name`  
 Type: String  
 Required: Yes  
@@ -460,7 +460,7 @@ If this value is `true`, the container has read\-only access to the volume\. If 
 Type: [LogConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LogConfiguration.html) Object  
 Required: no  
 The log configuration specification for the container\.  
-For example task definitions using a log configuration, see [Example Task Definitions](example_task_definitions.md)\.  
+For example task definitions using a log configuration, see [Example task definitions](example_task_definitions.md)\.  
 This parameter maps to `LogConfig` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--log-driver` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. By default, containers use the same logging driver that the Docker daemon uses; however the container may use a different logging driver than the Docker daemon by specifying a log driver with this parameter in the container definition\. To use a different logging driver for a container, the log system must be configured properly on the container instance \(or on a different log server for remote logging options\)\. For more information on the options for different supported log drivers, see [Configure logging drivers](https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation\.  
 The following should be noted when specifying a log configuration for your containers:  
 + Amazon ECS currently supports a subset of the logging drivers available to the Docker daemon \(shown in the valid values below\)\. Additional log drivers may be available in future releases of the Amazon ECS container agent\.
@@ -498,7 +498,7 @@ This parameter requires version 1\.19 of the Docker Remote API or greater on you
 `secretOptions`  
 Type: object array  
 Required: no  
-An object representing the secret to pass to the log configuration\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.    
+An object representing the secret to pass to the log configuration\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.    
 `name`  
 Type: String  
 Required: Yes  
@@ -556,10 +556,11 @@ This parameter is not supported for Windows containers\.
 
 `dockerSecurityOptions`  
 Type: string array  
+Valid values: "no\-new\-privileges" \| "apparmor:PROFILE" \| "label:*value*" \| "credentialspec:*CredentialSpecFilePath*"  
 Required: no  
-A list of strings to provide custom labels for SELinux and AppArmor multi\-level security systems\. This field is not valid for containers in tasks using the Fargate launch type\.  
+A list of strings to provide custom labels for SELinux and AppArmor multi\-level security systems\. For more information about valid values, see [Docker Run Security Configuration](https://docs.docker.com/engine/reference/run/#security-configuration)\. This field is not valid for containers in tasks using the Fargate launch type\.  
 With Windows containers, this parameter can be used to reference a credential spec file when configuring a container for Active Directory authentication\. For more information, see [Using gMSAs for Windows Containers](windows-gmsa.md)\.  
-This parameter maps to `SecurityOpt` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--security-opt` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+This parameter maps to `SecurityOpt` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--security-opt` option to [https://docs.docker.com/engine/reference/run/#security-configuration](https://docs.docker.com/engine/reference/run/#security-configuration)\.  
 
 ```
 "dockerSecurityOptions": ["string", ...]
@@ -615,7 +616,7 @@ This parameter requires version 1\.18 of the Docker Remote API or greater on you
 
 ### Other Container Definition Parameters<a name="other_container_definition_params"></a>
 
-The following container definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
+The following container definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition](create-task-definition.md)\.
 
 **Topics**
 + [Linux Parameters](#container_definition_linuxparameters)
@@ -712,7 +713,7 @@ Required: Yes
 `dependsOn`  
 Type: Array of [ContainerDependency](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDependency.html) objects  
 Required: no  
-The dependencies defined for container startup and shutdown\. A container can contain multiple dependencies\. When a dependency is defined for container startup, for container shutdown it is reversed\. For an example, see [Example: Container Dependency](example_task_definitions.md#example_task_definition-containerdependency)\.  
+The dependencies defined for container startup and shutdown\. A container can contain multiple dependencies\. When a dependency is defined for container startup, for container shutdown it is reversed\. For an example, see [Example: Container dependency](example_task_definitions.md#example_task_definition-containerdependency)\.  
 For tasks using the EC2 launch type, the container instances require at least version 1\.26\.0 of the container agent to enable container dependencies\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version 1\.26\.0\-1 of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.  
 For tasks using the Fargate launch type, this parameter requires that the task or service uses platform version 1\.3\.0 or later\.  
 
@@ -810,7 +811,7 @@ The following are the types of data volumes that can be used:
 + Docker volumes — A Docker\-managed volume that is created under `/var/lib/docker/volumes` on the container instance\. Docker volume drivers \(also referred to as plugins\) are used to integrate the volumes with external storage systems, such as Amazon EBS\. The built\-in `local` volume driver or a third\-party volume driver can be used\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use Docker volumes, specify a `dockerVolumeConfiguration` in your task definition\. For more information, see [Using volumes](https://docs.docker.com/storage/volumes/)\.
 + Bind mounts — A file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported when using either the EC2 or Fargate launch types\. To use bind mount host volumes, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
 
-For more information, see [Using Data Volumes in Tasks](using_data_volumes.md)\.
+For more information, see [Using data volumes in tasks](using_data_volumes.md)\.
 
 The following parameters are allowed in a container definition:
 
@@ -868,6 +869,7 @@ The Amazon EFS file system ID to use\.
 Type: String  
 Required: No  
 The directory within the Amazon EFS file system to mount as the root directory inside the host\. If this parameter is omitted, the root of the Amazon EFS volume will be used\. Specifying `/` will have the same effect as omitting this parameter\.  
+If an EFS access point is specified in the `authorizationConfig`, the root directory parameter must either be omitted or set to `/` which will enforce the path set on the EFS access point\.  
 `transitEncryption`  
 Type: String  
 Valid values: `ENABLED` \| `DISABLED`  
@@ -884,7 +886,7 @@ The authorization configuration details for the Amazon EFS file system\.
 `accessPointId`  
 Type: String  
 Required: No  
-The access point ID to use\. If an access point is specified, the root directory value will be relative to the directory set for the access point\. If specified, transit encryption must be enabled in the `EFSVolumeConfiguration`\. For more information, see [Working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) in the *Amazon Elastic File System User Guide*\.  
+The access point ID to use\. If an access point is specified, the root directory value in the `efsVolumeConfiguration` must either be omitted or set to `/` which will enforce the path set on the EFS access point\. If an access point is used, transit encryption must be enabled in the `EFSVolumeConfiguration`\. For more information, see [Working with Amazon EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html) in the *Amazon Elastic File System User Guide*\.  
 `iam`  
 Type: String  
 Valid values: `ENABLED` \| `DISABLED`  
@@ -897,14 +899,14 @@ When you register a task definition, you can provide task placement constraints 
 
 If you are using the Fargate launch type, task placement constraints are not supported\. By default Fargate tasks are spread across Availability Zones\.
 
-For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS Task Placement Constraints](task-placement-constraints.md)\.
+For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS task placement constraints](task-placement-constraints.md)\.
 
 The following parameters are allowed in a container definition:
 
 `expression`  
 Type: string  
 Required: no  
-A cluster query language expression to apply to the constraint\. For more information, see [Cluster Query Language](cluster-query-language.md)\.
+A cluster query language expression to apply to the constraint\. For more information, see [Cluster query language](cluster-query-language.md)\.
 
 `type`  
 Type: string  
@@ -913,7 +915,7 @@ The type of constraint\. Use `memberOf` to restrict the selection to a group of 
 
 ## Launch types<a name="requires_compatibilities"></a>
 
-When you register a task definition, you specify the launch type to use for your task\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
+When you register a task definition, you specify the launch type to use for your task\. For more information, see [Amazon ECS launch types](launch_types.md)\.
 
 The following parameter is allowed in a task definition:
 
@@ -922,7 +924,7 @@ Type: string array
 Required: no  
 Valid Values: `EC2` \| `FARGATE`  
 The launch type the task is using\. This enables a check to ensure that all of the parameters used in the task definition meet the requirements of the launch type\.  
-Valid values are `FARGATE` and `EC2`\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
+Valid values are `FARGATE` and `EC2`\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 
 ## Task size<a name="task_size"></a>
 
@@ -1004,7 +1006,7 @@ The value of the key\-value pair\.
 
 ## Other task definition parameters<a name="other_task_definition_params"></a>
 
-The following task definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
+The following task definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition](create-task-definition.md)\.
 
 **Topics**
 + [IPC mode](#task_definition_ipcmode)

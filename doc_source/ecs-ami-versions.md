@@ -1,16 +1,24 @@
-# Amazon ECS\-optimized AMI Versions<a name="ecs-ami-versions"></a>
+# Amazon ECS\-optimized AMI versions<a name="ecs-ami-versions"></a>
 
 This topic lists the current and previous versions of the Amazon ECS\-optimized AMIs and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
 
-The Amazon ECS\-optimized AMI metadata, including the AMI ID, for each variant can be retrieved programmatically\. For more information, see [Retrieving Amazon ECS\-Optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)\.
+The Amazon ECS\-optimized AMI metadata, including the AMI ID, for each variant can be retrieved programmatically\. For more information, see [Retrieving Amazon ECS\-Optimized AMI metadata](retrieve-ecs-optimized_AMI.md)\.
 
-## Amazon ECS\-optimized Amazon Linux 2 AMI Versions<a name="al2ami-agent-versions"></a>
+## Linux Amazon ECS\-optimized AMIs versions<a name="ecs-ami-versions-linux"></a>
+
+The following tabs display a list of Linux Amazon ECS\-optimized AMIs versions\.
+
+------
+#### [ Amazon Linux 2 AMI versions ]
 
 The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2 AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
 
 
 | Amazon ECS\-optimized Amazon Linux 2 AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20200708 | 1\.41\.1 | 19\.03\.6\-ce | 1\.41\.1\-2 | 
+| 20200706 | 1\.41\.1 | 19\.03\.6\-ce | 1\.41\.1\-1 | 
+| 20200623 | 1\.41\.0 | 19\.03\.6\-ce | 1\.41\.0\-1 | 
 | 20200603 | 1\.40\.0 | 19\.03\.6\-ce | 1\.40\.0\-1 | 
 | 20200430 | 1\.39\.0 | 19\.03\.6\-ce | 1\.39\.0\-1 | 
 | 20200402 | 1\.39\.0 | 18\.09\.9\-ce | 1\.39\.0\-1 | 
@@ -47,13 +55,17 @@ The current Amazon ECS\-optimized Amazon Linux 2 AMI can be retrieved using the 
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended
 ```
 
-## Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI Versions<a name="al2-arm64-ami-agent-versions"></a>
+------
+#### [ Amazon Linux 2 \(arm64\) AMI versions ]
 
 The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
 
 
 | Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20200708 | 1\.41\.1 | 19\.03\.6\-ce | 1\.41\.1\-2 | 
+| 20200706 | 1\.41\.1 | 19\.03\.6\-ce | 1\.41\.1\-1 | 
+| 20200623 | 1\.41\.0 | 19\.03\.6\-ce | 1\.41\.0\-1 | 
 | 20200603 | 1\.40\.0 | 19\.03\.6\-ce | 1\.40\.0\-1 | 
 | 20200430 | 1\.39\.0 | 19\.03\.6\-ce | 1\.39\.0\-1 | 
 | 20200402 | 1\.39\.0 | 18\.09\.9\-ce | 1\.39\.0\-1 | 
@@ -88,13 +100,17 @@ The current Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI can be retrieved 
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended
 ```
 
-## Amazon ECS GPU\-optimized AMI Versions<a name="al2-gpu-ami-agent-versions"></a>
+------
+#### [ Amazon Linux 2 \(GPU\) AMI versions ]
 
 The table below lists the current and previous versions of the Amazon ECS GPU\-optimized AMI and their corresponding versions of the Amazon ECS container agent, Docker, `ecs-init` package, and NVIDIA driver\.
 
 
 | Amazon ECS GPU\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | NVIDIA driver version | 
 | --- | --- | --- | --- | --- | 
+| 20200708 | 1\.41\.1 | 19\.03\.6\-ce | 1\.41\.1\-2 | 
+| 20200706 | 1\.41\.1 | 19\.03\.6\-ce | 1\.41\.1\-1 | 418\.87\.00 | 
+| 20200623 | 1\.41\.0 | 19\.03\.6\-ce | 1\.41\.0\-1 | 418\.87\.00 | 
 | 20200603 | 1\.40\.0 | 19\.03\.6\-ce | 1\.40\.0\-1 | 418\.87\.00 | 
 | 20200430 | 1\.39\.0 | 19\.03\.6\-ce | 1\.39\.0\-1 | 418\.87\.00 | 
 | 20200402 | 1\.39\.0 | 18\.09\.9\-ce | 1\.39\.0\-1 | 418\.87\.00 | 
@@ -129,13 +145,35 @@ You can retrieve the current Amazon ECS GPU\-optimized AMI using the AWS CLI wit
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/gpu/recommended
 ```
 
-## Amazon ECS\-optimized Amazon Linux AMI Versions<a name="al1-ami-agent-versions"></a>
+------
+#### [ Amazon Linux 2 \(Inferentia\) AMI versions ]
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+
+
+| Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| --- | --- | --- | --- | 
+| 20200708 | 1\.41\.1 | 19\.03\.6\-ce | 1\.41\.1\-2 | 
+| 20200706 | 1\.41\.1 | 19\.03\.6\-ce | 1\.41\.1\-1 | 
+| 20200623 | 1\.41\.0 | 19\.03\.6\-ce | 1\.41\.0\-1 | 
+
+You can retrieve the current Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI using the AWS CLI with the following command:
+
+```
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended
+```
+
+------
+#### [ Amazon Linux AMI versions ]
 
 The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
 
 
 | Amazon ECS\-optimized Amazon Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 2018\.03\.20200708 | 1\.41\.1 | 19\.03\.6\-ce | 1\.41\.1\-2 | 
+| 2018\.03\.20200706 | 1\.41\.1 | 19\.03\.6\-ce | 1\.41\.1\-1 | 
+| 2018\.03\.20200623 | 1\.41\.0 | 19\.03\.6\-ce | 1\.41\.0\-1 | 
 | 2018\.03\.20200603 | 1\.40\.0 | 19\.03\.6\-ce | 1\.40\.0\-1 | 
 | 2018\.03\.20200430 | 1\.39\.0 | 19\.03\.6\-ce | 1\.39\.0\-1 | 
 | 2018\.03\.20200402 | 1\.39\.0 | 18\.09\.9\-ce | 1\.39\.0\-1 | 
@@ -230,13 +268,24 @@ You can retrieve the current Amazon ECS\-optimized Amazon Linux AMI using the AW
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended
 ```
 
-## Amazon ECS\-optimized Windows 2019 Full AMI Versions<a name="windows-2019-ami-agent-versions"></a>
+------
 
-The table below lists the current and previous versions of the Amazon ECS\-optimized Windows 2019 Full AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
+## Windows Amazon ECS\-optimized AMIs versions<a name="ecs-ami-versions-windows"></a>
+
+The following tabs display a list of Windows Amazon ECS\-optimized AMIs versions\.
+
+**Important**  
+To ensure that customers have the latest security updates by default, Amazon ECS maintains at least the last three Windows Amazon ECS\-optimized AMIs\. After releasing new Windows Amazon ECS\-optimized AMIs, Amazon ECS makes the Windows Amazon ECS\-optimized AMIs that are older private\. If there is a private AMI that you need access to, let us know by filing a ticket with Cloud Support\.
+
+------
+#### [ Windows Server 2019 Full AMI versions ]
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 2019 Full AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
 
 
-|  Amazon ECS\-optimized Windows 2019 Full AMI  |  Amazon ECS container agent version  |  Docker version  | 
+|  Amazon ECS\-optimized Windows Server 2019 Full AMI  |  Amazon ECS container agent version  |  Docker version  | 
 | --- | --- | --- | 
+|  **2020\.06\.11**  |  `1.40.0`  |  `19.03.5`  | 
 |  **2020\.05\.14**  |  `1.39.0`  |  `19.03.5`  | 
 |  **2020\.01\.15**  |  `1.35.0`  |  `19.03.5`  | 
 |  **2019\.12\.16**  |  `1.34.0`  |  `19.03.5`  | 
@@ -248,19 +297,21 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 |  **2019\.07\.19**  |  `1.29.0`  |  `18.09.8`  | 
 |  **2019\.05\.10**  |  `1.27.0`  |  `18.09.4`  | 
 
-The current Amazon ECS\-optimized Windows 2019 Full AMI can be retrieved using the AWS CLI with the following command:
+The current Amazon ECS\-optimized Windows Server 2019 Full AMI can be retrieved using the AWS CLI with the following command:
 
 ```
 aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2019-English-Full-ECS_Optimized
 ```
 
-## Amazon ECS\-optimized Windows 2019 Core AMI Versions<a name="windows-2019-core-ami-agent-versions"></a>
+------
+#### [ Windows Server 2019 Core AMI versions ]
 
-The table below lists the current and previous versions of the Amazon ECS\-optimized Windows 2019 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
+The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 2019 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
 
 
-|  Amazon ECS\-optimized Windows 2019 Core AMI  |  Amazon ECS container agent version  |  Docker version  | 
+|  Amazon ECS\-optimized Windows Server 2019 Core AMI  |  Amazon ECS container agent version  |  Docker version  | 
 | --- | --- | --- | 
+|  **2020\.06\.11**  |  `1.40.0`  |  `19.03.5`  | 
 |  **2020\.05\.14**  |  `1.39.0`  |  `19.03.5`  | 
 |  **2020\.01\.15**  |  `1.35.0`  |  `19.03.5`  | 
 |  **2019\.12\.16**  |  `1.34.0`  |  `19.03.5`  | 
@@ -268,37 +319,41 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 |  **2019\.11\.13**  |  `1.32.1`  |  `19.03.4`  | 
 |  **2019\.10\.09**  |  `1.32.0`  |  `19.03.2`  | 
 
-The current Amazon ECS\-optimized Windows 2019 Full AMI can be retrieved using the AWS CLI with the following command:
+The current Amazon ECS\-optimized Windows Server 2019 Full AMI can be retrieved using the AWS CLI with the following command:
 
 ```
 aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2019-English-Core-ECS_Optimized
 ```
 
-## Amazon ECS\-optimized Windows 1909 Core AMI Versions<a name="windows-1909-core-ami-agent-versions"></a>
+------
+#### [ Windows Server 1909 Core AMI versions ]
 
-The table below lists the current and previous versions of the Amazon ECS\-optimized Windows 1909 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
+The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 1909 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
 
 
-|  Amazon ECS\-optimized Windows 1909 Core AMI  |  Amazon ECS container agent version  |  Docker version  | 
+|  Amazon ECS\-optimized Windows Server 1909 Core AMI  |  Amazon ECS container agent version  |  Docker version  | 
 | --- | --- | --- | 
+|  **2020\.06\.11**  |  `1.40.0`  |  `19.03.5`  | 
 |  **2020\.05\.14**  |  `1.39.0`  |  `19.03.5`  | 
 |  **2020\.01\.15**  |  `1.35.0`  |  `19.03.5`  | 
 |  **2019\.12\.16**  |  `1.34.0`  |  `19.03.5`  | 
 |  **2019\.11\.25**  |  `1.34.0`  |  `19.03.4`  | 
 
-The current Amazon ECS\-optimized Windows 1909 Core AMI can be retrieved using the AWS CLI with the following command:
+The current Amazon ECS\-optimized Windows Server 1909 Core AMI can be retrieved using the AWS CLI with the following command:
 
 ```
 aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized
 ```
 
-## Amazon ECS\-optimized Windows 2016 Full AMI Versions<a name="windows-2016-ami-agent-versions"></a>
+------
+#### [ Windows Server 2016 Full AMI versions ]
 
-The table below lists the current and previous versions of the Amazon ECS\-optimized Windows 2016 Full AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
+The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 2016 Full AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
 
 
-|  Amazon ECS\-optimized Windows 2016 Full AMI  |  Amazon ECS container agent version  |  Docker version  | 
+|  Amazon ECS\-optimized Windows Server 2016 Full AMI  |  Amazon ECS container agent version  |  Docker version  | 
 | --- | --- | --- | 
+|  **2020\.06\.11**  |  `1.40.0`  |  `19.03.5`  | 
 |  **2020\.05\.14**  |  `1.39.0`  |  `19.03.5`  | 
 |  **2020\.01\.15**  |  `1.35.0`  |  `19.03.5`  | 
 |  **2019\.12\.16**  |  `1.34.0`  |  `19.03.5`  | 
@@ -310,8 +365,10 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 |  **2019\.07\.19**  |  `1.29.0`  |  `18.09.8`  | 
 |  **2019\.03\.07**  |  `1.26.0`  |  `18.03.1`  | 
 
-The current Amazon ECS\-optimized Windows 2016 Full AMI can be retrieved using the AWS CLI with the following command:
+The current Amazon ECS\-optimized Windows Server 2016 Full AMI can be retrieved using the AWS CLI with the following command:
 
 ```
 aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2016-English-Full-ECS_Optimized
 ```
+
+------

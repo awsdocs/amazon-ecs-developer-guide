@@ -1,6 +1,6 @@
-# Manage Container Instances Remotely Using AWS Systems Manager<a name="ec2-run-command"></a>
+# Manage container instances remotely using AWS Systems Manager<a name="ec2-run-command"></a>
 
-You can use the Run Command capability in AWS Systems Manager to securely and remotely manage the configuration of your Amazon ECS container instances\. Run Command provides a simple way to perform common administrative tasks without logging on locally to the instance\. You can manage configuration changes across your clusters by simultaneously executing commands on multiple container instances\. Run Command reports the status and results of each command\.
+You can use the Run Command capability in AWS Systems Manager \(Systems Manager\) to securely and remotely manage the configuration of your Amazon ECS container instances\. Run Command provides a simple way to perform common administrative tasks without logging on locally to the instance\. You can manage configuration changes across your clusters by simultaneously executing commands on multiple container instances\. Run Command reports the status and results of each command\.
 
 Here are some examples of the types of tasks you can perform with Run Command:
 + Install or uninstall packages\.
@@ -11,14 +11,13 @@ Here are some examples of the types of tasks you can perform with Run Command:
 + View log files\.
 + Perform file operations\.
 
-This topic covers basic installation of Run Command on the Linux variants of the Amazon ECS\-optimized AMI and a few simple use cases, but it is not comprehensive\. For more information about Run Command, see [AWS Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html) in the *AWS Systems Manager User Guide*\.
+For more information about Run Command, see [AWS Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html) in the *AWS Systems Manager User Guide*\.
 
 **Topics**
-+ [Run Command IAM Policy](#run_command_iam_policy)
-+ [Installing SSM Agent on an Amazon ECS\-Optimized AMI](#install_ssm_agent)
++ [Run Command IAM policy](#run_command_iam_policy)
 + [Using Run Command](#using_run_command)
 
-## Run Command IAM Policy<a name="run_command_iam_policy"></a>
+## Run Command IAM policy<a name="run_command_iam_policy"></a>
 
 Before you can send commands to your container instances with Run Command, you must attach an IAM policy that allows `ecsInstanceRole` to have access to the Systems Manager APIs\. The following procedure describes how to attach the Systems Manager managed policies to your container instance role so that instances launched with this role can use Run Command\.
 
@@ -42,35 +41,9 @@ Before you can send commands to your container instances with Run Command, you m
 
 1. Choose **Attach Policy**\.
 
-## Installing SSM Agent on an Amazon ECS\-Optimized AMI<a name="install_ssm_agent"></a>
-
-After you attach Systems Manager policies to your `ecsInstanceRole`, you can install AWS Systems Manager Agent \(SSM Agent\) on your container instances\. SSM Agent is Amazon software that can be installed and configured on an Amazon EC2 instance, an on\-premises server, or a virtual machine \(VM\)\. SSM Agent makes it possible for Systems Manager to update, manage, and configure these resources\. SSM Agent processes Run Command requests and configures the instances that are specified in the request\. Use the following procedures to install SSM Agent on your Amazon ECS\-optimized AMI container instances\.
-
-**Note**  
-SSM Agent is available in all Regions that Systems Manager is available in\. \(For a list of supported Regions, see the **Region** column in the [AWS Systems Manager Table of Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region) topic in the *AWS General Reference*\.\) Each Region has its own region\-specific download URL, but the following commands use your current specified AWS Region\. For more information about SSM Agent, see [Working with SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) in the *AWS Systems Manager User Guide*\.
-
-**To manually install SSM Agent on existing Amazon ECS\-optimized AMI container instances**
-
-1. [Connect to your container instance\.](instance-connect.md)
-
-1. Run the following command to install the SSM Agent RPM\. 
-
-   ```
-   [ec2-user ~]$ sudo yum install -y amazon-ssm-agent
-   ```
-
-**To install SSM Agent on new instance launches with Amazon EC2 user data**
-+ Launch one or more container instances by following the procedure in [Launching an Amazon ECS Container Instance](launch_container_instance.md), but in [Step 7](launch_container_instance.md#instance-launch-user-data-step), copy and paste the user data script below into the **User data** field\. You can also add the commands from this user data script to another existing script that you may have to perform other tasks, such as setting the cluster name for the instance to register into\.
-
-  ```
-  #!/bin/bash
-  # Install the SSM Agent RPM
-  yum install -y amazon-ssm-agent
-  ```
-
 ## Using Run Command<a name="using_run_command"></a>
 
-After you attach Systems Manager managed policies to your `ecsInstanceRole`, and install SSM Agent on your container instances, you can start using Run Command to send commands to your container instances\. For information about running commands and shell scripts on your instances and viewing the resulting output, see [Running Commands Using Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html) and [Run Command Walkthroughs](https://docs.aws.amazon.com/systems-manager/latest/userguide/run-command-walkthroughs.html) in the *AWS Systems Manager User Guide\.* 
+After you attach Systems Manager managed policies to your `ecsInstanceRole` and verify that AWS Systems Manager Agent \(SSM Agent\) is installed on your container instances, you can start using Run Command to send commands to your container instances\. For information about running commands and shell scripts on your instances and viewing the resulting output, see [Running Commands Using Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html) and [Run Command Walkthroughs](https://docs.aws.amazon.com/systems-manager/latest/userguide/run-command-walkthroughs.html) in the *AWS Systems Manager User Guide\.* 
 
 **Example: To update container instance software with Run Command**
 
@@ -78,7 +51,7 @@ A common use case for Run Command is to update the instance software on your ent
 
 1. [Attach Systems Manager managed policies to your `ecsInstanceRole`\.](#run_command_iam_policy)
 
-1. Install SSM Agent on your container instances\. For more information, see [Installing SSM Agent on an Amazon ECS\-Optimized AMI](#install_ssm_agent)\.
+1. Verify that SSM Agent is installed on your container instances\. For more information, see [Manually install SSM Agent on EC2 instances for Linux](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-manual-agent-install.html)\.
 
 1. Open the Systems Manager console at [https://console\.aws\.amazon\.com/systems\-manager](https://console.aws.amazon.com/systems-manager)\.
 

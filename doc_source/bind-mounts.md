@@ -1,4 +1,4 @@
-# Bind Mounts<a name="bind-mounts"></a>
+# Bind mounts<a name="bind-mounts"></a>
 
 With bind mounts, a file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported for tasks using the EC2 launch type\.
 

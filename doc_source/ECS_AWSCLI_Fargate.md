@@ -16,7 +16,7 @@ The following steps help you set up a cluster, register a task definition, run a
 
 This tutorial assumes that the following prerequisites have been completed\.
 + The latest version of the AWS CLI is installed and configured\. For more information about installing or upgrading your AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
-+ The steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
++ The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + You have a VPC and security group created to use\. This tutorial uses a container image hosted on Docker Hub so your task must have internet access\. To give your task a route to the internet, use one of the following options\.
   + Use a private subnet with a NAT gateway that has an elastic IP address\.
@@ -56,7 +56,7 @@ Output:
 
 ## Step 2: Register a Task Definition<a name="ECS_AWSCLI_Fargate_register_task_definition"></a>
 
-Before you can run a task on your ECS cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that creates a PHP web app using the httpd container image hosted on Docker Hub\. For more information about the available task definition parameters, see [Amazon ECS Task Definitions](task_definitions.md)\.
+Before you can run a task on your ECS cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that creates a PHP web app using the httpd container image hosted on Docker Hub\. For more information about the available task definition parameters, see [Amazon ECS Task definitions](task_definitions.md)\.
 
 ```
 {

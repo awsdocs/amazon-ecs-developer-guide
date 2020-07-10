@@ -4,7 +4,7 @@ This section walks you through the process of creating a Classic Load Balancer i
 
 You can create your Classic Load Balancer for use with EC2\-Classic or a VPC\. Some of the tasks described in these procedures apply only to load balancers in a VPC\.
 
-## Define Your Load Balancer<a name="define-load-balancer"></a>
+## Define your load balancer<a name="define-load-balancer"></a>
 
 First, provide some basic configuration information for your load balancer, such as a name, a network, and a listener\.
 
@@ -37,7 +37,7 @@ If you selected EC2\-Classic as your network, or you have a default VPC but did 
 
 1. Choose **Next: Assign Security Groups** to go to the next page in the wizard\.
 
-## Assign a Security Group to Your Load Balancer in a VPC<a name="select-vpc-security-group"></a>
+## Assign a security group to your load balancer in a VPC<a name="select-vpc-security-group"></a>
 
 If you created your load balancer in a VPC, you must assign it a security group that allows inbound traffic to the ports that you specified for your load balancer and the health checks for your load balancer\. Amazon ECS does not automatically update the security groups associated with Elastic Load Balancing load balancers or Amazon ECS container instances\.
 
@@ -55,11 +55,11 @@ Also assign this security group to container instances in your service, or anoth
 
 1. Choose **Next: Configure Security Settings** to go to the next page in the wizard\.
 
-## Configure Security Settings<a name="configure-security-settings"></a>
+## Configure security settings<a name="configure-security-settings"></a>
 
 For this tutorial, you can choose **Next: Configure Health Check** to continue to the next step\. For more information about creating an HTTPS load balancer and using additional security features, see [HTTPS Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-https-load-balancers.html) in the *User Guide for Classic Load Balancers*\.
 
-## Configure Health Checks for Your Amazon EC2 Instances<a name="configure-health-check"></a>
+## Configure health checks for your Amazon EC2 instances<a name="configure-health-check"></a>
 
 Elastic Load Balancing automatically checks the health of the tasks in your service\. If Elastic Load Balancing finds an unhealthy task, it stops sending traffic to the Amazon EC2 instance hosting that task and reroutes the traffic to a healthy instance\.
 
@@ -81,7 +81,7 @@ The following procedure configures an HTTP \(port 80\) load balancer, but you ca
 
 1. Choose **Next: Add EC2 Instances** to go to the next page in the wizard\.
 
-## Load Balancer Instance Registration<a name="register-instances"></a>
+## Load balancer instance registration<a name="register-instances"></a>
 
 Your load balancer distributes traffic between the instances that are registered to it\. When you assign your load balancer to an Amazon ECS service, Amazon ECS automatically registers and deregisters container instances when tasks from your service are running on them\. Because Amazon ECS handles container instance registration, you do not add container instances to your load balancer at this time\.
 
@@ -93,7 +93,7 @@ Your load balancer distributes traffic between the instances that are registered
 
 1. Choose **Next: Add Tags** to go to the next page in the wizard\.
 
-## Tag Your Load Balancer<a name="elb-add-tags"></a>
+## Tag your load balancer<a name="elb-add-tags"></a>
 
 You can tag your load balancer, or continue to the next step\. You can tag your load balancer later on\. For more information, see [Tag Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html) in the *User Guide for Classic Load Balancers*\.
 
@@ -105,7 +105,7 @@ You can tag your load balancer, or continue to the next step\. You can tag your 
 
 1. After you are finished adding tags, choose **Review and Create**\.
 
-## Create and Verify Your Load Balancer<a name="verify-load-balancer"></a>
+## Create and verify your load balancer<a name="verify-load-balancer"></a>
 
 Before you create the load balancer, review the settings that you selected\. After creating the load balancer, you can create a service that uses it to verify that it's sending traffic to your container instances\.
 
@@ -117,6 +117,6 @@ Before you create the load balancer, review the settings that you selected\. Aft
 
 1. After you are notified that your load balancer was created, choose **Close**\.
 
-## Create an Amazon ECS Service<a name="load-balancer-create-service"></a>
+## Create an Amazon ECS service<a name="load-balancer-create-service"></a>
 
 After your load balancer is created, you can specify it in a service definition when you create a service\. For more information, see [Creating a service](create-service.md)\.

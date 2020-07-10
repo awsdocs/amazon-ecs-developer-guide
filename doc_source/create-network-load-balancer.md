@@ -2,7 +2,7 @@
 
 This section walks you through the process of creating a Network Load Balancer in the AWS Management Console\.
 
-## Define Your Load Balancer<a name="nlb-define-load-balancer"></a>
+## Define your load balancer<a name="nlb-define-load-balancer"></a>
 
 First, provide some basic configuration information for your load balancer, such as a name, a network, and a listener\.
 
@@ -32,7 +32,7 @@ A *listener* is a process that checks for connection requests\. It is configured
 
    1. Choose **Next: Configure Routing**\.
 
-## Configure Routing<a name="nlb-configure-routing"></a>
+## Configure routing<a name="nlb-configure-routing"></a>
 
 You register targets, such as Amazon EC2 instances, with a target group\. The target group that you configure in this step is used as the target group in the listener rule, which forwards requests to the target group\. For more information, see [Target Groups for Your Network Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html) in the *User Guide for Network Load Balancers*\.
 
@@ -53,7 +53,7 @@ You cannot register instances by instance ID if they have the following instance
 
 1. Choose **Next: Register Targets**\.
 
-## Register Targets with the Target Group<a name="nlb-register-targets"></a>
+## Register targets with the target group<a name="nlb-register-targets"></a>
 
 Your load balancer distributes traffic between the targets that are registered to its target groups\. When you associate a target group to an Amazon ECS service, Amazon ECS automatically registers and deregisters containers with your target group\. Because Amazon ECS handles target registration, you do not add targets to your target group at this time\.
 
@@ -63,10 +63,10 @@ Your load balancer distributes traffic between the targets that are registered t
 
 1. Choose **Next: Review** to go to the next page in the wizard\.
 
-## Review and Create<a name="nlb-review"></a>
+## Review and create<a name="nlb-review"></a>
 
 Review your load balancer and target group configuration and choose **Create** to create your load balancer\.
 
-## Create an Amazon ECS Service<a name="nlb-create-service"></a>
+## Create an Amazon ECS service<a name="nlb-create-service"></a>
 
 After your load balancer and target group are created, you can specify the target group in a service definition when you create a service\. When each task for your service is started, the container and port combination specified in the service definition is registered with your target group and traffic is routed from the load balancer to that container\. For more information, see [Creating a service](create-service.md)\.

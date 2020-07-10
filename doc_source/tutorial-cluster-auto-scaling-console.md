@@ -1,10 +1,10 @@
-# Tutorial: Using Cluster Auto Scaling with the AWS Management Console<a name="tutorial-cluster-auto-scaling-console"></a>
+# Tutorial: Using cluster auto scaling with the AWS Management Console<a name="tutorial-cluster-auto-scaling-console"></a>
 
 Amazon ECS cluster auto scaling can be set up and configured using the AWS Management Console, AWS CLI, or Amazon ECS API\.
 
 This tutorial walks you through creating the resources for cluster auto scaling using the AWS Management Console\. Where resources require a name, we will use the prefix `ConsoleTutorial` to ensure they all have unique names and to make them easy to locate\.
 
-For an AWS CLI tutorial, see [Tutorial: Using Cluster Auto Scaling with the AWS CLI](tutorial-cluster-auto-scaling-cli.md)\.
+For an AWS CLI tutorial, see [Tutorial: Using cluster auto scaling with the AWS CLI](tutorial-cluster-auto-scaling-cli.md)\.
 
 **Topics**
 + [Prerequisites](#console-tutorial-prereqs)
@@ -20,7 +20,7 @@ For an AWS CLI tutorial, see [Tutorial: Using Cluster Auto Scaling with the AWS 
 ## Prerequisites<a name="console-tutorial-prereqs"></a>
 
 This tutorial assumes that the following prerequisites have been completed:
-+ The steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
++ The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + The Amazon ECS container instance IAM role is created\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 + The Amazon ECS service\-linked IAM role is created\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\.
@@ -156,7 +156,7 @@ Use the following steps to create an Amazon ECS capacity provider\.
 
    1. Choose **Create**\.
 **Important**  
-If you receive an error during this step, try logging out and back in to the console\. If the error does not clear, we recommend using the AWS CLI tutorial\. For more information, see [Tutorial: Using Cluster Auto Scaling with the AWS CLI](tutorial-cluster-auto-scaling-cli.md)\.
+If you receive an error during this step, try logging out and back in to the console\. If the error does not clear, we recommend using the AWS CLI tutorial\. For more information, see [Tutorial: Using cluster auto scaling with the AWS CLI](tutorial-cluster-auto-scaling-cli.md)\.
 
    1. Choose **View in cluster** to see your new capacity provider\.
 
@@ -192,7 +192,7 @@ When running a task or creating a service, the Amazon ECS console uses the defau
 
 ## Step 5: Register a Task Definition<a name="console-tutorial-register-task-definition"></a>
 
-Before you can run a task on your cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses an `amazonlinux` image from Docker Hub and simply sleeps\. For more information about the available task definition parameters, see [Amazon ECS Task Definitions](task_definitions.md)\.
+Before you can run a task on your cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses an `amazonlinux` image from Docker Hub and simply sleeps\. For more information about the available task definition parameters, see [Amazon ECS Task definitions](task_definitions.md)\.
 
 **To register a task definition**
 

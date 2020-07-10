@@ -55,8 +55,8 @@ Tasks that use the `awsvpc` network mode each receive their own elastic network 
 The ENI limit for individual container instances depends on the following conditions:  
 + If you **have not** opted in to the `awsvpcTrunking` account setting, the ENI limit for each container instance depends on the instance type\. For more information, see [IP Addresses Per Network Interface Per Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 + If you **have** opted in to the `awsvpcTrunking` account setting but you **have not** launched new container instances using a supported instance type after opting in, the ENI limit for each container instance will still be at the default value\. For more information, see [IP Addresses Per Network Interface Per Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) in the *Amazon EC2 User Guide for Linux Instances*\.
-+ If you **have** opted in to the `awsvpcTrunking` account setting and you **have** launched new container instances using a supported instance type after opting in, additional ENIs are available\. For more information, see [Supported Amazon EC2 Instance Types](container-instance-eni.md#eni-trunking-supported-instance-types)\.
-For more information about opting in to the `awsvpcTrunking` account setting, see [Elastic Network Interface Trunking](container-instance-eni.md)\.  
++ If you **have** opted in to the `awsvpcTrunking` account setting and you **have** launched new container instances using a supported instance type after opting in, additional ENIs are available\. For more information, see [Supported Amazon EC2 instance types](container-instance-eni.md#eni-trunking-supported-instance-types)\.
+For more information about opting in to the `awsvpcTrunking` account setting, see [Elastic network interface trunking](container-instance-eni.md)\.  
 You can add container instances to your cluster to provide more available network adapters\.
 
 Container instance missing required attribute  
@@ -88,6 +88,6 @@ This service is registered with a load balancer and the load balancer health che
 
 ### service \(*service\-name*\) is unable to consistently start tasks successfully\.<a name="service-event-messages-5"></a>
 
-This service contains tasks that have failed to start after consecutive attempts\. At this point, the service scheduler begins to incrementally increase the time between retries\. You should troubleshoot why your tasks are failing to launch\. For more information, see [Service Throttle Logic](service-throttle-logic.md)\.
+This service contains tasks that have failed to start after consecutive attempts\. At this point, the service scheduler begins to incrementally increase the time between retries\. You should troubleshoot why your tasks are failing to launch\. For more information, see [Service throttle logic](service-throttle-logic.md)\.
 
 After the service is updated, for example with an updated task definition, the service scheduler resumes normal behavior\.

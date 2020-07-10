@@ -11,10 +11,10 @@ Complete the following steps to get started with Amazon ECS on AWS Fargate\.
 
 ## Prerequisites<a name="first-run-prereqs"></a>
 
-Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
+Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 
 The first\-run wizard attempts to automatically create the task execution IAM role, which is required for Fargate tasks\. To ensure that the first\-run experience is able to create this IAM role, one of the following must be true:
-+ Your user has administrator access\. For more information, see [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
++ Your user has administrator access\. For more information, see [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 + Your user has the IAM permissions to create a service role\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
 + A user with administrator access has manually created the task execution role so that it is available on the account to be used\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\. 
 
@@ -58,7 +58,7 @@ Application Load Balancers do incur cost while they exist in your AWS resources\
 
    Complete the following steps to use a load balancer with your service\.
 
-   1. In the **Container to load balance** section, choose the **Load balancer listener port**\. The default value here is set up for the sample application, but you can configure different listener options for the load balancer\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
+   1. In the **Container to load balance** section, choose the **Load balancer listener port**\. The default value here is set up for the sample application, but you can configure different listener options for the load balancer\. For more information, see [Service load balancing](service-load-balancing.md)\.
 
 1. Review your service settings and click **Save**, **Next**\.
 

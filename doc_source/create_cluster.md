@@ -1,6 +1,6 @@
-# Creating a Cluster<a name="create_cluster"></a>
+# Creating a cluster<a name="create_cluster"></a>
 
-You can create an Amazon ECS cluster using the AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. You can register Amazon EC2 instances during cluster creation or register additional instances with the cluster after creating it\.
+You can create an Amazon ECS cluster using the AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. You can register Amazon EC2 instances during cluster creation or register additional instances with the cluster after creating it\.
 
 The console cluster creation wizard provides a simple way to create the resources that are needed by an Amazon ECS cluster by creating a AWS CloudFormation stack\. It also lets you customize several common cluster configuration options\. However, the wizard does not allow you to customize every resource option\. For example, you can't use the wizard to customize the container instance AMI ID\. If your requirements extend beyond what is supported in this wizard, consider using our reference architecture at [https://github\.com/awslabs/ecs\-refarch\-cloudformation](https://github.com/awslabs/ecs-refarch-cloudformation)\.
 
@@ -23,7 +23,7 @@ If you add or modify the underlying cluster resources directly after they are cr
    + **EC2 Linux \+ Networking**– With this option you can launch a cluster of tasks using the EC2 launch type using Linux containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\.
    + **EC2 Windows \+ Networking** – With this option you can launch a cluster of tasks using the EC2 launch type using Windows containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\. For more information, see [Windows containers](ECS_Windows.md)\.
 
-## Using The Networking only Template<a name="create-cluster-fargate"></a>
+## Using the Networking only template<a name="create-cluster-fargate"></a>
 
 If you chose the **Networking only** cluster template, complete the following steps\. Otherwise, skip to [Using the EC2 Linux \+ Networking or EC2 Windows \+ Networking template](#create-cluster-ec2)\.
 

@@ -9,7 +9,7 @@ This procedure is written for the Amazon ECS\-optimized Amazon Linux AMI\. For o
 
 **To enable Docker daemon debug mode on the Amazon ECS\-optimized Amazon Linux AMI**
 
-1. Connect to your container instance\. For more information, see [Connect to Your Container Instance](instance-connect.md)\.
+1. Connect to your container instance\. For more information, see [Connect to your container instance](instance-connect.md)\.
 
 1. Open the Docker options file with a text editor, such as vi\. For the Amazon ECS\-optimized Amazon Linux AMI, the Docker options file is at `/etc/sysconfig/docker`\.
 

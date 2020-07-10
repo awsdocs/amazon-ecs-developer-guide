@@ -64,7 +64,7 @@ The following should be considered when using service discovery:
   + **HealthCheckCustomConfig**—Amazon ECS manages health checks on your behalf\. Amazon ECS uses information from container and health checks, as well as your task state, to update the health with AWS Cloud Map\. This is specified using the `--health-check-custom-config` parameter when creating your service discovery service\. For more information, see [HealthCheckCustomConfig](https://docs.aws.amazon.com/cloud-map/latest/api/API_HealthCheckCustomConfig.html) in the *AWS Cloud Map API Reference*\.
 + If you are using the Amazon ECS console, the workflow creates one service discovery service per ECS service\. It maps all of the task IP addresses as A records, or task IP addresses and port as SRV records\.
 + Service discovery can only be configured when first creating a service\. Updating existing services to configure service discovery for the first time or change the current configuration is not supported\.
-+ The AWS Cloud Map resources created when service discovery is used must be cleaned up manually\. For more information, see [Step 4: Clean Up](create-service-discovery.md#create-service-discovery-cleanup) in the [Tutorial: Creating a Service Using Service Discovery](create-service-discovery.md) topic\.
++ The AWS Cloud Map resources created when service discovery is used must be cleaned up manually\. For more information, see [Step 4: Clean up](create-service-discovery.md#create-service-discovery-cleanup) in the [Tutorial: Creating a service using Service Discovery](create-service-discovery.md) topic\.
 
 ## Amazon ECS Console Experience<a name="service-discovery-console"></a>
 

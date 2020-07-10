@@ -1,4 +1,4 @@
-# Amazon ECS Task Definitions<a name="task_definitions"></a>
+# Amazon ECS Task definitions<a name="task_definitions"></a>
 
 A task definition is required to run Docker containers in Amazon ECS\. Some of the parameters you can specify in a task definition include:
 + The Docker image to use with each container in your task
@@ -13,21 +13,21 @@ A task definition is required to run Docker containers in Amazon ECS\. Some of t
 
 You can define multiple containers in a task definition\. The parameters that you use depend on the launch type you choose for the task\. Not all parameters are valid\. For more information about the parameters available and which launch types they are valid for in a task definition, see [Task definition parameters](task_definition_parameters.md)\.
 
-Your entire application stack does not need to exist on a single task definition, and in most cases it should not\. Your application can span multiple task definitions by combining related containers into their own task definitions, each representing a single component\. For more information, see [Application Architecture](application_architecture.md)\.
+Your entire application stack does not need to exist on a single task definition, and in most cases it should not\. Your application can span multiple task definitions by combining related containers into their own task definitions, each representing a single component\. For more information, see [Application architecture](application_architecture.md)\.
 
 **Topics**
-+ [Application Architecture](application_architecture.md)
-+ [Creating a Task Definition](create-task-definition.md)
++ [Application architecture](application_architecture.md)
++ [Creating a task definition](create-task-definition.md)
 + [Task definition parameters](task_definition_parameters.md)
-+ [Amazon ECS Launch Types](launch_types.md)
++ [Amazon ECS launch types](launch_types.md)
 + [Working with GPUs on Amazon ECS](ecs-gpu.md)
-+ [Using Data Volumes in Tasks](using_data_volumes.md)
++ [Using data volumes in tasks](using_data_volumes.md)
 + [Task Networking with the `awsvpc` Network Mode](task-networking.md)
 + [Using the awslogs Log Driver](using_awslogs.md)
-+ [Custom Log Routing](using_firelens.md)
-+ [Private Registry Authentication for Tasks](private-auth.md)
-+ [Specifying Sensitive Data](specifying-sensitive-data.md)
++ [Custom log routing](using_firelens.md)
++ [Private registry authentication for tasks](private-auth.md)
++ [Specifying sensitive data](specifying-sensitive-data.md)
 + [Specifying environment variables](taskdef-envfiles.md)
-+ [Example Task Definitions](example_task_definitions.md)
-+ [Updating a Task Definition](update-task-definition.md)
-+ [Deregistering Task Definition Revisions](deregister-task-definition.md)
++ [Example task definitions](example_task_definitions.md)
++ [Updating a task definition](update-task-definition.md)
++ [Deregistering task definition revisions](deregister-task-definition.md)

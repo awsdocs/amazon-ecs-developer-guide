@@ -84,11 +84,11 @@ The following resources allow you to specify tags when you create the resource\.
 
 | Task | Console | 
 | --- | --- | 
-|  Run one or more tasks\.   |  [Running Tasks](ecs_run_task.md)  | 
+|  Run one or more tasks\.   |  [Running tasks](ecs_run_task.md)  | 
 |  Create a service\.  |  [Creating a service](create-service.md)  | 
 |  Create a task set\.  |  [External Deployment](deployment-type-external.md)  | 
-|  Register a task definition\.  |  [Creating a Task Definition](create-task-definition.md)  | 
-|  Create a cluster\.  |  [Creating a Cluster](create_cluster.md)  | 
+|  Register a task definition\.  |  [Creating a task definition](create-task-definition.md)  | 
+|  Create a cluster\.  |  [Creating a cluster](create_cluster.md)  | 
 |  Run one or more container instances\.  |  [Launching an Amazon ECS Container Instance](launch_container_instance.md)  | 
 
 ### Adding and Deleting Tags on an Individual Resource<a name="adding-or-deleting-tags"></a>

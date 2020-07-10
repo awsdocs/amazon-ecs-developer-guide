@@ -1,4 +1,4 @@
-# Starting a Task at Container Instance Launch Time<a name="start_task_at_launch"></a>
+# Starting a task at container instance launch time<a name="start_task_at_launch"></a>
 
 Depending on your application architecture design, you may need to run a specific container on every container instance to deal with operations or security concerns such as monitoring, security, metrics, service discovery, or logging\.
 
@@ -8,7 +8,7 @@ The Amazon EC2 user data script in the following procedure uses the Amazon ECS i
 
 **To start a task at container instance launch time**
 
-1. If you have not done so already, create a task definition with the container you want to run on your container instance at launch by following the procedures in [Creating a Task Definition](create-task-definition.md)\.
+1. If you have not done so already, create a task definition with the container you want to run on your container instance at launch by following the procedures in [Creating a task definition](create-task-definition.md)\.
 
 1. Modify your `ecsInstanceRole` IAM role to add permissions for the `StartTask` API operation\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 

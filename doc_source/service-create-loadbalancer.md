@@ -4,7 +4,7 @@ Services can be configured to use a load balancer to distribute incoming traffic
 
 If you are not configuring your service to use a load balancer, you can choose **None** as the load balancer type and move on to the next section, [Step 4: Configuring Your Service to Use Service Discovery](service-configure-servicediscovery.md)\.
 
-If you have an available Elastic Load Balancing load balancer configured, you can attach it to your service with the following procedures, or you can configure a new load balancer\. For more information, see [Creating a Load Balancer](create-load-balancer.md)\.
+If you have an available Elastic Load Balancing load balancer configured, you can attach it to your service with the following procedures, or you can configure a new load balancer\. For more information, see [Creating a load balancer](create-load-balancer.md)\.
 
 **Important**  
 Before following these procedures, you must create your Elastic Load Balancing load balancer resources\.

@@ -22,7 +22,7 @@ When the average CPU utilization of your service rises above 75% \(meaning that 
 
 ## Prerequisites<a name="tt-prereqs"></a>
 
-This tutorial assumes that you are using administrator credentials, and that you have an Amazon EC2 key pair in the current region\. If you do not have these resources, or your are not sure, you can create them by following the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
+This tutorial assumes that you are using administrator credentials, and that you have an Amazon EC2 key pair in the current region\. If you do not have these resources, or your are not sure, you can create them by following the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 
 ## Step 1: Create a Cluster and a Service<a name="tt-create-cluster-service"></a>
 
@@ -140,7 +140,7 @@ Go to the next step if you would like to delete the basic infrastructure that yo
   Message: Successfully set desired count to 1. Change successfully fulfilled by ecs. Cause: monitor alarm TargetTracking-service/service-autoscaling/sample-webapp-AlarmLow-fcd80aef-5161-4890-aeb4-35dde11ff42c in state ALARM triggered policy TargetTrackingPolicy
   ```
 + If you have CloudWatch Container Insights set up and it's collecting Amazon ECS metrics, you can view metric data on the CloudWatch automatic dashboards\. For more information, see [Introducing Amazon CloudWatch Container Insights for Amazon ECS](http://aws.amazon.com/blogs/mt/introducing-container-insights-for-amazon-ecs/) in the *AWS Compute Blog*\. 
-+ Learn how to set up CloudWatch Container Insights\. Additional charges apply\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md) and [Updating Cluster Settings](update-cluster-settings.md)\.
++ Learn how to set up CloudWatch Container Insights\. Additional charges apply\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md) and [Updating cluster settings](update-cluster-settings.md)\.
 
 ## Step 5: Cleaning Up<a name="tt-cleanup"></a>
 

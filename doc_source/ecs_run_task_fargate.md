@@ -1,4 +1,4 @@
-# Running a Task Using the Fargate Launch Type<a name="ecs_run_task_fargate"></a>
+# Running a task using the Fargate launch type<a name="ecs_run_task_fargate"></a>
 
 To run a task using the Fargate launch type, do the following:
 
@@ -10,17 +10,19 @@ To run a task using the Fargate launch type, do the following:
 
 1. Choose **Actions**, **Run Task**\.
 
-1. In the **Run Task** section, complete the following steps:
+1. On the **Run Task** page, complete the following steps\.
 
-   1. For **Launch type**, choose **FARGATE**\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
+   1. Choose either a capacity provider strategy or a launch type\.
+      + To use a **Capacity provider strategy**, choose **Switch to capacity provider strategy** and then choose whether your task should use the default capacity provider strategy defined for the cluster or a custom capacity provider strategy\. A capacity provider must already be associated with the cluster in order to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
+      + To use a **Launch type**, choose **Switch to launch type** and select **FARGATE**\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 
-   1. For **Platform version**, choose **LATEST**\. For more information about platform versions, see [AWS Fargate Platform Versions](platform_versions.md)\.
+   1. For **Platform version**, choose the platform version to run your task on\. For more information about platform versions, see [AWS Fargate Platform Versions](platform_versions.md)\.
 
    1. For **Cluster**, choose the cluster to use\. 
 
    1. For **Number of tasks**, type the number of tasks to launch with this task definition\.
 
-   1. For **Task Group**, type the name of the task group\.
+   1. For **Task group**, type the name of the task group\.
 
 1. In the **VPC and security groups** section, complete the following steps:
 

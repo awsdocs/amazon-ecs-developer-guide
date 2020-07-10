@@ -1,4 +1,4 @@
-# Modifying Account Settings<a name="ecs-modifying-longer-id-settings"></a>
+# Modifying account settings<a name="ecs-modifying-longer-id-settings"></a>
 
 You can use the AWS Management Console and AWS CLI tools to modify the account settings\.
 

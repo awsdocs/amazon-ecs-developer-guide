@@ -1,4 +1,4 @@
-# Viewing Account Settings<a name="ecs-viewing-longer-id-settings"></a>
+# Viewing account settings<a name="ecs-viewing-longer-id-settings"></a>
 
 You can use the AWS Management Console and AWS CLI tools to view the resource types that support the new ARN and ID formats or the increased ENI limits\.
 

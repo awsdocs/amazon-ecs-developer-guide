@@ -1,4 +1,4 @@
-# Account Settings<a name="ecs-account-settings"></a>
+# Account settings<a name="ecs-account-settings"></a>
 
 Amazon ECS provides the following account settings, which enable you to opt in or out of specific features\.
 
@@ -6,9 +6,9 @@ Amazon ECS provides the following account settings, which enable you to opt in o
 Resource names: `serviceLongArnFormat`, `taskLongArnFormat`, and `containerInstanceLongArnFormat`  
 Amazon ECS is introducing a new format for Amazon Resource Names \(ARNs\) and resource IDs for Amazon ECS services, tasks, and container instances\. You must opt in to the new format for each resource type to use features such as resource tagging for that resource type\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](#ecs-resource-ids)\.
 
-**AWSVPC Trunking**  
+**AWSVPC trunking**  
 Resource name: `awsvpcTrunking`  
-Amazon ECS supports launching container instances with increased elastic network interface \(ENI\) density using supported Amazon EC2 instance types\. When you use these instance types and opt in to the `awsvpcTrunking` account setting, additional ENIs are available on newly launched container instances\. This configuration allows you to place more tasks using the `awsvpc` network mode on each container instance\. Using this feature, a `c5.large` instance with `awsvpcTrunking` enabled has an increased ENI limit of ten\. The container instance will have a primary network interface and Amazon ECS creates and attaches a "trunk" network interface to the container instance\. Neither the primary network interface or the trunk network interface counts against the ENI limit, so this configuration allows you to launch ten tasks on the container instance instead of the current two tasks\. For more information, see [Elastic Network Interface Trunking](container-instance-eni.md)\.
+Amazon ECS supports launching container instances with increased elastic network interface \(ENI\) density using supported Amazon EC2 instance types\. When you use these instance types and opt in to the `awsvpcTrunking` account setting, additional ENIs are available on newly launched container instances\. This configuration allows you to place more tasks using the `awsvpc` network mode on each container instance\. Using this feature, a `c5.large` instance with `awsvpcTrunking` enabled has an increased ENI limit of ten\. The container instance will have a primary network interface and Amazon ECS creates and attaches a "trunk" network interface to the container instance\. Neither the primary network interface or the trunk network interface counts against the ENI limit, so this configuration allows you to launch ten tasks on the container instance instead of the current two tasks\. For more information, see [Elastic network interface trunking](container-instance-eni.md)\.
 
 **CloudWatch Container Insights**  
 Resource name: `containerInsights`  
@@ -32,8 +32,8 @@ Tasks launched by an Amazon ECS service can only receive the new ARN and resourc
 
 **Topics**
 + [Amazon Resource Names \(ARNs\) and IDs](#ecs-resource-ids)
-+ [Viewing Account Settings](ecs-viewing-longer-id-settings.md)
-+ [Modifying Account Settings](ecs-modifying-longer-id-settings.md)
++ [Viewing account settings](ecs-viewing-longer-id-settings.md)
++ [Modifying account settings](ecs-modifying-longer-id-settings.md)
 
 ## Amazon Resource Names \(ARNs\) and IDs<a name="ecs-resource-ids"></a>
 
@@ -49,7 +49,7 @@ A resource ID does not change after it's created\. Therefore, opting in or out o
  The following sections describe how ARN and resource ID formats are changing\. For more information on the transition to the new formats, see [Amazon Elastic Container Service FAQ](https://aws.amazon.com/ecs/faqs/)\.
 
 **Amazon Resource Name \(ARN\) Format**  
-Some resources have a friendly name, such as a service named `production`\. In other cases, you must specify a resource using the Amazon Resource Name \(ARN\) format\. The new ARN format for Amazon ECS tasks, services, and container instances includes the cluster name\. For details about opting in to the new ARN format, see [Modifying Account Settings](ecs-modifying-longer-id-settings.md)\.
+Some resources have a friendly name, such as a service named `production`\. In other cases, you must specify a resource using the Amazon Resource Name \(ARN\) format\. The new ARN format for Amazon ECS tasks, services, and container instances includes the cluster name\. For details about opting in to the new ARN format, see [Modifying account settings](ecs-modifying-longer-id-settings.md)\.
 
 The following table shows both the current \(old\) format and the new format for each resource type\.
 
@@ -61,4 +61,4 @@ The following table shows both the current \(old\) format and the new format for
 |  Amazon ECS task  |  Old: `arn:aws:ecs:region:aws_account_id:task/task-id` New: `arn:aws:ecs:region:aws_account_id:task/cluster-name/task-id`  | 
 
 **Resource ID Length**  
-A resource ID takes the form of a unique combination of letters and numbers\. New resource ID formats include shorter IDs for Amazon ECS tasks and container instances\. The old resource ID format was 36 characters long\. The new IDs are in a 32\-character format that does not include any hyphens\. For details about opting in to the new resource ID format, see [Modifying Account Settings](ecs-modifying-longer-id-settings.md)\.
+A resource ID takes the form of a unique combination of letters and numbers\. New resource ID formats include shorter IDs for Amazon ECS tasks and container instances\. The old resource ID format was 36 characters long\. The new IDs are in a 32\-character format that does not include any hyphens\. For details about opting in to the new resource ID format, see [Modifying account settings](ecs-modifying-longer-id-settings.md)\.

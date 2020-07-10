@@ -11,11 +11,11 @@ Complete the following steps to get started with Amazon ECS using the EC2 launch
 
 ## Prerequisites<a name="getting-started-ec2-prereqs"></a>
 
-Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
+Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 
 ## Step 1: Register a task definition<a name="getting-started-ec2-task-def"></a>
 
-A task definition is like a blueprint for your application\. Each time that you launch a task in Amazon ECS, you specify a task definition\. The service then knows which Docker image to use for containers, how many containers to use in the task, and the resource allocation for each container\. For more information about task definitions, see [Amazon ECS Task Definitions](task_definitions.md)\.
+A task definition is like a blueprint for your application\. Each time that you launch a task in Amazon ECS, you specify a task definition\. The service then knows which Docker image to use for containers, how many containers to use in the task, and the resource allocation for each container\. For more information about task definitions, see [Amazon ECS Task definitions](task_definitions.md)\.
 
 The following steps walk you through creating a task definition that will deploy a simple web application\.
 
@@ -65,7 +65,7 @@ The following steps walk you through creating a task definition that will deploy
 
 ## Step 2: Create a cluster<a name="getting-started-ec2-cluster"></a>
 
-An Amazon ECS cluster is a logical grouping of tasks, services, and container instances\. When creating a cluster using the console, Amazon ECS creates a AWS CloudFormation stack that takes care of the Amazon EC2 instance creation, networking and IAM configuration for you\. For more information about clusters, see [Amazon ECS Clusters](clusters.md)\.
+An Amazon ECS cluster is a logical grouping of tasks, services, and container instances\. When creating a cluster using the console, Amazon ECS creates a AWS CloudFormation stack that takes care of the Amazon EC2 instance creation, networking and IAM configuration for you\. For more information about clusters, see [Amazon ECS clusters](clusters.md)\.
 
 The following steps walk you through creating a cluster with one Amazon EC2 instance registered to it which will enable us to run a task on it\. If a specific field is not mentioned, leave the default value the console uses\.
 
@@ -114,6 +114,8 @@ An Amazon ECS service enables you to run and maintain a specified number of inst
 1. On the **Services** tab, choose **Create**\.
 
 1. In the **Configure service** section, do the following:
+
+   1. For **Launch type**, select **EC2**
 
    1. For **Task definition**, select the **console\-sample\-app\-static** task definition you created in step 1\.
 

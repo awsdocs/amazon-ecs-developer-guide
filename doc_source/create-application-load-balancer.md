@@ -2,7 +2,7 @@
 
 This section walks you through the process of creating an Application Load Balancer in the AWS Management Console\.
 
-## Define Your Load Balancer<a name="alb-define-load-balancer"></a>
+## Define your load balancer<a name="alb-define-load-balancer"></a>
 
 First, provide some basic configuration information for your load balancer, such as a name, a network, and a listener\.
 
@@ -38,7 +38,7 @@ If you plan on routing traffic to more than one target group, see [ListenerRules
 
    1. Choose **Next: Configure Security Settings**\.
 
-## Configure Security Settings<a name="alb-configure-security-settings"></a>
+## Configure security settings<a name="alb-configure-security-settings"></a>
 
 If you created a secure listener in the previous step, complete the **Configure Security Settings** page as follows; otherwise, choose **Next: Configure Security Groups**\.
 
@@ -54,7 +54,7 @@ If you created a secure listener in the previous step, complete the **Configure 
 
 1. Choose **Next: Configure Security Groups**\.
 
-## Configure Security Groups<a name="alb-configure-security-groups"></a>
+## Configure security groups<a name="alb-configure-security-groups"></a>
 
 You must assign a security group to your load balancer that allows inbound traffic to the ports that you specified for your listeners\. Amazon ECS does not automatically update the security groups associated with Elastic Load Balancing load balancers or Amazon ECS container instances\.
 
@@ -69,7 +69,7 @@ Later in this topic, you create a security group rule for your container instanc
 
 1. Choose **Next: Configure Routing** to go to the next page in the wizard\.
 
-## Configure Routing<a name="alb-configure-routing"></a>
+## Configure routing<a name="alb-configure-routing"></a>
 
 In this section, you create a target group for your load balancer and the health check criteria for targets that are registered within that group\.
 
@@ -89,7 +89,7 @@ If your service's task definition uses the `awsvpc` network mode \(which is requ
 
 1. Choose **Next: Register Targets**\.
 
-## Register Targets<a name="alb-register-targets"></a>
+## Register targets<a name="alb-register-targets"></a>
 
 Your load balancer distributes traffic between the targets that are registered to its target groups\. When you associate a target group to an Amazon ECS service, Amazon ECS automatically registers and deregisters containers with your target group\. Because Amazon ECS handles target registration, you do not add targets to your target group at this time\.
 
@@ -99,11 +99,11 @@ Your load balancer distributes traffic between the targets that are registered t
 
 1. Choose **Next: Review** to go to the next page in the wizard\.
 
-## Review and Create<a name="alb-review"></a>
+## Review and create<a name="alb-review"></a>
 
 Review your load balancer and target group configuration and choose **Create** to create your load balancer\.
 
-## Create a Security Group Rule for Your Container Instances<a name="alb-sec-group"></a>
+## Create a security group rule for your container instances<a name="alb-sec-group"></a>
 
 After your Application Load Balancer has been created, you must add an inbound rule to your container instance security group that allows traffic from your load balancer to reach the containers\.
 
@@ -119,11 +119,11 @@ After your Application Load Balancer has been created, you must add an inbound r
 
 1. For **Type**, choose **All traffic**\.
 
-1. For **Source**, choose **Custom**, and then type the name of your Application Load Balancer security group that you created in [Configure Security Groups](#alb-configure-security-groups)\. This rule allows all traffic from your Application Load Balancer to reach the containers in your tasks that are registered with your load balancer\.   
+1. For **Source**, choose **Custom**, and then type the name of your Application Load Balancer security group that you created in [Configure security groups](#alb-configure-security-groups)\. This rule allows all traffic from your Application Load Balancer to reach the containers in your tasks that are registered with your load balancer\.   
 ![\[Edit inbound rules\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/edit_inbound_rules.png)
 
 1. Choose **Save** to finish\.
 
-## Create an Amazon ECS Service<a name="alb-create-service"></a>
+## Create an Amazon ECS service<a name="alb-create-service"></a>
 
 After your load balancer and target group are created, you can specify the target group in a service definition when you create a service\. When each task for your service is started, the container and port combination specified in the service definition is registered with your target group and traffic is routed from the load balancer to that container\. For more information, see [Creating a service](create-service.md)\.

@@ -8,7 +8,7 @@ For clusters with tasks or services using the EC2 launch type, you can use Cloud
 
 **Amazon CloudWatch Logs**  
 Monitor, store, and access the log files from the containers in your Amazon ECS tasks by specifying the `awslogs` log driver in your task definitions\. This is the only supported method for accessing logs for tasks using the Fargate launch type, but also works with tasks using the EC2 launch type\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.  
-You can also monitor, store, and access the operating system and Amazon ECS container agent log files from your Amazon ECS container instances\. This method for accessing logs can be used for containers using the EC2 launch type\. For more information, see [Using CloudWatch Logs with Container Instances](using_cloudwatch_logs.md)\.
+You can also monitor, store, and access the operating system and Amazon ECS container agent log files from your Amazon ECS container instances\. This method for accessing logs can be used for containers using the EC2 launch type\. For more information, see [Using CloudWatch Logs with container instances](using_cloudwatch_logs.md)\.
 
 **Amazon CloudWatch Events**  
 Match events and route them to one or more target functions or streams to make changes, capture state information, and take corrective action\. For more information, see [Amazon ECS Events and EventBridge](cloudwatch_event_stream.md) in this guide and [What Is Amazon CloudWatch Events?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) in the *Amazon CloudWatch Events User Guide*\.

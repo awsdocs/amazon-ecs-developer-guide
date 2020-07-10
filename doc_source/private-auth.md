@@ -1,4 +1,4 @@
-# Private Registry Authentication for Tasks<a name="private-auth"></a>
+# Private registry authentication for tasks<a name="private-auth"></a>
 
 Private registry authentication for tasks using AWS Secrets Manager enables you to store your credentials securely and then reference them in your container definition\. This allows your tasks to use images from private repositories\. This feature is supported by tasks using both the Fargate or EC2 launch types\.
 
@@ -30,7 +30,7 @@ The following is a snippet of a task definition showing the required parameters:
 **Note**  
 Another method of enabling private registry authentication uses Amazon ECS container agent environment variables to authenticate to private registries\. This method is only supported for tasks using the EC2 launch type\. For more information, see [Private Registry Authentication for Container Instances](private-auth-container-instances.md)\.
 
-## Required IAM Permissions for Private Registry Authentication<a name="private-auth-iam"></a>
+## Required IAM permissions for private registry authentication<a name="private-auth-iam"></a>
 
 The Amazon ECS task execution role is required to use this feature\. This allows the container agent to pull the container image\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
 
@@ -59,7 +59,7 @@ An example inline policy adding the permissions is shown below\.
 }
 ```
 
-## Enabling Private Registry Authentication<a name="private-auth-enable"></a>
+## Enabling private registry authentication<a name="private-auth-enable"></a>
 
 **To create a basic secret**
 
@@ -98,15 +98,15 @@ Use AWS Secrets Manager to create a secret for your private registry credentials
 
 1. In the navigation pane, choose **Task Definitions**\.
 
-1. On the **Task Definitions** page, choose **Create new Task Definition**\.
+1. On the **task definitions** page, choose **Create new task definition**\.
 
 1. On the **Select launch type compatibility** page, choose the launch type for your tasks and then **Next step**\.
 **Note**  
 This step only applies to regions that currently support Amazon ECS using AWS Fargate\. For more information, see [Amazon ECS on AWS Fargate](AWS_Fargate.md)\.
 
-1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
+1. For **task definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
-1. For **Task execution role**, either select your existing task execution role or choose **Create new role** to have one created for you\. This role authorizes Amazon ECS to pull private images for your task\. For more information, see [Required IAM Permissions for Private Registry Authentication](#private-auth-iam)\.
+1. For **Task execution role**, either select your existing task execution role or choose **Create new role** to have one created for you\. This role authorizes Amazon ECS to pull private images for your task\. For more information, see [Required IAM permissions for private registry authentication](#private-auth-iam)\.
 **Important**  
 If the **Task execution role** field does not appear, choose **Configure via JSON** and manually add the `executionRoleArn` field to specify your task execution role\. The following shows the syntax:  
 

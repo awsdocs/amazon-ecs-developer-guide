@@ -1,17 +1,17 @@
-# Example Task Definitions<a name="example_task_definitions"></a>
+# Example task definitions<a name="example_task_definitions"></a>
 
-This section provides some task definition examples that you can use to start creating your own task definitions\. For more information, see [Task definition parameters](task_definition_parameters.md) and [Creating a Task Definition](create-task-definition.md)\.
+This section provides some task definition examples that you can use to start creating your own task definitions\. For more information, see [Task definition parameters](task_definition_parameters.md) and [Creating a task definition](create-task-definition.md)\.
 
 For additional task definition examples, see [AWS Sample Task Definitions](https://github.com/aws-samples/aws-containers-task-definitions) on GitHub\.
 
 **Topics**
 + [Example: Webserver](#example_task_definition-webserver)
-+ [Example: `splunk` Log Driver](#example_task_definition-splunk)
-+ [Example: `fluentd` Log Driver](#example_task_definition-fluentd)
-+ [Example: `gelf` Log Driver](#example_task_definition-gelf)
-+ [Example: Amazon ECR Image and Task Definition IAM Role](#example_task_definition-iam)
-+ [Example: Entrypoint with Command](#example_task_definition-ping)
-+ [Example: Container Dependency](#example_task_definition-containerdependency)
++ [Example: `splunk` log driver](#example_task_definition-splunk)
++ [Example: `fluentd` log driver](#example_task_definition-fluentd)
++ [Example: `gelf` log driver](#example_task_definition-gelf)
++ [Example: Amazon ECR image and task definition IAM role](#example_task_definition-iam)
++ [Example: Entrypoint with command](#example_task_definition-ping)
++ [Example: Container dependency](#example_task_definition-containerdependency)
 
 ## Example: Webserver<a name="example_task_definition-webserver"></a>
 
@@ -59,9 +59,9 @@ The following is an example task definition using the Fargate launch type that s
 }
 ```
 
-## Example: `splunk` Log Driver<a name="example_task_definition-splunk"></a>
+## Example: `splunk` log driver<a name="example_task_definition-splunk"></a>
 
-The following example demonstrates how to use the `splunk` log driver in a task definition that sends the logs to a remote service\. The Splunk token parameter is specified as a secret option because it can be treated as sensitive data\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
+The following example demonstrates how to use the `splunk` log driver in a task definition that sends the logs to a remote service\. The Splunk token parameter is specified as a secret option because it can be treated as sensitive data\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.
 
 ```
 "containerDefinitions": [{
@@ -77,9 +77,9 @@ The following example demonstrates how to use the `splunk` log driver in a task 
 }],
 ```
 
-## Example: `fluentd` Log Driver<a name="example_task_definition-fluentd"></a>
+## Example: `fluentd` log driver<a name="example_task_definition-fluentd"></a>
 
-The following example demonstrates how to use the `fluentd` log driver in a task definition that sends the logs to a remote service\. The `fluentd-address` value is specified as a secret option as it may be treated as sensitive data\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
+The following example demonstrates how to use the `fluentd` log driver in a task definition that sends the logs to a remote service\. The `fluentd-address` value is specified as a secret option as it may be treated as sensitive data\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.
 
 ```
 "containerDefinitions": [{
@@ -107,7 +107,7 @@ The following example demonstrates how to use the `fluentd` log driver in a task
 }],
 ```
 
-## Example: `gelf` Log Driver<a name="example_task_definition-gelf"></a>
+## Example: `gelf` log driver<a name="example_task_definition-gelf"></a>
 
 The following example demonstrates how to use the `gelf` log driver in a task definition that sends the logs to a remote host running Logstash that takes Gelf logs as an input\. For more information, see [logConfiguration](task_definition_parameters.md#ContainerDefinition-logConfiguration)\.
 
@@ -135,7 +135,7 @@ The following example demonstrates how to use the `gelf` log driver in a task de
 }],
 ```
 
-## Example: Amazon ECR Image and Task Definition IAM Role<a name="example_task_definition-iam"></a>
+## Example: Amazon ECR image and task definition IAM role<a name="example_task_definition-iam"></a>
 
 The following example uses an Amazon ECR image called `aws-nodejs-sample` with the `v1` tag from the `123456789012.dkr.ecr.us-west-2.amazonaws.com` registry\. The container in this task inherits IAM permissions from the `arn:aws:iam::123456789012:role/AmazonECSTaskS3BucketRole` role\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
@@ -155,7 +155,7 @@ The following example uses an Amazon ECR image called `aws-nodejs-sample` with t
 }
 ```
 
-## Example: Entrypoint with Command<a name="example_task_definition-ping"></a>
+## Example: Entrypoint with command<a name="example_task_definition-ping"></a>
 
 The following example demonstrates the syntax for a Docker container that uses an entry point and a command argument\. This container pings `google.com` four times and then exits\.
 
@@ -183,7 +183,7 @@ The following example demonstrates the syntax for a Docker container that uses a
 }
 ```
 
-## Example: Container Dependency<a name="example_task_definition-containerdependency"></a>
+## Example: Container dependency<a name="example_task_definition-containerdependency"></a>
 
 This example demonstrates the syntax for a task definition with multiple containers where container dependency is specified\. In the following task definition, the `envoy` container must reach a healthy status, determined by the required container healthcheck parameters, before the `app` container will start\. For more information, see [Container Dependency](task_definition_parameters.md#container_definition_dependson)\.
 
@@ -237,7 +237,7 @@ This example demonstrates the syntax for a task definition with multiple contain
     },
     {
       "name": "envoy",
-      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.3.0-prod",
+      "image": "840364872350.dkr.ecr.region-code.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod",
       "essential": true,
       "environment": [
         {

@@ -1,4 +1,4 @@
-# Tutorial: Creating a Service Using a Blue/Green Deployment<a name="create-blue-green"></a>
+# Tutorial: Creating a service using a blue/green deployment<a name="create-blue-green"></a>
 
 Amazon ECS has integrated blue/green deployments into the Create Service wizard on the Amazon ECS console\. For more information, see [Creating a service](create-service.md)\.
 
@@ -11,7 +11,7 @@ Support for performing a blue/green deployment has been added for AWS CloudForma
 
 This tutorial assumes that you have completed the following prerequisites:
 + The latest version of the AWS CLI is installed and configured\. For more information about installing or upgrading the AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
-+ The steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
++ The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 + The Amazon ECS CodeDeploy IAM role is created\. For more information, see [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)\.
@@ -73,7 +73,7 @@ Amazon ECS services using the blue/green deployment type require the use of eith
    arn:aws:elasticloadbalancing:region:aws_account_id:listener/app/bluegreen-alb/e5ba62739c16e642/665750bec1b03bd4
    ```
 
-## Step 2: Create an Amazon ECS Cluster<a name="create-blue-green-cluster"></a>
+## Step 2: Create an Amazon ECS cluster<a name="create-blue-green-cluster"></a>
 
 Use the [create\-cluster](https://docs.aws.amazon.com/cli/latest/reference/ecs/create-cluster.html) command to create a cluster named `tutorial-bluegreen-cluster` to use\.
 
@@ -89,7 +89,7 @@ The output includes the ARN of the cluster, with the following format:
 arn:aws:ecs:region:aws_account_id:cluster/tutorial-bluegreen-cluster
 ```
 
-## Step 3: Register a Task Definition<a name="create-blue-green-taskdef"></a>
+## Step 3: Register a task definition<a name="create-blue-green-taskdef"></a>
 
 Use the [register\-task\-definition](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html) command to register a task definition that is compatible with Fargate\. It requires the use of the `awsvpc` network mode\. The following is the example task definition used for this tutorial\.
 
@@ -137,7 +137,7 @@ aws ecs register-task-definition \
      --region us-east-1
 ```
 
-## Step 4: Create an Amazon ECS Service<a name="create-blue-green-service"></a>
+## Step 4: Create an Amazon ECS service<a name="create-blue-green-service"></a>
 
 Use the [create\-service](https://docs.aws.amazon.com/cli/latest/reference/ecs/create-service.html) command to create a service\. 
 
@@ -186,7 +186,7 @@ The output includes the ARN of the service, with the following format:
 arn:aws:ecs:region:aws_account_id:service/service-bluegreen
 ```
 
-## Step 5: Create the AWS CodeDeploy Resources<a name="create-blue-green-codedeploy"></a>
+## Step 5: Create the AWS CodeDeploy resources<a name="create-blue-green-codedeploy"></a>
 
 Use the following steps to create your CodeDeploy application, the Application Load Balancer target group for the CodeDeploy deployment group, and the CodeDeploy deployment group\.
 
@@ -298,7 +298,7 @@ Use the following steps to create your CodeDeploy application, the Application L
    }
    ```
 
-## Step 6: Create and Monitor an CodeDeploy Deployment<a name="create-blue-green-verify"></a>
+## Step 6: Create and monitor an CodeDeploy deployment<a name="create-blue-green-verify"></a>
 
 Use the following steps to create and upload an application specification file \(AppSpec file\) and an CodeDeploy deployment\.
 
@@ -456,7 +456,7 @@ Use the following steps to create and upload an application specification file \
       }
       ```
 
-## Step 7: Clean Up<a name="create-blue-green-cleanup"></a>
+## Step 7: Clean up<a name="create-blue-green-cleanup"></a>
 
 When you have finished this tutorial, clean up the resources associated with it to avoid incurring charges for resources that you aren't using\.
 

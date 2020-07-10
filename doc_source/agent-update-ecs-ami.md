@@ -10,7 +10,7 @@ Agent updates do not apply to Windows container instances\. We recommend that yo
 
 **To update the `ecs-init` package on an Amazon ECS\-optimized AMI**
 
-1. Log in to your container instance via SSH\. For more information, see [Connect to Your Container Instance](instance-connect.md)\.
+1. Log in to your container instance via SSH\. For more information, see [Connect to your container instance](instance-connect.md)\.
 
 1. Update the `ecs-init` package with the following command\.
 

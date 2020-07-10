@@ -1,4 +1,4 @@
-# Service Throttle Logic<a name="service-throttle-logic"></a>
+# Service throttle logic<a name="service-throttle-logic"></a>
 
 The Amazon ECS service scheduler includes logic that throttles how often service tasks are launched if they repeatedly fail to start\.
 
@@ -10,7 +10,7 @@ If tasks for an ECS service repeatedly fail to enter the `RUNNING` state \(progr
 
 Amazon ECS does not ever stop a failing service from retrying, nor does it attempt to modify it in any way other than increasing the time between restarts\. The service throttle logic does not provide any user\-tunable parameters\.
 
-If you update your service to use a new task definition, your service returns to a normal, non\-throttled state immediately\. For more information, see [Updating a Service](update-service.md)\.
+If you update your service to use a new task definition, your service returns to a normal, non\-throttled state immediately\. For more information, see [Updating a service](update-service.md)\.
 
 The following are some common causes that trigger this logic:
 + A lack of resources with which to host your task, such as ports, memory, or CPU units in your cluster\. In this case, you also see the [insufficient resource service event message](service-event-messages.md#service-event-messages-1)\.

@@ -1,8 +1,8 @@
-# Amazon ECS Task Placement Constraints<a name="task-placement-constraints"></a>
+# Amazon ECS task placement constraints<a name="task-placement-constraints"></a>
 
-A *task placement constraint* is a rule that is considered during task placement\. Task placement constraints can be specified when either running a task or creating a new service\. The task placement constraints can be updated for existing services as well\. For more information, see [Amazon ECS Task Placement](task-placement.md)\.
+A *task placement constraint* is a rule that is considered during task placement\. Task placement constraints can be specified when either running a task or creating a new service\. The task placement constraints can be updated for existing services as well\. For more information, see [Amazon ECS task placement](task-placement.md)\.
 
-## Constraint Types<a name="constraint-types"></a>
+## Constraint types<a name="constraint-types"></a>
 
 Amazon ECS supports the following types of task placement constraints:
 
@@ -10,7 +10,7 @@ Amazon ECS supports the following types of task placement constraints:
 Place each task on a different container instance\. This task placement constraint can be specified when either running a task or creating a new service\.
 
 `memberOf`  
-Place tasks on container instances that satisfy an expression\. For more information about the expression syntax for constraints, see [Cluster Query Language](cluster-query-language.md)\.  
+Place tasks on container instances that satisfy an expression\. For more information about the expression syntax for constraints, see [Cluster query language](cluster-query-language.md)\.  
 The `memberOf` task placement constraint can be specified with the following actions:  
 + Running a task
 + Creating a new service
@@ -19,7 +19,9 @@ The `memberOf` task placement constraint can be specified with the following act
 
 ## Attributes<a name="attributes"></a>
 
-You can add custom metadata to your container instances, known as *attributes*\. Each attribute has a name and an optional string value\. You can use the built\-in attributes provided by Amazon ECS or define custom attributes\.Built\-in Attributes
+You can add custom metadata to your container instances, known as *attributes*\. Each attribute has a name and an optional string value\. You can use the built\-in attributes provided by Amazon ECS or define custom attributes\.
+
+### Built\-in attributes<a name="ecs-automatic-attributes"></a>
 
 Amazon ECS automatically applies the following attributes to your container instances\.
 
@@ -42,20 +44,27 @@ The CPU architecture for the instance\. The possible values for this attribute a
 The VPC the instance was launched into\. An example value for this attribute is `vpc-1234abcd`\.
 
 `ecs.subnet-id`  
-The subnet the instance is using\. An example value for this attribute is `subnet-1234abcd`\.Optional Attributes
+The subnet the instance is using\. An example value for this attribute is `subnet-1234abcd`\.
 
-Amazon ECS may add the following attribute to your container instances\.
+### Optional attributes<a name="ecs-optional-attributes"></a>
+
+Amazon ECS may add the following attributes to your container instances\.
 
 `ecs.awsvpc-trunk-id`  
-If this attribute exists, the instance has a trunk network interface\. For more information, see [Elastic Network Interface Trunking](container-instance-eni.md)\.
+If this attribute exists, the instance has a trunk network interface\. For more information, see [Elastic network interface trunking](container-instance-eni.md)\.
 
 `ecs.outpost-arn`  
 If this attribute exists, it contains the Amazon Resource Name \(ARN\) of the Outpost\. For more information, see [Amazon Elastic Container Service on AWS Outposts](ecs-on-outposts.md)\.
 
-**Custom Attributes**  
+### Custom attributes<a name="ecs-custom-attributes"></a>
+
 You can apply custom attributes to your container instances\. For example, you can define an attribute with the name "stack" and a value of "prod"\.
 
-## Adding an Attribute<a name="add-attribute"></a>
+When specifying custom attributes, the following should be considered\.
++ The `name` must contain between 1 and 128 characters and name may contain letters \(uppercase and lowercase\), numbers, hyphens, underscores, forward slashes, back slashes, or periods\.
++ The `value` must contain between 1 and 128 characters and may contain letters \(uppercase and lowercase\), numbers, hyphens, underscores, periods, at signs \(@\), forward slashes, back slashes, colons, or spaces\. The value cannot contain any leading or trailing whitespace\.
+
+## Adding an attribute<a name="add-attribute"></a>
 
 You can add custom attributes at instance registration time using the container agent or manually, using the AWS Management Console\. For more information about using the container agent, see [Amazon ECS Container Agent Configuration Parameters](ecs-agent-config.md#ecs-instance-attributes)\.
 
@@ -94,7 +103,7 @@ The following example adds the custom attributes "stack=prod" and "project=a" to
 aws ecs put-attributes --attributes name=stack,value=prod,targetId=arn name=project,value=a,targetId=arn
 ```
 
-## Filtering by Attribute<a name="filter-attribute"></a>
+## Filtering by attribute<a name="filter-attribute"></a>
 
 You can apply a filter for your container instances, allowing you to see custom attributes\.
 
@@ -115,44 +124,44 @@ You can apply a filter for your container instances, allowing you to see custom 
 1. Add additional attributes to the filter as needed\. Remove an attribute by choosing the **X** next to it\.
 
 **Filter container instances by attribute using the AWS CLI**  
-The following examples demonstrate how to filter container instances by attribute using the [list\-constainer\-instances](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-container-instances.html) command\. For more information about the filter syntax, see [Cluster Query Language](cluster-query-language.md)\.
+The following examples demonstrate how to filter container instances by attribute using the [list\-constainer\-instances](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-container-instances.html) command\. For more information about the filter syntax, see [Cluster query language](cluster-query-language.md)\.
 
-**Example: Built\-in Attribute**  
+**Example: Built\-in attribute**  
 The following example uses built\-in attributes to list the g2\.2xlarge instances\.
 
 ```
 aws ecs list-container-instances --filter "attribute:ecs.instance-type == g2.2xlarge"
 ```
 
-**Example: Custom Attribute**  
+**Example: Custom attribute**  
 The following example lists the instances with the custom attribute "stack=prod"\.
 
 ```
 aws ecs list-container-instances --filter "attribute:stack == prod"
 ```
 
-**Example: Exclude an Attribute Value**  
+**Example: Exclude an attribute value**  
 The following example lists the instances with the custom attribute "stack" unless the attribute value is "prod"\.
 
 ```
 aws ecs list-container-instances --filter "attribute:stack != prod"
 ```
 
-**Example: Multiple Attribute Values**  
+**Example: Multiple attribute values**  
 The following example uses built\-in attributes to list the instances of type `t2.small` or `t2.medium`\.
 
 ```
 aws ecs list-container-instances --filter "attribute:ecs.instance-type in [t2.small, t2.medium]"
 ```
 
-**Example: Multiple Attributes**  
+**Example: Multiple attributes**  
 The following example uses built\-in attributes to list the T2 instances in the us\-east\-1a Availability Zone\.
 
 ```
 aws ecs list-container-instances --filter "attribute:ecs.instance-type =~ t2.* and attribute:ecs.availability-zone == us-east-1a"
 ```
 
-## Task Groups<a name="task-groups"></a>
+## Task groups<a name="task-groups"></a>
 
 You can identify a set of related tasks as a *task group*\. All tasks with the same task group name are considered as a set when performing spread placement\. For example, suppose that you are running different applications in one cluster, such as databases and web servers\. To ensure that your databases are balanced across Availability Zones, add them to a task group named "databases" and then use this task group as a constraint for task placement\.
 
@@ -165,7 +174,7 @@ For tasks launched by the service scheduler, the task group name is the name of 
 + Each task can be in exactly one group\.
 + After launching a task, you cannot modify its task group\.
 
-## Example Constraints<a name="constraint-examples"></a>
+## Example constraints<a name="constraint-examples"></a>
 
 The following are task placement constraint examples\.
 

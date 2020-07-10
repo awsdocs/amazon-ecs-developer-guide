@@ -1,4 +1,4 @@
-# Task Retirement<a name="task-retirement"></a>
+# Task retirement<a name="task-retirement"></a>
 
 Amazon ECS task retirement affects tasks of both Fargate and EC2 launch types and you will be notified by email of the pending retirement\.
 
@@ -10,9 +10,9 @@ If your task is scheduled for retirement, you receive an email before the event 
 
 When a task reaches its scheduled retirement date, it is stopped or terminated by AWS\. If the task is part of a service, then the task is automatically stopped and the service scheduler launches a new one to replace it\. If you are using standalone tasks, then you receive notification of the task retirement and must launch new tasks to replace them\.
 
-## Working with Tasks Scheduled for Retirement<a name="task-retirement-working"></a>
+## Working with tasks scheduled for retirement<a name="task-retirement-working"></a>
 
-If the task is part of a service, then the task is automatically stopped, The service scheduler starts a new one to replace it after it reaches its scheduled retirement date\. If you would like to update your service tasks before the retirement date, you can use the following steps\. For more information, see [Updating a Service](update-service.md)\.
+If the task is part of a service, then the task is automatically stopped, The service scheduler starts a new one to replace it after it reaches its scheduled retirement date\. If you would like to update your service tasks before the retirement date, you can use the following steps\. For more information, see [Updating a service](update-service.md)\.
 
 **To update a running service \(AWS Management Console\)**
 
@@ -60,4 +60,4 @@ For tasks using the Fargate launch type, forcing a new deployment launches new t
    aws ecs update-service --service serviceArn --force-new-deployment --cluster cluster_name --region region
    ```
 
-If you are using standalone tasks, then you can start a new task to replace it\. For more information, see [Running Tasks](ecs_run_task.md)\.
+If you are using standalone tasks, then you can start a new task to replace it\. For more information, see [Running tasks](ecs_run_task.md)\.

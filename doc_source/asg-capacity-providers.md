@@ -90,7 +90,7 @@ Use the following command to create a new capacity provider\.
 
 When a new Amazon ECS cluster is created, you can specify one or more capacity providers to associate with the cluster\. The associated capacity providers determine the infrastructure to run your tasks on\.
 
-For AWS Management Console steps, see [Creating a Cluster](create_cluster.md)\.
+For AWS Management Console steps, see [Creating a cluster](create_cluster.md)\.
 
 ### To create a cluster with a capacity provider \(AWS CLI\)<a name="create-cluster-cli"></a>
 

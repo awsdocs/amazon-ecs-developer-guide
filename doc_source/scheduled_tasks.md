@@ -1,4 +1,4 @@
-# Scheduled Tasks \(`cron`\)<a name="scheduled_tasks"></a>
+# Scheduled tasks \(`cron`\)<a name="scheduled_tasks"></a>
 
 Amazon ECS supports the ability to schedule tasks on either a `cron`\-like schedule or in a response to CloudWatch Events\. This is supported for Amazon ECS tasks using both the Fargate and EC2 launch types\.
 
@@ -23,7 +23,7 @@ This feature is not yet available for Fargate tasks in the following Regions:
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. Choose the cluster in which to create your scheduled task\. If you do not have any clusters, see [Creating a Cluster](create_cluster.md) for steps on creating a new cluster\.
+1. Choose the cluster in which to create your scheduled task\. If you do not have any clusters, see [Creating a cluster](create_cluster.md) for steps on creating a new cluster\.
 
 1. On the **Cluster: *cluster\-name*** page, choose **Scheduled Tasks**, **Create**\.
 
@@ -39,7 +39,7 @@ This feature is not yet available for Fargate tasks in the following Regions:
 
    1. For **Target id**, enter a unique identifier for your target\. Up to 64 letters, numbers, periods, hyphens, and underscores are allowed\.
 
-   1. For **Launch type**, choose the launch type for the tasks in your service\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.
+   1. For **Launch type**, choose the launch type for the tasks in your service\. For more information, see [Amazon ECS launch types](launch_types.md)\.
 
    1. For **Task definition**, choose the family and revision \(family:revision\) of the task definition to run for this target\.
 

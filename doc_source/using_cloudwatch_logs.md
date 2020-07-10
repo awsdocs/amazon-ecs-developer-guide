@@ -1,4 +1,4 @@
-# Using CloudWatch Logs with Container Instances<a name="using_cloudwatch_logs"></a>
+# Using CloudWatch Logs with container instances<a name="using_cloudwatch_logs"></a>
 
 You can configure your container instances to send log information to CloudWatch Logs\. This enables you to view different logs from your container instances in one convenient location\. This topic helps you get started using CloudWatch Logs on your container instances that were launched with the Amazon ECS\-optimized Amazon Linux AMI\.
 
@@ -6,7 +6,7 @@ For information about sending container logs from your tasks to CloudWatch Logs,
 
 **Topics**
 + [CloudWatch Logs IAM Policy](#cwl_iam_policy)
-+ [Installing and Configuring the CloudWatch Agent](#installing_cwl_agent)
++ [Installing and configuring the CloudWatch agent](#installing_cwl_agent)
 + [Viewing CloudWatch Logs](#viewing_cwlogs)
 
 ## CloudWatch Logs IAM Policy<a name="cwl_iam_policy"></a>
@@ -61,11 +61,11 @@ Before your container instances can send log data to CloudWatch Logs, you must c
 
 1. Select the **ECS\-CloudWatchLogs** policy and choose **Attach policy**\.
 
-## Installing and Configuring the CloudWatch Agent<a name="installing_cwl_agent"></a>
+## Installing and configuring the CloudWatch agent<a name="installing_cwl_agent"></a>
 
 After you have added the `ECS-CloudWatchLogs` policy to your `ecsInstanceRole`, you can install the CloudWatch agent on your container instances\.
 
-For more information, see [Download and Configure the CloudWatch Agent Using the Command Line](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/download-cloudwatch-agent-commandline.html) in the *Amazon CloudWatch User Guide*\.
+For more information, see [Download and configure the CloudWatch agent using the command line](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/download-cloudwatch-agent-commandline.html) in the *Amazon CloudWatch User Guide*\.
 
 ## Viewing CloudWatch Logs<a name="viewing_cwlogs"></a>
 

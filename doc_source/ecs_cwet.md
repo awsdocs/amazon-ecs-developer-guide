@@ -2,11 +2,11 @@
 
 In this tutorial, you set up a simple AWS Lambda function that listens for Amazon ECS task events and writes them out to a CloudWatch Logs log stream\.
 
-## Prerequisite: Set Up a Test Cluster<a name="cwet_step_1"></a>
+## Prerequisite: Set up a test cluster<a name="cwet_step_1"></a>
 
-If you do not have a running cluster to capture events from, follow the steps in [Creating a Cluster](create_cluster.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Lambda function correctly\. 
+If you do not have a running cluster to capture events from, follow the steps in [Creating a cluster](create_cluster.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Lambda function correctly\. 
 
-## Step 1: Create the Lambda Function<a name="cwet_step_2"></a>
+## Step 1: Create the Lambda function<a name="cwet_step_2"></a>
 
 In this procedure, you create a simple Lambda function to serve as a target for Amazon ECS event stream messages\. 
 
@@ -41,7 +41,7 @@ In this procedure, you create a simple Lambda function to serve as a target for 
 
 1. Choose **Save**\.
 
-## Step 2: Register Event Rule<a name="cwet_step_3"></a>
+## Step 2: Register an event rule<a name="cwet_step_3"></a>
 
  Next, you create a CloudWatch Events event rule that captures task events coming from your Amazon ECS clusters\. This rule captures all events coming from all clusters within the account where it is defined\. The task messages themselves contain information about the event source, including the cluster on which it resides, that you can use to filter and sort events programmatically\. 
 
@@ -62,7 +62,7 @@ When you use the AWS Management Console to create an event rule, the console aut
 
 1. For **Rule definition**, type a name and description for your rule and choose **Create rule**\.
 
-## Step 3: Test Your Rule<a name="cwet_step_4"></a>
+## Step 3: Test your rule<a name="cwet_step_4"></a>
 
  Finally, you create a CloudWatch Events event rule that captures task events coming from your Amazon ECS clusters\. This rule captures all events coming from all clusters within the account where it is defined\. The task messages themselves contain information about the event source, including the cluster on which it resides, that you can use to filter and sort events programmatically\. 
 

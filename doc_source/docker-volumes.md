@@ -1,4 +1,4 @@
-# Docker Volumes<a name="docker-volumes"></a>
+# Docker volumes<a name="docker-volumes"></a>
 
 When using Docker volumes, the built\-in `local` driver or a third\-party volume driver can be used\. Docker volumes are managed by Docker and a directory is created in `/var/lib/docker/volumes` on the container instance that contains the volume data\.
 
@@ -10,7 +10,7 @@ Some common use cases for Docker volumes are:
 + To define an empty, nonpersistent data volume and mount it on multiple containers within the same task
 + To provide a data volume to your task that is managed by a third\-party driver
 
-## Docker Volume Considerations<a name="docker-volume-considerations"></a>
+## Docker volume considerations<a name="docker-volume-considerations"></a>
 
 The following should be considered when using Docker volumes:
 + Docker volumes are only supported when using the EC2 launch type\.
@@ -27,7 +27,7 @@ The following should be considered when using Docker volumes:
     sudo stop ecs && sudo start ecs
     ```
 
-## Specifying a Docker Volume in your Task Definition<a name="specify-volume-config"></a>
+## Specifying a Docker volume in your task definition<a name="specify-volume-config"></a>
 
 Before your containers can use data volumes, you must specify the volume and mount point configurations in your task definition\. This section describes the volume configuration for a container\. For tasks that use a Docker volume, specify a `dockerVolumeConfiguration`\. For tasks that use a bind mount host volume, specify a `host` and optional `sourcePath`\.
 

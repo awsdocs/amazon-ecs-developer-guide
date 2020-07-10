@@ -1,10 +1,10 @@
-# Cluster Query Language<a name="cluster-query-language"></a>
+# Cluster query language<a name="cluster-query-language"></a>
 
 Cluster queries are expressions that enable you to group objects\. For example, you can group container instances by attributes such as Availability Zone, instance type, or custom metadata\. For more information, see [Attributes](task-placement-constraints.md#attributes)\.
 
-After you have defined a group of container instances, you can customize Amazon ECS to place tasks on container instances based on group\. For more information, see [Running Tasks](ecs_run_task.md) and [Creating a service](create-service.md)\. You can also apply a group filter when listing container instances\. For more information, see [Filtering by Attribute](task-placement-constraints.md#filter-attribute)\.
+After you have defined a group of container instances, you can customize Amazon ECS to place tasks on container instances based on group\. For more information, see [Running tasks](ecs_run_task.md) and [Creating a service](create-service.md)\. You can also apply a group filter when listing container instances\. For more information, see [Filtering by attribute](task-placement-constraints.md#filter-attribute)\.
 
-## Expression Syntax<a name="expression-syntax"></a>
+## Expression syntax<a name="expression-syntax"></a>
 
 Expressions have the following syntax:
 
@@ -40,7 +40,7 @@ Select container instances by number of running tasks\. You can use this filter 
 Valid operators: equals \(==\), not\_equals \(\!=\), greater\_than \(>\), greater\_than\_equal \(>=\), less\_than \(<\), less\_than\_equal \(<=\)
 
 `task:group`  
-Select container instances by task group\. For more information, see [Task Groups](task-placement-constraints.md#task-groups)\.
+Select container instances by task group\. For more information, see [Task groups](task-placement-constraints.md#task-groups)\.
 
 **Operator**  
 The comparison operator\. The following operators are supported\.
@@ -75,7 +75,7 @@ The `in` and `not_in` operators expect an argument list as the argument\. You sp
 
 The matches and not\_matches operators expect an argument that conforms to the Java regular expression syntax\. For more information, see [java\.util\.regex\.Pattern](http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html)\.
 
-**Compound Expressions**
+**Compound expressions**
 
 You can combine expressions using the following Boolean operators:
 + &&, and
@@ -88,7 +88,7 @@ You can specify precedence using parentheses:
 (expression1 or expression2) and expression3
 ```
 
-## Example Expressions<a name="expression-examples"></a>
+## Example expressions<a name="expression-examples"></a>
 
 The following are example expressions\.
 

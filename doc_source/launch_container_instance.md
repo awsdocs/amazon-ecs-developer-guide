@@ -1,6 +1,6 @@
 # Launching an Amazon ECS Container Instance<a name="launch_container_instance"></a>
 
-You can launch an Amazon ECS container instance using the AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. After you've launched your instance, you can use it to run tasks\.
+You can launch an Amazon ECS container instance using the AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. After you've launched your instance, you can use it to run tasks\.
 
 **To launch a container instance**
 
@@ -105,7 +105,7 @@ If you launch your container instances using an Amazon EC2 Auto Scaling group, t
 
 1. On the **Configure Security Group** page, use a security group to define firewall rules for your container instance\. These rules specify which incoming network traffic is delivered to your container instance\. All other traffic is ignored\. Select or create a security group as follows, and then choose **Review and Launch**\.
 
-1. On the **Review Instance Launch** page, under **Security Groups**, you see that the wizard created and selected a security group for you\. Instead, select the security group that you created in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) using the following steps:
+1. On the **Review Instance Launch** page, under **Security Groups**, you see that the wizard created and selected a security group for you\. Instead, select the security group that you created in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) using the following steps:
 
    1. Choose **Edit security groups**\.
 

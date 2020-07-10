@@ -1,13 +1,13 @@
-# Amazon ECS cluster capacity providers<a name="cluster-capacity-providers"></a>
+# Amazon ECS capacity providers<a name="cluster-capacity-providers"></a>
 
-Amazon ECS cluster capacity providers determine the infrastructure to use for your tasks\. Each cluster can have one or more capacity providers and an optional default capacity provider strategy\. The capacity provider strategy determines how the tasks are spread across the cluster's capacity providers\. When you run a task or create a service, you may either use the cluster's default capacity provider strategy or specify a capacity provider strategy that overrides the cluster's default strategy\.
+Amazon ECS capacity providers enable you to manage the infrastructure the tasks in your clusters use\. Each cluster can have one or more capacity providers and an optional default capacity provider strategy\. The capacity provider strategy determines how the tasks are spread across the cluster's capacity providers\. When you run a task or create a service, you may either use the cluster's default capacity provider strategy or specify a capacity provider strategy that overrides the cluster's default strategy\.
 
 **Note**  
-When a capacity provider strategy is used, a launch type may not be specified and vice versa\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
+When a capacity provider strategy is used, a launch type may not be specified and vice versa\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 
-## Cluster capacity provider concepts<a name="capacity-providers-concepts"></a>
+## Capacity provider concepts<a name="capacity-providers-concepts"></a>
 
-Cluster capacity providers consist of the following components\.
+Capacity providers consist of the following components\.
 
 Capacity provider  
 A *capacity provider* is used in association with a cluster to determine the infrastructure that a task runs on\.  
@@ -24,13 +24,12 @@ The *weight* value designates the relative percentage of the total number of lau
 Default capacity provider strategy  
 A *default capacity provider strategy* is associated with each Amazon ECS cluster\. This determines the capacity provider strategy the cluster will use if no other capacity provider strategy or launch type is specified when running a task or creating a service\.
 
-## Cluster capacity provider considerations<a name="capacity-providers-considerations"></a>
+## Capacity provider considerations<a name="capacity-providers-considerations"></a>
 
-The following should be considered when using cluster capacity providers:
+The following should be considered when using capacity providers:
 + When you specify a capacity provider strategy, the number of capacity providers that can be specified is limited to six\.
 + A cluster may contain a mix of both Auto Scaling group capacity providers and Fargate capacity providers, however when specifying a capacity provider strategy they may only contain one or the other but not both\.
 + A cluster may contain a mix of tasks and services using both capacity providers and launch types\. A service may also be updated to use a capacity provider strategy rather than a launch type, however you must force a new deployment when doing so\.
-+ When you specify a capacity provider strategy, the `base` value is only supported when running tasks\. When creating a service, the capacity provider strategy `base` parameter is not supported\.
 + When using managed termination protection, managed scaling must also be used otherwise managed termination protection will not work\.
-+ Using cluster capacity providers is not supported when using the blue/green deployment type for your services\.
-+ Using cluster capacity providers is not supported when using Classic Load Balancers for your services\.
++ Using capacity providers is not supported when using the blue/green deployment type for your services\.
++ Using capacity providers is not supported when using Classic Load Balancers for your services\.

@@ -1,32 +1,32 @@
-# Tutorial: Using Cluster Auto Scaling with the AWS CLI<a name="tutorial-cluster-auto-scaling-cli"></a>
+# Tutorial: Using cluster auto scaling with the AWS CLI<a name="tutorial-cluster-auto-scaling-cli"></a>
 
 Amazon ECS cluster auto scaling can be set up and configured using the AWS Management Console, AWS CLI, or Amazon ECS API\.
 
 This tutorial walks you through creating the resources for cluster auto scaling using the AWS CLI\. Where resources require a name, we will use the prefix `CLItutorial` to ensure they all have unique names and to make them easy to locate\.
 
-For an AWS Management Console tutorial, see [Tutorial: Using Cluster Auto Scaling with the AWS Management Console](tutorial-cluster-auto-scaling-console.md)\.
+For an AWS Management Console tutorial, see [Tutorial: Using cluster auto scaling with the AWS Management Console](tutorial-cluster-auto-scaling-console.md)\.
 
 **Topics**
 + [Prerequisites](#cli-tutorial-prereqs)
-+ [Step 1: Create the Auto Scaling Resources](#cli-tutorial-asg)
-+ [Step 2: Create the Amazon ECS Resources](#cli-tutorial-cluster)
-+ [Step 3: Register a Task Definition](#cli-tutorial-register-task-definition)
-+ [Step 4: Run a Task](#cli-tutorial-run-task)
++ [Step 1: Create the Auto Scaling resources](#cli-tutorial-asg)
++ [Step 2: Create the Amazon ECS resources](#cli-tutorial-cluster)
++ [Step 3: Register a task definition](#cli-tutorial-register-task-definition)
++ [Step 4: Run a task](#cli-tutorial-run-task)
 + [Step 5: Verify](#cli-tutorial-verify)
-+ [Step 6: Clean Up](#cli-tutorial-cleanup)
++ [Step 6: Clean up](#cli-tutorial-cleanup)
 
 ## Prerequisites<a name="cli-tutorial-prereqs"></a>
 
 This tutorial assumes that the following prerequisites have been completed:
 + The latest version of the AWS CLI is installed and configured\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
-+ The steps in [Setting Up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
++ The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + The Amazon ECS container instance IAM role is created\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 + The Amazon ECS service\-linked IAM role is created\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\.
 + The Auto Scaling service\-linked IAM role is created\. For more information, see [Service\-Linked Roles for Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-service-linked-role.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 
-## Step 1: Create the Auto Scaling Resources<a name="cli-tutorial-asg"></a>
+## Step 1: Create the Auto Scaling resources<a name="cli-tutorial-asg"></a>
 
 This step walks you through creating an Auto Scaling launch configuration and two Auto Scaling groups\. This step requires that you already have a VPC created along with at least one public subnet and a security group\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 
@@ -162,7 +162,7 @@ Specifying `true` for the `NewInstancesProtectedFromScaleIn` value is required w
       }
       ```
 
-## Step 2: Create the Amazon ECS Resources<a name="cli-tutorial-cluster"></a>
+## Step 2: Create the Amazon ECS resources<a name="cli-tutorial-cluster"></a>
 
 This step will walk you through creating two Amazon ECS capacity providers and one Amazon ECS cluster\. You can associate one Auto Scaling group with each capacity provider\. This tutorial uses the `us-west-2` Region\.
 
@@ -268,7 +268,7 @@ This step will walk you through creating two Amazon ECS capacity providers and o
 
 1. Create an Amazon ECS cluster\. The cluster name must match the name you specified in the user data script specified in the Auto Scaling launch configuration created in step 1 of this tutorial\. The capacity providers we created in the previous step will be associated with this cluster\.
 
-   When a task is run or a service is created, you specify a capacity provider strategy for the tasks to use\. Similarly, a default capacity provider strategy can be specified for a cluster\. This enables you to run tasks and create services without specifying a capacity provider strategy, as these tasks and actions will use the cluster's default capacity provider strategy\. When specifying a default capacity provider strategy, you may optionally specify both a base and weight value\. These values are useful when you are associating multiple capacity providers with a cluster\. For more information, see [Cluster capacity provider concepts](cluster-capacity-providers.md#capacity-providers-concepts)\.
+   When a task is run or a service is created, you specify a capacity provider strategy for the tasks to use\. Similarly, a default capacity provider strategy can be specified for a cluster\. This enables you to run tasks and create services without specifying a capacity provider strategy, as these tasks and actions will use the cluster's default capacity provider strategy\. When specifying a default capacity provider strategy, you may optionally specify both a base and weight value\. These values are useful when you are associating multiple capacity providers with a cluster\. For more information, see [Capacity provider concepts](cluster-capacity-providers.md#capacity-providers-concepts)\.
 
    ```
    aws ecs create-cluster --cluster-name CLItutorial-cluster --capacity-providers CLItutorial-capacityprovider CLItutorial-capacityprovider-burst --default-capacity-provider-strategy capacityProvider=CLItutorial-capacityprovider,weight=1 capacityProvider=CLItutorial-capacityprovider-burst,weight=1 --region us-west-2
@@ -426,9 +426,9 @@ This step will walk you through creating two Amazon ECS capacity providers and o
    }
    ```
 
-## Step 3: Register a Task Definition<a name="cli-tutorial-register-task-definition"></a>
+## Step 3: Register a task definition<a name="cli-tutorial-register-task-definition"></a>
 
-Before you can run a task on your cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses an `amazonlinux` image from Docker Hub and just sleeps\. For more information about the available task definition parameters, see [Amazon ECS Task Definitions](task_definitions.md)\.
+Before you can run a task on your cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses an `amazonlinux` image from Docker Hub and just sleeps\. For more information about the available task definition parameters, see [Amazon ECS Task definitions](task_definitions.md)\.
 
 **To register a task definition**
 
@@ -501,7 +501,7 @@ Before you can run a task on your cluster, you must register a task definition\.
    }
    ```
 
-## Step 4: Run a Task<a name="cli-tutorial-run-task"></a>
+## Step 4: Run a task<a name="cli-tutorial-run-task"></a>
 
 After you have registered a task definition for your account, you can run a task in the cluster\. For this tutorial, you run five instances of the `CLItutorial-taskdef:1` task definition in your `CLItutorial-cluster` cluster\.
 
@@ -773,7 +773,7 @@ At this point in the tutorial you should have two Auto Scaling groups with one c
    }
    ```
 
-## Step 6: Clean Up<a name="cli-tutorial-cleanup"></a>
+## Step 6: Clean up<a name="cli-tutorial-cleanup"></a>
 
 When you have finished this tutorial, clean up the resources associated with it to avoid incurring charges for resources that you aren't using\. Deleting capacity providers and task definitions are not supported, but there is no cost associated with these resources\.
 

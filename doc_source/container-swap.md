@@ -1,4 +1,4 @@
-# Managing Container Swap Space<a name="container-swap"></a>
+# Managing container swap space<a name="container-swap"></a>
 
 Amazon ECS enables you to control the usage of swap memory space on your Linux container instances at the container level\. Using a per\-container swap configuration, each container within a task definition can have swap enabled or disabled, and for those that have it enabled, the maximum amount of swap space used can be limited\. For example, latency\-critical containers can have swap disabled, whereas containers with high transient memory demands can have swap turned on to reduce the chances of out\-of\-memory errors when the container is under load\.
 
@@ -24,7 +24,7 @@ The following is an example showing the JSON syntax:
 }]
 ```
 
-## Container Swap Considerations<a name="container-swap-considerations"></a>
+## Container swap considerations<a name="container-swap-considerations"></a>
 
 Consider the following when you use a per\-container swap configuration\.
 + Swap space must be enabled and allocated on the container instance for the containers to use\.

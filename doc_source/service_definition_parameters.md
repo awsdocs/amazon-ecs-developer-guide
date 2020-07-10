@@ -1,17 +1,17 @@
-# Service Definition Parameters<a name="service_definition_parameters"></a>
+# Service definition parameters<a name="service_definition_parameters"></a>
 
 A service definition defines how to run your Amazon ECS service\. The following parameters can be specified in a service definition\.
 
-## Launch Type<a name="sd-launchtype"></a>
+## Launch type<a name="sd-launchtype"></a>
 
 `launchType`  
 Type: String  
 Valid values: `EC2` \| `FARGATE`  
 Required: No  
-The launch type on which to run your service\. If a launch type is not specified, `EC2` is used by default\. For more information, see [Amazon ECS Launch Types](launch_types.md)\.  
+The launch type on which to run your service\. If a launch type is not specified, `EC2` is used by default\. For more information, see [Amazon ECS launch types](launch_types.md)\.  
 If a `launchType` is specified, the `capacityProviderStrategy` parameter must be omitted\.
 
-## Capacity Provider Strategy<a name="sd-capacityproviderstrategy"></a>
+## Capacity provider strategy<a name="sd-capacityproviderstrategy"></a>
 
 `capacityProviderStrategy`  
 Type: Array of objects  
@@ -38,7 +38,7 @@ Valid range: Integers between 0 and 100,000\.
 Required: No  
 The base value designates how many tasks, at a minimum, to run on the specified capacity provider\. Only one capacity provider in a capacity provider strategy can have a base defined\.
 
-## Task Definition<a name="sd-taskdefinition"></a>
+## Task definition<a name="sd-taskdefinition"></a>
 
 `taskDefinition`  
 Type: String  
@@ -46,7 +46,7 @@ Required: No
 The `family` and `revision` \(`family:revision`\) or full Amazon Resource Name \(ARN\) of the task definition to run in your service\. If a `revision` is not specified, the latest `ACTIVE` revision of the specified family is used\.  
 A task definition must be specified when using the rolling update \(`ECS`\) deployment controller\.
 
-## Platform Version<a name="sd-platformversion"></a>
+## Platform version<a name="sd-platformversion"></a>
 
 `platformVersion`  
 Type: String  
@@ -62,14 +62,14 @@ Type: String
 Required: No  
 The short name or full Amazon Resource Name \(ARN\) of the cluster on which to run your service\. If you do not specify a cluster, the `default` cluster is assumed\.
 
-## Service Name<a name="sd-servicename"></a>
+## Service name<a name="sd-servicename"></a>
 
 `serviceName`  
 Type: String  
 Required: Yes  
 The name of your service\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. Service names must be unique within a cluster, but you can have similarly named services in multiple clusters within a Region or across multiple Regions\.
 
-## Scheduling Strategy<a name="sd-schedulingstrategy"></a>
+## Scheduling strategy<a name="sd-schedulingstrategy"></a>
 
 `schedulingStrategy`  
 Type: String  
@@ -82,7 +82,7 @@ There are two service scheduler strategies available:
 **Note**  
 Fargate tasks do not support the `DAEMON` scheduling strategy\.
 
-## Desired Count<a name="sd-desiredcount"></a>
+## Desired count<a name="sd-desiredcount"></a>
 
 `desiredCount`  
 Type: Integer  
@@ -90,7 +90,7 @@ Required: No
 The number of instantiations of the specified task definition to place and keep running on your cluster\.  
 This parameter is required if the `REPLICA` scheduling strategy is used\. If the service uses the `DAEMON` scheduling strategy, this parameter is optional\.
 
-## Deployment Configuration<a name="sd-deploymentconfiguration"></a>
+## Deployment configuration<a name="sd-deploymentconfiguration"></a>
 
 `deploymentConfiguration`  
 Type: Object  
@@ -118,12 +118,12 @@ The default value for a replica service for `minimumHealthyPercent` is 100%\. Th
 The minimum number of healthy tasks during a deployment is the `desiredCount` multiplied by the `minimumHealthyPercent`/100, rounded up to the nearest integer value\.  
 If a service is using either the blue/green \(`CODE_DEPLOY`\) or `EXTERNAL` deployment types and tasks that use the EC2 launch type, the **minimum healthy percent** value is set to the default value and is used to define the lower limit on the number of the tasks in the service that remain in the `RUNNING` state while the container instances are in the `DRAINING` state\. If the tasks in the service use the Fargate launch type, the minimum healthy percent value is not used, although it is returned when describing your service\.
 
-## Deployment Controller<a name="sd-deploymentcontroller"></a>
+## Deployment controller<a name="sd-deploymentcontroller"></a>
 
 `deploymentController`  
 Type: Object  
 Required: No  
-The deployment controller to use for the service\. If no deploymenet controller is specified, the `ECS` controller is used\. For more information, see [Amazon ECS Deployment Types](deployment-types.md)\.    
+The deployment controller to use for the service\. If no deploymenet controller is specified, the `ECS` controller is used\. For more information, see [Amazon ECS Deployment types](deployment-types.md)\.    
 `type`  
 Type: String  
 Valid values: `ECS` \| `CODE_DEPLOY` \| `EXTERNAL`  
@@ -136,7 +136,7 @@ The blue/green \(`CODE_DEPLOY`\) deployment type uses the blue/green deployment 
 `EXTERNAL`  
 The external deployment type enables you to use any third party deployment controller for full control over the deployment process for an Amazon ECS service\.
 
-## Task Placement<a name="sd-taskplacement"></a>
+## Task placement<a name="sd-taskplacement"></a>
 
 `placementConstraints`  
 Type: Array of objects  
@@ -149,7 +149,7 @@ The type of constraint\. Use `distinctInstance` to ensure that each task in a pa
 `expression`  
 Type: String  
 Required: No  
-A cluster query language expression to apply to the constraint\. Note you cannot specify an expression if the constraint type is `distinctInstance`\. For more information, see [Cluster Query Language](cluster-query-language.md)\.
+A cluster query language expression to apply to the constraint\. Note you cannot specify an expression if the constraint type is `distinctInstance`\. For more information, see [Cluster query language](cluster-query-language.md)\.
 
 `placementStrategy`  
 Type: Array of objects  
@@ -194,7 +194,7 @@ Valid values: `TASK_DEFINITION` \| `SERVICE`
 Required: No  
 Specifies whether to copy the tags from the task definition or the service to the tasks in the service\. If no value is specified, the tags are not copied\. Tags can only be copied to the tasks within the service during service creation\. To add tags to a task after service creation, use the `TagResource` API action\.
 
-## Network Configuration<a name="sd-networkconfiguration"></a>
+## Network configuration<a name="sd-networkconfiguration"></a>
 
 `networkConfiguration`  
 Type: Object  
@@ -278,14 +278,14 @@ Type: Integer
 Required: No  
 The port value, already specified in the task definition, to be used for your service discovery service\. If the task definition your service task specifies uses the `bridge` or `host` network mode, you must specify a `containerName` and `containerPort` combination from the task definition\. If the task definition your service task specifies uses the `awsvpc` network mode and a type SRV DNS record is used, you must specify either a `containerName` and `containerPort` combination or a `port` value, but not both\.
 
-## Client Token<a name="sd-clienttoken"></a>
+## Client token<a name="sd-clienttoken"></a>
 
 `clientToken`  
 Type: String  
 Required: No  
 Unique, case\-sensitive identifier you provide to ensure the idempotency of the request\. Up to 32 ASCII characters are allowed\.
 
-## Service Definition Template<a name="sd-template"></a>
+## Service definition template<a name="sd-template"></a>
 
 The following shows the JSON representation of an Amazon ECS service definition\.
 

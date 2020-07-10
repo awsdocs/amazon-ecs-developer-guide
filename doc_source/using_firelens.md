@@ -1,4 +1,4 @@
-# Custom Log Routing<a name="using_firelens"></a>
+# Custom log routing<a name="using_firelens"></a>
 
 FireLens for Amazon ECS enables you to use task definition parameters to route logs to an AWS service or AWS Partner Network \(APN\) destination for log storage and analytics\. FireLens works with [Fluentd](https://www.fluentd.org/) and [Fluent Bit](https://fluentbit.io/)\. We provide the AWS for Fluent Bit image or you can use your own Fluentd or Fluent Bit image\.
 
@@ -13,7 +13,7 @@ The following should be considered when using FireLens for Amazon ECS:
 **Note**  
 If you use dependency condition parameters in container definitions with a FireLens configuration, ensure that each container has a `START` or `HEALTHY` condition requirement\.
 
-## Required IAM Permissions<a name="firelens-iam"></a>
+## Required IAM permissions<a name="firelens-iam"></a>
 
 To use this feature, you must create an IAM role for your tasks that provides the permissions necessary to use any AWS services that the tasks require\. For example, if a container is routing logs to Kinesis Data Firehose, then the task would require permission to call the `firehose:PutRecordBatch` API\. For more information, see [Adding and Removing IAM Identity Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) in the *IAM User Guide*\.
 
@@ -68,7 +68,7 @@ Your task may also require the Amazon ECS task execution role under the followin
   }
   ```
 
-## Using the AWS for Fluent Bit Image<a name="firelens-using-fluentbit"></a>
+## Using the AWS for Fluent Bit image<a name="firelens-using-fluentbit"></a>
 
 AWS provides a Fluent Bit image with plugins for both CloudWatch Logs and Kinesis Data Firehose\. We recommend using Fluent Bit as your log router because it has a lower resource utilization rate than Fluentd\. For more information, see [CloudWatch Logs for Fluent Bit](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit) and [Amazon Kinesis Firehose for Fluent Bit](https://github.com/aws/amazon-kinesis-firehose-for-fluent-bit)\.
 
@@ -100,18 +100,18 @@ The **AWS for Fluent Bit** image is available on [Docker Hub](https://hub.docker
 |  China \(Beijing\)  |  cn\-north\-1  |  `128054284489.dkr.ecr.cn-north-1.amazonaws.com.cn/aws-for-fluent-bit:latest`  | 
 |  China \(Ningxia\)  |  cn\-northwest\-1  |  `128054284489.dkr.ecr.cn-northwest-1.amazonaws.com.cn/aws-for-fluent-bit:latest`  | 
 
-## Creating a Task Definition that Uses a FireLens Configuration<a name="firelens-taskdef"></a>
+## Creating a task definition that uses a FireLens configuration<a name="firelens-taskdef"></a>
 
 To use custom log routing with FireLens you must specify the following in your task definition:
-+ A log router container containing a FireLens configuration\. This container must be marked as essential\.
++ A log router container containing a FireLens configuration\. We recommend that the container be marked as `essential`\.
 + One or more application containers that contain a log configuration specifying the `awsfirelens` log driver\.
 + A task IAM role ARN containing the permissions needed for the task to route the logs\.
 
-When creating a new task definition using the AWS Management Console, there is a FireLens integration section that makes it easy to add a log router container\. For more information, see [Creating a Task Definition](create-task-definition.md)\.
+When creating a new task definition using the AWS Management Console, there is a FireLens integration section that makes it easy to add a log router container\. For more information, see [Creating a task definition](create-task-definition.md)\.
 
 Amazon ECS converts the log configuration and generates the Fluentd or Fluent Bit output configuration\. The output configuration is mounted in the log routing container at `/fluent-bit/etc/fluent-bit.conf` for Fluent Bit and `/fluentd/etc/fluent.conf` for Fluentd\.
 
-To demonstrate how this works, the following is an example task definition example containing a log router container that uses Fluent Bit to route its logs to CloudWatch Logs and an application container that uses a log configuration to route logs to Amazon Kinesis Data Firehose\.
+The following task definition example defines a log router container that uses Fluent Bit to route its logs to CloudWatch Logs\. It also defines an application container that uses a log configuration to route logs to Amazon Kinesis Data Firehose\.
 
 ```
 {
@@ -167,7 +167,7 @@ The key\-value pairs specified as options in the `logConfiguration` object are u
 **Note**  
 FireLens manages the `match` configuration\. This configuration is not specified in your task definition\. 
 
-### Using ECS Metadata<a name="firelens-taskdef-metadata"></a>
+### Using Amazon ECS metadata<a name="firelens-taskdef-metadata"></a>
 
 When specifying a FireLens configuration in a task definition, you can optionally toggle the value for `enable-ecs-log-metadata`\. By default, Amazon ECS adds additional fields in your log entries that help identify the source of the logs\. You can disable this action by setting `enable-ecs-log-metadata` to `false`\.
 + `ecs_cluster` – The name of the cluster that the task is part of\.
@@ -195,7 +195,7 @@ The following shows the syntax required when specifying an Amazon ECS log metada
 }
 ```
 
-### Specifying a Custom Configuration File<a name="firelens-taskdef-customconfig"></a>
+### Specifying a custom configuration file<a name="firelens-taskdef-customconfig"></a>
 
 In addition to the auto\-generated configuration file that FireLens creates on your behalf, you can also specify a custom configuration file\. The configuration file format is the native format for the log router you're using\. For more information, see [Fluentd Config File Syntax](https://docs.fluentd.org/configuration/config-file) and [Fluent Bit Configuration Schema](https://fluentbit.io/documentation/0.14/configuration/schema.html)\.
 
@@ -213,7 +213,7 @@ When using a custom configuration file, you must specify a different path than t
 The following example shows the syntax required when specifying a custom configuration\.
 
 **Important**  
-To specify a custom configuration file that is hosted in Amazon S3, ensure you have created a task execution IAM role with the proper permissions\. For more information, see [Required IAM Permissions](#firelens-iam)\.
+To specify a custom configuration file that is hosted in Amazon S3, ensure you have created a task execution IAM role with the proper permissions\. For more information, see [Required IAM permissions](#firelens-iam)\.
 
 The following shows the syntax required when specifying a custom configuration:
 
@@ -239,7 +239,7 @@ The following shows the syntax required when specifying a custom configuration:
 **Note**  
 For tasks using the Fargate launch type, the only supported `config-file-type` value is `file`\.
 
-## Using Fluent Logger Libraries<a name="firelens-fluent-logger"></a>
+## Using Fluent logger libraries<a name="firelens-fluent-logger"></a>
 
 When the `awsfirelens` log driver is specified in a task definition, the ECS agent injects the following environment variables into the container:
 
@@ -251,7 +251,7 @@ The port that the Fluent Forward protocol is listening on\.
 
 The `FLUENT_HOST` and `FLUENT_PORT` environment variables enable you to log directly to the log router from code instead of going through `stdout`\. For more information, see [fluent\-logger\-golang](https://github.com/fluent/fluent-logger-golang) on GitHub\.
 
-## Filtering Logs Using Regular Expressions<a name="firelens-filtering-logs"></a>
+## Filtering logs using regular expressions<a name="firelens-filtering-logs"></a>
 
 Fluentd and Fluent Bit both support filtering of logs based on their content\. FireLens provides a simple method for enabling this filtering\. In the log configuration `options` in a container definition, you can specify the special keys `exclude-pattern` and `include-pattern` that take regular expressions as their values\. The `exclude-pattern` key causes all logs that match its regular expression to be dropped\. With `include-pattern`, only logs that match its regular expression are sent\. These keys can be used together\.
 
@@ -278,14 +278,14 @@ The following example demonstrates how to use this filter\.
 }
 ```
 
-## Example Task Definitions<a name="firelens-example-taskdefs"></a>
+## Example task definitions<a name="firelens-example-taskdefs"></a>
 
 The following are some example task definitions demonstrating common log routing options\. For more examples, see [Amazon ECS FireLens Examples](https://github.com/aws-samples/amazon-ecs-firelens-examples) on GitHub\.
 
 **Topics**
 + [Forwarding Logs to CloudWatch Logs](#firelens-example-cloudwatch)
-+ [Forwarding Logs to an Amazon Kinesis Data Firehose Delivery Stream](#firelens-example-firehose)
-+ [Forwarding to an External Fluentd or Fluent Bit](#firelens-example-forward)
++ [Forwarding logs to an Amazon Kinesis Data Firehose delivery stream](#firelens-example-firehose)
++ [Forwarding to an external Fluentd or Fluent Bit](#firelens-example-forward)
 
 ### Forwarding Logs to CloudWatch Logs<a name="firelens-example-cloudwatch"></a>
 
@@ -336,7 +336,7 @@ In the log configuration options, specify the log group name and the Region it e
 }
 ```
 
-### Forwarding Logs to an Amazon Kinesis Data Firehose Delivery Stream<a name="firelens-example-firehose"></a>
+### Forwarding logs to an Amazon Kinesis Data Firehose delivery stream<a name="firelens-example-firehose"></a>
 
 The following task definition example demonstrates how to specify a log configuration that forwards logs to an Amazon Kinesis Data Firehose delivery stream\. The Kinesis Data Firehose delivery stream must already exist\. For more information, see [Creating an Amazon Kinesis Data Firehose Delivery Stream](https://docs.aws.amazon.com/firehose/latest/dev/basic-create.html) in the *Amazon Kinesis Data Firehose Developer Guide*\.
 
@@ -383,7 +383,7 @@ In the log configuration options, specify the delivery stream name and the Regio
 }
 ```
 
-### Forwarding to an External Fluentd or Fluent Bit<a name="firelens-example-forward"></a>
+### Forwarding to an external Fluentd or Fluent Bit<a name="firelens-example-forward"></a>
 
 The following task definition example demonstrates how to specify a log configuration that forwards logs to an external Fluentd or Fluent Bit host\. Specify the `host` and `port` for your environment\.
 

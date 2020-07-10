@@ -1,4 +1,4 @@
-# Tutorial: Using Amazon EFS File Systems with Amazon ECS<a name="tutorial-efs-volumes"></a>
+# Tutorial: Using Amazon EFS file systems with Amazon ECS<a name="tutorial-efs-volumes"></a>
 
 Amazon Elastic File System \(Amazon EFS\) provides simple, scalable file storage for use with your Amazon ECS tasks\. With Amazon EFS, storage capacity is elastic, growing and shrinking automatically as you add and remove files\. Your applications can have the storage they need, when they need it\.
 
@@ -250,7 +250,7 @@ Now that your Amazon EFS file system is created and there is web content for the
 
 1. Choose **Tasks**, **Run new task**\.
 
-1. For **Task Definition**, choose the `nginx-efs` task definition that you created earlier and choose **Run Task**\. For more information on the other options in the run task workflow, see [Running Tasks](ecs_run_task.md)\.
+1. For **Task Definition**, choose the `nginx-efs` task definition that you created earlier and choose **Run Task**\. For more information on the other options in the run task workflow, see [Running tasks](ecs_run_task.md)\.
 
 1. Below the **Tasks** tab, choose the task that you just ran\.
 

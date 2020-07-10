@@ -1,4 +1,4 @@
-# Task Lifecycle<a name="task-lifecycle"></a>
+# Task lifecycle<a name="task-lifecycle"></a>
 
 When a task is started, either manually or as part of a service, it can pass through several states before it finishes on its own or is stopped manually\. Some tasks are meant to run as batch jobs that naturally progress through from `PENDING` to `RUNNING` to `STOPPED`\. Other tasks, which can be part of a service, are meant to continue running indefinitely, or to be scaled up and down as needed\.
 
@@ -8,7 +8,7 @@ The flow chart below shows the task lifecycle flow\.
 
 ![\[Task Lifecycle\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/task-lifecycle.png)
 
-## Lifecycle States<a name="lifecycle-states"></a>
+## Lifecycle states<a name="lifecycle-states"></a>
 
 The following are descriptions of each of the task lifecycle states\.
 

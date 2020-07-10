@@ -1,4 +1,4 @@
-# Setting Up with Amazon ECS<a name="get-set-up-for-amazon-ecs"></a>
+# Setting up with Amazon ECS<a name="get-set-up-for-amazon-ecs"></a>
 
 If you've already signed up for Amazon Web Services \(AWS\) and have been using Amazon Elastic Compute Cloud \(Amazon EC2\), you are close to being able to use Amazon ECS\. The set\-up process for the two services is similar\. The following guide prepares you for launching your first cluster using either the Amazon ECS first\-run wizard or the Amazon ECS Command Line Interface \(CLI\)\.
 
@@ -7,7 +7,7 @@ Because Amazon ECS uses many components of Amazon EC2, you use the Amazon EC2 co
 
 Complete the following tasks to get set up for Amazon ECS\. If you have already completed any of these steps, you may skip them and move on to installing the custom AWS CLI\.
 
-## Sign Up for AWS<a name="sign-up-for-aws"></a>
+## Sign up for AWS<a name="sign-up-for-aws"></a>
 
 When you sign up for AWS, your AWS account is automatically signed up for all services, including Amazon EC2 and Amazon ECS\. You are charged only for the services that you use\.
 
@@ -23,7 +23,7 @@ If you have an AWS account already, skip to the next task\. If you don't have an
 
 Note your AWS account number, because you'll need it for the next task\.
 
-## Create an IAM User<a name="create-an-iam-user"></a>
+## Create an IAM user<a name="create-an-iam-user"></a>
 
 Services in AWS, such as Amazon EC2 and Amazon ECS, require that you provide credentials when you access them, so that the service can determine whether you have permission to access its resources\. The console requires your password\. You can create access keys for your AWS account to access the command line interface or API\. However, we don't recommend that you access AWS using the credentials for your AWS account; we recommend that you use AWS Identity and Access Management \(IAM\) instead\. Create an IAM user, and then add the user to an IAM group with administrative permissions or and grant this user administrative permissions\. You can then access AWS using a special URL and the credentials for the IAM user\.
 
@@ -31,7 +31,7 @@ If you signed up for AWS but have not created an IAM user for yourself, you can 
 
 **To create an administrator user for yourself and add the user to an administrators group \(console\)**
 
-1. Use your AWS account email address and password to sign in as the *[AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html)* to the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+1. Sign in to the [IAM console](https://console.aws.amazon.com/iam/) as the account owner by choosing **Root user** and entering your AWS account email address\. On the next page, enter your password\.
 **Note**  
 We strongly recommend that you adhere to the best practice of using the **Administrator** IAM user below and securely lock away the root user credentials\. Sign in as the root user only to perform a few [account and service management tasks](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
 
@@ -75,7 +75,7 @@ https://your_aws_account_id.signin.aws.amazon.com/console/
 
 Enter the IAM user name and password that you just created\. When you're signed in, the navigation bar displays "*your\_user\_name* @ *your\_aws\_account\_id*"\.
 
-If you don't want the URL for your sign\-in page to contain your AWS account ID, you can create an account alias\. From the IAM dashboard, choose **Create Account Alias** and enter an alias, such as your company name\. To sign in after you create an account alias, use the following URL:
+If you don't want the URL for your sign\-in page to contain your AWS account ID, you can create an account alias\. From the top of the IAM dashboard, to the right of your sign\-in link, choose **Customize** and enter an alias, such as your company name\. To sign in after you create an account alias, use the following URL:
 
 ```
 https://your_account_alias.signin.aws.amazon.com/console/
@@ -85,7 +85,7 @@ To verify the sign\-in link for IAM users for your account, open the IAM console
 
 For more information about IAM, see the [AWS Identity and Access Management User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
-## Create a Key Pair<a name="create-a-key-pair"></a>
+## Create a key pair<a name="create-a-key-pair"></a>
 
 For Amazon ECS, a key pair is only needed if you intend on using the EC2 launch type\.
 
@@ -142,14 +142,14 @@ To connect to your Linux instance from a computer running macOS or Linux, specif
 
 1. Specify the same name for the key that you used for the key pair\. PuTTY automatically adds the `.ppk` file extension\.
 
-## Create a Virtual Private Cloud<a name="create-a-vpc"></a>
+## Create a virtual private cloud<a name="create-a-vpc"></a>
 
 Amazon Virtual Private Cloud \(Amazon VPC\) enables you to launch AWS resources into a virtual network that you've defined\. We strongly suggest that you launch your container instances in a VPC\. 
 
 **Note**  
 The Amazon ECS console first\-run experience creates a VPC for your cluster, so if you intend to use the Amazon ECS console, you can skip to the next section\.
 
-If you have a default VPC, you also can skip this section and move to the next task, [Create a Security Group](#create-a-base-security-group)\. To determine whether you have a default VPC, see [Supported Platforms in the Amazon EC2 Console](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html#console-updates) in the *Amazon EC2 User Guide for Linux Instances*\. Otherwise, you can create a nondefault VPC in your account using the steps below\.
+If you have a default VPC, you also can skip this section and move to the next task, [Create a security group](#create-a-base-security-group)\. To determine whether you have a default VPC, see [Supported Platforms in the Amazon EC2 Console](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html#console-updates) in the *Amazon EC2 User Guide for Linux Instances*\. Otherwise, you can create a nondefault VPC in your account using the steps below\.
 
 **Important**  
 If your account supports Amazon EC2 Classic in a region, then you do not have a default VPC in that region\.
@@ -168,7 +168,7 @@ If your account supports Amazon EC2 Classic in a region, then you do not have a 
 
 For more information about Amazon VPC, see [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/) in the *Amazon VPC User Guide*\.
 
-## Create a Security Group<a name="create-a-base-security-group"></a>
+## Create a security group<a name="create-a-base-security-group"></a>
 
 Security groups act as a firewall for associated container instances, controlling both inbound and outbound traffic at the container instance level\. You can add rules to a security group that enable you to connect to your container instance from your IP address using SSH\. You can also add rules that allow inbound and outbound HTTP and HTTPS access from anywhere\. Add any rules to open ports that are required by your tasks\. Container instances require external network access to communicate with the Amazon ECS service endpoint\. 
 

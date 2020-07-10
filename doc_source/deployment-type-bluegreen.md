@@ -1,4 +1,4 @@
-# Blue/Green Deployment with CodeDeploy<a name="deployment-type-bluegreen"></a>
+# Blue/Green deployment with CodeDeploy<a name="deployment-type-bluegreen"></a>
 
 The *blue/green* deployment type uses the blue/green deployment model controlled by CodeDeploy\. This deployment type enables you to verify a new deployment of a service before sending production traffic to it\. For more information, see [What Is CodeDeploy?](https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html) in the *AWS CodeDeploy User Guide*\.
 
@@ -53,7 +53,7 @@ The service create and service update workflows in the Amazon ECS console suppor
 
 To create an Amazon ECS service that uses the blue/green deployment type, see [Creating a service](create-service.md)\.
 
-To update an existing Amazon ECS service that is using the blue/green deployment type, see [Updating a Service](update-service.md)\.
+To update an existing Amazon ECS service that is using the blue/green deployment type, see [Updating a service](update-service.md)\.
 
 When you use the Amazon ECS console to create an Amazon ECS service using the blue/green deployment type, an Amazon ECS task set and the following CodeDeploy resources are created automatically with the following default settings\. 
 
@@ -74,7 +74,7 @@ To view the details of a CodeDeploy deployment group in the CodeDeploy console, 
 
 To modify the settings for a CodeDeploy deployment group in the CodeDeploy console, see [Change Deployment Group Settings with CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups-edit.html) in the *AWS CodeDeploy User Guide*\.
 
-A tutorial walking through the steps needed to create a service using the blue/green deployment type is provided\. For more information, see [Tutorial: Creating a Service Using a Blue/Green Deployment](create-blue-green.md)\.
+A tutorial walking through the steps needed to create a service using the blue/green deployment type is provided\. For more information, see [Tutorial: Creating a service using a blue/green deployment](create-blue-green.md)\.
 
 Support for performing a blue/green deployment has been added for AWS CloudFormation\. For more information, see [Perform Amazon ECS blue/green deployments through CodeDeploy using AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/blue-green.html) in the *AWS CloudFormation User Guide*\.
 

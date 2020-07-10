@@ -2,7 +2,7 @@
 
 Your Amazon ECS service can optionally enable service discovery integration, which allows your service to be discoverable via DNS\. For more information, see [Service Discovery](service-discovery.md)\.
 
-If you are not configuring your service to use a service discovery, you can move on to the next section, [Step 5: Configuring Your Service to Use Service Auto Scaling](service-configure-auto-scaling.md)\.
+If you are not configuring your service to use a service discovery, you can move on to the next section, [Step 5: Configuring your service to use Service Auto Scaling](service-configure-auto-scaling.md)\.
 
 **To configure service discovery**
 
@@ -26,4 +26,4 @@ If you are not configuring your service to use a service discovery, you can move
 
 1. For **TTL**, enter the resource record cache time to live \(TTL\), in seconds\. This value determines how long a record set is cached by DNS resolvers and by web browsers\.
 
-1. Choose **Next step** to proceed and navigate to [Step 5: Configuring Your Service to Use Service Auto Scaling](service-configure-auto-scaling.md)\.
+1. Choose **Next step** to proceed and navigate to [Step 5: Configuring your service to use Service Auto Scaling](service-configure-auto-scaling.md)\.

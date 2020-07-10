@@ -17,18 +17,19 @@ Amazon ECS on AWS Fargate is supported in the following Regions\. The supported 
 |  US West \(Oregon\)  |  us\-west\-2  | 
 |  Africa \(Cape Town\)  |  af\-south\-1  | 
 |  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  | 
-|  Asia Pacific \(Mumbai\)  |  ap\-south\-1 \(`aps1-az1` & `aps1-az3` only\)  | 
-|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
+|  Asia Pacific \(Mumbai\)  |  ap\-south\-1  | 
+|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2 \(`apne2-az1`, `apne2-az2` & `apne2-az3` only\)  | 
 |  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
 |  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1  | 
-|  Canada \(Central\)  |  ca\-central\-1  | 
-|  China \(Beijing\)  |  cn\-north\-1  | 
+|  Canada \(Central\)  |  ca\-central\-1 \(`cac1-az1` & `cac1-az2` only\)  | 
+|  China \(Beijing\)  |  cn\-north\-1 \(`cnn1-az1`, `cnn1-az2` & `cnn1-az3` only\)  | 
 |  China \(Ningxia\)  |  cn\-northwest\-1  | 
 |  Europe \(Frankfurt\)  |  eu\-central\-1  | 
 |  Europe \(Ireland\)  |  eu\-west\-1  | 
 |  Europe \(London\)  |  eu\-west\-2  | 
 |  Europe \(Paris\)  |  eu\-west\-3  | 
+|  Europe \(Milan\)  |  eu\-south\-1  | 
 |  Europe \(Stockholm\)  |  eu\-north\-1  | 
 |  South America \(São Paulo\)  |  sa\-east\-1  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  | 
@@ -122,9 +123,9 @@ The `awslogs` log driver configures your Fargate tasks to send log information t
 
 For more information about using the `awslogs` log driver in a task definition to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.
 
-For more information about the `firelens` log driver in a task definition, see [Custom Log Routing](using_firelens.md)\.
+For more information about the `firelens` log driver in a task definition, see [Custom log routing](using_firelens.md)\.
 
-For more information about using the `splunk` log driver in a task definition, see [Example: `splunk` Log Driver](example_task_definitions.md#example_task_definition-splunk)\.
+For more information about using the `splunk` log driver in a task definition, see [Example: `splunk` log driver](example_task_definitions.md#example_task_definition-splunk)\.
 
 ### Amazon ECS Task Execution IAM Role<a name="fargate-tasks-iam"></a>
 
@@ -179,7 +180,7 @@ The following is an example task definition that sets up a web server using the 
 ### Task Storage<a name="fargate-tasks-storage"></a>
 
 For Fargate tasks, the following storage types are supported:
-+ Amazon EFS volumes for persistent storage\. For more information, see [Amazon EFS Volumes](efs-volumes.md)\.
++ Amazon EFS volumes for persistent storage\. For more information, see [Amazon EFS volumes](efs-volumes.md)\.
 + Ephemeral storage for nonpersistent storage\.
 
 When provisioned, each Amazon ECS task on Fargate receives the following ephemeral storage\. The ephemeral storage configuration depends on which platform version the task is using\. After a Fargate task stops, the ephemeral storage is deleted\. For more information about Amazon ECS default service limits, see [Amazon ECS service quotas](service-quotas.md)\.
@@ -220,7 +221,7 @@ The following is an example of the networkConfiguration section for a Fargate se
 }
 ```
 
-Services with tasks that use the `awsvpc` network mode \(for example, those with the Fargate launch type\) only support Application Load Balancers and Network Load Balancers\. Classic Load Balancers are not supported\. Also, when you create any target groups for these services, you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\. For more information, see [Service Load Balancing](service-load-balancing.md)\.
+Services with tasks that use the `awsvpc` network mode \(for example, those with the Fargate launch type\) only support Application Load Balancers and Network Load Balancers\. Classic Load Balancers are not supported\. Also, when you create any target groups for these services, you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\. For more information, see [Service load balancing](service-load-balancing.md)\.
 
 ## Private Registry Authentication<a name="fargate-private-auth-reg"></a>
 
@@ -239,13 +240,13 @@ To use private registry authentication, you create a secret with AWS Secrets Man
 ]
 ```
 
-For more information, see [Private Registry Authentication for Tasks](private-auth.md)\.
+For more information, see [Private registry authentication for tasks](private-auth.md)\.
 
 ## Clusters<a name="fargate-clusters"></a>
 
 Clusters may contain tasks using both the Fargate and EC2 launch types\. When viewing your clusters in the AWS Management Console, Fargate and EC2 task counts are displayed separately\.
 
-For more information about Amazon ECS clusters, including a walkthrough for creating a cluster, see [Amazon ECS Clusters](clusters.md)\.
+For more information about Amazon ECS clusters, including a walkthrough for creating a cluster, see [Amazon ECS clusters](clusters.md)\.
 
 ## Fargate Spot<a name="fargate-spot"></a>
 
@@ -257,7 +258,7 @@ With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discou
 
 A Fargate task is scheduled to be retired when AWS detects the irreparable failure of the underlying hardware hosting the task or if a security issue needs to be patched\. Most security patches are handled transparently without requiring any action on your part or having to restart your tasks\. But for certain issues, we may require that the task be restarted\. 
 
-When a task reaches its scheduled retirement date, it is stopped or terminated by AWS\. If the task is part of a service, then the task is automatically stopped and the service scheduler starts a new one to replace it\. If you are using standalone tasks, then you receive notification of the task retirement\. For more information, see [Task Retirement](task-retirement.md)\.
+When a task reaches its scheduled retirement date, it is stopped or terminated by AWS\. If the task is part of a service, then the task is automatically stopped and the service scheduler starts a new one to replace it\. If you are using standalone tasks, then you receive notification of the task retirement\. For more information, see [Task retirement](task-retirement.md)\.
 
 ## Fargate Savings Plans<a name="fargate-savings-plans"></a>
 

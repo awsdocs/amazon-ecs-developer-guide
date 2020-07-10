@@ -1,31 +1,31 @@
-# Amazon ECS Container Instances<a name="ECS_instances"></a>
+# Amazon ECS container instances<a name="ECS_instances"></a>
 
-An Amazon ECS container instance is an Amazon EC2 instance that is running the Amazon ECS container agent and has been registered into a cluster\. When you run tasks with Amazon ECS using the EC2 launch type, your tasks are placed on your active container instances\.
+An Amazon ECS container instance is an Amazon EC2 instance that is running the Amazon ECS container agent and has been registered into an Amazon ECS cluster\. When you run tasks with Amazon ECS using the EC2 launch type or an Auto Scaling group capacity provider, your tasks are placed on your active container instances\.
 
 **Note**  
 Tasks using the Fargate launch type are deployed onto infrastructure managed by AWS, so this topic does not apply\.
 
 **Topics**
-+ [Container Instance Concepts](#container_instance_concepts)
-+ [Container Instance Lifecycle](#container_instance_life_cycle)
-+ [Check the Instance Role for Your Account](#check-instance-role)
++ [Container instance concepts](#container_instance_concepts)
++ [Container instance lifecycle](#container_instance_life_cycle)
++ [Check the instance IAM role for your account](#check-instance-role)
 + [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)
-+ [Retrieving Amazon ECS\-Optimized AMI Metadata](retrieve-ecs-optimized_AMI.md)
-+ [Subscribing to Amazon ECS\-Optimized Amazon Linux AMI Update Notifications](ECS-AMI-SubscribeTopic.md)
++ [Retrieving Amazon ECS\-Optimized AMI metadata](retrieve-ecs-optimized_AMI.md)
++ [Subscribing to Amazon ECS\-optimized AMI update notifications](ECS-AMI-SubscribeTopic.md)
 + [Launching an Amazon ECS Container Instance](launch_container_instance.md)
 + [Using Spot Instances](container-instance-spot.md)
 + [Bootstrapping Container Instances with Amazon EC2 User Data](bootstrap_container_instance.md)
-+ [Elastic Network Interface Trunking](container-instance-eni.md)
-+ [Connect to Your Container Instance](instance-connect.md)
-+ [Using CloudWatch Logs with Container Instances](using_cloudwatch_logs.md)
-+ [Container Instance Draining](container-instance-draining.md)
++ [Elastic network interface trunking](container-instance-eni.md)
++ [Connect to your container instance](instance-connect.md)
++ [Using CloudWatch Logs with container instances](using_cloudwatch_logs.md)
++ [Container instance draining](container-instance-draining.md)
 + [Container Instance Memory Management](memory-management.md)
-+ [Managing Container Swap Space](container-swap.md)
-+ [Manage Container Instances Remotely Using AWS Systems Manager](ec2-run-command.md)
-+ [Starting a Task at Container Instance Launch Time](start_task_at_launch.md)
-+ [Deregister a Container Instance](deregister_container_instance.md)
++ [Managing container swap space](container-swap.md)
++ [Manage container instances remotely using AWS Systems Manager](ec2-run-command.md)
++ [Starting a task at container instance launch time](start_task_at_launch.md)
++ [Deregister a container instance](deregister_container_instance.md)
 
-## Container Instance Concepts<a name="container_instance_concepts"></a>
+## Container instance concepts<a name="container_instance_concepts"></a>
 + Your container instance must be running the Amazon ECS container agent\. The container agent is able to register the instance into one of your clusters\. If you are using an Amazon ECS\-optimized AMI, the agent is already installed\. To use a different operating system, install the agent\. For more information, see [Amazon ECS Container Agent](ECS_agent.md)\.
 + Because the Amazon ECS container agent makes calls to Amazon ECS on your behalf, you must launch container instances with an IAM role that authenticates to your account and provides the required resource permissions\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 + Beginning with Linux Amazon ECS\-optimized AMI version `20200430` and later, the Amazon EC2 Instance Metadata Service Version 2 \(IMDSv2\) is supported on your container instances\. For Amazon ECS\-optimized AMIs prior to version `20200430`, Amazon EC2 Instance Metadata Service Version 1 \(IMDSv1\) is supported\. For more information, see [Configuring the instance metadata service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
@@ -41,20 +41,20 @@ Tasks using the Fargate launch type are deployed onto infrastructure managed by 
   + You should not deregister an instance from one cluster and re\-register it into another\. To relocate container instance resources, we recommend that you terminate container instances from one cluster and launch new container instances with the latest Amazon ECS\-optimized Amazon Linux 2 AMI in the new cluster\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances* and [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
   + You cannot stop a container instance and change its instance type\. Instead, we recommend that you terminate the container instance and launch a new container instance with the desired instance size and the latest Amazon ECS\-optimized Amazon Linux 2 AMI in your desired cluster\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances* and [Launching an Amazon ECS Container Instance](launch_container_instance.md) in this guide\.
 
-## Container Instance Lifecycle<a name="container_instance_life_cycle"></a>
+## Container instance lifecycle<a name="container_instance_life_cycle"></a>
 
-When the Amazon ECS container agent registers an instance into your cluster, the container instance reports its status as `ACTIVE` and its agent connection status as `TRUE`\. This container instance can accept run task requests\.
+When the Amazon ECS container agent registers an Amazon EC2 instance into your cluster, the Amazon EC2 instance reports its status as `ACTIVE` and its agent connection status as `TRUE`\. This container instance can accept `RunTask` requests\.
 
 If you stop \(not terminate\) an Amazon ECS container instance, the status remains `ACTIVE`, but the agent connection status transitions to `FALSE` within a few minutes\. Any tasks that were running on the container instance stop\. If you start the container instance again, the container agent reconnects with the Amazon ECS service, and you are able to run tasks on the instance again\.
 
 **Important**  
 If you stop and start a container instance, or reboot that instance, some older versions of the Amazon ECS container agent register the instance again without deregistering the original container instance ID\. In this case, Amazon ECS lists more container instances in your cluster than you actually have\. \(If you have duplicate container instance IDs for the same Amazon EC2 instance ID, you can safely deregister the duplicates that are listed as `ACTIVE` with an agent connection status of `FALSE`\.\) This issue is fixed in the current version of the Amazon ECS container agent\. For more information about updating to the current version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
-If you change the status of a container instance to `DRAINING`, new tasks are not placed on the container instance\. Any service tasks running on the container instance are removed, if possible, so that you can perform system updates\. For more information, see [Container Instance Draining](container-instance-draining.md)\.
+If you change the status of a container instance to `DRAINING`, new tasks are not placed on the container instance\. Any service tasks running on the container instance are removed, if possible, so that you can perform system updates\. For more information, see [Container instance draining](container-instance-draining.md)\.
 
 If you deregister or terminate a container instance, the container instance status changes to `INACTIVE` immediately, and the container instance is no longer reported when you list your container instances\. However, you can still describe the container instance for one hour following termination\. After one hour, the instance description is no longer available\.
 
-## Check the Instance Role for Your Account<a name="check-instance-role"></a>
+## Check the instance IAM role for your account<a name="check-instance-role"></a>
 
 The Amazon ECS container agent makes calls to the Amazon ECS APIs on your behalf\. Container instances that run the agent require an IAM policy and role for the service to know that the agent belongs to you\.
 

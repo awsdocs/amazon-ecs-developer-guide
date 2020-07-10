@@ -1,4 +1,4 @@
-# Deregister a Container Instance<a name="deregister_container_instance"></a>
+# Deregister a container instance<a name="deregister_container_instance"></a>
 
 When you are finished with a container instance, you can deregister it from your cluster\.
 

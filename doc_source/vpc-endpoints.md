@@ -33,7 +33,7 @@ If you have existing tasks that are using the EC2 launch type, after you have cr
 
 **To restart the Amazon ECS container agent**
 
-1. Log in to your container instance via SSH\. For more information, see [Connect to Your Container Instance](instance-connect.md)\.
+1. Log in to your container instance via SSH\. For more information, see [Connect to your container instance](instance-connect.md)\.
 
 1. Stop the container agent\.
 
@@ -51,7 +51,7 @@ After you have created the VPC endpoints and restarted the Amazon ECS container 
 
 ## Create the Secrets Manager and Systems Manager endpoints<a name="ecs-setting-up-secrets"></a>
 
-If you are referencing either Secrets Manager secrets or Systems Manager Parameter Store parameters in your task definitions to inject sensitive data into your containers, you need to create the interface VPC endpoints for Secrets Manager or Systems Manager so those tasks can reach those services\. You only need to create the endpoints from the specific service your sensitive data is hosted in\. For more information, see [Specifying Sensitive Data](specifying-sensitive-data.md)\.
+If you are referencing either Secrets Manager secrets or Systems Manager Parameter Store parameters in your task definitions to inject sensitive data into your containers, you need to create the interface VPC endpoints for Secrets Manager or Systems Manager so those tasks can reach those services\. You only need to create the endpoints from the specific service your sensitive data is hosted in\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.
 
 For more information about Secrets Manager VPC endpoints, see [Using Secrets Manager with VPC endpoints](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html) in the *AWS Secrets Manager User Guide*\.
 

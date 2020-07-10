@@ -1,4 +1,4 @@
-# Load Balancer Types<a name="load-balancer-types"></a>
+# Load balancer types<a name="load-balancer-types"></a>
 
 Elastic Load Balancing supports the following types of load balancers: Application Load Balancers, Network Load Balancers, and Classic Load Balancers\. Amazon ECS services can use either type of load balancer\. Application Load Balancers are used to route HTTP/HTTPS \(or Layer 7\) traffic\. Network Load Balancers and Classic Load Balancers are used to route TCP \(or Layer 4\) traffic\.
 

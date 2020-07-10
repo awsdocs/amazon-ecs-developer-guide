@@ -2,45 +2,6 @@
 
 The following example user data scripts configure an Amazon ECS container instance at launch\.
 
-## Amazon ECS\-Optimized Amazon Linux AMI Container Instance with Amazon EFS File System<a name="alinux-efs"></a>
-
-This example user data script configures an instance launched from the Amazon ECS\-optimized Amazon Linux AMI to use an existing Amazon EFS file system\. For more information, see [Amazon EFS Volumes](efs-volumes.md)
-
-This script does the following:
-+ Install the `nfs-utils` package, which installs an NFS client\.
-+ Create a mount directory for the NFS file system at `/efs`\.
-+ Create a mount entry in the `/etc/fstab` file for the file system and then mount the file system\.
-+ Write the cluster name, *default*, to the Amazon ECS agent configuration file\.
-
-You can use this script for your own container instances, provided that they are launched from an Amazon ECS\-optimized Amazon Linux AMI\. Be sure to replace the `ECS_CLUSTER=default` line in the configuration file to specify your own cluster name, if you are not using the `default` cluster\. For more information about launching container instances, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
-
-```
-Content-Type: multipart/mixed; boundary="==BOUNDARY=="
-MIME-Version: 1.0
-
---==BOUNDARY==
-Content-Type: text/cloud-boothook; charset="us-ascii"
-
-# Install amazon-efs-utils
-cloud-init-per once install_amazon-efs-utils yum install -y amazon-efs-utils
-
-# Create /efs folder
-cloud-init-per once mkdir_efs mkdir /efs
-
-# Mount /efs
-cloud-init-per once mount_efs echo -e 'fs-12345678:/ /efs efs defaults,_netdev 0 0' >> /etc/fstab
-mount -a
-
---==BOUNDARY==
-Content-Type: text/x-shellscript; charset="us-ascii"
-
-#!/bin/bash
-# Set any ECS agent configuration options
-echo "ECS_CLUSTER=default" >> /etc/ecs/ecs.config
-
---==BOUNDARY==--
-```
-
 ## Ubuntu Container Instance with `systemd`<a name="ubuntu-systemd-userdata"></a>
 
 This example user data script configures an Ubuntu 16\.04 instance to:
@@ -56,7 +17,11 @@ You can use this script for your own container instances, provided that they are
 ```
 #!/bin/bash
 # Install Docker
-apt-get update -y && apt-get install -y docker.io iptables-persistent
+apt-get update -y && apt-get install -y docker.io
+echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
+apt-get update -y && apt-get install -y docker.io
+echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
+apt-get -y install iptables-persistent
 
 # Set iptables rules
 echo 'net.ipv4.conf.all.route_localnet = 1' >> /etc/sysctl.conf
@@ -190,7 +155,7 @@ This example user data script shows the default user data that your Windows cont
 + Enables IAM roles for tasks\.
 + Sets `json-file` and `awslogs` as the available logging drivers\.
 
-You can use this script for your own container instances \(provided that they are launched from the Amazon ECS\-optimized Windows AMI\), but be sure to replace the `-Cluster windows` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
+You can use this script for your own container instances \(provided that they are launched from the Amazon ECS\-optimized Windows Server AMI\), but be sure to replace the `-Cluster windows` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
 
 ```
 <powershell>
@@ -203,7 +168,7 @@ Initialize-ECSAgent -Cluster windows -EnableTaskIAMRole -LoggingDrivers '["json-
 This example user data script installs the Amazon ECS container agent on an instance launched with a **Windows\_Server\-2016\-English\-Full\-Containers** AMI\. It has been adapted from the agent installation instructions on the [Amazon ECS Container Agent GitHub repository](https://github.com/aws/amazon-ecs-agent) README page\.
 
 **Note**  
-This script is shared for example purposes\. It is much easier to get started with Windows containers by using the Amazon ECS\-optimized Windows AMI\. For more information, see [Creating a Cluster](create_cluster.md)\.
+This script is shared for example purposes\. It is much easier to get started with Windows containers by using the Amazon ECS\-optimized Windows Server AMI\. For more information, see [Creating a cluster](create_cluster.md)\.
 
 You can use this script for your own container instances \(provided that they are launched with a version of the **Windows\_Server\-2016\-English\-Full\-Containers** AMI\)\. Be sure to replace the `windows` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
 

@@ -1,4 +1,4 @@
-# Step 5: Configuring Your Service to Use Service Auto Scaling<a name="service-configure-auto-scaling"></a>
+# Step 5: Configuring your service to use Service Auto Scaling<a name="service-configure-auto-scaling"></a>
 
 Your Amazon ECS service can optionally be configured to use Auto Scaling to adjust its desired count of tasks in your Amazon ECS service up or down in response to CloudWatch alarms\. 
 
@@ -87,4 +87,4 @@ These steps help you create step scaling policies and CloudWatch alarms that can
 
 1. Repeat [Step 1](#policy-name-step) through [Step 8](#cooldown-period-step) for the **Scale in** policy and choose **Save**\.
 
-1. Choose **Next step** to proceed and navigate to [Step 6: Review and Create Your Service](create-service-review.md)\.
+1. Choose **Next step** to proceed and navigate to [Step 6: Review and create your service](create-service-review.md)\.

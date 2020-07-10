@@ -1,10 +1,10 @@
-# Registering Multiple Target Groups with a Service<a name="register-multiple-targetgroups"></a>
+# Registering multiple target groups with a service<a name="register-multiple-targetgroups"></a>
 
 Your Amazon ECS service can serve traffic from multiple load balancers and expose multiple load balanced ports when you specify multiple target groups in a service definition\.
 
 To create a service specifying multiple target groups, you must create the service using the Amazon ECS API, SDK, AWS CLI, or an AWS CloudFormation template\. After the service is created, you can view the service and the target groups registered to it with the AWS Management Console\. It is not possible to update the load balancing configuration of an existing service\.
 
-Multiple target groups can be specified in a service definition using the following format\. For the full syntax of a service definition, see [Service Definition Template](service_definition_parameters.md#sd-template)\.
+Multiple target groups can be specified in a service definition using the following format\. For the full syntax of a service definition, see [Service definition template](service_definition_parameters.md#sd-template)\.
 
 ```
 "loadBalancers":[
@@ -21,17 +21,19 @@ Multiple target groups can be specified in a service definition using the follow
 ]
 ```
 
-## Multiple Target Group Considerations<a name="multiple-targetgroups-considerations"></a>
+## Multiple target group considerations<a name="multiple-targetgroups-considerations"></a>
 
-The following should be considered when you specify multiple target groups in a service definition:
-+ Multiple target groups are only supported when you use the Application Load Balancer or Network Load Balancer load balancer types\.
-+ Multiple target groups are only supported when the service uses the rolling update \(`ECS`\) deployment controller type\. If you are using the CodeDeploy or an external deployment controller, multiple target groups are not supported\.
-+ Multiple target groups are supported for services containing tasks using both the Fargate and EC2 launch types\.
+The following should be considered when you specify multiple target groups in a service definition\.
++ For services that use an Application Load Balancer or Network Load Balancer, you cannot attach more than five target groups to a service\.
++ Specifying multiple target groups in a service definition is only supported under the following conditions:
+  + The service must use either an Application Load Balancer or Network Load Balancer\.
+  + The service must use the rolling update \(`ECS`\) deployment controller type\.
++ Specifying multiple target groups is supported for services containing tasks using both the Fargate and EC2 launch types\.
 + When creating a service that specifies multiple target groups, the Amazon ECS service\-linked role must be created\. The role is created by omitting the `role` parameter in API requests, or the `Role` property in AWS CloudFormation\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\.
 
-## Example Service Definitions<a name="multiple-targetgroups-examples"></a>
+## Example service definitions<a name="multiple-targetgroups-examples"></a>
 
-Following are a few example use cases for specifying multiple target groups in a service definition\. For the full syntax of a service definition, see [Service Definition Template](service_definition_parameters.md#sd-template)\.
+Following are a few example use cases for specifying multiple target groups in a service definition\. For the full syntax of a service definition, see [Service definition template](service_definition_parameters.md#sd-template)\.
 
 ### Example: Having separate load balancers for internal and external traffic<a name="multiple-targetgroups-example1"></a>
 

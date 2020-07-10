@@ -1,12 +1,12 @@
-# Tutorial: Sending Amazon Simple Notification Service Alerts for Task Stopped Events<a name="ecs_cwet2"></a>
+# Tutorial: Sending Amazon Simple Notification Service alerts for task stopped events<a name="ecs_cwet2"></a>
 
 In this tutorial, you configure a CloudWatch Events event rule that only captures task events where the task has stopped running because one of its essential containers has terminated\. The event sends only task events with a specific `stoppedReason` property to the designated Amazon SNS topic\.
 
-## Prerequisite: Set Up a Test Cluster<a name="cwet2_step_1"></a>
+## Prerequisite: Set up a test cluster<a name="cwet2_step_1"></a>
 
- If you do not have a running cluster to capture events from, follow the steps in [Creating a Cluster](create_cluster.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Amazon SNS topic and CloudWatch Events event rule correctly\. 
+ If you do not have a running cluster to capture events from, follow the steps in [Creating a cluster](create_cluster.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Amazon SNS topic and CloudWatch Events event rule correctly\. 
 
-## Step 1: Create and Subscribe to an Amazon SNS Topic<a name="cwet2_step_2"></a>
+## Step 1: Create and subscribe to an Amazon SNS topic<a name="cwet2_step_2"></a>
 
  For this tutorial, you configure an Amazon SNS topic to serve as an event target for your new event rule\. 
 
@@ -24,7 +24,7 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
 
 1.  Check your email account, and wait to receive a subscription confirmation email message\. When you receive it, choose **Confirm subscription**\. 
 
-## Step 2: Register Event Rule<a name="cwet2_step_3"></a>
+## Step 2: Register an event rule<a name="cwet2_step_3"></a>
 
  Next, you register an event rule that captures only task\-stopped events for tasks with stopped containers\. 
 
@@ -63,7 +63,7 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
 
 1. For **Rule definition**, type a name and description for your rule and then choose **Create rule**\.
 
-## Step 3: Test Your Rule<a name="cwet2_step_4"></a>
+## Step 3: Test your rule<a name="cwet2_step_4"></a>
 
 Verify that the rule is working by running a task that exits shortly after it starts\. If your event rule is configured correctly, you receive an email message within a few minutes with the event text\. If you have an existing task definition that can satisfy the rule requirements, run a task using it\. If you do not, the following steps will walk you through registering a Fargate task definition and running it that will\.
 

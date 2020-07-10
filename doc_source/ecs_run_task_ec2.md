@@ -1,4 +1,4 @@
-# Running a Task Using the EC2 Launch Type<a name="ecs_run_task_ec2"></a>
+# Running a task using the EC2 launch type<a name="ecs_run_task_ec2"></a>
 
 To run a task using the EC2 launch type, do the following:
 
@@ -10,9 +10,17 @@ To run a task using the EC2 launch type, do the following:
 
 1. Choose **Actions**, **Run Task**\.
 
-1. For **Launch Type**, choose **EC2**\. For more information about launch types, see [Amazon ECS Launch Types](launch_types.md)\.
+1. On the **Run Task** page, complete the following steps\.
 
-1. For **Cluster**, choose the cluster to use\. For **Number of tasks**, type the number of tasks to launch with this task definition\. For **Task Group**, type the name of the task group\.
+   1. Choose either a capacity provider strategy or a launch type\.
+      + To use a **Capacity provider strategy**, choose **Switch to capacity provider strategy** and then choose whether your task should use the default capacity provider strategy defined for the cluster or a custom capacity provider strategy\. A capacity provider must already be associated with the cluster in order to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
+      + To use a **Launch type**, choose **Switch to launch type** and select **EC2**\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
+
+   1. For **Cluster**, choose the cluster to use\. 
+
+   1. For **Number of tasks**, type the number of tasks to launch with this task definition\.
+
+   1. For **Task group**, type the name of the task group\.
 
 1. If your task definition uses the `awsvpc` network mode, complete these substeps\. Otherwise, continue to the next step\.
 
@@ -29,9 +37,9 @@ Only private subnets are supported for the `awsvpc` network mode\. Because tasks
    + **AZ Balanced BinPack** \- distribute tasks across Availability Zones and across container instances with the least available memory\.
    + **BinPack** \- distribute tasks based on the least available amount of CPU or memory\.
    + **One Task Per Host** \- place, at most, one task from the service on each container instance\.
-   + **Custom** \- define your own task placement strategy\. See [Amazon ECS Task Placement](task-placement.md) for examples\.
+   + **Custom** \- define your own task placement strategy\. See [Amazon ECS task placement](task-placement.md) for examples\.
 
-    For more information, see [Amazon ECS Task Placement](task-placement.md)\.
+    For more information, see [Amazon ECS task placement](task-placement.md)\.
 
 1. \(Optional\) To send command, environment variable, task IAM role, or task execution role overrides to one or more containers in your task definition, choose **Advanced Options** and complete the following steps:
 **Note**  
