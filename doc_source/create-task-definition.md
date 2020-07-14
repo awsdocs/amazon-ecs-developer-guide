@@ -50,21 +50,24 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. Choose **Add** to add your container to the task definition\.
 
-1. \(Optional\) For **Service Integration**, to configure the parameters for App Mesh integration choose **Enable App Mesh integration** and then do the following:
+1. \(Optional\) For **Service Integration**, to configure the parameters for App Mesh integration, choose **Enable App Mesh integration** and then do the following:
 
-   1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
+   1. For **Mesh name**, choose the existing App Mesh service mesh to use\. If you don't see any meshes listed, then you need to create one first\. For more information, see [Service meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
-   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*region\-code*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.4\.0\-prod\.
+   1. For **App Mesh endpoints**, select one of the following options\.
+      + **Virtual node** – Enter or select the following information\.
+        + For **Application container name**, choose the container name to use for the App Mesh integration\. This container must already be defined within the task definition\.
+        + For **Virtual node name**, choose the existing App Mesh virtual node to use\. If you don't see any virtual nodes listed, then you need to create one first\. For more information, see [Virtual nodes](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_nodes.html) in the *AWS App Mesh User Guide*\.
+        + For **Virtual node port** – Pre\-populated with the listener port set on the virtual node in App Mesh\.
+      + **Virtual gateway** – Enter or select the following information\.
+        + For **Virtual gateway name**, choose the existing App Mesh virtual gateway to use\. If you don't see any virtual gateways listed, then you need to create one first\. For more information, see [Virtual gateways](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_gateways.html) in the *AWS App Mesh User Guide*\.
+        + For **Virtual gateway port** – Pre\-populated with the listener port set on the virtual gateway in App Mesh\.
 
-   1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
+   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.4\.0\-prod for all regions except `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* wih any Region except `me-south-1` and `ap-east-1`\. If your application is in one of these regions, then you also need to replace *840364872350* with the appropriate value for your Region\. For more information, see [Envoy image](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html) in the *AWS App Mesh User Guide*\.
 
-   1. For **Virtual node name**, choose the App Mesh virtual node to use\. This must already be created in order for it to show up\. For more information, see [Virtual Nodes](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_nodes.html) in the *AWS App Mesh User Guide*\.
+   1. Choose **Apply** and then choose **Confirm**\. This will add an Envoy proxy container to the task definition, as well as the settings to support it\. If you selected **Virtual node**, it will also auto\-populate the App Mesh **Proxy Configuration** settings for the next step\. If you selected **Virtual gateway**, then the **Proxy Configuration** is disabled, because it's not used for a virtual gateway\.
 
-   1. For **Virtual node port**, this will be pre\-populated with the listener port set on the virtual node\.
-
-   1. Choose **Apply**, **Confirm**\. This will create a new Envoy proxy container to the task definition, as well as the settings to support it\. It will then pre\-populate the App Mesh proxy configuration settings for the next step\.
-
-1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see the JSON tab in [Update Services](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-services)\.
+1. \(Optional\) If you selected **Virtual node** in **Service Integration**, then for **Proxy Configuration**, verify all of the pre\-populated values\. For more information about these fields, see the JSON tab in [Update services](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-services)\.
 
 1. \(Optional\) For **Log Router Integration**, you can add a custom log routing configuration\. Choose **Enable FireLens integration** and then do the following:
 
@@ -129,21 +132,24 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
 1. \(Optional\) For **Constraint**, define how tasks that are created from this task definition are placed in your cluster\. For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS task placement constraints](task-placement-constraints.md)\.
 
-1. \(Optional\) For **Service Integration**, to configure the parameters for App Mesh integration choose **Enable App Mesh integration** and then do the following:
+1. \(Optional\) For **Service Integration**, to configure the parameters for App Mesh integration, choose **Enable App Mesh integration** and then do the following:
 
-   1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
+   1. For **Mesh name**, choose the existing App Mesh service mesh to use\. If you don't see any meshes listed, then you need to create one first\. For more information, see [Service meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
 
-   1. For **Envoy image**, enter 840364872350\.dkr\.ecr\.*region\-code*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.4\.0\-prod\.
+   1. For **App Mesh endpoints**, select one of the following options\.
+      + **Virtual node** – Enter or select the following information\.
+        + For **Application container name**, choose the container name to use for the App Mesh integration\. This container must already be defined within the task definition\.
+        + For **Virtual node name**, choose the existing App Mesh virtual node to use\. If you don't see any virtual nodes listed, then you need to create one first\. For more information, see [Virtual nodes](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_nodes.html) in the *AWS App Mesh User Guide*\.
+        + For **Virtual node port** – Pre\-populated with the listener port set on the virtual node in App Mesh\.
+      + **Virtual gateway** – Enter or select the following information\.
+        + For **Virtual gateway name**, choose the existing App Mesh virtual gateway to use\. If you don't see any virtual gateways listed, then you need to create one first\. For more information, see [Virtual gateways](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_gateways.html) in the *AWS App Mesh User Guide*\.
+        + For **Virtual gateway port** – Pre\-populated with the listener port set on the virtual gateway in App Mesh\.
 
-   1. For **Mesh name**, choose the App Mesh service mesh to use\. This must already be created in order for it to show up\. For more information, see [Service Meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
+   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.4\.0\-prod for all regions except `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* wih any Region except `me-south-1` and `ap-east-1`\. If your application is in one of these regions, then you also need to replace *840364872350* with the appropriate value for your Region\. For more information, see [Envoy image](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html) in the *AWS App Mesh User Guide*\.
 
-   1. For **Virtual node name**, choose the App Mesh virtual node to use\. This must already be created in order for it to show up\. For more information, see [Virtual Nodes](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_nodes.html) in the *AWS App Mesh User Guide*\.
+   1. Choose **Apply** and then choose **Confirm**\. This will add an Envoy proxy container to the task definition, as well as the settings to support it\. If you selected **Virtual node**, it will also auto\-populate the App Mesh **Proxy Configuration** settings for the next step\. If you selected **Virtual gateway**, then the **Proxy Configuration** is disabled, because it's not used for a virtual gateway\.
 
-   1. For **Virtual node port**, this will be pre\-populated with the listener port set on the virtual node\.
-
-   1. Choose **Apply**, **Confirm**\. This will create a new Envoy proxy container to the task definition, as well as the settings to support it\. It will then pre\-populate the App Mesh proxy configuration settings for the next step\.
-
-1. \(Optional\) For **Proxy Configuration**, verify all of the pre\-populated values\. For more information on these fields, see the JSON tab in [Update Services](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-services)\.
+1. \(Optional\) If you selected **Virtual node** in **Service Integration**, then for **Proxy Configuration**, verify all of the pre\-populated values\. For more information about these fields, see the JSON tab in [Update services](https://docs.aws.amazon.com/AmazonECS/latest/userguide/appmesh-getting-started.html#update-services)\.
 
 1. \(Optional\) For **Log Router Integration**, you can add a custom log routing configuration\. Choose **Enable FireLens integration** and then do the following:
 
