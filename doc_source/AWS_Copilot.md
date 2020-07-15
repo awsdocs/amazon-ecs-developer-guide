@@ -56,38 +56,9 @@ sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases
 
 ------
 
-#### \(Optional\) Verify the AWS Copilot CLI<a name="ECS_Copilot_validate"></a>
+### \(Optional\) Verify the AWS Copilot CLI using PGP signatures<a name="ECS_Copilot_validate"></a>
 
-To verify the validity of the AWS Copilot CLI binary file, you can either use the provided MD5 sum or the PGP signatures\. Both methods are described in the following sections\.
-
-##### Verify using the MD5 sum<a name="ECS_Copilot_verify_md5"></a>
-
-Verify the downloaded binary with the MD5 sum provided\.
-
-------
-#### [ macOS ]
-
-For macOS, compare the two output strings to verify that they match\.
-
-```
-curl -s https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-darwin-v0.1.0.md5 \
-   && md5 -q /usr/local/bin/copilot
-```
-
-------
-#### [ Linux ]
-
-For Linux systems, look for an `OK` in the output string\.
-
-```
-echo "$(curl -s https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-linux-v0.1.0.md5) /usr/local/bin/copilot" | md5sum -c -
-```
-
-------
-
-##### Verify using the PGP signature<a name="ECS_Copilot_verify_pgp"></a>
-
-The AWS Copilot CLI executables are cryptographically signed using PGP signatures\. You can use the following steps to verify the signatures using the GnuPG tool\.
+The AWS Copilot CLI executables are cryptographically signed using PGP signatures\. The PGP signatures can be used to verify the validity of the AWS Copilot CLI executable\. Use the following steps to verify the signatures using the GnuPG tool\.
 
 1. Download and install GnuPG\. For more information, see the [GnuPG website](https://www.gnupg.org)\.
    + For macOS, we recommend using Homebrew\. Install Homebrew using the instructions from their website\. For more information, see [Homebrew](https://brew.sh/)\. After Homebrew is installed, use the following command from your macOS terminal\.

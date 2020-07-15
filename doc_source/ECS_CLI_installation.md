@@ -8,12 +8,12 @@ Download the Amazon ECS CLI binary\.
 + For macOS:
 
   ```
-  sudo curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest
+  sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest
   ```
 + For Linux systems:
 
   ```
-  sudo curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
+  sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
   ```
 + For Windows systems:
 
@@ -26,41 +26,9 @@ Download the Amazon ECS CLI binary\.
 **Note**  
 If you encounter permissions issues, ensure that you are running PowerShell as an administrator\.
 
-## Step 2: Verify the Amazon ECS CLI<a name="ECS_CLI_install"></a>
+## Step 2: Verify the Amazon ECS CLI using PGP signatures<a name="ECS_CLI_install"></a>
 
-To verify the validity of the Amazon ECS CLI file, you can either use the provided MD5 sum or the PGP signatures\. Both methods are described in the following sections\.
-
-### Verify Using the MD5 Sum<a name="ECS_CLI_verify_md5"></a>
-
-Verify the downloaded binary with the MD5 sum provided\.
-+ For macOS \(compare the two output strings to verify that they match\):
-
-  ```
-  curl -s https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest.md5 && md5 -q /usr/local/bin/ecs-cli
-  ```
-+ For Linux systems \(look for an `OK` in the output string\):
-
-  ```
-  echo "$(curl -s https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.md5) /usr/local/bin/ecs-cli" | md5sum -c -
-  ```
-+ For Windows systems:
-
-  Open Windows PowerShell and find the md5 hash of the executable that you downloaded:
-
-  ```
-  PS C:\> Get-FileHash "C:\Program Files\Amazon\ECSCLI\ecs-cli.exe" -Algorithm MD5
-  ```
-
-  Compare that with this md5 hash:
-
-  ```
-  PS C:\> Invoke-WebRequest -OutFile md5.txt https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.md5
-  PS C:\> Get-Content md5.txt
-  ```
-
-### Verify Using the PGP Signature<a name="ECS_CLI_verify_pgp"></a>
-
-The Amazon ECS CLI executables are cryptographically signed using PGP signatures\. You can use the following steps to verify the signatures using the GnuPG tool\.
+The Amazon ECS CLI executables are cryptographically signed using PGP signatures\. The PGP signatures can be used to verify the validity of the Amazon ECS CLI executable\. Use the following steps to verify the signatures using the GnuPG tool\.
 
 1. Download and install GnuPG\. For more information, see the [GnuPG website](https://www.gnupg.org)\.
    + For macOS, we recommend using Homebrew\. Install Homebrew using the instructions from their website\. For more information, see [Homebrew](https://brew.sh/)\. After Homebrew is installed, use the following command from your macOS terminal\.
@@ -235,12 +203,12 @@ The Amazon ECS CLI executables are cryptographically signed using PGP signatures
    + For macOS systems:
 
      ```
-     curl -o ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest.asc
+     curl -Lo ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest.asc
      ```
    + For Linux systems:
 
      ```
-     curl -o ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.asc
+     curl -Lo ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.asc
      ```
    + For Windows systems:
 
