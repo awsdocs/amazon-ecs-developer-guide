@@ -14,6 +14,7 @@ The following should be considered when using Fargate capacity providers\.
 + Using Fargate Spot requires that your task use platform version 1\.3\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
 + When tasks using the Fargate and Fargate Spot capacity providers are stopped, a task state change event is sent to Amazon EventBridge\. The stopped reason describes the cause\. For more information, see [Task State Change Events](ecs_cwe_events.md#ecs_task_events)\.
 + A cluster may contain a mix of Fargate and Auto Scaling group capacity providers, however a capacity provider strategy may only contain either Fargate or Auto Scaling group capacity providers, but not both\. For more information, see [Auto Scaling Group Capacity Providers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html#asg-capacity-providers) in the *Amazon Elastic Container Service Developer Guide*\.
++ Fargate and Fargate Spot capacity providers are independent. AWS Fargate will follow each strategy to launch your Fargate tasks until it successfully being provision. The price model of the tasks will follow the strategy it owns.
 
 ## Handling Fargate Spot termination notices<a name="fargate-capacity-providers-termination"></a>
 
