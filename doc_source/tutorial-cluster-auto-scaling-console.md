@@ -49,6 +49,9 @@ Use the following steps to create an Amazon ECS cluster\. This tutorial uses an 
 
 ## Step 2: Create the Auto Scaling Resources<a name="console-tutorial-asg"></a>
 
+**Note**  
+Use the old version of the EC2 Console for the auto scaling group sections of this tutorial\.
+
 Use the following steps to create an Auto Scaling launch configuration and Auto Scaling group\.
 
 **To create an Auto Scaling launch configuration**
@@ -128,7 +131,7 @@ Next, create an Auto Scaling group using that launch configuration\.
 
 ## Step 3: Create a Capacity Provider<a name="console-tutorial-capacity-provider"></a>
 
-Use the following steps to create an Amazon ECS capacity provider\.
+Use the following steps to create an Amazon ECS capacity provider\. See [Amazon ECS capacity providers](cluster-capacity-providers.md) for more information\.
 
 **To create a capacity provider**
 

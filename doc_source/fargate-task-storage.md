@@ -4,11 +4,11 @@ For Fargate tasks, the following storage types are supported:
 + Amazon EFS volumes for persistent storage\. For more information, see [Amazon EFS volumes](efs-volumes.md)\.
 + Ephemeral storage for nonpersistent storage\.
 
-When provisioned, each Amazon ECS task on Fargate receives the following ephemeral storage\. The ephemeral storage configuration depends on which platform version the task is using\. After a Fargate task stops, the ephemeral storage is deleted\. For more information about Amazon ECS default service limits, see [Amazon ECS service quotas](service-quotas.md)\.
+When provisioned, each Amazon ECS task on Fargate receives the following ephemeral storage\.
 
 ## Fargate tasks using platform version 1\.4\.0 or later<a name="fargate-task-storage-pv14"></a>
 
-All Amazon ECS on Fargate tasks using platform version 1\.4\.0 or later receive a minimum of 20 GB of ephemeral storage\. The amount of storage is not adjustable\.
+For Amazon ECS on Fargate tasks using platform version 1\.4\.0 or later, each task receives 20 GB of ephemeral storage\. The amount of storage is not adjustable\.
 
 For tasks using platform version 1\.4\.0 or later that are launched on May 28, 2020 or later, the ephemeral storage is encrypted with an AES\-256 encryption algorithm using an AWS Fargate\-managed encryption key\.
 

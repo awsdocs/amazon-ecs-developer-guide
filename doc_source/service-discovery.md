@@ -48,7 +48,7 @@ Service discovery consists of the following components:
 ## Service Discovery Considerations<a name="service-discovery-considerations"></a>
 
 The following should be considered when using service discovery:
-+ Service discovery is supported for tasks using the Fargate launch type if they are using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
++ Service discovery is supported for tasks using the Fargate launch type if they are using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + The Create Service workflow in the Amazon ECS console only supports registering services into private DNS namespaces\. When a AWS Cloud Map private DNS namespace is created, a Route 53 private hosted zone will be created automatically\.
 + The DNS records created for a service discovery service always register with the private IP address for the task, rather than the public IP address, even when public namespaces are used\.
 + Service discovery requires that tasks specify either the `awsvpc`, `bridge`, or `host` network mode \(`none` is not supported\)\.

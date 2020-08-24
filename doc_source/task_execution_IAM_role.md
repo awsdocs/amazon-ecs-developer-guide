@@ -1,14 +1,14 @@
-# Amazon ECS Task Execution IAM Role<a name="task_execution_IAM_role"></a>
+# Amazon ECS task execution IAM role<a name="task_execution_IAM_role"></a>
 
-The Amazon ECS container agent, and the Fargate agent for your Fargate tasks, make calls to the Amazon ECS API on your behalf\. The agent requires an IAM role for the service to know that the agent belongs to you\. This IAM role is referred to as a task execution IAM role\. You can have multiple task execution roles for different purposes associated with your account\.
+The task execution role grants the Amazon ECS container and Fargate agents permission to make AWS API calls on your behalf\. The task execution IAM role is required depending on the requirements of your task\. You can have multiple task execution roles for different purposes and services associated with your account\.
 
 The following are common use cases for a task execution IAM role:
 + Your task uses the Fargate launch type and\.\.\.
   + is pulling a container image from Amazon ECR\.
-  + uses the `awslogs` or `awsfirelens` log driver\. For more information, see [Using the awslogs Log Driver](using_awslogs.md) and [Custom log routing](using_firelens.md)\.
+  + uses the `awslogs` log driver\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.
 + Your tasks uses either the Fargate or EC2 launch type and\.\.\.
-  + is using private registry authentication\. For more information, see [Required IAM Permissions for Private Registry Authentication](#task-execution-private-auth)\.
-  + the task definition is referencing sensitive data using Secrets Manager secrets or AWS Systems Manager Parameter Store parameters\. For more information, see [Required IAM Permissions for Amazon ECS Secrets](#task-execution-secrets)\.
+  + is using private registry authentication\. For more information, see [Required IAM permissions for private registry authentication](#task-execution-private-auth)\.
+  + the task definition is referencing sensitive data using Secrets Manager secrets or AWS Systems Manager Parameter Store parameters\. For more information, see [Required IAM permissions for Amazon ECS secrets](#task-execution-secrets)\.
 
 **Note**  
 The task execution role is supported by Amazon ECS container agent version 1\.16\.0 and later\.
@@ -91,7 +91,7 @@ If your account does not already have a task execution role, use the following s
 
 1. For **Role Name**, type `ecsTaskExecutionRole` and choose **Create role**\.
 
-## Required IAM Permissions for Private Registry Authentication<a name="task-execution-private-auth"></a>
+## Required IAM permissions for private registry authentication<a name="task-execution-private-auth"></a>
 
 The Amazon ECS task execution role is required to use the private registry authentication feature\. This allows the container agent to pull the container image\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
 
@@ -120,7 +120,7 @@ An example inline policy adding the permissions is shown below\.
 }
 ```
 
-## Required IAM Permissions for Amazon ECS Secrets<a name="task-execution-secrets"></a>
+## Required IAM permissions for Amazon ECS secrets<a name="task-execution-secrets"></a>
 
 To use the Amazon ECS secrets feature, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary AWS Systems Manager or Secrets Manager resources\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.
 
@@ -150,7 +150,7 @@ The following example inline policy adds the required permissions:
 }
 ```
 
-## Optional IAM Permissions for Fargate Tasks Pulling Amazon ECR Images over Interface Endpoints<a name="task-execution-ecr-conditionkeys"></a>
+## Optional IAM permissions for Fargate tasks pulling Amazon ECR images over interface endpoints<a name="task-execution-ecr-conditionkeys"></a>
 
 When launching tasks that use the Fargate launch type that pull images from Amazon ECR when Amazon ECR is configured to use an interface VPC endpoint, you can restrict the tasks access to a specific VPC or VPC endpoint\. Do this by creating a task execution role for the tasks to use that use IAM condition keys\.
 

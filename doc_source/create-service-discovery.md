@@ -13,17 +13,17 @@ Fargate tasks are only supported in the following Regions:
 | --- | --- | 
 |  US East \(Ohio\)  |  us\-east\-2  | 
 |  US East \(N\. Virginia\)  |  us\-east\-1  | 
-|  US West \(N\. California\)  |  us\-west\-1  | 
+|  US West \(N\. California\)  |  us\-west\-1 \(`usw1-az1` & `usw1-az3` only\)  | 
 |  US West \(Oregon\)  |  us\-west\-2  | 
 |  Africa \(Cape Town\)  |  af\-south\-1  | 
 |  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  | 
 |  Asia Pacific \(Mumbai\)  |  ap\-south\-1  | 
-|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2 \(`apne2-az1`, `apne2-az2` & `apne2-az3` only\)  | 
+|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
 |  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
-|  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1  | 
+|  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1 \(`apne1-az1`, `apne1-az2`, & `apne1-az4` only\)  | 
 |  Canada \(Central\)  |  ca\-central\-1 \(`cac1-az1` & `cac1-az2` only\)  | 
-|  China \(Beijing\)  |  cn\-north\-1 \(`cnn1-az1`, `cnn1-az2` & `cnn1-az3` only\)  | 
+|  China \(Beijing\)  |  cn\-north\-1 \(`cnn1-az1` & `cnn1-az2` only\)  | 
 |  China \(Ningxia\)  |  cn\-northwest\-1  | 
 |  Europe \(Frankfurt\)  |  eu\-central\-1  | 
 |  Europe \(Ireland\)  |  eu\-west\-1  | 

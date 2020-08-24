@@ -66,7 +66,7 @@ ecs-cli up \
 
 ## Tagging Resources<a name="cmd-ecs-cli-up-tags"></a>
 
-The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.
+The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [Tagging your Amazon ECS resources](ecs-using-tags.md)\.
 
 If you specify resource tags when using the ecs\-cli up command, the Amazon ECS cluster as well as the following resources created by the AWS CloudFormation stack can be tagged:
 + Container instances

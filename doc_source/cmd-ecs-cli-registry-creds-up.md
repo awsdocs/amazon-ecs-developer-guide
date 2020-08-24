@@ -15,7 +15,7 @@ ecs\-cli registry\-creds up *\./creds\_input\_file\.yml* \-\-role\-name *value* 
 | Name | Description | 
 | --- | --- | 
 |  `./creds_input_file.yml`  |  Specifies the values related to private registry authentication\. For more information, see [Using Private Registry Authentication](#cmd-ecs-cli-registry-creds-up-privregauth)\. Required: Yes  | 
-|  `--role-name value`  |  The name to use for the new task execution role\. If the role already exists, new policies are attached to the existing role\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.  We recommend creating a new task execution role specific to each application to avoid granting permissions to your secrets for applications that do not need them\.  Required: Yes  | 
+|  `--role-name value`  |  The name to use for the new task execution role\. If the role already exists, new policies are attached to the existing role\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.  We recommend creating a new task execution role specific to each application to avoid granting permissions to your secrets for applications that do not need them\.  Required: Yes  | 
 |  `--update-existing-secrets`  |  Specifies whether existing secrets should be updated with new credential values\. Required: No  | 
 |  `--no-role`  |  If specified, no task execution role is created\. Required: No  | 
 |  `--no-output-file`  |  If specified, no output file for use with `compose` is created\. Required: No  | 
@@ -73,7 +73,7 @@ Required: No
 
 ## Tagging Resources<a name="cmd-ecs-cli-registry-creds-up-tags"></a>
 
-The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.
+The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [Tagging your Amazon ECS resources](ecs-using-tags.md)\.
 
 When using the `ecs-cli registry-creds up` command, using the `--tags` flag enables you to add metadata tags to the Secrets Manager secrets and then IAM roles\.
 

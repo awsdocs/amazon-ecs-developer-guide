@@ -1,18 +1,18 @@
-# Amazon ECS CloudWatch Metrics<a name="cloudwatch-metrics"></a>
+# Amazon ECS CloudWatch metrics<a name="cloudwatch-metrics"></a>
 
 You can monitor your Amazon ECS resources using Amazon CloudWatch, which collects and processes raw data from Amazon ECS into readable, near real\-time metrics\. These statistics are recorded for a period of two weeks so that you can access historical information and gain a better perspective on how your clusters or services are performing\. Amazon ECS metric data is automatically sent to CloudWatch in 1\-minute periods\. For more information about CloudWatch, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\.
 
 **Topics**
-+ [Enabling CloudWatch Metrics](#enable_cloudwatch)
-+ [Available Metrics and Dimensions](#available_cloudwatch_metrics)
-+ [Cluster Reservation](#cluster_reservation)
-+ [Cluster Utilization](#cluster_utilization)
-+ [Service Utilization](#service_utilization)
-+ [Service `RUNNING` Task Count](#cw_running_task_count)
-+ [Viewing Amazon ECS Metrics](viewing_cloudwatch_metrics.md)
-+ [Tutorial: Scaling Container Instances with CloudWatch Alarms](cloudwatch_alarm_autoscaling.md)
++ [Enabling CloudWatch metrics](#enable_cloudwatch)
++ [Available metrics and dimensions](#available_cloudwatch_metrics)
++ [Cluster reservation](#cluster_reservation)
++ [Cluster utilization](#cluster_utilization)
++ [Service utilization](#service_utilization)
++ [Service `RUNNING` task count](#cw_running_task_count)
++ [Viewing Amazon ECS metrics](viewing_cloudwatch_metrics.md)
++ [Tutorial: Scaling container instances with CloudWatch alarms](cloudwatch_alarm_autoscaling.md)
 
-## Enabling CloudWatch Metrics<a name="enable_cloudwatch"></a>
+## Enabling CloudWatch metrics<a name="enable_cloudwatch"></a>
 
 Any Amazon ECS service using the Fargate launch type is enabled for CloudWatch CPU and memory utilization metrics automatically, so you don't need to take any manual steps\.
 
@@ -25,11 +25,11 @@ Your Amazon ECS container instances also require the `ecs:StartTelemetrySession`
 **Note**  
 You can disable CloudWatch metrics collection by setting `ECS_DISABLE_METRICS=true` in your Amazon ECS container agent configuration\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 
-## Available Metrics and Dimensions<a name="available_cloudwatch_metrics"></a>
+## Available metrics and dimensions<a name="available_cloudwatch_metrics"></a>
 
 The following sections list the metrics and dimensions that Amazon ECS sends to Amazon CloudWatch\.
 
-### Amazon ECS Metrics<a name="ecs-metrics"></a>
+### Amazon ECS metrics<a name="ecs-metrics"></a>
 
 Amazon ECS provides metrics for you to monitor your resources\. You can measure the CPU and memory reservation and utilization across your cluster as a whole, and the CPU and memory utilization on the services in your clusters\. For your GPU workloads, you can measure your GPU reservation across your cluster\.
 
@@ -79,7 +79,7 @@ Unit: Percent\.
 **Note**  
 If you're using tasks with the EC2 launch type and have Linux container instances, the Amazon ECS container agent relies on Docker `stats` metrics to gather CPU and memory data for each container running on the instance\. For burstable performance instances \(T3, T3a, and T2 instances\), the CPU utilization metric may reflect different data compared to instance\-level CPU metrics\.
 
-### Dimensions for Amazon ECS Metrics<a name="ecs-metrics-dimensions"></a>
+### Dimensions for Amazon ECS metrics<a name="ecs-metrics-dimensions"></a>
 
 Amazon ECS metrics use the `AWS/ECS` namespace and provide metrics for the following dimensions\. Metrics for a dimension only reflect the resources with running tasks during a period\. For example, if you have a cluster with one service in it but that service has no tasks in a `RUNNING` state, there will be no metrics sent to CloudWatch\. If you have two services and one of them has running tasks and the other doesn't, only the metrics for the service with running tasks would be sent\.
 
@@ -89,7 +89,7 @@ This dimension filters the data that you request for all resources in a specifie
 `ServiceName`  
 This dimension filters the data that you request for all resources in a specified service within a specified cluster\.
 
-## Cluster Reservation<a name="cluster_reservation"></a>
+## Cluster reservation<a name="cluster_reservation"></a>
 
 Cluster reservation metrics are measured as the percentage of CPU, memory, and GPUs that are reserved by all Amazon ECS tasks on a cluster when compared to the aggregate CPU, memory, and GPUs that were registered for each active container instance in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect cluster reservation metrics\. This metric is used only on clusters with tasks or services using the EC2 launch type\. It's not supported on clusters with tasks using the Fargate launch type\.
 
@@ -121,7 +121,7 @@ The following illustration shows the total registered CPU units in a cluster and
 
 ![\[Cluster CPU reservation and utilization\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/telemetry.png)
 
-## Cluster Utilization<a name="cluster_utilization"></a>
+## Cluster utilization<a name="cluster_utilization"></a>
 
 Cluster utilization is measured as the percentage of CPU and memory that is used by all Amazon ECS tasks on a cluster when compared to the aggregate CPU and memory that was registered for each active container instance in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect cluster utilization metrics\. A GPU utilization metric isn't supported because it's not possible to overcommit a GPU\. This metric is used only on clusters with tasks or services using the EC2 launch type\. It's not supported on clusters with tasks using the Fargate launch type\.
 
@@ -143,7 +143,7 @@ For example, a cluster has two active container instances registered, a `c4.4xla
 
 If ten tasks are running on this cluster and each task consumes 1,024 CPU units and 2,048 MiB of memory, a total of 10,240 CPU units and 20,480 MiB of memory are used on the cluster\. This is reported to CloudWatch as 55% CPU utilization and 60% memory utilization for the cluster\.
 
-## Service Utilization<a name="service_utilization"></a>
+## Service utilization<a name="service_utilization"></a>
 
 Service utilization is measured as the percentage of CPU and memory that is used by the Amazon ECS tasks that belong to a service on a cluster when compared to the CPU and memory that is specified in the service's task definition\. This metric is supported for services with tasks using both the EC2 and Fargate launch types\.
 
@@ -167,7 +167,7 @@ If the previous example used the soft limit `memoryReservation` instead of the h
 
 If this task is performing CPU\-intensive work during a period and using all 2,048 of the available CPU units and 512 MiB of memory, the service reports 400% CPU utilization and 50% memory utilization\. If the task is idle and using 128 CPU units and 128 MiB of memory, the service reports 25% CPU utilization and 12\.5% memory utilization\.
 
-## Service `RUNNING` Task Count<a name="cw_running_task_count"></a>
+## Service `RUNNING` task count<a name="cw_running_task_count"></a>
 
 You can use CloudWatch metrics to view the number of tasks in your services that are in the `RUNNING` state\. For example, you can set a CloudWatch alarm for this metric to alert you if the number of running tasks in your service falls below a specified value\. 
 

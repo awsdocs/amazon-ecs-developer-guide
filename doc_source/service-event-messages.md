@@ -1,10 +1,16 @@
-# Service Event Messages<a name="service-event-messages"></a>
+# Service event messages<a name="service-event-messages"></a>
 
-If you are troubleshooting a problem with a service, the first place you should check for diagnostic information is the service event log\.
+When troubleshooting a problem with a service, the first place you should check for diagnostic information is the service event log\. You can view service events using the `DescribeServices` API, the AWS CLI, or by using the AWS Management Console\.
 
-When viewing service event messages in the Amazon ECS console, duplicate service event messages are omitted until either the cause is resolved or six hours passes\. If the cause is not resolved, you will receive another service event message after six hours has passed\.
+When viewing service event messages using the Amazon ECS API, only the events from the service scheduler are returned\. These include the most recent task placement and instance health events\. However, the Amazon ECS console displays service events from the following sources\.
++ Task placement and instance health events from the Amazon ECS service scheduler\. These events will have a prefix of **service *\(service\-name\)***\. To ensure that this event view is helpful, we only show the `100` most recent events and duplicate event messages are omitted until either the cause is resolved or six hours passes\. If the cause is not resolved within six hours, you will receive another service event message for that cause\.
++ Service Auto Scaling events\. These events will have a prefix of **Message**\. The `10` most recent scaling events are shown\. These events only occur when a service is configured with an Application Auto Scaling scaling policy\.
 
-**To check the service event log in the Amazon ECS console**
+Use the following steps to view your current service event messages\.
+
+## Viewing service event messages \(AWS Management Console\)<a name="service-event-messages-console"></a>
+
+**To view the service event log in the Amazon ECS console**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -17,14 +23,22 @@ When viewing service event messages in the Amazon ECS console, duplicate service
 
 1. Examine the **Message** column for errors or other helpful information\.
 
-## Service Event Messages<a name="service-event-messages-list"></a>
+## Viewing service event messages \(AWS CLI\)<a name="service-event-messages-cli"></a>
 
-The following are examples of service event messages you may see in the console:
-+ [service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\.](#service-event-messages-1)
-+ [service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* has insufficient CPU units available\.](#service-event-messages-2)
-+ [service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* encountered error "AGENT"\.](#service-event-messages-3)
-+ [service \(*service\-name*\) \(instance *instance\-id*\) is unhealthy in \(elb *elb\-name*\) due to \(reason Instance has failed at least the UnhealthyThreshold number of health checks consecutively\.\)](#service-event-messages-4)
-+ [service \(*service\-name*\) is unable to consistently start tasks successfully\.](#service-event-messages-5)
+Use the [describe\-services](https://docs.aws.amazon.com/cli/latest/reference/ecs/describe-services.html) command to view the service event messages for a specified service\.
+
+The following AWS CLI example describes the *service\-name* service in the *default* cluster, which will provide the latest service event messages\.
+
+```
+aws ecs describe-services \
+    --cluster default \
+    --services service-name \
+    --region us-west-2
+```
+
+## Service event messages<a name="service-event-messages-list"></a>
+
+The following are examples of service event messages you may see in the Amazon ECS console\.
 
 ### service \(*service\-name*\) has reached a steady state\.<a name="service-event-messages-steady"></a>
 
@@ -91,3 +105,9 @@ This service is registered with a load balancer and the load balancer health che
 This service contains tasks that have failed to start after consecutive attempts\. At this point, the service scheduler begins to incrementally increase the time between retries\. You should troubleshoot why your tasks are failing to launch\. For more information, see [Service throttle logic](service-throttle-logic.md)\.
 
 After the service is updated, for example with an updated task definition, the service scheduler resumes normal behavior\.
+
+### service \(*service\-name*\) operations are being throttled\. Will try again later\.<a name="service-event-messages-6"></a>
+
+This service is unable to launch more tasks due to API throttling limits\. Once the service scheduler is able to launch more tasks, it will resume\.
+
+To request an API rate limit quota increase, open the [AWS Support Center](https://console.aws.amazon.com/support/home#/) page, sign in if necessary, and choose **Create case**\. Choose **Service limit increase**\. Complete and submit the form\.

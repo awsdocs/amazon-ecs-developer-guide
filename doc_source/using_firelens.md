@@ -36,7 +36,7 @@ The following example IAM policy adds the required permissions for routing logs 
 }
 ```
 
-Your task may also require the Amazon ECS task execution role under the following conditions\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+Your task may also require the Amazon ECS task execution role under the following conditions\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 + If your task uses the Fargate launch type and you are pulling container images from Amazon ECR or referencing sensitive data from AWS Secrets Manager in your log configuration, then you must include the task execution IAM role\.
 + If you are specifying a custom configuration file that is hosted in Amazon S3, your task execution IAM role must include the `s3:GetObject` permission for the configuration file and the `s3:GetBucketLocation` permission on the Amazon S3 bucket that the file is in\. For more information, see [Specifying Permissions in a Policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html) in the *Amazon Simple Storage Service Console User Guide*\.
 

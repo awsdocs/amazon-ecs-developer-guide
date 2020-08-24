@@ -1,4 +1,4 @@
-# Identity and Access Management for Amazon Elastic Container Service<a name="security-iam"></a>
+# Identity and access management for Amazon Elastic Container Service<a name="security-iam"></a>
 
 AWS Identity and Access Management \(IAM\) is an AWS service that helps an administrator securely control access to AWS resources\. IAM administrators control who can be *authenticated* \(signed in\) and *authorized* \(have permissions\) to use Amazon ECS resources\. IAM is an AWS service that you can use with no additional charge\.
 
@@ -11,7 +11,7 @@ AWS Identity and Access Management \(IAM\) is an AWS service that helps an admin
 + [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)
 + [Managed Policies and Trust Relationships](managed_policies.md)
 + [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)
-+ [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)
++ [Amazon ECS task execution IAM role](task_execution_IAM_role.md)
 + [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)
 + [IAM Roles for Tasks](task-iam-roles.md)
 + [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)

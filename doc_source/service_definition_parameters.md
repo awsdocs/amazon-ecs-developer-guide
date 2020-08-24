@@ -52,7 +52,7 @@ A task definition must be specified when using the rolling update \(`ECS`\) depl
 Type: String  
 Required: No  
 The platform version on which your tasks in the service are running\. A platform version is only specified for tasks using the Fargate launch type\. If one is not specified, the latest version \(`LATEST`\) is used by default\.  
-AWS Fargate platform versions are used to refer to a specific runtime environment for the Fargate task infrastructure\. When specifying the `LATEST` platform version when running a task or creating a service, you get the most current platform version available for your tasks\. When you scale up your service, those tasks receive the platform version that was specified on the service's current deployment\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.  
+AWS Fargate platform versions are used to refer to a specific runtime environment for the Fargate task infrastructure\. When specifying the `LATEST` platform version when running a task or creating a service, you get the most current platform version available for your tasks\. When you scale up your service, those tasks receive the platform version that was specified on the service's current deployment\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.  
 Platform versions are not specified for tasks using the EC2 launch type\.
 
 ## Cluster<a name="sd-cluster"></a>
@@ -170,7 +170,7 @@ The field to apply the placement strategy against\. For the `spread` placement s
 `tags`  
 Type: Array of objects  
 Required: No  
-The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. When a service is deleted, the tags are deleted as well\. A maximum of 50 tags can be applied to the service\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.    
+The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. When a service is deleted, the tags are deleted as well\. A maximum of 50 tags can be applied to the service\. For more information, see [Tagging your Amazon ECS resources](ecs-using-tags.md)\.    
 `key`  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
@@ -186,7 +186,7 @@ The optional part of a key\-value pair that make up a tag\. A value acts as a de
 Type: Boolean  
 Valid values: `true` \| `false`  
 Required: No  
-Specifies whether to enable Amazon ECS managed tags for the tasks in the service\. If no value is specified, the default value is `false`\. For more information, see [Tagging Your Resources for Billing](ecs-using-tags.md#tag-resources-for-billing)\.
+Specifies whether to enable Amazon ECS managed tags for the tasks in the service\. If no value is specified, the default value is `false`\. For more information, see [Tagging your resources for billing](ecs-using-tags.md#tag-resources-for-billing)\.
 
 `propagateTags`  
 Type: String  

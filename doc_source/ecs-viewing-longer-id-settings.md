@@ -2,6 +2,9 @@
 
 You can use the AWS Management Console and AWS CLI tools to view the resource types that support the new ARN and ID formats or the increased ENI limits\.
 
+**Important**  
+Amazon ECS ARN and resource ID settings that have not been explicitly set will be affected by the format timeline\. The console displays an **Undefined** value and the AWS CLI returns an empty set when a value has not been explicitly set\. For more information, see [ARN and resource ID format timeline](ecs-account-settings.md#ecs-resource-arn-timeline)\.
+
 **To view your account settings using the console**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.

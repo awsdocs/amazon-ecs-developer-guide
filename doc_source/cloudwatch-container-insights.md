@@ -5,13 +5,13 @@ CloudWatch Container Insights collects, aggregates, and summarizes metrics and l
 Operational data is collected as performance log events\. These are entries that use a structured JSON schema that enables high\-cardinality data to be ingested and stored at scale\. From this data, CloudWatch creates higher\-level aggregated metrics at the cluster and service level as CloudWatch metrics\. For more information, see [Container Insights Structured Logs for Amazon ECS](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-reference-structured-logs-ECS.html) in the *Amazon CloudWatch User Guide*\.
 
 **Important**  
-Metrics collected by CloudWatch Container Insights are charged as custom metrics\. For more information about CloudWatch pricing, see [CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\. Amazon ECS also provides monitoring metrics that are provided at no additional cost\. For more information, see [Amazon ECS CloudWatch Metrics](cloudwatch-metrics.md)\.
+Metrics collected by CloudWatch Container Insights are charged as custom metrics\. For more information about CloudWatch pricing, see [CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\. Amazon ECS also provides monitoring metrics that are provided at no additional cost\. For more information, see [Amazon ECS CloudWatch metrics](cloudwatch-metrics.md)\.
 
-## Container Insights Considerations<a name="cloudwatch-container-insights-considerations"></a>
+## Container Insights considerations<a name="cloudwatch-container-insights-considerations"></a>
 
 The following should be considered when using CloudWatch Container Insights\.
 + CloudWatch Container Insights metrics only reflect the resources with running tasks during the specified time range\. For example, if you have a cluster with one service in it but that service has no tasks in a `RUNNING` state, there will be no metrics sent to CloudWatch\. If you have two services and one of them has running tasks and the other doesn't, only the metrics for the service with running tasks will be sent\.
-+ Network metrics are only available for tasks that either use the Fargate launch type or use the `bridge` network mode\.
++ Network metrics are available for tasks using the Fargate or EC2 launch type with the `bridge` or awsvpc network mode\.
 
 ## Working with Container Insights\-enabled clusters<a name="cloudwatch-container-insights-working"></a>
 

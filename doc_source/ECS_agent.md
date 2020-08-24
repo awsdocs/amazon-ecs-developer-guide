@@ -15,6 +15,6 @@ For tasks using the Fargate launch type and platform version 1\.3\.0 and prior, 
 + [Private Registry Authentication for Container Instances](private-auth-container-instances.md)
 + [Automated Task and Image Cleanup](automated_image_cleanup.md)
 + [Amazon ECS Container Metadata File](container-metadata.md)
-+ [Amazon ECS Task Metadata Endpoint](task-metadata-endpoint.md)
++ [Amazon ECS Task metadata endpoint](task-metadata-endpoint.md)
 + [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)
 + [HTTP Proxy Configuration](http_proxy_config.md)

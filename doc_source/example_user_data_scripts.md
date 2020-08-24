@@ -210,3 +210,9 @@ sc.exe failureflag AmazonECS 1
 Start-Service AmazonECS
 </powershell>
 ```
+
+## Windows IAM roles for tasks<a name="windows-iam-roles-tasks"></a>
+
+See the following Windows examples regarding bootstrapping IAM task roles\.
++ [Windows IAM roles for tasks](windows_task_IAM_roles.md)
++ [IAM roles for task container bootstrap script](windows_task_IAM_roles.md#windows_task_IAM_roles_bootstrap)

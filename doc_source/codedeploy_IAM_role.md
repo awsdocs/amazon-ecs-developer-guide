@@ -26,11 +26,24 @@ There are two managed policies provided\. The `AWSCodeDeployRoleForECS` policy, 
                 "cloudwatch:DescribeAlarms",
                 "sns:Publish",
                 "s3:GetObject",
-                "s3:GetObjectMetadata",
                 "s3:GetObjectVersion"
             ],
             "Resource": "*",
             "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Effect": "Allow",
+            "Resource": "*",
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": [
+                        "ecs-tasks.amazonaws.com"
+                    ]
+                }
+            }
         }
     ]
 }
@@ -81,7 +94,6 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
         {
             "Action": [
                 "s3:GetObject",
-                "s3:GetObjectMetadata",
                 "s3:GetObjectVersion"
             ],
             "Resource": "*",
@@ -91,6 +103,23 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
                 }
             },
             "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:iam::*:role/ecsTaskExecutionRole",
+                "arn:aws:iam::*:role/ECSTaskExecution*"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": [
+                        "ecs-tasks.amazonaws.com"
+                    ]
+                }
+            }
         }
     ]
 }
@@ -150,7 +179,7 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
    }
    ```
 
-1. If the tasks in your Amazon ECS service using the blue/green deployment type require the use of the task execution role or a task role override, then you must add the `iam:PassRole` permission for each task execution role or task role override to the CodeDeploy IAM role as an inline policy\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md) and [IAM Roles for Tasks](task-iam-roles.md)\.
+1. If the tasks in your Amazon ECS service using the blue/green deployment type require the use of the task execution role or a task role override, then you must add the `iam:PassRole` permission for each task execution role or task role override to the CodeDeploy IAM role as an inline policy\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md) and [IAM Roles for Tasks](task-iam-roles.md)\.
 
    Follow the substeps below to create an inline policy\.
 

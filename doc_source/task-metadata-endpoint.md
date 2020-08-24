@@ -1,11 +1,6 @@
-# Amazon ECS Task Metadata Endpoint<a name="task-metadata-endpoint"></a>
+# Amazon ECS Task metadata endpoint<a name="task-metadata-endpoint"></a>
 
 The Amazon ECS container agent provides a method to retrieve various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats)\. This is referred to as the task metadata endpoint\.  The following versions are available:
-+ Task metadata endpoint version 4 – Available for tasks that use the Fargate launch type on platform version 1\.4\.0 or later and tasks that use the EC2 launch type and are launched on Amazon EC2 infrastructure running at least version 1\.39\.0 of the Amazon ECS container agent\. For more information, see [Task Metadata Endpoint version 4](task-metadata-endpoint-v4.md)\.
-+ Task metadata endpoint version 3 – Available for tasks that use the Fargate launch type on platform version 1\.3\.0 or later and tasks that use the EC2 launch type and are launched on Amazon EC2 infrastructure running at least version 1\.21\.0 of the Amazon ECS container agent\. For more information, see [Task Metadata Endpoint version 3](task-metadata-endpoint-v3.md)\.
-+ Task metadata endpoint version 2 – Available for tasks that use the Fargate launch type on platform version 1\.1\.0 or later and tasks that use the EC2 launch type that also use the `awsvpc` network mode and are launched on Amazon EC2 infrastructure running at least version 1\.17\.0 of the Amazon ECS container agent\. For more information, see [Task Metadata Endpoint version 2](task-metadata-endpoint-v2.md)\.
-
-**Topics**
-+ [Task Metadata Endpoint version 4](task-metadata-endpoint-v4.md)
-+ [Task Metadata Endpoint version 3](task-metadata-endpoint-v3.md)
-+ [Task Metadata Endpoint version 2](task-metadata-endpoint-v2.md)
++ Task metadata endpoint version 4 – Provides a variety of metadata and Docker stats to containers\. Can also provide network rate data\. Available for Amazon ECS tasks on AWS Fargate that use platform version `1.4.0` or later and tasks that are launched on Amazon EC2 infrastructure running at least version `1.39.0` of the Amazon ECS container agent\. For more information, see [Task metadata endpoint version 4](task-metadata-endpoint-v4.md)\.
++ Task metadata endpoint version 3 – Provides a variety of metadata and Docker stats to containers\. Available for Amazon ECS tasks on AWS Fargate that use platform version `1.3.0` or later and tasks that are launched on Amazon EC2 infrastructure running at least version `1.21.0` of the Amazon ECS container agent\. For more information, see [Task Metadata Endpoint version 3](task-metadata-endpoint-v3.md)\.
++ Task metadata endpoint version 2 – Available for Amazon ECS tasks on AWS Fargate that use platform version `1.1.0` or later and tasks that are launched on Amazon EC2 infrastructure that use the `awsvpc` network mode and are running at least version `1.17.0` of the Amazon ECS container agent\. For more information, see [Task Metadata Endpoint version 2](task-metadata-endpoint-v2.md)\.

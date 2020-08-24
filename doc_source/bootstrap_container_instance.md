@@ -61,6 +61,9 @@ EOF
 
 ## cloud\-init\-per Utility<a name="cloud-init-per"></a>
 
+**Note**  
+At this time, only ECS Containers based on Amazon Linux AMIs \(**not** Amazon Linux 2 AMIs\) support cloud\-init\-per\.
+
 The cloud\-init\-per utility is provided by the `cloud-init` package to help you create boothook commands for instances that run at a specified frequency\. 
 
 The cloud\-init\-per utility syntax is as follows:

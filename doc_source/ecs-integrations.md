@@ -7,5 +7,4 @@ Amazon ECS works with other AWS services to provide additional solutions for you
 + [Creating Amazon ECS resources with AWS CloudFormation](creating-resources-with-cloudformation.md)
 + [Amazon Elastic Container Service on AWS Outposts](ecs-on-outposts.md)
 + [Getting started with AWS App Mesh and Amazon ECS](appmesh-getting-started.md)
-+ [Savings Plans and Amazon ECS](savings-plans.md)
 + [AWS Deep Learning Containers on Amazon ECS](deep-learning-containers.md)

@@ -21,7 +21,7 @@ Some features described might only be available with the latest version of the A
 
 ## Available Subcommands<a name="cmd-ecs-cli-local-subcommands"></a>
 
-The ecs\-cli compose command supports the following subcommands\. Each of these subcommands has their own flags associated with them, which can be displayed using the `--help` flag\.
+The ecs\-cli local command supports the following subcommands\. Each of these subcommands has their own flags associated with them, which can be displayed using the `--help` flag\.
 
 create  
 Creates a Docker Compose file from an Amazon ECS task definition\. For more information, see [ecs\-cli local create](cmd-ecs-cli-local-create.md)\.

@@ -1,4 +1,4 @@
-# AWS Fargate Platform Versions<a name="platform_versions"></a>
+# AWS Fargate platform versions<a name="platform_versions"></a>
 
 AWS Fargate platform versions are used to refer to a specific runtime environment for Fargate task infrastructure\. It is a combination of the kernel and container runtime versions\. 
 
@@ -24,13 +24,14 @@ The following should be considered when specifying a platform version:
 The following is a list of the platform versions currently available:
 
 Fargate platform version‐1\.4\.0  
++ Beginning on July 30, 2020, any new Fargate task that is launched using platform version 1\.4\.0 will be able to route UDP traffic using a Network Load Balancer to their Amazon ECS on Fargate tasks\. For more information, see [Service load balancing](service-load-balancing.md)\.
 + Beginning on May 28, 2020, any new Fargate task that is launched using platform version 1\.4\.0 will have its ephemeral storage encrypted with an AES\-256 encryption algorithm using an AWS Fargate\-managed encryption key\. For more information, see [Fargate Task Storage](fargate-task-storage.md)\.
 + Added support for using Amazon EFS file system volumes for persistent task storage\. For more information, see [Amazon EFS volumes](efs-volumes.md)\.
 + The ephemeral task storage has been increased to a minimum of 20 GB for each task\. For more information, see [Fargate Task Storage](fargate-task-storage.md)\.
 + The network traffic behavior to and from tasks has been updated\. Starting with platform version 1\.4\.0, all Fargate tasks receive a single elastic network interface \(referred to as the task ENI\) and all network traffic flows through that ENI within your VPC and will be visible to you through your VPC flow logs\. For more information, see [Fargate Task Networking](https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-task-networking.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 + Task ENIs add support for jumbo frames\. Network interfaces are configured with a maximum transmission unit \(MTU\), which is the size of the largest payload that fits within a single frame\. The larger the MTU, the more application payload can fit within a single frame, which reduces per\-frame overhead and increases efficiency\. Supporting jumbo frames will reduce overhead when the network path between your task and the destination supports jumbo frames, such as all traffic that remains within your VPC\.
 + CloudWatch Container Insights will include network performance metrics for Fargate tasks\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
-+ Added support for the task metadata endpoint version 4 which provides additional information for your Fargate tasks, including network stats for the task and which Availability Zone the task is running in\. For more information, see [Task Metadata Endpoint version 4](task-metadata-endpoint-v4.md)\.
++ Added support for the task metadata endpoint version 4 which provides additional information for your Fargate tasks, including network stats for the task and which Availability Zone the task is running in\. For more information, see [Task metadata endpoint version 4](task-metadata-endpoint-v4.md)\.
 + Added support for the `SYS_PTRACE` Linux parameter in container definitions\. For more information, see [Linux Parameters](task_definition_parameters.md#container_definition_linuxparameters)\.
 + The Fargate container agent replaces the use of the Amazon ECS container agent for all Fargate tasks\. This change should not have an effect on how your tasks run\.
 + The container runtime is now using Containerd instead of Docker\. This change should not have an effect on how your tasks run\. You will notice that some error messages that originate with the container runtime will change from mentioning Docker to more general errors\. For more information, see [Stopped tasks error codes](https://docs.aws.amazon.com/AmazonECS/latest/userguide/stopped-task-error-codes.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
@@ -49,7 +50,7 @@ Fargate Platform Version‐1\.2\.0
 + Added support for private registry authentication using AWS Secrets Manager\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
 
 Fargate Platform Version‐1\.1\.0  
-+ Added support for the Amazon ECS task metadata endpoint\. For more information, see [Amazon ECS Task Metadata Endpoint](task-metadata-endpoint.md)\.
++ Added support for the Amazon ECS task metadata endpoint\. For more information, see [Amazon ECS Task metadata endpoint](task-metadata-endpoint.md)\.
 + Added support for Docker health checks in container definitions\. For more information, see [Health Check](task_definition_parameters.md#container_definition_healthcheck)\.
 + Added support for Amazon ECS service discovery\. For more information, see [Service Discovery](service-discovery.md)\.
 

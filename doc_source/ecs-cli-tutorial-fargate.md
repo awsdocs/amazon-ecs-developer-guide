@@ -11,7 +11,7 @@ Complete the following prerequisites:
 
 ## Step 1: Create the Task Execution IAM Role<a name="ECS_CLI_tutorial_fargate_iam_role"></a>
 
-The Amazon ECS container agent makes calls to AWS APIs on your behalf, so it requires an IAM policy and role for the service to know that the agent belongs to you\. This IAM role is referred to as a task execution IAM role\. If you already have a task execution role created to use, you can skip this step\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+The Amazon ECS container agent makes calls to AWS APIs on your behalf, so it requires an IAM policy and role for the service to know that the agent belongs to you\. This IAM role is referred to as a task execution IAM role\. If you already have a task execution role created to use, you can skip this step\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 **To create the task execution IAM role using the AWS CLI**
 

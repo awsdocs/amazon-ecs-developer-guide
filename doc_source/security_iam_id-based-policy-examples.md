@@ -40,7 +40,7 @@ This example shows how you might create a policy that allows IAM users to view t
             "Action": [
                 "iam:GetUserPolicy",
                 "iam:ListGroupsForUser",
-                  "iam:ListAttachedUserPolicies",
+                "iam:ListAttachedUserPolicies",
                 "iam:ListUserPolicies",
                 "iam:GetUser"
             ],
@@ -284,7 +284,7 @@ The first run wizard also attempts to automatically create different IAM roles d
 + You have a user with administrator access manually create the required IAM role so it is available on the account to be used\. For more information, see the following:
   + [Service Scheduler IAM Role](ecs-legacy-iam-roles.md#service_IAM_role)
   + [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)
-  + [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)
+  + [Amazon ECS task execution IAM role](task_execution_IAM_role.md)
 
 ## Cluster Examples<a name="IAM_cluster_policies"></a>
 
