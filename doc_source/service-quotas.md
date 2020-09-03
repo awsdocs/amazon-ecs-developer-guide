@@ -71,7 +71,7 @@ To work more with service quotas using the AWS Management Console see the [Servi
 #### [ AWS CLI ]
 
 **To view Amazon ECS and Fargate service quotas using the AWS CLI**  
-Run the following command to view your Amazon ECS quotas\.
+Run the following command to view the default Amazon ECS quotas\.
 
 ```
 aws service-quotas list-aws-default-service-quotas \
@@ -80,7 +80,7 @@ aws service-quotas list-aws-default-service-quotas \
     --output table
 ```
 
-Run the following command to view your Fargate quotas\.
+Run the following command to view the default Fargate quotas\.
 
 ```
 aws service-quotas list-aws-default-service-quotas \
@@ -88,6 +88,16 @@ aws service-quotas list-aws-default-service-quotas \
     --service-code fargate \
     --output table
 ```
+
+Run the following command to view your applied Fargate quotas\.
+
+```
+aws service-quotas list-service-quotas \
+    --service-code fargate
+```
+
+**Note**  
+Amazon ECS does not support applied quotas\.
 
 To work more with service quotas using the AWS CLI, see the [Service Quotas AWS CLI Command Reference](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/index.html#cli-aws-service-quotas)\. To request a quota increase, see the [https://docs.aws.amazon.com/cli/latest/reference/service-quotas/request-service-quota-increase.html](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/request-service-quota-increase.html) command in the [AWS CLI Command Reference](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/index.html#cli-aws-service-quotas)\.
 

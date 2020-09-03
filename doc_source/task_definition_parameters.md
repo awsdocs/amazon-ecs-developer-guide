@@ -524,6 +524,30 @@ The secret to expose to the log configuration of the container\.
 }
 ```
 
+`firelensConfiguration`  
+Type: [FirelensConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_FirelensConfiguration.html) Object  
+Required: No  
+The FireLens configuration for the container\. This is used to specify and configure a log router for container logs\. For more information, see [Custom log routing](using_firelens.md)\.  
+
+```
+{
+    "firelensConfiguration": {
+        "type": "fluentd",
+        "options": {
+            "KeyName": ""
+        }
+    }
+}
+```  
+`options`  
+Type: String to string map  
+Required: No  
+The options to use when configuring the log router\. This field is optional and can be used to specify a custom configuration file or to add additional metadata, such as the task, task definition, cluster, and container instance details to the log event\. If specified, the syntax to use is `"options":{"enable-ecs-log-metadata":"true|false","config-file-type:"s3|file","config-file-value":"arn:aws:s3:::mybucket/fluent.conf|filepath"}`\. For more information, see [Creating a task definition that uses a FireLens configuration](using_firelens.md#firelens-taskdef)\.  
+`type`  
+Type: String  
+Required: Yes  
+The log router to use\. The valid values are `fluentd` or `fluentbit`\.
+
 #### Security<a name="container_definition_security"></a>
 
 `privileged`  
