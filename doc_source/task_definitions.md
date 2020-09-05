@@ -23,6 +23,7 @@ Your entire application stack does not need to exist on a single task definition
 + [Working with GPUs on Amazon ECS](ecs-gpu.md)
 + [Working with inference workloads on Amazon ECS](ecs-inference.md)
 + [Using data volumes in tasks](using_data_volumes.md)
++ [Managing container swap space](container-swap.md)
 + [Task Networking with the `awsvpc` Network Mode](task-networking.md)
 + [Using the awslogs Log Driver](using_awslogs.md)
 + [Custom log routing](using_firelens.md)

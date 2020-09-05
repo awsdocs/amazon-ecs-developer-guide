@@ -8,4 +8,18 @@ When the RunTask API throttling limit is reached, you will get the following exc
 An error occurred (ThrottlingException) when calling the RunTask operation (reached max retries: 4): Rate exceeded.
 ```
 
-To request an API rate limit quota increase, open the [AWS Support Center](https://console.aws.amazon.com/support/home#/) page, sign in if necessary, and choose **Create case**\. Choose **Rate limit quota increase**\. Complete and submit the form\.
+To request an API rate limit quota increase, complete the following steps\.
+
+**To request a rate limit increase**
+
+1. Open the [AWS Support Center](https://console.aws.amazon.com/support/home#/)\.
+
+1. Choose **Create case**, **Service limit increase**\.
+
+1. For **Limit type**, select **Fargate**\.
+
+1. For **Region**, select the region you want to submit the rate limit increase for\.
+
+1. For **Limit**, choose **Concurrent Task Limit**\.
+
+1. For **Use case description**, describe your use case concerning the RunTask API throttle limit so support can assist you further\.

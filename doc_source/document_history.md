@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Support for Local Zones and Wavelength Zones  |  Amazon ECS added support for workloads in Local Zones and Wavelength Zones\. For more information, see [Amazon ECS clusters in Local Zones, Wavelength Zones, and AWS Outposts](cluster-regions-zones.md)\.  |  4 September 2020  | 
 |  Amazon ECS variant of Bottlerocket AMI  |  Bottlerocket is a Linux\-based open source operating system that is purpose\-built by AWS for running containers\. An Amazon ECS\-optimized AMI variant of the Bottlerocket operating system is provided as an AMI you can use when launching Amazon ECS container instances\. For more information, see [Using Bottlerocket with Amazon ECS](ecs-bottlerocket.md)\.  |  31 August 2020  | 
 |  Task metadata endpoint version 4 updated for network rate stats  |  The task metadata endpoint version 4 has been updated to provide network rate stats for Amazon ECS tasks that use the `awsvpc` or `bridge` network modes hosted on Amazon EC2 instances running at least version `1.43.0` of the container agent\. For more information, see [Task metadata endpoint version 4](task-metadata-endpoint-v4.md)\.  |  10 August 2020  | 
 |  Fargate usage metrics  |  AWS Fargate provides CloudWatch usage metrics which provide visibility into your accounts usage of Fargate On\-Demand and Fargate Spot resources\. For more information, see [Usage metrics](AWS_Fargate.md#fargate-usage-metrics)\.  |  3 August 2020  | 

@@ -7,6 +7,7 @@ An Amazon ECS cluster is a logical grouping of tasks or services\. If you are ru
 + [Creating a cluster](create_cluster.md)
 + [Amazon ECS capacity providers](cluster-capacity-providers.md)
 + [Amazon ECS cluster auto scaling](cluster-auto-scaling.md)
++ [Amazon ECS clusters in Local Zones, Wavelength Zones, and AWS Outposts](cluster-regions-zones.md)
 + [Updating cluster settings](update-cluster-settings.md)
 + [Deleting a cluster](delete_cluster.md)
 
