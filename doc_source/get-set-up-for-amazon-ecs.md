@@ -51,7 +51,7 @@ We strongly recommend that you adhere to the best practice of using the **Admini
 
 1. In the **Create group** dialog box, for **Group name** enter **Administrators**\.
 
-1. Choose **Filter policies**, and then select **AWS managed \-job function** to filter the table contents\.
+1. Choose **Filter policies**, and then select **AWS managed \-job function** to filter the table contents\.   <--- Please check and fix this step as it's impossible to continue following these steps from here. There is no such entry (AWS managed -job function) in the filtered results. And it's unclear from where to select AdministratorAccess (the next step). 
 
 1. In the policy list, select the check box for **AdministratorAccess**\. Then choose **Create group**\.
 **Note**  
