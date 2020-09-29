@@ -29,7 +29,7 @@ ecs\-cli compose create \[\-\-region *region*\] \[\-\-cluster\-config *cluster\_
 
 ## Tagging Resources<a name="cmd-ecs-cli-compose-create-tags"></a>
 
-The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.
+The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [Tagging your Amazon ECS resources](ecs-using-tags.md)\.
 
 When using the `ecs-cli compose create` command, using the `--tags` flag enables you to add metadata tags to the task definition\.
 

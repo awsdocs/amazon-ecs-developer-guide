@@ -33,7 +33,7 @@ Optional deployment parameters that control how many tasks run during a deployme
 `tags`  
 Type: Array of objects  
 Required: No  
-The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. When a service is deleted, the tags are deleted as well\. A maximum of 50 tags can be applied to the service\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.    
+The metadata that you apply to the service to help you categorize and organize them\. Each tag consists of a key and an optional value, both of which you define\. When a service is deleted, the tags are deleted as well\. A maximum of 50 tags can be applied to the service\. For more information, see [Tagging your Amazon ECS resources](ecs-using-tags.md)\.    
 `key`  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
@@ -45,7 +45,7 @@ Length Constraints: Minimum length of 0\. Maximum length of 256\.
 Required: No  
 The optional part of a key\-value pair that make up a tag\. A value acts as a descriptor within a tag category \(key\)\.  
 `enableECSManagedTags`  
-Specifies whether to enable Amazon ECS managed tags for the tasks within the service\. For more information, see [Tagging Your Resources for Billing](ecs-using-tags.md#tag-resources-for-billing)\.  
+Specifies whether to enable Amazon ECS managed tags for the tasks within the service\. For more information, see [Tagging your resources for billing](ecs-using-tags.md#tag-resources-for-billing)\.  
 `propagateTags`  
 Type: String  
 Valid values: `TASK_DEFINITION` \| `SERVICE`  
@@ -116,7 +116,7 @@ If a `launchType` is specified, the `capacityProviderStrategy` parameter must be
 Type: String  
 Required: No  
 The platform version on which your tasks in the service are running\. A platform version is only specified for tasks using the Fargate launch type\. If one is not specified, the latest version \(`LATEST`\) is used by default\.  
-AWS Fargate platform versions are used to refer to a specific runtime environment for the Fargate task infrastructure\. When specifying the `LATEST` platform version when running a task or creating a service, you get the most current platform version available for your tasks\. When you scale up your service, those tasks receive the platform version that was specified on the service's current deployment\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.  
+AWS Fargate platform versions are used to refer to a specific runtime environment for the Fargate task infrastructure\. When specifying the `LATEST` platform version when running a task or creating a service, you get the most current platform version available for your tasks\. When you scale up your service, those tasks receive the platform version that was specified on the service's current deployment\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.  
 Platform versions are not specified for tasks using the EC2 launch type\.  
 `loadBalancers`  
 A load balancer object representing the load balancer to use with your service\. When using an external deployment controller, only Application Load Balancers and Network Load Balancers are supported\. If you're using an Application Load Balancer, only one Application Load Balancer target group is allowed per task set\.  

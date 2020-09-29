@@ -7,7 +7,7 @@ If your task definition references an image stored in Amazon ECR, this topic doe
 
 For tasks using the EC2 launch type, this feature requires version 1\.19\.0 or later of the container agent; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
-For tasks using the Fargate launch type, this feature requires platform version 1\.2\.0 or later\. For information, see [AWS Fargate Platform Versions](platform_versions.md)\.
+For tasks using the Fargate launch type, this feature requires platform version 1\.2\.0 or later\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
 
 Within your container definition, specify `repositoryCredentials` with the full ARN of the secret that you created\. The secret you reference can be from a different Region than the task using it, but must be from within the same account\.
 
@@ -32,7 +32,7 @@ Another method of enabling private registry authentication uses Amazon ECS conta
 
 ## Required IAM permissions for private registry authentication<a name="private-auth-iam"></a>
 
-The Amazon ECS task execution role is required to use this feature\. This allows the container agent to pull the container image\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+The Amazon ECS task execution role is required to use this feature\. This allows the container agent to pull the container image\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 To provide access to the secrets that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
 + `secretsmanager:GetSecretValue`

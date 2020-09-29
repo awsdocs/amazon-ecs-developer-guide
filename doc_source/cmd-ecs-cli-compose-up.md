@@ -23,14 +23,14 @@ ecs\-cli compose up \[\-\-region *region*\] \[\-\-cluster\-config *cluster\_conf
 |  `--create-log-groups`  |  Creates the CloudWatch log groups specified in your Compose files\. Required: No  | 
 |  `--force-update`  |  Forces the relaunching of the tasks\. Required: No  | 
 |  `--tags key1=value1,key2=value2`  |  Specifies the metadata to apply to your AWS resources\. Each tag consists of a key and an optional value\. Tags use the following format: `key1=value1,key2=value2,key3=value3`\. Amazon ECS managed tags are enabled by default if you have opted in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats unless you specifically disable them using the `--disable-ecs-managed-tags` flag\. For more information, see [Tagging Resources](cmd-ecs-cli-compose-service-up.md#cmd-ecs-cli-compose-service-up-tags)\. Type: Key value pairs Required: No  | 
-|  `--disable-ecs-managed-tags`  |  Disable the Amazon ECS managed tags\. For more information, see [Tagging Your Resources for Billing](ecs-using-tags.md#tag-resources-for-billing)\. Required: No  | 
+|  `--disable-ecs-managed-tags`  |  Disable the Amazon ECS managed tags\. For more information, see [Tagging your resources for billing](ecs-using-tags.md#tag-resources-for-billing)\. Required: No  | 
 |  `--help, -h`  |  Shows the help text for the specified command\. Required: No  | 
 
 ## Tagging Resources<a name="cmd-ecs-cli-compose-up-tags"></a>
 
-The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [Tagging Your Amazon ECS Resources](ecs-using-tags.md)\.
+The Amazon ECS CLI supports adding metadata in the form of resource tags to your AWS resources\. Each tag consists of a key and an optional value\. Resource tags can be used for cost allocation, automation, and access control\. For more information, see [Tagging your Amazon ECS resources](ecs-using-tags.md)\.
 
-When using the `ecs-cli compose up` command, using the `--tags` flag enables you to add metadata tags to the task definition and tasks\. Amazon ECS managed tags are enabled by default unless specifically disabled using the `--disable-ecs-managed-tags` flag\. For more information, see [Tagging Your Resources for Billing](ecs-using-tags.md#tag-resources-for-billing)\.
+When using the `ecs-cli compose up` command, using the `--tags` flag enables you to add metadata tags to the task definition and tasks\. Amazon ECS managed tags are enabled by default unless specifically disabled using the `--disable-ecs-managed-tags` flag\. For more information, see [Tagging your resources for billing](ecs-using-tags.md#tag-resources-for-billing)\.
 
 ## Examples<a name="cmd-ecs-cli-compose-up-examples"></a>
 

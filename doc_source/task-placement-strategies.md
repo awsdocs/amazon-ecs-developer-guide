@@ -15,7 +15,7 @@ Tasks are placed randomly\.
 
 `spread`  
 Tasks are placed evenly based on the specified value\. Accepted values are `instanceId` \(or `host`, which has the same effect\), or any platform or custom attribute that is applied to a container instance, such as `attribute:ecs.availability-zone`\. Service tasks are spread based on the tasks from that service\. Standalone tasks are spread based on the tasks from the same task group\.  
-When this strategy is used and a scale\-in action is taken, Amazon ECS will terminate tasks based on age, with the newest tasks being terminated first\. If age cannot be considered because multiple tasks have the same age, then the tasks will be chosen at random\.
+When this strategy is used and a scale\-in action is taken, Amazon ECS will select tasks to terminate that maintains a balance across Availability Zones\. Within an Availability Zone, tasks will be selected at random\.
 
 ## Example strategies<a name="strategy-examples"></a>
 

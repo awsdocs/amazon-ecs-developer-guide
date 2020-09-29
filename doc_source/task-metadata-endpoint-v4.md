@@ -1,52 +1,44 @@
-# Task Metadata Endpoint version 4<a name="task-metadata-endpoint-v4"></a>
+# Task metadata endpoint version 4<a name="task-metadata-endpoint-v4"></a>
 
-Beginning with Amazon ECS container agent version 1\.39\.0 and Fargate platform version 1\.4\.0, an environment variable named `ECS_CONTAINER_METADATA_URI_V4` is injected into each container in a task\. When you query the task metadata version 4 endpoint, various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) are available to tasks\.
+The Amazon ECS container agent injects an environment variable into each container, referred to as the *task metadata endpoint* which provides various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) to the container\.
 
-The task metadata version 4 endpoint functions like version 3 but provides additional network metadata for your containers and tasks\. For tasks that use the `awsvpc` network mode, additional network metrics are available when querying the `/stats` endpoints\.
-
-**Important**  
-To avoid the need to create new task metadata endpoint versions in the future, additional metadata may be added to the version 4 output\. We will not remove any existing metadata or change the metadata field names\.
-
-The following additional network metadata is included when querying the task metadata version 4 endpoint:
-+ `AttachmentIndex` 
-+ `IPV4SubnetCIDRBlock` 
-+ `MACAddress`
-+ `PrivateDNSName` 
-+ `SubnetGatewayIPV4Address`
-+ `DomainNameServers` \(Fargate tasks only\) 
-+ `DomainNameSearchList` \(Fargate tasks only\) 
-
-## Enabling Task Metadata<a name="task-metadata-endpoint-v4-enable"></a>
-
-The task metadata endpoint version 4 feature is enabled by default for tasks that use the Fargate launch type on platform version 1\.4\.0 or later and tasks that use the EC2 launch type and are launched on Amazon EC2 infrastructure running at least version 1\.39\.0 of the Amazon ECS container agent\. For more information, see [Amazon ECS Container Agent Versions](ecs-agent-versions.md)\.
-
-You can add support for this feature on older container instances by updating the agent to the latest version\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+The task metadata and network rate stats are sent to CloudWatch Container Insights and can be viewed in the AWS Management Console\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
 
 **Important**  
-For tasks using the Fargate launch type and platform versions prior to 1\.4\.0, the task metadata version 3 and 2 endpoint are supported\. For more information, see [Task Metadata Endpoint version 3](task-metadata-endpoint-v3.md) or [Task Metadata Endpoint version 2](task-metadata-endpoint-v2.md)\.
+Amazon ECS provided earlier versions of the task metadata endpoint\. To avoid the need to create new task metadata endpoint versions in the future, additional metadata may be added to the version 4 output\. We will not remove any existing metadata or change the metadata field names\.
 
-## Task Metadata Endpoint version 4 Paths<a name="task-metadata-endpoint-v4-paths"></a>
+## Enabling the task metadata endpoint<a name="task-metadata-endpoint-v4-enable"></a>
 
-The following task metadata endpoints are available to containers:
+The environment variable is injected by default into the containers of Amazon ECS tasks on Fargate that use platform version `1.4.0` or later and Amazon ECS tasks on Amazon EC2 that are running at least version `1.39.0` of the Amazon ECS container agent\. For more information, see [Amazon ECS Container Agent Versions](ecs-agent-versions.md)\.
+
+You can add support for this feature on Amazon EC2 instances using older versions of the Amazon ECS container agent by updating the agent to the latest version\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+
+## Task metadata endpoint version 4 paths<a name="task-metadata-endpoint-v4-paths"></a>
+
+The following task metadata endpoint paths are available to containers\.
 
 `${ECS_CONTAINER_METADATA_URI_V4}`  
-This path returns metadata JSON for the container\.
+This path returns metadata for the container\.
 
 `${ECS_CONTAINER_METADATA_URI_V4}/task`  
-This path returns metadata JSON for the task, including a list of the container IDs and names for all of the containers associated with the task\. For more information about the response for this endpoint, see [Task Metadata JSON Response](#task-metadata-endpoint-v4-response)\.
+This path returns metadata for the task, including a list of the container IDs and names for all of the containers associated with the task\. For more information about the response for this endpoint, see [Task metadata JSON response](#task-metadata-endpoint-v4-response)\.
 
 `${ECS_CONTAINER_METADATA_URI_V4}/stats`  
-This path returns Docker stats JSON for the specific Docker container\. For more information about each of the returned stats, see [ContainerStats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) in the Docker API documentation\.
+This path returns Docker stats for the specific container\. For more information about each of the returned stats, see [ContainerStats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) in the Docker API documentation\.  
+Amazon ECS tasks on AWS Fargate require that the container run for \~1 second prior to returning the container stats\.
+For Amazon ECS tasks that use the `awsvpc` or `bridge` network modes hosted on Amazon EC2 instances running at least version `1.43.0` of the container agent, there will be additional network rate stats included in the response\. For all other tasks, the response will only include the cumulative network stats\.
 
 `${ECS_CONTAINER_METADATA_URI_V4}/task/stats`  
-This path returns Docker stats JSON for all of the containers associated with the task\. This can be used by sidecar containers to extract network metrics\. For more information about each of the returned stats, see [ContainerStats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) in the Docker API documentation\.
+This path returns Docker stats for all of the containers associated with the task\. This can be used by sidecar containers to extract network metrics\. For more information about each of the returned stats, see [ContainerStats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) in the Docker API documentation\.  
+Amazon ECS tasks on AWS Fargate require that the container run for \~1 second prior to returning the task stats\.
+For Amazon ECS tasks that use the `awsvpc` or `bridge` network modes hosted on Amazon EC2 instances running at least version `1.43.0` of the container agent, there will be additional network rate stats included in the response\. For all other tasks, the response will only include the cumulative network stats\.
 
-## Task Metadata JSON Response<a name="task-metadata-endpoint-v4-response"></a>
+## Task metadata JSON response<a name="task-metadata-endpoint-v4-response"></a>
 
 The following information is returned from the task metadata endpoint \(`${ECS_CONTAINER_METADATA_URI_V4}/task`\) JSON response\.
 
 `Cluster`  
-Returns the value of what is set on `ECS_CLUSTER` under the `/etc/ecs/ecs.config` file of the Container Instance where the task is running. For Fargate based tasks, the full Amazon Resource Name \(ARN\) of the Amazon ECS Cluster will always be returned\.
+The Amazon Resource Name \(ARN\) or short name of the Amazon ECS cluster to which the task belongs\.
 
 `TaskARN`  
 The full Amazon Resource Name \(ARN\) of the task to which the container belongs\.
@@ -116,7 +108,7 @@ The time stamp for when the tasks `DesiredStatus` moved to `STOPPED`\. This occu
 
 ## Examples<a name="task-metadata-endpoint-v4-examples"></a>
 
-The following examples show sample outputs from the task metadata endpoints\.
+The following examples show example outputs from each of the task metadata endpoints\.
 
 ### Example Container Metadata Response<a name="task-metadata-endpoint-v4-example-container-metadata-response"></a>
 
@@ -231,9 +223,174 @@ When querying the `${ECS_CONTAINER_METADATA_URI_V4}/task` endpoint you are retur
 }
 ```
 
+### Example Stats Response<a name="task-metadata-endpoint-v4-example-stats-response"></a>
+
+When querying the `${ECS_CONTAINER_METADATA_URI_V4}/stats` endpoint you are returned network metrics for the container\. For Amazon ECS tasks that use the `awsvpc` or `bridge` network modes hosted on Amazon EC2 instances running at least version `1.43.0` of the container agent, there will be additional network rate stats included in the response\. For all other tasks, the response will only include the cumulative network stats\.
+
+The following is an example output from an Amazon ECS task on Amazon EC2 that uses the `bridge` network mode\.
+
+```
+{
+    "read": "2020-08-06T22:45:31.349948898Z",
+    "preread": "2020-08-06T22:45:30.347408046Z",
+    "pids_stats": {
+        "current": 2
+    },
+    "blkio_stats": {
+        "io_service_bytes_recursive": [
+            
+        ],
+        "io_serviced_recursive": [
+            
+        ],
+        "io_queue_recursive": [
+            
+        ],
+        "io_service_time_recursive": [
+            
+        ],
+        "io_wait_time_recursive": [
+            
+        ],
+        "io_merged_recursive": [
+            
+        ],
+        "io_time_recursive": [
+            
+        ],
+        "sectors_recursive": [
+            
+        ]
+    },
+    "num_procs": 0,
+    "storage_stats": {
+        
+    },
+    "cpu_stats": {
+        "cpu_usage": {
+            "total_usage": 412520458,
+            "percpu_usage": [
+                203701476,
+                208818982,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "usage_in_kernelmode": 10000000,
+            "usage_in_usermode": 350000000
+        },
+        "system_cpu_usage": 2243010000000,
+        "online_cpus": 2,
+        "throttling_data": {
+            "periods": 0,
+            "throttled_periods": 0,
+            "throttled_time": 0
+        }
+    },
+    "precpu_stats": {
+        "cpu_usage": {
+            "total_usage": 412420561,
+            "percpu_usage": [
+                203701476,
+                208719085,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "usage_in_kernelmode": 10000000,
+            "usage_in_usermode": 350000000
+        },
+        "system_cpu_usage": 2241010000000,
+        "online_cpus": 2,
+        "throttling_data": {
+            "periods": 0,
+            "throttled_periods": 0,
+            "throttled_time": 0
+        }
+    },
+    "memory_stats": {
+        "usage": 1896448,
+        "max_usage": 6324224,
+        "stats": {
+            "active_anon": 495616,
+            "active_file": 0,
+            "cache": 0,
+            "dirty": 0,
+            "hierarchical_memory_limit": 134217728,
+            "hierarchical_memsw_limit": 268435456,
+            "inactive_anon": 0,
+            "inactive_file": 0,
+            "mapped_file": 0,
+            "pgfault": 4025,
+            "pgmajfault": 0,
+            "pgpgin": 2908,
+            "pgpgout": 2785,
+            "rss": 503808,
+            "rss_huge": 0,
+            "total_active_anon": 495616,
+            "total_active_file": 0,
+            "total_cache": 0,
+            "total_dirty": 0,
+            "total_inactive_anon": 0,
+            "total_inactive_file": 0,
+            "total_mapped_file": 0,
+            "total_pgfault": 4025,
+            "total_pgmajfault": 0,
+            "total_pgpgin": 2908,
+            "total_pgpgout": 2785,
+            "total_rss": 503808,
+            "total_rss_huge": 0,
+            "total_unevictable": 0,
+            "total_writeback": 0,
+            "unevictable": 0,
+            "writeback": 0
+        },
+        "limit": 134217728
+    },
+    "name": "query-metadata",
+    "id": "1823e1f6-7248-43c3-bed6-eea1fa7501a5query-metadata",
+    "networks": {
+        "eth0": {
+            "rx_bytes": 1802,
+            "rx_packets": 19,
+            "rx_errors": 0,
+            "rx_dropped": 0,
+            "tx_bytes": 567,
+            "tx_packets": 7,
+            "tx_errors": 0,
+            "tx_dropped": 0
+        }
+    },
+    "network_rate_stats": {
+        "rx_bytes_per_sec": 0,
+        "tx_bytes_per_sec": 0
+    }
+}
+```
+
 ### Example Task Stats Response<a name="task-metadata-endpoint-v4-example-task-stats-response"></a>
 
-When querying the `${ECS_CONTAINER_METADATA_URI_V4}/task/stats` endpoint you are returned network metrics about the task the container is part of\. The following is an example output\.
+When querying the `${ECS_CONTAINER_METADATA_URI_V4}/task/stats` endpoint you are returned network metrics about the task the container is part of\. The following is an example output from a Fargate task\.
 
 ```
 {

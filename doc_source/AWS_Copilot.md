@@ -7,7 +7,7 @@
 
 The AWS Copilot command line interface \(CLI\) provides application\-first, high\-level commands to simplify modeling, creating, releasing, and managing production\-ready containerized applications on Amazon ECS from a local development environment\. Provisioned with application templates, infrastructure as code, and CI/CD pipeline options, the AWS Copilot CLI aligns with application workflows that support modern application best practices\. Use the AWS Copilot CLI as part of your everyday development and testing cycle as an alternative to the AWS Management Console\.
 
-The latest version of the AWS Copilot CLI is 0\.1\.0\. For release notes, see [Releases](https://github.com/aws/amazon-ecs-cli-v2/releases)\.
+AWS Copilot currently supports Linux and macOS systems\. For more information about the latest version of the AWS Copilot CLI, see [Releases](https://github.com/aws/amazon-ecs-cli-v2/releases)\.
 
 **Note**  
 The source code for the AWS Copilot CLI is available on [GitHub](https://github.com/aws/amazon-ecs-cli-v2)\. We encourage you to submit issues and pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently support running modified copies of AWS Copilot code\.
@@ -18,7 +18,7 @@ The source code for the AWS Copilot CLI is available on [GitHub](https://github.
 
 ## Installing the AWS Copilot CLI<a name="copilot-install"></a>
 
-The AWS Copilot CLI can be installed either by using Homebrew or by manually downloading the binary\. Use the following steps with your preferred installation method\.
+The AWS Copilot CLI can be installed on Linux or macOS systems either by using Homebrew or by manually downloading the binary\. Use the following steps with your preferred installation method\.
 
 ### Installing the AWS Copilot CLI using Homebrew<a name="copilot-install-homebrew"></a>
 
@@ -38,7 +38,7 @@ As an alternative to Homebrew, you can manually install the AWS Copilot CLI on y
 For macOS:
 
 ```
-sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-darwin-v0.1.0 \
+sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.3.0/copilot-darwin-v0.3.0 \
    && sudo chmod +x /usr/local/bin/copilot \
    && copilot --help
 ```
@@ -49,7 +49,7 @@ sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases
 For Linux systems:
 
 ```
-sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-linux-v0.1.0  \
+sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.3.0/copilot-linux-v0.3.0  \
    && sudo chmod +x /usr/local/bin/copilot \
    && copilot --help
 ```
@@ -237,7 +237,7 @@ The AWS Copilot CLI executables are cryptographically signed using PGP signature
    For macOS systems, run the following command\.
 
    ```
-   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-darwin-v0.1.0.asc
+   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.3.0/copilot-darwin-v0.3.0.asc
    ```
 
 ------
@@ -246,7 +246,7 @@ The AWS Copilot CLI executables are cryptographically signed using PGP signature
    For Linux systems, run the following command\.
 
    ```
-   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.1.0/copilot-linux-v0.1.0.asc
+   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.3.0/copilot-linux-v0.3.0.asc
    ```
 
 ------

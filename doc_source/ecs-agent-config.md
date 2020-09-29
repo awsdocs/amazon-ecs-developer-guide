@@ -327,14 +327,14 @@ When `dockerVolumeConfiguration` is specified in a task definition and the `auto
 Example values: `ec2_instance`  
 Default value on Linux: none  
 Default value on Windows: none  
-If `ec2_instance` is specified, existing tags defined on the container instance are registered to Amazon ECS\. The tags are discoverable using the `ListTagsForResource` operation\. The IAM role associated with the container instance should have the `ec2:DescribeTags` action allowed\. For more information, see [Adding Tags to a Container Instance](ecs-using-tags.md#instance-details-tags)\.
+If `ec2_instance` is specified, existing tags defined on the container instance are registered to Amazon ECS\. The tags are discoverable using the `ListTagsForResource` operation\. The IAM role associated with the container instance should have the `ec2:DescribeTags` action allowed\. For more information, see [Adding tags to a container instance](ecs-using-tags.md#instance-details-tags)\.
 
 `ECS_CONTAINER_INSTANCE_TAGS`  
 Example values: `{"tag_key": "tag_val"}`  
 Default value on Linux: `{}`  
 Default value on Windows: `{}`  
 Metadata applied to container instances to help you categorize and organize your resources\. Each tag consists of a custom\-defined key and an optional value\. Tag keys can have a maximum character length of 128 characters\. Tag values can have a maximum length of 256 characters\.  
-If container instance tags are propagated using the `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM` parameter, those tags are overwritten by the tags specified using `ECS_CONTAINER_INSTANCE_TAGS`\. For more information, see [Adding Tags to a Container Instance](ecs-using-tags.md#instance-details-tags)\.
+If container instance tags are propagated using the `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM` parameter, those tags are overwritten by the tags specified using `ECS_CONTAINER_INSTANCE_TAGS`\. For more information, see [Adding tags to a container instance](ecs-using-tags.md#instance-details-tags)\.
 
 `ECS_ENABLE_UNTRACKED_IMAGE_CLEANUP`  
 Example values: `true` \| `false`  

@@ -24,7 +24,7 @@ IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is s
 `executionRoleArn`  
 Type: string  
 Required: no  
-The Amazon Resource Name \(ARN\) of the task execution role that grants the Amazon ECS container agent permission to make AWS API calls on your behalf\. The task execution IAM role is required depending on the requirements of your task\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+The Amazon Resource Name \(ARN\) of the task execution role that grants the Amazon ECS container agent permission to make AWS API calls on your behalf\. The task execution IAM role is required depending on the requirements of your task\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 ## Network mode<a name="network_mode"></a>
 
@@ -182,7 +182,7 @@ The following describes the possible `healthStatus` values for a task\. The cont
 If a task is run manually, and not as part of a service, the task will continue its lifecycle regardless of its health status\. For tasks that are part of a service, if the task reports as unhealthy then the task will be stopped and the service scheduler will replace it\.  
 The following are notes about container health check support:  
 + Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
-+ Container health checks are supported for Fargate tasks if you are using platform version 1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
++ Container health checks are supported for Fargate tasks if you are using platform version 1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + Container health checks are not supported for tasks that are part of a service that is configured to use a Classic Load Balancer\.  
 `command`  
 A string array representing the command that the container runs to determine if it is healthy\. The string array can start with `CMD` to execute the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. If neither is specified, `CMD` is used by default\.  
@@ -524,6 +524,30 @@ The secret to expose to the log configuration of the container\.
 }
 ```
 
+`firelensConfiguration`  
+Type: [FirelensConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_FirelensConfiguration.html) Object  
+Required: No  
+The FireLens configuration for the container\. This is used to specify and configure a log router for container logs\. For more information, see [Custom log routing](using_firelens.md)\.  
+
+```
+{
+    "firelensConfiguration": {
+        "type": "fluentd",
+        "options": {
+            "KeyName": ""
+        }
+    }
+}
+```  
+`options`  
+Type: String to string map  
+Required: No  
+The options to use when configuring the log router\. This field is optional and can be used to specify a custom configuration file or to add additional metadata, such as the task, task definition, cluster, and container instance details to the log event\. If specified, the syntax to use is `"options":{"enable-ecs-log-metadata":"true|false","config-file-type:"s3|file","config-file-value":"arn:aws:s3:::mybucket/fluent.conf|filepath"}`\. For more information, see [Creating a task definition that uses a FireLens configuration](using_firelens.md#firelens-taskdef)\.  
+`type`  
+Type: String  
+Required: Yes  
+The log router to use\. The valid values are `fluentd` or `fluentbit`\.
+
 #### Security<a name="container_definition_security"></a>
 
 `privileged`  
@@ -573,7 +597,7 @@ The Amazon ECS container agent running on a container instance must register wit
 Type: object array  
 Required: no  
 A list of `ulimits` to set in the container\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-Fargate tasks use the default resource limit values with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096` for Fargate tasks\. These limits can be adjusted in a task definition if your tasks needs to handle a larger number of files\. For more information, see [Task Resource Limits](AWS_Fargate.md#fargate-resource-limits)\.  
+Fargate tasks use the default resource limit values with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096` for Fargate tasks\. These limits can be adjusted in a task definition if your tasks needs to handle a larger number of files\. For more information, see [Task resource limits](AWS_Fargate.md#fargate-resource-limits)\.  
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 This parameter is not supported for Windows containers\.
 
@@ -645,14 +669,13 @@ This parameter is not supported for Windows containers\.
 `capabilities`  
 Type: [KernelCapabilities](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KernelCapabilities.html) object  
 Required: no  
-The Linux capabilities for the container that are added to or dropped from the default configuration provided by Docker\. For more information about the default capabilities and the non\-default available capabilities, see [Runtime privilege and Linux capabilities](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) in the *Docker run reference*\. For more detailed information about these Linux capabilities, see the [capabilities\(7\)](http://man7.org/linux/man-pages/man7/capabilities.7.html) Linux manual page\.  
-For tasks that use the Fargate launch type, `capabilities` is supported for all platform versions but the `add` parameter is only supported if using platform version 1\.4\.0 or later\.  
+The Linux capabilities for the container that are added to or dropped from the default configuration provided by Docker\. For more information about the default capabilities and the non\-default available capabilities, see [Runtime privilege and Linux capabilities](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) in the *Docker run reference*\. For more detailed information about these Linux capabilities, see the [capabilities\(7\)](http://man7.org/linux/man-pages/man7/capabilities.7.html) Linux manual page\.    
 `add`  
 Type: string array  
 Valid values: `"ALL" | "AUDIT_CONTROL" | "AUDIT_READ" | "AUDIT_WRITE" | "BLOCK_SUSPEND" | "CHOWN" | "DAC_OVERRIDE" | "DAC_READ_SEARCH" | "FOWNER" | "FSETID" | "IPC_LOCK" | "IPC_OWNER" | "KILL" | "LEASE" | "LINUX_IMMUTABLE" | "MAC_ADMIN" | "MAC_OVERRIDE" | "MKNOD" | "NET_ADMIN" | "NET_BIND_SERVICE" | "NET_BROADCAST" | "NET_RAW" | "SETFCAP" | "SETGID" | "SETPCAP" | "SETUID" | "SYS_ADMIN" | "SYS_BOOT" | "SYS_CHROOT" | "SYS_MODULE" | "SYS_NICE" | "SYS_PACCT" | "SYS_PTRACE" | "SYS_RAWIO" | "SYS_RESOURCE" | "SYS_TIME" | "SYS_TTY_CONFIG" | "SYSLOG" | "WAKE_ALARM"`  
 Required: no  
 The Linux capabilities for the container to add to the default configuration provided by Docker\. This parameter maps to `CapAdd` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--cap-add` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
-If you are using tasks that use the Fargate launch type and platform version 1\.4\.0, the only supported `add` parameter value is `SYS_PTRACE`\.  
+Tasks launched on Fargate only support adding the `SYS_PTRACE` kernel capability\.  
 `drop`  
 Type: string array  
 Valid values: `"ALL" | "AUDIT_CONTROL" | "AUDIT_WRITE" | "BLOCK_SUSPEND" | "CHOWN" | "DAC_OVERRIDE" | "DAC_READ_SEARCH" | "FOWNER" | "FSETID" | "IPC_LOCK" | "IPC_OWNER" | "KILL" | "LEASE" | "LINUX_IMMUTABLE" | "MAC_ADMIN" | "MAC_OVERRIDE" | "MKNOD" | "NET_ADMIN" | "NET_BIND_SERVICE" | "NET_BROADCAST" | "NET_RAW" | "SETFCAP" | "SETGID" | "SETPCAP" | "SETUID" | "SYS_ADMIN" | "SYS_BOOT" | "SYS_CHROOT" | "SYS_MODULE" | "SYS_NICE" | "SYS_PACCT" | "SYS_PTRACE" | "SYS_RAWIO" | "SYS_RESOURCE" | "SYS_TIME" | "SYS_TTY_CONFIG" | "SYSLOG" | "WAKE_ALARM"`  

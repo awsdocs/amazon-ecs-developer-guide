@@ -7,7 +7,7 @@ All containers belonging to tasks that are launched with the `awsvpc` network mo
 ## Enabling Task Metadata<a name="task-metadata-endpoint-v2-enable"></a>
 
 The task metadata version 2 feature is enabled by default for the following:
-+ Tasks using the Fargate launch type that use platform version v1\.1\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
++ Tasks using the Fargate launch type that use platform version v1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + Tasks using the EC2 launch type that also use the `awsvpc` network mode and are launched on Amazon EC2 infrastructure running at least version 1\.17\.0 of the Amazon ECS container agent\. For more information, see [Amazon ECS Container Agent Versions](ecs-agent-versions.md)\.
 
 You can add support for this feature on older container instances by updating the agent to the latest version\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
@@ -33,7 +33,7 @@ This endpoint returns Docker stats JSON for the specified Docker container ID\. 
 The following information is returned from the task metadata endpoint \(`169.254.170.2/v2/metadata`\) JSON response\.
 
 `Cluster`  
-Returns the value of what is set on `ECS_CLUSTER` under the `/etc/ecs/ecs.config` file of the Container Instance where the task is running. For Fargate based tasks, the full Amazon Resource Name \(ARN\) of the Amazon ECS Cluster will always be returned\.
+The Amazon Resource Name \(ARN\) or short name of the Amazon ECS cluster to which the task belongs\.
 
 `TaskARN`  
 The full Amazon Resource Name \(ARN\) of the task to which the container belongs\.

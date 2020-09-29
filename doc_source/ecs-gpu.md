@@ -12,7 +12,7 @@ The following Amazon EC2 GPU\-based instance types are supported\. For more info
 The g4 instance type family is supported on version `20190913` and later of the Amazon ECS GPU\-optimized AMI\. For more information, see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\. It is currently not supported in the Create Cluster workflow in the Amazon ECS console\. To use these instance types, you must either use the Amazon EC2 console, AWS CLI, or API and manually register the instances to your cluster\.
 
 
-|  Instance type  |  GPUs  |  GPU Memory \(GiB\)  |  vCPUs  |  Memory \(GiB\)  | 
+|  Instance type  |  GPUs  |  GPU memory \(GiB\)  |  vCPUs  |  Memory \(GiB\)  | 
 | --- | --- | --- | --- | --- | 
 |  p2\.xlarge  |  1  |  12  |  4  |  61  | 
 |  p2\.8xlarge  |  8  |  96  |  32  |  488  | 
@@ -33,10 +33,10 @@ The g4 instance type family is supported on version `20190913` and later of the 
 |  g4dn\.16xlarge  | 1 | 16 | 64 | 256 | 
 
 **Topics**
-+ [Considerations for working with GPUs](#gpu-considerations)
++ [Considerations](#gpu-considerations)
 + [Specifying GPUs in your task definition](#ecs-gpu-specifying)
 
-## Considerations for working with GPUs<a name="gpu-considerations"></a>
+## Considerations<a name="gpu-considerations"></a>
 
 Before you begin working with GPUs on Amazon ECS, be aware of the following considerations:
 + Your clusters can contain a mix of GPU and non\-GPU container instances\. 

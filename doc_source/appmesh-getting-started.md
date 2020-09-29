@@ -35,7 +35,7 @@ Create the following resources:
 + A mesh named `apps`, since all of the services in the scenario are registered to the `apps.local` namespace\.
 + A virtual service named `serviceb.apps.local`, since the virtual service represents a service that is discoverable with that name, and you don't want to change your code to reference another name\. A virtual service named `servicea.apps.local` is added in a later step\.
 
-You can use the AWS Management Console or the AWS CLI version 1\.18\.97 or higher or 2\.0\.30 or higher to complete the following steps\. If using the AWS CLI, use the `aws --version` command to check your installed AWS CLI version\. If you don't have version 1\.18\.97 or higher or 2\.0\.30 or higher installed, then you must [install or update the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\. Select the tab for the tool that you want to use\.
+You can use the AWS Management Console or the AWS CLI version 1\.18\.116 or higher or 2\.0\.38 or higher to complete the following steps\. If using the AWS CLI, use the `aws --version` command to check your installed AWS CLI version\. If you don't have version 1\.18\.116 or higher or 2\.0\.38 or higher installed, then you must [install or update the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\. Select the tab for the tool that you want to use\.
 
 ------
 #### [ AWS Management Console ]
@@ -493,20 +493,20 @@ You can update your task definitions by using the AWS Management Console or by m
       1. For **Application container name**, choose the container name to use for the App Mesh application\. This container must already be defined within the task definition\.
 
       1. For **Envoy image**, complete the following task and enter the value that is returned\.
-         + All [supported](https://docs.aws.amazon.com/general/latest/gr/appmesh.html) Regions other than `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* with any Region other than `me-south-1` and `ap-east-1`\. 
+         + All [supported](https://docs.aws.amazon.com/general/latest/gr/appmesh.html) Regions other than `me-south-1` and `ap-east-1`\. You can replace *region\-code* with any Region other than `me-south-1` and `ap-east-1`\. 
 
            ```
-           840364872350.dkr.ecr.region-code.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod
+           840364872350.dkr.ecr.region-code.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod
            ```
          + `me-south-1` Region:
 
            ```
-           772975370895.dkr.ecr.me-south-1.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod
+           772975370895.dkr.ecr.me-south-1.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod
            ```
          + `ap-east-1` Region:
 
            ```
-           856666278305.dkr.ecr.ap-east-1.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod
+           856666278305.dkr.ecr.ap-east-1.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod
            ```
 
       1. For **Mesh name**, choose the App Mesh service mesh to use\. In this topic, the name of the mesh that was created is `apps.`
@@ -604,20 +604,20 @@ The application containers in your task definitions must wait for the Envoy prox
 **Envoy container definition**
 
 Your Amazon ECS task definitions must contain an App Mesh Envoy container image\.
-+ All [supported](https://docs.aws.amazon.com/general/latest/gr/appmesh.html) Regions other than `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* with any Region other than `me-south-1` and `ap-east-1`\. 
++ All [supported](https://docs.aws.amazon.com/general/latest/gr/appmesh.html) Regions other than `me-south-1` and `ap-east-1`\. You can replace *region\-code* with any Region other than `me-south-1` and `ap-east-1`\. 
 
   ```
-  840364872350.dkr.ecr.region-code.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod
+  840364872350.dkr.ecr.region-code.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod
   ```
 + `me-south-1` Region:
 
   ```
-  772975370895.dkr.ecr.me-south-1.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod
+  772975370895.dkr.ecr.me-south-1.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod
   ```
 + `ap-east-1` Region:
 
   ```
-  856666278305.dkr.ecr.ap-east-1.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod
+  856666278305.dkr.ecr.ap-east-1.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod
   ```
 
 You must use the App Mesh Envoy container image until the Envoy project team merges changes that support App Mesh\. For additional details, see the [GitHub roadmap issue](https://github.com/aws/aws-app-mesh-roadmap/issues/10)\.
@@ -629,7 +629,7 @@ The following code shows an Envoy container definition example\.
 ```
 {
 	"name": "envoy",
-	"image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod",
+	"image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod",
 	"essential": true,
 	"environment": [{
 		"name": "APPMESH_VIRTUAL_NODE_NAME",
@@ -712,7 +712,7 @@ If you're running an Amazon ECS task as described in the Credentials section, th
       },
       {         
          "name" : "envoy",
-         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod",
+         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod",
          "essential" : true,
          "environment" : [
             {
@@ -802,7 +802,7 @@ X\-Ray allows you to collect data about requests that an application serves and 
       {
          
          "name" : "envoy",
-         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod",
+         "image" : "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod",
          "essential" : true,
          "environment" : [
             {
@@ -906,7 +906,7 @@ X\-Ray allows you to collect data about requests that an application serves and 
     },
     {
       "name": "envoy",
-      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod",
+      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod",
       "essential": true,
       "environment": [
         {
@@ -993,7 +993,7 @@ X\-Ray allows you to collect data about requests that an application serves and 
     },
     {
       "name": "envoy",
-      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.12.4.0-prod",
+      "image": "840364872350.dkr.ecr.us-west-2.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod",
       "essential": true,
       "environment": [
         {

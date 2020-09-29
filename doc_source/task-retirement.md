@@ -30,7 +30,7 @@ If the task is part of a service, then the task is automatically stopped, The se
 
 1. On the **Configure service** page, your service information is pre\-populated\. Select **Force new deployment** and choose **Next step**\.
 **Note**  
-For tasks using the Fargate launch type, forcing a new deployment launches new tasks using the patched platform version\. Your tasks do not require you select a different platform version\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
+For tasks using the Fargate launch type, forcing a new deployment launches new tasks using the patched platform version\. Your tasks do not require you select a different platform version\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 
 1. On the **Configure network** and **Set Auto Scaling \(optional\)** pages, choose **Next step**\.
 

@@ -16,7 +16,7 @@ Before you begin, be sure that you've completed the steps in [Setting up with Am
 The first\-run wizard attempts to automatically create the task execution IAM role, which is required for Fargate tasks\. To ensure that the first\-run experience is able to create this IAM role, one of the following must be true:
 + Your user has administrator access\. For more information, see [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 + Your user has the IAM permissions to create a service role\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
-+ A user with administrator access has manually created the task execution role so that it is available on the account to be used\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\. 
++ A user with administrator access has manually created the task execution role so that it is available on the account to be used\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\. 
 
 ## Step 1: Create a Task Definition<a name="first-run-task-def"></a>
 

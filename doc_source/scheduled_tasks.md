@@ -14,8 +14,6 @@ This feature is not yet available for Fargate tasks in the following Regions:
 | --- | --- | 
 | China \(Beijing\) | cn\-north\-1 | 
 | China \(Ningxia\) | cn\-northwest\-1 | 
-| Europe \(Paris\) | eu\-west\-3 | 
-| Europe \(Stockholm\) | eu\-north\-1 | 
 | South America \(São Paulo\) | sa\-east\-1 | 
 | Middle East \(Bahrain\) | me\-south\-1 | 
 
@@ -43,7 +41,7 @@ This feature is not yet available for Fargate tasks in the following Regions:
 
    1. For **Task definition**, choose the family and revision \(family:revision\) of the task definition to run for this target\.
 
-   1. For **Platform version**, choose the platform version to use for this target\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
+   1. For **Platform version**, choose the platform version to use for this target\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 **Note**  
 Platform versions are only applicable to tasks that use the Fargate launch type\.
 

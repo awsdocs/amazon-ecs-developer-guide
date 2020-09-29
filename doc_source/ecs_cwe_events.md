@@ -1,4 +1,4 @@
-# Amazon ECS Events<a name="ecs_cwe_events"></a>
+# Amazon ECS events<a name="ecs_cwe_events"></a>
 
 Amazon ECS sends three types of events to EventBridge: container instance state change events, task state change events, and service action events\. If these resources change, an event is triggered\. These events and their possible causes are described in greater detail in the following sections\.
 
@@ -13,7 +13,7 @@ Container state change and task state change events contain two `version` fields
 
 Service action events only contain the `version` field in the main body\.
 
-## Container Instance State Change Events<a name="ecs_container_instance_events"></a>
+## Container instance state change events<a name="ecs_container_instance_events"></a>
 
 The following scenarios trigger container instance state change events:
 
@@ -42,7 +42,7 @@ The Amazon ECS container agent disconnects and reconnects several times per hour
 You upgrade the Amazon ECS container agent on an instance\.  
 The container instance detail contains an object for the container agent version\. If you upgrade the agent, this version information changes and triggers an event\.
 
-**Example Container Instance State Change Event**  
+**Example Container instance state change event**  
 Container instance state change events are delivered in the following format\. The `detail` section below resembles the [ContainerInstance](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerInstance.html) object that is returned from a [DescribeContainerInstances](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeContainerInstances.html) API operation in the *Amazon Elastic Container Service API Reference*\. For more information about EventBridge parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  
 
 ```
@@ -174,7 +174,7 @@ Container instance state change events are delivered in the following format\. T
 }
 ```
 
-## Task State Change Events<a name="ecs_task_events"></a>
+## Task state change events<a name="ecs_task_events"></a>
 
 The following scenarios trigger task state change events:
 
@@ -199,7 +199,7 @@ The Amazon ECS container agent monitors the state of containers within tasks\. F
 A task using the Fargate Spot capacity provider receives a termination notice\.  
 When a task is using the `FARGATE_SPOT` capacity provider and is stopped due to a Spot interruption, a task state change event is triggered\.
 
-**Example Task State Change Event**  
+**Example Task state change event**  
 Task state change events are delivered in the following format\. The `detail` section below resembles the [Task](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Task.html) object that is returned from a [DescribeTasks](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) API operation in the *Amazon Elastic Container Service API Reference*\. If your containers are using an image hosted with Amazon ECR, the `imageDigest` field is returned\.  
 The values for the `createdAt`, `connectivityAt`, `pullStartedAt`, `startedAt`, `pullStoppedAt`, and `updatedAt` fields are UNIX timestamps in the response of a DescribeTasks action whereas in the task state change event they are ISO string timestamps\.
 For more information about CloudWatch Events parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  
@@ -294,7 +294,7 @@ For a tutorial walkthrough of setting up a simple AWS Lambda function that liste
 
 For a tutorial walkthrough of creating an SNS topic to email you when a task state change event occurs, see [Tutorial: Sending Amazon Simple Notification Service alerts for task stopped events](ecs_cwet2.md)\.
 
-## Service Action Events<a name="ecs_service_events"></a>
+## Service action events<a name="ecs_service_events"></a>
 
 Amazon ECS sends service action events with the detail type **ECS Service Action**\. Unlike the container instance and task state change events, the service action events do not include a version number in the `details` response field\. The following is an event pattern that is used to create an EventBridge rule for Amazon ECS service action events\. For more information, see [Creating an EventBridge Rule](https://docs.aws.amazon.com/eventbridge/latest/userguide/create-eventbridge-rule.html) in the *Amazon EventBridge User Guide*\.
 
@@ -311,7 +311,7 @@ Amazon ECS sends service action events with the detail type **ECS Service Action
 
 Amazon ECS sends events with `INFO`, `WARN`, and `ERROR` event types\. The following are the service action events\.
 
-### Service Action Events with `INFO` Event Type<a name="ecs_service_events_info_type"></a>
+### Service action events with `INFO` event type<a name="ecs_service_events_info_type"></a>
 
 `SERVICE_STEADY_STATE`  
 The service is healthy and at the desired number of tasks, thus reaching a steady state\.
@@ -325,7 +325,7 @@ A capacity provider associated with a service reaches a steady state\.
 `SERVICE_DESIRED_COUNT_UPDATED`  
 When the service scheduler updates the computed desired count for a service or task set\. This event is not sent when the desired count is manually updated by a user\.
 
-### Service Action Events with `WARN` Event Type<a name="ecs_service_events_warn_type"></a>
+### Service action events with `WARN` event type<a name="ecs_service_events_warn_type"></a>
 
 `SERVICE_TASK_START_IMPAIRED`  
 The service is unable to consistently start tasks successfully\.
@@ -333,7 +333,7 @@ The service is unable to consistently start tasks successfully\.
 `SERVICE_DISCOVERY_INSTANCE_UNHEALTHY`  
 A service using service discovery contains an unhealthy task\. The service scheduler detects that a task within a service registry is unhealthy\.
 
-### Service Action Events with `ERROR` Event Type<a name="ecs_service_events_error_type"></a>
+### Service action events with `ERROR` event type<a name="ecs_service_events_error_type"></a>
 
 `SERVICE_DAEMON_PLACEMENT_CONSTRAINT_VIOLATED`  
 A task in a service using the `DAEMON` service scheduler strategy no longer meets the placement constraint strategy for the service\.
@@ -352,7 +352,7 @@ A common cause for this service event being triggered is because of a lack of re
 The service scheduler is unable to place a task due to a configuration error\. The cause will be described in the `reason` field\.  
 A common cause of this service event being triggered is because tags were being applied to the service but the user or role had not opted in to the new Amazon Resource Name \(ARN\) format in the Region\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\. Another common cause is that Amazon ECS was unable to assume the task IAM role provided\.
 
-**Example Service Steady State Event**  
+**Example Service steady state event**  
 Service steady state events are delivered in the following format\. For more information about EventBridge parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  
 For a tutorial walkthrough of setting up a simple AWS Lambda function that listens for Amazon ECS service action events and writes them out to a CloudWatch Logs log stream, see [Tutorial: Listening for Amazon ECS CloudWatch Events](ecs_cwet.md)\.  
 For a tutorial walkthrough of creating an SNS topic to email you when a service event event occurs, see [Tutorial: Sending Amazon Simple Notification Service alerts for task stopped events](ecs_cwet2.md)\.  
@@ -378,7 +378,7 @@ For a tutorial walkthrough of creating an SNS topic to email you when a service 
 }
 ```
 
-**Example Capacity Provider Steady State Event**  
+**Example Capacity provider steady state event**  
 Capacity provider steady state events are delivered in the following format\.  
 
 ```
@@ -405,7 +405,7 @@ Capacity provider steady state events are delivered in the following format\.
 }
 ```
 
-**Example Service Task Start Impaired Event**  
+**Example Service task start impaired event**  
 Service task start impaired events are delivered in the following format\.  
 
 ```
@@ -429,7 +429,7 @@ Service task start impaired events are delivered in the following format\.
 }
 ```
 
-**Example Service Task Placement Failure Event**  
+**Example Service task placement failure event**  
 Service task placement failure events are delivered in the following format\. For more information about EventBridge parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  
 In the following example, the task was attempting to use the `FARGATE_SPOT` capacity provider but the service scheduler was unable to acquire any Fargate Spot capacity\.  
 

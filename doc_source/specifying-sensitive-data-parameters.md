@@ -13,7 +13,7 @@ Amazon ECS enables you to inject sensitive data into your containers by storing 
 ## Considerations for specifying sensitive data using Systems Manager Parameter Store<a name="secrets--parameterstore-considerations"></a>
 
 The following should be considered when specifying sensitive data for containers using Systems Manager Parameter Store parameters\.
-+ For tasks that use the Fargate launch type, this feature requires that your task use platform version 1\.3\.0 or later\. For information, see [AWS Fargate Platform Versions](platform_versions.md)\.
++ For tasks that use the Fargate launch type, this feature requires that your task use platform version 1\.3\.0 or later\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
 + For tasks that use the EC2 launch type, this feature requires that your container instance have version 1\.22\.0 or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 + Sensitive data is injected into your container when the container is initially started\. If the secret or Parameter Store parameter is subsequently updated or rotated, the container will not receive the updated value automatically\. You must either launch a new task or if your task is part of a service you can update the service and use the **Force new deployment** option to force the service to launch a fresh task\.
 + For Windows tasks that are configured to use the `awslogs` logging driver, you must also set the `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE` environment variable on your container instance\. This can be done with User Data using the following syntax:
@@ -27,7 +27,7 @@ The following should be considered when specifying sensitive data for containers
 
 ## Required IAM permissions for Amazon ECS secrets<a name="secrets-iam-parameters"></a>
 
-To use this feature, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary AWS Systems Manager resources\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+To use this feature, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary AWS Systems Manager resources\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 **Important**  
 For tasks that use the EC2 launch type, you must use the ECS agent configuration variable `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE=true` to use this feature\. You can add it to the `./etc/ecs/ecs.config` file during container instance creation or you can add it to an existing instance and then restart the ECS agent\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.

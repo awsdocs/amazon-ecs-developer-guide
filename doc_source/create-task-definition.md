@@ -37,7 +37,7 @@ If you chose **Fargate**, complete the following steps:
 **Note**  
 Only roles that have the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
-1. For **Task execution IAM role**, either select your task execution role or choose **Create new role** so that the console can create one for you\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+1. For **Task execution IAM role**, either select your task execution role or choose **Create new role** so that the console can create one for you\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 1. For **Task size**, choose a value for **Task memory \(GB\)** and **Task CPU \(vCPU\)**\. The table below shows the valid combinations\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-task-definition.html)
@@ -63,7 +63,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
         + For **Virtual gateway name**, choose the existing App Mesh virtual gateway to use\. If you don't see any virtual gateways listed, then you need to create one first\. For more information, see [Virtual gateways](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_gateways.html) in the *AWS App Mesh User Guide*\.
         + For **Virtual gateway port** – Pre\-populated with the listener port set on the virtual gateway in App Mesh\.
 
-   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.4\.0\-prod for all regions except `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* wih any Region except `me-south-1` and `ap-east-1`\. If your application is in one of these regions, then you also need to replace *840364872350* with the appropriate value for your Region\. For more information, see [Envoy image](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html) in the *AWS App Mesh User Guide*\.
+   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.15\.0\.0\-prod for all regions except `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* wih any Region except `me-south-1` and `ap-east-1`\. If your application is in one of these regions, then you also need to replace *840364872350* with the appropriate value for your Region\. For more information, see [Envoy image](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html) in the *AWS App Mesh User Guide*\.
 
    1. Choose **Apply** and then choose **Confirm**\. This will add an Envoy proxy container to the task definition, as well as the settings to support it\. If you selected **Virtual node**, it will also auto\-populate the App Mesh **Proxy Configuration** settings for the next step\. If you selected **Virtual gateway**, then the **Proxy Configuration** is disabled, because it's not used for a virtual gateway\.
 
@@ -116,7 +116,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
 1. \(Optional\) For **Task execution role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\.
 
-   For tasks that use the EC2 launch type, these permissions are usually granted by the Amazon ECS Container Instance IAM role, which is specified earlier as the **Task Role**\. There is no need to specify a task execution role\. For more information, see[Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+   For tasks that use the EC2 launch type, these permissions are usually granted by the Amazon ECS Container Instance IAM role, which is specified earlier as the **Task Role**\. There is no need to specify a task execution role\. For more information, see[Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 1. \(Optional\) For **Task size**, choose a value for **Task memory \(GB\)** and **Task CPU \(vCPU\)**\. Supported `Task CPU (vCPU)` values are between 128 CPU units \(0\.125 vCPUs\) and 10240 CPU units \(10 vCPUs\)\.
 **Note**  
@@ -145,7 +145,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
         + For **Virtual gateway name**, choose the existing App Mesh virtual gateway to use\. If you don't see any virtual gateways listed, then you need to create one first\. For more information, see [Virtual gateways](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_gateways.html) in the *AWS App Mesh User Guide*\.
         + For **Virtual gateway port** – Pre\-populated with the listener port set on the virtual gateway in App Mesh\.
 
-   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.12\.4\.0\-prod for all regions except `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* wih any Region except `me-south-1` and `ap-east-1`\. If your application is in one of these regions, then you also need to replace *840364872350* with the appropriate value for your Region\. For more information, see [Envoy image](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html) in the *AWS App Mesh User Guide*\.
+   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.15\.0\.0\-prod for all regions except `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* wih any Region except `me-south-1` and `ap-east-1`\. If your application is in one of these regions, then you also need to replace *840364872350* with the appropriate value for your Region\. For more information, see [Envoy image](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html) in the *AWS App Mesh User Guide*\.
 
    1. Choose **Apply** and then choose **Confirm**\. This will add an Envoy proxy container to the task definition, as well as the settings to support it\. If you selected **Virtual node**, it will also auto\-populate the App Mesh **Proxy Configuration** settings for the next step\. If you selected **Virtual gateway**, then the **Proxy Configuration** is disabled, because it's not used for a virtual gateway\.
 

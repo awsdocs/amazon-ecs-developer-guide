@@ -42,7 +42,7 @@ Use Secrets Manager to create a secret for your sensitive data\.
 
 ## Step 2: Update your task execution IAM role<a name="specifying-sensitive-data-tutorial-update-iam"></a>
 
-In order for Amazon ECS to retrieve the sensitive data from your Secrets Manager secret, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary Secrets Manager resources\. If you have not already created your task execution IAM role, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+In order for Amazon ECS to retrieve the sensitive data from your Secrets Manager secret, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary Secrets Manager resources\. If you have not already created your task execution IAM role, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 The following steps assume you already have the task execution IAM role created and properly configured\.
 

@@ -32,7 +32,7 @@ This path returns Docker stats JSON for all of the containers associated with th
 The following information is returned from the task metadata endpoint \(`${ECS_CONTAINER_METADATA_URI}/task`\) JSON response\.
 
 `Cluster`  
-Returns the value of what is set on `ECS_CLUSTER` under the `/etc/ecs/ecs.config` file of the Container Instance where the task is running. For Fargate based tasks, the full Amazon Resource Name \(ARN\) of the Amazon ECS Cluster will always be returned\.
+The Amazon Resource Name \(ARN\) or short name of the Amazon ECS cluster to which the task belongs\.
 
 `TaskARN`  
 The full Amazon Resource Name \(ARN\) of the task to which the container belongs\.

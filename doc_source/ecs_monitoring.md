@@ -19,8 +19,8 @@ To establish a baseline you should, at a minimum, monitor the following items:
 + The CPU and memory utilization metrics for your Amazon ECS services
 
 **Topics**
-+ [Monitoring Tools](monitoring-automated-manual.md)
-+ [Amazon ECS CloudWatch Metrics](cloudwatch-metrics.md)
-+ [Amazon ECS Events and EventBridge](cloudwatch_event_stream.md)
++ [Monitoring tools](monitoring-automated-manual.md)
++ [Amazon ECS CloudWatch metrics](cloudwatch-metrics.md)
++ [Amazon ECS events and EventBridge](cloudwatch_event_stream.md)
 + [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)
-+ [Logging Amazon ECS API Calls with AWS CloudTrail](logging-using-cloudtrail.md)
++ [Logging Amazon ECS API calls with AWS CloudTrail](logging-using-cloudtrail.md)

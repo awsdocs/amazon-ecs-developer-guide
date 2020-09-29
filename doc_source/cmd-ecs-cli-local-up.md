@@ -7,7 +7,7 @@ Some features described might only be available with the latest version of the A
 
 ## Syntax<a name="cmd-ecs-cli-local-up-syntax"></a>
 
-ecs\-cli local create up \[\-\-task\-def\-compose *filename*\] \[\-\-task\-def\-file *filename*\] \[\-\-task\-def\-remote *value*\] \[\-\-force\] \[\-\-output *output\_file*\] \[\-\-override *filename*\] 
+ecs\-cli local up \[\-\-task\-def\-compose *filename*\] \[\-\-task\-def\-file *filename*\] \[\-\-task\-def\-remote *value*\] \[\-\-force\] \[\-\-output *output\_file*\] \[\-\-override *filename*\] 
 
 ## Options<a name="cmd-ecs-cli-local-up-options"></a>
 

@@ -2,7 +2,7 @@
 
 Your Amazon ECS service can optionally be configured to use Elastic Load Balancing to distribute traffic evenly across the tasks in your service\.
 
-Amazon ECS services support the Application Load Balancer, Network Load Balancer, and Classic Load Balancer load balancer types\. Application Load Balancers are used to route HTTP/HTTPS \(or Layer 7\) traffic\. Network Load Balancers and Classic Load Balancers are used to route TCP \(or Layer 4\) traffic\. For more information, see [Load balancer types](load-balancer-types.md)\.
+Amazon ECS services support the Application Load Balancer, Network Load Balancer, and Classic Load Balancer load balancer types\. Application Load Balancers are used to route HTTP/HTTPS \(or layer 7\) traffic\. Network Load Balancers are used to route TCP or UDP \(or layer 4\) traffic\. Classic Load Balancers are used to route TCP traffic\. For more information, see [Load balancer types](load-balancer-types.md)\.
 
 Application Load Balancers offer several features that make them attractive for use with Amazon ECS services:
 + Each service can serve traffic from multiple load balancers and expose multiple load balanced ports by specifying multiple target groups\.
@@ -27,12 +27,17 @@ Consider the following when you use service load balancing\.
 The following considerations are specific to Amazon ECS services using Application Load Balancers or Network Load Balancers:
 + For services that use an Application Load Balancer or Network Load Balancer, you cannot attach more than five target groups to a service\.
 + For services with tasks using the `awsvpc` network mode, when you create a target group for your service, you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
-+ If your service using an Application Load Balancer requires access to multiple load balanced ports, such as port 80 and port 443 for an HTTP/HTTPS service, you can configure two listeners\. One listener is responsible for HTTPS that forwards the request to the service, and another listener that is responsible for redirecting HTTP requests to the appropriate HTTPS port\. For more information, see [Create a listener to your Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-listener.html) in the *User Guide for Application Load Balancers*\.
++ If your service uses an Application Load Balancer and requires access to multiple load balanced ports, such as port 80 and port 443 for an HTTP/HTTPS service, you can configure two listeners\. One listener is responsible for HTTPS that forwards the request to the service, and another listener that is responsible for redirecting HTTP requests to the appropriate HTTPS port\. For more information, see [Create a listener to your Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-listener.html) in the *User Guide for Application Load Balancers*\.
 + Your load balancer subnet configuration must include all Availability Zones that your container instances reside in\.
 + After you create a service, the target group ARN or load balancer name, container name, and container port specified in the service definition are immutable\. You cannot add, remove, or change the load balancer configuration of an existing service\. If you update the task definition for the service, the container name and container port that were specified when the service was created must remain in the task definition\. 
 + If a service's task fails the load balancer health check criteria, the task is stopped and restarted\. This process continues until your service reaches the number of desired running tasks\.
 + The Application Load Balancer slow start mode is supported\. For more information, see [Application Load Balancer slow start mode considerations](#alb-slowstart-considerations)\.
 + When using Network Load Balancers configured with IP addresses as targets, requests are seen as coming from the Network Load Balancers private IP address\. This means that services behind an Network Load Balancer are effectively open to the world as soon as you allow incoming requesets and health checks in the target's security group\.
++ Using a Network Load Balancer to route UDP traffic to your Amazon ECS on Fargate tasks require the task to use platform version 1\.4 and is only supported in the following Regions:
+  + US East \(N\. Virginia\) \- `us-east-1`
+  + US West \(Oregon\) \- `us-west-2`
+  + EU \(Ireland\) \- `eu-west-1`
+  + Asia Pacific \(Tokyo\) \- `ap-northeast-1`
 + If you are experiencing problems with your load balancer\-enabled services, see [Troubleshooting service load balancers](troubleshoot-service-load-balancers.md)\.
 
 ### Application Load Balancer slow start mode considerations<a name="alb-slowstart-considerations"></a>

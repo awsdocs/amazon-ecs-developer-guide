@@ -15,4 +15,4 @@ Once a platform version reaches the *deprecation date*, the platform version wil
 |  1\.1\.0  | October 26, 2020 |  December 14, 2020  | 
 |  1\.2\.0  | October 26, 2020 |  December 14, 2020  | 
 
-For information about current platform versions, see [AWS Fargate Platform Versions](platform_versions.md)\.
+For information about current platform versions, see [AWS Fargate platform versions](platform_versions.md)\.

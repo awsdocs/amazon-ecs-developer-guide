@@ -14,7 +14,7 @@ You should put multiple containers in the same task definition if:
 
 Otherwise, you should define your containers in separate tasks definitions so that you can scale, provision, and deprovision them separately\.
 
-## Using the EC2 Launch Type<a name="application_architecture_ec2"></a>
+## Using the EC2 launch type<a name="application_architecture_ec2"></a>
 
 When you’re considering how to model task definitions and services using the EC2 launch type, it helps to think about what processes need to run together and how to scale each component\.
 

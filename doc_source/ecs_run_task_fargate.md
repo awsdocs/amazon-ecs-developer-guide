@@ -16,7 +16,7 @@ To run a task using the Fargate launch type, do the following:
       + To use a **Capacity provider strategy**, choose **Switch to capacity provider strategy** and then choose whether your task should use the default capacity provider strategy defined for the cluster or a custom capacity provider strategy\. A capacity provider must already be associated with the cluster in order to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
       + To use a **Launch type**, choose **Switch to launch type** and select **FARGATE**\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 
-   1. For **Platform version**, choose the platform version to run your task on\. For more information about platform versions, see [AWS Fargate Platform Versions](platform_versions.md)\.
+   1. For **Platform version**, choose the platform version to run your task on\. For more information about platform versions, see [AWS Fargate platform versions](platform_versions.md)\.
 
    1. For **Cluster**, choose the cluster to use\. 
 
@@ -44,7 +44,7 @@ If you will be using the parameter values from your task definition there is no 
 
         Only roles with the `ecs-tasks.amazonaws.com` trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
-     1. For **Task Execution Role Override**, choose a task execution role to override the task execution role specified in the task definition\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+     1. For **Task Execution Role Override**, choose a task execution role to override the task execution role specified in the task definition\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
      1. For **Container Overrides**, choose a container to which to send a command or environment variable override\.
         + **For a command override:** For **Command override**, type the command override to send\. If your container definition does not specify an `ENTRYPOINT`, the format should be a comma\-separated list of non\-quoted strings\. For example:

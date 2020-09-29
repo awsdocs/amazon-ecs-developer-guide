@@ -16,12 +16,12 @@ Context canceled
 The common cause for this error is because the VPC your task is using does not have a route to pull the container image from Amazon ECR\.
 
 Image not found  
-When you specify an Amazon ECR image in your container definition, you must use the full ARN or URI of your ECR repository along with the image name in that repository\. If the repository or image cannot be found, you receive the following error:  
+When you specify an Amazon ECR image in your container definition, you must use the full URI of your ECR repository along with the image name in that repository\. If the repository or image cannot be found, you receive the following error:  
 
 ```
 CannotPullContainerError: API error (404): repository 111122223333.dkr.ecr.us-east-1.amazonaws.com/<repo>/<image> not found
 ```
-To resolve this issue, verify the repository ARN or URI and the image name\. Also ensure that you have set up the proper access using the task execution IAM role\. For more information about the task execution role, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+To resolve this issue, verify the repository URI and the image name\. Also ensure that you have set up the proper access using the task execution IAM role\. For more information about the task execution role, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 Insufficient disk space  
 If the root volume of your container instance has insufficient disk space when pulling the container image, you see an error similar to the following:  

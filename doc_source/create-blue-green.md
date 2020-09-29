@@ -93,7 +93,7 @@ arn:aws:ecs:region:aws_account_id:cluster/tutorial-bluegreen-cluster
 
 Use the [register\-task\-definition](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html) command to register a task definition that is compatible with Fargate\. It requires the use of the `awsvpc` network mode\. The following is the example task definition used for this tutorial\.
 
-First, create a file named `fargate-task.json` with the following contents\. Ensure that you use the ARN for your task execution role\. For more information, see [Amazon ECS Task Execution IAM Role](task_execution_IAM_role.md)\.
+First, create a file named `fargate-task.json` with the following contents\. Ensure that you use the ARN for your task execution role\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 ```
 {

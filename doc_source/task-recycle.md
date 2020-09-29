@@ -3,7 +3,7 @@
 Amazon ECS task recycling only affects tasks using the Fargate and no notification is sent prior to the recycling event\.
 
 A task can be recycled in the following scenarios:
-+ The task is using the Fargate launch type and using platform version 1\.3\.0 or later\. For more information, see [AWS Fargate Platform Versions](platform_versions.md)\.
++ The task is using the Fargate launch type and using platform version 1\.3\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 **Note**  
 Fargate tasks using platform versions prior to 1\.3\.0 are not affected\.
 + The task is part of an Amazon ECS service\. Standalone tasks are not affected by task recycling, but may still be scheduled for retirement\. For more information, see [Task retirement](task-retirement.md)\.
