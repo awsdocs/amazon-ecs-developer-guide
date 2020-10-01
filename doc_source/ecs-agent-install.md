@@ -1,14 +1,14 @@
 # Installing the Amazon ECS Container Agent<a name="ecs-agent-install"></a>
 
 If your container instance was not launched using an Amazon ECS\-optimized AMI, you can install the Amazon ECS container agent manually using one of the following procedures\. The Amazon ECS container agent is included in the Amazon ECS\-optimized AMIs and does not require installation\.
-+ For Amazon Linux 2 instances, you can install the agent using the `amazon-linux-extras` command\. For more information, see [Installing the Amazon ECS Container Agent on an Amazon Linux 2 EC2 Instance](#ecs-agent-install-al2)\.
-+ For Amazon Linux AMI instances, you can install the agent using the Amazon YUM repo\. For more information, see [Installing the Amazon ECS Container Agent on an Amazon Linux AMI EC2 Instance](#ecs-agent-install-amazonlinux)\.
-+ For non\-Amazon Linux instances, you can either download the agent from one of the regional S3 buckets or from Docker Hub\. If you download from one of the regional S3 buckets, you can optionally verify the validity of the container agent file using the PGP signature\. For more information, see [Installing the Amazon ECS Container Agent on a non\-Amazon Linux EC2 Instance](#ecs-agent-install-nonamazonlinux)
++ For Amazon Linux 2 instances, you can install the agent using the `amazon-linux-extras` command\. For more information, see [Installing the Amazon ECS container agent on an Amazon Linux 2 EC2 instance](#ecs-agent-install-al2)\.
++ For Amazon Linux AMI instances, you can install the agent using the Amazon YUM repo\. For more information, see [Installing the Amazon ECS container agent on an Amazon Linux AMI EC2 instance](#ecs-agent-install-amazonlinux)\.
++ For non\-Amazon Linux instances, you can either download the agent from one of the regional S3 buckets or from Docker Hub\. If you download from one of the regional S3 buckets, you can optionally verify the validity of the container agent file using the PGP signature\. For more information, see [Installing the Amazon ECS container agent on a non\-Amazon Linux EC2 instance](#ecs-agent-install-nonamazonlinux)
 
 **Note**  
 The systemd units for both ECS and Docker services have a directive to wait for `cloud-init` to finish before starting both services\. The `cloud-init` process is not considered finished until your Amazon EC2 user data has finished running\. Therefore, starting ECS or Docker via Amazon EC2 user data may cause a deadlock\. To start the container agent using Amazon EC2 user data you can use `systemctl enable --now --no-block ecs.service`\.
 
-## Installing the Amazon ECS Container Agent on an Amazon Linux 2 EC2 Instance<a name="ecs-agent-install-al2"></a>
+## Installing the Amazon ECS container agent on an Amazon Linux 2 EC2 instance<a name="ecs-agent-install-al2"></a>
 
 To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance using the `amazon-linux-extras` command, use the following steps\.
 
@@ -38,7 +38,7 @@ To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance usin
 **Note**  
 If you get no response, ensure that you associated the Amazon ECS container instance IAM role when launching the instance\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
 
-## Installing the Amazon ECS Container Agent on an Amazon Linux AMI EC2 Instance<a name="ecs-agent-install-amazonlinux"></a>
+## Installing the Amazon ECS container agent on an Amazon Linux AMI EC2 instance<a name="ecs-agent-install-amazonlinux"></a>
 
 To install the Amazon ECS container agent on an Amazon Linux AMI EC2 instance using the Amazon YUM repo, use the following steps\.
 
@@ -85,7 +85,7 @@ To install the Amazon ECS container agent on an Amazon Linux AMI EC2 instance us
    [ec2-user ~]$ curl -s http://localhost:51678/v1/metadata | python -mjson.tool
    ```
 
-## Installing the Amazon ECS Container Agent on a non\-Amazon Linux EC2 Instance<a name="ecs-agent-install-nonamazonlinux"></a>
+## Installing the Amazon ECS container agent on a non\-Amazon Linux EC2 instance<a name="ecs-agent-install-nonamazonlinux"></a>
 
 To install the Amazon ECS container agent on a non\-Amazon Linux EC2 instance, you can either download the agent from one of the regional S3 buckets or from Docker Hub\. If you download from one of the regional S3 buckets, you can optionally verify the validity of the container agent file using the PGP signature\.
 
@@ -158,6 +158,12 @@ The Amazon Linux AMI always includes the recommended version of Docker for use w
    ubuntu:~$ sudo apt-get install iptables-persistent
    ubuntu:~$ sudo iptables -t nat -A PREROUTING -p tcp -d 169.254.170.2 --dport 80 -j DNAT --to-destination 127.0.0.1:51679
    ubuntu:~$ sudo iptables -t nat -A OUTPUT -d 169.254.170.2 -p tcp -m tcp --dport 80 -j REDIRECT --to-ports 51679
+   ```
+
+1. Add an iptables route to block off\-host access to the introspection API endpoint\.
+
+   ```
+   ubuntu:~$ sudo iptables -A INPUT -i eth0 -p tcp --dport 51678 -j DROP
    ```
 
 1. Write the new iptables configuration to your operating system\-specific location\.

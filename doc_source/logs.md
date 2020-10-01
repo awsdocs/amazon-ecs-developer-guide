@@ -29,6 +29,12 @@ Default value on Linux: `info`
 Default value on Windows: `info`  
 The level of detail to log\.
 
+`ECS_LOGLEVEL_ON_INSTANCE`  
+Example values: `none`, `crit`, `error`, `warn`, `info`, `debug`  
+Default value on Linux: `none`, if `ECS_LOG_DRIVER` is explicitly set to a non\-empty value; otherwise the same value as `ECS_LOGLEVEL`  
+Default value on Windows: `none`, if `ECS_LOG_DRIVER` is explicitly set to a non\-empty value; otherwise the same value as `ECS_LOGLEVEL`  
+Can be used to override `ECS_LOGLEVEL` and set a level of detail that should be logged in the on\-instance log file, separate from the level that is logged in the logging driver\. If a logging driver is explicitly set, on\-instance logs are turned off by default, but can be turned back on with this variable\.
+
 `ECS_LOG_ROLLOVER_TYPE`  
 Example values: `size`, `hourly`  
 Default value on Linux: `hourly`  

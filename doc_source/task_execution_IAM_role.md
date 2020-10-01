@@ -5,7 +5,7 @@ The task execution role grants the Amazon ECS container and Fargate agents permi
 The following are common use cases for a task execution IAM role:
 + Your task uses the Fargate launch type and\.\.\.
   + is pulling a container image from Amazon ECR\.
-  + uses the `awslogs` log driver\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.
+  + uses the `awslogs` log driver\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.
 + Your tasks uses either the Fargate or EC2 launch type and\.\.\.
   + is using private registry authentication\. For more information, see [Required IAM permissions for private registry authentication](#task-execution-private-auth)\.
   + the task definition is referencing sensitive data using Secrets Manager secrets or AWS Systems Manager Parameter Store parameters\. For more information, see [Required IAM permissions for Amazon ECS secrets](#task-execution-secrets)\.
