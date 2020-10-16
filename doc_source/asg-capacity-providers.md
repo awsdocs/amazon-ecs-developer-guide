@@ -8,6 +8,7 @@ The following should be considered when using Auto Scaling group capacity provid
 + It is recommended that you create a new Auto Scaling group to use with a capacity provider rather than using an existing one\. If you use an existing Auto Scaling group, any Amazon EC2 instances associated with the group that were already running and registered to an Amazon ECS cluster prior to the Auto Scaling group being used to create a capacity provider may not be properly registered with the capacity provider\. This may cause issues when using the capacity provider in a capacity provider strategy\. The DescribeContainerInstances API can confirm whether a container instance is associated with a capacity provider or not\.
 + An Auto Scaling group must have a `MaxSize` greater than zero to enable it to scale out\.
 + When using managed termination protection, managed scaling must be enabled otherwise managed termination protection will not work\.
++ When using managed scaling, Auto Scaling group should not have any other scaling policies attached otherwise scaling plans created by ECS to be in [ActiveWithProblems](https://docs.aws.amazon.com/autoscaling/plans/userguide/gs-best-practices.html#gs-activewithproblems) state
 
 ## Using managed scaling<a name="asg-capacity-providers-managed-scaling"></a>
 
