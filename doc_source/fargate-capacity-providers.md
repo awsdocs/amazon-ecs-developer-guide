@@ -15,7 +15,7 @@ The following should be considered when using Fargate capacity providers\.
 + Using Fargate Spot requires that your task use platform version 1\.3\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + When tasks using the Fargate and Fargate Spot capacity providers are stopped, a task state change event is sent to Amazon EventBridge\. The stopped reason describes the cause\. For more information, see [Task state change events](ecs_cwe_events.md#ecs_task_events)\.
 + A cluster may contain a mix of Fargate and Auto Scaling group capacity providers, however a capacity provider strategy may only contain either Fargate or Auto Scaling group capacity providers, but not both\. For more information, see [Auto Scaling Group Capacity Providers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html#asg-capacity-providers) in the *Amazon Elastic Container Service Developer Guide*\.
-+ Fargate and Fargate Spot capacity providers are independent. AWS Fargate will follow each strategy to launch your Fargate tasks until it successfully being provision. The price model of the tasks will follow the strategy it owns.
++ Fargate and Fargate Spot capacity providers are independent. AWS Fargate will follow each strategy to launch your Fargate tasks until it successfully provisions. The price model of the tasks will follow the strategy it owns.
 
 ## Handling Fargate Spot termination notices<a name="fargate-capacity-providers-termination"></a>
 
@@ -127,7 +127,7 @@ Use the following command to run a task using the Fargate and Fargate Spot capac
   ```
 
 **Note**
-When running single use tasks using `FARGATE_SPOT` it is important to note that the task may be interrupted before it is able to complete and exit\. It is therefore important that you code your application to gracefully exit when it receives the SIGTERM signal and be able to be resumed\.
+When running single use tasks using `FARGATE_SPOT` it is important to note that the task may be interrupted before it is able to complete and exit\. It is therefore important that you code your application to gracefully exit within 2 minutes when it receives the SIGTERM signal and be able to be resumed\.
 
 ### Create a service using a Fargate capacity provider \(AWS CLI\)<a name="fargate-capacity-providers-create-service-cli"></a>
 
