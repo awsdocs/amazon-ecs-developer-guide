@@ -60,4 +60,4 @@ The following is a container definition snippet showing how to use this option:
     }
 }
 ```
-An alternative if your container logs are taking up too much disk space is to use the `awslogs` log driver\. The `awslogs` log driver sends the logs to CloudWatch, which frees up the disk space that would otherwise be used for your container logs on the container instance\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.
+An alternative if your container logs are taking up too much disk space is to use the `awslogs` log driver\. The `awslogs` log driver sends the logs to CloudWatch, which frees up the disk space that would otherwise be used for your container logs on the container instance\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.

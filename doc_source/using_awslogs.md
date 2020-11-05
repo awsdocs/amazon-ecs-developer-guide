@@ -1,4 +1,4 @@
-# Using the awslogs Log Driver<a name="using_awslogs"></a>
+# Using the awslogs log driver<a name="using_awslogs"></a>
 
 You can configure the containers in your tasks to send log information to CloudWatch Logs\. If you are using the Fargate launch type for your tasks, this allows you to view the logs from your containers\. If you are using the EC2 launch type, this enables you to view different logs from your containers in one convenient location, and it prevents your container logs from taking up disk space on your container instances\. This topic helps you get started using the `awslogs` log driver in your task definitions\.
 
@@ -7,9 +7,9 @@ The type of information that is logged by the containers in your task depends mo
 
 To send system logs from your Amazon ECS container instances to CloudWatch Logs, see [Using CloudWatch Logs with container instances](using_cloudwatch_logs.md)\. For more information about CloudWatch Logs, see [Monitoring Log Files](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html) and [CloudWatch Logs quotas](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html) in the *Amazon CloudWatch Logs User Guide*\.
 
-## Enabling the awslogs Log Driver for Your Containers<a name="enable_awslogs"></a>
+## Enabling the awslogs log driver for your containers<a name="enable_awslogs"></a>
 
-If you are using the Fargate launch type for your tasks, all you need to do to enable the `awslogs` log driver is add the required `logConfiguration` parameters to your task definition\. For more information, see [Specifying a Log Configuration in your Task Definition](#specify-log-config)\.
+If you are using the Fargate launch type for your tasks, all you need to do to enable the `awslogs` log driver is add the required `logConfiguration` parameters to your task definition\. For more information, see [Specifying a log configuration in your task definition](#specify-log-config)\.
 
 If you are using the EC2 launch type for your tasks and want to enable the `awslogs` log driver, your Amazon ECS container instances require at least version 1\.9\.0 of the container agent\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
@@ -22,14 +22,14 @@ ECS_AVAILABLE_LOGGING_DRIVERS='["json-file","awslogs"]'
 
 Your Amazon ECS container instances also require `logs:CreateLogStream` and `logs:PutLogEvents` permission on the IAM role with which you launch your container instances\. If you created your Amazon ECS container instance role before `awslogs` log driver support was enabled in Amazon ECS, then you might need to add this permission\. If your container instances use the managed IAM policy for container instances, then your container instances should have the correct permissions\. For information about checking your Amazon ECS container instance role and attaching the managed IAM policy for container instances, see [To check for the `ecsInstanceRole` in the IAM console](instance_IAM_role.md#procedure_check_instance_role)\.
 
-## Creating a Log Group<a name="create_awslogs_loggroups"></a>
+## Creating a log group<a name="create_awslogs_loggroups"></a>
 
 The `awslogs` log driver can send log streams to an existing log group in CloudWatch Logs or it can create a new log group on your behalf\. The AWS Management Console provides an auto\-configure option which creates a log group on your behalf using the task definition family name with `ecs` as the prefix\. Alternatively, you can manually specify your log configuration options and specify the `awslogs-create-group` option with a value of `true` which will create the log groups on your behalf\.
 
 **Note**  
 To use the `awslogs-create-group` option to have your log group created, your IAM policy must include the `logs:CreateLogGroup` permission\.
 
-### Using the Auto\-configuration Feature to Create a Log Group<a name="create_awslogs_loggroups_auto"></a>
+### Using the auto\-configuration feature to create a log group<a name="create_awslogs_loggroups_auto"></a>
 
 When registering a task definition in the Amazon ECS console, you have the option to allow Amazon ECS to auto\-configure your CloudWatch logs\. This option creates a log group on your behalf using the task definition family name with `ecs` as the prefix\.
 
@@ -45,11 +45,11 @@ When registering a task definition in the Amazon ECS console, you have the optio
 
 1. In the **Storage and Logging** section, for **Log configuration**, choose **Auto\-configure CloudWatch Logs**\.
 
-1. Enter your awslogs log driver options\. For more information, see [Specifying a Log Configuration in your Task Definition](#specify-log-config)\.
+1. Enter your awslogs log driver options\. For more information, see [Specifying a log configuration in your task definition](#specify-log-config)\.
 
 1. Complete the rest of the task definition wizard\.
 
-## Available awslogs Log Driver Options<a name="create_awslogs_logdriver_options"></a>
+## Available awslogs log driver options<a name="create_awslogs_logdriver_options"></a>
 
 The `awslogs` log driver supports the following options in Amazon ECS task definitions\. For more information, see [CloudWatch Logs logging driver](https://docs.docker.com/config/containers/logging/awslogs/)\.
 
@@ -68,7 +68,7 @@ By default, Docker uses either the `awslogs-region` log option or the detected R
 
 `awslogs-group`  
 Required: Yes  
-You must specify a log group to which the `awslogs` log driver sends its log streams\. For more information, see [Creating a Log Group](#create_awslogs_loggroups)\.
+You must specify a log group to which the `awslogs` log driver sends its log streams\. For more information, see [Creating a log group](#create_awslogs_loggroups)\.
 
 `awslogs-stream-prefix`  
 Required: Optional for the EC2 launch type, required for the Fargate launch type\.  
@@ -96,7 +96,18 @@ For more information, see [awslogs\-multiline\-pattern](https://docs.docker.com/
 This option is ignored if `awslogs-datetime-format` is also configured\.  
 Multiline logging performs regular expression parsing and matching of all log messages\. This may have a negative impact on logging performance\.
 
-## Specifying a Log Configuration in your Task Definition<a name="specify-log-config"></a>
+`mode`  
+Required: No  
+Valid values: `non-blocking` \| `blocking`  
+Default value: `blocking`  
+The delivery mode of log messages from the container to `awslogs`\. For more information, see [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/#configure-the-delivery-mode-of-log-messages-from-container-to-log-driver)\.
+
+`max-buffer-size`  
+Required: No  
+Default value: `1m`  
+When `non-blocking` mode is used, the `max-buffer-size` log option controls the size of the ring buffer used for intermediate message storage\.
+
+## Specifying a log configuration in your task definition<a name="specify-log-config"></a>
 
 Before your containers can send logs to CloudWatch, you must specify the `awslogs` log driver for containers in your task definition\. This section describes the log configuration for a container to use the `awslogs` log driver\. For more information, see [Creating a task definition](create-task-definition.md)\.
 
@@ -161,7 +172,7 @@ In the Amazon ECS console, the log configuration for the `wordpress` container i
 
 After you have registered a task definition with the `awslogs` log driver in a container definition log configuration, you can run a task or create a service with that task definition to start sending logs to CloudWatch Logs\. For more information, see [Running tasks](ecs_run_task.md) and [Creating a service](create-service.md)\.
 
-## Viewing awslogs Container Logs in CloudWatch Logs<a name="viewing_awslogs"></a>
+## Viewing awslogs container logs in CloudWatch Logs<a name="viewing_awslogs"></a>
 
 For tasks using the EC2 launch type, after your container instance role has the proper permissions to send logs to CloudWatch Logs, your container agents are updated to at least version 1\.9\.0, and you have configured and started a task with containers that use the `awslogs` log driver, your configured containers should be sending their log data to CloudWatch Logs\. You can view and search these logs in the console\.
 
@@ -184,7 +195,7 @@ For tasks using the EC2 launch type, after your container instance role has the 
 
 1. In the left navigation pane, choose **Logs**\.
 
-1. Select a log group to view\. You should see the log groups that you created in [Creating a Log Group](#create_awslogs_loggroups)\.  
+1. Select a log group to view\. You should see the log groups that you created in [Creating a log group](#create_awslogs_loggroups)\.  
 ![\[awslogs console metrics view\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/awslogs-log-groups.png)
 
 1. Choose a log stream to view\.  

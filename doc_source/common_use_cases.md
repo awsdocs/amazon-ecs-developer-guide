@@ -46,7 +46,7 @@ Managing secrets, such as database credentials for an application, has always be
 
 You can configure your container instances to send log information to CloudWatch Logs\. This enables you to view different logs from your container instances in one convenient location\. For more information about getting started using CloudWatch Logs on your container instances that were launched with the Amazon ECS\-optimized AMI, see [Using CloudWatch Logs with container instances](using_cloudwatch_logs.md)\. 
 
-You can configure the containers in your tasks to send log information to CloudWatch Logs\. This enables you to view different logs from your containers in one convenient location, and it prevents your container logs from taking up disk space on your container instances\. For more information about getting started using the `awslogs` log driver in your task definitions, see [Using the awslogs Log Driver](using_awslogs.md)\.
+You can configure the containers in your tasks to send log information to CloudWatch Logs\. This enables you to view different logs from your containers in one convenient location, and it prevents your container logs from taking up disk space on your container instances\. For more information about getting started using the `awslogs` log driver in your task definitions, see [Using the awslogs log driver](using_awslogs.md)\.
 
 ### Continuous Integration and Continuous Deployment<a name="microservices_cicd"></a>
 

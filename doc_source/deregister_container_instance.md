@@ -2,12 +2,11 @@
 
 When you are finished with a container instance, you can deregister it from your cluster\.
 
-Following deregistration, the container instance is no longer able to accept new tasks\. If you have tasks running on the container instance when you deregister it, these tasks remain running until you terminate the instance or the tasks stop through some other means\. 
+Following deregistration, the container instance is no longer able to accept new tasks\. If you have tasks running on the container instance when you deregister it, these tasks remain running until you terminate the instance or the tasks stop through some other means\.
 
 However, these tasks are orphaned \(no longer monitored or accounted for by Amazon ECS\)\. If an orphaned task on your container instance is part of an Amazon ECS service, then the service scheduler starts another copy of that task, on a different container instance, if possible\. Any containers in orphaned service tasks that are registered with a Classic Load Balancer or an Application Load Balancer target group are deregistered\. They begin connection draining according to the settings on the load balancer or target group\.
 
-**Note**
-Any running tasks running on `awsvpc` network mode will have their underlying Elastic Network Interfaces deleted.
+Any orphaned tasks that are using the `awsvpc` network mode, their elastic network interfaces will be deleted\.
 
 If you intend to use the container instance for some other purpose after deregistration, you should stop all of the tasks running on the container instance before deregistration\. This stops any orphaned tasks from consuming resources\.
 

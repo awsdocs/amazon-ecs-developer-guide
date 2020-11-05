@@ -508,6 +508,8 @@ You can update your task definitions by using the AWS Management Console or by m
            ```
            856666278305.dkr.ecr.ap-east-1.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod
            ```
+**Important**  
+Only version v1\.9\.0\.0\-prod or later is supported for use with App Mesh\.
 
       1. For **Mesh name**, choose the App Mesh service mesh to use\. In this topic, the name of the mesh that was created is `apps.`
 
@@ -619,6 +621,9 @@ Your Amazon ECS task definitions must contain an App Mesh Envoy container image\
   ```
   856666278305.dkr.ecr.ap-east-1.amazonaws.com/aws-appmesh-envoy:v1.15.0.0-prod
   ```
+
+**Important**  
+Only version v1\.9\.0\.0\-prod or later is supported for use with App Mesh\.
 
 You must use the App Mesh Envoy container image until the Envoy project team merges changes that support App Mesh\. For additional details, see the [GitHub roadmap issue](https://github.com/aws/aws-app-mesh-roadmap/issues/10)\.
 

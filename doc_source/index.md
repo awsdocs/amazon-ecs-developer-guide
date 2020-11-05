@@ -46,7 +46,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Amazon EFS volumes](efs-volumes.md)
    + [Managing container swap space](container-swap.md)
    + [Task Networking with the awsvpc Network Mode](task-networking.md)
-   + [Using the awslogs Log Driver](using_awslogs.md)
+   + [Using the awslogs log driver](using_awslogs.md)
    + [Custom log routing](using_firelens.md)
    + [Private registry authentication for tasks](private-auth.md)
    + [Specifying sensitive data](specifying-sensitive-data.md)

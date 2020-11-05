@@ -38,7 +38,7 @@ As an alternative to Homebrew, you can manually install the AWS Copilot CLI on y
 For macOS:
 
 ```
-sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.3.0/copilot-darwin-v0.3.0 \
+sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.4.0/copilot-darwin-v0.4.0 \
    && sudo chmod +x /usr/local/bin/copilot \
    && copilot --help
 ```
@@ -49,7 +49,7 @@ sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases
 For Linux systems:
 
 ```
-sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.3.0/copilot-linux-v0.3.0  \
+sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.4.0/copilot-linux-v0.4.0  \
    && sudo chmod +x /usr/local/bin/copilot \
    && copilot --help
 ```
@@ -237,7 +237,7 @@ The AWS Copilot CLI executables are cryptographically signed using PGP signature
    For macOS systems, run the following command\.
 
    ```
-   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.3.0/copilot-darwin-v0.3.0.asc
+   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.4.0/copilot-darwin-v0.4.0.asc
    ```
 
 ------
@@ -246,7 +246,7 @@ The AWS Copilot CLI executables are cryptographically signed using PGP signature
    For Linux systems, run the following command\.
 
    ```
-   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.3.0/copilot-linux-v0.3.0.asc
+   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.4.0/copilot-linux-v0.4.0.asc
    ```
 
 ------

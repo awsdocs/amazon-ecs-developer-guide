@@ -121,7 +121,7 @@ The `awslogs` log driver configures your Fargate tasks to send log information t
 }
 ```
 
-For more information about using the `awslogs` log driver in a task definition to send your container logs to CloudWatch Logs, see [Using the awslogs Log Driver](using_awslogs.md)\.
+For more information about using the `awslogs` log driver in a task definition to send your container logs to CloudWatch Logs, see [Using the awslogs log driver](using_awslogs.md)\.
 
 For more information about the `firelens` log driver in a task definition, see [Custom log routing](using_firelens.md)\.
 

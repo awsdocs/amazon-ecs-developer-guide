@@ -87,6 +87,12 @@ Default value on Linux: `info`
 Default value on Windows: `info`  
 The level of detail to log\.
 
+`ECS_LOGLEVEL_ON_INSTANCE`  
+Example values: `none`, `crit`, `error`, `warn`, `info`, `debug`  
+Default value on Linux: `none`, if `ECS_LOG_DRIVER` is explicitly set to a non\-empty value; otherwise the same value as `ECS_LOGLEVEL`  
+Default value on Windows: `none`, if `ECS_LOG_DRIVER` is explicitly set to a non\-empty value; otherwise the same value as `ECS_LOGLEVEL`  
+Can be used to override `ECS_LOGLEVEL` and set a level of detail that should be logged in the on\-instance log file, separate from the level that is logged in the logging driver\. If a logging driver is explicitly set, on\-instance logs are turned off by default, but can be turned back on with this variable\.
+
 `ECS_CHECKPOINT`  
 Example values: `true` \| `false`  
 Default value on Linux: If `ECS_DATADIR` is explicitly set to a non\-empty value, then `ECS_CHECKPOINT` is set to `true`; otherwise, it is set to `false`\.  
@@ -136,7 +142,7 @@ Example values: `["awslogs","fluentd","gelf","json-file","journald","splunk","lo
 Default value on Linux: `["json-file","none"]`  
 Default value on Windows: `["json-file","none"]`  
 If you are using ECS init, the default values are `["json-file","syslog","awslogs","none"]`\.
-The logging drivers available on the container instance\. The Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the `ECS_AVAILABLE_LOGGING_DRIVERS` environment variable before containers placed on that instance can use log configuration options for those drivers in tasks\. For information about how to use the `awslogs` log driver, see [Using the awslogs Log Driver](using_awslogs.md)\. For more information about the different log drivers available for your Docker version and how to configure them, see [Configure logging drivers](https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation\.
+The logging drivers available on the container instance\. The Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the `ECS_AVAILABLE_LOGGING_DRIVERS` environment variable before containers placed on that instance can use log configuration options for those drivers in tasks\. For information about how to use the `awslogs` log driver, see [Using the awslogs log driver](using_awslogs.md)\. For more information about the different log drivers available for your Docker version and how to configure them, see [Configure logging drivers](https://docs.docker.com/engine/admin/logging/overview/) in the Docker documentation\.
 
 `ECS_DISABLE_PRIVILEGED`  
 Example values: `true` \| `false`  

@@ -41,7 +41,7 @@ cee0d6986de0        amazon/amazon-ecs-agent:latest              "/agent"        
 You can view the `STDOUT` and `STDERR` streams for a container with the docker logs command\. In this example, the logs are displayed for the *dc7240fe892a* container and piped through the head command for brevity\. For more information, go to [docker logs](https://docs.docker.com/engine/reference/commandline/cli/#logs) in the Docker documentation\.
 
 **Note**  
-Docker logs are only available on the container instance if you are using the default `json` log driver\. If you have configured your tasks to use the `awslogs` log driver, then your container logs are available in CloudWatch Logs\. For more information, see [Using the awslogs Log Driver](using_awslogs.md)\.
+Docker logs are only available on the container instance if you are using the default `json` log driver\. If you have configured your tasks to use the `awslogs` log driver, then your container logs are available in CloudWatch Logs\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.
 
 ```
 docker logs dc7240fe892a | head

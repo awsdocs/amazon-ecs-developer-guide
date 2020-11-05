@@ -122,9 +122,9 @@ When querying the `${ECS_CONTAINER_METADATA_URI_V4}` endpoint you are returned o
     "Image": "mreferre/eksutils",
     "ImageID": "sha256:1b146e73f801617610dcb00441c6423e7c85a7583dd4a65ed1be03cb0e123311",
     "Labels": {
-        "com.amazonaws.ecs.cluster": "arn:aws:ecs:us-west-2:&ExampleAWSAccountNo1;:cluster/default",
+        "com.amazonaws.ecs.cluster": "arn:aws:ecs:us-west-2:111122223333:cluster/default",
         "com.amazonaws.ecs.container-name": "query-metadata",
-        "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:&ExampleAWSAccountNo1;:task/default/c7a6b9b237934e9999f319ea3ccc9da4",
+        "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:111122223333:task/default/c7a6b9b237934e9999f319ea3ccc9da4",
         "com.amazonaws.ecs.task-definition-family": "query-metadata",
         "com.amazonaws.ecs.task-definition-version": "3"
     },
@@ -164,8 +164,8 @@ When querying the `${ECS_CONTAINER_METADATA_URI_V4}/task` endpoint you are retur
 
 ```
 {
-    "Cluster": "arn:aws:ecs:us-west-2:&ExampleAWSAccountNo1;:cluster/default",
-    "TaskARN": "arn:aws:ecs:us-west-2:&ExampleAWSAccountNo1;:task/default/febee046097849aba589d4435207c04a",
+    "Cluster": "arn:aws:ecs:us-west-2:111122223333:cluster/default",
+    "TaskARN": "arn:aws:ecs:us-west-2:111122223333:task/default/febee046097849aba589d4435207c04a",
     "Family": "query-metadata",
     "Revision": "7",
     "DesiredStatus": "RUNNING",
@@ -185,9 +185,9 @@ When querying the `${ECS_CONTAINER_METADATA_URI_V4}/task` endpoint you are retur
             "Image": "mreferre/eksutils",
             "ImageID": "sha256:1b146e73f801617610dcb00441c6423e7c85a7583dd4a65ed1be03cb0e123311",
             "Labels": {
-                "com.amazonaws.ecs.cluster": "arn:aws:ecs:us-west-2:&ExampleAWSAccountNo1;:cluster/default",
+                "com.amazonaws.ecs.cluster": "arn:aws:ecs:us-west-2:111122223333:cluster/default",
                 "com.amazonaws.ecs.container-name": "query-metadata",
-                "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:&ExampleAWSAccountNo1;:task/default/febee046097849aba589d4435207c04a",
+                "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:111122223333:task/default/febee046097849aba589d4435207c04a",
                 "com.amazonaws.ecs.task-definition-family": "query-metadata",
                 "com.amazonaws.ecs.task-definition-version": "7"
             },

@@ -202,6 +202,3 @@ Parameters:
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
     Default: /aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id
 ```
-
-**Note**  
-Referencing the Amazon ECS\-optimized Server Windows AMIs in a AWS CloudFormation template is not supported\.

@@ -19,7 +19,7 @@ The following should be considered when using Fargate capacity providers\.
 
 ## Handling Fargate Spot termination notices<a name="fargate-capacity-providers-termination"></a>
 
-When tasks using Fargate Spot capacity are stopped due to a Spot interruption, a two\-minute warning is sent before a task is stopped\. The warning is sent as a task state change event to Amazon EventBridge and a SIGTERM signal to the running task\. When using Fargate Spot as part of a service, the service scheduler will receive the interruption signal and attempt to launch additional tasks on Fargate Spot if capacity is available\.
+When tasks using Fargate Spot capacity are stopped due to a Spot interruption, a two\-minute warning is sent before a task is stopped\. The warning is sent as a task state change event to Amazon EventBridge and a SIGTERM signal to the running task\. When using Fargate Spot as part of a service, the service scheduler will receive the interruption signal and attempt to launch additional tasks on Fargate Spot if capacity is available\. A service with only one task will be interrupted until capacity is available\.
 
 To ensure that your containers exit gracefully before the task stops, the following can be configured:
 + A `stopTimeout` value of `120` seconds or less can be specified in the container definition that the task is using\. Specifying a `stopTimeout` value gives you time between the moment the task state change event is received and the point at which the container is forcefully stopped\. For more information, see [Container Timeouts](task_definition_parameters.md#container_definition_timeout)\.
