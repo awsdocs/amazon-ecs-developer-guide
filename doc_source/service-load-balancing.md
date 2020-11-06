@@ -33,11 +33,7 @@ The following considerations are specific to Amazon ECS services using Applicati
 + If a service's task fails the load balancer health check criteria, the task is stopped and restarted\. This process continues until your service reaches the number of desired running tasks\.
 + The Application Load Balancer slow start mode is supported\. For more information, see [Application Load Balancer slow start mode considerations](#alb-slowstart-considerations)\.
 + When using Network Load Balancers configured with IP addresses as targets, requests are seen as coming from the Network Load Balancers private IP address\. This means that services behind an Network Load Balancer are effectively open to the world as soon as you allow incoming requests and health checks in the target's security group\.
-+ Using a Network Load Balancer to route UDP traffic to your Amazon ECS on Fargate tasks require the task to use platform version 1\.4 and is only supported in the following Regions:
-  + US East \(N\. Virginia\) \- `us-east-1`
-  + US West \(Oregon\) \- `us-west-2`
-  + EU \(Ireland\) \- `eu-west-1`
-  + Asia Pacific \(Tokyo\) \- `ap-northeast-1`
++ Using a Network Load Balancer to route UDP traffic to your Amazon ECS tasks on Fargate require the task to use platform version `1.4.0`\.
 + If you are experiencing problems with your load balancer\-enabled services, see [Troubleshooting service load balancers](troubleshoot-service-load-balancers.md)\.
 
 ### Application Load Balancer slow start mode considerations<a name="alb-slowstart-considerations"></a>

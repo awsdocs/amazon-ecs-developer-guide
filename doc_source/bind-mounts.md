@@ -1,8 +1,6 @@
 # Bind mounts<a name="bind-mounts"></a>
 
-With bind mounts, a file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported for tasks using the EC2 launch type\.
-
-To use bind mount host volumes with tasks using the EC2 launch type, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
+With bind mounts, a file or directory on the host machine is mounted into a container\. To use bind mount host volumes, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
 
 **Note**  
 For information on the task storage for Amazon ECS on Fargate tasks, see [Fargate Task Storage](fargate-task-storage.md)\.
@@ -12,7 +10,7 @@ Some common use cases for bind mounts are:
 + To define an empty, nonpersistent data volume and mount it on multiple containers on the same container instance
 + To share defined data volumes at different locations on different containers on the same container instance
 
-## Specifying a Bind Mount in your Task Definition<a name="specify-volume-config"></a>
+## Specifying a bind mount in your task definition<a name="specify-volume-config"></a>
 
 Before your containers can use bind mount host volumes, you must specify the volume and mount point configurations in your task definition\. This section describes the volume configuration for a container\. For tasks that use a bind mount host volume, specify a `host` value and optional `sourcePath` value\.
 
@@ -48,7 +46,7 @@ The following task definition JSON snippet shows the syntax for the `volumes` an
 `name`  
 Type: String  
 Required: No  
-The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints`\.
+The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints` object\.
 
 `host`  
 Required: No  

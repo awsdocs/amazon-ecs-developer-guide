@@ -24,7 +24,7 @@ Your entire application stack does not need to exist on a single task definition
 + [Working with inference workloads on Amazon ECS](ecs-inference.md)
 + [Using data volumes in tasks](using_data_volumes.md)
 + [Managing container swap space](container-swap.md)
-+ [Task Networking with the `awsvpc` Network Mode](task-networking.md)
++ [Amazon ECS task networking](task-networking.md)
 + [Using the awslogs log driver](using_awslogs.md)
 + [Custom log routing](using_firelens.md)
 + [Private registry authentication for tasks](private-auth.md)

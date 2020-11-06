@@ -70,7 +70,7 @@ To ensure that your task definition validates for use with Fargate, you can spec
 
 ### Network mode<a name="fargate-tasks-networkmode"></a>
 
-Amazon ECS task definitions for Fargate require that the network mode is set to `awsvpc`\. The `awsvpc` network mode provides each task with its own elastic network interface\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
+Amazon ECS task definitions for Fargate require that the network mode is set to `awsvpc`\. The `awsvpc` network mode provides each task with its own elastic network interface\. For more information, see [Amazon ECS task networking](task-networking.md)\.
 
 A network configuration is also required when creating a service or manually running tasks\. For more information, see [Task networking](#fargate-tasks-services-networking)\.
 
@@ -207,7 +207,7 @@ After you have your Amazon ECS task definitions for Fargate prepared, there are 
 
 Amazon ECS tasks for Fargate require the `awsvpc` network mode, which provides each task with an elastic network interface\. When you run a task or create a service with this network mode, you must specify one or more subnets to attach the network interface and one or more security groups to apply to the network interface\. 
 
-If you are using public subnets, decide whether to provide a public IP address for the network interface\. For a Fargate task in a public subnet to pull container images, a public IP address needs to be assigned to the task's elastic network interface, with a route to the internet or a NAT gateway that can route requests to the internet\. For a Fargate task in a private subnet to pull container images, the private subnet requires a NAT gateway be attached to route requests to the internet\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
+If you are using public subnets, decide whether to provide a public IP address for the network interface\. For a Fargate task in a public subnet to pull container images, a public IP address needs to be assigned to the task's elastic network interface, with a route to the internet or a NAT gateway that can route requests to the internet\. For a Fargate task in a private subnet to pull container images, the private subnet requires a NAT gateway be attached to route requests to the internet\. For more information, see [Amazon ECS task networking](task-networking.md)\.
 
 The following is an example of the networkConfiguration section for a Fargate service:
 

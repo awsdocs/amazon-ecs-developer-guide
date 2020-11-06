@@ -4,7 +4,7 @@ Each Amazon ECS task that uses the `awsvpc` network mode receives its own elasti
 
 Amazon ECS supports launching container instances with increased ENI density using supported Amazon EC2 instance types\. When you use these instance types and opt in to the `awsvpcTrunking` account setting, additional ENIs are available on newly launched container instances\. This configuration allows you to place more tasks using the `awsvpc` network mode on each container instance\. Using this feature, a `c5.large` instance with `awsvpcTrunking` enabled has an increased ENI limit of twelve\. The container instance will have the primary network interface and Amazon ECS creates and attaches a "trunk" network interface to the container instance\. So this configuration allows you to launch ten tasks on the container instance instead of the current two tasks\.
 
-The trunk network interface is fully managed by Amazon ECS and is deleted when you either terminate or deregister your container instance from the cluster\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.
+The trunk network interface is fully managed by Amazon ECS and is deleted when you either terminate or deregister your container instance from the cluster\. For more information, see [Amazon ECS task networking](task-networking.md)\.
 
 ## ENI trunking considerations<a name="eni-trunking-considerations"></a>
 

@@ -1,6 +1,6 @@
 # Getting started with Windows containers<a name="ECS_Windows_getting_started"></a>
 
-This tutorial walks you through getting Windows containers running on Amazon ECS with the Amazon ECS\-optimized Windows Server AMI in the AWS Management Console\. You create a cluster for your Windows container instances, launch one or more container instances into your cluster, register a task definition that uses a Windows container image, create a service that uses that task definition, and then view the sample webpage that the container runs\.
+This tutorial walks you through getting Windows containers running on Amazon ECS with the Amazon ECS\-optimized Windows Server AMI in the AWS Management Console\. You create a cluster for your Windows container instances, launch one or more container instances into your cluster, register a task definition that uses a Windows container image, create a service that uses that task definition, and then view the sample webpage that the container runs\. For more information, see [Windows containers](ECS_Windows.md)\.
 
 **Topics**
 + [Step 1: Create a Windows cluster](#create_windows_cluster)
@@ -96,25 +96,25 @@ The Fargate launch type is not compatible with Windows containers\.
 
    ```
    {
-     "family": "windows-simple-iis",
-     "containerDefinitions": [
+   "family": "windows-simple-iis",
+   "containerDefinitions": [
+   {
+     "name": "windows_sample_app",
+     "image": "microsoft/iis",
+     "cpu": 512,
+     "entryPoint":["powershell", "-Command"],
+     "command":["New-Item -Path C:\\inetpub\\wwwroot\\index.html -ItemType file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p>' -Force ; C:\\ServiceMonitor.exe w3svc"],
+     "portMappings": [
        {
-         "name": "windows_sample_app",
-         "image": "microsoft/iis",
-         "cpu": 512,
-         "entryPoint":["powershell", "-Command"],
-         "command":["New-Item -Path C:\\inetpub\\wwwroot\\index.html -ItemType file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p>' -Force ; C:\\ServiceMonitor.exe w3svc"],
-         "portMappings": [
-           {
-             "protocol": "tcp",
-             "containerPort": 80,
-             "hostPort": 8080
-           }
-         ],
-         "memory": 768,
-         "essential": true
+         "protocol": "tcp",
+         "containerPort": 80,
+         "hostPort": 8080
        }
-     ]
+     ],
+     "memory": 768,
+     "essential": true
+   }
+   ]
    }
    ```
 

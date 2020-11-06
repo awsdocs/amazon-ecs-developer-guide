@@ -26,7 +26,7 @@ A Wavelength Zone is an isolated zone in the carrier location where the Waveleng
 
 A Wavelength Zone is represented by a Region code followed by an identifier that indicates the Wavelength Zone, for example, `us-east-1-wl1-bos-wlz-1`\.
 
-To use a Wavelength Zone, you must opt\-in to the zone\. Once you have opted in, you must create a Amazon VPC and subnet in the Local Zone\. Then you will be ready to launch your Amazon EC2 instances in them to use for your Amazon ECS clusters and tasks\. For more information, see [Get started with AWS Wavelength](https://docs.aws.amazon.com/wavelength/latest/developerguide/get-started-wavelength.html) in the *AWS Wavelength Developer Guide*\.
+To use a Wavelength Zone, you must opt\-in to the zone\. Once you have opted in, you must create a Amazon VPC and subnet in the Wavelength Zone\. Then you will be ready to launch your Amazon EC2 instances in them to use for your Amazon ECS clusters and tasks\. For more information, see [Get started with AWS Wavelength](https://docs.aws.amazon.com/wavelength/latest/developerguide/get-started-wavelength.html) in the *AWS Wavelength Developer Guide*\.
 
 Wavelength Zones are not available in every Region\. For information about the Regions that support Wavelength Zones, see [Available Wavelength Zones](https://docs.aws.amazon.com/wavelength/latest/developerguide/wavelength-quotas.html) in the *AWS Wavelength Developer Guide*\.
 

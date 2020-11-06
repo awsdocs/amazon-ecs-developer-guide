@@ -49,7 +49,7 @@ Platform versions are only applicable to tasks that use the Fargate launch type\
 
    1. \(Optional\) For **Task role override**, choose the IAM role to use for the task in your target, instead of the task definition default\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\. Only roles with the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\. You must add `iam:PassRole` permissions for any task role and task role overrides to the CloudWatch IAM role\. For more information, see [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 
-   1. If your scheduled task's task definition uses the `awsvpc` network mode, you must configure a VPC, subnet, and security group settings for your scheduled task\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.\.
+   1. If your scheduled task's task definition uses the `awsvpc` network mode, you must configure a VPC, subnet, and security group settings for your scheduled task\. For more information, see [Amazon ECS task networking](task-networking.md)\.\.
 
       1. For **Cluster VPC**, if you selected the EC2 launch type, choose the VPC in which your container instances reside\. If you selected the Fargate launch type, select the VPC that the Fargate tasks should use\. Ensure that the VPC you choose is not configured to require dedicated hardware tenancy as that is not supported by Fargate tasks\.
 

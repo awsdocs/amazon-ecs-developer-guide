@@ -3,10 +3,10 @@
 If your container instance was not launched using an Amazon ECS\-optimized AMI, you can install the Amazon ECS container agent manually using one of the following procedures\. The Amazon ECS container agent is included in the Amazon ECS\-optimized AMIs and does not require installation\.
 + For Amazon Linux 2 instances, you can install the agent using the `amazon-linux-extras` command\. For more information, see [Installing the Amazon ECS container agent on an Amazon Linux 2 EC2 instance](#ecs-agent-install-al2)\.
 + For Amazon Linux AMI instances, you can install the agent using the Amazon YUM repo\. For more information, see [Installing the Amazon ECS container agent on an Amazon Linux AMI EC2 instance](#ecs-agent-install-amazonlinux)\.
-+ For non\-Amazon Linux instances, you can either download the agent from one of the regional S3 buckets or from Docker Hub\. If you download from one of the regional S3 buckets, you can optionally verify the validity of the container agent file using the PGP signature\. For more information, see [Installing the Amazon ECS container agent on a non\-Amazon Linux EC2 instance](#ecs-agent-install-nonamazonlinux)
++ For non\-Amazon Linux instances, you can either download the agent from one of the regional S3 buckets or from Docker Hub\. If you download from one of the regional S3 buckets, you can optionally verify the validity of the container agent file using the PGP signature\. For more information, see [Installing the Amazon ECS container agent on a non\-Amazon Linux EC2 instance](#ecs-agent-install-nonamazonlinux)\.
 
 **Note**  
-The systemd units for both ECS and Docker services have a directive to wait for `cloud-init` to finish before starting both services\. The `cloud-init` process is not considered finished until your Amazon EC2 user data has finished running\. Therefore, starting ECS or Docker via Amazon EC2 user data may cause a deadlock\. To start the container agent using Amazon EC2 user data you can use `systemctl enable --now --no-block ecs.service`\.
+The `systemd` units for both ECS and Docker services have a directive to wait for `cloud-init` to finish before starting both services\. The `cloud-init` process is not considered finished until your Amazon EC2 user data has finished running\. Therefore, starting ECS or Docker via Amazon EC2 user data may cause a deadlock\. To start the container agent using Amazon EC2 user data you can use `systemctl enable --now --no-block ecs.service`\.
 
 ## Installing the Amazon ECS container agent on an Amazon Linux 2 EC2 instance<a name="ecs-agent-install-al2"></a>
 
@@ -88,6 +88,12 @@ To install the Amazon ECS container agent on an Amazon Linux AMI EC2 instance us
 ## Installing the Amazon ECS container agent on a non\-Amazon Linux EC2 instance<a name="ecs-agent-install-nonamazonlinux"></a>
 
 To install the Amazon ECS container agent on a non\-Amazon Linux EC2 instance, you can either download the agent from one of the regional S3 buckets or from Docker Hub\. If you download from one of the regional S3 buckets, you can optionally verify the validity of the container agent file using the PGP signature\.
+
+**Important**  
+Downloading the ECS agent from Docker Hub will be subject to Docker Hub rate limits\. The rate limits can be avoided by downloading the ECS agent directly from Amazon S3 rather than Docker Hub\. For more information, see [Docker Hub \- Download rate limit](https://docs.docker.com/docker-hub/download-rate-limit/)\.
+
+**Note**  
+When using a non\-Amazon Linux AMI, your Amazon EC2 instance requires `cgroupfs` support for the `cgroup` driver in order for the ECS agent to support task level resource limits\. For more information, see [ECS agent on GitHub](https://github.com/aws/amazon-ecs-agent)\.
 
 The latest Amazon ECS container agent files, by Region, are listed below for reference\.
 

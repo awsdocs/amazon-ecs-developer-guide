@@ -2,18 +2,18 @@
 
 Amazon ECS enables you to inject sensitive data into your containers by storing your sensitive data in AWS Secrets Manager secrets and then referencing them in your container definition\. Sensitive data stored in Secrets Manager secrets can be exposed to a container as environment variables or as part of the log configuration\.
 
-When you inject a secret as an environment variable, you can specify a JSON key or version of a secret to inject\. This process helps you control the sensitive data exposed to your container\. For more information about secret versioning, see [Key Terms and Concepts for AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/terms-concepts.html#term_secret) in the *AWS Secrets Manager User Guide*\.
+When you inject a secret as an environment variable, you can specify the full contents of a secret, a specific JSON key within a secret, or a specific version of a secret to inject\. This helps you control the sensitive data exposed to your container\. For more information about secret versioning, see [Key Terms and Concepts for AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/terms-concepts.html#term_secret) in the *AWS Secrets Manager User Guide*\.
 
 ## Considerations for specifying sensitive data using Secrets Manager<a name="secrets-considerations"></a>
 
 The following should be considered when using Secrets Manager to specify sensitive data for containers\.
-+ For tasks that use the Fargate launch type, the following should be considered:
-  + It is only supported to inject the full contents of a secret as an environment variable\. Specifying a specific JSON key or version is not supported at this time\.
-  + To inject the full content of a secret as an environment variable or in a log configuration, you must use platform version 1\.3\.0 or later\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
-+ For tasks that use the EC2 launch type, the following should be considered:
-  + To inject a secret using a specific JSON key or version of a secret, your container instance must have version 1\.37\.0 or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
++ For Amazon ECS tasks on AWS Fargate, the following should be considered:
+  + To inject the full content of a secret as an environment variable or in a log configuration, you must use platform version `1.3.0` or later\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
+  + To inject a specific JSON key or version of a secret as an environment variable or in a log configuration, you must use platform version `1.4.0` or later\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
++ For Amazon ECS tasks on EC2, the following should be considered:
+  + To inject a secret using a specific JSON key or version of a secret, your container instance must have version `1.37.0` or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
-    To inject the full contents of a secret as an environment variable or to inject a secret in a log configuration, your container instance must have version 1\.22\.0 or later of the container agent\.
+    To inject the full contents of a secret as an environment variable or to inject a secret in a log configuration, your container instance must have version `1.22.0` or later of the container agent\.
 + Only secrets that store text data, which are secrets created with the `SecretString` parameter of the [CreateSecret](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html) API, are supported\. Secrets that store binary data, which are secrets created with the SecretBinary parameter of the [CreateSecret](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html) API are not supported\.
 + When using a task definition that references Secrets Manager secrets to retrieve sensitive data for your containers, if you are also using interface VPC endpoints, you must create the interface VPC endpoints for Secrets Manager\. For more information, see [Using Secrets Manager with VPC Endpoints](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html) in the *AWS Secrets Manager User Guide*\.
 + Sensitive data is injected into your container when the container is initially started\. If the secret is subsequently updated or rotated, the container will not receive the updated value automatically\. You must either launch a new task or if your task is part of a service you can update the service and use the **Force new deployment** option to force the service to launch a fresh task\.
@@ -31,7 +31,7 @@ The following should be considered when using Secrets Manager to specify sensiti
 To use this feature, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary Secrets Manager resources\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 **Important**  
-For tasks that use the EC2 launch type, you must use the ECS agent configuration variable `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE=true` to use this feature\. You can add it to the `./etc/ecs/ecs.config` file during container instance creation or you can add it to an existing instance and then restart the ECS agent\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+For Amazon ECS tasks on EC2, you must use the ECS agent configuration variable `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE=true` to use this feature\. You can add it to the `./etc/ecs/ecs.config` file during container instance creation or you can add it to an existing instance and then restart the ECS agent\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 
 To provide access to the Secrets Manager secrets that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
 + `secretsmanager:GetSecretValue`–Required if you are referencing a Secrets Manager secret\.
@@ -70,9 +70,6 @@ The following example shows the full syntax that must be specified for the Secre
 ```
 arn:aws:secretsmanager:region:aws_account_id:secret:secret-name:json-key:version-stage:version-id
 ```
-
-**Important**  
-If you are using AWS Fargate, it is only supported to specify the full ARN of the secret in your task definition\. Specifying a specific JSON key or version is not supported at this time\.
 
 The following section describes the additional parameters\. These parameters are optional, but if you do not use them, you must include the colons `:` to use the default values\. Examples are provided below for more context\.
 

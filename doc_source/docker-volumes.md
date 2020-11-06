@@ -68,12 +68,12 @@ The task definition JSON shown below shows the syntax for the `volumes` and `mou
 `name`  
 Type: String  
 Required: No  
-The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints`\.
+The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints` object\.
 
 `dockerVolumeConfiguration`  
 Type: Object  
 Required: No  
-This parameter is specified when using Docker volumes\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use bind mounts, specify a `host` instead\.    
+This parameter is specified when using Docker volumes\. Docker volumes are only supported when running tasks on EC2 instances\. Windows containers only support the use of the `local` driver\. To use bind mounts, specify a `host` instead\.    
 `scope`  
 Type: String  
 Valid Values: `task` \| `shared`  

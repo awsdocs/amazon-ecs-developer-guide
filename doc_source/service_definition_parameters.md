@@ -199,7 +199,7 @@ Specifies whether to copy the tags from the task definition or the service to th
 `networkConfiguration`  
 Type: Object  
 Required: No  
-The network configuration for the service\. This parameter is required for task definitions that use the `awsvpc` network mode to receive their own Elastic Network Interface, and it is not supported for other network modes\. If using the Fargate launch type, the `awsvpc` network mode is required\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.\.    
+The network configuration for the service\. This parameter is required for task definitions that use the `awsvpc` network mode to receive their own Elastic Network Interface, and it is not supported for other network modes\. If using the Fargate launch type, the `awsvpc` network mode is required\. For more information, see [Amazon ECS task networking](task-networking.md)\.\.    
 `awsvpcConfiguration`  
 Type: Object  
 Required: No  

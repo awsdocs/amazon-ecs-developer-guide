@@ -50,6 +50,11 @@ The following is the format of the parameter name for each Amazon ECS\-optimized
   ```
   /aws/service/ami-windows-latest/Windows_Server-2019-English-Core-ECS_Optimized
   ```
++ Windows Server 2004 Core AMI metadata:
+
+  ```
+  /aws/service/ami-windows-latest/Windows_Server-2004-English-Core-ECS_Optimized
+  ```
 + Windows Server 1909 Core AMI metadata:
 
   ```
@@ -145,12 +150,17 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   ```
   aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2019-English-Full-ECS_Optimized --region us-east-1
   ```
-+ **For the Amazon ECS\-optimized Windows Server 2019 Full AMI:**
++ **For the Amazon ECS\-optimized Windows Server 2019 Core AMI:**
 
   ```
   aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2019-English-Core-ECS_Optimized --region us-east-1
   ```
-+ **For the Amazon ECS\-optimized Windows Server 2019 Full AMI:**
++ **For the Amazon ECS\-optimized Windows Server 2004 Core AMI:**
+
+  ```
+  aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2004-English-Core-ECS_Optimized --region us-east-1
+  ```
++ **For the Amazon ECS\-optimized Windows Server 1909 Core AMI:**
 
   ```
   aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized --region us-east-1
@@ -166,29 +176,29 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
 Retrieve the metadata of a specific Amazon ECS\-optimized Amazon Linux AMI version using the AWS CLI with the following AWS CLI command\. Replace the AMI name with the name of the Amazon ECS\-optimized Amazon Linux AMI to retrieve\. For more information about the available versions, see [Amazon ECS\-optimized AMI versions](ecs-ami-versions.md)\.
 
 ```
-aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/amzn-ami-2017.09.l-amazon-ecs-optimized --region us-east-1
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/amzn2-ami-ecs-hvm-2.0.20200928-x86_64-ebs --region us-east-1
 ```
 
-### Retrieving the Amazon ECS\-optimized Amazon Linux AMI metadata using the Systems Manager GetParametersByPath API<a name="ecs-optimized-ami-parameter-examples-3"></a>
+### Retrieving the Amazon ECS\-optimized Amazon Linux 2 AMI metadata using the Systems Manager GetParametersByPath API<a name="ecs-optimized-ami-parameter-examples-3"></a>
 
-Retrieve the Amazon ECS\-optimized Amazon Linux AMI metadata with the Systems Manager GetParametersByPath API using the AWS CLI with the following command\.
-
-```
-aws ssm get-parameters-by-path --path /aws/service/ecs/optimized-ami/amazon-linux/ --region us-east-1
-```
-
-### Retrieving the image ID of the latest recommended Amazon ECS\-optimized Amazon Linux AMI<a name="ecs-optimized-ami-parameter-examples-4"></a>
-
-You can retrieve the image ID of the latest recommended Amazon ECS\-optimized Amazon Linux AMI ID by using the sub\-parameter `image_id`\.
+Retrieve the Amazon ECS\-optimized Amazon Linux 2 AMI metadata with the Systems Manager GetParametersByPath API using the AWS CLI with the following command\.
 
 ```
-aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id --region us-east-1
+aws ssm get-parameters-by-path --path /aws/service/ecs/optimized-ami/amazon-linux-2/ --region us-east-1
+```
+
+### Retrieving the image ID of the latest recommended Amazon ECS\-optimized Amazon Linux 2 AMI<a name="ecs-optimized-ami-parameter-examples-4"></a>
+
+You can retrieve the image ID of the latest recommended Amazon ECS\-optimized Amazon Linux 2 AMI ID by using the sub\-parameter `image_id`\.
+
+```
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id --region us-east-1
 ```
 
 To retrieve the `image_id` value only, you can query the specific parameter value; for example:
 
 ```
-aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended/image_id --region us-east-1 --query "Parameters[0].Value"
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id --region us-east-1 --query "Parameters[0].Value"
 ```
 
 ### Using the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template<a name="ecs-optimized-ami-parameter-examples-5"></a>

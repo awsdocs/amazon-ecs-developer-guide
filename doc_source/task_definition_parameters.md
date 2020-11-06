@@ -31,11 +31,12 @@ The Amazon Resource Name \(ARN\) of the task execution role that grants the Amaz
 `networkMode`  
 Type: string  
 Required: no  
-The Docker networking mode to use for the containers in the task\. The valid values are `none`, `bridge`, `awsvpc`, and `host`\. The default Docker network mode is `bridge`\.  
+The Docker networking mode to use for the containers in the task\. For Amazon ECS tasks hosted on Amazon EC2 instances, the valid values are `none`, `bridge`, `awsvpc`, and `host`\. If no network mode is specified, the default network mode is `bridge`\.  
 If the network mode is set to `none`, the task's containers do not have external connectivity and port mappings can't be specified in the container definition\.  
 If the network mode is `bridge`, the task utilizes Docker's built\-in virtual network which runs inside each container instance\.  
-If the network mode is `host`, the task bypasses Docker's built\-in virtual network and maps container ports directly to the EC2 instance's network interface directly\. In this mode, you can't run multiple instantiations of the same task on a single container instance when port mappings are used\.  
-If the network mode is `awsvpc`, the task is allocated an elastic network interface, and you must specify a `NetworkConfiguration` when you create a service or run a task with the task definition\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\. Currently, only the Amazon ECS\-optimized AMI, other Amazon Linux variants with the `ecs-init` package, or AWS Fargate infrastructure support the `awsvpc` network mode\.  
+If the network mode is `host`, the task bypasses Docker's built\-in virtual network and maps container ports directly to the Amazon EC2 instance's network interface\. In this mode, you can't run multiple instantiations of the same task on a single container instance when port mappings are used\.  
+When using the `host` network mode, you should not run containers using the root user \(UID 0\)\. It is considered best practice to use a non\-root user\.
+If the network mode is `awsvpc`, the task is allocated an elastic network interface, and you must specify a `NetworkConfiguration` when you create a service or run a task with the task definition\. For more information, see [Amazon ECS task networking](task-networking.md)\. Currently, only the Amazon ECS\-optimized AMI, other Amazon Linux variants with the `ecs-init` package, or AWS Fargate infrastructure support the `awsvpc` network mode\.  
 The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode\. With the `host` and `awsvpc` network modes, exposed container ports are mapped directly to the corresponding host port \(for the `host` network mode\) or the attached elastic network interface port \(for the `awsvpc` network mode\), so you cannot take advantage of dynamic host port mappings\.  
 Docker for Windows uses a different network mode \(known as `NAT`\) than Docker for Linux\. When you register a task definition with Windows containers, you must not specify a network mode\. If you use the AWS Management Console to register a task definition with Windows containers, you must choose the `default` network mode\.  
 If using the Fargate launch type, the `awsvpc` network mode is required\. If using the EC2 launch type, the allowable network mode depends on the underlying EC2 instance's operating system\. If Linux, any network mode can be used\. If Windows, only the `NAT` mode is allowed, as described above\.
@@ -564,8 +565,9 @@ This parameter is not supported for Windows containers or tasks using the Fargat
 `user`  
 Type: string  
 Required: no  
-The user name to use inside the container\. This parameter maps to `User` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--user` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-You can use the following formats\. If specifying a UID or GID, you must specify it as a positive integer\.  
+The user to use inside the container\. This parameter maps to `User` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--user` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+When running tasks using the `host` network mode, you should not run containers using the root user \(UID 0\)\. It is considered best practice to use a non\-root user\.
+You can specify the `user` using the following formats\. If specifying a UID or GID, you must specify it as a positive integer\.  
 + `user`
 + `user:group`
 + `uid`
@@ -831,8 +833,8 @@ When this parameter is `true`, a TTY is allocated\. This parameter maps to `Tty`
 When you register a task definition, you can optionally specify a list of volumes to be passed to the Docker daemon on a container instance, which then becomes available for access by other containers on the same container instance\.
 
 The following are the types of data volumes that can be used:
-+ Docker volumes — A Docker\-managed volume that is created under `/var/lib/docker/volumes` on the container instance\. Docker volume drivers \(also referred to as plugins\) are used to integrate the volumes with external storage systems, such as Amazon EBS\. The built\-in `local` volume driver or a third\-party volume driver can be used\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use Docker volumes, specify a `dockerVolumeConfiguration` in your task definition\. For more information, see [Using volumes](https://docs.docker.com/storage/volumes/)\.
-+ Bind mounts — A file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported when using either the EC2 or Fargate launch types\. To use bind mount host volumes, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
++ Docker volumes — A Docker\-managed volume that is created under `/var/lib/docker/volumes` on the host Amazon EC2 instance\. Docker volume drivers \(also referred to as plugins\) are used to integrate the volumes with external storage systems, such as Amazon EBS\. The built\-in `local` volume driver or a third\-party volume driver can be used\. Docker volumes are only supported when running tasks on Amazon EC2 instances\. Windows containers only support the use of the `local` driver\. To use Docker volumes, specify a `dockerVolumeConfiguration` in your task definition\. For more information, see [Using volumes](https://docs.docker.com/storage/volumes/)\.
++ Bind mounts — A file or directory on the host machine is mounted into a container\. Bind mount host volumes are supported when running tasks on either AWS Fargate or Amazon EC2 instances\. To use bind mount host volumes, specify a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/)\.
 
 For more information, see [Using data volumes in tasks](using_data_volumes.md)\.
 
@@ -841,7 +843,7 @@ The following parameters are allowed in a container definition:
 `name`  
 Type: String  
 Required: No  
-The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints`\.
+The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints` object\.
 
 `host`  
 Required: No  
@@ -856,7 +858,7 @@ When the `host` parameter is used, specify a `sourcePath` to declare the path on
 `dockerVolumeConfiguration`  
 Type: Object  
 Required: No  
-This parameter is specified when using Docker volumes\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use bind mounts, specify a `host` instead\.    
+This parameter is specified when using Docker volumes\. Docker volumes are only supported when running tasks on EC2 instances\. Windows containers only support the use of the `local` driver\. To use bind mounts, specify a `host` instead\.    
 `scope`  
 Type: String  
 Valid Values: `task` \| `shared`  

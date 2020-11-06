@@ -5,36 +5,39 @@ Amazon ECS capacity providers can use Auto Scaling groups to manage the Amazon E
 ## Auto Scaling group capacity providers considerations<a name="asg-capacity-providers-considerations"></a>
 
 The following should be considered when using Auto Scaling group capacity providers\.
-+ It is recommended that you create a new empty Auto Scaling group to use with a capacity provider rather than using an existing one\. If you use an existing Auto Scaling group, any Amazon EC2 instances associated with the group that were already running and registered to an Amazon ECS cluster prior to the Auto Scaling group being used to create a capacity provider may not be properly registered with the capacity provider\. This may cause issues when using the capacity provider in a capacity provider strategy\. The `DescribeContainerInstances` API can confirm whether a container instance is associated with a capacity provider or not\. To create an empty Auto Scaling group set the Desired Count of the group to 0\. Once the capacity provider is created and associated with your ECS cluster you can then scale it out to a desired initial state.
-+ An Auto Scaling group must have a `MaxSize` greater than zero to enable it to scale out using managed scaling\.
++ It is recommended that you create a new empty Auto Scaling group to use with a capacity provider rather than using an existing one\. If you use an existing Auto Scaling group, any Amazon EC2 instances associated with the group that were already running and registered to an Amazon ECS cluster prior to the Auto Scaling group being used to create a capacity provider may not be properly registered with the capacity provider\. This may cause issues when using the capacity provider in a capacity provider strategy\. The `DescribeContainerInstances` API can confirm whether a container instance is associated with a capacity provider or not\.
+**Note**  
+To create an empty Auto Scaling group, set the desired count to zero\. After you have created the capacity provider and associated it with a cluster, you can then scale it out\.
++ An Auto Scaling group must have a `MaxSize` greater than zero to enable it to scale out\.
 + When using managed termination protection, managed scaling must be enabled otherwise managed termination protection will not work\.
-+ When using managed scaling, Auto Scaling group should not have any other scaling policies attached to it otherwise scaling plans created by ECS can run into [ActiveWithProblems](https://docs.aws.amazon.com/autoscaling/plans/userguide/gs-best-practices.html#gs-activewithproblems) state
++ When using managed scaling, the Auto Scaling group shouldn't have any scaling policies attached to it other than the ones Amazon ECS creates, otherwise the Amazon ECS created scaling plans will receive an `ActiveWithProblems` error\. For more information, see [Avoiding the ActiveWithProblems error](https://docs.aws.amazon.com/autoscaling/plans/userguide/gs-best-practices.html#gs-activewithproblems) in the *AWS Auto Scaling User Guide*\.
 
 ## Using managed scaling<a name="asg-capacity-providers-managed-scaling"></a>
 
-When creating a capacity provider, you can optionally enable managed scaling\. When managed scaling is enabled, Amazon ECS manages the scale\-in and scale\-out actions of the Auto Scaling group used when creating the capacity provider\. On your behalf, Amazon ECS creates an AWS Auto Scaling scaling plan with a target tracking scaling policy based on the target capacity value you specify\. Amazon ECS then associates this scaling plan with your Auto Scaling group\. For each of the capacity providers with managed scaling enabled, an Amazon ECS managed CloudWatch metric with the prefix `AWS/ECS/ManagedScaling` is created along with two CloudWatch alarms\. The CloudWatch metrics and alarms are used to monitor the container instance capacity in your Auto Scaling groups and will trigger the Auto Scaling group to scale in and scale out as needed\.
+When creating a capacity provider that uses an Auto Scaling group, you can optionally enable managed scaling\. When managed scaling is enabled, Amazon ECS manages the scale\-in and scale\-out actions of the Auto Scaling group\. On your behalf, Amazon ECS creates an AWS Auto Scaling scaling plan with a target tracking scaling policy based on the target capacity value you specify\. Amazon ECS then associates this scaling plan with your Auto Scaling group\. For each of the capacity providers with managed scaling enabled, an Amazon ECS managed CloudWatch metric with the prefix `AWS/ECS/ManagedScaling` is created along with two CloudWatch alarms\. The CloudWatch metrics and alarms are used to monitor the Amazon EC2 instance capacity in your Auto Scaling groups and will trigger the Auto Scaling group to scale in and scale out as needed\.
 
 Managed scaling is only supported in Regions that AWS Auto Scaling is available in\. For a list of supported Regions, see [AWS Auto Scaling Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/autoscaling_region.html) in the *Amazon Web Services General Reference*\.
 
-### Managed Scale-out behaviours
+### Managed scale\-out behavior<a name="managed-scaling-scaleout"></a>
 
-It is important to note that when creating capacity providers with managed scaling, managed scaling-out will operate with one of two different behaviours\.
+When using Auto Scaling group capacity providers with managed scaling enabled, the scale\-out behavior will depend on whether or not you are using a single Amazon EC2 instance type and Availability Zone\. The following describes these behaviors in more detail\.
 
-#### Lower Bound Optimal Scaling-out
-When the Auto Scaling group of the capacity provider is constrained to a single instance type and single Availability Zone Cluster Auto Scaling is able to estimate the lower bound on the optimal number of instances to add and use this value to determine how many instances to request\. To perform this calculation the following procedure is followed:
+**Lower bound optimal scaling out**  
+When the Auto Scaling group of the capacity provider is constrained to a single Amazon EC2 instance type and single Availability Zone, Amazon ECS is able to estimate the lower bound on the optimal number of instances to add and use this value to determine how many instances to request\. To perform this calculation, the following procedure is followed:
 
-1. Group all of the *similar* provisioning but unplaced Tasks together\.
-2. For each of these groups, calculate the number of instances required to run these unplaced Tasks\.
-3. Select the maximum calculated instances required from all groups of *similar* task\.
-4. Launch either the `minimumScalingStepSize` if the calculated required instance is less than this number, or the lower of the `maximumScalingStepSize` or calculated value\.
+1. Group all of the provisioning tasks so that each group has the same exact resource requirements\.
 
-It is therefore recommended to use a capacity provider strategy that balances across equally weighted capacity providers in different availability zones rather than a single capacity provider that can launch into all availability zone in our to take advantage of this behaviour. For a more detailed explanation of how this logic works, see [Deep Dive on Amazon ECS Cluster Auto Scaling](https://aws.amazon.com/blogs/containers/deep-dive-on-amazon-ecs-cluster-auto-scaling/)\.
+1. For each group, calculate the number of instances required to run these unplaced tasks\. This calculation uses a `binpack` strategy which accounts for the vCPU, memory, elastic network interfaces \(ENI\), ports, and GPUs requirements of the tasks and the resource availability of the Amazon EC2 instances\. This value will be treated as the maximum calculated instance count\.
 
-**Important**
-When making these calculations Cluster Auto Scaling relies on the *last launched instance* that is part of the capacity provider\. Therefore, if you make changes to the launch configuration or launch template that would affect the exposed resources on each instance it is strongly recommended to manually launch at least one instance so the changes can be reflected\. Some examples that may cause this change include changing instance type or modifying the `ECS_RESERVED_MEMORY` configuration value for the ECS agent\.
+1. Amazon ECS will then launch either the `minimumScalingStepSize`, if the maximum calculated instance count is less than the minimum scaling step size, or the lower of either the `maximumScalingStepSize` or the maximum calculated instance count value\.
 
-### Simple Scaling-out
-In the case where the Auto Scaling group of the capacity provider is not constrained to a single instance type or single Availability Zone a simpler method of scaling-out is used\. This simpler method uses the instances specified in `minimumScalingStepSize`\.
+**Important**  
+When making these calculations, Amazon ECS relies on the last instance type that the Auto Scaling group launched\. Therefore, if you make changes to the launch configuration or launch template that would affect the exposed resources on each instance, it is strongly recommended to manually launch at least one instance so the changes can be reflected\. Some examples that may cause this change include changing instance type or modifying the `ECS_RESERVED_MEMORY` configuration value for the Amazon ECS container agent\.
+
+It is recommended to use a capacity provider strategy that balances across equally weighted capacity providers in different Availability Zones as opposed to a single capacity provider that can launch into multiple Availability Zones so your cluster takes advantage of this behaviour\. For a more detailed explanation of how this logic works, see [Deep dive on Amazon ECS cluster auto scaling](https://aws.amazon.com/blogs/containers/deep-dive-on-amazon-ecs-cluster-auto-scaling/)\.
+
+**Simple scaling out**  
+When the Auto Scaling group of the capacity provider is not constrained to a single Amazon EC2 instance type or single Availability Zone, Amazon ECS scales out instances using the `minimumScalingStepSize` value\.
 
 ## Creating an Auto Scaling group<a name="asg-capacity-providers-create-auto-scaling-group"></a>
 
@@ -45,7 +48,8 @@ If you use the Amazon ECS console **Create Cluster** wizard with the **EC2 Linux
 The following should be considered when creating an Auto Scaling group for a capacity provider\.
 + If managed termination protection is enabled when you create a capacity provider, the Auto Scaling group and each Amazon EC2 instance in the Auto Scaling group must have instance protection from scale in enabled as well\. For more information, see [Instance Protection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection) in the *AWS Auto Scaling User Guide*\.
 + If managed scaling is enabled when you create a capacity provider, the Auto Scaling group desired count can be set to `0`\. When managed scaling is enabled, Amazon ECS manages the scale\-in and scale\-out actions of the Auto Scaling group\.
-+ If the lower bound optimal behaviour is desired the Auto Scaling group should be configured to use one availability zone and one instance type.
+**Note**  
+It is recommended to configure your Auto Scaling group to use a single Amazon EC2 instance type and Availability Zone when managed scaling is enabled\. For more information, see [Managed scale\-out behavior](#managed-scaling-scaleout)\.
 
 For more information on creating an Amazon EC2 Auto Scaling launch configuration, see [Launch Configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 

@@ -12,11 +12,11 @@ Amazon ECS vends AMIs that are optimized for Windows containers in the following
 + **Amazon ECS\-optimized Windows Server 1909 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
 + **Amazon ECS\-optimized Windows Server 2016 Full AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
 
-Windows Server 2019 and Windows Server 2016 are Long\-Term Servicing Channel \(LTSC\) releases\. Windows Server, version 1909, is a Semi\-Annual Channel \(SAC\) release\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
+Windows Server 2019 and Windows Server 2016 are Long\-Term Servicing Channel \(LTSC\) releases\. Windows Server 2004 and Windows Servier 1909 are Semi\-Annual Channel \(SAC\) releases\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
 
 **Topics**
 + [Windows container caveats](#windows_caveats)
-+ [Getting started with Windows containers](ECS_Windows_getting_started.md)
++ [Getting started with Windows containers](#windows-getting-started)
 + [Windows task definitions](windows_task_definitions.md)
 + [Windows IAM roles for tasks](windows_task_IAM_roles.md)
 + [Pushing Windows images to Amazon ECR](windows_ecr.md)
@@ -31,3 +31,7 @@ Here are some things you should know about Windows containers and Amazon ECS\.
 + The IAM roles for tasks feature requires that you configure your Windows container instances to allow the feature at launch, and your containers must run some provided PowerShell code when they use the feature\. For more information, see [Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
 + The IAM roles for tasks feature uses a credential proxy to provide credentials to the containers\. This credential proxy occupies port 80 on the container instance, so if you use IAM roles for tasks, port 80 is not available for tasks\. For web service containers, you can use an Application Load Balancer and dynamic port mapping to provide standard HTTP port 80 connections to your containers\. For more information, see [Service load balancing](service-load-balancing.md)\.
 + The Windows server Docker images are large \(9 GiB\), so your container instances require more storage space than Linux container instances, which typically have smaller image sizes\.
+
+## Getting started with Windows containers<a name="windows-getting-started"></a>
+
+Work through a tutorial that guides you through getting Windows containers running on Amazon ECS with the Amazon ECS\-optimized Windows Server AMI in the AWS Management Console at [Getting started with Windows containers](ECS_Windows_getting_started.md)\.

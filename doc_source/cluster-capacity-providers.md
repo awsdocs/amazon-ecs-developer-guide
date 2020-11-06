@@ -33,4 +33,4 @@ The following should be considered when using capacity providers:
 + When using managed termination protection, managed scaling must also be used otherwise managed termination protection will not work\.
 + Using capacity providers is not supported when using the blue/green deployment type for your services\.
 + Using capacity providers is not supported when using Classic Load Balancers for your services\.
-+ When specifying a capacity provider inside a service's or task's custom capacity provider strategy you must also ensure that the capacity provider is attached to the cluster\.
++ When creating a service or running a task and specifying a custom capacity provider strategy, each capacity provider in the strategy must be associated with the cluster\.

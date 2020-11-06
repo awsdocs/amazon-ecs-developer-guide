@@ -27,7 +27,7 @@ If your cluster is configured with a default capacity provider strategy, you wil
 
    1. For **Platform version**, if you chose a Fargate capacity provider or the Fargate launch type, then select the platform version to use\.
 **Note**  
-When the **LATEST** platform version is selected, the `1.3.0` platform version is used\. To use platform version `1.4.0`, you must select the **1\.4\.0** option\.
+When the **LATEST** platform version is selected, the `1.4.0` platform version is used\.
 
    1. **Cluster**: Select the cluster in which to create your service\.
 

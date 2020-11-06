@@ -133,7 +133,7 @@ The following snippet shows an example loadBalancer object to use\.
    ```
 When specifying a `loadBalancer` object, you must specify a `targetGroupArn` and omit the `loadBalancerName` parameters\.  
 `networkConfiguration`  
-The network configuration for the service\. This parameter is required for task definitions that use the `awsvpc` network mode to receive their own elastic network interface, and it's not supported for other network modes\. For more information, see [Task Networking with the `awsvpc` Network Mode](task-networking.md)\.\.  
+The network configuration for the service\. This parameter is required for task definitions that use the `awsvpc` network mode to receive their own elastic network interface, and it's not supported for other network modes\. For more information, see [Amazon ECS task networking](task-networking.md)\.\.  
 `serviceRegistries`  
 The details of the service discovery registries to assign to this service\. For more information, see [Service Discovery](service-discovery.md)\.  
 `scale`  
