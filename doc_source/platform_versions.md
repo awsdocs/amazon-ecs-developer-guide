@@ -13,7 +13,7 @@ New platform versions are released as the runtime environment evolves, for examp
 ## Platform version considerations<a name="platform-version-considerations"></a>
 
 The following should be considered when specifying a platform version:
-+ When specifying a platform version, you can use either a specific version number, for example `1.4.0`, or `LATEST` \(which uses the `1.4.0` platform version\)\.
++ When specifying a platform version, you can use either a specific version number, for example `1.4.0`, or `LATEST` \(which uses the `1.3.0` platform version\)\.
 + In the China \(Beijing\) and China \(Ningxia\) Regions, the only supported platform versions are `1.4.0` and `1.3.0`\. The AWS Management Console displays older platform versions but an error will be returned if they are chosen\. The `LATEST` platform version is supported because it uses the `1.3.0` platform version\.
 + If you have a service with running tasks and want to update their platform version, you can update your service, specify a new platform version, and choose **Force new deployment**\. Your tasks are redeployed with the latest platform version\. For more information, see [Updating a service](update-service.md)\.
 + If your service is scaled up without updating the platform version, those tasks receive the platform version that was specified on the service's current deployment\.
