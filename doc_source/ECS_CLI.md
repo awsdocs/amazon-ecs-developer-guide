@@ -16,7 +16,7 @@ Learn how to use high\-level, application\-first commands to model, create, rele
 + [Installing the Amazon ECS CLI](ECS_CLI_installation.md)
 + [Configuring the Amazon ECS CLI](ECS_CLI_Configuration.md)
 + [Migrating Configuration Files](ECS_CLI_migrating_config_files.md)
-+ [Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)
++ [Tutorial: Creating a cluster with a Fargate task using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)
 + [Tutorial: Creating a Cluster with an EC2 Task Using the Amazon ECS CLI](ecs-cli-tutorial-ec2.md)
 + [Tutorial: Creating an Amazon ECS Service That Uses Service Discovery Using the Amazon ECS CLI](ecs-cli-tutorial-servicediscovery.md)
 + [Amazon ECS Command Line Reference](ECS_CLI_reference.md)

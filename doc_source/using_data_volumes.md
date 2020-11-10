@@ -6,6 +6,9 @@ For Fargate tasks, the following data volume formats are supported:
 + Amazon EFS volumes for persistent storage\. For more information, see [Amazon EFS volumes](efs-volumes.md)\.
 + Ephemeral storage for nonpersistent storage\. For more information, see [Fargate Task Storage](fargate-task-storage.md)\.
 
+For Windows tasks, the following data volume format is supported:
++ Amazon FSx for Windows File Server volumes for persistent storage\. For more information, see [Amazon FSx for Windows File Server volumes](wfsx-volumes.md)\.
+
 For EC2 tasks, use data volumes in the following common examples: 
 + To provide persistent data volumes for use with a container
 + To define an empty, nonpersistent data volume and mount it on multiple containers
@@ -26,3 +29,4 @@ Before the release of the Amazon ECS\-optimized AMI version 2017\.03\.a, only fi
 + [Docker volumes](docker-volumes.md)
 + [Bind mounts](bind-mounts.md)
 + [Amazon EFS volumes](efs-volumes.md)
++ [Amazon FSx for Windows File Server volumes](wfsx-volumes.md)

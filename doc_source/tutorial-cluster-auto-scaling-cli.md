@@ -428,7 +428,7 @@ This step will walk you through creating two Amazon ECS capacity providers and o
 
 ## Step 3: Register a task definition<a name="cli-tutorial-register-task-definition"></a>
 
-Before you can run a task on your cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses an `amazonlinux` image from Docker Hub and just sleeps\. For more information about the available task definition parameters, see [Amazon ECS Task definitions](task_definitions.md)\.
+Before you can run a task on your cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses an `amazonlinux` image from Docker Hub and just sleeps\. For more information about the available task definition parameters, see [Amazon ECS task definitions](task_definitions.md)\.
 
 **To register a task definition**
 

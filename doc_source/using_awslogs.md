@@ -77,7 +77,7 @@ The `awslogs-stream-prefix` option allows you to associate a log stream with the
 ```
 prefix-name/container-name/ecs-task-id
 ```
-If you do not specify a prefix with this option, then the log stream is named after the container ID that is assigned by the Docker daemon on the container instance\. Because it is difficult to trace logs back to the container that sent them with just the Docker container ID \(which is only available on the container instance\), we recommend that you specify a prefix with this option\.  
+If you don't specify a prefix with this option, then the log stream is named after the container ID that is assigned by the Docker daemon on the container instance\. Because it is difficult to trace logs back to the container that sent them with just the Docker container ID \(which is only available on the container instance\), we recommend that you specify a prefix with this option\.  
 For Amazon ECS services, you could use the service name as the prefix, which would allow you to trace log streams to the service that the container belongs to, the name of the container that sent them, and the ID of the task to which the container belongs\.  
 You must specify a stream\-prefix for your logs in order to have your logs appear in the Log pane when using the Amazon ECS console\.
 
@@ -95,17 +95,6 @@ This option defines a multiline start pattern using a regular expression\. A log
 For more information, see [awslogs\-multiline\-pattern](https://docs.docker.com/config/containers/logging/awslogs/#awslogs-multiline-pattern)\.  
 This option is ignored if `awslogs-datetime-format` is also configured\.  
 Multiline logging performs regular expression parsing and matching of all log messages\. This may have a negative impact on logging performance\.
-
-`mode`  
-Required: No  
-Valid values: `non-blocking` \| `blocking`  
-Default value: `blocking`  
-The delivery mode of log messages from the container to `awslogs`\. For more information, see [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/#configure-the-delivery-mode-of-log-messages-from-container-to-log-driver)\.
-
-`max-buffer-size`  
-Required: No  
-Default value: `1m`  
-When `non-blocking` mode is used, the `max-buffer-size` log option controls the size of the ring buffer used for intermediate message storage\.
 
 ## Specifying a log configuration in your task definition<a name="specify-log-config"></a>
 

@@ -133,7 +133,7 @@ Because the `database_scratch` bind mount does not specify a source path, the Do
 
 When using bind mounts, if a `sourcePath` value is specified the data persists even after all containers that referenced it have stopped\. Any files that exist at the `sourcePath` are presented to the containers at the `containerPath` value, and any files that are written to the `containerPath` value are written to the `sourcePath` value on the container instance\.
 **Important**  
-Amazon ECS does not sync your storage across container instances\. Tasks that use persistent storage can be placed on any container instance in your cluster that has available capacity\. If your tasks require persistent storage after stopping and restarting, you should always specify the same container instance at task launch time with the AWS CLI [start\-task](https://docs.aws.amazon.com/cli/latest/reference/ecs/start-task.html) command\.
+Amazon ECS doesn't sync your storage across container instances\. Tasks that use persistent storage can be placed on any container instance in your cluster that has available capacity\. If your tasks require persistent storage after stopping and restarting, you should always specify the same container instance at task launch time with the AWS CLI [start\-task](https://docs.aws.amazon.com/cli/latest/reference/ecs/start-task.html) command\.
 
 1. In the task definition `volumes` section, define a bind mount with `name` and `sourcePath` values\.
 

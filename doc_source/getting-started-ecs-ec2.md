@@ -15,7 +15,7 @@ Before you begin, be sure that you've completed the steps in [Setting up with Am
 
 ## Step 1: Register a task definition<a name="getting-started-ec2-task-def"></a>
 
-A task definition is like a blueprint for your application\. Each time that you launch a task in Amazon ECS, you specify a task definition\. The service then knows which Docker image to use for containers, how many containers to use in the task, and the resource allocation for each container\. For more information about task definitions, see [Amazon ECS Task definitions](task_definitions.md)\.
+A task definition is like a blueprint for your application\. Each time that you launch a task in Amazon ECS, you specify a task definition\. The service then knows which Docker image to use for containers, how many containers to use in the task, and the resource allocation for each container\. For more information about task definitions, see [Amazon ECS task definitions](task_definitions.md)\.
 
 The following steps walk you through creating a task definition that will deploy a simple web application\.
 

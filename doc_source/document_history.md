@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  ECS now supporting Amazon FSx for Windows File Server for Windows tasks  |  Amazon ECS added support for specifying Amazon FSx for Windows File Server volumes in Windows task definitions\. For more information, see [Amazon FSx for Windows File Server volumes](wfsx-volumes.md)\.  |  11 November 2020  | 
 |  VPC dual\-stack mode support added  |  Amazon ECS added support for using a VPC in dual\-stack mode with tasks using the `awsvpc` network mode, which provides support for IPv6 addresses\. For more information, see [Using a VPC in dual\-stack mode](task-networking.md#task-networking-vpc-dual-stack)\.  |  5 November 2020  | 
 |  Task metadata endpoint v4 update  |  Amazon ECS added additional metadata to the task metadata endpoint v4 output\. For more information, see [Task metadata endpoint version 4](task-metadata-endpoint-v4.md)\.  |  5 November 2020  | 
 |  Support for Local Zones and Wavelength Zones  |  Amazon ECS added support for workloads in Local Zones and Wavelength Zones\. For more information, see [Amazon ECS clusters in Local Zones, Wavelength Zones, and AWS Outposts](cluster-regions-zones.md)\.  |  4 September 2020  | 

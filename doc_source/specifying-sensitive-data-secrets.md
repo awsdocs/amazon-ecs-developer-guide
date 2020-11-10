@@ -262,7 +262,7 @@ Use Secrets Manager to create a secret for your sensitive data\.
 
 ## Creating a task definition that references sensitive data<a name="secrets-create-taskdefinition"></a>
 
-You can use the Amazon ECS console to create a task definition that references an Secrets Manager secret\.
+You can use the Amazon ECS console to create a task definition that references a Secrets Manager secret\.
 
 **To create a task definition that specifies a secret**
 

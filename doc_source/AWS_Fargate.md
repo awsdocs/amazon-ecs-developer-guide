@@ -39,7 +39,7 @@ Amazon ECS on AWS Fargate is supported in the following Regions\. The supported 
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
 + [Getting started with Amazon ECS using Fargate](getting-started-fargate.md)
 + [Tutorial: Creating a Cluster with a Fargate Task Using the AWS CLI](ECS_AWSCLI_Fargate.md)
-+ [Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)
++ [Tutorial: Creating a cluster with a Fargate task using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)
 
 ## Task definitions<a name="fargate-task-defs"></a>
 

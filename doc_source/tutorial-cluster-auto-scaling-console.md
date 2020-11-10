@@ -195,7 +195,7 @@ When running a task or creating a service, the Amazon ECS console uses the defau
 
 ## Step 5: Register a Task Definition<a name="console-tutorial-register-task-definition"></a>
 
-Before you can run a task on your cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses an `amazonlinux` image from Docker Hub and simply sleeps\. For more information about the available task definition parameters, see [Amazon ECS Task definitions](task_definitions.md)\.
+Before you can run a task on your cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses an `amazonlinux` image from Docker Hub and simply sleeps\. For more information about the available task definition parameters, see [Amazon ECS task definitions](task_definitions.md)\.
 
 **To register a task definition**
 

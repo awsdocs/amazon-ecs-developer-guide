@@ -198,7 +198,7 @@ You can also find the Amazon EC2 instance ID that you can use to monitor the ins
 
 ## Step 5: Register a Task Definition<a name="AWSCLI_EC2_register_task_definition"></a>
 
-Before you can run a task on your ECS cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses a `busybox` image from Docker Hub and simply sleeps for 360 seconds\. For more information about the available task definition parameters, see [Amazon ECS Task definitions](task_definitions.md)\.
+Before you can run a task on your ECS cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that uses a `busybox` image from Docker Hub and simply sleeps for 360 seconds\. For more information about the available task definition parameters, see [Amazon ECS task definitions](task_definitions.md)\.
 
 ```
 {

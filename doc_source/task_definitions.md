@@ -1,6 +1,6 @@
-# Amazon ECS Task definitions<a name="task_definitions"></a>
+# Amazon ECS task definitions<a name="task_definitions"></a>
 
-A task definition is required to run Docker containers in Amazon ECS\. Some of the parameters you can specify in a task definition include:
+A task definition is required to run Docker containers in Amazon ECS\. The following are some of the parameters you can specify in a task definition:
 + The Docker image to use with each container in your task
 + How much CPU and memory to use with each task or each container within a task
 + The launch type to use, which determines the infrastructure on which your tasks are hosted
@@ -13,7 +13,7 @@ A task definition is required to run Docker containers in Amazon ECS\. Some of t
 
 You can define multiple containers in a task definition\. The parameters that you use depend on the launch type you choose for the task\. Not all parameters are valid\. For more information about the parameters available and which launch types they are valid for in a task definition, see [Task definition parameters](task_definition_parameters.md)\.
 
-Your entire application stack does not need to exist on a single task definition, and in most cases it should not\. Your application can span multiple task definitions by combining related containers into their own task definitions, each representing a single component\. For more information, see [Application architecture](application_architecture.md)\.
+Your entire application stack does not need to be on a single task definition, and in most cases it should not\. Your application can span multiple task definitions\. You can do this by combining related containers into their own task definitions, each representing a single component\. For more information, see [Application architecture](application_architecture.md)\.
 
 **Topics**
 + [Application architecture](application_architecture.md)

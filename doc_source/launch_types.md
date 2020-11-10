@@ -4,7 +4,7 @@ An Amazon ECS launch type determines the type of infrastructure on which your ta
 
 ## Fargate launch type<a name="launch-type-fargate"></a>
 
-The Fargate launch type allows you to run your containerized applications without the need to provision and manage the backend infrastructure\. Just register your task definition and Fargate launches the container for you\.
+Using the Fargate launch type, you can run your containerized applications without the need to provision and manage the backend infrastructure\. After you register your task definition, Fargate launches the container for you\.
 
 The AWS Fargate launch type is currently available in the following Regions:
 
@@ -36,7 +36,7 @@ The AWS Fargate launch type is currently available in the following Regions:
 |  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  | 
 |  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  | 
 
-This diagram shows the general architecture:
+The following diagram shows the general architecture:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-fargate.png)
 
@@ -44,8 +44,8 @@ For more information about Amazon ECS with AWS Fargate, see [Amazon ECS on AWS F
 
 ## EC2 launch type<a name="launch-type-ec2"></a>
 
-The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\.
+With the EC2 launch type, you can run your containerized applications on a cluster of Amazon EC2 instances that you manage\.
 
-This diagram shows the general architecture:
+The following diagram shows the general architecture:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-standard.png)

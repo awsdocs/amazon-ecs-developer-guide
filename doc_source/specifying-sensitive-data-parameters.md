@@ -64,7 +64,7 @@ The following example inline policy adds the required permissions:
 
 Within your container definition, specify `secrets` with the name of the environment variable to set in the container and the full ARN of the Systems Manager Parameter Store parameter containing the sensitive data to present to the container\.
 
-The following is a snippet of a task definition showing the format when referencing an Systems Manager Parameter Store parameter\. If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the parameter\. If the parameter exists in a different Region, then the full ARN must be specified\.
+The following is a snippet of a task definition showing the format when referencing a Systems Manager Parameter Store parameter\. If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the parameter\. If the parameter exists in a different Region, then the full ARN must be specified\.
 
 ```
 {
@@ -84,7 +84,7 @@ Within your container definition, when specifying a `logConfiguration` you can s
 **Important**  
 If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the parameter\. If the parameter exists in a different Region, then the full ARN must be specified\.
 
-The following is a snippet of a task definition showing the format when referencing an Systems Manager Parameter Store parameter\.
+The following is a snippet of a task definition showing the format when referencing a Systems Manager Parameter Store parameter\.
 
 ```
 {

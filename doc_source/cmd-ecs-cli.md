@@ -4,7 +4,7 @@
 
 The Amazon ECS command line interface \(CLI\) provides high\-level commands to simplify creating, updating, and monitoring clusters and tasks from a local development environment\. The Amazon ECS CLI supports [Docker Compose](https://docs.docker.com/compose/), a popular open\-source tool for defining and running multi\-container applications\.
 
-For a quick walkthrough of the Amazon ECS CLI, see the [Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)\.
+For a quick walkthrough of the Amazon ECS CLI, see the [Tutorial: Creating a cluster with a Fargate task using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)\.
 
 Help text is available for each individual subcommand with ecs\-cli *subcommand* \-\-help\.
 

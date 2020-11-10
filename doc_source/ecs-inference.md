@@ -6,7 +6,7 @@ Amazon ECS supports machine learning inference workloads by enabling you to regi
 
 Before you begin working with Inferentia on Amazon ECS, be aware of the following considerations:
 + Your clusters can contain a mix of Inf1 and non\-Inf1 container instances\.
-+ When running a task or creating a service, you can use instance type attributes when configuring task placement constraints to ensure which of your container instances the task is launched on\. This will enable you to effectively use your resources while ensuring your tasks for inference workloads land on your Inf1 instances\. For more information, see [Amazon ECS task placement](task-placement.md)\.
++ When running a task or creating a service, you can use instance type attributes when configuring task placement constraints to ensure which of your container instances the task is launched on\. By doing this, you can more effectively use your resources while also ensuring your tasks for inference workloads land on your Inf1 instances\. For more information, see [Amazon ECS task placement](task-placement.md)\.
 
   The following example launches a task on a `Inf1.xlarge` container instance in your `default` cluster\.
 
@@ -17,14 +17,14 @@ Before you begin working with Inferentia on Amazon ECS, be aware of the followin
        --placement-constraints type=memberOf,expression="attribute:ecs.instance-type == Inf1.xlarge" \
        --region us-west-2
   ```
-+ Currently, you cannot define the Inferentia resource requirement in a task definition\. However, you can configure a container to use specific Inferentia available on the container instance by using the `AWS_NEURON_VISIBLE_DEVICES` environment variable\.
-+ It is recommended that you place only one task with an Inferentia resource requirement per Inf1 instance\.
++ Currently, you can't define the Inferentia resource requirement in a task definition\. However, you can configure a container to use specific Inferentia available on the container instance by using the `AWS_NEURON_VISIBLE_DEVICES` environment variable\.
++ We recommend that you place only one task with an Inferentia resource requirement per Inf1 instance\.
 
 ## Using the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI<a name="ecs-inference-ami"></a>
 
 Amazon ECS provides an Amazon ECS\-optimized AMI based on Amazon Linux 2 for Inferentia workloads that comes comes pre\-configured with AWS Inferentia drivers and the AWS Neuron runtime for Docker\. This AMI makes running machine learning inference workloads easier on Amazon ECS\.
 
-The Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI is recommended for use when launching your Amazon EC2 Inf1 instances\. You can retrieve the current Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI using the AWS CLI with the following command:
+We recommend using the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI when launching your Amazon EC2 Inf1 instances\. You can retrieve the current Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI using the AWS CLI with the following command:
 
 ```
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended
@@ -56,9 +56,9 @@ The following are the requirements for creating a task definition for working wi
     Alternatively, you can build your own Neuron sidecar container image\. For more information, see [aws\-neuron\-sdk](https://github.com/aws/aws-neuron-sdk/blob/master/docs/neuron-container-tools/docker-example/Dockerfile.neuron-rtd) on GitHub\. 
   + A container serving the inference model\. For an example, see [aws\-neuron\-sdk](https://github.com/aws/aws-neuron-sdk/blob/master/docs/tensorflow-neuron/tutorial-tensorflow-serving.md) on GitHub\.
 + The `neuron-rtd` sidecar container must start first\. This can be defined using container dependency parameters\.
-+ The `neuron-rtd` sidecar container must have elevated privileges by adding the `SYS_ADMIN` and `IPC_LOCK` kernel capabilities\. This is done by using the `linuxParameters` container definition parameter\. These capabilities will be dropped following initialization\.
++ The `neuron-rtd` sidecar container must have elevated privileges by adding the `SYS_ADMIN` and `IPC_LOCK` kernel capabilities\. This is done by using the `linuxParameters` container definition parameter\. These capabilities are dropped following initialization\.
 + The two containers must have a shared volume\.
-+ Currently, you cannot define the Inferentia resource requirement in a task definition\. However, you can configure a container to use specific Inferentia available on the container instance through the `AWS_NEURON_VISIBLE_DEVICES` environment variable\. The AWS Neuron runtime expects the `AWS_NEURON_VISIBLE_DEVICES` environment variable to be set in the container in order for it to work\. We recommend your container use all available Inferentia devices by specifying `AWS_NEURON_VISIBLE_DEVICES="ALL"`\. Alternatively, to use the first two inferentia devices you would specify `AWS_NEURON_VISIBLE_DEVICES="0,1"`\. The specified devices must always be contiguous\.
++ Currently, you can't define the Inferentia resource requirement in a task definition\. However, you can configure a container to use specific Inferentia available on the container instance through the `AWS_NEURON_VISIBLE_DEVICES` environment variable\. The AWS Neuron runtime expects the `AWS_NEURON_VISIBLE_DEVICES` environment variable to be set in the container in order for it to work\. We recommend your container use all available Inferentia devices by specifying `AWS_NEURON_VISIBLE_DEVICES="ALL"`\. Alternatively, to use the first two inferentia devices you would specify `AWS_NEURON_VISIBLE_DEVICES="0,1"`\. The specified devices must always be contiguous\.
 
 The following is an example task definition, displaying the syntax to use\.
 

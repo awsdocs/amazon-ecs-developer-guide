@@ -1,4 +1,4 @@
-# Tutorial: Creating a Cluster with a Fargate Task Using the Amazon ECS CLI<a name="ecs-cli-tutorial-fargate"></a>
+# Tutorial: Creating a cluster with a Fargate task using the Amazon ECS CLI<a name="ecs-cli-tutorial-fargate"></a>
 
 This tutorial shows you how to set up a cluster and deploy a service with tasks using the Fargate launch type\. 
 

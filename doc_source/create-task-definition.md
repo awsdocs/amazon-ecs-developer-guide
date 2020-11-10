@@ -1,6 +1,6 @@
 # Creating a task definition<a name="create-task-definition"></a>
 
-Before you can run Docker containers on Amazon ECS, you must create a task definition\. You can define multiple containers and data volumes in a task definition\. For more information about the parameters available in a task definition, see [Task definition parameters](task_definition_parameters.md)\.
+Before you can run Docker containers on Amazon ECS, you must create a task definition\. You can define multiple containers and data volumes in a single task definition\. For more information about the parameters available in a task definition, see [Task definition parameters](task_definition_parameters.md)\.
 
 **To create a new task definition**
 
@@ -10,7 +10,7 @@ Before you can run Docker containers on Amazon ECS, you must create a task defin
 
 1. On the **Select compatibilities** page, select the launch type that your task should use and choose **Next step**\.
 **Note**  
-The Fargate launch type is not compatible with Windows containers\.
+The Fargate launch type isn't compatible with Windows containers\.
 
 1. Follow the steps under one of the following tabs, according to the launch type that you have chosen\.
 
@@ -63,7 +63,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
         + For **Virtual gateway name**, choose the existing App Mesh virtual gateway to use\. If you don't see any virtual gateways listed, then you need to create one first\. For more information, see [Virtual gateways](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_gateways.html) in the *AWS App Mesh User Guide*\.
         + For **Virtual gateway port** – Pre\-populated with the listener port set on the virtual gateway in App Mesh\.
 
-   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.15\.1\.0\-prod for all regions except `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* wih any Region except `me-south-1` and `ap-east-1`\. If your application is in one of these regions, then you also need to replace *840364872350* with the appropriate value for your Region\. For more information, see [Envoy image](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html) in the *AWS App Mesh User Guide*\.
+   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.15\.1\.0\-prod for all regions except `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* with any Region except `me-south-1` and `ap-east-1`\. If your application is in one of these regions, then you also need to replace *840364872350* with the appropriate value for your Region\. For more information, see [Envoy image](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html) in the *AWS App Mesh User Guide*\.
 
    1. Choose **Apply** and then choose **Confirm**\. This will add an Envoy proxy container to the task definition, as well as the settings to support it\. If you selected **Virtual node**, it will also auto\-populate the App Mesh **Proxy Configuration** settings for the next step\. If you selected **Virtual gateway**, then the **Proxy Configuration** is disabled, because it's not used for a virtual gateway\.
 
@@ -112,7 +112,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
 1. \(Optional\) For **Network Mode**, choose the Docker network mode to use for the containers in your task\. The available network modes correspond to those described in [Network settings](https://docs.docker.com/engine/reference/run/#/network-settings) in the Docker run reference\. If you select **Enable App Mesh integration** in a following step, then you must select `awsvpc`\.
 
-   The default Docker network mode is `bridge`\. If the network mode is set to `none`, you can't specify port mappings in your container definitions, and the task's containers do not have external connectivity\. If the network mode is `awsvpc`, the task is allocated an elastic network interface\. The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode; however, exposed container ports are mapped directly to the corresponding host port, so you cannot take advantage of dynamic host port mappings or run multiple instantiations of the same task on a single container instance if port mappings are used\.
+   The default Docker network mode is `bridge`\. If the network mode is set to `none`, you can't specify port mappings in your container definitions, and the task's containers don't have external connectivity\. If the network mode is `awsvpc`, the task is allocated an elastic network interface\. The `host` and `awsvpc` network modes offer the highest networking performance for containers\. This is because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode\. However, exposed container ports are mapped directly to the corresponding host port\. Therefore, you cannot take advantage of dynamic host port mappings or run multiple instantiations of the same task on a single container instance if port mappings are used\.
 
 1. \(Optional\) For **Task execution role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\.
 
@@ -126,11 +126,11 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. Choose **Add container**\.
 
-   1. Fill out each required field and any optional fields to use in your container definitions \(more container definition parameters are available in the **Advanced container configuration** menu\)\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
+   1. Enter each of the required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
 
    1. Choose **Add** to add your container to the task definition\.
 
-1. \(Optional\) For **Constraint**, define how tasks that are created from this task definition are placed in your cluster\. For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS task placement constraints](task-placement-constraints.md)\.
+1. \(Optional\) For **Constraint**, you define how tasks that are created from this task definition are placed in your cluster\. For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS task placement constraints](task-placement-constraints.md)\.
 
 1. \(Optional\) For **Service Integration**, to configure the parameters for App Mesh integration, choose **Enable App Mesh integration** and then do the following:
 
@@ -145,7 +145,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
         + For **Virtual gateway name**, choose the existing App Mesh virtual gateway to use\. If you don't see any virtual gateways listed, then you need to create one first\. For more information, see [Virtual gateways](https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_gateways.html) in the *AWS App Mesh User Guide*\.
         + For **Virtual gateway port** – Pre\-populated with the listener port set on the virtual gateway in App Mesh\.
 
-   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.15\.1\.0\-prod for all regions except `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* wih any Region except `me-south-1` and `ap-east-1`\. If your application is in one of these regions, then you also need to replace *840364872350* with the appropriate value for your Region\. For more information, see [Envoy image](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html) in the *AWS App Mesh User Guide*\.
+   1. For **Envoy image**, enter *840364872350*\.dkr\.ecr\.*us\-west\-2*\.amazonaws\.com/aws\-appmesh\-envoy:v1\.15\.1\.0\-prod for all regions except `me-south-1` and `ap-east-1`\. You can replace *us\-west\-2* with any Region except `me-south-1` and `ap-east-1`\. If your application is in one of these regions, then you also need to replace *840364872350* with the appropriate value for your Region\. For more information, see [Envoy image](https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html) in the *AWS App Mesh User Guide*\.
 
    1. Choose **Apply** and then choose **Confirm**\. This will add an Envoy proxy container to the task definition, as well as the settings to support it\. If you selected **Virtual node**, it will also auto\-populate the App Mesh **Proxy Configuration** settings for the next step\. If you selected **Virtual gateway**, then the **Proxy Configuration** is disabled, because it's not used for a virtual gateway\.
 
@@ -163,7 +163,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. For **Name**, type a name for your volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
-   1. \(Optional\) To create a bind mount volume, for **Source path**, type the path on the host container instance to present to the container\. If you leave this field empty, the Docker daemon assigns a host path for you\. If you specify a source path, the data volume persists at the specified location on the host container instance until you delete it manually\. If the source path does not exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported to the container\.
+   1. \(Optional\) To create a bind mount volume, for **Source path**, type the path on the host container instance to present to the container\. If you leave this field empty, the Docker daemon assigns a host path for you\. If you specify a source path, the data volume persists at the specified location on the host container instance until you delete it manually\. If the source path doesn't exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported to the container\.
 
    1. To create a Docker volume, select **Specify a volume driver**\.
 
@@ -185,7 +185,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
 ## Task definition template<a name="task-definition-template"></a>
 
-An empty task definition template is shown below\. You can use this template to create your task definition, which can then be pasted into the console JSON input area or saved to a file and used with the AWS CLI `--cli-input-json` option\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
+An empty task definition template is shown as follows\. You can use this template to create your task definition, which can then be pasted into the console JSON input area or saved to a file and used with the AWS CLI `--cli-input-json` option\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
 
 ```
 {
@@ -197,15 +197,11 @@ An empty task definition template is shown below\. You can use this template to 
         {
             "name": "",
             "image": "",
-            "repositoryCredentials": {
-                "credentialsParameter": ""
-            },
+            "repositoryCredentials": {"credentialsParameter": ""},
             "cpu": 0,
             "memory": 0,
             "memoryReservation": 0,
-            "links": [
-                ""
-            ],
+            "links": [""],
             "portMappings": [
                 {
                     "containerPort": 0,
@@ -214,12 +210,8 @@ An empty task definition template is shown below\. You can use this template to 
                 }
             ],
             "essential": true,
-            "entryPoint": [
-                ""
-            ],
-            "command": [
-                ""
-            ],
+            "entryPoint": [""],
+            "command": [""],
             "environment": [
                 {
                     "name": "",
@@ -247,20 +239,14 @@ An empty task definition template is shown below\. You can use this template to 
             ],
             "linuxParameters": {
                 "capabilities": {
-                    "add": [
-                        ""
-                    ],
-                    "drop": [
-                        ""
-                    ]
+                    "add": [""],
+                    "drop": [""]
                 },
                 "devices": [
                     {
                         "hostPath": "",
                         "containerPath": "",
-                        "permissions": [
-                            "read"
-                        ]
+                        "permissions": ["read"]
                     }
                 ],
                 "initProcessEnabled": true,
@@ -269,9 +255,7 @@ An empty task definition template is shown below\. You can use this template to 
                     {
                         "containerPath": "",
                         "size": 0,
-                        "mountOptions": [
-                            ""
-                        ]
+                        "mountOptions": [""]
                     }
                 ],
                 "maxSwap": 0,
@@ -297,26 +281,18 @@ An empty task definition template is shown below\. You can use this template to 
             "disableNetworking": true,
             "privileged": true,
             "readonlyRootFilesystem": true,
-            "dnsServers": [
-                ""
-            ],
-            "dnsSearchDomains": [
-                ""
-            ],
+            "dnsServers": [""],
+            "dnsSearchDomains": [""],
             "extraHosts": [
                 {
                     "hostname": "",
                     "ipAddress": ""
                 }
             ],
-            "dockerSecurityOptions": [
-                ""
-            ],
+            "dockerSecurityOptions": [""],
             "interactive": true,
             "pseudoTerminal": true,
-            "dockerLabels": {
-                "KeyName": ""
-            },
+            "dockerLabels": {"KeyName": ""},
             "ulimits": [
                 {
                     "name": "msgqueue",
@@ -326,9 +302,7 @@ An empty task definition template is shown below\. You can use this template to 
             ],
             "logConfiguration": {
                 "logDriver": "awslogs",
-                "options": {
-                    "KeyName": ""
-                },
+                "options": {"KeyName": ""},
                 "secretOptions": [
                     {
                         "name": "",
@@ -337,9 +311,7 @@ An empty task definition template is shown below\. You can use this template to 
                 ]
             },
             "healthCheck": {
-                "command": [
-                    ""
-                ],
+                "command": [""],
                 "interval": 0,
                 "timeout": 0,
                 "retries": 0,
@@ -359,28 +331,20 @@ An empty task definition template is shown below\. You can use this template to 
             ],
             "firelensConfiguration": {
                 "type": "fluentd",
-                "options": {
-                    "KeyName": ""
-                }
+                "options": {"KeyName": ""}
             }
         }
     ],
     "volumes": [
         {
             "name": "",
-            "host": {
-                "sourcePath": ""
-            },
+            "host": {"sourcePath": ""},
             "dockerVolumeConfiguration": {
                 "scope": "task",
                 "autoprovision": true,
                 "driver": "",
-                "driverOpts": {
-                    "KeyName": ""
-                },
-                "labels": {
-                    "KeyName": ""
-                }
+                "driverOpts": {"KeyName": ""},
+                "labels": {"KeyName": ""}
             },
             "efsVolumeConfiguration": {
                 "fileSystemId": "",
@@ -391,6 +355,14 @@ An empty task definition template is shown below\. You can use this template to 
                     "accessPointId": "",
                     "iam": "ENABLED"
                 }
+            },
+            "FSxWindowsFileServerVolumeConfiguration": {
+                "fileSystemId": "",
+                "rootDirectory": "",
+                "authorizationConfig": {
+                    "credentialsParameter": "",
+                    "domain": ""
+                }
             }
         }
     ],
@@ -400,9 +372,7 @@ An empty task definition template is shown below\. You can use this template to 
             "expression": ""
         }
     ],
-    "requiresCompatibilities": [
-        "EC2"
-    ],
+    "requiresCompatibilities": ["EC2"],
     "cpu": "",
     "memory": "",
     "tags": [

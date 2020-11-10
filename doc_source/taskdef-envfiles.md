@@ -68,8 +68,8 @@ The following should be considered when specifying an environment variable file 
   ENVIRONMENT=PRODUCTION
   ```
 + If there are environment variables specified using the `environment` parameter in a container definition, they take precedence over the variables contained within an environment file\.
-+ If multiple environment files are specified that contain the same variable, they are processed from the top down\. It is recommended to use unique variable names\.
-+ If an environment file is specified as a container override, it will be used and any other environment files specified in a container definition will be ignored\.
++ If multiple environment files are specified that contain the same variable, they are processed from the top down\. We recommend that you use unique variable names\.
++ If an environment file is specified as a container override, it is used, and any other environment files specified in a container definition is ignored\.
 
 ## Required IAM permissions<a name="taskdef-envfiles-iam"></a>
 
@@ -79,7 +79,7 @@ To provide access to the Amazon S3 objects that you create, manually add the fol
 + `s3:GetObject`
 + `s3:GetBucketLocation`
 
-An example inline policy adding the permissions is shown below\.
+An example inline policy adding the permissions is shown\.
 
 ```
 {

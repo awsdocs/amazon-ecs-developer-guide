@@ -56,7 +56,7 @@ Output:
 
 ## Step 2: Register a Task Definition<a name="ECS_AWSCLI_Fargate_register_task_definition"></a>
 
-Before you can run a task on your ECS cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that creates a PHP web app using the httpd container image hosted on Docker Hub\. For more information about the available task definition parameters, see [Amazon ECS Task definitions](task_definitions.md)\.
+Before you can run a task on your ECS cluster, you must register a task definition\. Task definitions are lists of containers grouped together\. The following example is a simple task definition that creates a PHP web app using the httpd container image hosted on Docker Hub\. For more information about the available task definition parameters, see [Amazon ECS task definitions](task_definitions.md)\.
 
 ```
 {

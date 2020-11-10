@@ -124,7 +124,7 @@ Required: no
 The port number on the container instance to reserve for your container\.  
 If using containers in a task with the Fargate launch type, the `hostPort` can either be left blank or be the same value as `containerPort`\.  
 If using containers in a task with the EC2 launch type, you can specify a non\-reserved host port for your container port mapping \(this is referred to as *static* host port mapping\), or you can omit the `hostPort` \(or set it to `0`\) while specifying a `containerPort` and your container automatically receives a port \(this is referred to as *dynamic* host port mapping\) in the ephemeral port range for your container instance operating system and Docker version\.  
-The default ephemeral port range Docker version 1\.6\.0 and later is listed on the instance under `/proc/sys/net/ipv4/ip_local_port_range`\. If this kernel parameter is unavailable, the default empheral port range from `49153–65535` is used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below `32768` are outside of the ephemeral port range\.  
+The default ephemeral port range Docker version 1\.6\.0 and later is listed on the instance under `/proc/sys/net/ipv4/ip_local_port_range`\. If this kernel parameter is unavailable, the default ephemeral port range from `49153–65535` is used\. Do not attempt to specify a host port in the ephemeral port range, as these are reserved for automatic assignment\. In general, ports below `32768` are outside of the ephemeral port range\.  
 The default reserved ports are `22` for SSH, the Docker ports `2375` and `2376`, and the Amazon ECS container agent ports `51678-51680`\. Any host port that was previously user\-specified for a running task is also reserved while the task is running \(after a task stops, the host port is released\)\. The current reserved ports are displayed in the `remainingResources` of describe\-container\-instances output, and a container instance may have up to 100 reserved ports at a time, including the default reserved ports\. Automatically assigned ports do not count toward the 100 reserved ports limit\.  
 `protocol`  
 Type: string  
@@ -297,6 +297,7 @@ The value of the environment variable\.
 
 ```
 "environment" : [
+>>>>>>> mainline
     { "name" : "string", "value" : "string" },
     { "name" : "string", "value" : "string" }
 ]
@@ -605,6 +606,7 @@ This parameter is not supported for Windows containers\.
 
 ```
 "ulimits": [
+>>>>>>> mainline
       {
         "name": "core"|"cpu"|"data"|"fsize"|"locks"|"memlock"|"msgqueue"|"nice"|"nofile"|"nproc"|"rss"|"rtprio"|"rttime"|"sigpending"|"stack",
         "softLimit": integer,
@@ -812,7 +814,7 @@ Valid network namespace values: Sysctls beginning with `"net.*"`
 `value`  
 Type: String  
 Required: no  
-The value for the namespaced kernel parameter specifed in `namespace`\.
+The value for the namespaced kernel parameter specified in `namespace`\.
 
 #### Interactive<a name="container_definition_interactive"></a>
 
@@ -917,6 +919,32 @@ Type: String
 Valid values: `ENABLED` \| `DISABLED`  
 Required: No  
 Whether or not to use the Amazon ECS task IAM role defined in a task definition when mounting the Amazon EFS file system\. If enabled, transit encryption must be enabled in the `EFSVolumeConfiguration`\. If this parameter is omitted, the default value of `DISABLED` is used\. For more information, see [IAM Roles for Tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)\.
+
+`FSxWindowsFileServerVolumeConfiguration`  
+Type: Object  
+Required: Yes  
+This parameter is specified when you are using the [Amazon FSx for Windows File Server](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) file system for task storage\.    
+`fileSystemId`  
+Type: String  
+Required: Yes  
+The Amazon FSx for Windows File Server file system ID to use\.  
+`rootDirectory`  
+Type: String  
+Required: Yes  
+The directory within the Amazon FSx for Windows File Server file system to mount as the root directory inside the host\.  
+`authorizationConfig`    
+`credentialsParameter`  
+Type: String  
+Required: Yes  
+The authorization credential options\.  
+
+**options:**
++ Amazon Resource Name \(ARN\) of an [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) secret\.
++ ARN of an [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/integration-ps-secretsmanager.html) parameter\.  
+`domain`  
+Type: String  
+Required: Yes  
+A fully qualified domain name hosted by an [AWS Directory Service](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html) Managed Microsoft AD \(Active Directory\) or self\-hosted EC2 AD\.
 
 ## Task placement constraints<a name="constraints"></a>
 
