@@ -483,7 +483,7 @@ The following should be noted when specifying a log configuration for your conta
 ```  
 `logDriver`  
 Type: string  
-Valid values: `"awslogs","fluentd","gelf","json-file","journald","logentries","splunk","syslog","awsfirelens`  
+Valid values: `"awslogs","fluentd","gelf","json-file","journald","logentries","splunk","syslog","awsfirelens"`  
 Required: yes, when `logConfiguration` is used  
 The log driver to use for the container\. The valid values listed earlier are log drivers that the Amazon ECS container agent can communicate with by default\.  
 For tasks using the Fargate launch type, the supported log drivers are `awslogs`, `splunk`, and `awsfirelens`\.  
