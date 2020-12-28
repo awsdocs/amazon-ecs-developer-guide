@@ -8,7 +8,7 @@ Whether you are part of a large enterprise or a startup, Amazon ECS offers a var
 + Using your preferred programming language, define infrastructure or architecture as code with the [AWS CDK](#developer-tools-cdk)\.
 + Containerize applications that are hosted on premises or on EC2 instances or both by using the [AWS App2Container](#developer-tools-a2c) integrated portability and tooling ecosystem for containers\.
 + Deploy a Docker Compose application to ECS or test local containers with containers running in ECS, using the [Amazon ECS CLI](#developer-tools-ecscli)\.
-+ Launch containers from [Docker CLI plugin for Amazon ECS](#developer-tools-dockercli) using ECS in Docker Desktop\. \(We recommend that you use the Amazon ECS CLI to deploy production grade Compose applications while the ECS/Docker integration is in beta\)\.
++ Launch containers from [Docker Desktop integration with Amazon ECS](#developer-tools-dockercli) using ECS in Docker Desktop\.
 
 ## AWS Management Console<a name="developer-tools-console"></a>
 
@@ -70,17 +70,15 @@ For more information, see [Using the Amazon ECS Command Line Interface](ECS_CLI.
 
 Use the ECS CLI if you have a Compose application and want to deploy it to ECS, or test local containers with containers running in ECS in the cloud\.
 
-## Docker CLI plugin for Amazon ECS<a name="developer-tools-dockercli"></a>
+## Docker Desktop integration with Amazon ECS<a name="developer-tools-dockercli"></a>
 
-AWS and Docker have collaborated to make a simplified developer experience that enables you to deploy and manage containers on Amazon ECS directly from Docker tools\. You can now build and test your containers locally using Docker Desktop and Docker Compose, and then deploy them to Amazon ECS on Fargate using the same CLI\.
+AWS and Docker have collaborated to make a simplified developer experience that enables you to deploy and manage containers on Amazon ECS directly using Docker tools\. You can now build and test your containers locally using Docker Desktop and Docker Compose, and then deploy them to Amazon ECS on Fargate\. To get started with the Amazon ECS and Docker integration, download Docker Desktop and optionally sign up for a Docker ID\. For more information, see [Docker Desktop](https://www.docker.com/products/docker-desktop) and [Docker ID signup](https://hub.docker.com/signup/awsedge?utm_source=awsedge)\.
 
-The Docker CLI plugin for Amazon ECS is currently in Beta\. For more information, see [Docker Compose CLI plugin for Amazon ECS](https://github.com/docker/compose-cli) on GitHub\.
+Beginners to containers often start learning about containers by using Docker tools such as the Docker CLI and Docker Compose\. This makes using the Docker Compose CLI plugin for Amazon ECS a natural next step in running containers on AWS after testing locally\. Docker provides a walkthrough on deploying containers on Amazon ECS\. For more information, see [Deploying Docker containers on Amazon ECS](https://docs.docker.com/engine/context/ecs-integration/)\.
 
-Customers often start learning about containers by using Docker tools such as the Docker CLI and Docker Compose\. For these customers, using the ECS/Docker Desktop integration can be a natural next step in running containers in the cloud after testing locally\.
+You can take advantage of additional Amazon ECS features, such as service discovery, load balancing and other AWS resources for use with their applications with Docker Desktop\.
 
-Customers can also take advantage of Amazon ECS features, such as service discovery, load balancing and other AWS resources for use with their applications\.
-
-Use Amazon ECS in Docker Desktop if you want to launch containers from Docker tooling\. We recommend using the ECS CLI to deploy production grade Compose applications while the Amazon ECS with Docker integration is in beta\.
+You can also download the Docker Compose CLI plugin for Amazon ECS directly from GitHub\. For more information, see [Docker Compose CLI plugin for Amazon ECS](https://github.com/docker/compose-cli) on GitHub\.
 
 ## AWS SDKs<a name="developer-tools-sdks"></a>
 

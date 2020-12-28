@@ -57,7 +57,7 @@ When the `ECS_LOG_ROLLOVER_TYPE` variable is set to `size`, this variable determ
 Example values: `24`  
 Default value on Linux: `24`  
 Default value on Windows: `24`  
-Determines the number of rotated log files to keep\. Older log files are deleted once this limit is reached\.
+Determines the number of rotated log files to keep\. Older log files are deleted after this limit is reached\.
 
 For container agent version 1\.36\.0 and later, the following is an example log file when the `logfmt` format is used\.
 

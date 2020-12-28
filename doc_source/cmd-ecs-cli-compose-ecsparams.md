@@ -18,6 +18,9 @@ task_definition:
   services:
     <service_name>:
       essential: boolean
+      depends_on:
+        - container_name: string
+          condition: string
       repository_credentials:
         credentials_parameter: string
       cpu_shares: integer
@@ -122,6 +125,7 @@ This parameter is not supported for Windows containers or tasks using the Fargat
   + `essential` – If the `essential` parameter of a container is marked as `true`, and that container fails or stops for any reason, all other containers that are part of the task are stopped\. If the `essential` parameter of a container is marked as `false`, then its failure does not affect the rest of the containers in a task\. The default value is `true`\.
 
     All tasks must have at least one essential container\. If you have an application that is composed of multiple containers, you should group containers that are used for a common purpose into components, and separate the different components into multiple task definitions\.
+  + `depends_on` – This parameter maps to the `dependsOn` task definition paramater\. It is used to specify a list of container dependencies, which can be used for conditional startup of dependent containers or ensuring the order of startup when using multiple containers\. For a task definition example, see [Example: Container dependency](example_task_definitions.md#example_task_definition-containerdependency)\.
   + `repository_credentials` – If you are using a private repository for pulling images, `repository_credentials` allows you to specify an AWS Secrets Manager secret ARN for the name of the secret containing your private repository credentials as a `credential_parameter`\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
   + `cpu_shares` – This parameter maps to `cpu_shares` in the [Docker compose file reference](https://docs.docker.com/compose/compose-file/compose-file-v2/#cpu-and-other-resources)\. If you are using Docker compose version 3, this field is optional and must be specified in the ECS params file rather than the compose file\. In Docker compose version 2, this field can be specified in either the compose or ECS params file\. If it is specified in the ECS params file, the value overrides the value present in the compose file\.
   + `mem_limit` – This parameter maps to `mem_limit` in the [Docker compose file reference](https://docs.docker.com/compose/compose-file/compose-file-v2/#cpu-and-other-resources)\. If you are using Docker compose version 3, this field is optional and must be specified in the ECS params file rather than the compose file\. In Docker compose version 2, this field can be specified in either the compose or ECS params file\. If it is specified in the ECS params file, the value overrides the value present in the compose file\.

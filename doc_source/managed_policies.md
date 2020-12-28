@@ -5,3 +5,4 @@ Amazon ECS and Amazon ECR provide several managed policies and trust relationshi
 **Topics**
 + [Amazon ECS Managed Policies and Trust Relationships](ecs_managed_policies.md)
 + [Amazon ECR Managed Policies](ecr_managed_policies.md)
++ [Migrating to the `AmazonECS_FullAccess` managed policy](managed-policy-transition.md)

@@ -35,7 +35,7 @@ The *daemon* scheduling strategy deploys exactly one task on each active contain
 
 The daemon service scheduler does not place any tasks on instances that have a `DRAINING` status\. If a container instance transitions to `DRAINING`, the daemon tasks on it are stopped\. The service scheduler also monitors when new container instances are added to your cluster and adds the daemon tasks to them\.
 
-If a `deploymentConfiguration` is specified, the maximum percent parameter must be `100`\. The default value for a daemon service for `maximumPercent` is 100%\. The default value for a daemon service for `minimumHealthyPercent` is 0% for the AWS CLI, the AWS SDKs, and the APIs, and 50% for the AWS Management Console\.
+If a deployment configuration is specified, the maximum percent parameter must be `100`\. The default value for a daemon service for `maximumPercent` is 100%\. The default value for a daemon service for `minimumHealthyPercent` is 0%\.
 
 Tasks using the Fargate launch type or the `CODE_DEPLOY` or `EXTERNAL` deployment controller types don't support the daemon scheduling strategy\.
 

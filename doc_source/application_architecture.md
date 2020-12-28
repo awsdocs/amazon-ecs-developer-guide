@@ -4,9 +4,9 @@ How you architect your application on Amazon ECS depends on several factors, wit
 
 ## Using the Fargate launch type<a name="application_architecture_fargate"></a>
 
-When architecting your application using the Fargate launch type for your tasks, the main question is when should you put multiple containers into the same task definition versus deploying containers separately in multiple task definitions\.using
+When architecting your application to run on Amazon ECS using AWS Fargate, the main question is when should you put multiple containers into the same task definition versus deploying containers separately in multiple task definitions\.
 
-We recommend that you deploy your containers in one task definition if the following conditions are required\.
+When the following conditions are required, we recommend that you deploy your containers in a single task definition:
 + Your containers share a common lifecycle \(that is, they are launched and terminated together\)\.
 + Your containers must run on the same underlying host \(that is, one container references the other on a localhost port\)\.
 + You require that your containers share resources\.

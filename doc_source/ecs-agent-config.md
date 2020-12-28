@@ -198,14 +198,14 @@ The HTTP traffic that should not be forwarded to the specified `HTTP_PROXY`\. Yo
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-If you are using ECS init, the default value is `true`\.
+If you are using `ecs init`, the default value is `true`\.
 Whether IAM roles for tasks should be enabled on the container instance for task containers with the `bridge` or `default` network modes\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
 `ECS_ENABLE_TASK_IAM_ROLE_NETWORK_HOST`  
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-If you are using ECS init, the default value is `true`\.
+If you are using `ecs init`, the default value is `true`\.
 Whether IAM roles for tasks should be enabled on the container instance for task containers with the `host` network mode\. This variable is only supported on agent versions 1\.12\.0 and later\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
 `ECS_DISABLE_IMAGE_CLEANUP`  
@@ -394,13 +394,19 @@ When the `ECS_LOG_ROLLOVER_TYPE` variable is set to `size`, this variable determ
 Example values: `24`  
 Default value on Linux: `24`  
 Default value on Windows: `24`  
-Determines the number of rotated log files to keep\. Older log files are deleted once this limit is reached\.
+Determines the number of rotated log files to keep\. Older log files are deleted after this limit is reached\.
 
 `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE`  
 Example values: `true`  
 Default value on Linux: *see description below*  
 Default value on Windows: `false`  
 Whether to enable the `awslogs` log driver to authenticate using the task execution IAM role\. This parameter must be `true` to use the `awslogs` log driver in a task that also has a task execution IAM role specified\. When using the Amazon ECS\-optimized AMI with version 1\.16\.0\-1 or later of the `ecs-init` package, the default value of `true` is used\. When using older versions of the `ecs-init` package, the default value of `false` is used\.
+
+`ECS_PULL_DEPENDENT_CONTAINERS_UPFRONT`  
+Example values: `true` \| `false`  
+Default value on Linux: `false`  
+Default value on Windows: `false`  
+Whether to pull images for containers with dependencies before the `dependsOn` condition has been satisfied\.
 
 ## Storing Container Instance Configuration in Amazon S3<a name="ecs-config-s3"></a>
 

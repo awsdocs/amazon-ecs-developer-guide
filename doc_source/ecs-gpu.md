@@ -21,6 +21,7 @@ The g4 instance type family is supported on version `20190913` and later of the 
 |  p3\.8xlarge  |  4  |  64  |  32  |  244  | 
 |  p3\.16xlarge  |  8  |  128  |  64  |  488  | 
 |  p3dn\.24xlarge  |  8  |  256  |  96  |  768  | 
+|  p4d\.24xlarge  | 8 | 320 | 96 | 1152 | 
 |  g3s\.xlarge  | 1 | 8 | 4 | 30\.5 | 
 |  g3\.4xlarge  | 1 | 8 | 16 | 122 | 
 |  g3\.8xlarge  | 2 | 16 | 32 | 244 | 
@@ -50,6 +51,8 @@ Before you begin working with GPUs on Amazon ECS, be aware of the following cons
   ```
 + For each container that has a GPU resource requirement specified in the container definition, Amazon ECS sets the container runtime to be the NVIDIA container runtime\.
 + The NVIDIA container runtime requires some environment variables to be set in the container in order to work\. For a list of these environment variables, see [nvidia\-container\-runtime](https://github.com/NVIDIA/nvidia-container-runtime)\. Amazon ECS sets the `NVIDIA_VISIBLE_DEVICES` environment variable value to be a list of the GPU device IDs that Amazon ECS assigns to the container\. For the other required environment variables, Amazon ECS doesn't set them, so you should ensure that your container image sets them or they should be set in the container definition\.
++ The g4 instance type family is supported on version `20190913` and later of the Amazon ECS GPU\-optimized AMI\. For more information, see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\. It is currently not supported in the Create Cluster workflow in the Amazon ECS console\. To use these instance types, you must either use the Amazon EC2 console, AWS CLI, or API and manually register the instances to your cluster\.
++ The p4d\.24xlarge instance type only works with CUDA 11 or later\.
 
 ## Specifying GPUs in your task definition<a name="ecs-gpu-specifying"></a>
 
@@ -85,7 +88,7 @@ The following example demonstrates the syntax for a Docker container that specif
       "memory": 80,
       "essential": true,
       "name": "gpu",
-      "image": "nvidia/cuda:9.0-base",
+      "image": "nvidia/cuda:11.0-base",
       "resourceRequirements": [
          {
            "type":"GPU",

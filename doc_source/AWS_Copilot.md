@@ -1,16 +1,11 @@
 # Using the AWS Copilot command line interface<a name="AWS_Copilot"></a>
 
+The AWS Copilot command line interface \(CLI\) commands simplify building, releasing, and operating production\-ready containerized applications on Amazon ECS from a local development environment\. The AWS Copilot CLI aligns with developer workflows that support modern application best practices: from using infrastructure as code to creating a CI/CD pipeline provisioned on behalf of a user\. Use the AWS Copilot CLI as part of your everyday development and testing cycle as an alternative to the AWS Management Console\.
 
-|  | 
-| --- |
-|  AWS Copilot is governed as a preview program under the [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Report issues with AWS Copilot by connecting with us at [GitHub](https://github.com/aws/amazon-ecs-cli-v2) where you can open issues, provide feedback and report bugs\.  | 
-
-The AWS Copilot command line interface \(CLI\) provides application\-first, high\-level commands to simplify modeling, creating, releasing, and managing production\-ready containerized applications on Amazon ECS from a local development environment\. Provisioned with application templates, infrastructure as code, and CI/CD pipeline options, the AWS Copilot CLI aligns with application workflows that support modern application best practices\. Use the AWS Copilot CLI as part of your everyday development and testing cycle as an alternative to the AWS Management Console\.
-
-AWS Copilot currently supports Linux and macOS systems\. For more information about the latest version of the AWS Copilot CLI, see [Releases](https://github.com/aws/amazon-ecs-cli-v2/releases)\.
+AWS Copilot currently supports Linux, macOS, and Windows systems\. For more information about the latest version of the AWS Copilot CLI, see [Releases](https://github.com/aws/copilot-cli/releases)\.
 
 **Note**  
-The source code for the AWS Copilot CLI is available on [GitHub](https://github.com/aws/amazon-ecs-cli-v2)\. We encourage you to submit issues and pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently support running modified copies of AWS Copilot code\.
+The source code for the AWS Copilot CLI is available on [GitHub](https://github.com/aws/copilot-cli)\. The latest CLI documentation is available on the AWS Copilot [website](https://aws.github.io/copilot-cli/)\. We recommend that you submit issues and pull requests for changes that you would like to have included\. However, Amazon Web Services doesn't currently support running modified copies of AWS Copilot code\. Report issues with AWS Copilot by connecting with us on [Gitter](https://gitter.im/aws/copilot-cli) or [GitHub](https://github.com/aws/copilot-cli) where you can open issues, provide feedback, and report bugs\.
 
 **Topics**
 + [Installing the AWS Copilot CLI](#copilot-install)
@@ -22,7 +17,7 @@ The AWS Copilot CLI can be installed on Linux or macOS systems either by using H
 
 ### Installing the AWS Copilot CLI using Homebrew<a name="copilot-install-homebrew"></a>
 
-The following command is used to install the AWS Copilot CLI on your macOS or Linux system using Homebrew\. Prior to installation, you should have Homebrew installed\. For more information, see [Homebrew](https://brew.sh/)\.
+The following command is used to install the AWS Copilot CLI on your macOS or Linux system using Homebrew\. Before installation, you should have Homebrew installed\. For more information, see [Homebrew](https://brew.sh/)\.
 
 ```
 brew install aws/tap/copilot-cli
@@ -30,7 +25,7 @@ brew install aws/tap/copilot-cli
 
 ### Manually installing the AWS Copilot CLI<a name="copilot-install-manual"></a>
 
-As an alternative to Homebrew, you can manually install the AWS Copilot CLI on your macOS or Linux system\. Use the following command for your operating system to download the binary, apply execute permissions to it, and then verify it works by querying the help file\.
+As an alternative to Homebrew, you can manually install the AWS Copilot CLI on your macOS or Linux system\. Use the following command for your operating system to download the binary, apply execute permissions to it, and then verify it works by listing the help menu\.
 
 ------
 #### [ macOS ]
@@ -38,7 +33,7 @@ As an alternative to Homebrew, you can manually install the AWS Copilot CLI on y
 For macOS:
 
 ```
-sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.4.0/copilot-darwin-v0.4.0 \
+sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/latest/download/copilot-darwin \
    && sudo chmod +x /usr/local/bin/copilot \
    && copilot --help
 ```
@@ -46,12 +41,30 @@ sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases
 ------
 #### [ Linux ]
 
-For Linux systems:
+For Linux x86 \(64\-bit\) systems:
 
 ```
-sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/download/v0.4.0/copilot-linux-v0.4.0  \
+sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/latest/download/copilot-linux \
    && sudo chmod +x /usr/local/bin/copilot \
    && copilot --help
+```
+
+For Linux ARM systems:
+
+```
+sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases/latest/download/copilot-linux-arm64 \
+   && sudo chmod +x /usr/local/bin/copilot \
+   && copilot --help
+```
+
+------
+#### [ Windows ]
+
+Using Powershell, run the following command:
+
+```
+PS C:\> New-Item -Path 'C:\copilot' -ItemType directory; `
+  Invoke-WebRequest -OutFile 'C:\copilot\copilot.exe' https://github.com/aws/copilot-cli/releases/latest/download/copilot-windows.exe
 ```
 
 ------
@@ -237,16 +250,31 @@ The AWS Copilot CLI executables are cryptographically signed using PGP signature
    For macOS systems, run the following command\.
 
    ```
-   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.4.0/copilot-darwin-v0.4.0.asc
+   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/latest/download/copilot-darwin.asc
    ```
 
 ------
 #### [ Linux ]
 
-   For Linux systems, run the following command\.
+   For Linux x86 \(64\-bit\) systems, run the following command\.
 
    ```
-   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/download/v0.4.0/copilot-linux-v0.4.0.asc
+   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/latest/download/copilot-linux.asc
+   ```
+
+   For Linux ARM systems, run the following command\.
+
+   ```
+   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/latest/download/copilot-linux-arm64.asc
+   ```
+
+------
+#### [ Windows ]
+
+   Using Powershell, run the following command\.
+
+   ```
+   PS C:\> Invoke-WebRequest -OutFile 'C:\copilot\copilot.asc' https://github.com/aws/copilot-cli/releases/latest/download/copilot-windows.exe.asc
    ```
 
 ------

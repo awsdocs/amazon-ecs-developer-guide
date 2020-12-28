@@ -12,7 +12,7 @@ Amazon ECS vends AMIs that are optimized for Windows containers in the following
 + **Amazon ECS\-optimized Windows Server 1909 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
 + **Amazon ECS\-optimized Windows Server 2016 Full AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
 
-Windows Server 2019 and Windows Server 2016 are Long\-Term Servicing Channel \(LTSC\) releases\. Windows Server 2004 and Windows Servier 1909 are Semi\-Annual Channel \(SAC\) releases\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
+Windows Server 2019 and Windows Server 2016 are Long\-Term Servicing Channel \(LTSC\) releases\. Windows Server 2004 and Windows Server 1909 are Semi\-Annual Channel \(SAC\) releases\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
 
 **Topics**
 + [Windows container caveats](#windows_caveats)

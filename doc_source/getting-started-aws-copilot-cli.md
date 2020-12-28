@@ -1,20 +1,15 @@
 # Getting started with AWS Copilot by deploying an Amazon ECS application<a name="getting-started-aws-copilot-cli"></a>
 
-
-|  | 
-| --- |
-|  AWS Copilot is governed as a preview program under the [AWS Service Terms](https://aws.amazon.com/service-terms/)\. Report issues with AWS Copilot by connecting with us at [GitHub](https://github.com/aws/amazon-ecs-cli-v2) where you can open issues, provide feedback and report bugs\.  | 
-
 Learn how to deploy an Amazon ECS application using AWS Copilot\.
 
 ## Prerequisites<a name="getting-started-aws-copilot-cli-prerequisites"></a>
 
-Before you begin, complete the following prerequisites:
+Before you begin, make sure that you meet the following prerequisites:
 + Set up an AWS account\. For more information see [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 + Install the AWS Copilot CLI\. Releases currently support Linux and macOS systems\. For more information, see [Installing the AWS Copilot CLI](AWS_Copilot.md#copilot-install)\.
 + Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)\.
 + Run `aws configure` to set up a default profile that the AWS Copilot CLI will use to manage your application and services\.
-+ Install Docker\. For more information see [Get Started with Docker](https://www.docker.com/get-started)\.
++ Install and run Docker\. For more information, see [Get Started with Docker](https://www.docker.com/get-started)\.
 
 ## Deploy your application using one command<a name="getting-started-ecs-copilot-cli-deploy-one"></a>
 
@@ -26,8 +21,8 @@ Deploy the application using the following command\.
 git clone git@github.com:aws-samples/amazon-ecs-cli-sample-app.git demo-app && \ 
 cd demo-app &&                               \
 copilot init --app demo                      \
-  --svc api                                  \
-  --svc-type 'Load Balanced Web Service'     \
+  --name api                                 \
+  --type 'Load Balanced Web Service'         \
   --dockerfile './Dockerfile'                \
   --port 80                                  \
   --deploy
@@ -37,7 +32,7 @@ copilot init --app demo                      \
 
 ### Step 1: Configure your credentials<a name="getting-started-ecs-copilot-cli-config-cred"></a>
 
-Run `aws configure` to set up a default profile that the AWS Copilot CLI will use to manage your application and services\.
+Run `aws configure` to set up a default profile that the AWS Copilot CLI uses to manage your application and services\.
 
 ```
 aws configure
@@ -59,7 +54,7 @@ git clone git@github.com:aws-samples/amazon-ecs-cli-sample-app.git demo-app
    copilot init
    ```
 
-   AWS Copilot walks you through the setup of your **first application and service** with a series of terminal prompts, starting with **next step**\. If you have already used AWS Copilot to deploy applications, you are prompted to choose one from a list of application names\.
+   AWS Copilot walks you through the setup of your **first application and service** with a series of terminal prompts, starting with **next step**\. If you have already used AWS Copilot to deploy applications, you're prompted to choose one from a list of application names\.
 
 1. Name your application\.
 
@@ -69,17 +64,18 @@ git clone git@github.com:aws-samples/amazon-ecs-cli-sample-app.git demo-app
 
    Enter *`demo`*\.
 
-### Step 4: Set up your ECS application service<a name="getting-started-ecs-copilot-cli-setup-svc"></a>
+### Step 4: Set up an ECS Service in your "demo" Application<a name="getting-started-ecs-copilot-cli-setup-svc"></a>
 
-1. You are prompted to choose a service type\. You are building a simple Flask application which serves a small API\.
+1.  You're prompted to choose a service type\. You're building a simple Flask application that serves a small API\. 
 
    ```
    Which service type best represents your service's architecture? [Use arrows to move, type to filter, ? for more help]
-                    > Load Balanced Web Service
-                      Backend Service
+      > Load Balanced Web Service
+        Backend Service
+        Scheduled Job
    ```
 
-   Choose *`Load Balanced Web Service`*\.
+    Choose * ` Load Balanced Web Service ` *\. 
 
 1. Provide a name for your service\.
 
@@ -87,16 +83,17 @@ git clone git@github.com:aws-samples/amazon-ecs-cli-sample-app.git demo-app
    What do you want to name this Load Balanced Web Service? [? for help]
    ```
 
-   Enter *`api`* for your service name\.
+    Enter *`api`* for your service name\. 
 
 1. Select a Dockerfile\.
 
    ```
    Which Dockerfile would you like to use for api? [Use arrows to move, type to filter, ? for more help]
-                    > ./Dockerfile
+      > ./Dockerfile
+        Use an existing image instead
    ```
 
-   Choose *`Dockerfile`*\.
+    Choose *`Dockerfile`*\. 
 
 1. Define port\.
 
@@ -104,7 +101,7 @@ git clone git@github.com:aws-samples/amazon-ecs-cli-sample-app.git demo-app
    Which port do you want customer traffic sent to? [? for help] (80)
    ```
 
-   Enter *`80`* or accept default\.
+    Enter *`80`* or accept default\.
 
 1. You will see a log showing the application resources being created\.
 
@@ -112,13 +109,13 @@ git clone git@github.com:aws-samples/amazon-ecs-cli-sample-app.git demo-app
    Creating the infrastructure to manage services under application demo.
    ```
 
-1. After the application resources are created, deploy a test environment\.
+1.  After the application resources are created, deploy a test environment\. 
 
    ```
    Would you like to deploy a test environment? [? for help] (y/N)
    ```
 
-   Enter *`y`*\.
+    Enter *`y`*\.
 
    ```
    Proposing infrastructure changes for the test environment.
@@ -134,7 +131,7 @@ git clone git@github.com:aws-samples/amazon-ecs-cli-sample-app.git demo-app
    
    Use existing application: No
    Application name: demo
-   Service type: Load Balanced Web Service
+   Workload type: Load Balanced Web Service
    Service name: api
    Dockerfile: ./Dockerfile
    no EXPOSE statements in Dockerfile ./Dockerfile
@@ -159,18 +156,24 @@ git clone git@github.com:aws-samples/amazon-ecs-cli-sample-app.git demo-app
      - Private subnets for services that can't be reached from the internet  [Complete]
      - Routing tables for services to talk with each other                   [Complete]
    - ECS Cluster to hold your services                                       [Complete]
-   - Application load balancer to distribute traffic                         [Complete]
    ✔ Linked account aws_account_id and region region to application demo.
    
-   ✔ Created environment test in region region under application demo.
-   Sending build context to Docker daemon  74.24kB
-   Step 1/2 : FROM nginx
-    ---> 9beeba249f3e
-   Step 2/2 : COPY index.html /usr/share/nginx/html
-    ---> Using cache
-    ---> c685b776e459
-   Successfully built c685b776e459
-   Successfully tagged aws_account_id.dkr.ecr.region.amazonaws.com/demo/api:cee7709
+   ✔ Created environment test in region region under application demo.                         
+   Environment test is already on the latest version v1.0.0, skip upgrade.
+   [+] Building 0.8s (7/7) FINISHED
+    => [internal] load .dockerignore                                                                                  0.1s
+    => => transferring context: 2B                                                                                    0.0s
+    => [internal] load build definition from Dockerfile                                                               0.0s
+    => => transferring dockerfile: 37B                                                                                0.0s
+    => [internal] load metadata for docker.io/library/nginx:latest                                                    0.7s
+    => [internal] load build context                                                                                  0.0s
+    => => transferring context: 32B                                                                                   0.0s
+    => [1/2] FROM docker.io/library/nginx@sha256:aeade65e99e5d5e7ce162833636f692354c227ff438556e5f3ed0335b7cc2f1b     0.0s
+    => CACHED [2/2] COPY index.html /usr/share/nginx/html                                                             0.0s
+    => exporting to image                                                                                             0.0s
+    => => exporting layers                                                                                            0.0s
+    => => writing image sha256:3ee02fd4c0f67d7bd808ed7fc73263880649834cbb05d5ca62380f539f4884c4                       0.0s
+    => => naming to aws_account_id.dkr.ecr.region.amazonaws.com/demo/api:cee7709                                      0.0s
    WARNING! Your password will be stored unencrypted in /home/user/.docker/config.json.
    Configure a credential helper to remove this warning. See
    https://docs.docker.com/engine/reference/commandline/login/#credentials-store
@@ -183,7 +186,7 @@ git clone git@github.com:aws-samples/amazon-ecs-cli-sample-app.git demo-app
    ffc9b21953f4: Pushed
    cee7709: digest: sha_digest
    
-   ✔ Deployed api, you can access it at http://demo-Publi-1OQ8VMS2VC2WG-561733989.region.elb.amazonaws.com/api.
+   ✔ Deployed api, you can access it at http://demo-Publi-1OQ8VMS2VC2WG-561733989.region.elb.amazonaws.com.
    ```
 
 ### Step 5: Verify your application is running<a name="getting-started-ecs-copilot-cli-running"></a>
@@ -242,10 +245,14 @@ copilot --help
 copilot init --help
 ```
 
-### Step 6: Clean up<a name="getting-started-ecs-copilot-cli-cleanup"></a>
+### Step 6\. Learn to create a CI/CD Pipeline<a name="getting-started-ecs-copilot-creating-pipelines"></a>
+
+ Instructions can be found in the [ECS Workshop](https://ecsworkshop.com/microservices/frontend/#create-a-ci-cd-pipeline) detailing how to fully automate a CI/CD pipeline and git workflow using AWS Copilot\. 
+
+### Step 7: Clean up<a name="getting-started-ecs-copilot-cli-cleanup"></a>
 
 Run the following command to delete and clean up all resources\.
 
 ```
-copilot app delete --env-profiles test=default
+copilot app delete
 ```

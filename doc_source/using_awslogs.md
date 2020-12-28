@@ -96,6 +96,17 @@ For more information, see [awslogs\-multiline\-pattern](https://docs.docker.com/
 This option is ignored if `awslogs-datetime-format` is also configured\.  
 Multiline logging performs regular expression parsing and matching of all log messages\. This may have a negative impact on logging performance\.
 
+`mode`  
+Required: No  
+Valid values: `non-blocking` \| `blocking`  
+Default value: `blocking`  
+The delivery mode of log messages from the container to `awslogs`\. For more information, see [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/#configure-the-delivery-mode-of-log-messages-from-container-to-log-driver)\.
+
+`max-buffer-size`  
+Required: No  
+Default value: `1m`  
+When `non-blocking` mode is used, the `max-buffer-size` log option controls the size of the ring buffer used for intermediate message storage\.
+
 ## Specifying a log configuration in your task definition<a name="specify-log-config"></a>
 
 Before your containers can send logs to CloudWatch, you must specify the `awslogs` log driver for containers in your task definition\. This section describes the log configuration for a container to use the `awslogs` log driver\. For more information, see [Creating a task definition](create-task-definition.md)\.
@@ -159,7 +170,7 @@ In the Amazon ECS console, the log configuration for the `wordpress` container i
 
 ![\[Console log configuration\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/awslogs-console-config.png)
 
-After you have registered a task definition with the `awslogs` log driver in a container definition log configuration, you can run a task or create a service with that task definition to start sending logs to CloudWatch Logs\. For more information, see [Running tasks](ecs_run_task.md) and [Creating a service](create-service.md)\.
+After you have registered a task definition with the `awslogs` log driver in a container definition log configuration, you can run a task or create a service with that task definition to start sending logs to CloudWatch Logs\. For more information, see [Run a standalone task](ecs_run_task.md) and [Creating a service](create-service.md)\.
 
 ## Viewing awslogs container logs in CloudWatch Logs<a name="viewing_awslogs"></a>
 

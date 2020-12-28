@@ -60,4 +60,4 @@ For tasks using the Fargate launch type, forcing a new deployment launches new t
    aws ecs update-service --service serviceArn --force-new-deployment --cluster cluster_name --region region
    ```
 
-If you are using standalone tasks, then you can start a new task to replace it\. For more information, see [Running tasks](ecs_run_task.md)\.
+If you are using standalone tasks, then you can start a new task to replace it\. For more information, see [Run a standalone task](ecs_run_task.md)\.

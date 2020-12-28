@@ -1,23 +1,27 @@
 # Docker basics for Amazon ECS<a name="docker-basics"></a>
 
-Docker is a technology that allows you to build, run, test, and deploy distributed applications that are based on Linux containers\. Amazon ECS uses Docker images in task definitions to launch containers on Amazon EC2 instances in your clusters\. For Amazon ECS product details, featured customer case studies, and FAQs, see the [Amazon Elastic Container Service product detail pages](http://aws.amazon.com/ecs)\.
+Docker is a technology that provides the tools for you to build, run, test, and deploy distributed applications that are based on Linux containers\. Amazon ECS uses Docker images in task definitions to launch containers as part of tasks in your clusters\.
+
+AWS and Docker have collaborated to make a simplified developer experience that enables you to deploy and manage containers on Amazon ECS directly using Docker tools\. You can now build and test your containers locally using Docker Desktop and Docker Compose, and then deploy them to Amazon ECS on Fargate\. To get started with the Amazon ECS and Docker integration, download Docker Desktop and optionally sign up for a Docker ID\. For more information, see [Docker Desktop](https://www.docker.com/products/docker-desktop) and [Docker ID signup](https://hub.docker.com/signup/awsedge?utm_source=awsedge)\.
+
+Docker provides a walkthrough on deploying containers on Amazon ECS\. For more information, see [Deploying Docker containers on Amazon ECS](https://docs.docker.com/engine/context/ecs-integration/)\.
 
 The documentation in this guide assumes that readers possess a basic understanding of what Docker is and how it works\. For more information about Docker, see [What is Docker?](http://aws.amazon.com/docker/) and the [Docker overview](https://docs.docker.com/engine/docker-overview/)\.
 
-## Installing Docker on Amazon Linux 2<a name="install_docker"></a>
+## Installing Docker<a name="install_docker"></a>
 
-**Note**  
-If you already have Docker installed, skip to [Create a Docker Image](#docker-basics-create-image)\.
+**Important**  
+If you already have Docker installed, skip to [Create a Docker image](#docker-basics-create-image)\.
 
-Docker is available on many different operating systems, including most modern Linux distributions, like Ubuntu, and even Mac OSX and Windows\. For more information about how to install Docker on your particular operating system, go to the [Docker installation guide](https://docs.docker.com/engine/installation/#installation)\.
+Docker Desktop is an easy\-to\-install application for your Mac or Windows environment that enables you to build and share containerized applications and microservices\. Docker Desktop includes Docker Engine, the Docker CLI client, Docker Compose, and other tools that are helpful when using Docker with Amazon ECS\. For more information about how to install Docker Desktop on your preferred operating system, see [Docker Desktop overview](https://docs.docker.com/desktop/)\.
 
-You don't even need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an Amazon EC2 instance with an Amazon Linux 2 or Amazon Linux AMI and install Docker to get started\.
+If you don't need a local development environment and you prefer to use an Amazon EC2 instance to use Docker, we provide the following steps to launch an Amazon EC2 instance and install Docker Engine and the Docker CLI\.
 
 **To install Docker on an Amazon EC2 instance**
 
-1. Launch an instance with the Amazon Linux 2 or Amazon Linux AMI\. For more information, see [Launching an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. Launch an instance with the Amazon Linux 2 or Amazon Linux AMI\. For more information, see [Launching an instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-1. Connect to your instance\. For more information, see [Connect to Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. Connect to your instance\. For more information, see [Connect to your Linux instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Update the installed packages and package cache on your instance\.
 
@@ -25,7 +29,7 @@ You don't even need a local development system to use Docker\. If you are using 
    sudo yum update -y
    ```
 
-1. Install the most recent Docker Community Edition package\.
+1. Install the most recent Docker Engine package\.
 
    Amazon Linux 2
 
@@ -65,7 +69,7 @@ In some cases, you may need to reboot your instance to provide permissions for t
    Cannot connect to the Docker daemon. Is the docker daemon running on this host?
    ```
 
-## Create a Docker Image<a name="docker-basics-create-image"></a>
+## Create a Docker image<a name="docker-basics-create-image"></a>
 
 Amazon ECS task definitions use Docker images to launch containers on the container instances in your clusters\. In this section, you create a Docker image of a simple web application, and test it on your local system or Amazon EC2 instance, and then push the image to a container registry \(such as Amazon ECR or Docker Hub\) so you can use it in an Amazon ECS task definition\.
 
@@ -147,11 +151,11 @@ Output from the Apache web server is displayed in the terminal window\. You can 
 
 ## Push your image to Amazon Elastic Container Registry<a name="use-ecr"></a>
 
-Amazon ECR is a managed AWS Docker registry service\. Customers can use the familiar Docker CLI to push, pull, and manage images\. For Amazon ECR product details, featured customer case studies, and FAQs, see the [Amazon Elastic Container Registry product detail pages](http://aws.amazon.com/ecr)\.
+Amazon ECR is a managed AWS Docker registry service\. You can use the Docker CLI to push, pull, and manage images in your Amazon ECR repositories\. For Amazon ECR product details, featured customer case studies, and FAQs, see the [Amazon Elastic Container Registry product detail pages](http://aws.amazon.com/ecr)\.
 
 This section requires the following:
 + You have the AWS CLI installed and configured\. If you do not have the AWS CLI installed on your system, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
-+ Your user has the required IAM permissions to access the Amazon ECR service\. For more information, see [Amazon ECR Managed Policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html)\.
++ Your user has the required IAM permissions to access the Amazon ECR service\. For more information, see [Amazon ECR managed policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html)\.
 
 **To tag your image and push it to Amazon ECR**
 

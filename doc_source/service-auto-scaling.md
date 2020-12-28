@@ -61,4 +61,6 @@ The [Create Service Example](security_iam_id-based-policy-examples.md#IAM_create
 
 The Application Auto Scaling service also needs permission to describe your Amazon ECS services and CloudWatch alarms, and permissions to modify your service's desired count on your behalf\. If you enable automatic scaling for your ECS services, it creates a service\-linked role named `AWSServiceRoleForApplicationAutoScaling_ECSService`\. This service\-linked role grants Application Auto Scaling permission to describe the alarms for your policies, to monitor the current running task count of the service, and to modify the desired count of the service\. The original managed Amazon ECS role for Application Auto Scaling was `ecsAutoscaleRole`, but it is no longer required\. The service\-linked role is the default role for Application Auto Scaling\. For more information, see [Service\-Linked Roles](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-service-linked-roles.html) in the *Application Auto Scaling User Guide*\. 
 
+
+
 Note that if you created your Amazon ECS container instance role before CloudWatch metrics were available for Amazon ECS, you might need to add the `ecs:StartTelemetrySession` permission\. For more information, see [Enabling CloudWatch metrics](cloudwatch-metrics.md#enable_cloudwatch)\.

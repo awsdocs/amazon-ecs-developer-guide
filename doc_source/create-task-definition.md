@@ -73,7 +73,7 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 
    1. For **Type**, choose the log router type to use\.
 
-   1. For **Image**, type the image URI for your log router container\. If you chose the `fluentbit` log router type, the **Image** field prepopulates with the AWS for Fluent Bit image\. For more information, see [Using the AWS for Fluent Bit image](using_firelens.md#firelens-using-fluentbit)\.
+   1. For **Image**, type the image URI for your log router container\. If you chose the `fluentbit` log router type, the **Image** field prepopulates with the AWS for Fluent Bit image\. For more information, see [Using the AWS for Fluent Bit image](firelens-using-fluentbit.md)\.
 
    1. Choose **Apply**\. This creates a new log router container to the task definition named `log_router`, and applies the settings to support it\. If you make changes to the log router integration fields, choose **Apply** again to update the FireLens container\.
 
@@ -155,7 +155,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
    1. For **Type**, choose the log router type to use\.
 
-   1. For **Image**, type the image URI for your log router container\. If you chose the `fluentbit` log router type, the **Image** field prepopulates with the AWS for Fluent Bit image\. For more information, see [Using the AWS for Fluent Bit image](using_firelens.md#firelens-using-fluentbit)\.
+   1. For **Image**, type the image URI for your log router container\. If you chose the `fluentbit` log router type, the **Image** field prepopulates with the AWS for Fluent Bit image\. For more information, see [Using the AWS for Fluent Bit image](firelens-using-fluentbit.md)\.
 
    1. Choose **Apply**\. This creates a new log router container to the task definition named `log_router`, and applies the settings to support it\. If you make changes to the log router integration fields, choose **Apply** again to update the FireLens container\.
 

@@ -1,6 +1,6 @@
 # CannotPullContainer task errors<a name="task_cannot_pull_image"></a>
 
-The following Docker errors indicate that when creating a task, the container image specified could not be retrieved\.
+The following errors indicate that when creating a task, the container image specified could not be retrieved\.
 
 Connection timed out  
 When a Fargate task is launched, its elastic network interface requires a route to the internet to pull container images\. If you receive an error similar to the following when launching a task, it is because a route to the internet does not exist:  
@@ -9,8 +9,8 @@ When a Fargate task is launched, its elastic network interface requires a route 
 CannotPullContainerError: API error (500): Get https://111122223333.dkr.ecr.us-east-1.amazonaws.com/v2/: net/http: request canceled while waiting for connection"
 ```
 To resolve this issue, you can:  
-+ For tasks in public subnets, specify **ENABLED** for **Auto\-assign public IP** when launching the task\. For more information, see [Running tasks](ecs_run_task.md)\.
-+ For tasks in private subnets, specify **DISABLED** for **Auto\-assign public IP** when launching the task, and configure a NAT Gateway in your VPC to route requests to the internet\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide*\. For more information about creating a VPC with public and private subnets, including a NAT gateway for the private subnets, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
++ For tasks in public subnets, specify **ENABLED** for **Auto\-assign public IP** when launching the task\. For more information, see [Run a standalone task](ecs_run_task.md)\.
++ For tasks in private subnets, specify **DISABLED** for **Auto\-assign public IP** when launching the task, and configure a NAT gateway in your VPC to route requests to the internet\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide*\. For more information about creating a VPC with public and private subnets, including a NAT gateway for the private subnets, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
 
 Context canceled  
 The common cause for this error is because the VPC your task is using does not have a route to pull the container image from Amazon ECR\.
@@ -61,3 +61,15 @@ The following is a container definition snippet showing how to use this option:
 }
 ```
 An alternative if your container logs are taking up too much disk space is to use the `awslogs` log driver\. The `awslogs` log driver sends the logs to CloudWatch, which frees up the disk space that would otherwise be used for your container logs on the container instance\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.
+
+Docker Hub rate limiting  
+If you receive one of the following errors, you are likely hitting the Docker Hub rate limits:  
+
+```
+ERROR: toomanyrequests: Too Many Requests.
+```
+
+```
+You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limits.
+```
+For more information on the Docker Hub rate limits, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits)\.

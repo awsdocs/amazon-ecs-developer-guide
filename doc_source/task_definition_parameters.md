@@ -225,6 +225,7 @@ On Windows container instances, the CPU limit is enforced as an absolute limit, 
 Type: [ResourceRequirement](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ResourceRequirement.html) object  
 Required: no  
 The number of physical `GPUs` the Amazon ECS container agent will reserve for the container\. The number of GPUs reserved for all containers in a task should not exceed the number of available GPUs on the container instance the task is launched on\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.  
+  
 This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
 
 `essential`  
@@ -297,7 +298,6 @@ The value of the environment variable\.
 
 ```
 "environment" : [
->>>>>>> mainline
     { "name" : "string", "value" : "string" },
     { "name" : "string", "value" : "string" }
 ]
@@ -544,7 +544,7 @@ The FireLens configuration for the container\. This is used to specify and confi
 `options`  
 Type: String to string map  
 Required: No  
-The options to use when configuring the log router\. This field is optional and can be used to specify a custom configuration file or to add additional metadata, such as the task, task definition, cluster, and container instance details to the log event\. If specified, the syntax to use is `"options":{"enable-ecs-log-metadata":"true|false","config-file-type:"s3|file","config-file-value":"arn:aws:s3:::mybucket/fluent.conf|filepath"}`\. For more information, see [Creating a task definition that uses a FireLens configuration](using_firelens.md#firelens-taskdef)\.  
+The options to use when configuring the log router\. This field is optional and can be used to specify a custom configuration file or to add additional metadata, such as the task, task definition, cluster, and container instance details to the log event\. If specified, the syntax to use is `"options":{"enable-ecs-log-metadata":"true|false","config-file-type:"s3|file","config-file-value":"arn:aws:s3:::mybucket/fluent.conf|filepath"}`\. For more information, see [Creating a task definition that uses a FireLens configuration](firelens-taskdef.md)\.  
 `type`  
 Type: String  
 Required: Yes  
@@ -606,7 +606,6 @@ This parameter is not supported for Windows containers\.
 
 ```
 "ulimits": [
->>>>>>> mainline
       {
         "name": "core"|"cpu"|"data"|"fsize"|"locks"|"memlock"|"msgqueue"|"nice"|"nofile"|"nproc"|"rss"|"rtprio"|"rttime"|"sigpending"|"stack",
         "softLimit": integer,

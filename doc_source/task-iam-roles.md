@@ -191,7 +191,7 @@ After you have created a role and attached a policy to that role, you can run ta
 + Specify an IAM role for your tasks in the task definition\. You can create a new task definition or a new revision of an existing task definition and specify the role you created previously\. If you use the console to create your task definition, choose your IAM role in the **Task Role** field\. If you use the AWS CLI or SDKs, specify your task role ARN using the `taskRoleArn` parameter\. For more information, see [Creating a task definition](create-task-definition.md)\.
 **Note**  
 This option is required if you want to use IAM task roles in an Amazon ECS service\.
-+ Specify an IAM task role override when running a task\. You can specify an IAM task role override when running a task\. If you use the console to run your task, choose **Advanced Options** and then choose your IAM role in the **Task Role** field\. If you use the AWS CLI or SDKs, specify your task role ARN using the `taskRoleArn` parameter in the `overrides` JSON object\. For more information, see [Running tasks](ecs_run_task.md)\. 
++ Specify an IAM task role override when running a task\. You can specify an IAM task role override when running a task\. If you use the console to run your task, choose **Advanced Options** and then choose your IAM role in the **Task Role** field\. If you use the AWS CLI or SDKs, specify your task role ARN using the `taskRoleArn` parameter in the `overrides` JSON object\. For more information, see [Run a standalone task](ecs_run_task.md)\. 
 
 **Note**  
 In addition to the standard Amazon ECS permissions required to run tasks and services, IAM users also require `iam:PassRole` permissions to use IAM roles for tasks\.

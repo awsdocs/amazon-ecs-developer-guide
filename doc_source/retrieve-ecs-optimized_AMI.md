@@ -60,6 +60,8 @@ The following is the format of the parameter name for each Amazon ECS\-optimized
   ```
   /aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized
   ```
+**Important**  
+The Amazon ECS\-optimized Windows Server 1909 Core AMI is being deprecated\. No new versions of this AMI will be released\.
 + Windows Server 2016 Full AMI metadata:
 
   ```
@@ -165,6 +167,8 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   ```
   aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized --region us-east-1
   ```
+**Important**  
+The Amazon ECS\-optimized Windows Server 1909 Core AMI is being deprecated\. No new versions of this AMI will be released\.
 + **For the Amazon ECS\-optimized Windows Server 2016 Full AMI:**
 
   ```

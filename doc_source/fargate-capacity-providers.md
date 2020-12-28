@@ -7,11 +7,10 @@ With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discou
 ## Fargate capacity provider considerations<a name="fargate-capacity-providers-considerations"></a>
 
 The following should be considered when using Fargate capacity providers\.
-+ The Fargate and Fargate Spot capacity providers do not need to be created\. They are available to all accounts and only need to be associated with a cluster to be available for use\.
++ The Fargate and Fargate Spot capacity providers don't need to be created\. They are available to all accounts and only need to be associated with a cluster to be available for use\.
 + To associate Fargate and Fargate Spot capacity providers to an existing cluster, you must use the Amazon ECS API or AWS CLI\. For more information, see [Adding Fargate capacity providers to an existing cluster](#fargate-capacity-providers-existing-cluster)\.
 + The Fargate and Fargate Spot capacity providers are reserved and cannot be deleted\. You can disassociate them from a cluster using the PutClusterCapacityProviders API\.
 + When a new cluster is created using the Amazon ECS console along with the **Networking only** cluster template, the `FARGATE` and `FARGATE_SPOT` capacity providers are associated with the new cluster automatically\.
-+ To add the `FARGATE` and `FARGATE_SPOT` capacity providers to an existing cluster, you must use the AWS CLI or API\. For more information, see [Adding Fargate capacity providers to an existing cluster](#fargate-capacity-providers-existing-cluster)\.
 + Using Fargate Spot requires that your task use platform version 1\.3\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + When tasks using the Fargate and Fargate Spot capacity providers are stopped, a task state change event is sent to Amazon EventBridge\. The stopped reason describes the cause\. For more information, see [Task state change events](ecs_cwe_events.md#ecs_task_events)\.
 + A cluster may contain a mix of Fargate and Auto Scaling group capacity providers, however a capacity provider strategy may only contain either Fargate or Auto Scaling group capacity providers, but not both\. For more information, see [Auto Scaling Group Capacity Providers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html#asg-capacity-providers) in the *Amazon Elastic Container Service Developer Guide*\.
@@ -21,7 +20,7 @@ The following should be considered when using Fargate capacity providers\.
 When tasks using Fargate Spot capacity are stopped due to a Spot interruption, a two\-minute warning is sent before a task is stopped\. The warning is sent as a task state change event to Amazon EventBridge and a SIGTERM signal to the running task\. When using Fargate Spot as part of a service, the service scheduler will receive the interruption signal and attempt to launch additional tasks on Fargate Spot if capacity is available\. A service with only one task will be interrupted until capacity is available\.
 
 To ensure that your containers exit gracefully before the task stops, the following can be configured:
-+ A `stopTimeout` value of `120` seconds or less can be specified in the container definition that the task is using\. Specifying a `stopTimeout` value gives you time between the moment the task state change event is received and the point at which the container is forcefully stopped\. For more information, see [Container Timeouts](task_definition_parameters.md#container_definition_timeout)\.
++ A `stopTimeout` value of `120` seconds or less can be specified in the container definition that the task is using\. Specifying a `stopTimeout` value gives you time between the moment the task state change event is received and the point at which the container is forcefully stopped\. If you don't specify a `stopTimeout` value, the default value of 30 seconds is used\. For more information, see [Container Timeouts](task_definition_parameters.md#container_definition_timeout)\.
 + The SIGTERM signal must be received from within the container to perform any cleanup actions\. Failure to process this signal will result in the task receiving a SIGKILL signal after the configured `stopTimeout` and may result in data loss or corruption\.
 
 The following is a snippet of a task state change event displaying the stopped reason and stop code for a Fargate Spot interruption\.
@@ -69,7 +68,7 @@ The following is an event pattern that is used to create an EventBridge rule for
 
 ## Creating a new cluster that uses Fargate capacity providers<a name="fargate-capacity-providers-create-cluster"></a>
 
-When a new Amazon ECS cluster is created, you specify one or more capacity providers to associate with the cluster\. The associated capacity providers determine the infrastructure to run your tasks on\.
+When a new Amazon ECS cluster is created, you can specify one or more capacity providers to associate with the cluster\. The capacity providers are used to define a capacity provider strartegy which determine the infrastructure your tasks run on\.
 
 When using the AWS Management Console, the `FARGATE` and `FARGATE_SPOT` capacity providers are associated with the cluster automatically when using the **Networking only** cluster template\. For more information, see [Creating a cluster](create_cluster.md)\.
 

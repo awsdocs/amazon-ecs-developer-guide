@@ -34,9 +34,11 @@ Amazon ECS vends AMIs that are optimized for the service in the following varian
 + **Amazon ECS\-optimized Windows Server 2019 Core AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows containers](ECS_Windows.md)\.
 + **Amazon ECS\-optimized Windows Server 2004 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows containers](ECS_Windows.md)\.
 + **Amazon ECS\-optimized Windows Server 1909 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows containers](ECS_Windows.md)\.
+**Important**  
+The Amazon ECS\-optimized Windows Server 1909 Core AMI is being deprecated\. No new versions of this AMI will be released\.
 + **Amazon ECS\-optimized Windows Server 2016 Full AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows containers](ECS_Windows.md)\.
 
-Windows Server 2019 and Windows Server 2016 are Long\-Term Servicing Channel \(LTSC\) releases\. Windows Server 2004 and Windows Servier 1909 are Semi\-Annual Channel \(SAC\) releases\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
+Windows Server 2019 and Windows Server 2016 are Long\-Term Servicing Channel \(LTSC\) releases\. Windows Server 2004 and Windows Server 1909 are Semi\-Annual Channel \(SAC\) releases\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
 
 ## Linux Amazon ECS\-optimized AMIs<a name="ecs-optimized-ami-linux"></a>
 
@@ -372,6 +374,9 @@ The following table provides a link to retrieve the current Amazon ECS\-optimize
 |  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=cn-northwest-1#)  | 
 
 For a full list of current and previous versions of the Amazon ECS\-optimized Windows Server 1909 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker see [Windows Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-windows)\.
+
+**Important**  
+The Amazon ECS\-optimized Windows Server 1909 Core AMI is being deprecated\. No new versions of this AMI will be released\.
 
 ### Windows Server 2016 Full<a name="windows-2016-full-ami"></a>
 
