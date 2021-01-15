@@ -99,6 +99,7 @@ The following table provides a link to retrieve the current Amazon ECS\-optimize
 | --- | --- | --- | 
 |  US East \(Ohio\)  |  `us-east-2`  |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=us-east-2#)  | 
 |  US East \(N\. Virginia\)  | `us-east-1` |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=us-east-1#)  | 
+|  US West \(N\. California\)  | `us-west-1` |  [View AMI ID](https://us-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=us-west-1#)  | 
 |  US West \(Oregon\)  | `us-west-2` |  [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=us-west-2#)  | 
 |  Asia Pacific \(Mumbai\)  | `ap-south-1` |  [View AMI ID](https://ap-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=ap-south-1#)  | 
 |  Asia Pacific \(Singapore\)  | `ap-southeast-1` |  [View AMI ID](https://ap-southeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=ap-southeast-1#)  | 

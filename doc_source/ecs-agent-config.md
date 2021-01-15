@@ -119,10 +119,10 @@ Whether to disable CloudWatch metrics for Amazon ECS\. If this value is set to `
 
 `ECS_POLL_METRICS`  
 Example values: `true` \| `false`  
-Default value on Linux: `true` \(see description below\)  
-Default value on Windows: `true` \(see description below\)  
+Default value on Linux: `false` \(see description below\)  
+Default value on Windows: `false` \(see description below\)  
 Whether to poll or stream when gathering CloudWatch metrics for tasks\.  
-In agent versions prior to 1\.40\.0, the default value was `false`\. Starting with agent version 1\.40\.0, the default value is `true`\.  
+In agent versions prior to `1.40.0`, the default value was `false`\. In agent versions `1.40.0` through `1.42.0`, the default value was `true`\. In agent versions `1.43.0` and later, the default value is `false`\.  
 Setting `ECS_POLL_METRICS` to false will result in high CPU utilization by the agent, dockerd, and containerd when your Amazon EC2 instance is hosting multiple containers\.
 
 `ECS_POLLING_METRICS_WAIT_DURATION`  

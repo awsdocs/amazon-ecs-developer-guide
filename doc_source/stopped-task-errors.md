@@ -36,3 +36,23 @@ If a container marked as `essential` in task definitions exits or dies, that can
    In the previous example, the container image name cannot be found\. This can happen if you misspell the image name\.
 
    If this inspection does not provide enough information, you can connect to the container instance with SSH and inspect the Docker container locally\. For more information, see [Inspect Docker Containers](docker-diags.md#docker-inspect)\.
+
+**To check stopped tasks for errors \(AWS CLI\)**
+
+1. List the stopped tasks in a cluster\. The output will contain the Amazon Resource Name \(ARN\) of the task, which you need to describe the task\.
+
+   ```
+   aws ecs list-tasks \
+        --cluster cluster_name \
+        --desired-status STOPPED \
+        --region us-west-2
+   ```
+
+1. Describe the stopped task to retrieve the `stoppedReason` in the response\.
+
+   ```
+   aws ecs describe-tasks \
+        --cluster cluster_name \
+        --tasks arn:aws:ecs:us-west-2:account_id:task/cluster_name/task_ID \
+        --region us-west-2
+   ```

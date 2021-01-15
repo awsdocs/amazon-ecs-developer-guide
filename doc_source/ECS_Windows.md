@@ -20,6 +20,7 @@ Windows Server 2019 and Windows Server 2016 are Long\-Term Servicing Channel \(L
 + [Windows task definitions](windows_task_definitions.md)
 + [Windows IAM roles for tasks](windows_task_IAM_roles.md)
 + [Pushing Windows images to Amazon ECR](windows_ecr.md)
++ [Building your own Amazon ECS\-optimized Windows AMI](windows-custom-ami.md)
 + [Using gMSAs for Windows Containers](windows-gmsa.md)
 
 ## Windows container caveats<a name="windows_caveats"></a>

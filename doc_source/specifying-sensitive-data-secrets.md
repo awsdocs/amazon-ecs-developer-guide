@@ -111,7 +111,7 @@ The following shows an example output from a [get\-secret\-value](https://docs.a
 {
     "ARN": "arn:aws:secretsmanager:region:aws_account_id:secret:appauthexample-AbCdEf",
     "Name": "appauthexample",
-    "VersionId": "871d9eca-18aa-46a9-8785-981dd39ab30c",
+    "VersionId": "871d9eca-18aa-46a9-8785-981ddEXAMPLE",
     "SecretString": "{\"username1\":\"password1\",\"username2\":\"password2\",\"username3\":\"password3\"}",
     "VersionStages": [
         "AWSCURRENT"
@@ -145,10 +145,10 @@ The following shows an example output from a [describe\-secret](https://docs.aws
     "LastAccessedDate": 1581897600.0,
     "Tags": [],
     "VersionIdsToStages": {
-        "871d9eca-18aa-46a9-8785-981dd39ab30c": [
+        "871d9eca-18aa-46a9-8785-981ddEXAMPLE": [
             "AWSCURRENT"
         ],
-        "9d4cb84b-ad69-40c0-a0ab-cead36b967e8": [
+        "9d4cb84b-ad69-40c0-a0ab-cead3EXAMPLE": [
             "AWSPREVIOUS"
         ]
     }
@@ -173,7 +173,7 @@ Reference a specific version ID from the previous output in a container definiti
   "containerDefinitions": [{
     "secrets": [{
       "name": "environment_variable_name",
-      "valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:appauthexample-AbCdEf::9d4cb84b-ad69-40c0-a0ab-cead36b967e8"
+      "valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:appauthexample-AbCdEf:::9d4cb84b-ad69-40c0-a0ab-cead3EXAMPLE"
     }]
   }]
 }
@@ -199,7 +199,7 @@ To specify a specific key and version ID, use the following syntax\.
   "containerDefinitions": [{
     "secrets": [{
       "name": "environment_variable_name",
-      "valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:appauthexample-AbCdEf:username1::9d4cb84b-ad69-40c0-a0ab-cead36b967e8"
+      "valueFrom": "arn:aws:secretsmanager:region:aws_account_id:secret:appauthexample-AbCdEf:username1::9d4cb84b-ad69-40c0-a0ab-cead3EXAMPLE"
     }]
   }]
 }

@@ -1,7 +1,7 @@
 # Amazon Elastic Container Service Developer Guide
 
 -----
-*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -272,6 +272,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Windows task definitions](windows_task_definitions.md)
    + [Windows IAM roles for tasks](windows_task_IAM_roles.md)
    + [Pushing Windows images to Amazon ECR](windows_ecr.md)
+   + [Building your own Amazon ECS-optimized Windows AMI](windows-custom-ami.md)
    + [Using gMSAs for Windows Containers](windows-gmsa.md)
 + [Document history](document_history.md)
 + [AWS glossary](glossary.md)

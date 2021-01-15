@@ -7,7 +7,7 @@ Creating Amazon ECS task definitions with a FireLens configuration is supported 
 ## Considerations<a name="firelens-considerations"></a>
 
 The following should be considered when using FireLens for Amazon ECS:
-+ FireLens for Amazon ECS is supported for tasks using both the Fargate and EC2 launch types\.
++ FireLens for Amazon ECS is supported for tasks hosted on both AWS Fargate and Amazon EC2\.
 + FireLens for Amazon ECS is supported in AWS CloudFormation templates\. For more information, see [AWS::ECS::TaskDefinition FirelensConfiguration](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-firelensconfiguration.html) in the *AWS CloudFormation User Guide*
 + For tasks that use the `bridge` network mode, the container with the FireLens configuration must start before any application containers that rely on it start\. To control the start order of your containers, use dependency conditions in your task definition\. For more information, see [Container Dependency](task_definition_parameters.md#container_definition_dependson)\.
 **Note**  
@@ -37,7 +37,7 @@ The following example IAM policy adds the required permissions for routing logs 
 ```
 
 Your task may also require the Amazon ECS task execution role under the following conditions\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
-+ If your task uses the Fargate launch type and you are pulling container images from Amazon ECR or referencing sensitive data from AWS Secrets Manager in your log configuration, then you must include the task execution IAM role\.
++ If your task is hosted on Fargate and you are pulling container images from Amazon ECR or referencing sensitive data from AWS Secrets Manager in your log configuration, then you must include the task execution IAM role\.
 + If you are specifying a custom configuration file that is hosted in Amazon S3, your task execution IAM role must include the `s3:GetObject` permission for the configuration file and the `s3:GetBucketLocation` permission on the Amazon S3 bucket that the file is in\. For more information, see [Specifying Permissions in a Policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
   The following example IAM policy adds the required permissions for retrieving a file from Amazon S3\. Specify the name of your Amazon S3 bucket and configuration file name\.

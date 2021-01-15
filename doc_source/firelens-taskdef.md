@@ -102,7 +102,8 @@ In your custom configuration file, for tasks using the `bridge` or `awsvpc` netw
 Your FireLens configuration must contain the following options to specify a custom configuration file:
 
 `config-file-type`  
-The source location of the custom configuration file\. The available options are `s3` or `file`\.
+The source location of the custom configuration file\. The available options are `s3` or `file`\.  
+Tasks hosted on AWS Fargate only support the `file` configuration file type\.
 
 `config-file-value`  
 The source for the custom configuration file\. If the `s3` config file type is used, the config file value is the full ARN of the Amazon S3 bucket and file\. If the `file` config file type is used, the config file value is the full path of the configuration file that exists either in the container image or on a volume that is mounted in the container\.  
@@ -135,4 +136,4 @@ The following shows the syntax required when specifying a custom configuration:
 ```
 
 **Note**  
-For tasks using the Fargate launch type, the only supported `config-file-type` value is `file`\.
+Tasks hosted on AWS Fargate only support the `file` configuration file type\.

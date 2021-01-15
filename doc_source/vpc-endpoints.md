@@ -17,7 +17,6 @@ If you configure Amazon ECR to use an interface VPC endpoint, you can create a t
 + VPC endpoints currently don't support cross\-Region requests\. Ensure that you create your endpoint in the same Region where you plan to issue your API calls to Amazon ECS\.
 + VPC endpoints only support Amazon\-provided DNS through Amazon Route 53\. If you want to use your own DNS, you can use conditional DNS forwarding\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
 + The security group attached to the VPC endpoint must allow incoming connections on port 443 from the private subnet of the VPC\.
-+ Controlling access to Amazon ECS by attaching an endpoint policy to the VPC endpoint isn't currently supported\. By default, full access to the service will be allowed through the endpoint\. For more information, see [Controlling Access to Services with VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html) in the *Amazon VPC User Guide*\.
 
 ## Creating the VPC Endpoints for Amazon ECS<a name="ecs-setting-up-vpc-create"></a>
 
@@ -56,3 +55,32 @@ If you are referencing either Secrets Manager secrets or Systems Manager Paramet
 For more information about Secrets Manager VPC endpoints, see [Using Secrets Manager with VPC endpoints](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html) in the *AWS Secrets Manager User Guide*\.
 
 For more information about Systems Manager VPC endpoints, see [Using Systems Manager with VPC endpoints](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html) in the *AWS Systems Manager User Guide*\.
+
+## Creating a VPC endpoint policy for Amazon ECS<a name="vpc-endpoint-policy"></a>
+
+You can attach an endpoint policy to your VPC endpoint that controls access to Amazon ECS\. The policy specifies the following information:
++ The principal that can perform actions\.
++ The actions that can be performed\.
++ The resources on which actions can be performed\.
+
+For more information, see [Controlling access to services with VPC endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html) in the *Amazon VPC User Guide*\. 
+
+**Example: VPC endpoint policy for Amazon ECS actions**  
+The following is an example of an endpoint policy for Amazon ECS\. When attached to an endpoint, this policy grants access to the listed Amazon ECS actions for all principals on all resources\.
+
+```
+{
+   "Statement":[
+      {
+         "Principal":"*",
+         "Effect":"Allow",
+         "Action":[
+            "ecs:action-1",
+            "ecs:action-2",
+            "ecs:action-2"
+         ],
+         "Resource":"*"
+      }
+   ]
+}
+```

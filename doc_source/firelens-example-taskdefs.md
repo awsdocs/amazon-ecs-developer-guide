@@ -53,7 +53,7 @@ In the log configuration options, specify the log group name and the Region it e
 					"log_key": "log",
                                  "log_group_name": "/aws/ecs/containerinsights/$(ecs_cluster)/application",
 					"auto_create_group": "true",
-					"log_stream_prefix": "$(ecs_task_id)"
+					"log_stream_prefix": "log_stream_name"
 				}
 			},
 			"memoryReservation": 100
