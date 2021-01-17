@@ -499,7 +499,7 @@ The following shows an example output for an initial deployment starting\.
    "region": "us-west-2",
    "resources": [ 
         "arn:aws:ecs:us-west-2:111122223333:service/default/servicetest"
-   ]
+   ],
    "detail": {
         "eventType": "INFO", 
         "eventName": "SERVICE_DEPLOYMENT_IN_PROGRESS",
@@ -522,7 +522,7 @@ The following shows an example output for a rollback deployment starting\. The `
    "region": "us-west-2",
    "resources": [ 
         "arn:aws:ecs:us-west-2:111122223333:service/default/servicetest"
-   ]
+   ],
    "detail": {
         "eventType": "INFO", 
         "eventName": "SERVICE_DEPLOYMENT_IN_PROGRESS",
@@ -547,7 +547,7 @@ Service deployment completed state events are delivered in the following format\
    "region": "us-west-2",
    "resources": [ 
         "arn:aws:ecs:us-west-2:111122223333:service/default/servicetest"
-   ]
+   ],
    "detail": {
         "eventType": "INFO", 
         "eventName": "SERVICE_DEPLOYMENT_COMPLETED",
@@ -572,7 +572,7 @@ Service deployment failed state events are delivered in the following format\. A
    "region": "us-west-2",
    "resources": [ 
         "arn:aws:ecs:us-west-2:111122223333:service/default/servicetest"
-   ]
+   ],
    "detail": {
         "eventType": "ERROR", 
         "eventName": "SERVICE_DEPLOYMENT_FAILED",
