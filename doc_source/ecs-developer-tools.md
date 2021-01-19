@@ -1,14 +1,14 @@
 # Amazon ECS developer tools overview<a name="ecs-developer-tools"></a>
 
-Whether you are part of a large enterprise or a startup, Amazon ECS offers a variety of tools that can help you to get your containers up and running quickly, regardless of your level of expertise\. You can work with ECS in the following ways\.
+Whether you are part of a large enterprise or a startup, Amazon ECS offers a variety of tools that can help you to get your containers up and running quickly, regardless of your level of expertise\. You can work with Amazon ECS in the following ways\.
 + Learn about, develop, manage and visualize your container applications and services using the [AWS Management Console](#developer-tools-console)\.
-+ Perform specific actions to ECS resources with automated deployments through programming or scripts using the [AWS Command Line Interface](#developer-tools-awscli), [AWS SDKs](#developer-tools-sdks) or the ECS API\.
++ Perform specific actions to Amazon ECS resources with automated deployments through programming or scripts using the [AWS Command Line Interface](#developer-tools-awscli), [AWS SDKs](#developer-tools-sdks) or the ECS API\.
 + Define and manage all AWS resources in your environment with automated deployment using [AWS CloudFormation](#developer-tools-cfn)\.
 + Use the complete [AWS Copilot CLI](#developer-tools-copilot) end\-to\-end developer workflow to create, release, and operate container applications that comply with AWS best practices for infrastructure\.
 + Using your preferred programming language, define infrastructure or architecture as code with the [AWS CDK](#developer-tools-cdk)\.
-+ Containerize applications that are hosted on premises or on EC2 instances or both by using the [AWS App2Container](#developer-tools-a2c) integrated portability and tooling ecosystem for containers\.
-+ Deploy a Docker Compose application to ECS or test local containers with containers running in ECS, using the [Amazon ECS CLI](#developer-tools-ecscli)\.
-+ Launch containers from [Docker Desktop integration with Amazon ECS](#developer-tools-dockercli) using ECS in Docker Desktop\.
++ Containerize applications that are hosted on premises or on Amazon EC2 instances or both by using the [AWS App2Container](#developer-tools-a2c) integrated portability and tooling ecosystem for containers\.
++ Deploy a Docker Compose application to Amazon ECS or test local containers with containers running in ECS, using the [Amazon ECS CLI](#developer-tools-ecscli)\.
++ Launch containers from [Docker Desktop integration with Amazon ECS](#developer-tools-dockercli) using Amazon ECS in Docker Desktop\.
 
 ## AWS Management Console<a name="developer-tools-console"></a>
 
@@ -16,7 +16,7 @@ The AWS Management Console is a browser\-based interface for managing Amazon ECS
 
 For a tutorial that guides you through the console, see [Getting started with Amazon ECS](getting-started.md)\.
 
-When starting out, many customers prefer using the console because it provides instant visual feedback on whether the actions they take succeed\. AWS customers that are familiar with the AWS Management Console, can easily manage related resources such as load balancers and EC2 instances\.
+When starting out, many customers prefer using the console because it provides instant visual feedback on whether the actions they take succeed\. AWS customers that are familiar with the AWS Management Console, can easily manage related resources such as load balancers and Amazon EC2 instances\.
 
 Start with the AWS Management Console\.
 
@@ -28,7 +28,7 @@ AWS provides two sets of command line tools: the [AWS Command Line Interface](ht
 
 The AWS CLI is suitable for customers who prefer and are used to scripting and interfacing with a command line tool and know exactly which actions they want to perform on their Amazon ECS resources\. The AWS CLI is also helpful to customers who want to familiarize themselves with the Amazon ECS APIs\. Customers can use the AWS CLI to perform a number of operations on Amazon ECS resources, including Create, Read, Update, and Delete operations, directly from the command line interface\.
 
-Use the AWS CLI if you are or want to become familiar with the Amazon ECS APIs and corresponding CLI commands and want to write automated scripts and perform specific actions on ECS resources\.
+Use the AWS CLI if you are or want to become familiar with the Amazon ECS APIs and corresponding CLI commands and want to write automated scripts and perform specific actions on Amazon ECS resources\.
 
 ## AWS CloudFormation<a name="developer-tools-cfn"></a>
 
@@ -56,7 +56,7 @@ Use the AWS CDK if you want to define infrastructure or architecture as code in 
 
 ## AWS App2Container<a name="developer-tools-a2c"></a>
 
-Sometimes enterprise customers might already have applications that are hosted on premises or on EC2 instances or both\. They are interested in the portability and tooling ecosystem of containers specifically on ECS, and need to containerize first\. AWS App2Container enables you to do just that\. App2Container \(A2C\) is a command line tool for modernizing \.NET and Java applications into containerized applications\. A2C analyzes and builds an inventory of all applications running in virtual machines, on premises or in the cloud\. After you select the application you want to containerize, A2C packages the application artifact and identified dependencies into container images\. It then configures the network ports and generates the ECS task\. Last, it creates a CloudFormation template that you can deploy or modify if needed\.
+Sometimes enterprise customers might already have applications that are hosted on premises or on EC2 instances or both\. They are interested in the portability and tooling ecosystem of containers specifically on Amazon ECS, and need to containerize first\. AWS App2Container enables you to do just that\. App2Container \(A2C\) is a command line tool for modernizing \.NET and Java applications into containerized applications\. A2C analyzes and builds an inventory of all applications running in virtual machines, on premises or in the cloud\. After you select the application you want to containerize, A2C packages the application artifact and identified dependencies into container images\. It then configures the network ports and generates the Amazon ECS task\. Last, it creates a CloudFormation template that you can deploy or modify if needed\.
 
 For more information, see [Getting started with AWS App2Container](https://docs.aws.amazon.com/app2container/latest/UserGuide/start-intro.html)\.
 
@@ -68,7 +68,7 @@ The Amazon ECS CLI enables you to run your applications on Amazon ECS and AWS Fa
 
 For more information, see [Using the Amazon ECS Command Line Interface](ECS_CLI.md)\.
 
-Use the ECS CLI if you have a Compose application and want to deploy it to ECS, or test local containers with containers running in ECS in the cloud\.
+Use the ECS CLI if you have a Compose application and want to deploy it to Amazon ECS, or test local containers with containers running in Amazon ECS in the cloud\.
 
 ## Docker Desktop integration with Amazon ECS<a name="developer-tools-dockercli"></a>
 
