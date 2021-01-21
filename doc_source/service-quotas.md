@@ -20,7 +20,7 @@ Most of these service quotas, but not all, are listed under the Amazon Elastic C
 |  Tasks launched \(`count`\) per run\-task  |  The maximum number of tasks that can be launched per `RunTask` API action\.  |  10  |  No  | 
 |  Container instances per start\-task  |  The maximum number of container instances specified in a `StartTask` API action\.  |  10  |  No  | 
 |  Revisions per task definition family  |  The maximum number of revisions per task definition family\. Deregistering a task definition revision does not exclude it from being included in this limit\.  |  1,000,000  |  No  | 
-|  Task definition size limit  |  The maximum size, in KiB, of a task definition\.  |  32  |  No  | 
+|  Task definition size limit  |  The maximum size, in KiB, of a task definition\.  |  64  |  No  | 
 |  Task definition max containers  |  The maximum number of containers definitions within a task definition\.  |  10  |  No  | 
 |  Subnets specified in an `awsvpcConfiguration`  |  The maximum number of subnets specified within an `awsvpcConfiguration`\.  |  16  |  No  | 
 |  Security groups specified in an `awsvpcConfiguration`  |  The maximum number of security groups specified within an `awsvpcConfiguration`\.  |  5  |  No  | 
