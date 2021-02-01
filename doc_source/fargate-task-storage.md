@@ -6,6 +6,9 @@ For Fargate tasks, the following storage types are supported:
 
 When provisioned, each Amazon ECS task on Fargate receives the following ephemeral storage\.
 
+**Note**  
+The `host` and `sourcePath` parameters are not supported for Fargate tasks\.
+
 ## Fargate tasks using platform version 1\.4\.0 or later<a name="fargate-task-storage-pv14"></a>
 
 For Amazon ECS on Fargate tasks using platform version 1\.4\.0 or later, each task receives 20 GB of ephemeral storage\. The amount of storage is not adjustable\.
@@ -17,8 +20,6 @@ For tasks using platform version 1\.4\.0 or later that are launched on May 28, 2
 For Amazon ECS on Fargate tasks using platform version 1\.3\.0 or earlier, each task receives the following ephemeral storage\.
 + 10 GB of Docker layer storage
 + An additional 4 GB for volume mounts\. This can be mounted and shared among containers using the `volumes`, `mountPoints` and `volumesFrom` parameters in the task definition\.
-**Note**  
-The `host` and `sourcePath` parameters are not supported for Fargate tasks\.
 
 ## Example task definition<a name="fargate-task-storage-example"></a>
 
