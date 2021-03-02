@@ -185,7 +185,7 @@ The following example demonstrates the syntax for a Docker container that uses a
 
 ## Example: Container dependency<a name="example_task_definition-containerdependency"></a>
 
-This example demonstrates the syntax for a task definition with multiple containers where container dependency is specified\. In the following task definition, the `envoy` container must reach a healthy status, determined by the required container healthcheck parameters, before the `app` container will start\. For more information, see [Container Dependency](task_definition_parameters.md#container_definition_dependson)\.
+This example demonstrates the syntax for a task definition with multiple containers where container dependency is specified\. In the following task definition, the `envoy` container must reach a healthy status, determined by the required container healthcheck parameters, before the `app` container will start\. For more information, see [Container dependency](task_definition_parameters.md#container_definition_dependson)\.
 
 ```
 {

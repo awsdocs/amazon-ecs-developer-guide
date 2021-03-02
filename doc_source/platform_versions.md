@@ -8,7 +8,7 @@ New platform versions are released as the runtime environment evolves, for examp
 + [Platform version considerations](#platform-version-considerations)
 + [Available AWS Fargate platform versions](#available_pv)
 + [Migrating to platform version 1\.4\.0](#platform-version-migration)
-+ [AWS Fargate platform versions scheduled for deprecation](platform-versions-retired.md)
++ [AWS Fargate platform version deprecation](platform-versions-retired.md)
 
 ## Platform version considerations<a name="platform-version-considerations"></a>
 
@@ -20,7 +20,7 @@ The following should be considered when specifying a platform version:
 
 ## Available AWS Fargate platform versions<a name="available_pv"></a>
 
-The following are the available platform versions\. For information about platform version deprecation, see [AWS Fargate platform versions scheduled for deprecation](platform-versions-retired.md)\.
+The following are the available platform versions\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
 
 ### 1\.4\.0<a name="platform-version-1-4"></a>
 
@@ -47,7 +47,7 @@ The following is the changelog for platform version `1.4.0`\.
 The following is the changelog for platform version `1.3.0`\.
 + Beginning on Sept 30, 2019, any new Fargate task that is launched supports the `awsfirelens` log driver\. FireLens for Amazon ECS enables you to use task definition parameters to route logs to an AWS service or AWS Partner Network \(APN\) destination for log storage and analytics\. For more information, see [Custom log routing](using_firelens.md)\.
 + Added task recycling for Fargate tasks, which is the process of refreshing tasks that are a part of an Amazon ECS service\. For more information, see [Fargate task recycling](task-recycle.md)\.
-+ Beginning on March 27, 2019, any new Fargate task that is launched can use additional task definition parameters that enable you to define a proxy configuration, dependencies for container startup and shutdown as well as a per\-container start and stop timeout value\. For more information, see [Proxy configuration](task_definition_parameters.md#proxyConfiguration), [Container Dependency](task_definition_parameters.md#container_definition_dependson), and [Container Timeouts](task_definition_parameters.md#container_definition_timeout)\.
++ Beginning on March 27, 2019, any new Fargate task that is launched can use additional task definition parameters that enable you to define a proxy configuration, dependencies for container startup and shutdown as well as a per\-container start and stop timeout value\. For more information, see [Proxy configuration](task_definition_parameters.md#proxyConfiguration), [Container dependency](task_definition_parameters.md#container_definition_dependson), and [Container timeouts](task_definition_parameters.md#container_definition_timeout)\.
 + Beginning on April 2, 2019, any new Fargate task that is launched supports injecting sensitive data into your containers by storing your sensitive data in either AWS Secrets Manager secrets or AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.
 + Beginning on May 1, 2019, any new Fargate task that is launched supports referencing sensitive data in the log configuration of a container using the `secretOptions` container definition parameter\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.
 + Beginning on May 1, 2019, any new Fargate task that is launched supports the `splunk` log driver in addition to the `awslogs` log driver\. For more information, see [Storage and Logging](task_definition_parameters.md#container_definition_storage)\.
@@ -59,7 +59,7 @@ The following is the changelog for platform version `1.3.0`\.
 The following is the changelog for platform version `1.2.0`\.
 
 **Note**  
-Platform version `1.2.0` is scheduled for deprecation\. We recommend migrating to the latest platform version\. For information about platform version deprecation, see [AWS Fargate platform versions scheduled for deprecation](platform-versions-retired.md)\.
+Platform version `1.2.0` is scheduled for deprecation\. We recommend migrating to the latest platform version\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
 + Added support for private registry authentication using AWS Secrets Manager\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
 
 ### 1\.1\.0<a name="platform-version-1-1"></a>
@@ -67,7 +67,7 @@ Platform version `1.2.0` is scheduled for deprecation\. We recommend migrating t
 The following is the changelog for platform version `1.1.0`\.
 
 **Note**  
-Platform version `1.1.0` is scheduled for deprecation\. We recommend migrating to the latest platform version\. For information about platform version deprecation, see [AWS Fargate platform versions scheduled for deprecation](platform-versions-retired.md)\.
+Platform version `1.1.0` is scheduled for deprecation\. We recommend migrating to the latest platform version\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
 + Added support for the Amazon ECS task metadata endpoint\. For more information, see [Amazon ECS Task metadata endpoint](task-metadata-endpoint.md)\.
 + Added support for Docker health checks in container definitions\. For more information, see [Health Check](task_definition_parameters.md#container_definition_healthcheck)\.
 + Added support for Amazon ECS service discovery\. For more information, see [Service Discovery](service-discovery.md)\.
@@ -77,7 +77,7 @@ Platform version `1.1.0` is scheduled for deprecation\. We recommend migrating t
 The following is the changelog for platform version `1.0.0`\.
 
 **Note**  
-Platform version `1.0.0` is scheduled for deprecation\. We recommend migrating to the latest platform version\. For information about platform version deprecation, see [AWS Fargate platform versions scheduled for deprecation](platform-versions-retired.md)\.
+Platform version `1.0.0` is scheduled for deprecation\. We recommend migrating to the latest platform version\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
 + Based on Amazon Linux 2017\.09\.
 + Initial release\.
 

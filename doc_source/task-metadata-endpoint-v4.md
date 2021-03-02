@@ -1,7 +1,7 @@
 # Task metadata endpoint version 4<a name="task-metadata-endpoint-v4"></a>
 
 **Important**  
-If you are using Amazon ECS tasks hosted on AWS Fargate, see [Task metadata endpoint version 4](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-metadata-endpoint=v4-fargate.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
+If you are using Amazon ECS tasks hosted on AWS Fargate, see [Task metadata endpoint version 4](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-metadata-endpoint-v4-fargate.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
 The Amazon ECS container agent injects an environment variable into each container, referred to as the *task metadata endpoint* which provides various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) to the container\.
 
@@ -26,6 +26,10 @@ This path returns metadata for the container\.
 
 `${ECS_CONTAINER_METADATA_URI_V4}/task`  
 This path returns metadata for the task, including a list of the container IDs and names for all of the containers associated with the task\. For more information about the response for this endpoint, see [Task metadata JSON response](#task-metadata-endpoint-v4-response)\.
+
+`${ECS_CONTAINER_METADATA_URI_V4}/taskWithTags`  
+This path returns the metadata for the task included in the `/task` endpoint in addition to the task and container instance tags that can be retrieved using the `ListTagsForResource` API\. Any errors received when retrieving the tag metadata will be included in the `Errors` field in the response\.  
+The `Errors` field is only in the response for tasks hosted on Amazon EC2 instances running at least version `1.50.0` of the container agent\.
 
 `${ECS_CONTAINER_METADATA_URI_V4}/stats`  
 This path returns Docker stats for the specific container\. For more information about each of the returned stats, see [ContainerStats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) in the Docker API documentation\.  
@@ -191,6 +195,232 @@ When querying the `${ECS_CONTAINER_METADATA_URI_V4}/task` endpoint you are retur
     "PullStartedAt": "2020-10-02T00:43:06.202617438Z",
     "PullStoppedAt": "2020-10-02T00:43:06.31288465Z",
     "AvailabilityZone": "us-west-2d",
+    "LaunchType": "EC2",
+    "Containers": [
+        {
+            "DockerId": "598cba581fe3f939459eaba1e071d5c93bb2c49b7d1ba7db6bb19deeb70d8e38",
+            "Name": "~internal~ecs~pause",
+            "DockerName": "ecs-curltest-26-internalecspause-e292d586b6f9dade4a00",
+            "Image": "amazon/amazon-ecs-pause:0.1.0",
+            "ImageID": "",
+            "Labels": {
+                "com.amazonaws.ecs.cluster": "default",
+                "com.amazonaws.ecs.container-name": "~internal~ecs~pause",
+                "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:111122223333:task/default/158d1c8083dd49d6b527399fd6414f5c",
+                "com.amazonaws.ecs.task-definition-family": "curltest",
+                "com.amazonaws.ecs.task-definition-version": "26"
+            },
+            "DesiredStatus": "RESOURCES_PROVISIONED",
+            "KnownStatus": "RESOURCES_PROVISIONED",
+            "Limits": {
+                "CPU": 0,
+                "Memory": 0
+            },
+            "CreatedAt": "2020-10-02T00:43:05.602352471Z",
+            "StartedAt": "2020-10-02T00:43:06.076707576Z",
+            "Type": "CNI_PAUSE",
+            "Networks": [
+                {
+                    "NetworkMode": "awsvpc",
+                    "IPv4Addresses": [
+                        "10.0.2.61"
+                    ],
+                    "AttachmentIndex": 0,
+                    "MACAddress": "0e:10:e2:01:bd:91",
+                    "IPv4SubnetCIDRBlock": "10.0.2.0/24",
+                    "PrivateDNSName": "ip-10-0-2-61.us-west-2.compute.internal",
+                    "SubnetGatewayIpv4Address": "10.0.2.1/24"
+                }
+            ]
+        },
+        {
+            "DockerId": "ee08638adaaf009d78c248913f629e38299471d45fe7dc944d1039077e3424ca",
+            "Name": "curl",
+            "DockerName": "ecs-curltest-26-curl-a0e7dba5aca6d8cb2e00",
+            "Image": "111122223333.dkr.ecr.us-west-2.amazonaws.com/curltest:latest",
+            "ImageID": "sha256:d691691e9652791a60114e67b365688d20d19940dde7c4736ea30e660d8d3553",
+            "Labels": {
+                "com.amazonaws.ecs.cluster": "default",
+                "com.amazonaws.ecs.container-name": "curl",
+                "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:111122223333:task/default/158d1c8083dd49d6b527399fd6414f5c",
+                "com.amazonaws.ecs.task-definition-family": "curltest",
+                "com.amazonaws.ecs.task-definition-version": "26"
+            },
+            "DesiredStatus": "RUNNING",
+            "KnownStatus": "RUNNING",
+            "Limits": {
+                "CPU": 10,
+                "Memory": 128
+            },
+            "CreatedAt": "2020-10-02T00:43:06.326590752Z",
+            "StartedAt": "2020-10-02T00:43:06.767535449Z",
+            "Type": "NORMAL",
+            "LogDriver": "awslogs",
+            "LogOptions": {
+                "awslogs-create-group": "true",
+                "awslogs-group": "/ecs/metadata",
+                "awslogs-region": "us-west-2",
+                "awslogs-stream": "ecs/curl/158d1c8083dd49d6b527399fd6414f5c"
+            },
+            "ContainerARN": "arn:aws:ecs:us-west-2:111122223333:container/abb51bdd-11b4-467f-8f6c-adcfe1fe059d",
+            "Networks": [
+                {
+                    "NetworkMode": "awsvpc",
+                    "IPv4Addresses": [
+                        "10.0.2.61"
+                    ],
+                    "AttachmentIndex": 0,
+                    "MACAddress": "0e:10:e2:01:bd:91",
+                    "IPv4SubnetCIDRBlock": "10.0.2.0/24",
+                    "PrivateDNSName": "ip-10-0-2-61.us-west-2.compute.internal",
+                    "SubnetGatewayIpv4Address": "10.0.2.1/24"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### Example task with tags metadata response<a name="task-metadata-endpoint-v4-example-taskwithtags-metadata-response"></a>
+
+When querying the `${ECS_CONTAINER_METADATA_URI_V4}/taskWithTags` endpoint you are returned metadata about the task, including the task and container instance tags\. The following is an example output\.
+
+```
+{
+    "Cluster": "default",
+    "TaskARN": "arn:aws:ecs:us-west-2:111122223333:task/default/158d1c8083dd49d6b527399fd6414f5c",
+    "Family": "curltest",
+    "Revision": "26",
+    "DesiredStatus": "RUNNING",
+    "KnownStatus": "RUNNING",
+    "PullStartedAt": "2020-10-02T00:43:06.202617438Z",
+    "PullStoppedAt": "2020-10-02T00:43:06.31288465Z",
+    "AvailabilityZone": "us-west-2d",
+    "TaskTags": {
+        "tag-use": "task-metadata-endpoint-test"
+    },
+    "ContainerInstanceTags":{
+        "tag_key":"tag_value"
+    },
+    "LaunchType": "EC2",
+    "Containers": [
+        {
+            "DockerId": "598cba581fe3f939459eaba1e071d5c93bb2c49b7d1ba7db6bb19deeb70d8e38",
+            "Name": "~internal~ecs~pause",
+            "DockerName": "ecs-curltest-26-internalecspause-e292d586b6f9dade4a00",
+            "Image": "amazon/amazon-ecs-pause:0.1.0",
+            "ImageID": "",
+            "Labels": {
+                "com.amazonaws.ecs.cluster": "default",
+                "com.amazonaws.ecs.container-name": "~internal~ecs~pause",
+                "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:111122223333:task/default/158d1c8083dd49d6b527399fd6414f5c",
+                "com.amazonaws.ecs.task-definition-family": "curltest",
+                "com.amazonaws.ecs.task-definition-version": "26"
+            },
+            "DesiredStatus": "RESOURCES_PROVISIONED",
+            "KnownStatus": "RESOURCES_PROVISIONED",
+            "Limits": {
+                "CPU": 0,
+                "Memory": 0
+            },
+            "CreatedAt": "2020-10-02T00:43:05.602352471Z",
+            "StartedAt": "2020-10-02T00:43:06.076707576Z",
+            "Type": "CNI_PAUSE",
+            "Networks": [
+                {
+                    "NetworkMode": "awsvpc",
+                    "IPv4Addresses": [
+                        "10.0.2.61"
+                    ],
+                    "AttachmentIndex": 0,
+                    "MACAddress": "0e:10:e2:01:bd:91",
+                    "IPv4SubnetCIDRBlock": "10.0.2.0/24",
+                    "PrivateDNSName": "ip-10-0-2-61.us-west-2.compute.internal",
+                    "SubnetGatewayIpv4Address": "10.0.2.1/24"
+                }
+            ]
+        },
+        {
+            "DockerId": "ee08638adaaf009d78c248913f629e38299471d45fe7dc944d1039077e3424ca",
+            "Name": "curl",
+            "DockerName": "ecs-curltest-26-curl-a0e7dba5aca6d8cb2e00",
+            "Image": "111122223333.dkr.ecr.us-west-2.amazonaws.com/curltest:latest",
+            "ImageID": "sha256:d691691e9652791a60114e67b365688d20d19940dde7c4736ea30e660d8d3553",
+            "Labels": {
+                "com.amazonaws.ecs.cluster": "default",
+                "com.amazonaws.ecs.container-name": "curl",
+                "com.amazonaws.ecs.task-arn": "arn:aws:ecs:us-west-2:111122223333:task/default/158d1c8083dd49d6b527399fd6414f5c",
+                "com.amazonaws.ecs.task-definition-family": "curltest",
+                "com.amazonaws.ecs.task-definition-version": "26"
+            },
+            "DesiredStatus": "RUNNING",
+            "KnownStatus": "RUNNING",
+            "Limits": {
+                "CPU": 10,
+                "Memory": 128
+            },
+            "CreatedAt": "2020-10-02T00:43:06.326590752Z",
+            "StartedAt": "2020-10-02T00:43:06.767535449Z",
+            "Type": "NORMAL",
+            "LogDriver": "awslogs",
+            "LogOptions": {
+                "awslogs-create-group": "true",
+                "awslogs-group": "/ecs/metadata",
+                "awslogs-region": "us-west-2",
+                "awslogs-stream": "ecs/curl/158d1c8083dd49d6b527399fd6414f5c"
+            },
+            "ContainerARN": "arn:aws:ecs:us-west-2:111122223333:container/abb51bdd-11b4-467f-8f6c-adcfe1fe059d",
+            "Networks": [
+                {
+                    "NetworkMode": "awsvpc",
+                    "IPv4Addresses": [
+                        "10.0.2.61"
+                    ],
+                    "AttachmentIndex": 0,
+                    "MACAddress": "0e:10:e2:01:bd:91",
+                    "IPv4SubnetCIDRBlock": "10.0.2.0/24",
+                    "PrivateDNSName": "ip-10-0-2-61.us-west-2.compute.internal",
+                    "SubnetGatewayIpv4Address": "10.0.2.1/24"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### Example task with tags with an error metadata response<a name="task-metadata-endpoint-v4-example-taskwithtags-error-metadata-response"></a>
+
+When querying the `${ECS_CONTAINER_METADATA_URI_V4}/taskWithTags` endpoint you are returned metadata about the task, including the task and container instance tags\. If there is an error retrieving the tagging data, the error is returned in the response\. The following is an example output for when the IAM role associated with the container instance doesn't have the `ecs:ListTagsForResource` permission allowed\.
+
+```
+{
+    "Cluster": "default",
+    "TaskARN": "arn:aws:ecs:us-west-2:111122223333:task/default/158d1c8083dd49d6b527399fd6414f5c",
+    "Family": "curltest",
+    "Revision": "26",
+    "DesiredStatus": "RUNNING",
+    "KnownStatus": "RUNNING",
+    "PullStartedAt": "2020-10-02T00:43:06.202617438Z",
+    "PullStoppedAt": "2020-10-02T00:43:06.31288465Z",
+    "AvailabilityZone": "us-west-2d",
+    "Errors": [
+        {
+            "ErrorField": "ContainerInstanceTags",
+            "ErrorCode": "AccessDeniedException",
+            "ErrorMessage": "User: arn:aws:sts::111122223333:assumed-role/ecsInstanceRole/i-0744a608689EXAMPLE is not authorized to perform: ecs:ListTagsForResource on resource: arn:aws:ecs:us-west-2:111122223333:container-instance/default/2dd1b186f39845a584488d2ef155c131",
+            "StatusCode": 400,
+            "RequestId": "cd597ef0-272b-4643-9bd2-1de469870fa6",
+            "ResourceARN": "arn:aws:ecs:us-west-2:111122223333:container-instance/default/2dd1b186f39845a584488d2ef155c131"
+        },
+        {
+            "ErrorField": "TaskTags",
+            "ErrorCode": "AccessDeniedException",
+            "ErrorMessage": "User: arn:aws:sts::111122223333:assumed-role/ecsInstanceRole/i-0744a608689EXAMPLE is not authorized to perform: ecs:ListTagsForResource on resource: arn:aws:ecs:us-west-2:111122223333:task/default/9ef30e4b7aa44d0db562749cff4983f3",
+            "StatusCode": 400,
+            "RequestId": "862c5986-6cd2-4aa6-87cc-70be395531e1",
+            "ResourceARN": "arn:aws:ecs:us-west-2:111122223333:task/default/9ef30e4b7aa44d0db562749cff4983f3"
+        }
+    ],
     "LaunchType": "EC2",
     "Containers": [
         {

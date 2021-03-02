@@ -1,5 +1,10 @@
 # Configuring the Amazon ECS CLI<a name="ECS_CLI_Configuration"></a>
 
+
+|  | 
+| --- |
+| Amazon ECS has released AWS Copilot, a command line interface \(CLI\) tool that simplifies building, releasing, and operating production\-ready containerized applications on Amazon ECS from a local development environment\. For more information, see [Using the AWS Copilot command line interface](AWS_Copilot.md)\. | 
+
 The Amazon ECS CLI requires some basic configuration information before you can use it, such as your AWS credentials, the AWS Region in which to create your cluster, and the name of the Amazon ECS cluster to use\. Configuration information is stored in the `~/.ecs` directory on macOS and Linux systems and in `C:\Users\<username>\AppData\local\ecs` on Windows systems\.
 
 **To configure the Amazon ECS CLI**

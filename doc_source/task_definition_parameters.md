@@ -163,7 +163,7 @@ The following advanced container definition parameters provide extended capabili
 + [Network Settings](#container_definition_network)
 + [Storage and Logging](#container_definition_storage)
 + [Security](#container_definition_security)
-+ [Resource Limits](#container_definition_limits)
++ [Resource limits](#container_definition_limits)
 + [Docker Labels](#container_definition_labels)
 
 #### Health Check<a name="container_definition_healthcheck"></a>
@@ -594,13 +594,13 @@ This parameter maps to `SecurityOpt` in the [Create a container](https://docs.do
 ```
 The Amazon ECS container agent running on a container instance must register with the `ECS_SELINUX_CAPABLE=true` or `ECS_APPARMOR_CAPABLE=true` environment variables before containers placed on that instance can use these security options\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 
-#### Resource Limits<a name="container_definition_limits"></a>
+#### Resource limits<a name="container_definition_limits"></a>
 
 `ulimits`  
 Type: object array  
 Required: no  
 A list of `ulimits` to set in the container\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-Fargate tasks use the default resource limit values with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096` for Fargate tasks\. These limits can be adjusted in a task definition if your tasks needs to handle a larger number of files\. For more information, see [Task resource limits](AWS_Fargate.md#fargate-resource-limits)\.  
+Amazon ECS tasks hosted on Fargate use the default resource limit values with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\. The maximum hard limit value of `1048576` can be specified in a task definition\. For more information, see [Task resource limits](AWS_Fargate.md#fargate-resource-limits)\.  
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 This parameter is not supported for Windows containers\.
 
@@ -647,8 +647,8 @@ The following container definition parameters are able to be used when registeri
 
 **Topics**
 + [Linux Parameters](#container_definition_linuxparameters)
-+ [Container Dependency](#container_definition_dependson)
-+ [Container Timeouts](#container_definition_timeout)
++ [Container dependency](#container_definition_dependson)
++ [Container timeouts](#container_definition_timeout)
 + [System Controls](#container_definition_systemcontrols)
 + [Interactive](#container_definition_interactive)
 + [Pseudo Terminal](#container_definition_pseudoterminal)
@@ -734,14 +734,15 @@ The maximum size \(in MiB\) of the tmpfs volume\.
 Type: Integer  
 Required: Yes
 
-#### Container Dependency<a name="container_definition_dependson"></a>
+#### Container dependency<a name="container_definition_dependson"></a>
 
 `dependsOn`  
 Type: Array of [ContainerDependency](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDependency.html) objects  
 Required: no  
 The dependencies defined for container startup and shutdown\. A container can contain multiple dependencies\. When a dependency is defined for container startup, for container shutdown it is reversed\. For an example, see [Example: Container dependency](example_task_definitions.md#example_task_definition-containerdependency)\.  
-For tasks using the EC2 launch type, the container instances require at least version 1\.26\.0 of the container agent to enable container dependencies\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version 1\.26\.0\-1 of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.  
-For tasks using the Fargate launch type, this parameter requires that the task or service uses platform version 1\.3\.0 or later\.  
+If a container does not meet a dependency constraint or times out before meeting the constraint, Amazon ECS doesn't progress dependent containers to their next state\.
+For Amazon ECS tasks hosted on Amazon EC2 instances, the instances require at least version `1.26.0` of the container agent to enable container dependencies\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version `1.26.0-1` of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.  
+For Amazon ECS tasks hosted on Fargate, this parameter requires that the task or service uses platform version `1.3.0` or later\.  
 
 ```
 "dependsOn": [
@@ -764,15 +765,16 @@ The dependency condition of the container\. The following are the available cond
 + `SUCCESS` – This condition is the same as `COMPLETE`, but it also requires that the container exits with a `zero` status\. This condition cannot be set on an essential container\.
 + `HEALTHY` – This condition validates that the dependent container passes its Docker healthcheck before permitting other containers to start\. This requires that the dependent container has health checks configured\. This condition is confirmed only at task startup\.
 
-#### Container Timeouts<a name="container_definition_timeout"></a>
+#### Container timeouts<a name="container_definition_timeout"></a>
 
 `startTimeout`  
 Type: Integer  
 Required: no  
 Example values: `120`  
-Time duration \(in seconds\) to wait before giving up on resolving dependencies for a container\. For example, you specify two containers in a task definition with containerA having a dependency on containerB reaching a `COMPLETE`, `SUCCESS`, or `HEALTHY` status\. If a `startTimeout` value is specified for containerB and it does not reach the desired status within that time then containerA will give up and not start\. This results in the task transitioning to a `STOPPED` state\.  
-For tasks using the Fargate launch type, this parameter requires that the task or service uses platform version 1\.3\.0 or later\. If this parameter is not specified, the default value of 3 minutes is used\.  
-For tasks using the EC2 launch type, if the `startTimeout` parameter is not specified, the value set for the Amazon ECS container agent configuration variable `ECS_CONTAINER_START_TIMEOUT` is used by default\. If neither the `startTimeout` parameter or the `ECS_CONTAINER_START_TIMEOUT` agent configuration variable are set, then the default values of 3 minutes for Linux containers and 8 minutes on Windows containers are used\. Your container instances require at least version 1\.26\.0 of the container agent to enable a container start timeout value\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version 1\.26\.0\-1 of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+Time duration \(in seconds\) to wait before giving up on resolving dependencies for a container\.  
+For example, you specify two containers in a task definition with `containerA` having a dependency on `containerB` reaching a `COMPLETE`, `SUCCESS`, or `HEALTHY` status\. If a `startTimeout` value is specified for `containerB` and it doesn't reach the desired status within that time then `containerA` will give up and not start\.  
+If a container does not meet a dependency constraint or times out before meeting the constraint, Amazon ECS doesn't progress dependent containers to their next state\.
+For Amazon ECS tasks hosted on Fargate, this parameter requires that the task or service uses platform version `1.3.0` or later\. If this parameter is not specified, the default value of `180` seconds is used\.
 
 `stopTimeout`  
 Type: Integer  

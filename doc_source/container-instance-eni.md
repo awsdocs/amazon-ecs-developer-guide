@@ -14,11 +14,13 @@ There are several things to consider when using the ENI trunking feature\.
 + Amazon EC2 instances in shared subnets are not supported\. They will fail to register to a cluster if they are used\.
 + Your Amazon ECS tasks must use the `awsvpc` network mode and the EC2 launch type\. Tasks using the Fargate launch type always received a dedicated ENI regardless of how many are launched, so this feature is not needed\.
 + Your Amazon ECS tasks must be launched in the same Amazon VPC as your container instance\. Your tasks will fail to start with an attribute error if they are not within the same VPC\.
-+ When launching a new container instance, the instance transitions to a `REGISTERING` status while the trunk elastic network interface is provisioned for the instance\. If the registration fails, the instance transitions to a `REGISTRATION_FAILED` status\. You can describe the container instance and see the reason for failure in the `statusReason` parameter\.
++ When launching a new container instance, the instance transitions to a `REGISTERING` status while the trunk elastic network interface is provisioned for the instance\. If the registration fails, the instance transitions to a `REGISTRATION_FAILED` status\. You can troubleshoot a failed registration by describing the container instance to view the `statusReason` field which describes the reason for the failure\. The container instance then can be manually deregistered or terminated\. Once the container instance is successfully deregistered or terminated, Amazon ECS will delete the trunk ENI\.
+**Note**  
+Amazon ECS emits container instance state change events which you can monitor for instances that transition to a `REGISTRATION_FAILED` state\. For more information, see [Container instance state change events](ecs_cwe_events.md#ecs_container_instance_events)\.
 + Once the container instance is terminated, the instance transitions to a `DEREGISTERING` status while the trunk elastic network interface is deprovisioned\. The instance then transitions to an `INACTIVE` status\.
 + If a container instance in a public subnet with the increased ENI limits is stopped and then restarted, the instance loses its public IP address, and the container agent loses its connection\.
 
-## Working With container instances with increased ENI limits<a name="eni-trunking-launching"></a>
+## Working with container instances with increased ENI limits<a name="eni-trunking-launching"></a>
 
 Before you launch a container instance with the increased ENI limits, the following prerequisites must be completed\.
 + The service\-linked role for Amazon ECS must be created\. The Amazon ECS service\-linked role provides Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster, or if you create or update a service in the AWS Management Console\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command\.

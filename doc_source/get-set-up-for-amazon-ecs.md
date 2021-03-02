@@ -1,11 +1,8 @@
 # Setting up with Amazon ECS<a name="get-set-up-for-amazon-ecs"></a>
 
-If you've already signed up for Amazon Web Services \(AWS\) and have been using Amazon Elastic Compute Cloud \(Amazon EC2\), you are close to being able to use Amazon ECS\. The set\-up process for the two services is similar\. The following guide prepares you for launching your first cluster using either the Amazon ECS first\-run wizard or the Amazon ECS Command Line Interface \(CLI\)\.
+If you've already signed up for Amazon Web Services \(AWS\) and have been using Amazon Elastic Compute Cloud \(Amazon EC2\), you are close to being able to use Amazon ECS\. The set\-up process for the two services is similar\. The following guide prepares you for launching your first Amazon ECS cluster\.
 
-**Note**  
-Because Amazon ECS uses many components of Amazon EC2, you use the Amazon EC2 console for many of these steps\.
-
-Complete the following tasks to get set up for Amazon ECS\. If you have already completed any of these steps, you may skip them and move on to installing the custom AWS CLI\.
+Complete the following tasks to get set up for Amazon ECS\.
 
 ## Sign up for AWS<a name="sign-up-for-aws"></a>
 

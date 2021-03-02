@@ -66,7 +66,7 @@ Use App2Container if you have applications that are hosted on premises or on Ama
 
 The Amazon ECS CLI enables you to run your applications on Amazon ECS and AWS Fargate using the Docker Compose file format\. You can quickly provision resources, push and pull images using [Amazon ECR](https://docs.aws.amazon.com/ecr), and monitor running applications on Amazon ECS or AWS Fargate\. You can also test containers running locally along with containers in the cloud within the CLI\.
 
-For more information, see [Using the Amazon ECS Command Line Interface](ECS_CLI.md)\.
+For more information, see [Using the Amazon ECS command line interface](ECS_CLI.md)\.
 
 Use the ECS CLI if you have a Compose application and want to deploy it to Amazon ECS, or test local containers with containers running in Amazon ECS in the cloud\.
 

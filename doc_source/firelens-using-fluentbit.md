@@ -2,30 +2,63 @@
 
 AWS provides a Fluent Bit image with plugins for both CloudWatch Logs and Kinesis Data Firehose\. We recommend using Fluent Bit as your log router because it has a lower resource utilization rate than Fluentd\. For more information, see [CloudWatch Logs for Fluent Bit](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit) and [Amazon Kinesis Firehose for Fluent Bit](https://github.com/aws/amazon-kinesis-firehose-for-fluent-bit)\.
 
-The **AWS for Fluent Bit** image is available on [Docker Hub](https://hub.docker.com/r/amazon/aws-for-fluent-bit)\. However, we recommend that you use the following images in Amazon ECR because they provide higher availability\.
+The **AWS for Fluent Bit** image is available on Amazon ECR on both the Amazon ECR Public Gallery and in an Amazon ECR repository in most Regions for high availability, and on Docker Hub\.
 
+## Amazon ECR Public Gallery<a name="firelens-image-ecrpublic"></a>
 
-| Region Name | Region | Image URI | 
-| --- | --- | --- | 
-|  US East \(N\. Virginia\)  |  us\-east\-1  |  `906394416424.dkr.ecr.us-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  US East \(Ohio\)  |  us\-east\-2  |  `906394416424.dkr.ecr.us-east-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  US West \(N\. California\)  |  us\-west\-1  |  `906394416424.dkr.ecr.us-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  US West \(Oregon\)  |  us\-west\-2  |  `906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  |  `449074385750.dkr.ecr.ap-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Mumbai\)  |  ap\-south\-1  |  `906394416424.dkr.ecr.ap-south-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  |  `906394416424.dkr.ecr.ap-northeast-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  |  `906394416424.dkr.ecr.ap-southeast-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  |  `906394416424.dkr.ecr.ap-southeast-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1  |  `906394416424.dkr.ecr.ap-northeast-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Canada \(Central\)  |  ca\-central\-1  |  `906394416424.dkr.ecr.ca-central-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Europe \(Frankfurt\)  |  eu\-central\-1  |  `906394416424.dkr.ecr.eu-central-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Europe \(Ireland\)  |  eu\-west\-1  |  `906394416424.dkr.ecr.eu-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Europe \(London\)  |  eu\-west\-2  |  `906394416424.dkr.ecr.eu-west-2.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Europe \(Paris\)  |  eu\-west\-3  |  `906394416424.dkr.ecr.eu-west-3.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Europe \(Stockholm\)  |  eu\-north\-1  |  `906394416424.dkr.ecr.eu-north-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  Middle East \(Bahrain\)  |  me\-south\-1  |  `741863432321.dkr.ecr.me-south-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  South America \(São Paulo\)  |  sa\-east\-1  |  `906394416424.dkr.ecr.sa-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  |  `161423150738.dkr.ecr.us-gov-east-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  |  `161423150738.dkr.ecr.us-gov-west-1.amazonaws.com/aws-for-fluent-bit:latest`  | 
-|  China \(Beijing\)  |  cn\-north\-1  |  `128054284489.dkr.ecr.cn-north-1.amazonaws.com.cn/aws-for-fluent-bit:latest`  | 
-|  China \(Ningxia\)  |  cn\-northwest\-1  |  `128054284489.dkr.ecr.cn-northwest-1.amazonaws.com.cn/aws-for-fluent-bit:latest`  | 
+The AWS for Fluent Bit image is available on the Amazon ECR Public Gallery\. This is the recommended location to download the AWS for Fluent Bit image as it is a public repository and available to be used from all AWS Regions\. For more details, see [aws\-for\-fluent\-bit](https://gallery.ecr.aws/aws-observability/aws-for-fluent-bit) on the Amazon ECR Public Gallery\.
+
+You can pull the AWS for Fluent Bit image from the Amazon ECR Public Gallery by specifying the repository URL with the desired image tag\. The available image tags can be found on the **Image tags** tab on the Amazon ECR Public Gallery\.
+
+The following shows the syntax to use for the Docker CLI\.
+
+```
+docker pull public.ecr.aws/aws-observability/aws-for-fluent-bit:tag
+```
+
+For example, you can pull the latest AWS for Fluent Bit image using this Docker CLI command:
+
+```
+docker pull public.ecr.aws/aws-observability/aws-for-fluent-bit:latest
+```
+
+**Note**  
+Unauthenticated pulls are allowed, but have a lower rate limit than authenticated pulls\. To authenticate using your AWS account before pulling, use the following command:  
+
+```
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+```
+
+## Amazon ECR<a name="firelens-image-ecr"></a>
+
+The AWS for Fluent Bit image is available on Amazon ECR for high availability\. These images are available in most AWS Regions, including AWS GovCloud \(US\)\.
+
+The latest AWS for Fluent Bit image URI can be retrieved using the following command\.
+
+```
+aws ssm get-parameters \
+      --names /aws/service/aws-for-fluent-bit/latest \
+      --region us-east-1
+```
+
+All versions of the AWS for Fluent Bit image can be listed using the following command to query the Systems Manager Parameter Store parameter\.
+
+```
+aws ssm get-parameters-by-path \
+      --path /aws/service/aws-for-fluent-bit \
+      --region us-east-1
+```
+
+The latest AWS for Fluent Bit image can be referenced in an AWS CloudFormation template by referencing the Systems Manager parameter store name\. The following is an example:
+
+```
+Parameters:
+  FireLensImage:
+    Description: Fluent Bit image for the FireLens Container
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /aws/service/aws-for-fluent-bit/latest
+```
+
+## Dockerhub<a name="firelens-image-dockerhub"></a>
+
+The AWS for Fluent Bit image is available on Docker Hub\. For more details, see [AWS for Fluent Bit on Docker Hub](https://hub.docker.com/r/amazon/aws-for-fluent-bit)\.

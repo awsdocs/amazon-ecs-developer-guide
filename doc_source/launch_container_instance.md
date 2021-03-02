@@ -19,6 +19,8 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 For more information about Amazon ECS\-specific CoreOS installation instructions, see [Running CoreOS Container Linux with AWS EC2 Container Service](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
       For more information on the latest Amazon ECS\-optimized AMIs, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+**Important**  
+The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on March 31, 2021\. After March 31, 2021, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.
 

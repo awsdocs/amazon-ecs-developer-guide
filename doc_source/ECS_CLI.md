@@ -1,4 +1,9 @@
-# Using the Amazon ECS Command Line Interface<a name="ECS_CLI"></a>
+# Using the Amazon ECS command line interface<a name="ECS_CLI"></a>
+
+
+|  | 
+| --- |
+| Amazon ECS has released AWS Copilot, a command line interface \(CLI\) tool that simplifies building, releasing, and operating production\-ready containerized applications on Amazon ECS from a local development environment\. For more information, see [Using the AWS Copilot command line interface](AWS_Copilot.md)\. | 
 
 The Amazon Elastic Container Service \(Amazon ECS\) command line interface \(CLI\) provides high\-level commands to simplify creating, updating, and monitoring clusters and tasks from a local development environment\. The Amazon ECS CLI supports Docker Compose files, a popular open\-source specification for defining and running multi\-container applications\. Use the ECS CLI as part of your everyday development and testing cycle as an alternative to the AWS Management Console\.
 

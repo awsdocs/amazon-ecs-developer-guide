@@ -24,6 +24,9 @@ The following are the types of data volumes that can be used:
 **Note**  
 Before the release of the Amazon ECS\-optimized AMI version 2017\.03\.a, only file systems that were available when the Docker daemon was started are available to Docker containers\. You can use the latest Amazon ECS\-optimized AMI to avoid this limitation, or you can upgrade the `docker` package to the latest version and restart Docker\.
 
+**Note**  
+The `host` and `sourcePath` parameters are not supported for Fargate tasks\.
+
 **Topics**
 + [Fargate Task Storage](fargate-task-storage.md)
 + [Docker volumes](docker-volumes.md)

@@ -11,6 +11,7 @@ Service discovery is available in the following AWS Regions:
 |  US East \(Ohio\)  |  us\-east\-2  | 
 |  US West \(N\. California\)  |  us\-west\-1  | 
 |  US West \(Oregon\)  |  us\-west\-2  | 
+|  Africa \(Cape Town\)  |  af\-south\-1  | 
 |  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  | 
 |  Asia Pacific \(Mumbai\)  |  ap\-south\-1  | 
 |  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1  | 
@@ -18,15 +19,18 @@ Service discovery is available in the following AWS Regions:
 |  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
 |  Canada \(Central\)  |  ca\-central\-1  | 
+|  China \(Beijing\)  |  cn\-north\-1  | 
+|  China \(Ningxia\)  |  cn\-northwest\-1  | 
 |  Europe \(Frankfurt\)  |  eu\-central\-1  | 
 |  Europe \(Ireland\)  |  eu\-west\-1  | 
 |  Europe \(London\)  |  eu\-west\-2  | 
 |  Europe \(Paris\)  |  eu\-west\-3  | 
+|  Europe \(Milan\)  |  eu\-south\-1  | 
 |  Europe \(Stockholm\)  |  eu\-north\-1  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  | 
 |  South America \(São Paulo\)  |  sa\-east\-1  | 
 
-## Service Discovery Concepts<a name="service-discovery-concepts"></a>
+## Service Discovery concepts<a name="service-discovery-concepts"></a>
 
 Service discovery consists of the following components:
 + **Service discovery namespace**: A logical group of service discovery services that share the same domain name, such as `example.com`\.
@@ -45,11 +49,12 @@ Service discovery consists of the following components:
     + **`ECS_TASK_SET_EXTERNAL_ID`** – If a task set is created for an external deployment and is associated with a service discovery registry, then the `ECS_TASK_SET_EXTERNAL_ID` attribute will contain the external ID of the task set\.
 + **Amazon ECS health checks**: Amazon ECS performs periodic container\-level health checks\. If an endpoint does not pass the health check, it is removed from DNS routing and marked as unhealthy\.
 
-## Service Discovery Considerations<a name="service-discovery-considerations"></a>
+## Service discovery considerations<a name="service-discovery-considerations"></a>
 
 The following should be considered when using service discovery:
-+ Service discovery is supported for tasks using the Fargate launch type if they are using platform version v1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
-+ The Create Service workflow in the Amazon ECS console only supports registering services into private DNS namespaces\. When a AWS Cloud Map private DNS namespace is created, a Route 53 private hosted zone will be created automatically\.
++ Service discovery is supported for tasks on Fargate that use platform version 1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
++ Services configured to use service discovery have a limit of 1,000 tasks per service\. This is due to a Route 53 service quota\.
++ The Create Service workflow in the Amazon ECS console only supports registering services into private DNS namespaces\. When an AWS Cloud Map private DNS namespace is created, a Route 53 private hosted zone will be created automatically\.
 + The DNS records created for a service discovery service always register with the private IP address for the task, rather than the public IP address, even when public namespaces are used\.
 + Service discovery requires that tasks specify either the `awsvpc`, `bridge`, or `host` network mode \(`none` is not supported\)\.
 + If the task definition your service task specifies uses the `awsvpc` network mode, you can create any combination of A or SRV records for each service task\. If you use SRV records, a port is required\.
@@ -66,13 +71,13 @@ The following should be considered when using service discovery:
 + Service discovery can only be configured when first creating a service\. Updating existing services to configure service discovery for the first time or change the current configuration is not supported\.
 + The AWS Cloud Map resources created when service discovery is used must be cleaned up manually\. For more information, see [Step 4: Clean up](create-service-discovery.md#create-service-discovery-cleanup) in the [Tutorial: Creating a service using Service Discovery](create-service-discovery.md) topic\.
 
-## Amazon ECS Console Experience<a name="service-discovery-console"></a>
+## Amazon ECS console experience<a name="service-discovery-console"></a>
 
 The service creation workflow in the Amazon ECS console supports service discovery\. service discovery can only be configured when first creating a service\. Updating existing services to configure service discovery for the first time or change the current configuration is not supported\.
 
 To create a new Amazon ECS service that uses service discovery, see [Creating a service](create-service.md)\.
 
-## Service Discovery Pricing<a name="service-discovery-pricing"></a>
+## Service discovery pricing<a name="service-discovery-pricing"></a>
 
 Customers using Amazon ECS service discovery are charged for Route 53 resources and AWS Cloud Map discovery API operations\. This involves costs for creating the Route 53 hosted zones and queries to the service registry\. For more information, see [AWS Cloud Map Pricing](https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-pricing.html) in the *AWS Cloud Map Developer Guide*\.
 

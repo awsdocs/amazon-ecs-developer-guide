@@ -1,5 +1,10 @@
 # Installing the Amazon ECS CLI<a name="ECS_CLI_installation"></a>
 
+
+|  | 
+| --- |
+| Amazon ECS has released AWS Copilot, a command line interface \(CLI\) tool that simplifies building, releasing, and operating production\-ready containerized applications on Amazon ECS from a local development environment\. For more information, see [Using the AWS Copilot command line interface](AWS_Copilot.md)\. | 
+
 Follow these instructions to install the Amazon ECS CLI on your macOS, Linux, or Windows system\.
 
 ## Step 1: Download the Amazon ECS CLI<a name="ECS_CLI_install"></a>

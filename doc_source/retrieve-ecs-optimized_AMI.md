@@ -38,6 +38,8 @@ The following is the format of the parameter name for each Amazon ECS\-optimized
   ```
   /aws/service/ecs/optimized-ami/amazon-linux/<version>
   ```
+**Important**  
+The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on March 31, 2021\. After March 31, 2021, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 **Windows Amazon ECS\-optimized AMIs**
 + Windows Server 2019 Full AMI metadata:
@@ -61,7 +63,7 @@ The following is the format of the parameter name for each Amazon ECS\-optimized
   /aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized
   ```
 **Important**  
-The Amazon ECS\-optimized Windows Server 1909 Core AMI is being deprecated\. No new versions of this AMI will be released\.
+The Amazon ECS\-optimized Windows Server 1909 Core AMI has been deprecated\. No new versions of this AMI will be released\.
 + Windows Server 2016 Full AMI metadata:
 
   ```
@@ -145,6 +147,8 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   ```
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended --region us-east-1
   ```
+**Important**  
+The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on March 31, 2021\. After March 31, 2021, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 **Windows Amazon ECS\-optimized AMIs**
 + **For the Amazon ECS\-optimized Windows Server 2019 Full AMI:**
@@ -168,14 +172,14 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized --region us-east-1
   ```
 **Important**  
-The Amazon ECS\-optimized Windows Server 1909 Core AMI is being deprecated\. No new versions of this AMI will be released\.
+The Amazon ECS\-optimized Windows Server 1909 Core AMI has been deprecated\. No new versions of this AMI will be released\.
 + **For the Amazon ECS\-optimized Windows Server 2016 Full AMI:**
 
   ```
   aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2016-English-Full-ECS_Optimized --region us-east-1
   ```
 
-### Retrieving the metadata of a specific Amazon ECS\-optimized Amazon Linux AMI version<a name="ecs-optimized-ami-parameter-examples-2"></a>
+### Retrieving the metadata of a specific Amazon ECS\-optimized Amazon Linux 2 AMI version<a name="ecs-optimized-ami-parameter-examples-2"></a>
 
 Retrieve the metadata of a specific Amazon ECS\-optimized Amazon Linux AMI version using the AWS CLI with the following AWS CLI command\. Replace the AMI name with the name of the Amazon ECS\-optimized Amazon Linux AMI to retrieve\. For more information about the available versions, see [Amazon ECS\-optimized AMI versions](ecs-ami-versions.md)\.
 
@@ -207,12 +211,24 @@ aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/rec
 
 ### Using the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template<a name="ecs-optimized-ami-parameter-examples-5"></a>
 
-You can retrieve the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template by referencing the Systems Manager parameter store name; for example:
+You can reference the latest recommended Amazon ECS\-optimized AMI in an AWS CloudFormation template by referencing the Systems Manager parameter store name\.
+
+**Linux example**
 
 ```
 Parameters:
-  ECSAMI:
+  LatestECSOptimizedAMI:
     Description: AMI ID
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
     Default: /aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id
+```
+
+**Windows example**
+
+```
+Parameters:
+  LatestECSOptimizedAMI:
+    Description: AMI ID
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-windows-latest/Windows_Server-2019-English-Full-ECS_Optimized/image_id
 ```

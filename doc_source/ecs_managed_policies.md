@@ -227,7 +227,7 @@ This managed policy provides administrative access to Amazon ECS resources and e
 ## AmazonEC2ContainerServiceFullAccess<a name="AmazonEC2ContainerServiceFullAccess"></a>
 
 **Important**  
-The `AmazonEC2ContainerServiceFullAccess` managed IAM policy is being deprecated on January 29, 2020 in response to a security finding with the `iam:passRole` permission which grants access to all resources including credentials to roles in the account\. Once the policy is deprecated, you won't be able to attach the policy to any new IAM users or roles\. Any existing users or roles that have the policy attached will be able to continue using it, however we recommend updating your IAM users or roles to use the `AmazonECS_FullAccess` managed policy instead\.
+The `AmazonEC2ContainerServiceFullAccess` managed IAM policy is deprecated beginning on January 29, 2020 in response to a security finding with the `iam:passRole` permission which grants access to all resources including credentials to roles in the account\. Once the policy is deprecated, you won't be able to attach the policy to any new IAM users or roles\. Any existing users or roles that have the policy attached will be able to continue using it, however we recommend updating your IAM users or roles to use the `AmazonECS_FullAccess` managed policy instead\.
 
 This managed policy allows full administrator access to Amazon ECS\. 
 

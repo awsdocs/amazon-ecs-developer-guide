@@ -18,6 +18,7 @@ Amazon ECS on AWS Fargate is supported in the following Regions\. The supported 
 |  Africa \(Cape Town\)  |  af\-south\-1  | 
 |  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  | 
 |  Asia Pacific \(Mumbai\)  |  ap\-south\-1  | 
+|  Asia Pacific \(Osaka\)  |  ap\-northeast\-3  | 
 |  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
 |  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
@@ -91,7 +92,9 @@ Amazon ECS task definitions for Fargate require that you specify CPU and memory 
 
 Amazon ECS task definitions for Fargate support the `ulimits` parameter to define the resource limits to set for a container\.
 
-Fargate tasks use the default resource limit values with the exception of the `nofile` resource limit parameter, which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096` for Fargate tasks\. These limits can be adjusted in a task definition if your tasks needs to handle a larger number of files\. The following shows a snippet of a task definition where the `nofile` limit has been doubled:
+Amazon ECS tasks hosted on Fargate use the default resource limit values with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\. The maximum soft and hard limit value of `1048576` can be specified in a task definition\.
+
+The following is an example task definition snippet that shows how to define a custom `nofile` limit that has been doubled:
 
 ```
 "ulimits": [
@@ -103,7 +106,7 @@ Fargate tasks use the default resource limit values with the exception of the `n
 ]
 ```
 
-For more information on the other resource limits that can be adjusted, see [Resource Limits](task_definition_parameters.md#container_definition_limits)\.
+For more information on the other resource limits that can be adjusted, see [Resource limits](task_definition_parameters.md#container_definition_limits)\.
 
 ### Logging<a name="fargate-tasks-logging"></a>
 
@@ -185,9 +188,6 @@ For Fargate tasks, the following storage types are supported:
 
 When provisioned, each Amazon ECS task on Fargate receives the following ephemeral storage\.
 
-**Note**  
-The `host` and `sourcePath` parameters are not supported for Fargate tasks\.
-
 #### Fargate tasks using platform version 1\.4\.0 or later<a name="fargate-task-storage-pv14"></a>
 
 For Amazon ECS on Fargate tasks using platform version 1\.4\.0 or later, each task receives 20 GB of ephemeral storage\. The amount of storage is not adjustable\.
@@ -199,6 +199,8 @@ For tasks using platform version 1\.4\.0 or later that are launched on May 28, 2
 For Amazon ECS on Fargate tasks using platform version 1\.3\.0 or earlier, each task receives the following ephemeral storage\.
 + 10 GB of Docker layer storage
 + An additional 4 GB for volume mounts\. This can be mounted and shared among containers using the `volumes`, `mountPoints` and `volumesFrom` parameters in the task definition\.
+**Note**  
+The `host` and `sourcePath` parameters are not supported for Fargate tasks\.
 
 ## Tasks and services<a name="fargate-tasks-services"></a>
 

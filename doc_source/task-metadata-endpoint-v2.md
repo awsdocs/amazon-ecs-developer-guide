@@ -4,7 +4,7 @@ Beginning with version 1\.17\.0 of the Amazon ECS container agent, various task 
 
 All containers belonging to tasks that are launched with the `awsvpc` network mode receive a local IPv4 address within a predefined link\-local address range\. When a container queries the metadata endpoint, the Amazon ECS container agent can determine which task the container belongs to based on its unique IP address, and metadata and stats for that task are returned\.
 
-## Enabling Task Metadata<a name="task-metadata-endpoint-v2-enable"></a>
+## Enabling task metadata<a name="task-metadata-endpoint-v2-enable"></a>
 
 The task metadata version 2 feature is enabled by default for the following:
 + Tasks using the Fargate launch type that use platform version v1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
@@ -12,7 +12,7 @@ The task metadata version 2 feature is enabled by default for the following:
 
 You can add support for this feature on older container instances by updating the agent to the latest version\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
-## Task Metadata Endpoint Paths<a name="task-metadata-endpoint-v2-paths"></a>
+## Task metadata endpoint paths<a name="task-metadata-endpoint-v2-paths"></a>
 
 The following API endpoints are available to containers:
 
@@ -21,6 +21,9 @@ This endpoint returns metadata JSON for the task, including a list of the contai
 
 `169.254.170.2/v2/metadata/<container-id>`  
 This endpoint returns metadata JSON for the specified Docker container ID\.
+
+`169.254.170.2/v2/metadata/taskWithTags`  
+This path returns the metadata for the task included in the `/task` endpoint in addition to the task and container instance tags that can be retrieved using the `ListTagsForResource` API\. 
 
 `169.254.170.2/v2/stats`  
 This endpoint returns Docker stats JSON for all of the containers associated with the task\. For more information about each of the returned stats, see [ContainerStats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) in the Docker API documentation\. 
