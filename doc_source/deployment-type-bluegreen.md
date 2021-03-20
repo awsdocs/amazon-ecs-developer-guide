@@ -43,7 +43,6 @@ Consider the following when using the blue/green deployment type:
 + For services configured to use service auto scaling and the blue/green deployment type, auto scaling is not blocked during a deployment but the deployment may fail under some circumstances\. The following describes this behavior in more detail\.
   + If a service is scaling and a deployment starts, the green task set is created and CodeDeploy will wait up to an hour for the green task set to reach steady state and won't shift any traffic until it does\.
   + If a service is in the process of a blue/green deployment and a scaling event occurs, traffic will continue to shift for 5 minutes\. If the service doesn't reach steady state within 5 minutes, CodeDeploy will stop the deployment and mark it as failed\.
-+ Cluster capacity providers are not supported when using the blue/green deployment type\.
 + Tasks using the Fargate launch type or the `CODE_DEPLOY` deployment controller types don't support the `DAEMON` scheduling strategy\.
 + When you initially create a CodeDeploy application and deployment group, you must specify the following:
   + You must define two target groups for the load balancer\. One target group should be the initial target group defined for the load balancer when the Amazon ECS service was created\. The second target group's only requirement is that it can't be associated with a different load balancer than the one the service uses\.

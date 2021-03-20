@@ -14,13 +14,13 @@ You can launch an Amazon ECS container instance using the AWS Management Console
 
    1. Choose **Community AMIs**\.
 
-   1. Choose an AMI for your container instance\. You can choose an Amazon ECS\-optimized AMI, or another operating system, such as CoreOS or Ubuntu\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS Container Agent](ecs-agent-install.md)\.
+   1. Choose an AMI for your container instance\. You can choose an Amazon ECS\-optimized AMI, or another operating system, such as CoreOS or Ubuntu\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS container agent](ecs-agent-install.md)\.
 **Note**  
 For more information about Amazon ECS\-specific CoreOS installation instructions, see [Running CoreOS Container Linux with AWS EC2 Container Service](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
 
       For more information on the latest Amazon ECS\-optimized AMIs, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 **Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on March 31, 2021\. After March 31, 2021, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
+The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.
 

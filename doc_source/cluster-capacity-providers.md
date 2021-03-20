@@ -26,11 +26,11 @@ The *weight* value designates the relative percentage of the total number of lau
 The following should be considered when using capacity providers:
 + A capacity provider must be associated with a cluster prior to being specified in a capacity provider strategy\.
 + When you specify a capacity provider strategy, the number of capacity providers that can be specified is limited to six\.
++ A service using an Auto Scaling group capacity provider can't be updated to use a Fargate capacity provider and vice versa\.
 + In a capacity provider strategy, if no `weight` value is specified for a capacity provider in the console then the default value of `1` is used\. If using the API or AWS CLI, the default value of `0` is used\.
 + When multiple capacity providers are specified within a capacity provider strategy, at least one of the capacity providers must have a weight value greater than zero and any capacity providers with a weight of `0` will not be used to place tasks\. If you specify multiple capacity providers in a strategy that all have a weight of `0`, any `RunTask` or `CreateService` actions using the capacity provider strategy will fail\.
 + In a capacity provider strategy, only one capacity provider can have a *base* value defined\. If no base value is specified, the default value of `0` is used\.
 + A cluster may contain a mix of both Auto Scaling group capacity providers and Fargate capacity providers, however a capacity provider strategy may only contain one or the other but not both\.
 + A cluster may contain a mix of services and standalone tasks using both capacity providers and launch types\. A service may be updated to use a capacity provider strategy rather than a launch type, however you must force a new deployment when doing so\.
 + When managed termination protection is enabled, managed scaling must also be enabled otherwise managed termination protection won't work\.
-+ Using capacity providers is not supported when using the blue/green deployment type for your services\.
 + Using capacity providers is not supported when using Classic Load Balancers for your services\.

@@ -14,7 +14,7 @@ If you are using the Fargate launch type for your tasks, all you need to do to e
 If you are using the EC2 launch type for your tasks and want to enable the `awslogs` log driver, your Amazon ECS container instances require at least version 1\.9\.0 of the container agent\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
 
 **Note**  
-If you are not using the Amazon ECS\-optimized AMI \(with at least version 1\.9\.0\-1 of the `ecs-init` package\) for your container instances, you also need to specify that the `awslogs` logging driver is available on the container instance when you start the agent by using the following environment variable in your docker run statement or environment variable file\. For more information, see [Installing the Amazon ECS Container Agent](ecs-agent-install.md)\.  
+If you are not using the Amazon ECS\-optimized AMI \(with at least version 1\.9\.0\-1 of the `ecs-init` package\) for your container instances, you also need to specify that the `awslogs` logging driver is available on the container instance when you start the agent by using the following environment variable in your docker run statement or environment variable file\. For more information, see [Installing the Amazon ECS container agent](ecs-agent-install.md)\.  
 
 ```
 ECS_AVAILABLE_LOGGING_DRIVERS='["json-file","awslogs"]'

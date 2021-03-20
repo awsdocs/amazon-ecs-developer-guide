@@ -92,7 +92,7 @@ Amazon ECS task definitions for Fargate require that you specify CPU and memory 
 
 Amazon ECS task definitions for Fargate support the `ulimits` parameter to define the resource limits to set for a container\.
 
-Amazon ECS tasks hosted on Fargate use the default resource limit values with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\. The maximum soft and hard limit value of `1048576` can be specified in a task definition\.
+Amazon ECS tasks hosted on Fargate use the default resource limit values set by the operating system with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\.
 
 The following is an example task definition snippet that shows how to define a custom `nofile` limit that has been doubled:
 
@@ -182,25 +182,9 @@ The following is an example task definition that sets up a web server using the 
 
 ### Task storage<a name="fargate-tasks-storage"></a>
 
-For Fargate tasks, the following storage types are supported:
+For Amazon ECS tasks hosted on Fargate, the following storage types are supported:
 + Amazon EFS volumes for persistent storage\. For more information, see [Amazon EFS volumes](efs-volumes.md)\.
-+ Ephemeral storage for nonpersistent storage\.
-
-When provisioned, each Amazon ECS task on Fargate receives the following ephemeral storage\.
-
-#### Fargate tasks using platform version 1\.4\.0 or later<a name="fargate-task-storage-pv14"></a>
-
-For Amazon ECS on Fargate tasks using platform version 1\.4\.0 or later, each task receives 20 GB of ephemeral storage\. The amount of storage is not adjustable\.
-
-For tasks using platform version 1\.4\.0 or later that are launched on May 28, 2020 or later, the ephemeral storage is encrypted with an AES\-256 encryption algorithm using an AWS Fargate\-managed encryption key\.
-
-#### Fargate tasks using platform version 1\.3\.0 or earlier<a name="fargate-task-storage-pv13"></a>
-
-For Amazon ECS on Fargate tasks using platform version 1\.3\.0 or earlier, each task receives the following ephemeral storage\.
-+ 10 GB of Docker layer storage
-+ An additional 4 GB for volume mounts\. This can be mounted and shared among containers using the `volumes`, `mountPoints` and `volumesFrom` parameters in the task definition\.
-**Note**  
-The `host` and `sourcePath` parameters are not supported for Fargate tasks\.
++ Bind mounts for ephemeral storage\. For more information, see [Bind mounts](bind-mounts.md)\.
 
 ## Tasks and services<a name="fargate-tasks-services"></a>
 

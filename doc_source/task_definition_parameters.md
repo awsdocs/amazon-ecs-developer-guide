@@ -599,8 +599,8 @@ The Amazon ECS container agent running on a container instance must register wit
 `ulimits`  
 Type: object array  
 Required: no  
-A list of `ulimits` to set in the container\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-Amazon ECS tasks hosted on Fargate use the default resource limit values with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\. The maximum hard limit value of `1048576` can be specified in a task definition\. For more information, see [Task resource limits](AWS_Fargate.md#fargate-resource-limits)\.  
+A list of `ulimit` values to define for a container\. This value would overwrite the default resource limit setting for the operating system\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+Amazon ECS tasks hosted on Fargate use the default resource limit values set by the operating system with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\. For more information, see [Task resource limits](AWS_Fargate.md#fargate-resource-limits)\.  
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 This parameter is not supported for Windows containers\.
 
@@ -774,7 +774,7 @@ Example values: `120`
 Time duration \(in seconds\) to wait before giving up on resolving dependencies for a container\.  
 For example, you specify two containers in a task definition with `containerA` having a dependency on `containerB` reaching a `COMPLETE`, `SUCCESS`, or `HEALTHY` status\. If a `startTimeout` value is specified for `containerB` and it doesn't reach the desired status within that time then `containerA` will give up and not start\.  
 If a container does not meet a dependency constraint or times out before meeting the constraint, Amazon ECS doesn't progress dependent containers to their next state\.
-For Amazon ECS tasks hosted on Fargate, this parameter requires that the task or service uses platform version `1.3.0` or later\. If this parameter is not specified, the default value of `180` seconds is used\.
+For Amazon ECS tasks hosted on Fargate, this parameter requires that the task or service uses platform version `1.3.0` or later\. When using platform version `1.4.0`, if this parameter is not specified, the default value of `60` seconds is used\.
 
 `stopTimeout`  
 Type: Integer  
@@ -850,13 +850,13 @@ The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers,
 
 `host`  
 Required: No  
-This parameter is specified when using bind mounts\. To use Docker volumes, specify a `dockerVolumeConfiguration` instead\. The contents of the `host` parameter determine whether your bind mount data volume persists on the host container instance and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
-Bind mount host volumes are supported when using either the EC2 or Fargate launch types\.  
+The `host` parameter is only supported when using tasks hosted on Amazon EC2 instances\.
+The `host` parameter is used to tie the lifecycle of the bind mount to the host Amazon EC2 instance, rather than the task, and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
 Windows containers can mount whole directories on the same drive as `$env:ProgramData`\.    
 `sourcePath`  
 Type: String  
 Required: No  
-When the `host` parameter is used, specify a `sourcePath` to declare the path on the host container instance that is presented to the container\. If this parameter is empty, then the Docker daemon has assigned a host path for you\. If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host container instance until you delete it manually\. If the `sourcePath` value does not exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\.
+When the `host` parameter is used, specify a `sourcePath` to declare the path on the host Amazon EC2 instance that is presented to the container\. If this parameter is empty, then the Docker daemon assigns a host path for you\. If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host Amazon EC2 instance until you delete it manually\. If the `sourcePath` value does not exist on the host Amazon EC2 instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\.
 
 `dockerVolumeConfiguration`  
 Type: Object  
@@ -982,7 +982,7 @@ Valid values are `FARGATE` and `EC2`\. For more information about launch types, 
 
 ## Task size<a name="task_size"></a>
 
-When you register a task definition, you can specify the total cpu and memory used for the task\. This is separate from the `cpu` and `memory` values at the container definition level\. If using the EC2 launch type, these fields are optional\. If using the Fargate launch type, these fields are required and there are specific values for both `cpu` and `memory` that are supported\.
+When you register a task definition, you can specify the total cpu and memory used for the task\. This is separate from the `cpu` and `memory` values at the container definition level\. For tasks hosted on Amazon EC2 instances, these fields are optional\. For tasks hosted on Fargate, these fields are required and there are specific values for both `cpu` and `memory` that are supported\.
 
 **Note**  
 Task\-level CPU and memory parameters are ignored for Windows containers\. We recommend specifying container\-level resources for Windows containers\.
@@ -991,20 +991,20 @@ The following parameter is allowed in a task definition:
 
 `cpu`  
 Type: string  
-Required: no  
+Required: conditional  
 This parameter is not supported for Windows containers\.
 The hard limit of CPU units to present for the task\. It can be expressed as an integer using CPU units, for example `1024`, or as a string using vCPUs, for example `1 vCPU` or `1 vcpu`, in a task definition\. When the task definition is registered, a vCPU value is converted to an integer indicating the CPU units\.  
-If using the EC2 launch type, this field is optional\. If your cluster does not have any registered container instances with the requested CPU units available, the task will fail\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
-If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
+For tasks hosted on Amazon EC2 instances, this field is optional\. If your cluster does not have any registered container instances with the requested CPU units available, the task will fail\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
+For tasks hosted on Fargate, this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 
 `memory`  
 Type: string  
-Required: no  
+Required: conditional  
 This parameter is not supported for Windows containers\.
 The hard limit of memory \(in MiB\) to present to the task\. It can be expressed as an integer using MiB, for example `1024`, or as a string using GB, for example `1GB` or `1 GB`, in a task definition\. When the task definition is registered, a GB value is converted to an integer indicating the MiB\.  
-If using the EC2 launch type, this field is optional and any value can be used\. If a task\-level memory value is specified then the container\-level memory value is optional\. If your cluster does not have any registered container instances with the requested memory available, the task will fail\. If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.  
-If using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
+For tasks hosted on Amazon EC2 instances, this field is optional and any value can be used\. If a task\-level memory value is specified then the container\-level memory value is optional\. If your cluster does not have any registered container instances with the requested memory available, the task will fail\. If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.  
+For tasks hosted on Fargate, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 
 ## Proxy configuration<a name="proxyConfiguration"></a>

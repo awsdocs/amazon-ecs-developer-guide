@@ -1,7 +1,7 @@
 # Amazon Elastic Container Service Developer Guide
 
 -----
-*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy;  Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -94,11 +94,11 @@ Amazon's trademarks and trade dress may not be used in
    + [Working with GPUs on Amazon ECS](ecs-gpu.md)
    + [Working with inference workloads on Amazon ECS](ecs-inference.md)
    + [Using data volumes in tasks](using_data_volumes.md)
-      + [Fargate Task Storage](fargate-task-storage.md)
-      + [Docker volumes](docker-volumes.md)
-      + [Bind mounts](bind-mounts.md)
+      + [Fargate task storage](fargate-task-storage.md)
       + [Amazon EFS volumes](efs-volumes.md)
       + [Amazon FSx for Windows File Server volumes](wfsx-volumes.md)
+      + [Docker volumes](docker-volumes.md)
+      + [Bind mounts](bind-mounts.md)
    + [Managing container swap space](container-swap.md)
    + [Amazon ECS task networking](task-networking.md)
    + [Using the awslogs log driver](using_awslogs.md)
@@ -137,8 +137,8 @@ Amazon's trademarks and trade dress may not be used in
    + [Manage container instances remotely using AWS Systems Manager](ec2-run-command.md)
    + [Starting a task at container instance launch time](start_task_at_launch.md)
    + [Deregister a container instance](deregister_container_instance.md)
-+ [Amazon ECS Container Agent](ECS_agent.md)
-   + [Installing the Amazon ECS Container Agent](ecs-agent-install.md)
++ [Amazon ECS container agent](ECS_agent.md)
+   + [Installing the Amazon ECS container agent](ecs-agent-install.md)
    + [Amazon ECS Container Agent Versions](ecs-agent-versions.md)
    + [Updating the Amazon ECS Container Agent](ecs-agent-update.md)
       + [Updating the Amazon ECS Container Agent on an Amazon ECS-optimized AMI](agent-update-ecs-ami.md)
@@ -253,6 +253,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Tutorial: Using Amazon EFS file systems with Amazon ECS](tutorial-efs-volumes.md)
    + [Tutorial: Using Amazon FSx for Windows File Server file systems with Amazon ECS](tutorial-wfsx-volumes.md)
 + [Amazon ECS troubleshooting](troubleshooting.md)
+   + [Using Amazon ECS Exec for debugging](ecs-exec.md)
    + [Checking stopped tasks for errors](stopped-task-errors.md)
    + [CannotPullContainer task errors](task_cannot_pull_image.md)
    + [Service event messages](service-event-messages.md)

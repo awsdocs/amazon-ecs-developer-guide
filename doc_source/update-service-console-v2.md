@@ -22,6 +22,8 @@ The console validates that the selected task definition family and revision is c
    1. For services on AWS Fargate the platform version can be updated\.
 
    1. For services using a capacity provider strategy, the capacity provider strategy can be updated\.
+**Note**  
+A service using an Auto Scaling group capacity provider can't be updated to use a Fargate capacity provider and vice versa\.
 
    1. Select the **Force new deployment** option to have your service start a new deployment, which will stop all currently running tasks and launch new tasks using the updated configuration\.
 

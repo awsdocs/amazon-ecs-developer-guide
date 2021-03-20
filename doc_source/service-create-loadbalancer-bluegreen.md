@@ -48,9 +48,9 @@ If your service's task definition uses the `awsvpc` network mode \(which is requ
 
 1. For **Container to load balance**, choose the container and port combination from your task definition that your load balancer should distribute traffic to, and choose **Add to load balancer**\.
 
-1. For **Listener port**, choose the listener port and protocol of the listener that you created in [Creating an Application Load Balancer](create-application-load-balancer.md) \(if applicable\), or choose **create new** to create a new listener and then enter a port number and choose a port protocol for **Listener protocol**\.
+1. For **Listener port**, choose the listener port and protocol of the listener that you created in [Creating a Network Load Balancer](create-network-load-balancer.md) \(if applicable\), or choose **create new** to create a new listener and then enter a port number and choose a port protocol for **Listener protocol**\.
 
-1. For **Target group name**, choose the target group that you created in [Creating an Application Load Balancer](create-application-load-balancer.md) \(if applicable\), or choose **create new** to create a new target group\.
+1. For **Target group name**, choose the target group that you created in [Creating a Network Load Balancer](create-network-load-balancer.md) \(if applicable\), or choose **create new** to create a new target group\.
 **Important**  
 If your service's task definition uses the `awsvpc` network mode \(which is required for the Fargate launch type\), your target group must use `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
 

@@ -1,7 +1,7 @@
 # Subscribing to Amazon ECS\-optimized AMI update notifications<a name="ECS-AMI-SubscribeTopic"></a>
 
 **Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on March 31, 2021\. After March 31, 2021, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
+The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 **Important**  
 For the Linux variants of the Amazon ECS\-optimized AMI, the Amazon SNS alert is only sent when there is a new Amazon ECS\-optimized Amazon Linux AMI deployed\. Generally when a new Amazon ECS\-optimized Amazon Linux AMI is deployed, a new AMI for each of the other Linux variants of the Amazon ECS\-optimized AMI are deployed as well although there are not separate Amazon SNS alerts for them\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.

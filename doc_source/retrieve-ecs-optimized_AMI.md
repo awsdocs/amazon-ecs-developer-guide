@@ -39,7 +39,7 @@ The following is the format of the parameter name for each Amazon ECS\-optimized
   /aws/service/ecs/optimized-ami/amazon-linux/<version>
   ```
 **Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on March 31, 2021\. After March 31, 2021, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
+The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 **Windows Amazon ECS\-optimized AMIs**
 + Windows Server 2019 Full AMI metadata:
@@ -148,7 +148,7 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended --region us-east-1
   ```
 **Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on March 31, 2021\. After March 31, 2021, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
+The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 **Windows Amazon ECS\-optimized AMIs**
 + **For the Amazon ECS\-optimized Windows Server 2019 Full AMI:**

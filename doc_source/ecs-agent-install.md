@@ -1,4 +1,4 @@
-# Installing the Amazon ECS Container Agent<a name="ecs-agent-install"></a>
+# Installing the Amazon ECS container agent<a name="ecs-agent-install"></a>
 
 If your container instance was not launched using an Amazon ECS\-optimized AMI, you can install the Amazon ECS container agent manually using one of the following procedures\. The Amazon ECS container agent is included in the Amazon ECS\-optimized AMIs and does not require installation\.
 + For Amazon Linux 2 instances, you can install the agent using the `amazon-linux-extras` command\. For more information, see [Installing the Amazon ECS container agent on an Amazon Linux 2 EC2 instance](#ecs-agent-install-al2)\.

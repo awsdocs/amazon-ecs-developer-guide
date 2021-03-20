@@ -72,7 +72,7 @@ For more information about creating clusters, see [Amazon ECS clusters](clusters
 
 ### Container agent<a name="welcome-agent"></a>
 
-The *container agent* runs on each container instance within an Amazon ECS cluster\. The agent sends information about the resource's current running tasks and resource utilization to Amazon ECS\. It starts and stops tasks whenever it receives a request from Amazon ECS\. For more information, see [Amazon ECS Container Agent](ECS_agent.md)\.
+The *container agent* runs on each container instance within an Amazon ECS cluster\. The agent sends information about the resource's current running tasks and resource utilization to Amazon ECS\. It starts and stops tasks whenever it receives a request from Amazon ECS\. For more information, see [Amazon ECS container agent](ECS_agent.md)\.
 
 ![\[Diagram showing container agent tasks within an Amazon ECS environment.\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-containeragent-fargate.png)
 

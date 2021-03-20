@@ -101,7 +101,7 @@ The IP addresses associated with the container\.
 If your task is using the `awsvpc` network mode, the IP address of the container will not be returned\. In this case, you can retrieve the IP address by reading the /etc/hosts file with the following command:  
 
 ```
-cat /etc/hosts | tail -1 | awk {'print $1'}
+tail -1 /etc/hosts | awk '{print $1}'
 ```
 
 `MetadataFileStatus`  
