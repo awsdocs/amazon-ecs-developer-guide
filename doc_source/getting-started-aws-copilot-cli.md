@@ -18,7 +18,7 @@ Make sure that you have the AWS command line tool installed and have already run
 Deploy the application using the following command\.
 
 ```
-git clone git@github.com:aws-samples/amazon-ecs-cli-sample-app.git demo-app && \ 
+git clone https://github.com/aws-samples/amazon-ecs-cli-sample-app.git demo-app && \ 
 cd demo-app &&                               \
 copilot init --app demo                      \
   --name api                                 \
@@ -43,7 +43,7 @@ aws configure
 Clone a simple Flask application and Dockerfile\.
 
 ```
-git clone git@github.com:aws-samples/amazon-ecs-cli-sample-app.git demo-app
+git clone https://github.com/aws-samples/amazon-ecs-cli-sample-app.git demo-app
 ```
 
 ### Step 3: Set up your application<a name="getting-started-ecs-copilot-cli-setup-app"></a>
