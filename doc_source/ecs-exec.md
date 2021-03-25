@@ -23,7 +23,7 @@ For this topic, you should be familiar with the following aspects involved with 
 + You can't enable ECS Exec for existing tasks\. It can only be enabled for new tasks\.
 + When a user runs commands against a container using ECS Exec, these commands are run as the root user\. The SSM agent and its child processes run as root even when you specify a user ID for the container\.
 + Users can run all of the commands that are available within the container context\. The following actions might result in orphaned and zombie processes: terminating the main process of the container, terminating the command agent, and deleting dependencies\. To cleanup zombie processes, we recommend adding the `initProcessEnabled` flag to your task definition\.
-+ SSM sessions that are started outside of the `execute-command` context aren't bound to ECS Exec\.
++ While starting SSM sessions outside of the `execute-command` action is possible, this results in the sessions not being logged and being counted against the session limit\. We recommend limiting this access by denying the `ssm:start-session` action using an IAM policy\. For more information, see [Limiting access to the Start Session action](#ecs-exec-limit-access-start-session)\.
 + ECS Exec will use some CPU and memory\. You'll want to accomodate for that when specifying the CPU and memory resource allocations in your task definition\.
 
 ## Prerequisites for using ECS Exec<a name="ecs-exec-prerequisites"></a>
@@ -377,3 +377,42 @@ With the following IAM policy, users can only launch tasks when ECS Exec is disa
 
 **Note**  
 Because the `execute-command` API action contains only task and cluster resources in a request, only cluster and task tags are evaluated\.
+
+### Limiting access to the Start Session action<a name="ecs-exec-limit-access-start-session"></a>
+
+While starting SSM sessions on your container outside of ECS Exec is possible, this could potentially result in the sessions not being logged\. Sessions started outside of ECS Exec also count against the session quota\. We recommend limiting this access by denying the `ssm:start-session` action directly for your Amazon ECS tasks using an IAM policy\. You can deny access to all Amazon ECS tasks or to specific tasks based on the tags used\.
+
+The following is an example IAM policy that denies access to the `ssm:start-session` action for tasks in all Regions with a specified cluster name\. You can optionally include a wildcard with the `cluster-name`\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Deny",
+            "Action": "ssm:StartSession",
+            "Resource": "arn:aws:ecs:*:111122223333:task/cluster-name/*"
+        }
+    ]
+}
+```
+
+The following is an example IAM policy that denies access to the `ssm:start-session` action on resources in all Regions tagged with tag key `Task-Tag-Key` and tag value `Exec-Task`\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Deny",
+            "Action": "ssm:StartSession",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:ResourceTag/Task-Tag-Key": "Exec-Task"
+                }
+            }
+        }
+    ]
+}
+```

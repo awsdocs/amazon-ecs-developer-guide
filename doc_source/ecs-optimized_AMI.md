@@ -115,6 +115,8 @@ The following table provides a link to retrieve the current Amazon ECS\-optimize
 |  Europe \(London\)  | `eu-west-2` |  [View AMI ID](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=eu-west-2#)  | 
 |  Europe \(Stockholm\)  | `eu-north-1` |  [View AMI ID](https://eu-north-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=eu-north-1#)  | 
 |  South America \(São Paulo\)  | `sa-east-1` |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=sa-east-1#)  | 
+|  AWS GovCloud \(US\-East\)  | `us-gov-east-1` | [View AMI ID](https://console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=us-gov-east-1#) | 
+|  AWS GovCloud \(US\-West\)  | `us-gov-west-1` | [View AMI ID](https://console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=us-gov-west-1##) | 
 |  China \(Beijing\)  | `cn-north-1` |  [View AMI ID](https://cn-north-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=cn-north-1#)  | 
 |  China \(Ningxia\)  | `cn-northwest-1` |  [View AMI ID](https://cn-northwest-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id/description?region=cn-northwest-1#)  | 
 

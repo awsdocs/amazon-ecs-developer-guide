@@ -17,7 +17,7 @@ When using bind mounts, the following should be considered\.
   FROM public.ecr.aws/amazonlinux/amazonlinux:latest
   RUN mkdir -p /var/log/exported
   RUN touch /var/log/exported/examplefile
-  VOLUME ["/var/log/exported"]*
+  VOLUME ["/var/log/exported"]
   ```
 
   By default, the volume permissions are set to `0755` and the owner as `root`\. These permissions can be customized in the Dockerfile\. The following example defines the owner of the directory as `node`\.
@@ -29,7 +29,7 @@ When using bind mounts, the following should be considered\.
   RUN mkdir -p /var/log/exported && chown node:node /var/log/exported
   RUN touch /var/log/exported/examplefile
   USER node
-  VOLUME ["/var/log/exported"]*
+  VOLUME ["/var/log/exported"]
   ```
 + For tasks hosted on Amazon EC2 instances, when a `host` and `sourcePath` value are not specified, the Docker daemon manages the bind mount for you\. When no containers reference this bind mount, the Amazon ECS container agent task cleanup service eventually deletes it \(by default, this happens 3 hours after the container exits, but you can configure this duration with the `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` agent variable\)\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\. If you need this data to persist beyong the lifecycle of the container, specify a `sourcePath` value for the bind mount\.
 
@@ -170,17 +170,19 @@ In this example, you have a Dockerfile that writes data that you want to mount i
    FROM public.ecr.aws/amazonlinux/amazonlinux:latest
    RUN mkdir -p /var/log/exported
    RUN touch /var/log/exported/examplefile
-   VOLUME ["/var/log/exported"]*
+   VOLUME ["/var/log/exported"]
    ```
 
    By default, the volume permissions are set to `0755` and the owner as `root`\. These permissions can be changed in the Dockerfile\. In the following example, the owner of the `/var/log/exported` directory is set to `node`\.
 
    ```
    FROM public.ecr.aws/amazonlinux/amazonlinux:latest
+   RUN yum install -y shadow-utils && yum clean all
+   RUN useradd node
    RUN mkdir -p /var/log/exported && chown node:node /var/log/exported
    RUN touch /var/log/exported/examplefile
-   USER NODE
-   VOLUME ["/var/log/exported"]*
+   USER node
+   VOLUME ["/var/log/exported"]
    ```
 
 1. In the task definition `volumes` section, define a volume with the name `application_logs`\.
