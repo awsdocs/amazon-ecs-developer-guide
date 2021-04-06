@@ -227,7 +227,7 @@ Use the following steps to create your CodeDeploy application, the Application L
    arn:aws:elasticloadbalancing:region:aws_account_id:targetgroup/bluegreentarget2/708d384187a3cfdc
    ```
 
-1. Use the [create\-deployment\-group](https://docs.aws.amazon.com/cli/latest/reference/deploy/create-deployment-group.html) command to create an CodeDeploy deployment group\.
+1. Use the [create\-deployment\-group](https://docs.aws.amazon.com/cli/latest/reference/deploy/create-deployment-group.html) command to create a CodeDeploy deployment group\.
 
    First, create a file named `tutorial-deployment-group.json` with the following contents\. This example uses the resource that you created\. For the `serviceRoleArn`, specify the ARN of your Amazon ECS CodeDeploy IAM role\. For more information, see [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)\.
 
