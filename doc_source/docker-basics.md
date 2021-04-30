@@ -197,7 +197,7 @@ This section requires the following:
    Login Succeeded
    ```
 **Important**  
-If you receive an error, install or upgrade to the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+If you receive an error, install or upgrade to the latest version of the AWS CLI\.becouse AWS ECR supports minimum Version 2.X AWS CLI For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
 1. Push the image to Amazon ECR with the `repositoryUri` value from the earlier step\.
 
