@@ -20,12 +20,13 @@ For this topic, you should be familiar with the following aspects involved with 
 + ECS Exec is only supported on Linux containers\.
 + ECS Exec is not currently supported using the AWS Management Console\.
 + ECS Exec is not currently supported in the Asia Pacific \(Osaka\) Region\.
++ If you are using interface Amazon VPC endpoints with Amazon ECS, you must create the interface Amazon VPC endpoints for Systems Manager Session Manager\. For more information, see [Create the Systems Manager endpoints](vpc-endpoints.md#ecs-vpc-endpoint-ecsexec)\.
 + You can't enable ECS Exec for existing tasks\. It can only be enabled for new tasks\.
-+ When a user runs commands against a container using ECS Exec, these commands are run as the root user\. The SSM agent and its child processes run as root even when you specify a user ID for the container\.
++ When a user runs commands on a container using ECS Exec, these commands are run as the `root` user\. The SSM agent and its child processes run as root even when you specify a user ID for the container\.
++ The SSM agent requires that the container file system is able to be written to in order to create the required directories and files\. Therefore, making the root file system read\-only using the `readonlyRootFilesystem` task definition parameter, or any other method, isn't supported\.
 + Users can run all of the commands that are available within the container context\. The following actions might result in orphaned and zombie processes: terminating the main process of the container, terminating the command agent, and deleting dependencies\. To cleanup zombie processes, we recommend adding the `initProcessEnabled` flag to your task definition\.
 + While starting SSM sessions outside of the `execute-command` action is possible, this results in the sessions not being logged and being counted against the session limit\. We recommend limiting this access by denying the `ssm:start-session` action using an IAM policy\. For more information, see [Limiting access to the Start Session action](#ecs-exec-limit-access-start-session)\.
 + ECS Exec will use some CPU and memory\. You'll want to accomodate for that when specifying the CPU and memory resource allocations in your task definition\.
-+ The SSM agent requires the container filesystem is writable to create the required files and directories\. Therefore enabling the `readonlyRootFilesystem` option is not supported\.
 
 ## Prerequisites for using ECS Exec<a name="ecs-exec-prerequisites"></a>
 
@@ -34,7 +35,7 @@ Before you start using ECS Exec, make sure you that you have completed these act
 + Install Session Manager plugin for the AWS CLI\. For more information, see [Install the Session Manager plugin for the AWS CLI](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)\.
 + ECS Exec has version requirements depending on whether your tasks are hosted on Amazon EC2 or AWS Fargate:
   + If you're using Amazon EC2, you must use an Amazon ECS optimized AMI that was released after January 20th, 2021, with an agent version of 1\.50\.2 or greater\. For more information, see [Amazon ECS optimized AMIs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)\.
-  + If you're using AWS Fargate, you must use platform version 1\.4\.0 or higher\. For more information, see [AWS Fargate platform versions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html)\.
+  + If you're using AWS Fargate, you must use platform version 1\.4\.0 or higher\. For more information, see [FARGATElong; platform versions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html)\.
 
 ## Enabling and using ECS Exec<a name="ecs-exec-enabling-and-using"></a>
 
@@ -417,3 +418,17 @@ The following is an example IAM policy that denies access to the `ssm:start-sess
     ]
 }
 ```
+
+## Troubleshooting issues with ECS Exec<a name="ecs-exec-troubleshooting"></a>
+
+The following are troubleshooting notes to help diagnose why you may be getting an error when using ECS Exec\.
+
+### Verify using the Amazon ECS Exec Checker<a name="ecs-exec-troubleshooting-checker"></a>
+
+The Amazon ECS Exec Checker script provides a way to verify and validate that your Amazon ECS cluster and task have met the prerequisites for using the ECS Exec feature\. The tool requires the latest version of the AWS CLI and that the `jq` is available\. For more information, see [Amazon ECS Exec Checker](https://github.com/aws-containers/amazon-ecs-exec-checker) on GitHub\.
+
+### Error when calling `execute-command`<a name="ecs-exec-troubleshooting-general"></a>
+
+If a `The execute command failed` error occurs, the following are possible causes\.
++ The task does not have the required permissions\. Verify that the task definition used to launch your task has a task IAM role defined and that the role has the required permissions\. For more information, see [IAM permissions required for ECS Exec](#ecs-exec-required-iam-permissions)\.
++ The SSM Agent is not connected due to slowness or network latency\. Wait and try the `execute-command` action again\.

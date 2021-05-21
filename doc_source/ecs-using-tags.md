@@ -89,7 +89,7 @@ The following resources enable you to specify tags when you create the resource\
 |  Create a task set\.  |  [External Deployment](deployment-type-external.md)  | 
 |  Register a task definition\.  |  [Creating a task definition](create-task-definition.md)  | 
 |  Create a cluster\.  |  [Creating a cluster](create_cluster.md)  | 
-|  Run one or more container instances\.  |  [Launching an Amazon ECS Container Instance](launch_container_instance.md)  | 
+|  Run one or more container instances\.  |  [Launching an Amazon ECS container instance](launch_container_instance.md)  | 
 
 ### Adding and deleting tags on an individual resource<a name="adding-or-deleting-tags"></a>
 
@@ -122,7 +122,7 @@ Amazon ECS enables you to add or delete tags associated with your clusters, serv
 ### Adding tags to a container instance<a name="instance-details-tags"></a>
 
 You can associate tags with your container instances using one of the following methods:
-+ Method 1 – When creating your container instance using the Amazon EC2 API, CLI, or console, specify tags by passing user data to the instance using the container agent configuration parameter `ECS_CONTAINER_INSTANCE_TAGS`\. This creates tags that are associated with the container instance in Amazon ECS only, they cannot be listed using the Amazon EC2 API\. For more information, see [Bootstrapping Container Instances with Amazon EC2 User Data](bootstrap_container_instance.md)\.
++ Method 1 – When creating your container instance using the Amazon EC2 API, CLI, or console, specify tags by passing user data to the instance using the container agent configuration parameter `ECS_CONTAINER_INSTANCE_TAGS`\. This creates tags that are associated with the container instance in Amazon ECS only, they cannot be listed using the Amazon EC2 API\. For more information, see [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)\.
 **Important**  
 If you launch your container instances using an Amazon EC2 Auto Scaling group, then you should use the ECS\_CONTAINER\_INSTANCE\_TAGS agent configuration parameter to add tags\. This is due to the way in which tags are added to Amazon EC2 instances that are launched using Auto Scaling groups\.
 
@@ -174,7 +174,7 @@ Use the following to add, update, list, and delete the tags for your resources\.
 
 **Tagging support for Amazon ECS resources**  
 
-| Task | AWS CLI | API Action | 
+| Task | AWS CLI | API action | 
 | --- | --- | --- | 
 |  Add or overwrite one or more tags\.  |  [tag\-resource](https://docs.aws.amazon.com/cli/latest/reference/tag-resource.html)  |  [TagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html)  | 
 |  Delete one or more tags\.  |  [untag\-resource](https://docs.aws.amazon.com/cli/latest/reference/untag-resource.html)  |  [UntagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UntagResource.html)  | 

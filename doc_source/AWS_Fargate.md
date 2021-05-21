@@ -110,9 +110,9 @@ For more information on the other resource limits that can be adjusted, see [Res
 
 ### Logging<a name="fargate-tasks-logging"></a>
 
-Amazon ECS task definitions for Fargate support the `awslogs`, `splunk`, `firelens`, and `fluentd` log drivers for the log configuration\.
+Amazon ECS task definitions for Fargate support the `awslogs`, `splunk`, and `firelens` log drivers for the log configuration\.
 
-The `awslogs` log driver configures your Fargate tasks to send log information to Amazon CloudWatch Logs\. The following shows a snippet of a task definition where the awslogs log driver is configured:
+The `awslogs` log driver configures your Fargate tasks to send log information to Amazon CloudWatch Logs\. The following shows a snippet of a task definition where the `awslogs` log driver is configured:
 
 ```
 "logConfiguration": { 
@@ -121,6 +121,7 @@ The `awslogs` log driver configures your Fargate tasks to send log information t
       "awslogs-group" : "/ecs/fargate-task-definition",
       "awslogs-region": "us-east-1",
       "awslogs-stream-prefix": "ecs"
+   }
 }
 ```
 

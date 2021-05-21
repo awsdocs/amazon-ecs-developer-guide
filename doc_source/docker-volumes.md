@@ -68,12 +68,12 @@ The task definition JSON shown below shows the syntax for the `volumes` and `mou
 `name`  
 Type: String  
 Required: No  
-The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints` object\.
+The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints`\.
 
 `dockerVolumeConfiguration`  
 Type: Object  
 Required: No  
-This parameter is specified when using Docker volumes\. Docker volumes are only supported when running tasks on EC2 instances\. Windows containers only support the use of the `local` driver\. To use bind mounts, specify a `host` instead\.    
+This parameter is specified when using Docker volumes\. Docker volumes are only supported when using the EC2 launch type\. Windows containers only support the use of the `local` driver\. To use bind mounts, specify a `host` instead\.    
 `scope`  
 Type: String  
 Valid Values: `task` \| `shared`  
@@ -100,7 +100,8 @@ Custom metadata to add to your Docker volume\. This parameter maps to `Labels` i
 `mountPoints`  
 Type: Object Array  
 Required: No  
-The mount points for data volumes in your container\. This parameter maps to `Volumes` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--volume` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The mount points for data volumes in your container\.   
+This parameter maps to `Volumes` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--volume` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\.    
 `sourceVolume`  
 Type: String  

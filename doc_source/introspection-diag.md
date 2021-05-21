@@ -63,4 +63,4 @@ Output:
 }
 ```
 
-In the above example, the stopped task \(*090eff9b\-1ce3\-4db6\-848a\-a8d14064fd24*\) has two containers\. You can use docker inspect *container\-ID* to view detailed information on each container\. For more information, see [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)\.
+In the above example, the stopped task \(*090eff9b\-1ce3\-4db6\-848a\-a8d14064fd24*\) has two containers\. You can use docker inspect *container\-ID* to view detailed information on each container\. For more information, see [Amazon ECS container agent introspection](ecs-agent-introspection.md)\.

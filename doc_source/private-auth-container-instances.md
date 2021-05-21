@@ -1,4 +1,4 @@
-# Private Registry Authentication for Container Instances<a name="private-auth-container-instances"></a>
+# Private registry authentication for container instances<a name="private-auth-container-instances"></a>
 
 The Amazon ECS container agent can authenticate with private registries, including Docker Hub, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\. This feature is only supported by tasks using the EC2 launch type\.
 
@@ -13,11 +13,11 @@ Linux variants of the Amazon ECS\-optimized AMI scan the `/etc/ecs/ecs.config` f
 **Important**  
 We do not recommend that you inject these authentication environment variables at instance launch with Amazon EC2 user data or pass them with the `--env` option to the docker run command\. These methods are not appropriate for sensitive data, such as authentication credentials\. For information about safely adding authentication credentials to your container instances, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
 
-## Authentication Formats<a name="docker-auth-formats"></a>
+## Authentication formats<a name="docker-auth-formats"></a>
 
 There are two available formats for private registry authentication, `dockercfg` and `docker`\.
 
-**dockercfg Authentication Format**  
+**dockercfg authentication format**  
 The `dockercfg` format uses the authentication information stored in the configuration file that is created when you run the docker login command\. You can create this file by running docker login on your local system and entering your registry user name, password, and email address\. You can also log in to a container instance and run the command there\. Depending on your Docker version, this file is saved as either `~/.dockercfg` or `~/.docker/config.json`\.
 
 ```
@@ -68,7 +68,7 @@ ECS_ENGINE_AUTH_TYPE=dockercfg
 ECS_ENGINE_AUTH_DATA={"repo.example-01.com":{"auth":"zq212MzEXAMPLE7o6T25Dk0i","email":"email@example-01.com"},"repo.example-02.com":{"auth":"fQ172MzEXAMPLEoF7225DU0j","email":"email@example-02.com"}}
 ```
 
-**docker Authentication Format**  
+**docker authentication format**  
 The `docker` format uses a JSON representation of the registry server that the agent should authenticate with\. It also includes the authentication parameters required by that registry \(such as user name, password, and the email address for that account\)\. For a Docker Hub account, the JSON representation looks like the following:
 
 ```
@@ -95,7 +95,7 @@ ECS_ENGINE_AUTH_TYPE=docker
 ECS_ENGINE_AUTH_DATA={"repo.example-01.com":{"username":"my_name","password":"my_password","email":"email@example-01.com"},"repo.example-02.com":{"username":"another_name","password":"another_password","email":"email@example-02.com"}}
 ```
 
-## Enabling Private Registries<a name="enabling-private-registry"></a>
+## Enabling private registries<a name="enabling-private-registry"></a>
 
 Use the following procedure to enable private registries for your container instances\.
 
@@ -128,7 +128,7 @@ Use the following procedure to enable private registries for your container inst
    "ECS_DATADIR=/data",
    ```
 **Important**  
-If the previous command does not return the `ECS_DATADIR` environment variable, you must stop any tasks running on this container instance before stopping the agent\. Newer agents with the `ECS_DATADIR` environment variable save their state and you can stop and start them while tasks are running without issues\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+If the previous command does not return the `ECS_DATADIR` environment variable, you must stop any tasks running on this container instance before stopping the agent\. Newer agents with the `ECS_DATADIR` environment variable save their state and you can stop and start them while tasks are running without issues\. For more information, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
 1. Stop the `ecs` service:
 
@@ -154,7 +154,7 @@ If the previous command does not return the `ECS_DATADIR` environment variable, 
      sudo stop ecs && sudo start ecs
      ```
 
-1. \(Optional\) You can verify that the agent is running and see some information about your new container instance by querying the agent introspection API operation\. For more information, see [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)\.
+1. \(Optional\) You can verify that the agent is running and see some information about your new container instance by querying the agent introspection API operation\. For more information, see [Amazon ECS container agent introspection](ecs-agent-introspection.md)\.
 
    ```
    curl http://localhost:51678/v1/metadata

@@ -1,4 +1,4 @@
-# Amazon ECS Command Line Reference<a name="ECS_CLI_reference"></a>
+# Amazon ECS command line reference<a name="ECS_CLI_reference"></a>
 
 The following commands are available in the Amazon ECS CLI\. Help text for each command is available by appending the `--help` option to the final command argument\. List the help text for the Amazon ECS CLI by using the following command:
 

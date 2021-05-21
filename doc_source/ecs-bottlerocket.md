@@ -7,7 +7,7 @@
 
 Bottlerocket is a Linux\-based open source operating system that is purpose\-built by AWS for running containers\. For more information, see [Bottlerocket on GitHub](https://github.com/bottlerocket-os/bottlerocket)\.
 
-An Amazon ECS\-optimized AMI variant of the Bottlerocket operating system is provided as an AMI you can use when launching Amazon ECS container instances\. For a detailed walkthrough of how to get started with the Bottlerocket operating system on Amazon ECS, see [Using a Bottlerocket AMI with Amazon ECS ](https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-ECS.md)\.
+An Amazon ECS\-optimized AMI variant of the Bottlerocket operating system is provided as an AMI you can use when launching Amazon ECS container instances\. For a detailed walkthrough of how to get started with the Bottlerocket operating system on Amazon ECS, see [Using a Bottlerocket AMI with Amazon ECS](https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-ECS.md)\.
 
 You can request new features on the GitHub page\. For more information, see [Bottlerocket on GitHub](https://github.com/bottlerocket-os/bottlerocket/issues)\.
 
@@ -20,7 +20,7 @@ The following should be considered when using the Bottlerocket AMI with Amazon E
   + AWS GovCloud \(US\-East\) \(`us-gov-east-1`\)
   + AWS GovCloud \(US\-West\) \(`us-gov-west-1`\)
 + Amazon EC2 instances with x86 or arm64 processors are supported\. Amazon EC2 instances with GPUs or Inferentia chips are not supported\.
-+ The `awsvpc` network mode is not supported\.
++ The `awsvpc` network mode is supported when using Bottlerocket AMI version `1.1.0` or later\.
 + Using Amazon EFS file system volumes are not supported\.
 + The `initProcessEnabled` task definition parameter is not supported\.
 
@@ -30,6 +30,12 @@ The Amazon ECS variant of the Bottlerocket AMI can be retrieved using a Systems 
 
 ```
 /aws/service/bottlerocket/aws-ecs-1/x86_64/latest
+```
+
+A specific version of the Bottlerocket AMI can be retrieved by using the version number in place of the `latest` tag\. The following is an example\.
+
+```
+aws ssm get-parameters --name "/aws/service/bottlerocket/aws-ecs-1/x86_64/1.1.0/image_id" --region us-east-1
 ```
 
 You can retrieve the latest stable Bottlerocket AMI using the AWS CLI with the following command\.

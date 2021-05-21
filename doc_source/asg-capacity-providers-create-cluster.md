@@ -6,7 +6,7 @@ For AWS Management Console steps, see [Creating a cluster](create_cluster.md)\.
 
 ## To create a cluster with an Auto Scaling group capacity provider \(AWS CLI\)<a name="create-cluster-cli"></a>
 
-Use the following command to create a new capacity provider\.
+Use the following command to create a new cluster and associate one or more capacity providers with it\.
 + [create\-cluster](https://docs.aws.amazon.com/cli/latest/reference/ecs/create-cluster.html) \(AWS CLI\)
 
   ```

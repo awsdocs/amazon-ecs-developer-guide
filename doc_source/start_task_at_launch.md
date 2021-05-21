@@ -28,7 +28,7 @@ The Amazon EC2 user data script in the following procedure uses the Amazon ECS i
 
    1. On the **Review policy** page, enter a name for your policy, such as `ecs-start-task` and choose **Create policy**\.
 
-1. Launch one or more container instances using the Amazon ECS\-optimized Amazon Linux 2 AMI by following the procedure in [Launching an Amazon ECS Container Instance](launch_container_instance.md), but in [Step 7](launch_container_instance.md#instance-launch-user-data-step) copy and paste the MIME multi\-part user data script below into the **User data** field\. Substitute *your\_cluster\_name* with the cluster for the container instance to register into and *my\_task\_def* with the task definition to run on the instance at launch\.
+1. Launch one or more container instances using the Amazon ECS\-optimized Amazon Linux 2 AMI by following the procedure in [Launching an Amazon ECS container instance](launch_container_instance.md), but in [Step 7](launch_container_instance.md#instance-launch-user-data-step) copy and paste the MIME multi\-part user data script below into the **User data** field\. Substitute *your\_cluster\_name* with the cluster for the container instance to register into and *my\_task\_def* with the task definition to run on the instance at launch\.
 **Note**  
 The MIME multi\-part content below uses a shell script to set configuration values and install packages\. It also uses a systemd job to start the task after the ecs service is running and the introspection API is available\.
 

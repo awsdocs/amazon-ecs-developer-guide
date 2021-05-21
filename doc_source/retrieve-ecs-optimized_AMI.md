@@ -39,7 +39,7 @@ The following is the format of the parameter name for each Amazon ECS\-optimized
   /aws/service/ecs/optimized-ami/amazon-linux/<version>
   ```
 **Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
+The **Amazon ECS\-optimized Amazon Linux AMI** is deprecated as of April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 **Windows Amazon ECS\-optimized AMIs**
 + Windows Server 2019 Full AMI metadata:
@@ -57,13 +57,11 @@ The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 
   ```
   /aws/service/ami-windows-latest/Windows_Server-2004-English-Core-ECS_Optimized
   ```
-+ Windows Server 1909 Core AMI metadata:
++ Windows Server 20H2 Core AMI metadata:
 
   ```
-  /aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized
+  /aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized
   ```
-**Important**  
-The Amazon ECS\-optimized Windows Server 1909 Core AMI has been deprecated\. No new versions of this AMI will be released\.
 + Windows Server 2016 Full AMI metadata:
 
   ```
@@ -148,7 +146,7 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recommended --region us-east-1
   ```
 **Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
+The **Amazon ECS\-optimized Amazon Linux AMI** is deprecated as of April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 **Windows Amazon ECS\-optimized AMIs**
 + **For the Amazon ECS\-optimized Windows Server 2019 Full AMI:**
@@ -166,13 +164,11 @@ The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 
   ```
   aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2004-English-Core-ECS_Optimized --region us-east-1
   ```
-+ **For the Amazon ECS\-optimized Windows Server 1909 Core AMI:**
++ **For the Amazon ECS\-optimized Windows Server 20H2 Core AMI:**
 
   ```
-  aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized --region us-east-1
+  aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized --region us-east-1
   ```
-**Important**  
-The Amazon ECS\-optimized Windows Server 1909 Core AMI has been deprecated\. No new versions of this AMI will be released\.
 + **For the Amazon ECS\-optimized Windows Server 2016 Full AMI:**
 
   ```

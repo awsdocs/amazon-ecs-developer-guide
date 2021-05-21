@@ -1,7 +1,7 @@
 # AMI storage configuration<a name="ecs-ami-storage-config"></a>
 
 **Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
+The **Amazon ECS\-optimized Amazon Linux AMI** is deprecated as of April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 The following describes the storage configuration for each of the Amazon ECS\-optimized AMIs\.
 
@@ -18,7 +18,7 @@ The default filesystem for the Amazon ECS\-optimized Amazon Linux 2 AMI is `ext4
 ## Amazon ECS\-optimized Amazon Linux AMI storage configuration<a name="al1-ami-storage-config"></a>
 
 **Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
+The **Amazon ECS\-optimized Amazon Linux AMI** is deprecated as of April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 By default, the Amazon ECS\-optimized Amazon Linux AMI ships with 30 GiB of total storage\. You can modify this value at launch time to increase the available storage on your container instance\. This storage is used for the operating system and for Docker images and metadata\. The sections below describe the storage configuration of the Amazon ECS\-optimized Amazon Linux AMI, based on the AMI version\.
 

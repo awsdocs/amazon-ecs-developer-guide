@@ -5,7 +5,7 @@ Private registry authentication for tasks using AWS Secrets Manager enables you 
 **Important**  
 If your task definition references an image stored in Amazon ECR, this topic does not apply\. For more information, see [Using Amazon ECR Images with Amazon ECS](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ECR_on_ECS.html) in the *Amazon Elastic Container Registry User Guide*\.
 
-For tasks using the EC2 launch type, this feature requires version 1\.19\.0 or later of the container agent; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+For tasks using the EC2 launch type, this feature requires version 1\.19\.0 or later of the container agent; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
 For tasks using the Fargate launch type, this feature requires platform version 1\.2\.0 or later\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
 
@@ -28,7 +28,7 @@ The following is a snippet of a task definition showing the required parameters:
 ```
 
 **Note**  
-Another method of enabling private registry authentication uses Amazon ECS container agent environment variables to authenticate to private registries\. This method is only supported for tasks using the EC2 launch type\. For more information, see [Private Registry Authentication for Container Instances](private-auth-container-instances.md)\.
+Another method of enabling private registry authentication uses Amazon ECS container agent environment variables to authenticate to private registries\. This method is only supported for tasks using the EC2 launch type\. For more information, see [Private registry authentication for container instances](private-auth-container-instances.md)\.
 
 ## Required IAM permissions for private registry authentication<a name="private-auth-iam"></a>
 

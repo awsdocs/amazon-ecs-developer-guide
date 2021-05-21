@@ -1,4 +1,4 @@
-# Automated Task and Image Cleanup<a name="automated_image_cleanup"></a>
+# Automated task and image cleanup<a name="automated_image_cleanup"></a>
 
 Each time a task is placed on a container instance, the Amazon ECS container agent checks to see if the images referenced in the task are the most recent of the specified tag in the repository\. If not, the default behavior allows the agent to pull the images from their respective repositories\. If you frequently update the images in your tasks and services, your container instance storage can quickly fill up with Docker images that you are no longer using and may never use again\. For example, you may use a continuous integration and continuous deployment \(CI/CD\) pipeline\.
 
@@ -10,9 +10,9 @@ Likewise, containers that belong to stopped tasks can also consume container ins
 By default, the Amazon ECS container agent automatically cleans up stopped tasks and Docker images that are not being used by any tasks on your container instances\.
 
 **Note**  
-The automated image cleanup feature requires at least version 1\.13\.0 of the Amazon ECS container agent\. To update your agent to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+The automated image cleanup feature requires at least version 1\.13\.0 of the Amazon ECS container agent\. To update your agent to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
-## Tunable Parameters<a name="automated_image_cleanup_parameters"></a>
+## Tunable parameters<a name="automated_image_cleanup_parameters"></a>
 
 The following agent configuration variables are available to tune your automated task and image cleanup experience\. For more information about how to set these variables on your container instances, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 
@@ -31,6 +31,6 @@ This variable specifies the minimum amount of time between when an image was pul
 `ECS_NUM_IMAGES_DELETE_PER_CYCLE`  
 This variable specifies how many images may be removed during a single cleanup cycle\. The default is 5 and the minimum is 1\.
 
-## Cleanup Workflow<a name="automated_image_cleanup_operation"></a>
+## Cleanup workflow<a name="automated_image_cleanup_operation"></a>
 
 When the Amazon ECS container agent is running and automated image cleanup is not disabled, the agent checks for Docker images that are not referenced by running or stopped containers at a frequency determined by the `ECS_IMAGE_CLEANUP_INTERVAL` variable\. If unused images are found and they are older than the minimum cleanup time specified by the `ECS_IMAGE_MINIMUM_CLEANUP_AGE` variable, the agent removes up to the maximum number of images that are specified with the `ECS_NUM_IMAGES_DELETE_PER_CYCLE` variable\. The least\-recently referenced images are deleted first\. After the images are removed, the agent waits until the next interval and repeats the process again\.

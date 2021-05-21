@@ -5,7 +5,7 @@ Cluster settings enable you to configure parameters for your existing Amazon ECS
 **Important**  
 Currently, if you delete an existing cluster that does not have Container Insights enabled and then create a new cluster with the same name with Container Insights enabled, Container Insights will not actually be enabled\. If you want to preserve the same name for your existing cluster and enable Container Insights, you must wait 7 days before you can re\-create it\.
 
-**To update the settings for a cluster using the command line**
+**To update the settings for a cluster \(AWS CLI\)**
 
 Use one of the following commands to update the setting for a cluster\.
 + [update\-cluster\-settings](https://docs.aws.amazon.com/cli/latest/reference/ecs/update-cluster-settings.html) \(AWS CLI\)

@@ -1,12 +1,12 @@
-# HTTP Proxy Configuration<a name="http_proxy_config"></a>
+# HTTP proxy configuration<a name="http_proxy_config"></a>
 
 You can configure your Amazon ECS container instances to use an HTTP proxy for both the Amazon ECS container agent and the Docker daemon\. This is useful if your container instances do not have external network access through an Amazon VPC internet gateway, NAT gateway, or instance\. The process differs for Linux and Windows instances, so be sure to read the appropriate section below for your application\.
 
 **Topics**
-+ [Amazon Linux Container Instance Configuration](#linux-proxy)
-+ [Windows Container Instance Configuration](#windows-proxy)
++ [Amazon Linux container instance configuration](#linux-proxy)
++ [Windows container instance configuration](#windows-proxy)
 
-## Amazon Linux Container Instance Configuration<a name="linux-proxy"></a>
+## Amazon Linux container instance configuration<a name="linux-proxy"></a>
 
 To configure your Amazon ECS Linux container instance to use an HTTP proxy, set the following variables in the relevant files at launch time \(with Amazon EC2 user data\)\. You could also manually edit the configuration file and restart the agent afterwards\.
 
@@ -44,7 +44,7 @@ Setting these environment variables in the above files only affects the Amazon E
 
 **Example Amazon Linux HTTP proxy user data script**  
 The example user data `cloud-boothook` script below configures the Amazon ECS container agent, `ecs-init`, the Docker daemon, and yum to use an HTTP proxy that you specify\. You can also specify a cluster into which the container instance registers itself\.  
-To use this script when you launch a container instance, follow the steps in [Launching an Amazon ECS Container Instance](launch_container_instance.md), and in [Step 7](launch_container_instance.md#instance-launch-user-data-step)\. Then, copy and paste the `cloud-boothook` script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
+To use this script when you launch a container instance, follow the steps in [Launching an Amazon ECS container instance](launch_container_instance.md), and in [Step 7](launch_container_instance.md#instance-launch-user-data-step)\. Then, copy and paste the `cloud-boothook` script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
 The user data script below only supports Amazon Linux 2 and Amazon Linux AMI variants of the Amazon ECS\-optimized AMI\.
 
 ```
@@ -132,7 +132,7 @@ EOF
 fi
 ```
 
-## Windows Container Instance Configuration<a name="windows-proxy"></a>
+## Windows container instance configuration<a name="windows-proxy"></a>
 
 To configure your Amazon ECS Windows container instance to use an HTTP proxy, set the following variables at launch time \(with Amazon EC2 user data\)\.
 
@@ -144,7 +144,7 @@ Set `NO_PROXY` to `169.254.169.254,169.254.170.2,\\.\pipe\docker_engine` to filt
 
 **Example Windows HTTP proxy user data script**  
 The example user data PowerShell script below configures the Amazon ECS container agent and the Docker daemon to use an HTTP proxy that you specify\. You can also specify a cluster into which the container instance registers itself\.  
-To use this script when you launch a container instance, follow the steps in [Launching an Amazon ECS Container Instance](launch_container_instance.md)\. Just copy and paste the PowerShell script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
+To use this script when you launch a container instance, follow the steps in [Launching an Amazon ECS container instance](launch_container_instance.md)\. Just copy and paste the PowerShell script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
 The `-EnableTaskIAMRole` option is required to enable IAM roles for tasks\. For more information, see [Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
 
 ```

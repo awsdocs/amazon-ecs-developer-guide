@@ -29,18 +29,18 @@ Amazon ECS vends AMIs that are optimized for the service in the following varian
 + **Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 Inf1 instances\. It comes pre\-configured with AWS Inferentia drivers and the AWS Neuron runtime for Docker which makes running machine learning inference workloads easier on Amazon ECS\. For more information, see [Working with inference workloads on Amazon ECS](ecs-inference.md)\.
 + **Amazon ECS\-optimized Amazon Linux AMI** – This AMI is based off of Amazon Linux\. We recommend that you migrate your workloads to the Amazon ECS\-optimized Amazon Linux 2 AMI\. Support for the Amazon ECS\-optimized Amazon Linux AMI is the same as the Amazon Linux AMI\. For more information, see [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\.
 **Important**  
-On April 15, 2021, the Amazon ECS\-optimized Amazon Linux AMI will be ending its standard support phase and will enter a maintenance support phase\. In the maintenance support phase, Amazon ECS will continue providing critical and important security updates for a reduced list of packages\. During this period, Amazon ECS will no longer add support for new EC2 instance types, new services and features, and new packages\. Instead, Amazon ECS will provide updates only for critical and important security fixes that apply to a reduced set of packages\. Maintenance support period will end on June 30, 2023\.
+On April 15, 2021, the Amazon ECS\-optimized Amazon Linux AMI ended its standard support phase and entered a maintenance support phase\. In the maintenance support phase, Amazon ECS will continue providing critical and important security updates for a reduced list of packages\. During this period, Amazon ECS will no longer add support for new EC2 instance types, new services and features, and new packages\. Instead, Amazon ECS will provide updates only for critical and important security fixes that apply to a reduced set of packages\. Maintenance support period will end on June 30, 2023\.
 
 ### Windows variants<a name="ecs-optimized-ami-windows-variants"></a>
-+ **Amazon ECS\-optimized Windows Server 2019 Full AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows containers](ECS_Windows.md)\.
-+ **Amazon ECS\-optimized Windows Server 2019 Core AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows containers](ECS_Windows.md)\.
-+ **Amazon ECS\-optimized Windows Server 2004 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows containers](ECS_Windows.md)\.
-+ **Amazon ECS\-optimized Windows Server 1909 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows containers](ECS_Windows.md)\.
-**Important**  
-The Amazon ECS\-optimized Windows Server 1909 Core AMI is deprecated\. No new versions of this AMI will be released\.
-+ **Amazon ECS\-optimized Windows Server 2016 Full AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\. For more information, see [Windows containers](ECS_Windows.md)\.
 
-Windows Server 2019 and Windows Server 2016 are Long\-Term Servicing Channel \(LTSC\) releases\. Windows Server 2004 and Windows Server 1909 are Semi\-Annual Channel \(SAC\) releases\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
+The following Windows Server variants of the Amazon ECS\-optimized AMI are available for your Amazon EC2 instances\. For more information, see [Windows containers](ECS_Windows.md)\.
++ **Amazon ECS\-optimized Windows Server 2019 Full AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\.
++ **Amazon ECS\-optimized Windows Server 2019 Core AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\.
++ **Amazon ECS\-optimized Windows Server 2004 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
++ **Amazon ECS\-optimized Windows Server 20H2 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
++ **Amazon ECS\-optimized Windows Server 2016 Full AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
+
+Windows Server 2019 and Windows Server 2016 are Long\-Term Servicing Channel \(LTSC\) releases\. Windows Server 2004 and Windows Server 20H2 are Semi\-Annual Channel \(SAC\) releases\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
 
 ## Linux Amazon ECS\-optimized AMIs<a name="ecs-optimized-ami-linux"></a>
 
@@ -173,26 +173,33 @@ aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf
 The following table provides a link to retrieve the current Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI IDs by Region\.
 
 
-|  Region Name  |  Region  |  AMI ID  | 
+|  Region name  |  Region  |  AMI ID  | 
 | --- | --- | --- | 
-|  US East \(N\. Virginia\)  | `us-east-1` |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=us-east-1#)  | 
-|  US East \(Ohio\)  | `us-east-2` |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=us-east-2#)  | 
+|  US East \(N\. Virginia\)  |  `us-east-1`  |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=us-east-1#)  | 
+|  US East \(Ohio\)  |  `us-east-2`  |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=us-east-2#)  | 
 |  US West \(Oregon\)  |  `us-west-2`  |  [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=us-west-2#)  | 
 |  Asia Pacific \(Mumbai\)  |  `ap-south-1`  |  [View AMI ID](https://ap-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=ap-south-1#)  | 
+|  Asia Pacific \(Hong Kong\)  |  `ap-east-1`  |  [View AMI ID](https://ap-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=ap-east-1#)  | 
 |  Asia Pacific \(Singapore\)  |  `ap-southeast-1`  |  [View AMI ID](https://ap-southeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=ap-southeast-1#)  | 
 |  Asia Pacific \(Sydney\)  |  `ap-southeast-2`  |  [View AMI ID](https://ap-southeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=ap-southeast-2#)  | 
-|  Asia Pacific \(Tokyo\)  | `ap-northeast-1` |  [View AMI ID](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=ap-northeast-1#)  | 
-|  Europe \(Frankfurt\)  | `eu-central-1` |  [View AMI ID](https://eu-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=eu-central-1#)  | 
-|  Europe \(Ireland\)  | `eu-west-1` |  [View AMI ID](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=eu-west-1#)  | 
-|  Europe \(Paris\)  |  eu\-west\-3  |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=eu-west-3#)  | 
-|  South America \(São Paulo\)  |  sa\-east\-1  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=sa-east-1#)  | 
+|  Asia Pacific \(Tokyo\)  |  `ap-northeast-1`  |  [View AMI ID](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=ap-northeast-1#)  | 
+|  Asia Pacific \(Seoul\)  |  `ap-northeast-2`  |  [View AMI ID](https://ap-northeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=ap-northeast-2#)  | 
+|  Canada \(Central\)  |  `ca-central-1`  |  [View AMI ID](https://ca-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=ca-central-1#)  | 
+|  Europe \(Frankfurt\)  |  `eu-central-1`  |  [View AMI ID](https://eu-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=eu-central-1#)  | 
+|  Europe \(Milan\)  |  `eu-south-1`  |  [View AMI ID](https://eu-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=eu-south-1#)  | 
+|  Europe \(Ireland\)  |  `eu-west-1`  |  [View AMI ID](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=eu-west-1#)  | 
+|  Europe \(Paris\)  |  `eu-west-3`  |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=eu-west-3#)  | 
+|  Middle East \(Bahrain\)  |  `me-south-1`  |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=me-south-1#)  | 
+|  South America \(São Paulo\)  |  `sa-east-1`  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=sa-east-1#)  | 
+|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=cn-north-1#)  | 
+|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=cn-northwest-1#)  | 
 
 For a full list of current and previous versions of the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\.
 
 ### Amazon Linux AMI<a name="alami"></a>
 
 **Important**  
-On April 15, 2021, the Amazon ECS\-optimized Amazon Linux AMI will be ending its standard support phase and will enter a maintenance support phase\. In the maintenance support phase, Amazon ECS will continue providing critical and important security updates for a reduced list of packages\. During this period, Amazon ECS will no longer add support for new EC2 instance types, new services and features, and new packages\. Instead, Amazon ECS will provide updates only for critical and important security fixes that apply to a reduced set of packages\. Maintenance support period will end on June 30, 2023\.
+On April 15, 2021, the Amazon ECS\-optimized Amazon Linux AMI ended its standard support phase and entered a maintenance support phase\. In the maintenance support phase, Amazon ECS will continue providing critical and important security updates for a reduced list of packages\. During this period, Amazon ECS will no longer add support for new EC2 instance types, new services and features, and new packages\. Instead, Amazon ECS will provide updates only for critical and important security fixes that apply to a reduced set of packages\. Maintenance support period will end on June 30, 2023\.
 
 You can retrieve the current Amazon ECS\-optimized Amazon Linux AMI using the AWS CLI with the following command:
 
@@ -353,46 +360,43 @@ The following table provides a link to retrieve the current Amazon ECS\-optimize
 
 For a full list of current and previous versions of the Amazon ECS\-optimized Windows Server 2004 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker see [Windows Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-windows)\.
 
-### Windows Server 1909 Core<a name="windows-1909-core-ami"></a>
+### Windows Server 20H2 Core<a name="windows-20H2-core-ami"></a>
 
-The current Amazon ECS\-optimized Windows Server 1909 Core AMI can be retrieved using the AWS CLI with the following command:
+The current Amazon ECS\-optimized Windows Server 20H2 Core AMI can be retrieved using the AWS CLI with the following command:
 
 ```
-aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized
+aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized
 ```
 
-The following table provides a link to retrieve the current Amazon ECS\-optimized Windows Server 1909 Core AMI IDs by Region\.
+The following table provides a link to retrieve the current Amazon ECS\-optimized Windows Server 20H2 Core AMI IDs by Region\.
 
 
-|  Region Name  |  Region  |  AMI ID  | 
+|  Region name  |  Region  |  AMI ID  | 
 | --- | --- | --- | 
-|  US East \(Ohio\)  |  `us-east-2`  |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=us-east-2#)  | 
-|  US East \(N\. Virginia\)  |  `us-east-1`  |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=us-east-1#)  | 
-|  US West \(N\. California\)  |  `us-west-1`  |  [View AMI ID](https://us-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=us-west-1#)  | 
-|  US West \(Oregon\)  |  `us-west-2`  |  [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=us-west-2#)  | 
-|  Asia Pacific \(Hong Kong\)  |  `ap-east-1`  |  [View AMI ID](https://ap-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=ap-east-1#)  | 
-|  Asia Pacific \(Tokyo\)  | `ap-northeast-1` |  [View AMI ID](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=ap-northeast-1#)  | 
-|  Asia Pacific \(Seoul\)  | `ap-northeast-2` |  [View AMI ID](https://ap-northeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=ap-northeast-2#)  | 
-|  Asia Pacific \(Mumbai\)  | `ap-south-1` |  [View AMI ID](https://ap-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=ap-south-1#)  | 
-|  Asia Pacific \(Singapore\)  | `ap-southeast-1` |  [View AMI ID](https://ap-southeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=ap-southeast-1#)  | 
-|  Asia Pacific \(Sydney\)  | `ap-southeast-2` |  [View AMI ID](https://ap-southeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=ap-southeast-2#)  | 
-|  Canada \(Central\)  | `ca-central-1` |  [View AMI ID](https://ca-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=ca-central-1#)  | 
-|  Europe \(Frankfurt\)  | `eu-central-1` |  [View AMI ID](https://eu-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=eu-central-1#)  | 
-|  Europe \(Stockholm\)  | `eu-north-1` |  [View AMI ID](https://eu-north-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=eu-north-1#)  | 
-|  Europe \(Ireland\)  | `eu-west-1` |  [View AMI ID](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=eu-west-1#)  | 
-|  Europe \(London\)  | `eu-west-2` |  [View AMI ID](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=eu-west-2#)  | 
-|  Europe \(Paris\)  | `eu-west-3` |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=eu-west-3#)  | 
-|  Middle East \(Bahrain\)  | `me-south-1` |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=me-south-1#)  | 
-|  South America \(São Paulo\)  | `sa-east-1` |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=sa-east-1#)  | 
-|  AWS GovCloud \(US\-East\)  | `us-gov-east-1` |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=us-gov-east-1#)  | 
-|  AWS GovCloud \(US\-West\)  | `us-gov-west-1` |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=us-gov-west-1#)  | 
-|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=cn-north-1#)  | 
-|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-1909-English-Core-ECS_Optimized?region=cn-northwest-1#)  | 
+|  US East \(Ohio\)  |  `us-east-2`  |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-east-2#)  | 
+|  US East \(N\. Virginia\)  |  `us-east-1`  |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-east-1#)  | 
+|  US West \(N\. California\)  |  `us-west-1`  |  [View AMI ID](https://us-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-west-1#)  | 
+|  US West \(Oregon\)  |  `us-west-2`  |  [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-west-2#)  | 
+|  Asia Pacific \(Hong Kong\)  |  `ap-east-1`  |  [View AMI ID](https://ap-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-east-1#)  | 
+|  Asia Pacific \(Tokyo\)  | `ap-northeast-1` |  [View AMI ID](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-northeast-1#)  | 
+|  Asia Pacific \(Seoul\)  | `ap-northeast-2` |  [View AMI ID](https://ap-northeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-northeast-2#)  | 
+|  Asia Pacific \(Mumbai\)  | `ap-south-1` |  [View AMI ID](https://ap-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-south-1#)  | 
+|  Asia Pacific \(Singapore\)  | `ap-southeast-1` |  [View AMI ID](https://ap-southeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-southeast-1#)  | 
+|  Asia Pacific \(Sydney\)  | `ap-southeast-2` |  [View AMI ID](https://ap-southeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-southeast-2#)  | 
+|  Canada \(Central\)  | `ca-central-1` |  [View AMI ID](https://ca-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ca-central-1#)  | 
+|  Europe \(Frankfurt\)  | `eu-central-1` |  [View AMI ID](https://eu-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=eu-central-1#)  | 
+|  Europe \(Stockholm\)  | `eu-north-1` |  [View AMI ID](https://eu-north-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=eu-north-1#)  | 
+|  Europe \(Ireland\)  | `eu-west-1` |  [View AMI ID](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=eu-west-1#)  | 
+|  Europe \(London\)  | `eu-west-2` |  [View AMI ID](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=eu-west-2#)  | 
+|  Europe \(Paris\)  | `eu-west-3` |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=eu-west-3#)  | 
+|  Middle East \(Bahrain\)  | `me-south-1` |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=me-south-1#)  | 
+|  South America \(São Paulo\)  | `sa-east-1` |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=sa-east-1#)  | 
+|  AWS GovCloud \(US\-East\)  | `us-gov-east-1` |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-gov-east-1#)  | 
+|  AWS GovCloud \(US\-West\)  | `us-gov-west-1` |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-gov-west-1#)  | 
+|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=cn-north-1#)  | 
+|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=cn-northwest-1#)  | 
 
-For a full list of current and previous versions of the Amazon ECS\-optimized Windows Server 1909 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker see [Windows Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-windows)\.
-
-**Important**  
-The Amazon ECS\-optimized Windows Server 1909 Core AMI is being deprecated\. No new versions of this AMI will be released\.
+For a full list of current and previous versions of the Windows Server 20H2 Core and their corresponding versions of the Amazon ECS container agent and Docker see [Windows Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-windows)\.
 
 ### Windows Server 2016 Full<a name="windows-2016-full-ami"></a>
 

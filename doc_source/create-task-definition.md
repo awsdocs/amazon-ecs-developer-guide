@@ -192,26 +192,34 @@ An empty task definition template is shown as follows\. You can use this templat
     "family": "",
     "taskRoleArn": "",
     "executionRoleArn": "",
-    "networkMode": "awsvpc",
+    "networkMode": "host",
     "containerDefinitions": [
         {
             "name": "",
             "image": "",
-            "repositoryCredentials": {"credentialsParameter": ""},
+            "repositoryCredentials": {
+                "credentialsParameter": ""
+            },
             "cpu": 0,
             "memory": 0,
             "memoryReservation": 0,
-            "links": [""],
+            "links": [
+                ""
+            ],
             "portMappings": [
                 {
                     "containerPort": 0,
                     "hostPort": 0,
-                    "protocol": "tcp"
+                    "protocol": "udp"
                 }
             ],
             "essential": true,
-            "entryPoint": [""],
-            "command": [""],
+            "entryPoint": [
+                ""
+            ],
+            "command": [
+                ""
+            ],
             "environment": [
                 {
                     "name": "",
@@ -239,14 +247,20 @@ An empty task definition template is shown as follows\. You can use this templat
             ],
             "linuxParameters": {
                 "capabilities": {
-                    "add": [""],
-                    "drop": [""]
+                    "add": [
+                        ""
+                    ],
+                    "drop": [
+                        ""
+                    ]
                 },
                 "devices": [
                     {
                         "hostPath": "",
                         "containerPath": "",
-                        "permissions": ["read"]
+                        "permissions": [
+                            "mknod"
+                        ]
                     }
                 ],
                 "initProcessEnabled": true,
@@ -255,7 +269,9 @@ An empty task definition template is shown as follows\. You can use this templat
                     {
                         "containerPath": "",
                         "size": 0,
-                        "mountOptions": [""]
+                        "mountOptions": [
+                            ""
+                        ]
                     }
                 ],
                 "maxSwap": 0,
@@ -270,7 +286,7 @@ An empty task definition template is shown as follows\. You can use this templat
             "dependsOn": [
                 {
                     "containerName": "",
-                    "condition": "HEALTHY"
+                    "condition": "SUCCESS"
                 }
             ],
             "startTimeout": 0,
@@ -281,28 +297,38 @@ An empty task definition template is shown as follows\. You can use this templat
             "disableNetworking": true,
             "privileged": true,
             "readonlyRootFilesystem": true,
-            "dnsServers": [""],
-            "dnsSearchDomains": [""],
+            "dnsServers": [
+                ""
+            ],
+            "dnsSearchDomains": [
+                ""
+            ],
             "extraHosts": [
                 {
                     "hostname": "",
                     "ipAddress": ""
                 }
             ],
-            "dockerSecurityOptions": [""],
+            "dockerSecurityOptions": [
+                ""
+            ],
             "interactive": true,
             "pseudoTerminal": true,
-            "dockerLabels": {"KeyName": ""},
+            "dockerLabels": {
+                "KeyName": ""
+            },
             "ulimits": [
                 {
-                    "name": "msgqueue",
+                    "name": "rtprio",
                     "softLimit": 0,
                     "hardLimit": 0
                 }
             ],
             "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {"KeyName": ""},
+                "logDriver": "splunk",
+                "options": {
+                    "KeyName": ""
+                },
                 "secretOptions": [
                     {
                         "name": "",
@@ -311,7 +337,9 @@ An empty task definition template is shown as follows\. You can use this templat
                 ]
             },
             "healthCheck": {
-                "command": [""],
+                "command": [
+                    ""
+                ],
                 "interval": 0,
                 "timeout": 0,
                 "retries": 0,
@@ -331,32 +359,40 @@ An empty task definition template is shown as follows\. You can use this templat
             ],
             "firelensConfiguration": {
                 "type": "fluentd",
-                "options": {"KeyName": ""}
+                "options": {
+                    "KeyName": ""
+                }
             }
         }
     ],
     "volumes": [
         {
             "name": "",
-            "host": {"sourcePath": ""},
+            "host": {
+                "sourcePath": ""
+            },
             "dockerVolumeConfiguration": {
-                "scope": "task",
+                "scope": "shared",
                 "autoprovision": true,
                 "driver": "",
-                "driverOpts": {"KeyName": ""},
-                "labels": {"KeyName": ""}
+                "driverOpts": {
+                    "KeyName": ""
+                },
+                "labels": {
+                    "KeyName": ""
+                }
             },
             "efsVolumeConfiguration": {
                 "fileSystemId": "",
                 "rootDirectory": "",
-                "transitEncryption": "ENABLED",
+                "transitEncryption": "DISABLED",
                 "transitEncryptionPort": 0,
                 "authorizationConfig": {
                     "accessPointId": "",
-                    "iam": "ENABLED"
+                    "iam": "DISABLED"
                 }
             },
-            "FSxWindowsFileServerVolumeConfiguration": {
+            "fsxWindowsFileServerVolumeConfiguration": {
                 "fileSystemId": "",
                 "rootDirectory": "",
                 "authorizationConfig": {
@@ -372,7 +408,9 @@ An empty task definition template is shown as follows\. You can use this templat
             "expression": ""
         }
     ],
-    "requiresCompatibilities": ["EC2"],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
     "cpu": "",
     "memory": "",
     "tags": [
@@ -381,8 +419,11 @@ An empty task definition template is shown as follows\. You can use this templat
             "value": ""
         }
     ],
-    "pidMode": "task",
-    "ipcMode": "none",
+    "ephemeralStorage": {
+        "sizeInGiB": 0
+    },
+    "pidMode": "host",
+    "ipcMode": "host",
     "proxyConfiguration": {
         "type": "APPMESH",
         "containerName": "",

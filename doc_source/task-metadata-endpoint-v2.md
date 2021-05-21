@@ -10,7 +10,7 @@ The task metadata version 2 feature is enabled by default for the following:
 + Tasks using the Fargate launch type that use platform version v1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + Tasks using the EC2 launch type that also use the `awsvpc` network mode and are launched on Amazon EC2 infrastructure running at least version 1\.17\.0 of the Amazon ECS container agent\. For more information, see [Amazon ECS Container Agent Versions](ecs-agent-versions.md)\.
 
-You can add support for this feature on older container instances by updating the agent to the latest version\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+You can add support for this feature on older container instances by updating the agent to the latest version\. For more information, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
 ## Task metadata endpoint paths<a name="task-metadata-endpoint-v2-paths"></a>
 

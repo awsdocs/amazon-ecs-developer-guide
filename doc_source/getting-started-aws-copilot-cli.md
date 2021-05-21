@@ -1,6 +1,6 @@
-# Getting started with AWS Copilot by deploying an Amazon ECS application<a name="getting-started-aws-copilot-cli"></a>
+# Getting started with Amazon ECS using AWS Copilot<a name="getting-started-aws-copilot-cli"></a>
 
-Learn how to deploy an Amazon ECS application using AWS Copilot\.
+Get started with Amazon ECS using AWS Copilot by deploying an Amazon ECS application\.
 
 ## Prerequisites<a name="getting-started-aws-copilot-cli-prerequisites"></a>
 
@@ -9,7 +9,7 @@ Before you begin, make sure that you meet the following prerequisites:
 + Install the AWS Copilot CLI\. Releases currently support Linux and macOS systems\. For more information, see [Installing the AWS Copilot CLI](AWS_Copilot.md#copilot-install)\.
 + Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)\.
 + Run `aws configure` to set up a default profile that the AWS Copilot CLI will use to manage your application and services\.
-+ Install and run Docker\. For more information, see [Get Started with Docker](https://www.docker.com/get-started)\.
++ Install and run Docker\. For more information, see [Get started with Docker](https://www.docker.com/get-started)\.
 
 ## Deploy your application using one command<a name="getting-started-ecs-copilot-cli-deploy-one"></a>
 

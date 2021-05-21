@@ -1,26 +1,24 @@
-# Launching an Amazon ECS Container Instance<a name="launch_container_instance"></a>
+# Launching an Amazon ECS container instance<a name="launch_container_instance"></a>
 
-You can launch an Amazon ECS container instance using the AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. After you've launched your instance, you can use it to run tasks\.
+Your Amazon ECS container instances are created using the Amazon EC2 console\. Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 
 **To launch a container instance**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select the region to use\.
+1. From the navigation bar, select the Region to use\.
 
-1. From the console dashboard, choose **Launch Instance**\.
+1. From the **EC2 Dashboard**, choose **Launch instance**\.
 
 1. On the **Choose an Amazon Machine Image \(AMI\)** page, complete the following steps:
 
-   1. Choose **Community AMIs**\.
+   1. Choose **AWS Marketplace**\.
 
-   1. Choose an AMI for your container instance\. You can choose an Amazon ECS\-optimized AMI, or another operating system, such as CoreOS or Ubuntu\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS container agent](ecs-agent-install.md)\.
-**Note**  
-For more information about Amazon ECS\-specific CoreOS installation instructions, see [Running CoreOS Container Linux with AWS EC2 Container Service](https://coreos.com/docs/running-coreos/cloud-providers/ecs/)\.
+   1. Choose an AMI for your container instance\. You can search for one of the Amazon ECS\-optimized AMIs, for example the **Amazon ECS\-Optimized Amazon Linux 2 AMI**, or another operating system\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS container agent](ecs-agent-install.md)\.
 
       For more information on the latest Amazon ECS\-optimized AMIs, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 **Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
+The **Amazon ECS\-optimized Amazon Linux AMI** is deprecated as of April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.
 
@@ -42,7 +40,7 @@ If you are using Spot Instances and see a `Not available` message, you may need 
 **Note**  
 Container instances need access to communicate with the Amazon ECS service endpoint\. This can be through an interface VPC endpoint or through your container instances having public IP addresses\.  
 For more information about interface VPC endpoints, see [Amazon ECS interface VPC endpoints \(AWS PrivateLink\)](vpc-endpoints.md)\.  
-If you do not have an interface VPC endpoint configured and your container instances do not have public IP addresses, then they must use network address translation \(NAT\) to provide this access\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide* and [HTTP Proxy Configuration](http_proxy_config.md) in this guide\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
+If you do not have an interface VPC endpoint configured and your container instances do not have public IP addresses, then they must use network address translation \(NAT\) to provide this access\. For more information, see [NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide* and [HTTP proxy configuration](http_proxy_config.md) in this guide\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
 
    1. Select your container instance IAM role\. This is usually named `ecsInstanceRole`\.
 **Important**  
@@ -87,7 +85,7 @@ If you launch your container instances using an Amazon EC2 Auto Scaling group, t
         EOF
         ```
 
-      For more information, see [Bootstrapping Container Instances with Amazon EC2 User Data](bootstrap_container_instance.md)\.
+      For more information, see [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)\.
 
    1. Choose **Next: Add Storage**\.
 

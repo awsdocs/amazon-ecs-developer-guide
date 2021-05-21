@@ -1,4 +1,4 @@
-# Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-Optimized AMIs\)<a name="manually_update_agent"></a>
+# Manually updating the Amazon ECS container agent \(for non\-Amazon ECS\-Optimized AMIs\)<a name="manually_update_agent"></a>
 
 **To manually update the Amazon ECS container agent \(for non\-Amazon ECS\-optimized AMIs\)**
 **Note**  
@@ -73,7 +73,7 @@ You can optionally store your agent environment variables in Amazon S3 \(which c
 
 1. Run the latest Amazon ECS container agent on your container instance\.
 **Note**  
-Use Docker restart policies or a process manager \(such as upstart or systemd\) to treat the container agent as a service or a daemon and ensure that it is restarted after exiting\. For more information, see [Automatically start containers](https://docs.docker.com/engine/admin/host_integration/) and [Restart policies](https://docs.docker.com/engine/reference/run/#restart-policies-restart) in the Docker documentation\. The Amazon ECS\-optimized AMI uses the `ecs-init` RPM for this purpose, and you can view the [source code for this RPM](https://github.com/aws/amazon-ecs-init) on GitHub\. For example systemd unit files for Ubuntu 16\.04 and CentOS 7, see [Example Container Instance User Data Configuration Scripts](example_user_data_scripts.md)\.
+Use Docker restart policies or a process manager \(such as upstart or systemd\) to treat the container agent as a service or a daemon and ensure that it is restarted after exiting\. For more information, see [Automatically start containers](https://docs.docker.com/engine/admin/host_integration/) and [Restart policies](https://docs.docker.com/engine/reference/run/#restart-policies-restart) in the Docker documentation\. The Amazon ECS\-optimized AMI uses the `ecs-init` RPM for this purpose, and you can view the [source code for this RPM](https://github.com/aws/amazon-ecs-init) on GitHub\. For example systemd unit files for Ubuntu 16\.04 and CentOS 7, see [Example container instance user data configuration scripts](example_user_data_scripts.md)\.
 
    The following example of the agent run command is broken into separate lines to show each option\. For more information about these and other agent runtime options, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 **Important**  

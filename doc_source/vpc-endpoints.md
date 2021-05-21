@@ -1,6 +1,6 @@
 # Amazon ECS interface VPC endpoints \(AWS PrivateLink\)<a name="vpc-endpoints"></a>
 
-You can improve the security posture of your VPC by configuring Amazon ECS to use an interface VPC endpoint\. Interface endpoints are powered by AWS PrivateLink, a technology that enables you to privately access Amazon ECS APIs by using private IP addresses\. PrivateLink restricts all network traffic between your VPC and Amazon ECS to the Amazon network\. You don't need an internet gateway, a NAT device, or a virtual private gateway\.
+You can improve the security posture of your VPC by configuring Amazon ECS to use an interface VPC endpoint\. Interface endpoints are powered by AWS PrivateLink, a technology that enables you to privately access Amazon ECS APIs by using private IP addresses\. AWS PrivateLink restricts all network traffic between your VPC and Amazon ECS to the Amazon network\. You don't need an internet gateway, a NAT device, or a virtual private gateway\.
 
 For more information about AWS PrivateLink and VPC endpoints, see [VPC Endpoints ](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html) in the *Amazon VPC User Guide*\.
 
@@ -55,6 +55,12 @@ If you are referencing either Secrets Manager secrets or Systems Manager Paramet
 For more information about Secrets Manager VPC endpoints, see [Using Secrets Manager with VPC endpoints](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html) in the *AWS Secrets Manager User Guide*\.
 
 For more information about Systems Manager VPC endpoints, see [Using Systems Manager with VPC endpoints](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html) in the *AWS Systems Manager User Guide*\.
+
+## Create the Systems Manager endpoints<a name="ecs-vpc-endpoint-ecsexec"></a>
+
+If you use the ECS Exec feature, you need to create the interface VPC endpoints for Systems Manager Session Manager\. For more information, see [Using Amazon ECS Exec for debugging](ecs-exec.md)\.
+
+For more information about Systems Manager Session Manager VPC endpoints, see [Use AWS PrivateLink to set up a VPC endpoint for Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-privatelink.html) in the *AWS Systems Manager User Guide*\.
 
 ## Creating a VPC endpoint policy for Amazon ECS<a name="vpc-endpoint-policy"></a>
 

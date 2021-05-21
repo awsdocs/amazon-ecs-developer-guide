@@ -16,9 +16,9 @@ You can monitor your Amazon ECS resources using Amazon CloudWatch, which collect
 
 Any Amazon ECS service using the Fargate launch type is enabled for CloudWatch CPU and memory utilization metrics automatically, so you don't need to take any manual steps\.
 
-For any Amazon ECS task or service using the EC2 launch type, your Amazon ECS container instances require version 1\.4\.0 or later of the container agent to enable CloudWatch metrics\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+For any Amazon ECS task or service using the EC2 launch type, your Amazon ECS container instances require version 1\.4\.0 or later of the container agent to enable CloudWatch metrics\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
-If you're starting your agent manually \(for example, if you're not using the Amazon ECS\-optimized AMI for your container instances\), see [Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
+If you're starting your agent manually \(for example, if you're not using the Amazon ECS\-optimized AMI for your container instances\), see [Manually updating the Amazon ECS container agent \(for non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
 
 Your Amazon ECS container instances also require the `ecs:StartTelemetrySession` permission on the IAM role that you launch your container instances with\. If you created your Amazon ECS container instance role before CloudWatch metrics were available for Amazon ECS, you might need to add this permission\. For information about checking your Amazon ECS container instance role and attaching the managed IAM policy for container instances, see [To check for the `ecsInstanceRole` in the IAM console](instance_IAM_role.md#procedure_check_instance_role)\.
 

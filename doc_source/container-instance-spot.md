@@ -2,7 +2,7 @@
 
 A Spot Instance is an unused Amazon EC2 instance that is available for less than the On\-Demand price\. Because Spot Instances enable you to request unused EC2 instances at steep discounts, you can lower your Amazon EC2 costs significantly\. The hourly price for a Spot Instance is called a Spot price\. The Spot price of each instance type in each Availability Zone is set by Amazon EC2, and adjusted gradually based on the long\-term supply of and demand for Spot Instances\. For more information, see [Spot Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-You can register Spot Instances to your Amazon ECS clusters\. For more information, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
+You can register Spot Instances to your Amazon ECS clusters\. For more information, see [Launching an Amazon ECS container instance](launch_container_instance.md)\.
 
 ## Spot Instance Draining<a name="spot-instance-draining"></a>
 
@@ -23,7 +23,7 @@ ECS_ENABLE_SPOT_INSTANCE_DRAINING=true
 EOF
 ```
 
-For more information, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
+For more information, see [Launching an Amazon ECS container instance](launch_container_instance.md)\.
 
 **To enable Spot Instance draining for an existing container instance**
 
@@ -47,7 +47,7 @@ For more information, see [Launching an Amazon ECS Container Instance](launch_co
      sudo stop ecs && sudo start ecs
      ```
 
-1. \(Optional\) You can verify that the agent is running and see some information about your new container instance by querying the agent introspection API operation\. For more information, see [Amazon ECS Container Agent Introspection](ecs-agent-introspection.md)\.
+1. \(Optional\) You can verify that the agent is running and see some information about your new container instance by querying the agent introspection API operation\. For more information, see [Amazon ECS container agent introspection](ecs-agent-introspection.md)\.
 
    ```
    curl http://localhost:51678/v1/metadata

@@ -35,7 +35,7 @@ Before you launch a container instance with the increased ENI limits, the follow
 
   For more information, see [Account settings](ecs-account-settings.md)\.
 
-Once the prerequisites are met, you can launch a new container instance using one of the supported Amazon EC2 instance types, and the instance will have the increased ENI limits\. For a list of supported instance types, see [Supported Amazon EC2 instance types](#eni-trunking-supported-instance-types)\. The container instance must have version `1.28.1` or later of the container agent and version `1.28.1-2` or later of the ecs\-init package\. If you use the latest Linux variant of the Amazon ECS\-optimized AMI, these requirements will be met\. For more information, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
+Once the prerequisites are met, you can launch a new container instance using one of the supported Amazon EC2 instance types, and the instance will have the increased ENI limits\. For a list of supported instance types, see [Supported Amazon EC2 instance types](#eni-trunking-supported-instance-types)\. The container instance must have version `1.28.1` or later of the container agent and version `1.28.1-2` or later of the ecs\-init package\. If you use the latest Linux variant of the Amazon ECS\-optimized AMI, these requirements will be met\. For more information, see [Launching an Amazon ECS container instance](launch_container_instance.md)\.
 
 **To opt in all IAM users or roles on your account to the increased ENI limits using the console**
 

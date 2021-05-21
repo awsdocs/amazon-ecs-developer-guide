@@ -55,11 +55,15 @@ Before your container instances can send log data to CloudWatch Logs, you must c
 
 1. Choose `ecsInstanceRole`\. If the role does not exist, follow the procedures in [Amazon ECS Container Instance IAM Role](instance_IAM_role.md) to create the role\.
 
-1. Choose **Permissions**, **Attach policies**\.
+1. In the navigation pane, choose **Policies**\. 
 
-1. To narrow the available policies to attach, for **Filter**, type **ECS\-CloudWatchLogs**\.
+1. Choose **ECS\-CloudWatchLogs**\.
 
-1. Select the **ECS\-CloudWatchLogs** policy and choose **Attach policy**\.
+1. Choose **Policy actions**, **Attach**\.
+
+1. To narrow the available policies to attach, for **Filter**, type **ecsInstance**\.
+
+1. Select the **ecsInstance** role and choose **Attach policy**\.
 
 ## Installing and configuring the CloudWatch agent<a name="installing_cwl_agent"></a>
 

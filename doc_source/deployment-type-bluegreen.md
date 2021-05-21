@@ -40,6 +40,7 @@ Consider the following when using the blue/green deployment type:
   + An optional test listener can be added to the load balancer, which is used to route test traffic\. If you specify a test listener, CodeDeploy routes your test traffic to the replacement task set during a deployment\.
   + Both the production and test listeners must belong to the same load balancer\.
   + You must define a target group for the load balancer\. The target group routes traffic to the original task set in a service through the production listener\.
+  + When a Network Load Balancer is used, only the `CodeDeployDefault.ECSAllAtOnce` deployment configuration is supported\.
 + For services configured to use service auto scaling and the blue/green deployment type, auto scaling is not blocked during a deployment but the deployment may fail under some circumstances\. The following describes this behavior in more detail\.
   + If a service is scaling and a deployment starts, the green task set is created and CodeDeploy will wait up to an hour for the green task set to reach steady state and won't shift any traffic until it does\.
   + If a service is in the process of a blue/green deployment and a scaling event occurs, traffic will continue to shift for 5 minutes\. If the service doesn't reach steady state within 5 minutes, CodeDeploy will stop the deployment and mark it as failed\.

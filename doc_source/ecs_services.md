@@ -1,6 +1,6 @@
 # Amazon ECS services<a name="ecs_services"></a>
 
-An Amazon ECS service enables you to run and maintain a specified number of instances of a task definition simultaneously in an Amazon ECS cluster\. If any of your tasks should fail or stop for any reason, the Amazon ECS service scheduler launches another instance of your task definition to replace it in order to maintain the desired number of tasks in the service\.
+An Amazon ECS service allows you to run and maintain a specified number of instances of a task definition simultaneously in an Amazon ECS cluster\. If any of your tasks should fail or stop for any reason, the Amazon ECS service scheduler launches another instance of your task definition to replace it in order to maintain the desired number of tasks in the service\.
 
 In addition to maintaining the desired number of tasks in your service, you can optionally run your service behind a load balancer\. The load balancer distributes traffic across the tasks that are associated with the service\.
 
@@ -29,19 +29,6 @@ There are two service scheduler strategies available:
 **Note**  
 Fargate tasks do not support the `DAEMON` scheduling strategy\.
 
-### Daemon<a name="service_scheduler_daemon"></a>
-
-The *daemon* scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints specified in your cluster\. The service scheduler also evaluates the task placement constraints for running tasks and will stop tasks that do not meet the placement constraints\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\.
-
-The daemon service scheduler does not place any tasks on instances that have a `DRAINING` status\. If a container instance transitions to `DRAINING`, the daemon tasks on it are stopped\. The service scheduler also monitors when new container instances are added to your cluster and adds the daemon tasks to them\.
-
-If a deployment configuration is specified, the maximum percent parameter must be `100`\. The default value for a daemon service for `maximumPercent` is 100%\. The default value for a daemon service for `minimumHealthyPercent` is 0%\.
-
-Tasks using the Fargate launch type or the `CODE_DEPLOY` or `EXTERNAL` deployment controller types don't support the daemon scheduling strategy\.
-
-**Note**  
-The daemon service scheduler does not support the use of Classic Load Balancers\.
-
 ### Replica<a name="service_scheduler_replica"></a>
 
 The *replica* scheduling strategy places and maintains the desired number of tasks in your cluster\.
@@ -55,6 +42,35 @@ When creating a service that runs tasks on EC2 instances , you can optionally sp
 + If there is no placement strategy defined, balance tasks across the Availability Zones in your cluster with the following logic:
   + Sort the valid container instances, giving priority to instances that have the fewest number of running tasks for this service in their respective Availability Zone\. For example, if zone A has one running service task and zones B and C each have zero, valid container instances in either zone B or C are considered optimal for placement\.
   + Place the new service task on a valid container instance in an optimal Availability Zone \(based on the previous steps\), favoring container instances with the fewest number of running tasks for this service\.
+
+#### Daemon<a name="service_scheduler_daemon"></a>
+
+The *daemon* scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints specified in your cluster\. The service scheduler also evaluates the task placement constraints for running tasks and will stop tasks that do not meet the placement constraints\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\.
+
+Amazon ECS reserves container instance compute resources including CPU, memory and network interfaces for the daemon tasks\. When you launch a daemon service on a cluster with other replica services, Amazon ECS prioritizes the daemon task to be the first task to launch on the instances and the last task to stop\. This strategy ensures that resources are not used by pending replica tasks and are available for the daemon tasks\.
+
+The daemon service scheduler does not place any tasks on instances that have a `DRAINING` status\. If a container instance transitions to `DRAINING`, the daemon tasks on it are stopped\. The service scheduler also monitors when new container instances are added to your cluster and adds the daemon tasks to them\.
+
+If a deployment configuration is specified, the maximum percent parameter must be `100`\. The default value for a daemon service for `maximumPercent` is 100%\. The default value for a daemon service for `minimumHealthyPercent` is 0%\.
+
+A change to the placement constraints for the daemon service requires a service restart for the changes to take effect\. Amazon ECS dynamically updates the resources reserved on qualifying instances for the daemon task\. For existing instances, the scheduler tries to place the task on the instance\. 
+
+A change the task size or container resource reservation in the task\-defintion starts a deployment of the service\. Amazon ECS picks up the updated CPU and memory reservations for the daemon, and then blocks that capacity for the daemon task\.
+
+If there are insufficient resources for either of the above cases, the following happens:
++ The task placement fails\.
++ A CloudWatch event is generated\.
++ Amazon ECS continues to try and schedule the task on the instance by waiting for resources to become available\. 
++ Amazon ECS frees up any reserved instances that no longer meet the placement constraint criteria and stops the corresponding daemon tasks\.
+
+The daemon scheduling strategy can be used in the following cases:
++ Running application containers
++ Running support containers for logging, monitoring and tracing tasks
+
+Tasks using the Fargate launch type or the `CODE_DEPLOY` or `EXTERNAL` deployment controller types don't support the daemon scheduling strategy\.
+
+**Note**  
+The daemon service scheduler does not support the use of Classic Load Balancers\.
 
 When the service scheduler stops running tasks, it attempts to maintain balance across the Availability Zones in your cluster\. The scheduler uses the following logic: 
 + If a placement strategy is defined, use that strategy to select which tasks to terminate\. For example, if a service has an Availability Zone spread strategy defined, then a task is selected that leaves the remaining tasks with the best spread\.

@@ -1,15 +1,15 @@
-# Amazon ECS Container Metadata File<a name="container-metadata"></a>
+# Amazon ECS container metadata file<a name="container-metadata"></a>
 
 Beginning with version 1\.15\.0 of the Amazon ECS container agent, various container metadata is available within your containers or the host container instance\. By enabling this feature, you can query the information about a task, container, and container instance from within the container or the host container instance\. The metadata file is created on the host instance and mounted in the container as a Docker volume\.
 
-The container metadata file is cleaned up on the host instance when the container is cleaned up\. You can adjust when this happens with the `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` container agent variable\. For more information, see [Automated Task and Image Cleanup](automated_image_cleanup.md)\.
+The container metadata file is cleaned up on the host instance when the container is cleaned up\. You can adjust when this happens with the `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` container agent variable\. For more information, see [Automated task and image cleanup](automated_image_cleanup.md)\.
 
 **Topics**
-+ [Enabling Container Metadata](#enable-metadata)
-+ [Container Metadata File Locations](#metadata-file-locations)
-+ [Container Metadata File Format](#metadata-file-format)
++ [Enabling container metadata](#enable-metadata)
++ [Container metadata file locations](#metadata-file-locations)
++ [Container metadata file format](#metadata-file-format)
 
-## Enabling Container Metadata<a name="enable-metadata"></a>
+## Enabling container metadata<a name="enable-metadata"></a>
 
 This feature is disabled by default\. You can enable container metadata at the container instance level by setting the `ECS_ENABLE_CONTAINER_METADATA` container agent variable to `true`\. You can set this variable in the `/etc/ecs/ecs.config` configuration file and restart the agent\. You can also set it as a Docker environment variable at runtime when the agent container is started\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
 
@@ -23,7 +23,7 @@ ECS_ENABLE_CONTAINER_METADATA=true
 EOF
 ```
 
-## Container Metadata File Locations<a name="metadata-file-locations"></a>
+## Container metadata file locations<a name="metadata-file-locations"></a>
 
 By default, the container metadata file is written to the following host and container paths\.
 + **For Linux instances:**
@@ -47,7 +47,7 @@ However, for easy access, the container metadata file location is set to the `EC
   Get-Content -path $env:ECS_CONTAINER_METADATA_FILE
   ```
 
-## Container Metadata File Format<a name="metadata-file-format"></a>
+## Container metadata file format<a name="metadata-file-format"></a>
 
 The following information is stored in the container metadata JSON file\.
 

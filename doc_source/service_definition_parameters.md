@@ -116,14 +116,14 @@ For services are that *do* use a load balancer, the following should be noted:
 + If a task has an essential container with a health check defined, the service scheduler will wait for both the task to reach a healthy status and the load balancer target group health check to return a healthy status before counting the task towards the minimum healthy percent total\.
 The default value for a replica service for `minimumHealthyPercent` is 100%\. The default `minimumHealthyPercent` value for a service using the `DAEMON` service schedule is 0% for the AWS CLI, the AWS SDKs, and the APIs and 50% for the AWS Management Console\.  
 The minimum number of healthy tasks during a deployment is the `desiredCount` multiplied by the `minimumHealthyPercent`/100, rounded up to the nearest integer value\.  
-If a service is using either the blue/green \(`CODE_DEPLOY`\) or `EXTERNAL` deployment types and tasks that use the EC2 launch type, the **minimum healthy percent** value is set to the default value and is used to define the lower limit on the number of the tasks in the service that remain in the `RUNNING` state while the container instances are in the `DRAINING` state\. If the tasks in the service use the Fargate launch type, the minimum healthy percent value is not used, although it is returned when describing your service\.
+If a service is using either the blue/green \(`CODE_DEPLOY`\) or `EXTERNAL` deployment types and is running tasks that use the EC2 launch type, the **minimum healthy percent** value is set to the default value and is used to define the lower limit on the number of the tasks in the service that remain in the `RUNNING` state while the container instances are in the `DRAINING` state\. If a service is using either the blue/green \(`CODE_DEPLOY`\) or `EXTERNAL` deployment types and is running tasks that use the Fargate launch type, the minimum healthy percent value is not used, although it is returned when describing your service\.
 
 ## Deployment controller<a name="sd-deploymentcontroller"></a>
 
 `deploymentController`  
 Type: Object  
 Required: No  
-The deployment controller to use for the service\. If no deploymenet controller is specified, the `ECS` controller is used\. For more information, see [Amazon ECS Deployment types](deployment-types.md)\.    
+The deployment controller to use for the service\. If no deployment controller is specified, the `ECS` controller is used\. For more information, see [Amazon ECS Deployment types](deployment-types.md)\.    
 `type`  
 Type: String  
 Valid values: `ECS` \| `CODE_DEPLOY` \| `EXTERNAL`  

@@ -66,7 +66,7 @@ Each time the credential provider is used, the request is logged locally on the 
 
 ## Enabling Task IAM Roles on your Container Instances<a name="enable_task_iam_roles"></a>
 
-Your Amazon ECS container instances require at least version 1\.11\.0 of the container agent to enable task IAM roles; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using the Amazon ECS\-optimized AMI, your instance needs at least 1\.11\.0\-1 of the `ecs-init` package\. If your container instances are launched from version 2016\.03\.e or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+Your Amazon ECS container instances require at least version 1\.11\.0 of the container agent to enable task IAM roles; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\. If you are using the Amazon ECS\-optimized AMI, your instance needs at least 1\.11\.0\-1 of the `ecs-init` package\. If your container instances are launched from version 2016\.03\.e or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 
 If you are not using the Amazon ECS\-optimized AMI for your container instances, be sure to add the `--net=host` option to your docker run command that starts the agent and the appropriate agent configuration variables for your desired configuration \(for more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\):
 
@@ -76,7 +76,7 @@ Enables IAM roles for tasks for containers with the `bridge` and `default` netwo
 `ECS_ENABLE_TASK_IAM_ROLE_NETWORK_HOST=true`  
 Enables IAM roles for tasks for containers with the `host` network mode\. This variable is only supported on agent versions 1\.12\.0 and later\.
 
-For an example run command, see [Manually Updating the Amazon ECS Container Agent \(for Non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\. You will also need to set the following networking commands on your container instance so that the containers in your tasks can retrieve their AWS credentials:
+For an example run command, see [Manually updating the Amazon ECS container agent \(for non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\. You will also need to set the following networking commands on your container instance so that the containers in your tasks can retrieve their AWS credentials:
 
 ```
 sudo sysctl -w net.ipv4.conf.all.route_localnet=1

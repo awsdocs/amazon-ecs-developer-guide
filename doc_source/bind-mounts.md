@@ -1,6 +1,6 @@
 # Bind mounts<a name="bind-mounts"></a>
 
-With bind mounts, a file or directory on a host \(such as an Amazon EC2 instance or AWS Fargate\) is mounted into a container\. Bind mounts are supported for tasks hosted on both Fargate and Amazon EC2 instances\. By default, bind mounts are tied to the lifecycle of the container using them\. Once all containers using a bind mount are stopped, for example when a task is stopped, the data is removed\. For tasks hosted on Amazon EC2 instances, the data can be tied to the lifecycle of the host Amazon EC2 instance by specifying a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/) in the Docker documentation\.
+With bind mounts, a file or directory on a host, such as an Amazon EC2 instance or AWS Fargate, is mounted into a container\. Bind mounts are supported for tasks hosted on both Fargate and Amazon EC2 instances\. By default, bind mounts are tied to the lifecycle of the container using them\. Once all containers using a bind mount are stopped, for example when a task is stopped, the data is removed\. For tasks hosted on Amazon EC2 instances, the data can be tied to the lifecycle of the host Amazon EC2 instance by specifying a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/) in the Docker documentation\.
 
 The following are common use cases for bind mounts\.
 + To provide an empty data volume to mount in one or more containers\.
@@ -11,7 +11,8 @@ The following are common use cases for bind mounts\.
 ## Considerations when using bind mounts<a name="bind-mount-considerations"></a>
 
 When using bind mounts, the following should be considered\.
-+ To expose files from a Dockerfile to a data volume when a task is run, the Amazon ECS data plane looks for a `VOLUME` directive\. If the `VOLUME` directive path is the same as the `containerPath` in the task definition, the data in the `VOLUME` directive path is copied to the data volume\. In the following Dockerfile example, a file named `examplefile` in the `/var/log/exported` directory is written to the host and then mounted inside the container\.
++ For tasks hosted on AWS Fargate using platform version `1.4.0` or later, by default they receive a minimum of 20 GiB of ephemeral storage for bind mounts\. The total amount of ephemeral storage can be increased to a maximum of 200 GiB by specifying the `ephemeralStorage` object in your task definition\.
++ To expose files from a Dockerfile to a data volume when a task is run, the Amazon ECS data plane looks for a `VOLUME` directive\. If the absolute path specified in the `VOLUME` directive is the same as the `containerPath` specified in the task definition, the data in the `VOLUME` directive path is copied to the data volume\. In the following Dockerfile example, a file named `examplefile` in the `/var/log/exported` directory is written to the host and then mounted inside the container\.
 
   ```
   FROM public.ecr.aws/amazonlinux/amazonlinux:latest
@@ -35,7 +36,7 @@ When using bind mounts, the following should be considered\.
 
 ## Specifying a bind mount in your task definition<a name="specify-volume-config"></a>
 
-For Amazon ECS tasks hosted on either Fargate or Amazon EC2 instances, the following task definition JSON snippet shows the syntax for the `volumes` and `mountPoints` objects for a container\.
+For Amazon ECS tasks hosted on either Fargate or Amazon EC2 instances, the following task definition JSON snippet shows the syntax for the `volumes`, `mountPoints`, and `ephemeralStorage` objects for a task definition\.
 
 ```
 {
@@ -57,7 +58,10 @@ For Amazon ECS tasks hosted on either Fargate or Amazon EC2 instances, the follo
        {
           "name" : "string"
        }
-    ]
+    ],
+    "ephemeralStorage": {
+	   "sizeInGiB": integer
+    }
 }
 ```
 
@@ -79,22 +83,23 @@ The following describes each task definition parameter in more detail\.
 `name`  
 Type: String  
 Required: No  
-The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints` object\.
+The name of the volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\. This name is referenced in the `sourceVolume` parameter of container definition `mountPoints`\.
 
 `host`  
 Required: No  
-The `host` parameter is only supported when using tasks hosted on Amazon EC2 instances\.
-The `host` parameter is used to tie the lifecycle of the bind mount to the host Amazon EC2 instance, rather than the task, and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
+This parameter is specified when using bind mounts\. To use Docker volumes, specify a `dockerVolumeConfiguration` instead\. The contents of the `host` parameter determine whether your bind mount data volume persists on the host container instance and where it is stored\. If the `host` parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running\.  
+Bind mount host volumes are supported when using either the EC2 or Fargate launch types\.  
 Windows containers can mount whole directories on the same drive as `$env:ProgramData`\.    
 `sourcePath`  
 Type: String  
 Required: No  
-When the `host` parameter is used, specify a `sourcePath` to declare the path on the host Amazon EC2 instance that is presented to the container\. If this parameter is empty, then the Docker daemon assigns a host path for you\. If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host Amazon EC2 instance until you delete it manually\. If the `sourcePath` value does not exist on the host Amazon EC2 instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\.
+When the `host` parameter is used, specify a `sourcePath` to declare the path on the host container instance that is presented to the container\. If this parameter is empty, then the Docker daemon has assigned a host path for you\. If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host container instance until you delete it manually\. If the `sourcePath` value does not exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\.
 
 `mountPoints`  
 Type: Object Array  
 Required: No  
-The mount points for data volumes in your container\. This parameter maps to `Volumes` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--volume` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+The mount points for data volumes in your container\.   
+This parameter maps to `Volumes` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--volume` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers cannot mount directories on a different drive, and mount point cannot be across drives\.    
 `sourceVolume`  
 Type: String  
@@ -109,9 +114,25 @@ Type: Boolean
 Required: No  
 If this value is `true`, the container has read\-only access to the volume\. If this value is `false`, then the container can write to the volume\. The default value is `false`\.
 
+`ephemeralStorage`  
+Type: Object  
+Required: No  
+The amount of ephemeral storage to allocate for the task\. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate using platform version `1.4.0` or later\.
+
 ## Bind mount examples<a name="bind-mount-examples"></a>
 
 The following examples cover the most common use cases for using a bind mount for your containers\.
+
+**To allocate an increased amount of ephemeral storage space for a Fargate task**
+
+For Amazon ECS tasks hosted on Fargate using platform version `1.4.0` or later, you can allocate more than the default amount of ephemeral storage for the containers in your task to use\. This example can be incorporated into the other examples to allocate more ephemeral storage for your Fargate tasks\.
++ In the task definition, define an `ephemeralStorage` object\. The `sizeInGiB` must be an integer between the values of `21` and `200` and is expressed in GiB\.
+
+  ```
+  "ephemeralStorage": {
+      "sizeInGiB": integer
+  }
+  ```
 
 **To provide an empty data volume for one or more containers**
 
@@ -164,7 +185,7 @@ In some cases, you want to provide the containers in a task some scratch space\.
 
 In this example, you have a Dockerfile that writes data that you want to mount inside a container\. This example works for tasks hosted on Fargate or Amazon EC2 instances\.
 
-1. Create a Dockerfile\. The following example uses the public Amazon Linux 2 container image and creates a file named `examplefile` in the `/var/log/exported` directory that we want to mount inside the container\.
+1. Create a Dockerfile\. The following example uses the public Amazon Linux 2 container image and creates a file named `examplefile` in the `/var/log/exported` directory that we want to mount inside the container\. The `VOLUME` directive should specify an absolute path\.
 
    ```
    FROM public.ecr.aws/amazonlinux/amazonlinux:latest
@@ -195,7 +216,7 @@ In this example, you have a Dockerfile that writes data that you want to mount i
      ]
    ```
 
-1. In the `containerDefinitions` section, create the application container definitions so they mount the storage\. The `containerPath` value must match the path specified in the `VOLUME` directive from the Dockerfile\.
+1. In the `containerDefinitions` section, create the application container definitions so they mount the storage\. The `containerPath` value must match the absolute path specified in the `VOLUME` directive from the Dockerfile\.
 
    ```
      "containerDefinitions": [

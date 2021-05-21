@@ -2,11 +2,11 @@
 
 Your Amazon ECS service can optionally be configured to use Elastic Load Balancing to distribute traffic evenly across the tasks in your service\.
 
-Amazon ECS services support the Application Load Balancer, Network Load Balancer, and Classic Load Balancer load balancer types\. Application Load Balancers are used to route HTTP/HTTPS \(or layer 7\) traffic\. Network Load Balancers are used to route TCP or UDP \(or layer 4\) traffic\. Classic Load Balancers are used to route TCP traffic\. For more information, see [Load balancer types](load-balancer-types.md)\.
+Amazon ECS services hosted on Amazon EC2 instances support the Application Load Balancer, Network Load Balancer, and Classic Load Balancer load balancer types\. Amazon ECS services hosted on AWS Fargate support Application Load Balancer and Network Load Balancer only\. Application Load Balancers are used to route HTTP/HTTPS \(or layer 7\) traffic\. Network Load Balancers are used to route TCP or UDP \(or layer 4\) traffic\. Classic Load Balancers are used to route TCP traffic\. For more information, see [Load balancer types](load-balancer-types.md)\.
 
 Application Load Balancers offer several features that make them attractive for use with Amazon ECS services:
 + Each service can serve traffic from multiple load balancers and expose multiple load balanced ports by specifying multiple target groups\.
-+ They are supported by tasks using both the Fargate and EC2 launch types\.
++ They are supported by tasks hosted on both Fargate and EC2 instances\.
 + Application Load Balancers allow containers to use dynamic host port mapping \(so that multiple tasks from the same service are allowed per container instance\)\.
 + Application Load Balancers support path\-based routing and priority rules \(so that multiple services can use the same listener port on a single Application Load Balancer\)\.
 
@@ -25,7 +25,7 @@ Consider the following when you use service load balancing\.
 ### Application Load Balancer and Network Load Balancer considerations<a name="alb-considerations"></a>
 
 The following considerations are specific to Amazon ECS services using Application Load Balancers or Network Load Balancers:
-+ Amazon ECS requires the service\-linked IAM role which provides the permissions needed to register and deregister container instances with your load balancer when tasks are created and stopped\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\.
++ Amazon ECS requires the service\-linked IAM role which provides the permissions needed to register and deregister targets with your load balancer when tasks are created and stopped\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\.
 + For services that use an Application Load Balancer or Network Load Balancer, you cannot attach more than five target groups to a service\.
 + For services with tasks using the `awsvpc` network mode, when you create a target group for your service, you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\.
 + If your service uses an Application Load Balancer and requires access to multiple load balanced ports, such as port 80 and port 443 for an HTTP/HTTPS service, you can configure two listeners\. One listener is responsible for HTTPS that forwards the request to the service, and another listener that is responsible for redirecting HTTP requests to the appropriate HTTPS port\. For more information, see [Create a listener to your Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-listener.html) in the *User Guide for Application Load Balancers*\.

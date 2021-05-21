@@ -192,7 +192,7 @@ Use the following steps to create your CodeDeploy application, the Application L
 
 **To create CodeDeploy resources**
 
-1. Use the [create\-application](https://docs.aws.amazon.com/cli/latest/reference/deploy/create-application.html) command to create an CodeDeploy application\. Specify the `ECS` compute platform\.
+1. Use the [create\-application](https://docs.aws.amazon.com/cli/latest/reference/deploy/create-application.html) command to create a CodeDeploy application\. Specify the `ECS` compute platform\.
 
    ```
    aws deploy create-application \

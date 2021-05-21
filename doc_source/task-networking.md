@@ -56,7 +56,7 @@ When using a VPC in dual\-stack mode, your tasks can communicate over IPv4 or IP
 One of the benefits of using a VPC in dual\-stack mode is that tasks that are assigned an IPv6 address are able to access the internet as long as the VPC is configured with either an internet gateway or an egress\-only internet gateway\. NAT gateways are not needed\. For more information, see [Internet gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) and [Egress\-only internet gateways](https://docs.aws.amazon.com/vpc/latest/userguide/egress-only-internet-gateway.html) in the *Amazon VPC User Guide*\.
 
 Amazon ECS tasks are assigned an IPv6 address if the following conditions are met:
-+ The Amazon EC2 instance hosting the task is using version `1.45.0` or later of the container agent\. For information on checking the agent version your instance is using, and updating it if needed, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
++ The Amazon EC2 instance hosting the task is using version `1.45.0` or later of the container agent\. For information on checking the agent version your instance is using, and updating it if needed, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 + The `dualStackIPv6` account setting is enabled\. For more information, see [Account settings](ecs-account-settings.md)\.
 + Your task is using the `awsvpc` network mode\.
 + Your VPC and subnet are enabled for IPv6\. For more information about configuring your VPC for dual\-stack mode, see [Migrating to IPv6](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-migrate-ipv6.html) in the *Amazon VPC User Guide*\.

@@ -130,7 +130,7 @@ The default reserved ports are `22` for SSH, the Docker ports `2375` and `2376`,
 Type: string  
 Required: no  
 The protocol used for the port mapping\. Valid values are `tcp` and `udp`\. The default is `tcp`\.  
-UDP support is only available on container instances that were launched with version 1\.2\.0 of the Amazon ECS container agent \(such as the `amzn-ami-2015.03.c-amazon-ecs-optimized` AMI\) or later, or with container agents that have been updated to version 1\.3\.0 or later\. To update your container agent to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
+UDP support is only available on container instances that were launched with version 1\.2\.0 of the Amazon ECS container agent \(such as the `amzn-ami-2015.03.c-amazon-ecs-optimized` AMI\) or later, or with container agents that have been updated to version 1\.3\.0 or later\. To update your container agent to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 If you are specifying a host port, use the following syntax:  
 
 ```
@@ -182,7 +182,7 @@ The following describes the possible `healthStatus` values for a task\. The cont
 + `UNKNOWN`—The essential containers within the task are still having their health checks evaluated or there are no container health checks defined\.
 If a task is run manually, and not as part of a service, the task will continue its lifecycle regardless of its health status\. For tasks that are part of a service, if the task reports as unhealthy then the task will be stopped and the service scheduler will replace it\.  
 The following are notes about container health check support:  
-+ Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
++ Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 + Container health checks are supported for Fargate tasks if you are using platform version 1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + Container health checks are not supported for tasks that are part of a service that is configured to use a Classic Load Balancer\.  
 `command`  
@@ -741,7 +741,7 @@ Type: Array of [ContainerDependency](https://docs.aws.amazon.com/AmazonECS/lates
 Required: no  
 The dependencies defined for container startup and shutdown\. A container can contain multiple dependencies\. When a dependency is defined for container startup, for container shutdown it is reversed\. For an example, see [Example: Container dependency](example_task_definitions.md#example_task_definition-containerdependency)\.  
 If a container does not meet a dependency constraint or times out before meeting the constraint, Amazon ECS doesn't progress dependent containers to their next state\.
-For Amazon ECS tasks hosted on Amazon EC2 instances, the instances require at least version `1.26.0` of the container agent to enable container dependencies\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version `1.26.0-1` of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.  
+For Amazon ECS tasks hosted on Amazon EC2 instances, the instances require at least version `1.26.0` of the container agent to enable container dependencies\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version `1.26.0-1` of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.  
 For Amazon ECS tasks hosted on Fargate, this parameter requires that the task or service uses platform version `1.3.0` or later\.  
 
 ```
@@ -782,7 +782,7 @@ Required: no
 Example values: `120`  
 Time duration \(in seconds\) to wait before the container is forcefully killed if it doesn't exit normally on its own\.  
 For tasks using the Fargate launch type, the task or service requires platform version 1\.3\.0 or later\. The max stop timeout value is 120 seconds and if the parameter is not specified, the default value of 30 seconds is used\.  
-For tasks using the EC2 launch type, if the `stopTimeout` parameter is not specified, the value set for the Amazon ECS container agent configuration variable `ECS_CONTAINER_STOP_TIMEOUT` is used by default\. If neither the `stopTimeout` parameter or the `ECS_CONTAINER_STOP_TIMEOUT` agent configuration variable are set, then the default values of 30 seconds for Linux containers and 30 seconds on Windows containers are used\. Container instances require at least version 1\.26\.0 of the container agent to enable a container stop timeout value\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version 1\.26\.0\-1 of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+For tasks using the EC2 launch type, if the `stopTimeout` parameter is not specified, the value set for the Amazon ECS container agent configuration variable `ECS_CONTAINER_STOP_TIMEOUT` is used by default\. If neither the `stopTimeout` parameter or the `ECS_CONTAINER_STOP_TIMEOUT` agent configuration variable are set, then the default values of 30 seconds for Linux containers and 30 seconds on Windows containers are used\. Container instances require at least version 1\.26\.0 of the container agent to enable a container stop timeout value\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version 1\.26\.0\-1 of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
 
 #### System Controls<a name="container_definition_systemcontrols"></a>
 
@@ -1063,8 +1063,17 @@ The value of the key\-value pair\.
 The following task definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition](create-task-definition.md)\.
 
 **Topics**
++ [Ephemeral storage](#task_definition_ephemeralStorage)
 + [IPC mode](#task_definition_ipcmode)
 + [PID mode](#task_definition_pidmode)
+
+### Ephemeral storage<a name="task_definition_ephemeralStorage"></a>
+
+`ephemeralStorage`  
+Type: Object  
+Required: No  
+The amount of ephemeral storage to allocate for the task\. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate\. For more information, see [Fargate task storage](fargate-task-storage.md)\.  
+This parameter is only supported for tasks hosted on AWS Fargate using platform version `1.4.0` or later\.
 
 ### IPC mode<a name="task_definition_ipcmode"></a>
 

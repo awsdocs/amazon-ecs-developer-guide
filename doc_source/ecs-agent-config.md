@@ -2,7 +2,7 @@
 
 The Amazon ECS container agent supports a number of configuration options, most of which should be set through environment variables\. The following environment variables are available, and all of them are optional\.
 
-If your container instance was launched with a Linux variant of the Amazon ECS\-optimized AMI, you can set these environment variables in the `/etc/ecs/ecs.config` file and then restart the agent\. You can also write these configuration variables to your container instances with Amazon EC2 user data at launch time\. For more information, see [Bootstrapping Container Instances with Amazon EC2 User Data](bootstrap_container_instance.md)\.
+If your container instance was launched with a Linux variant of the Amazon ECS\-optimized AMI, you can set these environment variables in the `/etc/ecs/ecs.config` file and then restart the agent\. You can also write these configuration variables to your container instances with Amazon EC2 user data at launch time\. For more information, see [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)\.
 
 If you are manually starting the Amazon ECS container agent \(for non Amazon ECS\-optimized AMIs\), you can use these environment variables in the docker run command that you use to start the agent\. Use these variables with the syntax `--env=VARIABLE_NAME=VARIABLE_VALUE`\. For sensitive information, such as authentication credentials for private repositories, you should store your agent environment variables in a file and pass them all at one time with the `--env-file path_to_env_file` option\.
 
@@ -36,7 +36,7 @@ An array of UDP ports that should be marked as unavailable for scheduling on thi
 Example values: `dockercfg | docker`  
 Default value on Linux: Null  
 Default value on Windows: Null  
-Required for private registry authentication\. This is the type of authentication data in `ECS_ENGINE_AUTH_DATA`\. For more information, see [Authentication Formats](private-auth-container-instances.md#docker-auth-formats)\.
+Required for private registry authentication\. This is the type of authentication data in `ECS_ENGINE_AUTH_DATA`\. For more information, see [Authentication formats](private-auth-container-instances.md#docker-auth-formats)\.
 
 `ECS_ENGINE_AUTH_DATA`  
 Example values:   
@@ -44,7 +44,7 @@ Example values:
 + `ECS_ENGINE_AUTH_TYPE=docker`: `{"https://index.docker.io/v1/":{"username":"my_name","password":"my_password","email":"email@example.com"}}`
 Default value on Linux: Null  
 Default value on Windows: Null  
-Required for private registry authentication\. If `ECS_ENGINE_AUTH_TYPE=dockercfg`, then the `ECS_ENGINE_AUTH_DATA` value should be the contents of a Docker configuration file \(`~/.dockercfg` or `~/.docker/config.json`\) created by running docker login\. If `ECS_ENGINE_AUTH_TYPE=docker`, then the `ECS_ENGINE_AUTH_DATA` value should be a JSON representation of the registry server to authenticate against, as well as the authentication parameters required by that registry such as user name, password, and email address for that account\. For more information, see [Authentication Formats](private-auth-container-instances.md#docker-auth-formats)\.
+Required for private registry authentication\. If `ECS_ENGINE_AUTH_TYPE=dockercfg`, then the `ECS_ENGINE_AUTH_DATA` value should be the contents of a Docker configuration file \(`~/.dockercfg` or `~/.docker/config.json`\) created by running docker login\. If `ECS_ENGINE_AUTH_TYPE=docker`, then the `ECS_ENGINE_AUTH_DATA` value should be a JSON representation of the registry server to authenticate against, as well as the authentication parameters required by that registry such as user name, password, and email address for that account\. For more information, see [Authentication formats](private-auth-container-instances.md#docker-auth-formats)\.
 
 `AWS_DEFAULT_REGION`  
 Example values: `us-east-1`  
@@ -184,7 +184,7 @@ Time to wait before giving up on starting a container\.
 Example values: `10.0.0.131:3128`  
 Default value on Linux: Null  
 Default value on Windows: Null  
-The hostname \(or IP address\) and port number of an HTTP proxy to use for the Amazon ECS agent to connect to the internet\. For example, this proxy will be used if your container instances do not have external network access through an Amazon VPC internet gateway or NAT gateway or instance\. If this variable is set, you must also set the `NO_PROXY` variable to filter Amazon EC2 instance metadata and Docker daemon traffic from the proxy\. For more information, see [HTTP Proxy Configuration](http_proxy_config.md)\.
+The hostname \(or IP address\) and port number of an HTTP proxy to use for the Amazon ECS agent to connect to the internet\. For example, this proxy will be used if your container instances do not have external network access through an Amazon VPC internet gateway or NAT gateway or instance\. If this variable is set, you must also set the `NO_PROXY` variable to filter Amazon EC2 instance metadata and Docker daemon traffic from the proxy\. For more information, see [HTTP proxy configuration](http_proxy_config.md)\.
 
 `NO_PROXY`  
 Example values:   
@@ -192,7 +192,7 @@ Example values:
 + Windows: `169.254.169.254,169.254.170.2,\\.\pipe\docker_engine`
 Default value on Linux: Null  
 Default value on Windows: Null  
-The HTTP traffic that should not be forwarded to the specified `HTTP_PROXY`\. You must specify `169.254.169.254,/var/run/docker.sock` to filter Amazon EC2 instance metadata and Docker daemon traffic from the proxy\. For more information, see [HTTP Proxy Configuration](http_proxy_config.md)\.
+The HTTP traffic that should not be forwarded to the specified `HTTP_PROXY`\. You must specify `169.254.169.254,/var/run/docker.sock` to filter Amazon EC2 instance metadata and Docker daemon traffic from the proxy\. For more information, see [HTTP proxy configuration](http_proxy_config.md)\.
 
 `ECS_ENABLE_TASK_IAM_ROLE`  
 Example values: `true` \| `false`  
@@ -212,7 +212,7 @@ Whether IAM roles for tasks should be enabled on the container instance for task
 Example values: `true`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-Whether to disable automated image cleanup for the Amazon ECS agent\. For more information, see [Automated Task and Image Cleanup](automated_image_cleanup.md)\.
+Whether to disable automated image cleanup for the Amazon ECS agent\. For more information, see [Automated task and image cleanup](automated_image_cleanup.md)\.
 
 `ECS_IMAGE_CLEANUP_INTERVAL`  
 Example values: `30m`  
@@ -443,7 +443,7 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
 
 1. Complete the earlier procedures in this section to allow read\-only Amazon S3 access to your container instances and store an `ecs.config` file in a private S3 bucket\.
 
-1. Launch new container instances by following the steps in [Launching an Amazon ECS Container Instance](launch_container_instance.md)\. In [Step 7](launch_container_instance.md#instance-launch-user-data-step), use the following example script that installs the AWS CLI and copies your configuration file to `/etc/ecs/ecs.config`\.
+1. Launch new container instances by following the steps in [Launching an Amazon ECS container instance](launch_container_instance.md)\. In [Step 7](launch_container_instance.md#instance-launch-user-data-step), use the following example script that installs the AWS CLI and copies your configuration file to `/etc/ecs/ecs.config`\.
 
    ```
    #!/bin/bash

@@ -16,7 +16,12 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Amazon Linux 2 AMI  |  Amazon ECS container agent version  |  Docker version  |  `ecs-init` version  | 
 | --- | --- | --- | --- | 
-| 2021031 | `1.50.3` | `19.03.13-ce` | `1.50.3-1` | 
+| 20210514 | `1.52.1` | `19.03.13-ce` | `1.52.1-1` | 
+| 20210504 | `1.52.0` | `19.03.13-ce` | `1.52.0-1` | 
+| 20210428 | `1.52.0` | `19.03.13-ce` | `1.52.0-1` | 
+| 20210413 | `1.51.0` | `19.03.13-ce` | `1.51.0-1` | 
+| 20210331 | `1.51.0` | `19.03.13-ce` | `1.51.0-1` | 
+| 20210316 | `1.50.3` | `19.03.13-ce` | `1.50.3-1` | 
 | 20210301 | `1.50.2` | `19.03.13-ce` | `1.50.2-1` | 
 | 20210219 | `1.50.2` | `19.03.13-ce` | `1.50.2-1` | 
 | 20210210 | `1.50.1` | `19.03.13-ce` | `1.50.1-1` | 
@@ -85,7 +90,12 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
-| 2021031 | `1.50.3` | `19.03.13-ce` | `1.50.3-1` | 
+| 20210514 | `1.52.1` | `19.03.13-ce` | `1.52.1-1` | 
+| 20210504 | `1.52.0` | `19.03.13-ce` | `1.52.0-1` | 
+| 20210428 | `1.52.0` | `19.03.13-ce` | `1.52.0-1` | 
+| 20210413 | `1.51.0` | `19.03.13-ce` | `1.51.0-1` | 
+| 20210331 | `1.51.0` | `19.03.13-ce` | `1.51.0-1` | 
+| 20210316 | `1.50.3` | `19.03.13-ce` | `1.50.3-1` | 
 | 20210301 | `1.50.2` | `19.03.13-ce` | `1.50.2-1` | 
 | 20210219 | `1.50.2` | `19.03.13-ce` | `1.50.2-1` | 
 | 20210210 | `1.50.1` | `19.03.13-ce` | `1.50.1-1` | 
@@ -152,7 +162,12 @@ The table below lists the current and previous versions of the Amazon ECS GPU\-o
 
 | Amazon ECS GPU\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | NVIDIA driver version | 
 | --- | --- | --- | --- | --- | 
-| 2021031 | `1.50.3` | `19.03.13-ce` | `1.50.3-1` | `450.51.06` | 
+| 20210514 | `1.52.1` | `19.03.13-ce` | `1.52.1-1` | `460.73.01` | 
+| 20210504 | `1.52.0` | `19.03.13-ce` | `1.52.0-1` | `460.73.01` | 
+| 20210428 | `1.52.0` | `19.03.13-ce` | `1.52.0-1` | `460.73.01` | 
+| 20210413 | `1.51.0` | `19.03.13-ce` | `1.51.0-1` | `460.32.03` | 
+| 20210331 | `1.51.0` | `19.03.13-ce` | `1.51.0-1` | `460.32.03` | 
+| 20210316 | `1.50.3` | `19.03.13-ce` | `1.50.3-1` | `460.32.03` | 
 | 20210301 | `1.50.2` | `19.03.13-ce` | `1.50.2-1` | `450.51.06` | 
 | 20210219 | `1.50.2` | `19.03.13-ce` | `1.50.2-1` | `450.51.06` | 
 | 20210210 | `1.50.1` | `19.03.13-ce` | `1.50.1-1` | `450.51.06` | 
@@ -219,7 +234,12 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
-| 2021031 | `1.50.3` | `19.03.13-ce` | `1.50.3-1` | 
+| 20210514 | `1.52.1` | `19.03.13-ce` | `1.52.1-1` | 
+| 20210504 | `1.52.0` | `19.03.13-ce` | `1.52.0-1` | 
+| 20210428 | `1.52.0` | `19.03.13-ce` | `1.52.0-1` | 
+| 20210413 | `1.51.0` | `19.03.13-ce` | `1.51.0-1` | 
+| 20210331 | `1.51.0` | `19.03.13-ce` | `1.51.0-1` | 
+| 20210316 | `1.50.3` | `19.03.13-ce` | `1.50.3-1` | 
 | 20210301 | `1.50.2` | `19.03.13-ce` | `1.50.2-1` | 
 | 20210219 | `1.50.2` | `19.03.13-ce` | `1.50.2-1` | 
 | 20210210 | `1.50.1` | `19.03.13-ce` | `1.50.1-1` | 
@@ -255,13 +275,15 @@ aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf
 #### [ Amazon Linux AMI versions ]
 
 **Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is being deprecated on April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
+The **Amazon ECS\-optimized Amazon Linux AMI** is deprecated as of April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
 The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
 
 
 | Amazon ECS\-optimized Amazon Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 2018\.03\.20210413 | `1.51.0` | `19.03.13-ce` | `1.51.0-1` | 
+| 2018\.03\.20210331 | `1.51.0` | `19.03.13-ce` | `1.51.0-1` | 
 | 2018\.03\.20210316 | `1.50.3` | `19.03.13-ce` | `1.50.3-1` | 
 | 2018\.03\.20210301 | `1.50.2` | `19.03.13-ce` | `1.50.2-1` | 
 | 2018\.03\.20210219 | `1.50.2` | `19.03.13-ce` | `1.50.2-1` | 
@@ -401,9 +423,11 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Windows Server 2019 Full AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
 | --- | --- | --- | --- | 
+|  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2021\.04\.14**  |  `1.51.0`  |  `20.10.0`  |  Public  | 
+|  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2021\.03\.11**  |  `1.50.2`  |  `19.03.14`  |  Public  | 
 |  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2021\.02\.10**  |  `1.50.0`  |  `19.03.14`  |  Public  | 
 |  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2021\.01\.13**  |  `1.49.0`  |  `19.03.14`  |  Public  | 
-|  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2020\.11\.18**  |  `1.48.0`  |  `19.03.13`  |  Public  | 
+|  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2020\.11\.18**  |  `1.48.0`  |  `19.03.13`  |  Private  | 
 |  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2020\.11\.06**  |  `1.47.0`  |  `19.03.11`  |  Private  | 
 |  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2020\.10\.14**  |  `1.45.0`  |  `19.03.11`  |  Private  | 
 |  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2020\.08\.12**  |  `1.43.0`  |  `19.03.11`  |  Private  | 
@@ -434,9 +458,11 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Windows Server 2019 Core AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
 | --- | --- | --- | --- | 
+|  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2021\.04\.14**  |  `1.51.0`  |  `20.10.0`  |  Public  | 
+|  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2021\.03\.11**  |  `1.50.2`  |  `19.03.14`  |  Public  | 
 |  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2021\.02\.10**  |  `1.50.0`  |  `19.03.14`  |  Public  | 
 |  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2021\.01\.13**  |  `1.49.0`  |  `19.03.14`  |  Public  | 
-|  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2020\.11\.18**  |  `1.48.0`  |  `19.03.13`  |  Public  | 
+|  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2020\.11\.18**  |  `1.48.0`  |  `19.03.13`  |  Private  | 
 |  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2020\.11\.06**  |  `1.47.0`  |  `19.03.11`  |  Private  | 
 |  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2020\.10\.14**  |  `1.45.0`  |  `19.03.11`  |  Private  | 
 |  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2020\.09\.09**  |  `1.44.3`  |  `19.03.11`  |  Private  | 
@@ -457,29 +483,6 @@ aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-20
 ```
 
 ------
-#### [ Windows Server 1909 Core AMI versions ]
-
-**Important**  
-The Amazon ECS\-optimized Windows Server 1909 Core AMI is deprecated\. No new versions of this AMI will be released\.
-
-The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 1909 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
-
-
-|  Amazon ECS\-optimized Windows Server 1909 Core AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
-| --- | --- | --- | --- | 
-|  **Windows\_Server\-1909\-English\-Core\-ECS\_Optimized\-2020\.11\.18**  |  `1.48.0`  |  `19.03.13`  |  Public  | 
-|  **Windows\_Server\-1909\-English\-Core\-ECS\_Optimized\-2020\.11\.06**  |  `1.47.0`  |  `19.03.11`  |  Private  | 
-|  **Windows\_Server\-1909\-English\-Core\-ECS\_Optimized\-2020\.10\.14**  |  `1.45.0`  |  `19.03.12`  |  Private  | 
-|  **Windows\_Server\-1909\-English\-Core\-ECS\_Optimized\-2020\.09\.09**  |  `1.44.3`  |  `19.03.11`  |  Private  | 
-|  **Windows\_Server\-1909\-English\-Core\-ECS\_Optimized\-2020\.08\.12**  |  `1.43.0`  |  `19.03.11`  |  Private  | 
-|  **Windows\_Server\-1909\-English\-Core\-ECS\_Optimized\-2020\.07\.15**  |  `1.41.1`  |  `19.03.5`  |  Private  | 
-|  **Windows\_Server\-1909\-English\-Core\-ECS\_Optimized\-2020\.06\.11**  |  `1.40.0`  |  `19.03.5`  |  Private  | 
-|  **Windows\_Server\-1909\-English\-Core\-ECS\_Optimized\-2020\.05\.14**  |  `1.39.0`  |  `19.03.5`  |  Private  | 
-|  **Windows\_Server\-1909\-English\-Core\-ECS\_Optimized\-2020\.01\.15**  |  `1.35.0`  |  `19.03.5`  |  Private  | 
-|  **Windows\_Server\-1909\-English\-Core\-ECS\_Optimized\-2019\.12\.16**  |  `1.34.0`  |  `19.03.5`  |  Private  | 
-|  **Windows\_Server\-1909\-English\-Core\-ECS\_Optimized\-2019\.11\.25**  |  `1.34.0`  |  `19.03.4`  |  Private  | 
-
-------
 #### [ Windows Server 2016 Full AMI versions ]
 
 The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 2016 Full AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
@@ -487,9 +490,11 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Windows Server 2016 Full AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
 | --- | --- | --- | --- | 
+|  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2021\.04\.14**  |  `1.51.0`  |  `20.10.0`  |  Public  | 
+|  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2021\.03\.11**  |  `1.50.2`  |  `19.03.14`  |  Public  | 
 |  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2021\.02\.10**  |  `1.50.0`  |  `19.03.14`  |  Public  | 
 |  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2021\.01\.13**  |  `1.49.0`  |  `19.03.14`  |  Public  | 
-|  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2020\.11\.18**  |  `1.48.0`  |  `19.03.13`  |  Public  | 
+|  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2020\.11\.18**  |  `1.48.0`  |  `19.03.13`  |  Private  | 
 |  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2020\.11\.06**  |  `1.47.0`  |  `19.03.11`  |  Private  | 
 |  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2020\.10\.14**  |  `1.45.0`  |  `19.03.12`  |  Private  | 
 |  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2020\.09\.09**  |  `1.44.3`  |  `19.03.11`  |  Private  | 
@@ -521,9 +526,11 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Windows Server 2004 Core AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
 | --- | --- | --- | --- | 
+|  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2021\.04\.14**  |  `1.51.0`  |  `20.10.0`  |  Public  | 
+|  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2021\.03\.11**  |  `1.50.2`  |  `19.03.14`  |  Public  | 
 |  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2021\.02\.10**  |  `1.50.0`  |  `19.03.14`  |  Public  | 
 |  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2021\.01\.13**  |  `1.49.0`  |  `19.03.14`  |  Public  | 
-|  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2020\.11\.18**  |  `1.48.0`  |  `19.03.13`  |  Public  | 
+|  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2020\.11\.18**  |  `1.48.0`  |  `19.03.13`  |  Private  | 
 |  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2020\.11\.06**  |  `1.47.0`  |  `19.03.11`  |  Private  | 
 |  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2020\.10\.14**  |  `1.45.0`  |  `19.03.12`  |  Private  | 
 |  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2020\.09\.09**  |  `1.44.3`  |  `19.03.11`  |  Private  | 
@@ -533,6 +540,22 @@ Use the following AWS CLI command to retrieve the current Amazon ECS\-optimized 
 
 ```
 aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2004-English-Core-ECS_Optimized
+```
+
+------
+#### [ Windows Server 20H2 Core AMI versions ]
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 20H2 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
+
+
+|  Amazon ECS\-optimized Windows Server 20H2 Core AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
+| --- | --- | --- | --- | 
+|  **Windows\_Server\-20H2\-English\-Core\-ECS\_Optimized\-2021\.04\.14**  |  `1.51.0`  |  `20.10.0`  |  Public  | 
+
+Use the following AWS CLI command to retrieve the current Amazon ECS\-optimized Windows Server 20H2 Core AMI\.
+
+```
+aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized
 ```
 
 ------

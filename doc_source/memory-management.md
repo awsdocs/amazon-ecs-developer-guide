@@ -41,7 +41,7 @@ This instance has 8589524992 bytes of total memory, which translates to 8191 MiB
 
 If you occupy all of the memory on a container instance with your tasks, then it is possible that your tasks will contend with critical system processes for memory and possibly trigger a system failure\. The Amazon ECS container agent provides a configuration variable called `ECS_RESERVED_MEMORY`, which you can use to remove a specified number of MiB of memory from the pool that is allocated to your tasks\. This effectively reserves that memory for critical system processes\.
 
-For example, if you specify `ECS_RESERVED_MEMORY=256` in your container agent configuration file, then the agent registers the total memory minus 256 MiB for that instance, and 256 MiB of memory could not be allocated by ECS tasks\. For more information about agent configuration variables and how to set them, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md) and [Bootstrapping Container Instances with Amazon EC2 User Data](bootstrap_container_instance.md)\.
+For example, if you specify `ECS_RESERVED_MEMORY=256` in your container agent configuration file, then the agent registers the total memory minus 256 MiB for that instance, and 256 MiB of memory could not be allocated by ECS tasks\. For more information about agent configuration variables and how to set them, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md) and [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)\.
 
 ## Viewing Container Instance Memory<a name="viewing-memory"></a>
 

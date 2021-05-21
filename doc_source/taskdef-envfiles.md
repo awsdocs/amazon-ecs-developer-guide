@@ -55,7 +55,7 @@ The following is a snippet of a task definition showing how to specify an enviro
 ## Considerations for specifying environment variable files<a name="taskdef-envfiles-considerations"></a>
 
 The following should be considered when specifying an environment variable file in a container definition\.
-+ For Amazon ECS tasks on Amazon EC2, your container instances require version `1.39.0` or later of the container agent to use this feature\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS Container Agent](ecs-agent-update.md)\.
++ For Amazon ECS tasks on Amazon EC2, your container instances require version `1.39.0` or later of the container agent to use this feature\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 + For Amazon ECS tasks on AWS Fargate, your tasks must use platform version `1.4.0` or later to use this feature\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + The file must use the `.env` file extension and UTF\-8 encoding\.
 + Each line in an environment file should contain an environment variable in `VARIABLE=VALUE` format\. Spaces or quotation marks are included as part of the values\. Lines beginning with `#` are treated as comments and are ignored\. For more information on the environment variable file syntax, see [Declare default environment variables in file](https://docs.docker.com/compose/env-file/)\.

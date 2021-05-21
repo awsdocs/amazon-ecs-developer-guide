@@ -49,7 +49,7 @@ The service scheduler will send a `service service-name) has reached a steady st
 The service scheduler will send this event message when it could not find the available resources to add another task\. The possible causes for this are:
 
 No container instances were found in your cluster  
-If no container instances are registered in the cluster you attempt to run a task in, you will receive this error\. You should add container instances to your cluster\. For more information, see [Launching an Amazon ECS Container Instance](launch_container_instance.md)\.
+If no container instances are registered in the cluster you attempt to run a task in, you will receive this error\. You should add container instances to your cluster\. For more information, see [Launching an Amazon ECS container instance](launch_container_instance.md)\.
 
 Not enough ports  
 If your task uses fixed host port mapping \(for example, your task uses port 80 on the host for a web server\), you must have at least one container instance per task, because only one container can use a single host port at a time\. You should add container instances to your cluster or reduce your number of desired tasks\.

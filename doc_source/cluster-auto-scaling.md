@@ -17,6 +17,7 @@ Ensure any tooling you use does not remove the `AmazonECSManaged` tag from the A
 + Managed scaling works best if your Auto Scaling group uses the same or similar instance types\. For more information, see [Managed scale\-out behavior](#managed-scaling-scaleout)\.
 + When using an Auto Scaling group with On\-Demand instances and multiple instance types, place the larger instance types higher in the priority list and don't specify a weight\. Specifying a weight is not supported at this time\. For more information, see [Auto Scaling groups with multiple instance types](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html) in the *AWS Auto Scaling User Guide*\.
 + When creating a service, specifying a task placement strategy that spreads across Availability Zones or a binpack strategy based on CPU or memory works best\. Don't use an instance spread strategy as scaling works slower with that strategy type\.
++ The desired capacity for the Auto Scaling group associated with a capacity provider shouldn't be changed or managed any any scaling policies other than the one Amazon ECS manages\.
 
 ## Managed scale\-out behavior<a name="managed-scaling-scaleout"></a>
 

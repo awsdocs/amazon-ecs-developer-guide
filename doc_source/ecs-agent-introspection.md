@@ -1,4 +1,4 @@
-# Amazon ECS Container Agent Introspection<a name="ecs-agent-introspection"></a>
+# Amazon ECS container agent introspection<a name="ecs-agent-introspection"></a>
 
 The Amazon ECS container agent provides an API operation for gathering details about the container instance on which the agent is running and the associated tasks running on that instance\. You can use the curl command from within the container instance to query the Amazon ECS container agent \(port 51678\) and return container instance metadata or task information\.
 

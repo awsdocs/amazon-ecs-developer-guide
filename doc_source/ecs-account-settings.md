@@ -7,6 +7,9 @@ The following are supported scenarios:
 + An IAM user or role can set the default opt in or opt out setting for all users on the account\.
 + The root user can opt in to or opt out of any specific IAM role or user on the account\. If the account setting for the root user is changed, it sets the default for all the IAM users and roles for which no individual account setting has been selected\.
 
+**Note**  
+Federated users assume the account setting of the root user and can't have explicit account settings set for them\.
+
 The following account settings are available\. The opt in and opt out option must be selected for each account setting separately\.
 
 **Amazon Resource Names \(ARNs\) and IDs**  
