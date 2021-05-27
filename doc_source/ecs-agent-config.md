@@ -1,4 +1,4 @@
-# Amazon ECS Container Agent Configuration<a name="ecs-agent-config"></a>
+# Amazon ECS container agent configuration<a name="ecs-agent-config"></a>
 
 The Amazon ECS container agent supports a number of configuration options, most of which should be set through environment variables\. The following environment variables are available, and all of them are optional\.
 
@@ -333,14 +333,14 @@ When `dockerVolumeConfiguration` is specified in a task definition and the `auto
 Example values: `ec2_instance`  
 Default value on Linux: none  
 Default value on Windows: none  
-If `ec2_instance` is specified, existing tags defined on the container instance are registered to Amazon ECS\. The tags are discoverable using the `ListTagsForResource` operation\. The IAM role associated with the container instance should have the `ec2:DescribeTags` action allowed\. For more information, see [Adding tags to a container instance](ecs-using-tags.md#instance-details-tags)\.
+If `ec2_instance` is specified, existing tags defined on the container instance are registered to Amazon ECS\. The tags are discoverable using the `ListTagsForResource` operation\. The IAM role associated with the container instance should have the `ec2:DescribeTags` action allowed\. For more information, see [Adding tags to an Amazon EC2 container instance](ecs-using-tags.md#instance-details-tags)\.
 
 `ECS_CONTAINER_INSTANCE_TAGS`  
 Example values: `{"tag_key": "tag_val"}`  
 Default value on Linux: `{}`  
 Default value on Windows: `{}`  
 Metadata applied to container instances to help you categorize and organize your resources\. Each tag consists of a custom\-defined key and an optional value\. Tag keys can have a maximum character length of 128 characters\. Tag values can have a maximum length of 256 characters\.  
-If container instance tags are propagated using the `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM` parameter, those tags are overwritten by the tags specified using `ECS_CONTAINER_INSTANCE_TAGS`\. For more information, see [Adding tags to a container instance](ecs-using-tags.md#instance-details-tags)\.
+If container instance tags are propagated using the `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM` parameter, those tags are overwritten by the tags specified using `ECS_CONTAINER_INSTANCE_TAGS`\. For more information, see [Adding tags to an Amazon EC2 container instance](ecs-using-tags.md#instance-details-tags)\.
 
 `ECS_ENABLE_UNTRACKED_IMAGE_CLEANUP`  
 Example values: `true` \| `false`  
@@ -418,7 +418,7 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles** and select the IAM role to use for your container instances\. This role is likely titled `ecsInstanceRole`\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\. 
+1. In the navigation pane, choose **Roles** and select the IAM role to use for your container instances\. This role is likely titled `ecsInstanceRole`\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\. 
 
 1. Under **Managed Policies**, choose **Attach Policy**\.
 
@@ -428,7 +428,7 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
 
 **To store an `ecs.config` file in Amazon S3**
 
-1. Create an `ecs.config` file with valid environment variables and values from [Amazon ECS Container Agent Configuration](#ecs-agent-config) using the following format\. This example configures private registry authentication\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
+1. Create an `ecs.config` file with valid environment variables and values from [Amazon ECS container agent configuration](#ecs-agent-config) using the following format\. This example configures private registry authentication\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
 
    ```
    ECS_ENGINE_AUTH_TYPE=dockercfg

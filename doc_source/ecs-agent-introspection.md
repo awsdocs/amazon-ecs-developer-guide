@@ -3,7 +3,7 @@
 The Amazon ECS container agent provides an API operation for gathering details about the container instance on which the agent is running and the associated tasks running on that instance\. You can use the curl command from within the container instance to query the Amazon ECS container agent \(port 51678\) and return container instance metadata or task information\.
 
 **Important**  
-Your container instance must have an IAM role that allows access to Amazon ECS in order to retrieve the metadata\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+Your container instance must have an IAM role that allows access to Amazon ECS in order to retrieve the metadata\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 
 To view container instance metadata, log in to your container instance via SSH and run the following command\. Metadata includes the container instance ID, the Amazon ECS cluster in which the container instance is registered, and the Amazon ECS container agent version information\.
 

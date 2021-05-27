@@ -20,11 +20,11 @@ Tasks using the Fargate launch type are deployed onto infrastructure managed by 
 + [Container instance draining](container-instance-draining.md)
 + [Manage container instances remotely using AWS Systems Manager](ec2-run-command.md)
 + [Starting a task at container instance launch time](start_task_at_launch.md)
-+ [Deregister a container instance](deregister_container_instance.md)
++ [Deregister an Amazon EC2 backed container instance](deregister_container_instance.md)
 
 ## Container instance concepts<a name="container_instance_concepts"></a>
 + Your container instance must be running the Amazon ECS container agent\. The container agent is able to register the instance into one of your clusters\. If you are using an Amazon ECS\-optimized AMI, the agent is already installed\. To use a different operating system, install the agent\. For more information, see [Amazon ECS container agent](ECS_agent.md)\.
-+ Because the Amazon ECS container agent makes calls to Amazon ECS on your behalf, you must launch container instances with an IAM role that authenticates to your account and provides the required resource permissions\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
++ Because the Amazon ECS container agent makes calls to Amazon ECS on your behalf, you must launch container instances with an IAM role that authenticates to your account and provides the required resource permissions\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 + Beginning with Linux Amazon ECS\-optimized AMI version `20200430` and later, the Amazon EC2 Instance Metadata Service Version 2 \(IMDSv2\) is supported on your container instances\. For Amazon ECS\-optimized AMIs prior to version `20200430`, Amazon EC2 Instance Metadata Service Version 1 \(IMDSv1\) is supported\. For more information, see [Configuring the instance metadata service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
 + If any of the containers associated with your tasks require external connectivity, you can map their network ports to ports on the host Amazon ECS container instance so they are reachable from the internet\. Your container instance security group must allow inbound access to the ports you want to expose\. For more information, see [Create a Security Group](https://docs.aws.amazon.com/AmazonVPC/latest/GettingStartedGuide/getting-started-create-security-group.html) in the [Amazon VPC Getting Started Guide](https://docs.aws.amazon.com/AmazonVPC/latest/GettingStartedGuide/)\.
 + We strongly recommend launching your container instances inside a VPC, because Amazon VPC delivers more control over your network and offers more extensive configuration capabilities\. For more information, see [Amazon EC2 and Amazon Virtual Private Cloud](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html) in the *Amazon EC2 User Guide for Linux Instances*\.
@@ -63,4 +63,4 @@ In most cases, the Amazon ECS instance role is automatically created for you in 
 
 1. In the navigation pane, choose **Roles**\. 
 
-1. Search the list of roles for `ecsInstanceRole`\. If the role exists, you do not need to create it\. If the role does not exist, follow the procedures in [Amazon ECS Container Instance IAM Role](instance_IAM_role.md) to create the role\. 
+1. Search the list of roles for `ecsInstanceRole`\. If the role exists, you do not need to create it\. If the role does not exist, follow the procedures in [Amazon ECS container instance IAM role](instance_IAM_role.md) to create the role\. 

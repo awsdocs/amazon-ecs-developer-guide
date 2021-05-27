@@ -2,7 +2,7 @@
 
 Cluster queries are expressions that enable you to group objects\. For example, you can group container instances by attributes such as Availability Zone, instance type, or custom metadata\. For more information, see [Attributes](task-placement-constraints.md#attributes)\.
 
-After you have defined a group of container instances, you can customize Amazon ECS to place tasks on container instances based on group\. For more information, see [Run a standalone task](ecs_run_task.md) and [Creating a service](create-service.md)\. You can also apply a group filter when listing container instances\. For more information, see [Filtering by attribute](task-placement-constraints.md#filter-attribute)\.
+After you have defined a group of container instances, you can customize Amazon ECS to place tasks on container instances based on group\. For more information, see [Run a standalone task](ecs_run_task.md) and [Creating an Amazon ECS service](create-service.md)\. You can also apply a group filter when listing container instances\. For more information, see [Filtering by attribute](task-placement-constraints.md#filter-attribute)\.
 
 ## Expression syntax<a name="expression-syntax"></a>
 

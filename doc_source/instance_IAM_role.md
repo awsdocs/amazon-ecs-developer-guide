@@ -1,64 +1,18 @@
-# Amazon ECS Container Instance IAM Role<a name="instance_IAM_role"></a>
+# Amazon ECS container instance IAM role<a name="instance_IAM_role"></a>
 
-The Amazon ECS container agent makes calls to the Amazon ECS API on your behalf\. Container instances that run the agent require an IAM policy and role for the service to know that the agent belongs to you\. Before you can launch container instances and register them into a cluster, you must create an IAM role for those container instances to use when they are launched\. This requirement applies to container instances launched with the Amazon ECS\-optimized AMI provided by Amazon, or with any other instances that you intend to run the agent on\. This IAM role only applies if you are using the EC2 launch type\.
+Amazon ECS container instances, including both Amazon EC2 and external instances, run the Amazon ECS container agent and require an IAM role for the service to know that the agent belongs to you\. Before you launch container instances and register them to a cluster, you must create an IAM role for your container instances to use\.
 
 **Important**  
-Containers that are running on your container instances have access to all of the permissions that are supplied to the container instance role through [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)\. We recommend that you limit the permissions in your container instance role to the minimal list of permissions provided in the managed `AmazonEC2ContainerServiceforEC2Role` policy shown below\. If the containers in your tasks need extra permissions that are not listed here, we recommend providing those tasks with their own IAM roles\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.  
-You can prevent containers on the `docker0` bridge from accessing the permissions supplied to the container instance role \(while still allowing the permissions that are provided by [IAM Roles for Tasks](task-iam-roles.md)\) by running the following iptables command on your container instances; however, containers will not be able to query instance metadata with this rule in effect\. Note that this command assumes the default Docker bridge configuration and it will not work for containers that use the `host` network mode\. For more information, see [Network mode](task_definition_parameters.md#network_mode)\.  
+If you are registering external instances to your cluster, the IAM role you use requires Systems Manager permissions as well\. For more information, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
 
-```
-sudo yum install -y iptables-services; sudo iptables --insert FORWARD 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP
-```
-You must save this iptables rule on your container instance for it to survive a reboot\. For the Amazon ECS\-optimized AMI, use the following command\. For other operating systems, consult the documentation for that OS\.  
-For the Amazon ECS\-optimized Amazon Linux 2 AMI:  
+Amazon ECS provides the `AmazonEC2ContainerServiceforEC2Role` managed IAM policy which contains the permissions needed to use the full Amazon ECS feature set\. This managed policy can be attached to an IAM role and associated with your container instances\. Alternatively, you can use the managed policy as a guide when creating a custom policy to use\. The container instance role provides permissions needed for the Amazon ECS container agent and Docker daemon to call AWS APIs on your behalf\. For more information on the managed policy, see [AmazonEC2ContainerServiceforEC2Role](ecs_managed_policies.md#AmazonEC2ContainerServiceforEC2Role)\.
 
-  ```
-  sudo iptables-save | sudo tee /etc/sysconfig/iptables && sudo systemctl enable --now iptables
-  ```
-For the Amazon ECS\-optimized Amazon Linux AMI:  
+## Creating the Amazon ECS container instance IAM role<a name="instance-iam-role-create"></a>
 
-  ```
-  sudo service iptables save
-  ```
+**Important**  
+If you are registering external instances to your cluster, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
 
-The `AmazonEC2ContainerServiceforEC2Role` policy is shown below\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ec2:DescribeTags",
-                "ecs:CreateCluster",
-                "ecs:DeregisterContainerInstance",
-                "ecs:DiscoverPollEndpoint",
-                "ecs:Poll",
-                "ecs:RegisterContainerInstance",
-                "ecs:StartTelemetrySession",
-                "ecs:UpdateContainerInstancesState",
-                "ecs:Submit*",
-                "ecr:GetAuthorizationToken",
-                "ecr:BatchCheckLayerAvailability",
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage",
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-```
-
-**Note**  
-The `ecs:CreateCluster` line in the above policy is optional, provided that the cluster you intend to register your container instance into already exists\. If the cluster does not already exist, the agent must have permission to create it, or you can create the cluster with the create\-cluster command prior to launching your container instance\.  
-If you omit the `ecs:CreateCluster` line, the Amazon ECS container agent can not create clusters, including the default cluster\.
-
-The `ecs:Poll` line in the above policy is used to grant the agent permission to connect with the Amazon ECS service to report status and get commands\.
-
-The Amazon ECS instance role is automatically created for you in the console first\-run experience\. However, you should manually attach the managed IAM policy for container instances to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. Use the following procedure to check and see if your account already has the Amazon ECS instance role and to attach the managed IAM policy if needed\.<a name="procedure_check_instance_role"></a>
+The Amazon ECS instance role is automatically created for you when completing the Amazon ECS console first\-run experience\. However, you can manually create the role and attach the managed IAM policy for container instances to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. Use the following procedure to check and see if your account already has the Amazon ECS container instance IAM role and to attach the managed IAM policy if needed\.<a name="procedure_check_instance_role"></a>
 
 **To check for the `ecsInstanceRole` in the IAM console**
 
@@ -70,17 +24,17 @@ The Amazon ECS instance role is automatically created for you in the console fir
 
 1. Choose the **Permissions** tab\.
 
-1. In the **Managed Policies** section, ensure that the **AmazonEC2ContainerServiceforEC2Role** managed policy is attached to the role\. If the policy is attached, your Amazon ECS instance role is properly configured\. If not, follow the substeps below to attach the policy\.
+1. In the **Permissions policies** section, ensure that the **AmazonEC2ContainerServiceforEC2Role** managed policy, or an equivalent custom policy, is attached to the role\. If the policy is attached, your container instance role is properly configured\. If not, follow the substeps below to attach the policy\.
 **Important**  
 The **AmazonEC2ContainerServiceforEC2Role** managed policy should be attached to the container instance IAM role, otherwise you will receive an error using the AWS Management Console to create clusters\.
 
-   1. Choose **Attach Policy**\.
+   1. Choose **Attach policies**\.
 
-   1. In the **Filter** box, type **AmazonEC2ContainerServiceforEC2Role** to narrow the available policies to attach\.
+   1. In the **Filter policies** search box, type **AmazonEC2ContainerServiceforEC2Role** to narrow the available policies to attach\.
 
-   1. Check the box to the left of the **AmazonEC2ContainerServiceforEC2Role** policy and choose **Attach Policy**\.
+   1. Check the box to the left of the **AmazonEC2ContainerServiceforEC2Role** policy and choose **Attach policy**\.
 
-1. Choose the **Trust Relationships** tab, and **Edit Trust Relationship**\.
+1. Choose the **Trust relationships** tab, and **Edit trust relationship**\.
 
 1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, copy the policy into the **Policy Document** window and choose **Update Trust Policy**\.
 
@@ -110,15 +64,17 @@ The **AmazonEC2ContainerServiceforEC2Role** managed policy should be attached to
 
 1. Choose the **EC2 Role for Elastic Container Service** use case and then **Next: Permissions**\.
 
-1. In the **Attached permissions policy** section, select **AmazonEC2ContainerServiceforEC2Role** and then choose **Next: Review**\.
+1. In the **Attached permissions policies** section, verify the **AmazonEC2ContainerServiceforEC2Role** policy is selected and then choose **Next:Tags**\.
 **Important**  
 The **AmazonEC2ContainerServiceforEC2Role** managed policy should be attached to the container instance IAM role, otherwise you will receive an error using the AWS Management Console to create clusters\.
 
+1. For **Add tags \(optional\)**, specify any custom tags to associate with the policy and then choose **Next: Review**\.
+
 1. For **Role name**, type `ecsInstanceRole` and optionally you can enter a description\.
 
-1. Review your role information and then choose **Create role** to finish\. 
+1. Review your role information and then choose **Create role** to finish\.
 
-## Adding Amazon S3 Read\-only Access to your Container Instance Role<a name="container-instance-role-s3"></a>
+## Adding Amazon S3 read\-only access to your container instance IAM role<a name="container-instance-role-s3"></a>
 
 Storing configuration information in a private bucket in Amazon S3 and granting read\-only access to your container instance IAM role is a secure and convenient way to allow container instance configuration at launch time\. You can store a copy of your `ecs.config` file in a private bucket, use Amazon EC2 user data to install the AWS CLI and then copy your configuration information to `/etc/ecs/ecs.config` when the instance launches\.
 
@@ -130,7 +86,7 @@ For more information about creating an `ecs.config` file, storing it in Amazon S
 
 1. In the navigation pane, choose **Roles**\. 
 
-1. Choose the IAM role you use for your container instances \(this role is likely titled `ecsInstanceRole`\)\. For more information, see [Amazon ECS Container Instance IAM Role](#instance_IAM_role)\.
+1. Choose the IAM role you use for your container instances \(this role is likely titled `ecsInstanceRole`\)\. For more information, see [Amazon ECS container instance IAM role](#instance_IAM_role)\.
 
 1. Choose the **Permissions** tab, then **Attach policy**\.
 

@@ -76,7 +76,7 @@ You can add container instances to your cluster to provide more available networ
 Container instance missing required attribute  
 Some task definition parameters require a specific Docker remote API version to be installed on the container instance\. Others, such as the logging driver options, require the container instances to register those log drivers with the `ECS_AVAILABLE_LOGGING_DRIVERS` agent configuration variable\. If your task definition contains a parameter that requires a specific container instance attribute, and you do not have any available container instances that can satisfy this requirement, the task cannot be placed\.  
 A common cause of this error is if your service is using tasks that use the `awsvpc` network mode and the EC2 launch type and the cluster you specified does not have a container instance registered to it in the same subnet that was specified in the `awsvpcConfiguration` when the service was created\.  
-For more information on which attributes are required for specific task definition parameters and agent configuration variables, see [Task definition parameters](task_definition_parameters.md) and [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+For more information on which attributes are required for specific task definition parameters and agent configuration variables, see [Task definition parameters](task_definition_parameters.md) and [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 ### service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* has insufficient CPU units available\.<a name="service-event-messages-2"></a>
 

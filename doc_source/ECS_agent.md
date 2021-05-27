@@ -9,9 +9,9 @@ For tasks using the Fargate launch type and platform version 1\.3\.0 and prior, 
 
 **Topics**
 + [Installing the Amazon ECS container agent](ecs-agent-install.md)
-+ [Amazon ECS Container Agent Versions](ecs-agent-versions.md)
++ [Amazon ECS container agent versions](ecs-agent-versions.md)
 + [Updating the Amazon ECS container agent](ecs-agent-update.md)
-+ [Amazon ECS Container Agent Configuration](ecs-agent-config.md)
++ [Amazon ECS container agent configuration](ecs-agent-config.md)
 + [Private registry authentication for container instances](private-auth-container-instances.md)
 + [Automated task and image cleanup](automated_image_cleanup.md)
 + [Amazon ECS container metadata file](container-metadata.md)

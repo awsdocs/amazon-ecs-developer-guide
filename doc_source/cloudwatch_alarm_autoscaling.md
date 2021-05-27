@@ -64,10 +64,10 @@ Now that you have enabled CloudWatch metrics and created an alarm based on one o
 
 1. On the **Configure details** step of the **Create Auto Scaling Group** wizard, enter the following information\. The other fields are optional\. For more information, see [Creating Launch Configurations](https://docs.aws.amazon.com/autoscaling/latest/userguide/WorkingWithLaunchConfig.html) in the *Amazon EC2 Auto Scaling User Guide*\.
    + **Name:** Enter a name for your launch configuration\.
-   + **IAM role:** Select the `ecsInstanceRole` for your container instances\. If you do not have this role configured, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+   + **IAM role:** Select the `ecsInstanceRole` for your container instances\. If you do not have this role configured, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
    + **IP Address Type:** Select the IP address type option for your container instances\. To allow external traffic to be able to reach your containers, choose **Assign a public IP address to every instance\.**
 
-1. Expand the **Advanced Details** section to specify user data for your Amazon ECS container instances\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+1. Expand the **Advanced Details** section to specify user data for your Amazon ECS container instances\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
    Paste the following script into the **User data** field\. Reference the cluster name that you are working with\. 
 

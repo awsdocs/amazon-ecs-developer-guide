@@ -54,9 +54,9 @@ To run a standalone task using the old console
 
    1. Choose either a capacity provider strategy or a launch type\.
       + To use a **Capacity provider strategy**, choose **Switch to capacity provider strategy** and then choose whether your task should use the default capacity provider strategy defined for the cluster or a custom capacity provider strategy\. A capacity provider must already be associated with the cluster in order to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
-      + To use a **Launch type**, choose **Switch to launch type** and select **EC2**\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
+      + To use a **Launch type**, choose **Switch to launch type** and select either **EC2** or **EXTERNAL**\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 
-   1. For **Cluster**, choose the cluster to use\. 
+   1. For **Cluster**, choose the cluster to use\.
 
    1. For **Number of tasks**, type the number of tasks to launch with this task definition\.
 

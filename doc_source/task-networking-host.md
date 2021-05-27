@@ -1,0 +1,3 @@
+# Task networking with the `host` network mode<a name="task-networking-host"></a>
+
+With the `host` network mode, the networking of the container is tied directly to the Amazon EC2 instance host that the container is running on\. Each container will receive traffic over the IP address of the Amazon EC2 instance hosting it\. For more information, see [Choosing a network mode](https://docs.aws.amazon.com/AmazonECS/latest/bestpracticesguide/networking-networkmode.html) in the *Amazon ECS Best Practices Guide*\.

@@ -278,4 +278,4 @@ ecs-cli --version
 Proceed to [Configuring the Amazon ECS CLI](ECS_CLI_Configuration.md)\.
 
 **Important**  
-You must configure the Amazon ECS CLI with your AWS credentials, an AWS region, and an Amazon ECS cluster name before you can use it\.
+You must configure the Amazon ECS CLI with your AWS credentials, an AWS Region, and an Amazon ECS cluster name before you can use it\.

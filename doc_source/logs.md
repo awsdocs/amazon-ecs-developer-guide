@@ -15,7 +15,7 @@ For container agent version 1\.35\.0 and earlier, by default the logs are locate
 
 By default, the agent logs are rotated hourly with a maximum of 24 logs being stored\.
 
-The following are the container agent configuration variables that can be used to change the default agent logging behavior\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+The following are the container agent configuration variables that can be used to change the default agent logging behavior\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 `ECS_LOGFILE`  
 Example values: `/ecs-agent.log`  

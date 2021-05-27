@@ -11,7 +11,7 @@ When setting a minimum healthy percent or a maximum percent, you should ensure t
 
 When a new service deployment is started or when a deployment is completed, Amazon ECS sends a service deployment state change event to EventBridge\. This provides a programmatic way to monitor the status of your service deployments\. For more information, see [Service deployment state change events](ecs_cwe_events.md#ecs_service_deployment_events)\.
 
-To create a new Amazon ECS service that uses the rolling update deployment type, see [Creating a service](create-service.md)\.
+To create a new Amazon ECS service that uses the rolling update deployment type, see [Creating an Amazon ECS service](create-service.md)\.
 
 ## Using the deployment circuit breaker<a name="deployment-circuit-breaker"></a>
 

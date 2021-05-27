@@ -3,7 +3,7 @@
 Each time a task is placed on a container instance, the Amazon ECS container agent checks to see if the images referenced in the task are the most recent of the specified tag in the repository\. If not, the default behavior allows the agent to pull the images from their respective repositories\. If you frequently update the images in your tasks and services, your container instance storage can quickly fill up with Docker images that you are no longer using and may never use again\. For example, you may use a continuous integration and continuous deployment \(CI/CD\) pipeline\.
 
 **Note**  
-The Amazon ECS agent image pull behavior can be customized using the `ECS_IMAGE_PULL_BEHAVIOR` parameter\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+The Amazon ECS agent image pull behavior can be customized using the `ECS_IMAGE_PULL_BEHAVIOR` parameter\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 Likewise, containers that belong to stopped tasks can also consume container instance storage with log information, data volumes, and other artifacts\. These artifacts are useful for debugging containers that have stopped unexpectedly, but most of this storage can be safely freed up after a period of time\. 
 
@@ -14,7 +14,7 @@ The automated image cleanup feature requires at least version 1\.13\.0 of the Am
 
 ## Tunable parameters<a name="automated_image_cleanup_parameters"></a>
 
-The following agent configuration variables are available to tune your automated task and image cleanup experience\. For more information about how to set these variables on your container instances, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+The following agent configuration variables are available to tune your automated task and image cleanup experience\. For more information about how to set these variables on your container instances, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION`  
 This variable specifies the time to wait before removing any containers that belong to stopped tasks\. The image cleanup process cannot delete an image as long as there is a container that references it\. After images are not referenced by any containers \(either stopped or running\), then the image becomes a candidate for cleanup\. By default, this parameter is set to 3 hours but you can reduce this period to as low as 1 minute, if you need to for your application\.

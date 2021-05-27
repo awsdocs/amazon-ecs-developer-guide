@@ -38,7 +38,7 @@ The instance type for the instance\. An example value for this attribute is `g2.
 The operating system for the instance\. The possible values for this attribute are `linux` and `windows`\.
 
 `ecs.cpu-architecture`  
-The CPU architecture for the instance\. The possible values for this attribute are `x86_64` and `arm64`\.
+The CPU architecture for the instance\. Example values for this attribute are `x86_64` and `arm64`\.
 
 `ecs.vpc-id`  
 The VPC the instance was launched into\. An example value for this attribute is `vpc-1234abcd`\.
@@ -56,6 +56,9 @@ If this attribute exists, the instance has a trunk network interface\. For more 
 `ecs.outpost-arn`  
 If this attribute exists, it contains the Amazon Resource Name \(ARN\) of the Outpost\. For more information, see [Amazon Elastic Container Service on AWS Outposts](ecs-on-outposts.md)\.
 
+`ecs.capability.external`  
+If this attribute exists, the instance is identified as an external instance\. For more information, see [Amazon ECS Anywhere](ecs-anywhere.md)\.
+
 ### Custom attributes<a name="ecs-custom-attributes"></a>
 
 You can apply custom attributes to your container instances\. For example, you can define an attribute with the name "stack" and a value of "prod"\.
@@ -66,7 +69,7 @@ When specifying custom attributes, the following should be considered\.
 
 ## Adding an attribute<a name="add-attribute"></a>
 
-You can add custom attributes at instance registration time using the container agent or manually, using the AWS Management Console\. For more information about using the container agent, see [Amazon ECS Container Agent Configuration Parameters](ecs-agent-config.md#ecs-instance-attributes)\.
+You can add custom attributes at instance registration time using the container agent or manually, using the AWS Management Console\. For more information about using the container agent, see [Amazon ECS container agent configuration parameters](ecs-agent-config.md#ecs-instance-attributes)\.
 
 **To add custom attributes using the console**
 

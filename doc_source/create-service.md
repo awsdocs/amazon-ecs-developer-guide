@@ -1,11 +1,14 @@
-# Creating a service<a name="create-service"></a>
+# Creating an Amazon ECS service<a name="create-service"></a>
 
-When you create an Amazon ECS service, you specify the basic parameters that define what makes up your service and how it should behave\. These parameters create a service definition\.
+When you create an Amazon ECS service, you specify the basic parameters that define what makes up your service and how it should behave\. These parameters create a service definition\. For more information, see [Service definition parameters](service_definition_parameters.md)\.
 
-You can optionally configure additional features, such as an Elastic Load Balancing load balancer to distribute traffic across the containers in your service\. For more information, see [Service load balancing](service-load-balancing.md)\. You must verify that your container instances can receive traffic from your load balancers\. You can allow traffic to all ports on your container instances from your load balancer's security group to ensure that traffic can reach any containers that use dynamically assigned ports\.
+For services hosted on Fargate or Amazon EC2 instances, you can optionally configure an Elastic Load Balancing load balancer to distribute traffic across the containers in your service\. For more information, see [Service load balancing](service-load-balancing.md)\.
 
-The following documents take you through each step of the create service wizard in the AWS Management Console\.
+**Note**  
+When using a load balancer with services hosted on Amazon EC2 instances, you should verify that your instances can receive traffic from your load balancers\. You can allow traffic to all ports on your instances from your load balancer's security group to ensure that traffic can reach any containers that use dynamically assigned ports\.
+
+We provide walkthroughs for creating an Amazon ECS service using the AWS Management Console in the following pages\.
 
 **Topics**
 + [Creating a service using the new console](create-service-console-v2.md)
-+ [Creating a service using the old console](create-service-console-v1.md)
++ [Creating a service using the classic console](create-service-console-v1.md)

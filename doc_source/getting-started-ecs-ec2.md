@@ -93,7 +93,7 @@ The following steps walk you through creating a cluster with one Amazon EC2 inst
 
 1. In the **Networking** section, for **VPC** choose either **Create a new VPC** to have Amazon ECS create a new VPC for the cluster to use, or choose an existing VPC to use\. For more information on creating your own VPC, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
 
-1. In the **Container instance IAM role** section, choose **Create new role** to have Amazon ECS create a new IAM role for your container instances, or choose an existing Amazon ECS container instance \(`ecsInstanceRole`\) role that you have already created\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+1. In the **Container instance IAM role** section, choose **Create new role** to have Amazon ECS create a new IAM role for your container instances, or choose an existing Amazon ECS container instance \(`ecsInstanceRole`\) role that you have already created\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 
 1. Choose **Create**\.
 

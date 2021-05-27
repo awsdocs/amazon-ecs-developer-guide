@@ -14,7 +14,7 @@ To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance usin
 
 **To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance**
 
-1. Launch an Amazon Linux 2 EC2 instance with an IAM role that allows access to Amazon ECS\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+1. Launch an Amazon Linux 2 EC2 instance with an IAM role that allows access to Amazon ECS\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 
 1. Connect to your instance\.
 
@@ -36,7 +36,7 @@ To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance usin
    [ec2-user ~]$ curl -s http://localhost:51678/v1/metadata | python -mjson.tool
    ```
 **Note**  
-If you get no response, ensure that you associated the Amazon ECS container instance IAM role when launching the instance\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+If you get no response, ensure that you associated the Amazon ECS container instance IAM role when launching the instance\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 
 ## Installing the Amazon ECS container agent on an Amazon Linux AMI EC2 instance<a name="ecs-agent-install-amazonlinux"></a>
 
@@ -44,7 +44,7 @@ To install the Amazon ECS container agent on an Amazon Linux AMI EC2 instance us
 
 **To install the Amazon ECS container agent on an Amazon Linux AMI EC2 instance**
 
-1. Launch an Amazon Linux AMI EC2 instance with an IAM role that allows access to Amazon ECS\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+1. Launch an Amazon Linux AMI EC2 instance with an IAM role that allows access to Amazon ECS\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 
 1. Connect to your instance\.
 
@@ -121,7 +121,7 @@ The latest Amazon ECS container agent files, by Region, are listed below for ref
 
 **To install the Amazon ECS container agent on a non\-Amazon Linux EC2 instance**
 
-1. Launch an Amazon EC2 instance with an IAM role that allows access to Amazon ECS\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+1. Launch an Amazon EC2 instance with an IAM role that allows access to Amazon ECS\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 
 1. Connect to your instance\.
 
@@ -202,7 +202,7 @@ The Amazon Linux AMI always includes the recommended version of Docker for use w
    ECS_CLUSTER=default
    ```
 
-   For more information about these and other agent runtime options, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\. 
+   For more information about these and other agent runtime options, see [Amazon ECS container agent configuration](ecs-agent-config.md)\. 
 **Note**  
 You can optionally store your agent environment variables in Amazon S3 \(which can be downloaded to your container instances at launch time using Amazon EC2 user data\)\. This is recommended for sensitive information such as authentication credentials for private repositories\. For more information, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3) and [Private registry authentication for tasks](private-auth.md)\.
 
@@ -210,7 +210,7 @@ You can optionally store your agent environment variables in Amazon S3 \(which c
 **Note**  
 Use Docker restart policies or a process manager \(such as upstart or systemd\) to treat the container agent as a service or a daemon and ensure that it is restarted after exiting\. For more information, see [Automatically start containers](https://docs.docker.com/engine/admin/host_integration/) and [Restart policies](https://docs.docker.com/engine/reference/run/#restart-policies-restart) in the Docker documentation\. The Linux variants of the Amazon ECS\-optimized AMI use the `ecs-init` RPM for this purpose, and you can view the [source code for this RPM](https://github.com/aws/amazon-ecs-init) on GitHub\. For example systemd unit files for Ubuntu 16\.04 and CentOS 7, see [Example container instance user data configuration scripts](example_user_data_scripts.md)\.
 
-   The following example of the agent run command is broken into separate lines to show each option\. For more information about these and other agent runtime options, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+   The following example of the agent run command is broken into separate lines to show each option\. For more information about these and other agent runtime options, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 **Important**  
 Operating systems with SELinux enabled require the `--privileged` option in your docker run command\. In addition, for SELinux\-enabled container instances, we recommend that you add the `:Z` option to the `/log` and `/data` volume mounts\. However, the host mounts for these volumes must exist before you run the command or you receive a `no such file or directory` error\. Take the following action if you experience difficulty running the Amazon ECS agent on an SELinux\-enabled container instance:  
 Create the host volume mount points on your container instance\.  

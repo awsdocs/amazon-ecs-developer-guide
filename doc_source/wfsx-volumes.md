@@ -8,8 +8,8 @@ EC2 instances that use the Amazon ECS\-Optimized Windows Server 2016 Full AMI, d
 You can use Amazon FSx for Windows File Server to deploy Windows workloads that require access to shared external storage, highly\-available regional storage, or high\-throughput storage\. You can mount one or more Amazon FSx for Windows File Server file system volumes to an ECS container running on an ECS Windows instance\. You can share Amazon FSx for Windows File Server file system volumes between multiple ECS containers within a single ECS task\.
 
 To enable the use of Amazon FSx for Windows File Server with ECS, you need to include the Amazon FSx for Windows File Server file system id and related information in a task definition as shown in the following example task definition JSON snippet\. Before creating and running a task definition, you need the following\.
-+ An ECS Windows EC2 instance that is joined to a valid domain, hosted by an [AWS Managed Microsoft Active Directory \(AD\)](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html), On\-premises AD or self\-hosted EC2 AD\.
-+ An AWS Secrets Manager secret or AWS Systems Manager parameter that contains the credentials that are used to domain join the AD and attach the Amazon FSx for Windows File Server file system\. The credential values are the name and password credentials that you entered when creating the AD\.
++ An ECS Windows EC2 instance that is joined to a valid domain, hosted by an [AWS Directory Service for Microsoft Active Directory](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html), On\-premises Active Directory or self\-hosted Active Directory on Amazon EC2\.
++ An AWS Secrets Manager secret or Systems Manager parameter that contains the credentials that are used to domain join the Active Directory and attach the Amazon FSx for Windows File Server file system\. The credential values are the name and password credentials that you entered when creating the Active Directory\.
 
 The following sections are provided to help you get started using Amazon FSx for Windows File Server with Amazon ECS\.
 
@@ -18,15 +18,15 @@ For a tutorial, see [Tutorial: Using Amazon FSx for Windows File Server file sys
 ## Amazon FSx for Windows File Server volume considerations<a name="wfsx-volume-considerations"></a>
 
 Consider the following when using Amazon FSx for Windows File Server volumes\.
-+ Amazon FSx for Windows File Server with ECS only supports [Windows Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md#ecs-optimized-ami-windows)\. Linux EC2 instances aren't supported\.
-+ ECS only supports Amazon FSx for Windows File Server\. ECS doesn't support Amazon FSx for Lustre\.
-+ Amazon FSx for Windows File Server with ECS doesn't support Fargate launch type task definitions\.
-+ Amazon FSx for Windows File Server with ECS doesn't support awsvpc networking mode at this time\.
-+ The maximum number of drive letters that can be used for an ECS task is 23\. Each task with an Amazon FSx for Windows File Server volume gets a drive letter assigned to it\.
-+ Task resource cleanup time is 3 hours by default\. A file mapping created by a task persists for 3 hours even if no tasks are using it\. The default cleanup time can be configured by using the ECS environment variable ECS\_ENGINE\_TASK\_CLEANUP\_WAIT\_DURATION\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
-+ Tasks typically only run in the same VPC as the Amazon FSx for Windows File Server file system\. However, it is possible to have cross\-VPC support if there is an established network connectivity between the ECS Cluster VPC and the Amazon FSx for Windows File Server file\-system through VPC peering\.
++ Amazon FSx for Windows File Server with Amazon ECS only supports [Windows Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md#ecs-optimized-ami-windows)\. Linux Amazon EC2 instances aren't supported\.
++ Amazon ECS only supports Amazon FSx for Windows File Server\. Amazon ECS doesn't support Amazon FSx for Lustre\.
++ Amazon FSx for Windows File Server with Amazon ECS doesn't support AWS Fargate\.
++ Amazon FSx for Windows File Server with Amazon ECS doesn't support the `awsvpc` network mode\.
++ The maximum number of drive letters that can be used for an Amazon ECS task is 23\. Each task with an Amazon FSx for Windows File Server volume gets a drive letter assigned to it\.
++ Task resource cleanup time is 3 hours by default\. A file mapping created by a task persists for 3 hours even if no tasks are using it\. The default cleanup time can be configured by using the Amazon ECS environment variable `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION`\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
++ Tasks typically only run in the same VPC as the Amazon FSx for Windows File Server file system\. However, it is possible to have cross\-VPC support if there is an established network connectivity between the Amazon ECS cluster VPC and the Amazon FSx for Windows File Server file\-system through VPC peering\.
 + You control access to an Amazon FSx for Windows File Server file system at the network level by configuring the VPC security groups\. Only tasks hosted on EC2 instances joined to the AD domain with correctly configured AD security groups will be able to access the Amazon FSx for Windows File Server file\-share\. If the security groups are misconfigured, ECS will fail the Task launch with the following error message: `unable to mount file system fs-id`\.” 
-+ Amazon FSx for Windows File Server is integrated with AWS Identity and Access Management \(IAM\) to control the actions that your AWS IAM users and groups can take on specific Amazon FSx for Windows File Server resources\. With client authorization, customers can define IAM roles that allow or deny access to specific Amazon FSx for Windows File Server file systems, optionally require read\-only access, and optionally allow or disallow root access to the file system from the client\. For more information, see [Security](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/security.html) in the Amazon FSx Windows User Guide\.
++ Amazon FSx for Windows File Server is integrated with AWS Identity and Access Management \(IAM\) to control the actions that your IAM users and groups can take on specific Amazon FSx for Windows File Server resources\. With client authorization, customers can define IAM roles that allow or deny access to specific Amazon FSx for Windows File Server file systems, optionally require read\-only access, and optionally allow or disallow root access to the file system from the client\. For more information, see [Security](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/security.html) in the Amazon FSx Windows User Guide\.
 
 ## Specifying an Amazon FSx for Windows File Server file system in your task definition<a name="specify-wfsx-config"></a>
 
@@ -85,8 +85,8 @@ The directory within the Amazon FSx for Windows File Server file system to mount
 Type: String  
 Required: Yes  
 The authorization credential options:  
-+ Amazon Resource Name \(ARN\) of an [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager) secret\.
-+ Amazon Resource Name \(ARN\) of an [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/integration-ps-secretsmanager.html) parameter\.  
++ Amazon Resource Name \(ARN\) of an [Secrets Manager](https://docs.aws.amazon.com/secretsmanager) secret\.
++ Amazon Resource Name \(ARN\) of an [Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/integration-ps-secretsmanager.html) parameter\.  
 `domain`  
 Type: String  
 Required: Yes  
@@ -98,9 +98,9 @@ There are two different methods of storing credentials for use with the credenti
 + **AWS Secrets Manager secret**
 
   This credential can be created in the AWS Secrets Manager console by using the *Other type of secret* category\. You add a row for each key/value pair, username/admin and password/*password*\.
-+ **AWS Systems Manager parameter**
++ **Systems Manager parameter**
 
-  This credential can be created in the AWS Systems Manager parameter console by entering text in the form shown in the following example code snippet\.
+  This credential can be created in the Systems Manager parameter console by entering text in the form shown in the following example code snippet\.
 
   ```
   {
@@ -109,4 +109,4 @@ There are two different methods of storing credentials for use with the credenti
   }
   ```
 
-The `credentialsParameter` in the task definition `FSxWindowsFileServerVolumeConfiguration` parameter will hold either the secret ARN or the AWS Systems Manager parameter ARN\. For more information, see [What is AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) in the *Secrets Manager User Guide* and [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) from the *AWS Systems Manager User Guide*\.
+The `credentialsParameter` in the task definition `FSxWindowsFileServerVolumeConfiguration` parameter will hold either the secret ARN or the Systems Manager parameter ARN\. For more information, see [What is AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) in the *Secrets Manager User Guide* and [Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) from the *Systems Manager User Guide*\.

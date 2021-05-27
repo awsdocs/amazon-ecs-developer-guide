@@ -27,12 +27,12 @@ Only resources launched after opting in receive the the increased ENI limits\. A
 Resource name: `containerInsights`  
 CloudWatch Container Insights collects, aggregates, and summarizes metrics and logs from your containerized applications and microservices\. The metrics include utilization for resources such as CPU, memory, disk, and network\. Container Insights also provides diagnostic information, such as container restart failures, to help you isolate issues and resolve them quickly\. You can also set CloudWatch alarms on metrics that Container Insights collects\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.  
 When you opt in to the `containerInsights` account setting, all new clusters have Container Insights enabled by default\. You can disable this setting for specific clusters when you create them\. You can also change this setting by using the UpdateClusterSettings API\.  
-For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent to use Container Insights\. For more information, see [Amazon ECS Container Agent Versions](ecs-agent-versions.md)\.
+For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent to use Container Insights\. For more information, see [Amazon ECS container agent versions](ecs-agent-versions.md)\.
 
 **Dual\-stack VPC IPv6**  
 Resource name: `dualStackIPv6`  
 Amazon ECS supports providing tasks with an IPv6 address in addition to the primary private IPv4 address\.  
-For tasks to receive an IPv6 address, the task must use the `awsvpc` network mode, must be launched in a VPC configured for dual\-stack mode, and the `dualStackIPv6` account setting must be enabled\. For more information on other requirements, see [Using a VPC in dual\-stack mode](task-networking.md#task-networking-vpc-dual-stack)\.  
+For tasks to receive an IPv6 address, the task must use the `awsvpc` network mode, must be launched in a VPC configured for dual\-stack mode, and the `dualStackIPv6` account setting must be enabled\. For more information on other requirements, see [Using a VPC in dual\-stack mode](task-networking-awsvpc.md#task-networking-vpc-dual-stack)\.  
 The `dualStackIPv6` account setting can only be changed using either the Amazon ECS API or the AWS CLI\. For more information, see [Modifying account settings](ecs-modifying-longer-id-settings.md)\.
 If you had a running task using the `awsvpc` network mode in an IPv6 enabled subnet between the dates of October 1, 2020 and November 2, 2020, the default `dualStackIPv6` account setting in the Region the task was running in is `disabled`\. If that condition is not met, the default `dualStackIPv6` setting in the Region is `enabled`\.
 

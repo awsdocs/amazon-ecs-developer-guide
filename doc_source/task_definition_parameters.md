@@ -467,7 +467,7 @@ This parameter maps to `LogConfig` in the [Create a container](https://docs.dock
 The following should be noted when specifying a log configuration for your containers:  
 + Amazon ECS currently supports a subset of the logging drivers available to the Docker daemon \(shown in the valid values below\)\. Additional log drivers may be available in future releases of the Amazon ECS container agent\.
 + This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.
-+ For tasks using the EC2 launch type, the Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the `ECS_AVAILABLE_LOGGING_DRIVERS` environment variable before containers placed on that instance can use these log configuration options\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
++ For tasks using the EC2 launch type, the Amazon ECS container agent running on a container instance must register the logging drivers available on that instance with the `ECS_AVAILABLE_LOGGING_DRIVERS` environment variable before containers placed on that instance can use these log configuration options\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 + For tasks using the Fargate launch type, because you do not have access to the underlying infrastructure your tasks are hosted on, any additional software needed will have to be installed outside of the task\. For example, the Fluentd output aggregators or a remote host running Logstash to send Gelf logs to\.
 
 ```
@@ -592,7 +592,7 @@ This parameter maps to `SecurityOpt` in the [Create a container](https://docs.do
 ```
 "dockerSecurityOptions": ["string", ...]
 ```
-The Amazon ECS container agent running on a container instance must register with the `ECS_SELINUX_CAPABLE=true` or `ECS_APPARMOR_CAPABLE=true` environment variables before containers placed on that instance can use these security options\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+The Amazon ECS container agent running on a container instance must register with the `ECS_SELINUX_CAPABLE=true` or `ECS_APPARMOR_CAPABLE=true` environment variables before containers placed on that instance can use these security options\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 #### Resource limits<a name="container_definition_limits"></a>
 

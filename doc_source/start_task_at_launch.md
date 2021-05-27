@@ -10,13 +10,13 @@ The Amazon EC2 user data script in the following procedure uses the Amazon ECS i
 
 1. If you have not done so already, create a task definition with the container you want to run on your container instance at launch by following the procedures in [Creating a task definition](create-task-definition.md)\.
 
-1. Modify your `ecsInstanceRole` IAM role to add permissions for the `StartTask` API operation\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+1. Modify your `ecsInstanceRole` IAM role to add permissions for the `StartTask` API operation\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 
    1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
    1. In the navigation pane, choose **Roles**\. 
 
-   1. Choose the `ecsInstanceRole`\. If the role does not exist, use the procedure in [Amazon ECS Container Instance IAM Role](instance_IAM_role.md) to create the role and return to this procedure\. If the role does exist, select the role to view the attached policies\.
+   1. Choose the `ecsInstanceRole`\. If the role does not exist, use the procedure in [Amazon ECS container instance IAM role](instance_IAM_role.md) to create the role and return to this procedure\. If the role does exist, select the role to view the attached policies\.
 
    1. In the **Permissions** tab, choose **Add inline policy**\.
 

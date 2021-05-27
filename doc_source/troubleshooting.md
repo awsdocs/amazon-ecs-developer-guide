@@ -4,6 +4,7 @@ You may need to troubleshoot issues with your load balancers, tasks, services, o
 
 **Topics**
 + [Using Amazon ECS Exec for debugging](ecs-exec.md)
++ [Troubleshooting ECS Anywhere issues](ecs-anywhere-troubleshooting.md)
 + [Checking stopped tasks for errors](stopped-task-errors.md)
 + [CannotPullContainer task errors](task_cannot_pull_image.md)
 + [Service event messages](service-event-messages.md)

@@ -10,7 +10,7 @@ For more information, see [Service Auto Scaling](service-auto-scaling.md)\.
 
 **To configure basic Service Auto Scaling parameters**
 
-1. If you have not done so already, follow the basic service configuration procedures in [Step 1: Configuring Basic Service Parameters](basic-service-params.md)\.
+1. If you have not done so already, follow the basic service configuration procedures in [Step 1: Configuring basic service parameters](basic-service-params.md)\.
 
 1. On the **Set Auto Scaling** page, select **Configure Service Auto Scaling to adjust your service’s desired count**\.
 

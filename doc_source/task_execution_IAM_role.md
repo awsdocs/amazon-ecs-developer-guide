@@ -3,10 +3,10 @@
 The task execution role grants the Amazon ECS container and Fargate agents permission to make AWS API calls on your behalf\. The task execution IAM role is required depending on the requirements of your task\. You can have multiple task execution roles for different purposes and services associated with your account\.
 
 The following are common use cases for a task execution IAM role:
-+ Your task uses the Fargate launch type and\.\.\.
-  + is pulling a container image from Amazon ECR\.
-  + uses the `awslogs` log driver\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.
-+ Your tasks uses either the Fargate or EC2 launch type and\.\.\.
++ Your task is hosted on AWS Fargate or on an external instance and\.\.\.
+  + is pulling a container image from an Amazon ECR private repository\.
+  + sends container logs to CloudWatch Logs using the `awslogs` log driver\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.
++ Your tasks are hosted on either AWS Fargate or Amazon EC2 instances and\.\.\.
   + is using private registry authentication\. For more information, see [Required IAM permissions for private registry authentication](#task-execution-private-auth)\.
   + the task definition is referencing sensitive data using Secrets Manager secrets or AWS Systems Manager Parameter Store parameters\. For more information, see [Required IAM permissions for Amazon ECS secrets](#task-execution-secrets)\.
 
@@ -35,7 +35,7 @@ Amazon ECS provides the managed policy named `AmazonECSTaskExecutionRolePolicy` 
 }
 ```
 
-An Amazon ECS task execution role is automatically created for you in the Amazon ECS console first\-run experience; however, you should manually attach the managed IAM policy for tasks to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS task execution role and to attach the managed IAM policy if needed\.<a name="procedure_check_execution_role"></a>
+An Amazon ECS task execution role can be created for you in the Amazon ECS console; however, you should manually attach the managed IAM policy for tasks to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS task execution role and to attach the managed IAM policy if needed\.<a name="procedure_check_execution_role"></a>
 
 **To check for the `ecsTaskExecutionRole` in the IAM console**
 
@@ -77,19 +77,57 @@ An Amazon ECS task execution role is automatically created for you in the Amazon
 
 If your account does not already have a task execution role, use the following steps to create the role\.
 
-**To create the `ecsTaskExecutionRole` IAM role**
+**To create a task execution IAM role \(AWS Management Console\)**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
 1. In the navigation pane, choose **Roles**, **Create role**\. 
 
-1. In the **Select type of trusted entity** section, choose **Elastic Container Service**\.
+1. In the **Select type of trusted entity** section, choose **AWS service**, **Elastic Container Service**\.
 
 1. For **Select your use case**, choose **Elastic Container Service Task**, then choose **Next: Permissions**\.
 
-1. In the **Attach permissions policy** section, search for **AmazonECSTaskExecutionRolePolicy**, select the policy, and then choose **Next: Review**\.
+1. In the **Attach permissions policy** section, search for **AmazonECSTaskExecutionRolePolicy**, select the policy, and then choose **Next: Tags**\.
 
-1. For **Role Name**, type `ecsTaskExecutionRole` and choose **Create role**\.
+1. For **Add tags \(optional\)**, specify any custom tags to associate with the policy and then choose **Next: Review**\.
+
+1. For **Role name**, type `ecsTaskExecutionRole` and choose **Create role**\.
+
+**To create a task execution IAM role \(AWS CLI\)**
+
+1. Create a file named `ecs-tasks-trust-policy.json` that contains the trust policy to use for the IAM role\. The file should contain the following:
+
+   ```
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Sid": "",
+         "Effect": "Allow",
+         "Principal": {
+           "Service": "ecs-tasks.amazonaws.com"
+         },
+         "Action": "sts:AssumeRole"
+       }
+     ]
+   }
+   ```
+
+1. Create an IAM role named `ecsTaskExecutionRole` using the trust policy created in the previous step\.
+
+   ```
+   aws iam create-role \
+         --role-name ecsTaskExecutionRole \
+         --assume-role-policy-document file://ecs-tasks-trust-policy.json
+   ```
+
+1. Attach the AWS managed `AmazonECSTaskExecutionRolePolicy` policy to the `ecsTaskExecutionRole` role\. This policy provides 
+
+   ```
+   aws iam attach-role-policy \
+         --role-name ecsTaskExecutionRole \
+         --policy-arn arn:aws:iam::aws:policy/AmazonECSTaskExecutionRolePolicy
+   ```
 
 ## Required IAM permissions for private registry authentication<a name="task-execution-private-auth"></a>
 

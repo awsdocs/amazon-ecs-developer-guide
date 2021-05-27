@@ -69,4 +69,4 @@ Review your load balancer and target group configuration and choose **Create** t
 
 ## Create an Amazon ECS service<a name="nlb-create-service"></a>
 
-After your load balancer and target group are created, you can specify the target group in a service definition when you create a service\. When each task for your service is started, the container and port combination specified in the service definition is registered with your target group and traffic is routed from the load balancer to that container\. For more information, see [Creating a service](create-service.md)\.
+After your load balancer and target group are created, you can specify the target group in a service definition when you create a service\. When each task for your service is started, the container and port combination specified in the service definition is registered with your target group and traffic is routed from the load balancer to that container\. For more information, see [Creating an Amazon ECS service](create-service.md)\.

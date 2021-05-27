@@ -15,7 +15,7 @@ The Amazon ECS CLI requires some basic configuration information before you can 
    ecs-cli configure profile --profile-name profile_name --access-key $AWS_ACCESS_KEY_ID --secret-key $AWS_SECRET_ACCESS_KEY
    ```
 
-1. Complete the configuration with the following command, substituting *`launch_type`* with the task launch type you want to use by default, *`region_name`* with your desired AWS region, *`cluster_name`* with the name of an existing Amazon ECS cluster or a new cluster to use, and `configuration_name` for the name you'd like to give this configuration\.
+1. Complete the configuration with the following command, substituting *`launch_type`* with the task launch type you want to use by default, *`region_name`* with your desired AWS Region, *`cluster_name`* with the name of an existing Amazon ECS cluster or a new cluster to use, and `configuration_name` for the name you'd like to give this configuration\.
 
    ```
    ecs-cli configure --cluster cluster_name --default-launch-type launch_type --region region_name --config-name configuration_name
@@ -43,7 +43,7 @@ The order of precedence for credentials is:
 
 1. Amazon ECS CLI profile flags:
 
-   1. ECS profile \(`--ecs-profile`\)
+   1. Amazon ECS profile \(`--ecs-profile`\)
 
    1. AWS profile \(`--aws-profile`\)
 
@@ -57,7 +57,7 @@ The order of precedence for credentials is:
 
 1. ECS config‐attempts to fetch credentials from the default ECS profile\.
 
-1. Default AWS profile—Attempts to use credentials \(`aws_access_key_id`, `aws_secret_access_key`\) or `assume_role` \(`role_arn`, `source_profile`\) from the AWS profile name\.
+1. Default AWS profile — Attempts to use credentials \(`aws_access_key_id`, `aws_secret_access_key`\) or `assume_role` \(`role_arn`, `source_profile`\) from the AWS profile name\.
 
    1. `AWS_DEFAULT_PROFILE` environment variable \(defaults to `default`\)\.
 
@@ -79,7 +79,7 @@ The order of precedence for Region is:
 
    1. `AWS_DEFAULT_REGION`
 
-1. AWS profile‐attempts to use the region from the AWS profile name:
+1. AWS profile ‐ attempts to use the region from the AWS profile name:
 
    1. `AWS_PROFILE` environment variable
 

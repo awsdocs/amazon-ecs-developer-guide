@@ -8,7 +8,7 @@ In addition to maintaining the desired number of tasks in your service, you can 
 + [Service scheduler concepts](#service_scheduler)
 + [Additional service concepts](#service_concepts)
 + [Service definition parameters](service_definition_parameters.md)
-+ [Creating a service](create-service.md)
++ [Creating an Amazon ECS service](create-service.md)
 + [Updating a service](update-service.md)
 + [Deleting a service](delete-service.md)
 + [Amazon ECS Deployment types](deployment-types.md)
@@ -29,33 +29,19 @@ There are two service scheduler strategies available:
 **Note**  
 Fargate tasks do not support the `DAEMON` scheduling strategy\.
 
-### Replica<a name="service_scheduler_replica"></a>
-
-The *replica* scheduling strategy places and maintains the desired number of tasks in your cluster\.
-
-When creating a service that runs tasks on Fargate, when the service scheduler launches new tasks or stops running tasks, it attempts to maintain balance across Availability Zones\. There is no need to specify task placement strategies or restraints\.
-
-When creating a service that runs tasks on EC2 instances , you can optionally specify task placement strategies and constraints to customize task placement decisions\. If no task placement strategies or constraints are specified, then by default the service scheduler will spread the tasks across Availability Zones\. The service scheduler uses the following logic:
-+ Determine which of the container instances in your cluster can support your service's task definition \(for example, they have the required CPU, memory, ports, and container instance attributes\)\.
-+ Determine which container instances satisfy any placement constraints that are defined for the service\.
-+ If there is a placement strategy defined, use that strategy to select an instance from the remaining candidates\.
-+ If there is no placement strategy defined, balance tasks across the Availability Zones in your cluster with the following logic:
-  + Sort the valid container instances, giving priority to instances that have the fewest number of running tasks for this service in their respective Availability Zone\. For example, if zone A has one running service task and zones B and C each have zero, valid container instances in either zone B or C are considered optimal for placement\.
-  + Place the new service task on a valid container instance in an optimal Availability Zone \(based on the previous steps\), favoring container instances with the fewest number of running tasks for this service\.
-
-#### Daemon<a name="service_scheduler_daemon"></a>
+### Daemon<a name="service_scheduler_daemon"></a>
 
 The *daemon* scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints specified in your cluster\. The service scheduler also evaluates the task placement constraints for running tasks and will stop tasks that do not meet the placement constraints\. When using this strategy, there is no need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\.
 
-Amazon ECS reserves container instance compute resources including CPU, memory and network interfaces for the daemon tasks\. When you launch a daemon service on a cluster with other replica services, Amazon ECS prioritizes the daemon task to be the first task to launch on the instances and the last task to stop\. This strategy ensures that resources are not used by pending replica tasks and are available for the daemon tasks\.
+Amazon ECS reserves container instance compute resources including CPU, memory and network interfaces for the daemon tasks\. When you launch a daemon service on a cluster with other replica services, Amazon ECS prioritizes the daemon task to be the first task to launch on the instances and the last task to stop\. This strategey ensures that resources are not used by pending replica tasks and are available for the daemon tasks\.
 
 The daemon service scheduler does not place any tasks on instances that have a `DRAINING` status\. If a container instance transitions to `DRAINING`, the daemon tasks on it are stopped\. The service scheduler also monitors when new container instances are added to your cluster and adds the daemon tasks to them\.
 
 If a deployment configuration is specified, the maximum percent parameter must be `100`\. The default value for a daemon service for `maximumPercent` is 100%\. The default value for a daemon service for `minimumHealthyPercent` is 0%\.
 
-A change to the placement constraints for the daemon service requires a service restart for the changes to take effect\. Amazon ECS dynamically updates the resources reserved on qualifying instances for the daemon task\. For existing instances, the scheduler tries to place the task on the instance\. 
+A change the placement constraints for the daemon service requires a service restart for the changes to take effect\. Amazon ECS dynamically updates the resources reserved on qualifying instances for the daemon task\. For existing instances, the scheduler tries to place the task on the instance\. 
 
-A change the task size or container resource reservation in the task\-defintion starts a deployment of the service\. Amazon ECS picks up the updated CPU and memory reservations for the daemon, and then blocks that capacity for the daemon task\.
+A change the task size or contianer resource reservation in the task\-defintion starts a deployment of the service\. Amazon ECS picks up the updated CPU and memory reservations for the daemon, and then blocks that capacity for the daemon task\.
 
 If there are insufficient resources for either of the above cases, the following happens:
 + The task placement fails\.
@@ -77,6 +63,20 @@ When the service scheduler stops running tasks, it attempts to maintain balance 
 + If no placement strategy is defined, maintain balance across the Availability Zones in your cluster with the following logic:
   + Sort the valid container instances, giving priority to instances that have the largest number of running tasks for this service in their respective Availability Zone\. For example, if zone A has one running service task and zones B and C each have two, container instances in either zone B or C are considered optimal for termination\.
   + Stop the task on a container instance in an optimal Availability Zone \(based on the previous steps\), favoring container instances with the largest number of running tasks for this service\.
+
+### Replica<a name="service_scheduler_replica"></a>
+
+The *replica* scheduling strategy places and maintains the desired number of tasks in your cluster\.
+
+When creating a service that runs tasks on Fargate, when the service scheduler launches new tasks or stops running tasks, it attempts to maintain balance across Availability Zones\. There is no need to specify task placement strategies or restraints\.
+
+When creating a service that runs tasks on EC2 instances , you can optionally specify task placement strategies and constraints to customize task placement decisions\. If no task placement strategies or constraints are specified, then by default the service scheduler will spread the tasks across Availability Zones\. The service scheduler uses the following logic:
++ Determine which of the container instances in your cluster can support your service's task definition \(for example, they have the required CPU, memory, ports, and container instance attributes\)\.
++ Determine which container instances satisfy any placement constraints that are defined for the service\.
++ If there is a placement strategy defined, use that strategy to select an instance from the remaining candidates\.
++ If there is no placement strategy defined, balance tasks across the Availability Zones in your cluster with the following logic:
+  + Sort the valid container instances, giving priority to instances that have the fewest number of running tasks for this service in their respective Availability Zone\. For example, if zone A has one running service task and zones B and C each have zero, valid container instances in either zone B or C are considered optimal for placement\.
+  + Place the new service task on a valid container instance in an optimal Availability Zone \(based on the previous steps\), favoring container instances with the fewest number of running tasks for this service\.
 
 ## Additional service concepts<a name="service_concepts"></a>
 + You can optionally run your service behind a load balancer\. For more information, see [Service load balancing](service-load-balancing.md)\.

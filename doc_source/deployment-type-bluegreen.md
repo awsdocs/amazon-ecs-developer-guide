@@ -53,7 +53,7 @@ Consider the following when using the blue/green deployment type:
 
 The service create and service update workflows in the Amazon ECS console supports blue/green deployments\.
 
-To create an Amazon ECS service that uses the blue/green deployment type, see [Creating a service](create-service.md)\.
+To create an Amazon ECS service that uses the blue/green deployment type, see [Creating an Amazon ECS service](create-service.md)\.
 
 To update an existing Amazon ECS service that is using the blue/green deployment type, see [Updating a service](update-service.md)\.
 

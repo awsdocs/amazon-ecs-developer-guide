@@ -117,4 +117,4 @@ Replace the `awslogs-region` value with the region in which you created your Clo
 
       If you receive an "`Unable to locate credentials`" error, then the following are possible causes\.
       + The IAM roles for tasks feature is not enabled on your container instances\. For more information, see [Enabling Task IAM Roles on your Container Instances](task-iam-roles.md#enable_task_iam_roles)\.
-      + The credential URL is being throttled\. You can use the `ECS_TASK_METADATA_RPS_LIMIT` container agent parameter to configure the throttle limits\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\.
+      + The credential URL is being throttled\. You can use the `ECS_TASK_METADATA_RPS_LIMIT` container agent parameter to configure the throttle limits\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.

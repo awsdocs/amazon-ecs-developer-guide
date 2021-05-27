@@ -101,7 +101,7 @@ The Elastic Load Balancing service automatically distributes incoming applicatio
 Amazon ECR is a managed AWS Docker registry service that is secure, scalable, and reliable\. Amazon ECR supports private Docker repositories with resource\-based permissions using IAM so that specific users or tasks can access repositories and images\. Developers can use the Docker CLI to push, pull, and manage images\. For more information, see the [Amazon Elastic Container Registry User Guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/)\.
 
 **AWS CloudFormation**  
- AWS CloudFormation gives developers and systems administrators an easy way to create and manage a collection of related AWS resources\. More specifically, it makes resource provisioning and updating more orderly and predictable\. You can define clusters, task definitions, and services as entities in an AWS CloudFormation script\. For more information, see [AWS CloudFormation Template Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/)\.
+AWS CloudFormation gives developers and systems administrators an easy way to create and manage a collection of related AWS resources\. More specifically, it makes resource provisioning and updating more orderly and predictable\. You can define clusters, task definitions, and services as entities in an AWS CloudFormation script\. For more information, see [AWS CloudFormation Template Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/)\.
 
 ## Pricing<a name="welcome-pricing"></a>
 

@@ -32,7 +32,7 @@ When using bind mounts, the following should be considered\.
   USER node
   VOLUME ["/var/log/exported"]
   ```
-+ For tasks hosted on Amazon EC2 instances, when a `host` and `sourcePath` value are not specified, the Docker daemon manages the bind mount for you\. When no containers reference this bind mount, the Amazon ECS container agent task cleanup service eventually deletes it \(by default, this happens 3 hours after the container exits, but you can configure this duration with the `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` agent variable\)\. For more information, see [Amazon ECS Container Agent Configuration](ecs-agent-config.md)\. If you need this data to persist beyong the lifecycle of the container, specify a `sourcePath` value for the bind mount\.
++ For tasks hosted on Amazon EC2 instances, when a `host` and `sourcePath` value are not specified, the Docker daemon manages the bind mount for you\. When no containers reference this bind mount, the Amazon ECS container agent task cleanup service eventually deletes it \(by default, this happens 3 hours after the container exits, but you can configure this duration with the `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` agent variable\)\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\. If you need this data to persist beyong the lifecycle of the container, specify a `sourcePath` value for the bind mount\.
 
 ## Specifying a bind mount in your task definition<a name="specify-volume-config"></a>
 

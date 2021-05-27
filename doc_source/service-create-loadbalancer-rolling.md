@@ -1,10 +1,10 @@
-# Configuring a Load Balancer for the Rolling Update Deployment Type<a name="service-create-loadbalancer-rolling"></a>
+# Configuring a load balancer for the rolling update deployment type<a name="service-create-loadbalancer-rolling"></a>
 
-If your service's tasks take a while to start and respond to Elastic Load Balancing health checks, you can specify a health check grace period of up to 2,147,483,647 seconds\. During that time, the service scheduler ignores health check status\. This grace period can prevent the service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\. This is only valid if your service is configured to use a load balancer\.<a name="service-health-check-grace-period"></a>
+If your service's tasks take a while to start and respond to Elastic Load Balancing health checks, you can specify a health check grace period of up to `2,147,483,647` seconds\. During that time, the service scheduler ignores health check status\. This grace period can prevent the service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\. This is only valid if your service is configured to use a load balancer\.<a name="service-health-check-grace-period"></a>
 
 **To configure a health check grace period**
 
-1. If you have not done so already, follow the basic service configuration procedures in [Step 1: Configuring Basic Service Parameters](basic-service-params.md)\.
+1. If you have not done so already, follow the basic service configuration procedures in [Step 1: Configuring basic service parameters](basic-service-params.md)\.
 
 1. For **Health check grace period**: Enter the period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks after a task has first started\.
 
@@ -12,7 +12,7 @@ To configure your service to use a load balancer, you must choose the load balan
 
 **To choose a load balancer type**
 
-1. If you have not done so already, follow the basic service creation procedures in [Step 1: Configuring Basic Service Parameters](basic-service-params.md)\.
+1. If you have not done so already, follow the basic service creation procedures in [Step 1: Configuring basic service parameters](basic-service-params.md)\.
 
 1. For **Load balancer type**, choose the load balancer type to use with your service:  
 Application Load Balancer  

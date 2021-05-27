@@ -214,7 +214,7 @@ You must delete all Amazon ECS clusters in all AWS Regions before you can delete
 
 1. Scale all Amazon ECS services down to a desired count of 0 in all regions, and then delete the services\. For more information, see [Updating a service](update-service.md) and [Deleting a service](delete-service.md)\.
 
-1. Force deregister all container instances from all clusters in all regions\. For more information, see [Deregister a container instance](deregister_container_instance.md)\.
+1. Force deregister all container instances from all clusters in all regions\. For more information, see [Deregister an Amazon EC2 backed container instance](deregister_container_instance.md)\.
 
 1. Delete all Amazon ECS clusters in all regions\. For more information, see [Deleting a cluster](delete_cluster.md)\.
 

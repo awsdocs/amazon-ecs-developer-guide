@@ -1,10 +1,10 @@
-# Configuring a Load Balancer for the Blue/Green Deployment Type<a name="service-create-loadbalancer-bluegreen"></a>
+# Configuring a load balancer for the blue/green deployment type<a name="service-create-loadbalancer-bluegreen"></a>
 
 To configure your service that uses the blue/green deployment type to use a load balancer, you must use either an Application Load Balancer or a Network Load Balancer\.
 
 **To choose a load balancer type**
 
-1. If you have not done so already, follow the basic service creation procedures in [Step 1: Configuring Basic Service Parameters](basic-service-params.md)\.
+1. If you have not done so already, follow the basic service creation procedures in [Step 1: Configuring basic service parameters](basic-service-params.md)\.
 
 1. For **Load balancer type**, choose the load balancer type to use with your service:  
 Application Load Balancer  
@@ -42,7 +42,7 @@ If your service's task definition uses the `awsvpc` network mode \(which is requ
 
    1. Repeat the steps for target group 2\.
 
-   1. When you are finished configuring your Application Load Balancer, choose **Next step**\. Navigate to [Step 4: Configuring Your Service to Use Service Discovery](service-configure-servicediscovery.md)\.<a name="create-service-configure-nlb-bluegreen"></a>
+   1. When you are finished configuring your Application Load Balancer, choose **Next step**\. Navigate to [Step 4: Configuring your service to use Service Discovery](service-configure-servicediscovery.md)\.<a name="create-service-configure-nlb-bluegreen"></a>
 
 **To configure a Network Load Balancer for the blue/green deployment type**
 
@@ -59,4 +59,4 @@ If your service's task definition uses the `awsvpc` network mode \(which is requ
    + For **Target group protocol**, enter the protocol to use for routing traffic to your tasks\.
    + For **Health check path**, enter the path to which the load balancer should send health check pings\.
 
-1. When you are finished configuring your Network Load Balancer, choose **Next Step**\. Navigate to [Step 4: Configuring Your Service to Use Service Discovery](service-configure-servicediscovery.md)\.
+1. When you are finished configuring your Network Load Balancer, choose **Next Step**\. Navigate to [Step 4: Configuring your service to use Service Discovery](service-configure-servicediscovery.md)\.

@@ -21,7 +21,7 @@ It takes 20 to 45 minutes each time you launch or delete either the Active Direc
 
 **Create a cluster with the AWS Management Console\.**
 
-1. See [Amazon ECS Container Instance IAM Role](instance_IAM_role.md) to check whether you have an ecsInstanceRole and to see how you can create one if you don't have one\.
+1. See [Amazon ECS container instance IAM role](instance_IAM_role.md) to check whether you have an ecsInstanceRole and to see how you can create one if you don't have one\.
 
 1. We recommend that role policies are customized for minimum permissions in an actual production environment\. For the purpose of working through this tutorial, verify that the following AWS managed policy is attached to your ecsInstanceRole\. Attach the policy if it is not already attached\.
    + AmazonEC2ContainerServiceforEC2Role

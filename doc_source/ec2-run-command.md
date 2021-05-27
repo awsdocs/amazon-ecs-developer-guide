@@ -27,7 +27,7 @@ Before you can send commands to your container instances with Run Command, you m
 
 1. In the navigation pane, choose **Roles**\. 
 
-1. Choose `ecsInstanceRole`\. If the role does not exist, follow the procedures in [Amazon ECS Container Instance IAM Role](instance_IAM_role.md) to create the role\.
+1. Choose `ecsInstanceRole`\. If the role does not exist, follow the procedures in [Amazon ECS container instance IAM role](instance_IAM_role.md) to create the role\.
 
 1. Choose the **Permissions** tab\.
 
@@ -57,7 +57,7 @@ A common use case for Run Command is to update the instance software on your ent
 
 1. In the left navigation pane, choose **Run Command**, and then choose **Run command**\.
 
-1. For **Command document**, choose **AWS\-RunShellScript**\.
+1. For **Command document**, choose `AWS-RunShellScript`\.
 
 1. In the **Commands** section, enter the command or commands to send to your container instances\. In this example, the following command updates the instance software:
 

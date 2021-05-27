@@ -8,7 +8,7 @@ You can also use ECS Exec to maintain stricter access control policies and audit
 
 ## Architecture<a name="ecs-exec-architecture"></a>
 
-ECS Exec makes use of AWS Systems Manager \(SSM\) Session Manager to establish a connection with the running container and uses AWS Identity and Access Management \(IAM\) policies to control access to running commands in a running container\. This is made possible by bind\-mounting the necessary SSM agent binaries into the container\. The Amazon ECS or AWS Fargate agent is responsible for starting the SSM core agent inside the container alongside your application code\. For more information, see [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)\.
+ECS Exec makes use of AWS Systems Manager \(SSM\) Session Manager to establish a connection with the running container and uses AWS Identity and Access Management \(IAM\) policies to control access to running commands in a running container\. This is made possible by bind\-mounting the necessary SSM agent binaries into the container\. The Amazon ECS or AWS Fargate agent is responsible for starting the SSM core agent inside the container alongside your application code\. For more information, see [Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)\.
 
 You can audit which user accessed the container using AWS CloudTrail and log each command \(and their output\) to Amazon S3 or Amazon CloudWatch Logs\. To encrypt data between the local client and container with your own encryption key, you must provide the AWS Key Management Service \(AWS KMS\) key\.
 
@@ -31,7 +31,7 @@ For this topic, you should be familiar with the following aspects involved with 
 ## Prerequisites for using ECS Exec<a name="ecs-exec-prerequisites"></a>
 
 Before you start using ECS Exec, make sure you that you have completed these actions:
-+ Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
++ Install and configure the AWS CLI\. For more information, see [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
 + Install Session Manager plugin for the AWS CLI\. For more information, see [Install the Session Manager plugin for the AWS CLI](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)\.
 + ECS Exec has version requirements depending on whether your tasks are hosted on Amazon EC2 or AWS Fargate:
   + If you're using Amazon EC2, you must use an Amazon ECS optimized AMI that was released after January 20th, 2021, with an agent version of 1\.50\.2 or greater\. For more information, see [Amazon ECS optimized AMIs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)\.

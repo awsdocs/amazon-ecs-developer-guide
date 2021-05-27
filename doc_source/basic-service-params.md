@@ -1,9 +1,9 @@
-# Step 1: Configuring Basic Service Parameters<a name="basic-service-params"></a>
+# Step 1: Configuring basic service parameters<a name="basic-service-params"></a>
 
 **Important**  
 Amazon ECS has provided a new console experience for creating a service\. For more information, see [Creating a service using the new console](create-service-console-v2.md)\.
 
-All services require some basic configuration parameters that define the service, such as the task definition to use, which cluster the service should run on, how many tasks should be placed for the service, and so on\. This is called the service definition\. For more information about the parameters defined in a service definition, see [Service definition parameters](service_definition_parameters.md)\.
+All services require some basic configuration parameters that define the service, such as the task definition to use, which cluster the service should run on, how many tasks should be placed for the service, and so on\. This is called the *service definition*\. For more information about the parameters defined in a service definition, see [Service definition parameters](service_definition_parameters.md)\.
 
 This procedure covers creating a service with the basic service definition parameters that are required\. After you have configured these parameters, you can create your service or move on to the procedures for optional service definition configuration, such as configuring your service to use a load balancer\.
 
@@ -26,7 +26,7 @@ If your cluster is configured with a default capacity provider strategy, you wil
 
    1. Choose either a capacity provider strategy or a launch type\.
       + To use a **Capacity provider strategy**, choose **Switch to capacity provider strategy** and then choose whether your service should use the default capacity provider strategy defined for the cluster or a custom capacity provider strategy\. A capacity provider must already be associated with the cluster in order to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
-      + To use a **Launch type**, choose **Switch to launch type** and select **FARGATE** or **EC2**\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
+      + To use a **Launch type**, choose **Switch to launch type** and select **FARGATE**, **EC2**, or **EXTERNAL**\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 
    1. For **Platform version**, if you chose a Fargate capacity provider or the Fargate launch type, then select the platform version to use\.
 **Note**  
@@ -56,14 +56,12 @@ If your launch type is `EC2`, and your task definition uses static host port map
 
       1. For **Service role for CodeDeploy** choose the IAM service role for AWS CodeDeploy\. For more information, see [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)
 
-1. \(Optional\) If you selected the EC2 launch type and the `REPLICA` service type, for **Task Placement**, you can specify how tasks are placed using task placement strategies and constraints\. Choose from the following options:
+1. \(Optional\) If you selected the EC2 launch type and the `REPLICA` service type, for **Task Placement**, you can specify how tasks are placed using task placement strategies and constraints\. Choose from the following options\. For more information, see [Amazon ECS task placement](task-placement.md)\.
    + **AZ Balanced Spread** \- Distribute tasks across Availability Zones and across container instances in the Availability Zone\.
    + **AZ Balanced BinPack** \- Distribute tasks across Availability Zones and across container instances with the least available memory\.
    + **BinPack** \- Distribute tasks based on the least available amount of CPU or memory\.
    + **One Task Per Host** \- Place, at most, one task from the service on each container instance\.
    + **Custom** \- Define your own task placement strategy\. See [Amazon ECS task placement](task-placement.md) for examples\.
-
-    For more information, see [Amazon ECS task placement](task-placement.md)\.
 
 1. In the **Task tagging configuration** section, complete the following steps:
 
@@ -78,4 +76,4 @@ If you specify a tag with the same `key` in the **Tags** section, it will overri
 
 1. In the **Tags** section, specify the key and value for each tag to associate with the task\. For more information, see [Tagging Your Amazon ECS Resources](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)\.
 
-1. Choose **Next step** and navigate to [Step 2: Configure a Network](service-configure-network.md)\.
+1. Choose **Next step** and navigate to [Step 2: Configure a network](service-configure-network.md)\.

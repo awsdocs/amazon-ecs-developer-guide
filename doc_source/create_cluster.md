@@ -6,7 +6,7 @@ The console cluster creation wizard provides a simple way to create the resource
 
 If you add or modify the underlying cluster resources directly after they are created by the wizard you may receive an error when attempting to delete the cluster\. AWS CloudFormation refers to this as *stack drift*\. For more information on detecting drift on an existing AWS CloudFormation stack, see [Detect Drift on an Entire CloudFormation Stack](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/detect-drift-stack.html) in the *AWS CloudFormation User Guide*\.
 
-**To create a cluster**
+**To create a cluster \(AWS Management Console\)**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -17,11 +17,9 @@ If you add or modify the underlying cluster resources directly after they are cr
 1. On the **Clusters** page, choose **Create Cluster**\.
 
 1. For **Select cluster compatibility**, choose one of the following options and then choose **Next Step**:
-   + **Networking only**– With this option, you can launch a cluster with a new VPC to use for Fargate tasks\. The `FARGATE` and `FARGATE_SPOT` capacity providers will be automatically associated with the cluster\. For more information, see [AWS Fargate capacity providers](fargate-capacity-providers.md)\.
-
-     You can run tasks using the Fargate launch type\. The Fargate launch type allows you to run your containerized applications without the need to provision and manage the backend infrastructure\. When you run a task with a Fargate\-compatible task definition, Fargate launches the containers for you\.
-   + **EC2 Linux \+ Networking**– With this option you can launch a cluster of tasks using the EC2 launch type using Linux containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\.
-   + **EC2 Windows \+ Networking** – With this option you can launch a cluster of tasks using the EC2 launch type using Windows containers\. The EC2 launch type allows you to run your containerized applications on a cluster of Amazon EC2 instances that you manage\. For more information, see [Windows containers](ECS_Windows.md)\.
+   + **Networking only**– This cluster template creates an empty cluster\. Optionally, you can create a new VPC to use\. This cluster template is typically used for workloads hosted on either AWS Fargate or external instances \(ECS Anywhere\)\. The `FARGATE` and `FARGATE_SPOT` capacity providers will be automatically associated with the cluster\. For more information, see [AWS Fargate capacity providers](fargate-capacity-providers.md)\.
+   + **EC2 Linux \+ Networking**– This cluster template is used to create a cluster of Amazon EC2 instances to run Linux\-based containers on\. An Auto Scaling group is created for the Amazon EC2 instances\.
+   + **EC2 Windows \+ Networking** – This cluster template is used to create a cluster of Amazon EC2 instances to run Windows\-based containers on\. An Auto Scaling group is created for the Amazon EC2 instances\. For more information, see [Windows containers](ECS_Windows.md)\.
 
 ## Using the Networking only template<a name="create-cluster-fargate"></a>
 
@@ -89,7 +87,7 @@ You can also choose to create a new security group and then modify the rules aft
 
    1. In the **Container instance IAM role** section, select the IAM role to use with your container instances\. If your account has the **ecsInstanceRole** that is created for you in the console first\-run wizard, it is selected by default\. If you do not have this role in your account, you can choose to create the role, or you can choose another IAM role to use with your container instances\.
 **Important**  
-The IAM role you use must have the `AmazonEC2ContainerServiceforEC2Role` managed policy attached to it, otherwise you will receive an error during cluster creation\. If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent does not connect to your cluster\. For more information, see [Amazon ECS Container Instance IAM Role](instance_IAM_role.md)\.
+The IAM role you use must have the `AmazonEC2ContainerServiceforEC2Role` managed policy attached to it, otherwise you will receive an error during cluster creation\. If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent does not connect to your cluster\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 
    1. If you chose the Spot Instance type earlier, the **Spot Fleet Role IAM role** section indicates that an IAM role `ecsSpotFleetRole` is created\.
 

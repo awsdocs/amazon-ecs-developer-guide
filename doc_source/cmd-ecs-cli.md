@@ -34,19 +34,19 @@ migrate
 Migrates a legacy configuration file \(ECS CLI v0\.6\.6 and older\) to the new configuration file format \(ECS CLI v1\.0\.0 and later\)\. The command prints a summary of the changes to be made and then asks for confirmation to proceed\. For more information, see [ecs\-cli configure migrate](cmd-ecs-cli-configure-migrate.md)\.
 
 up  
-Creates the ECS cluster \(if it does not already exist\) and the AWS resources required to set up the cluster\. For more information, see [ecs\-cli up](cmd-ecs-cli-up.md)\.
+Creates the Amazon ECS cluster \(if it does not already exist\) and the AWS resources required to set up the cluster\. For more information, see [ecs\-cli up](cmd-ecs-cli-up.md)\.
 
 down  
 Deletes the AWS CloudFormation stack that was created by ecs\-cli up and the associated resources\. For more information, see [ecs\-cli down](cmd-ecs-cli-down.md)\.
 
 scale  
-Modifies the number of container instances in an ECS cluster\. For more information, see [ecs\-cli scale](cmd-ecs-cli-scale.md)\.
+Modifies the number of container instances in an Amazon ECS cluster\. For more information, see [ecs\-cli scale](cmd-ecs-cli-scale.md)\.
 
 logs  
 Retrieves container logs from CloudWatch Logs\. Only valid for tasks that use the `awslogs` driver and has a log stream prefix specified\. For more information, see [ecs\-cli logs](cmd-ecs-cli-logs.md)\.
 
 ps  
-Lists all of the running containers in an ECS cluster\. For more information, see [ecs\-cli ps](cmd-ecs-cli-ps.md)\.
+Lists all of the running containers in an Amazon ECS cluster\. For more information, see [ecs\-cli ps](cmd-ecs-cli-ps.md)\.
 
 push  
 Pushes an image to an Amazon ECR repository\. For more information, see [ecs\-cli push](cmd-ecs-cli-push.md)\.

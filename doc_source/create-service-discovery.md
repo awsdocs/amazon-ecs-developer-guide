@@ -1,6 +1,6 @@
 # Tutorial: Creating a service using Service Discovery<a name="create-service-discovery"></a>
 
-Service discovery has been integrated into the Create Service wizard in the Amazon ECS console\. For more information, see [Creating a service](create-service.md)\.
+Service discovery has been integrated into the Create Service wizard in the Amazon ECS console\. For more information, see [Creating an Amazon ECS service](create-service.md)\.
 
 The following tutorial shows how to create an ECS service containing a Fargate task that uses service discovery with the AWS CLI\.
 
