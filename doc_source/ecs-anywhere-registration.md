@@ -29,7 +29,7 @@ Before registering your external instance with the cluster, if there are contain
 
 1. On the **Step 2: Register external instances** page, copy the registration command\. This command should be run on each external instance you want to register to the cluster\.
 **Important**  
-The bash portion of the script must be run as root\. If the command is not run as root, an error is returned\.
+The bash portion of the script must be run as root\. If the command is not run as root, an error is returned\. Make sure the instance or VM which you are going to register doesnt have any instance credentials chain such as instance role, preconfigured aws access keys etc...
 
 The AWS CLI can be used to create a Systems Manager activation before running the installation script to complete the external instance registration process\.
 
