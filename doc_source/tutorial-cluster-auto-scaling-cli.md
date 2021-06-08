@@ -18,11 +18,11 @@ For an AWS Management Console tutorial, see [Tutorial: Using cluster auto scalin
 ## Prerequisites<a name="cli-tutorial-prereqs"></a>
 
 This tutorial assumes that the following prerequisites have been completed:
-+ The latest version of the AWS CLI is installed and configured\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
++ The latest version of the AWS CLI is installed and configured\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)\.
 + The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
-+ Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
++ Your AWS user has the required permissions specified in the [Amazon ECS first\-run wizard permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + The Amazon ECS container instance IAM role is created\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
-+ The Amazon ECS service\-linked IAM role is created\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\.
++ The Amazon ECS service\-linked IAM role is created\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
 + The Auto Scaling service\-linked IAM role is created\. For more information, see [Service\-Linked Roles for Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-service-linked-role.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 
@@ -35,7 +35,7 @@ This step walks you through creating an Auto Scaling launch configuration and tw
 1. Create an Auto Scaling launch configuration with the following steps\. For more information, see [Launch Configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
    1. Create a file named `CLItutorial-launchconfig.json` with the following contents\. You must replace the following values:
-      + Replace the `ImageId` with the latest Amazon Linux 2 Amazon ECS\-optimized AMI\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+      + Replace the `ImageId` with the latest Amazon Linux 2 Amazon ECS\-optimized AMI\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
       + Replace the `SecurityGroups` value with your security group ID associated with your VPC\.
       + Replace the `IamInstanceProfile` value with the full Amazon Resource Name \(ARN\) of the instance profile for your Amazon ECS container instance IAM role\. An instance profile enables you to pass IAM role information to an Amazon EC2 instance when the instance starts\. If your Amazon ECS container instance IAM role is created already, you can retrieve the ARN of the instance profile with the following command\. Replace the container instance IAM role name in this example with the name of your container instance IAM role\.
 

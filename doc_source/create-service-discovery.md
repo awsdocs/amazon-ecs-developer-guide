@@ -40,9 +40,9 @@ Fargate tasks are only supported in the following Regions:
 ## Prerequisites<a name="create-service-discovery-prereqs"></a>
 
 This tutorial assumes that the following prerequisites have been completed:
-+ The latest version of the AWS CLI is installed and configured\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
++ The latest version of the AWS CLI is installed and configured\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)\.
 + The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
-+ Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
++ Your AWS user has the required permissions specified in the [Amazon ECS first\-run wizard permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 
 ## Step 1: Create the Service Discovery resources<a name="create-service-discovery-namespace"></a>
@@ -355,9 +355,9 @@ You can verify that everything has been created properly by querying your servic
    }
    ```
 
-1. The DNS records created in the Route 53 hosted zone for the service discovery service can be queried with the following AWS CLI commands\.
+1. The DNS records created in the Route 53 hosted zone for the service discovery service can be queried with the following AWS CLI commands\.
 
-   Using the namespace ID, get information about the namespace, which includes the Route 53 hosted zone ID:
+   Using the namespace ID, get information about the namespace, which includes the Route 53 hosted zone ID:
 
    ```
    aws servicediscovery get-namespace --id ns-uejictsjen2i4eeg --region us-east-1
@@ -383,7 +383,7 @@ You can verify that everything has been created properly by querying your servic
    }
    ```
 
-1. Using the Route 53 hosted zone ID, get the resource record set for the hosted zone:
+1. Using the Route 53 hosted zone ID, get the resource record set for the hosted zone:
 
    ```
    aws route53 list-resource-record-sets --hosted-zone-id Z35JQ4ZFDRYPLV --region us-east-1

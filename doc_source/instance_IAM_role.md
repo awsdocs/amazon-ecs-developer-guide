@@ -5,7 +5,7 @@ Amazon ECS container instances, including both Amazon EC2 and external instances
 **Important**  
 If you are registering external instances to your cluster, the IAM role you use requires Systems Manager permissions as well\. For more information, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
 
-Amazon ECS provides the `AmazonEC2ContainerServiceforEC2Role` managed IAM policy which contains the permissions needed to use the full Amazon ECS feature set\. This managed policy can be attached to an IAM role and associated with your container instances\. Alternatively, you can use the managed policy as a guide when creating a custom policy to use\. The container instance role provides permissions needed for the Amazon ECS container agent and Docker daemon to call AWS APIs on your behalf\. For more information on the managed policy, see [AmazonEC2ContainerServiceforEC2Role](ecs_managed_policies.md#AmazonEC2ContainerServiceforEC2Role)\.
+Amazon ECS provides the `AmazonEC2ContainerServiceforEC2Role` managed IAM policy which contains the permissions needed to use the full Amazon ECS feature set\. This managed policy can be attached to an IAM role and associated with your container instances\. Alternatively, you can use the managed policy as a guide when creating a custom policy to use\. The container instance role provides permissions needed for the Amazon ECS container agent and Docker daemon to call AWS APIs on your behalf\. For more information on the managed policy, see [AmazonEC2ContainerServiceforEC2Role](security-iam-awsmanpol.md#security-iam-awsmanpol-AmazonEC2ContainerServiceforEC2Role)\.
 
 ## Creating the Amazon ECS container instance IAM role<a name="instance-iam-role-create"></a>
 

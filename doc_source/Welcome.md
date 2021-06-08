@@ -80,7 +80,7 @@ The *container agent* runs on each container instance within an Amazon ECS clust
 
 To learn about the developer tools available for using Amazon ECS, see [Amazon ECS developer tools overview](ecs-developer-tools.md)\.
 
-If you are using Amazon ECS for the first time, the AWS Management Console for Amazon ECS provides a first\-run wizard that steps you through defining a task definition for a web server, configuring a service, and launching your first Fargate task\. We strongly recommend that you use the first\-run wizard if you have little or no prior experience using Amazon ECS\. For more information, see the [Getting started with Amazon ECS using Fargate](getting-started-fargate.md) tutorial\.
+If you are using Amazon ECS for the first time, the AWS Management Console for Amazon ECS provides a first\-run wizard that steps you through defining a task definition for a web server, configuring a service, and launching your first Fargate task\. We strongly recommend that you use the first\-run wizard if you have little or no prior experience using Amazon ECS\. For more information, see [Getting started with Amazon ECS](getting-started.md)\.
 
 Alternatively, you can install the AWS Command Line Interface \(AWS CLI\) to use Amazon ECS\. For more information, see [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 

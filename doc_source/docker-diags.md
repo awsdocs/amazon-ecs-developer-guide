@@ -19,7 +19,7 @@ CONTAINER ID        IMAGE                            COMMAND             CREATED
 cee0d6986de0        amazon/amazon-ecs-agent:latest   "/agent"            22 hours ago        Up 22 hours         127.0.0.1:51678->51678/tcp   ecs-agent
 ```
 
-You can use the docker ps \-a command to see all containers \(even stopped or killed containers\)\. This is helpful for listing containers that are unexpectedly stopping\. In the following example, container `f7f1f8a7a245` exited 9 seconds ago, so it does not show up in a docker ps output without the `-a` flag\.
+You can use the docker ps \-a command to see all containers \(even stopped or killed containers\)\. This is helpful for listing containers that are unexpectedly stopping\. In the following example, container `f7f1f8a7a245` exited 9 seconds ago, so it doesn't show up in a docker ps output without the `-a` flag\.
 
 ```
 docker ps -a

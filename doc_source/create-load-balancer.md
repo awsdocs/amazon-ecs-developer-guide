@@ -10,7 +10,7 @@ Application Load Balancers offer several features that make them attractive for 
 
 We recommend that you use Application Load Balancers for your Amazon ECS services so that you can take advantage of these latest features\. For more information about Elastic Load Balancing and the differences between the load balancer types, see the [Elastic Load Balancing User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
 
-Prior to using a load balancer with your Amazon ECS service, your account must already have the Amazon ECS service\-linked role created\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\.
+Prior to using a load balancer with your Amazon ECS service, your account must already have the Amazon ECS service\-linked role created\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
 
 **Topics**
 + [Creating an Application Load Balancer](create-application-load-balancer.md)

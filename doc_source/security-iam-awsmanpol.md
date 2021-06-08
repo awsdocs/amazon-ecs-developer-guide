@@ -1,20 +1,40 @@
-# Amazon ECS Managed Policies and Trust Relationships<a name="ecs_managed_policies"></a>
+# AWS managed policies for Amazon Elastic Container Service<a name="security-iam-awsmanpol"></a>
 
-Amazon ECS provides several managed policies and trust relationships that you can attach to IAM users, EC2 instances, or Amazon ECS tasks that allow differing levels of control over Amazon ECS resources and API operations\. You can apply these policies directly, or you can use them as starting points for creating your own policies\. For more information about each API operation mentioned in these policies, see [Actions](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Operations.html) in the *Amazon Elastic Container Service API Reference*\.
+To add permissions to users, groups, and roles, it is easier to use AWS managed policies than to write policies yourself\. It takes time and expertise to [create IAM customer managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html) that provide your team with only the permissions they need\. To get started quickly, you can use our AWS managed policies\. These policies cover common use cases and are available in your AWS account\. For more information about AWS managed policies, see [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\.
 
-**Topics**
-+ [AmazonECS\_FullAccess](#AmazonECS_FullAccess)
-+ [AmazonEC2ContainerServiceFullAccess](#AmazonEC2ContainerServiceFullAccess)
-+ [AmazonEC2ContainerServiceforEC2Role](#AmazonEC2ContainerServiceforEC2Role)
-+ [AmazonECSTaskExecutionRolePolicy](#AmazonECSTaskExecutionRolePolicy)
-+ [AmazonEC2ContainerServiceRole](#AmazonEC2ContainerServiceRole)
-+ [AmazonEC2ContainerServiceAutoscaleRole](#AmazonEC2ContainerServiceAutoscaleRole)
-+ [AmazonEC2ContainerServiceTaskRole](#AmazonEC2ContainerServiceTaskRole)
-+ [AmazonEC2ContainerServiceEventsRole](#AmazonEC2ContainerServiceEventsRole)
+AWS services maintain and update AWS managed policies\. You can't change the permissions in AWS managed policies\. Services occasionally add additional permissions to an AWS managed policy to support new features\. This type of update affects all identities \(users, groups, and roles\) where the policy is attached\. Services are most likely to update an AWS managed policy when a new feature is launched or when new operations become available\. Services do not remove permissions from an AWS managed policy, so policy updates won't break your existing permissions\.
 
-## AmazonECS\_FullAccess<a name="AmazonECS_FullAccess"></a>
+Additionally, AWS supports managed policies for job functions that span multiple services\. For example, the **ReadOnlyAccess** AWS managed policy provides read\-only access to all AWS services and resources\. When a service launches a new feature, AWS adds read\-only permissions for new operations and resources\. For a list and descriptions of job function policies, see [AWS managed policies for job functions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html) in the *IAM User Guide*\.
 
-This managed policy provides administrative access to Amazon ECS resources and enables ECS features through access to other AWS service resources, including VPCs, Auto Scaling groups, and AWS CloudFormation stacks\.
+Amazon ECS and Amazon ECR provide several managed policies and trust relationships that you can attach to AWS Identity and Access Management \(IAM\) users, Amazon EC2 instances, and Amazon ECS tasks that allow differing levels of control over resources and API operations\. You can apply these policies directly, or you can use them as starting points for creating your own policies\. For more information about the Amazon ECR managed policies, see [Amazon ECR managed policies](AmazonECR/latest/userguide/ecr_managed_policies.html)\.
+
+## AmazonECS\_FullAccess<a name="security-iam-awsmanpol-AmazonECS_FullAccess"></a>
+
+You can attach the `AmazonECS_FullAccess` policy to your IAM identities\.
+
+This policy grants administrative access to Amazon ECS resources and enables a principal to utilize all Amazon ECS features through access to the AWS services that Amazon ECS integrates with\. Using this policy, all features available in the AWS Management Console are allowed\.
+
+### Permissions details<a name="security-iam-awsmanpol-AmazonECS_FullAccess-permissions"></a>
+
+The `AmazonECS_FullAccess` managed IAM policy includes the following permissions\. Following the standard security advice of granting least privilege, the `AmazonECS_FullAccess` managed policy can be used as a guide\. If any of the permissions granted in the managed policy aren't needed for your use case, create a custom policy and add only the permissions you require\.
++ `ecs` – Allows principals full access to all Amazon ECS APIs\.
++ `application-autoscaling` – Allows principals to create, describe, and manage Application Auto Scaling resources\. This is required when enabling service auto scaling for your Amazon ECS services\.
++ `appmesh` – Allows principals to list App Mesh service meshes and virtual nodes and describe App Mesh virtual nodes\. This is required when integrating your Amazon ECS services with App Mesh\.
++ `autoscaling` – Allows principals to create, manage, and describe Amazon EC2 Auto Scaling resources\. This is required when managing Amazon EC2 auto scaling groups when using the cluster auto scaling feature\.
++ `cloudformation` – Allows principals to create and manage AWS CloudFormation stacks\. This is required when creating Amazon ECS clusters using the AWS Management Console and the subsequent managing of those clusters\.
++ `cloudwatch` – Allows principals to create, manage, and describe Amazon CloudWatch alarms\.
++ `codedeploy` – Allows principals to create and manage application deployments as well as view their configurations, revisions, and deployment targets\.
++ `sns` – Allows principals to view a list of Amazon SNS topics\.
++ `lambda` – Allows principals to view a list of AWS Lambda functions and their version specific configurations\.
++ `ec2` – Allows principals run Amazon EC2 instances as well as create and manage routes, route tables, internet gateways, launch groups, security groups, virtual private clouds, spot fleets, and subnets\.
++ `elasticloadbalancing` – Allows principals to create, describe, and delete Elastic Load Balancing load balancers\. Principals will also be able to fully manage the target groups, listeners, and listener rules for load balancers\.
++ `events` – Allows principals to create, manage, and delete Amazon EventBridge rules and their targets\.
++ `iam`– Allows principals to list IAM roles and their attached policies\. Principals can also list instance profiles available to your Amazon EC2 instances\.
++ `logs` – Allows principals to create and describe Amazon CloudWatch Logs log groups\. Principals can also list log events for these log groups\.
++ `route53` – Allows principals to create, manage, and delete Amazon Route 53 hosted zones\. Principals can also view Amazon Route 53 health check configuration and information\. For more information about hosted zones, see [Working with hosted zones](Route53/latest/DeveloperGuide/hosted-zones-working-with.html)\.
++ `servicediscovery` – Allows principals to create, manage, and delete AWS Cloud Map services and create private DNS namespaces\.
+
+The `AmazonECS_FullAccess` policy is shown below\.
 
 ```
 {
@@ -225,52 +245,11 @@ This managed policy provides administrative access to Amazon ECS resources and e
 }
 ```
 
-## AmazonEC2ContainerServiceFullAccess<a name="AmazonEC2ContainerServiceFullAccess"></a>
+## AmazonEC2ContainerServiceforEC2Role<a name="security-iam-awsmanpol-AmazonEC2ContainerServiceforEC2Role"></a>
 
-**Important**  
-The `AmazonEC2ContainerServiceFullAccess` managed IAM policy is deprecated as of January 29, 2021 in response to a security finding with the `iam:passRole` permission which grants access to all resources including credentials to roles in the account\. Once the policy is deprecated, you won't be able to attach the policy to any new IAM users or roles\. Any existing users or roles that have the policy attached will be able to continue using it, however we recommend updating your IAM users or roles to use the `AmazonECS_FullAccess` managed policy instead\.
+Amazon ECS attaches this policy to a service role that allows Amazon ECS to perform actions on your behalf against Amazon EC2 instances or external instances\.
 
-This managed policy allows full administrator access to Amazon ECS\. 
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "autoscaling:Describe*",
-                "autoscaling:UpdateAutoScalingGroup",
-                "cloudformation:CreateStack",
-                "cloudformation:DeleteStack",
-                "cloudformation:DescribeStack*",
-                "cloudformation:UpdateStack",
-                "cloudwatch:GetMetricStatistics",
-                "ec2:Describe*",
-                "elasticloadbalancing:*",
-                "ecs:*",
-                "events:DescribeRule",
-                "events:DeleteRule",
-                "events:ListRuleNamesByTarget",
-                "events:ListTargetsByRule",
-                "events:PutRule",
-                "events:PutTargets",
-                "events:RemoveTargets",
-                "iam:ListInstanceProfiles",
-                "iam:ListRoles",
-                "iam:PassRole"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-```
-
-## AmazonEC2ContainerServiceforEC2Role<a name="AmazonEC2ContainerServiceforEC2Role"></a>
-
-Amazon ECS container instances run the container agent and thus require an IAM policy and role for the service to know that the agent belongs to you\. Before you launch container instances and register them to a cluster, you must create an IAM role for those container instances to use\. This requirement applies to all container instances you register with an Amazon ECS cluster\.
-
-The `AmazonEC2ContainerServiceforEC2Role` managed IAM policy was created with the least amount of permissions needed to use the full Amazon ECS feature set\. This managed policy can be attached to an IAM role and associated with your Amazon ECS container instances\. This policy provides permissions needed for the Amazon ECS container agent and Docker daemon to call AWS APIs on your behalf\.
+This policy grants administrative permissions that allow Amazon ECS container instances to make calls to AWS on your behalf\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 
 ### Considerations<a name="instance-iam-role-considerations"></a>
 
@@ -346,25 +325,48 @@ The `AmazonEC2ContainerServiceforEC2Role` policy is shown below\.
 }
 ```
 
-### Amazon ECS updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
+## AmazonEC2ContainerServiceEventsRole<a name="security-iam-awsmanpol-AmazonEC2ContainerServiceEventsRole"></a>
 
+This policy grants permissions that allow Amazon EventBridge \(formerly CloudWatch Events\) to run tasks on your behalf\. This policy can be attached to the IAM role specified when creating scheduled tasks\. For more information, see [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 
+**Permissions details**
 
-View details about updates to AWS managed policies for Amazon ECS since this service began tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the Amazon ECS document history page\.
+This policy includes the following permissions\.
++ `ecs` – Allows a principal in a service to call the Amazon ECS RunTask API\.
++ `iam` – Allows passing any IAM service role to any Amazon ECS tasks\.
 
+The `AmazonEC2ContainerServiceEventsRole` policy is shown below\.
 
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecs:RunTask"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": "ecs-tasks.amazonaws.com"
+                }
+            }
+        }
+    ]
+}
+```
 
-
-| Change | Description | Date | 
-| --- | --- | --- | 
-|  `AmazonEC2ContainerServiceforEC2Role` – Update to an existing policy  | Amazon ECS added the ec2:DescribeTags permission to the managed policy\. This permission is used by the Amazon ECS container agent to support tag propagation\. |  June 13, 2019  | 
-|  `AmazonEC2ContainerServiceforEC2Role` – Update to an existing policy  | Amazon ECS added the ecs:UpdateContainerInstancesState permission to the managed policy\. This permission is used by the Amazon ECS container agent for Spot Instance draining\. |  May 17, 2017  | 
-|  `AmazonEC2ContainerServiceforEC2Role` – Update to an existing policy  | Amazon ECS added the logs:CreateLogStream and logs:PutLogEvents permissions to the managed policy\. These permissions allow the Amazon ECS container agent to communicate with CloudWatch Logs to send container logs for tasks that are configured to use the awslogs log driver\. |  May 4, 2016  | 
-|  `AmazonEC2ContainerServiceforEC2Role` – Update to an existing policy  | Amazon ECS added the ecr:GetAuthorizationToken, ecr:BatchCheckLayerAvailability, ecr:GetDownloadUrlForLayer, and ecr:BatchGetImages permissions to the managed policy\. This permissions allow the Amazon ECS container agent to communicate with Amazon ECR to pull container images from private repositories\. |  December 18, 2015  | 
-|  `AmazonEC2ContainerServiceforEC2Role` – Update to an existing policy  |  Amazon ECS added the `ecs:StartTelemetrySession` permission to the managed policy\. This allows the Amazon ECS container agent to communicate with the Amazon ECS control plane to report health information and metrics for each container and task\.  |  August 17, 2015  | 
-|  `AmazonEC2ContainerServiceforEC2Role` – Initial creation  | Amazon ECS created the AmazonEC2ContainerServiceforEC2Role managed policy\. |  March 19, 2015  | 
-
-## AmazonECSTaskExecutionRolePolicy<a name="AmazonECSTaskExecutionRolePolicy"></a>
+## AmazonECSTaskExecutionRolePolicy<a name="security-iam-awsmanpol-AmazonECSTaskExecutionRolePolicy"></a>
 
 The `AmazonECSTaskExecutionRolePolicy` managed IAM policy grants the permissions needed by the Amazon ECS container agent and AWS Fargate container agents to make AWS API calls on your behalf\. This policy can be added to your task execution IAM role\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
@@ -400,125 +402,13 @@ The `AmazonECSTaskExecutionRolePolicy` policy is shown below\.
 }
 ```
 
-### Amazon ECS updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
+## Amazon ECS updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
 
+View details about updates to AWS managed policies for Amazon ECS since this service began tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the Amazon ECS Document history page\.
 
-
-View details about updates to AWS managed policies for Amazon ECS since this service began tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the Amazon ECS document history page\.
-
-
+ 
 
 
 | Change | Description | Date | 
 | --- | --- | --- | 
-|  `AmazonECSTaskExecutionRolePolicy` – Initial creation  | Amazon ECS created the AmazonECSTaskExecutionRolePolicy managed policy\. |  November 16, 2017  | 
-
-## AmazonEC2ContainerServiceRole<a name="AmazonEC2ContainerServiceRole"></a>
-
-This managed policy allows Elastic Load Balancing load balancers to register and deregister Amazon ECS container instances on your behalf\. For more information, see [Service Scheduler IAM Role](ecs-legacy-iam-roles.md#service_IAM_role)\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ec2:AuthorizeSecurityGroupIngress",
-                "ec2:Describe*",
-                "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
-                "elasticloadbalancing:DeregisterTargets",
-                "elasticloadbalancing:Describe*",
-                "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
-                "elasticloadbalancing:RegisterTargets"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-```
-
-## AmazonEC2ContainerServiceAutoscaleRole<a name="AmazonEC2ContainerServiceAutoscaleRole"></a>
-
-This managed policy allows Application Auto Scaling to scale your Amazon ECS service's desired count up and down in response to CloudWatch alarms on your behalf\. For more information, see [Service Auto Scaling IAM Role](ecs-legacy-iam-roles.md#autoscale_IAM_role)\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ecs:DescribeServices",
-                "ecs:UpdateService"
-            ],
-            "Resource": [
-                "*"
-            ]
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "cloudwatch:DescribeAlarms",
-                "cloudwatch:PutMetricAlarm"
-            ],
-            "Resource": [
-                "*"
-            ]
-        }
-    ]
-}
-```
-
-## AmazonEC2ContainerServiceTaskRole<a name="AmazonEC2ContainerServiceTaskRole"></a>
-
-This IAM trust relationship policy allows containers in your Amazon ECS tasks to make calls to the AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
-
-```
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "",
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "ecs-tasks.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-```
-
-## AmazonEC2ContainerServiceEventsRole<a name="AmazonEC2ContainerServiceEventsRole"></a>
-
-This policy allows CloudWatch Events to run tasks on your behalf\. For more information, see [Scheduled tasks \(`cron`\)](scheduled_tasks.md)\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ecs:RunTask"
-            ],
-            "Resource": [
-                "*"
-            ]
-        },
-        {
-            "Effect": "Allow",
-            "Action": "iam:PassRole",
-            "Resource": [
-                "*"
-            ],
-            "Condition": {
-                "StringLike": {
-                    "iam:PassedToService": "ecs-tasks.amazonaws.com"
-                }
-            }
-        }
-    ]
-}
-```
+|  Amazon ECS started tracking changes  |  Amazon ECS started tracking changes for its AWS managed policies\.  | June 8, 2021 | 

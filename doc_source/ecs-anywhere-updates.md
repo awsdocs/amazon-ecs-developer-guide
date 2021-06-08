@@ -1,6 +1,6 @@
 # Updating the AWS Systems Manager Agent and Amazon ECS container agent on an external instance<a name="ecs-anywhere-updates"></a>
 
-Your on\-premise server or VM must run both the AWS Systems Manager Agent \(SSM Agent\) and the Amazon ECS container agent when running Amazon ECS workloads\. AWS releases new versions of these agents when adding or updating capabilities\. If your external instances are using an older version of either agent, you can update them using the following procedures\.
+Your on\-premises server or VM must run both the AWS Systems Manager Agent \(SSM Agent\) and the Amazon ECS container agent when running Amazon ECS workloads\. AWS releases new versions of these agents when any capabilities are added or updated\. If your external instances are using an earlier version of either agent, you can update them using the following procedures\.
 
 ## Updating the SSM Agent on an external instance<a name="ecs-anywhere-updates-ssmagent"></a>
 
@@ -8,12 +8,12 @@ AWS Systems Manager recommends that you automate the process of updating the SSM
 
 ## Updating the Amazon ECS agent on an external instance<a name="ecs-anywhere-updates-ecsagent"></a>
 
-On your external instances, the Amazon ECS container agent is updated by upgrading the `ecs-init` package\. Updating the Amazon ECS agent doesn't interrupt running tasks or services\. Amazon ECS provides the `ecs-init` package and signature file in an Amazon S3 bucket in each Region\. Beginning with `ecs-init` version `1.52.1-1`, Amazon ECS provides separate `ecs-init` packages for use depending on the operating system and system architecture your external instance uses\. 
+On your external instances, the Amazon ECS container agent is updated by upgrading the `ecs-init` package\. Updating the Amazon ECS agent doesn't interrupt the running tasks or services\. Amazon ECS provides the `ecs-init` package and signature file in an Amazon S3 bucket in each Region\. Beginning with `ecs-init` version `1.52.1-1`, Amazon ECS provides separate `ecs-init` packages for use depending on the operating system and system architecture your external instance uses\. 
 
-Use the following table to determine the `ecs-init` package you should download based on the operating system and system architecture your external instance uses\.
+Use the following table to determine the `ecs-init` package that you should download based on the operating system and system architecture your external instance uses\.
 
 **Note**  
-The operating system and system architecture your external instance uses can be determined using the following commands\.  
+You can determine which operating system and system architecture that your external instance uses by using the following commands\.  
 
 ```
 cat /etc/os-release
@@ -28,17 +28,17 @@ uname -m
 |  Debian 9 \(x86\_64\) Debian 10 \(x86\_64\) Ubuntu 18 \(x86\_64\) Ubuntu 20 \(x86\_64\)  |  `amazon-ecs-init-latest.amd64.deb`  | 
 |  Debian 9 \(aarch64\) Debian 10 \(aarch64\) Ubuntu 18 \(aarch64\) Ubuntu 20 \(aarch64\)  |  `amazon-ecs-init-latest.arm64.deb`  | 
 
-The Amazon ECS agent can be updated using the following procedure\. 
+Follow these steps to update the Amazon ECS agent\. 
 
 **To update the Amazon ECS agent**
 
-1. Confirm the Amazon ECS agent version you are running\.
+1. Confirm the Amazon ECS agent version that you're running\.
 
    ```
    curl -s 127.0.0.1:51678/v1/metadata | python3 -mjson.tool
    ```
 
-1. Download the `ecs-init` package for your operating system and system architecture\. Amazon ECS provides the `ecs-init` package file in an Amazon S3 bucket in each Region\. Ensure that you replace the *<region>* identifier in the command with the Region name, for example `us-west-2`, that you are geographically closest to\.
+1. Download the `ecs-init` package for your operating system and system architecture\. Amazon ECS provides the `ecs-init` package file in an Amazon S3 bucket in each Region\. Make sure that you replace the *<region>* identifier in the command with the Region name \(for example, `us-west-2`\) that you're geographically closest to\.
 
    **amazon\-ecs\-init\-latest\.x86\_64\.rpm**
 
@@ -74,7 +74,7 @@ The Amazon ECS agent can be updated using the following procedure\.
       gpg --keyserver hkp://keys.gnupg.net:80 --recv BCE9D9A42D51784F
       ```
 
-   1. Download the `ecs-init` package signature\. The signature is an ascii detached PGP signature stored in a file with the `.asc` extension\. Amazon ECS provides the signature file in an Amazon S3 bucket in each Region\. Ensure that you replace the *<region>* identifier in the command with the Region name, for example `us-west-2`, that you are geographically closest to\.
+   1. Download the `ecs-init` package signature\. The signature is an ASCII detached PGP signature that's stored in a file with the `.asc` extension\. Amazon ECS provides the signature file in an Amazon S3 bucket in each Region\. Make sure that you replace the *<region>* identifier in the command with the Region name \(for example, `us-west-2`\) that you're geographically closest to\.
 
       **amazon\-ecs\-init\-latest\.x86\_64\.rpm**
 

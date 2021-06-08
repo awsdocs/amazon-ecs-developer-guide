@@ -8,22 +8,22 @@ AWS Identity and Access Management \(IAM\) is an AWS service that helps an admin
 + [Managing Access Using Policies](#security_iam_access-manage)
 + [How Amazon Elastic Container Service Works with IAM](security_iam_service-with-iam.md)
 + [Amazon Elastic Container Service Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)
++ [AWS managed policies for Amazon Elastic Container Service](security-iam-awsmanpol.md)
 + [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)
-+ [Managed Policies and Trust Relationships](managed_policies.md)
-+ [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)
++ [Service\-linked role for Amazon ECS](using-service-linked-roles.md)
 + [Amazon ECS task execution IAM role](task_execution_IAM_role.md)
 + [Amazon ECS container instance IAM role](instance_IAM_role.md)
 + [ECS Anywhere IAM role](iam-role-ecsanywhere.md)
 + [IAM Roles for Tasks](task-iam-roles.md)
 + [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)
 + [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)
-+ [Troubleshooting Amazon Elastic Container Service Identity and Access](security_iam_troubleshoot.md)
++ [Troubleshooting Amazon Elastic Container Service identity and access](security_iam_troubleshoot.md)
 
 ## Audience<a name="security_iam_audience"></a>
 
 How you use AWS Identity and Access Management \(IAM\) differs, depending on the work that you do in Amazon ECS\.
 
-**Service user** – If you use the Amazon ECS service to do your job, then your administrator provides you with the credentials and permissions that you need\. As you use more Amazon ECS features to do your work, you might need additional permissions\. Understanding how access is managed can help you request the right permissions from your administrator\. If you cannot access a feature in Amazon ECS, see [Troubleshooting Amazon Elastic Container Service Identity and Access](security_iam_troubleshoot.md)\.
+**Service user** – If you use the Amazon ECS service to do your job, then your administrator provides you with the credentials and permissions that you need\. As you use more Amazon ECS features to do your work, you might need additional permissions\. Understanding how access is managed can help you request the right permissions from your administrator\. If you cannot access a feature in Amazon ECS, see [Troubleshooting Amazon Elastic Container Service identity and access](security_iam_troubleshoot.md)\.
 
 **Service administrator** – If you're in charge of Amazon ECS resources at your company, you probably have full access to Amazon ECS\. It's your job to determine which Amazon ECS features and resources your employees should access\. You must then submit requests to your IAM administrator to change the permissions of your service users\. Review the information on this page to understand the basic concepts of IAM\. To learn more about how your company can use IAM with Amazon ECS, see [How Amazon Elastic Container Service Works with IAM](security_iam_service-with-iam.md)\.
 

@@ -12,7 +12,7 @@ Support for performing a blue/green deployment has been added for AWS CloudForma
 This tutorial assumes that you have completed the following prerequisites:
 + The latest version of the AWS CLI is installed and configured\. For more information about installing or upgrading the AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 + The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
-+ Your AWS user has the required permissions specified in the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
++ Your AWS user has the required permissions specified in the [Amazon ECS first\-run wizard permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + You have a VPC and security group created to use\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 + The Amazon ECS CodeDeploy IAM role is created\. For more information, see [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)\.
 

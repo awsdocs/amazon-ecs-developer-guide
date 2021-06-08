@@ -16,7 +16,7 @@ Most of these service quotas, but not all, are listed under the Amazon Elastic C
 |  Clusters  |  The maximum number of clusters in this account in the current Region\.  |  10,000  |  Yes  | 
 |  Container instances per cluster  |  The maximum number of container instances per cluster\.  |  2,000  |  Yes  | 
 |  Services per cluster  |  The maximum number of services per cluster\.  |  5,000  |  Yes  | 
-|  Tasks per service  |  The maximum number of tasks per service \(the desired count\)\.  Services configured to use service discovery have a limit of 1,000 tasks per service\. This is due to a Route 53 service quota\.   |  5,000  |  Yes  | 
+|  Tasks per service  |  The maximum number of tasks per service \(the desired count\)\.  Services configured to use Amazon ECS service discovery have a limit of 1,000 tasks per service\. This is due to the AWS Cloud Map service quota for the number of instances per service\. For more information, see [AWS Cloud Map service quotas](https://docs.aws.amazon.com/general/latest/gr/cloud_map.html) in the *Amazon Web Services General Reference*\.   |  5,000  |  Yes  | 
 |  ECS Exec sessions  |  The maximum number of ECS Exec sessions per container\.  |  2  |  Yes  | 
 |  Tasks launched \(`count`\) per run\-task  |  The maximum number of tasks that can be launched per `RunTask` API action\.  |  10  |  No  | 
 |  Container instances per start\-task  |  The maximum number of container instances specified in a `StartTask` API action\.  |  10  |  No  | 

@@ -1,24 +1,24 @@
-# Getting started with Amazon ECS using Fargate<a name="getting-started-fargate"></a>
+# Getting started with the Amazon ECS console using AWS Fargate<a name="getting-started-fargate"></a>
 
-Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage your containers\. You can host your containers on a serverless infrastructure that is managed by Amazon ECS by launching your services or tasks on AWS Fargate\. For a broad overview on Amazon ECS, see [What is Amazon Elastic Container Service?](Welcome.md)\.
+Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage your containers\. You can host your containers on a serverless infrastructure that is managed by Amazon ECS by launching your services or tasks on AWS Fargate\. For a broad overview on Amazon ECS on Fargate, see [What is Amazon Elastic Container Service?](Welcome.md)\.
 
 Get started with Amazon ECS on AWS Fargate by using the Fargate launch type for your tasks\. In the Regions where Amazon ECS supports AWS Fargate, the Amazon ECS first\-run wizard guides you through the process of getting started with Amazon ECS using the Fargate launch type\. The wizard gives you the option of creating a cluster and launching a sample web application\. If you already have a Docker image to launch in Amazon ECS, you can create a task definition with that image and use that for your cluster instead\.
 
 **Important**  
-For information about getting started with Amazon ECS using the EC2 launch type, see [Getting started with Amazon ECS using Amazon EC2](getting-started-ecs-ec2.md)\.
+For information about getting started with Amazon ECS using Amazon EC2, see [Getting started with the Amazon ECS console using Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)\.
 
 Complete the following steps to get started with Amazon ECS on AWS Fargate\.
 
 ## Prerequisites<a name="first-run-prereqs"></a>
 
-Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
+Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or [Amazon ECS first\-run wizard permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 
 The first\-run wizard attempts to automatically create the task execution IAM role, which is required for Fargate tasks\. To ensure that the first\-run experience is able to create this IAM role, one of the following must be true:
 + Your user has administrator access\. For more information, see [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 + Your user has the IAM permissions to create a service role\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
 + A user with administrator access has manually created the task execution role so that it is available on the account to be used\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\. 
 
-## Step 1: Create a Task Definition<a name="first-run-task-def"></a>
+## Step 1: Create a task definition<a name="first-run-task-def"></a>
 
 A task definition is like a blueprint for your application\. Each time you launch a task in Amazon ECS, you specify a task definition\. The service then knows which Docker image to use for containers, how many containers to use in the task, and the resource allocation for each container\.
 
@@ -40,7 +40,7 @@ If you are using an Amazon ECR image in your container definition, be sure to us
 
 1. Choose **Next**\.
 
-## Step 2: Configure the Service<a name="first-run-service"></a>
+## Step 2: Configure the service<a name="first-run-service"></a>
 
 In this section of the wizard, select how to configure the Amazon ECS service that is created from your task definition\. A service launches and maintains a specified number of copies of the task definition in your cluster\. The **Amazon ECS sample** application is a web\-based Hello World–style application that is meant to run indefinitely\. By running it as a service, it restarts if the task becomes unhealthy or unexpectedly stops\.
 
@@ -62,7 +62,7 @@ Application Load Balancers do incur cost while they exist in your AWS resources\
 
 1. Review your service settings and click **Save**, **Next**\.
 
-## Step 3: Configure the Cluster<a name="first-run-cluster"></a>
+## Step 3: Configure the cluster<a name="first-run-cluster"></a>
 
 In this section of the wizard, you name your cluster, and then Amazon ECS takes care of the networking and IAM configuration for you\.
 
@@ -76,7 +76,7 @@ In this section of the wizard, you name your cluster, and then Amazon ECS takes 
 
 1. After the launch is complete, choose **View service**\.
 
-## Step 5: View your Service<a name="first-run-view"></a>
+## Step 5: View your service<a name="first-run-view"></a>
 
 If your service is a web\-based application, such as the **Amazon ECS sample** application, you can view its containers with a web browser\.
 
@@ -89,7 +89,7 @@ If your service is a web\-based application, such as the **Amazon ECS sample** a
 1. Enter the **IPv4 Public IP** address in your web browser and you should see a webpage that displays the **Amazon ECS sample** application\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ECS_Sample_Application.png)
 
-## Step 6: Clean Up<a name="first-run-cleanup"></a>
+## Step 6: Clean up<a name="first-run-cleanup"></a>
 
 When you are finished using an Amazon ECS cluster, you should clean up the resources associated with it to avoid incurring charges for resources that you are not using\.
 

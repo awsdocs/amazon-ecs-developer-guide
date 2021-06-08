@@ -9,7 +9,7 @@ Tasks using the Fargate launch type are deployed onto infrastructure managed by 
 + [Container instance concepts](#container_instance_concepts)
 + [Container instance lifecycle](#container_instance_life_cycle)
 + [Check the instance IAM role for your account](#check-instance-role)
-+ [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)
++ [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)
 + [Using Bottlerocket with Amazon ECS](ecs-bottlerocket.md)
 + [Launching an Amazon ECS container instance](launch_container_instance.md)
 + [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)

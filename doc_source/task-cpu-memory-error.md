@@ -19,7 +19,7 @@ For task definitions that only specify `EC2` for the `requiresCompatibilities` p
 
 For task definitions that specify `FARGATE` for the `requiresCompatibilities` parameter \(even if `EC2` is also specified\), you must use one of the values in the following table, which determines your range of supported values for the CPU and memory parameter\.
 
-Supported task CPU and memory values for tasks hosted on Fargate are as follows\.
+Supported task CPU and memory values for tasks that are hosted on Fargate are as follows\.
 
 
 | CPU value | Memory value \(MiB\) | 

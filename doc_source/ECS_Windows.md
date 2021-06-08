@@ -6,7 +6,7 @@ Windows container instances use their own version of the Amazon ECS container ag
 
 The source code for the Amazon ECS container agent is [available on GitHub](https://github.com/aws/amazon-ecs-agent)\. We encourage you to submit pull requests for changes that you would like to have included\. However, we do not currently provide support for running modified copies of this software\. You can view open issues for Amazon ECS and Windows on our [GitHub issues page](https://github.com/aws/amazon-ecs-agent/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aopen%20label%3Aos/windows)\.
 
-Amazon ECS vends AMIs that are optimized for Windows containers in the following variants\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+Amazon ECS vends AMIs that are optimized for Windows containers in the following variants\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
 + **Amazon ECS\-optimized Windows Server 2019 Full AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\.
 + **Amazon ECS\-optimized Windows Server 2019 Core AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\.
 + **Amazon ECS\-optimized Windows Server 2004 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.

@@ -1,17 +1,17 @@
-# Getting started with Amazon ECS using Amazon EC2<a name="getting-started-ecs-ec2"></a>
+# Getting started with the Amazon ECS console using Amazon EC2<a name="getting-started-ecs-ec2"></a>
 
 Amazon Elastic Container Service \(Amazon ECS\) is a fast and highly scalable container management service that makes it easy to launch and manage your containers\. For a broad overview on Amazon ECS, see [What is Amazon Elastic Container Service?](Welcome.md)\.
 
 Get started with Amazon ECS using the EC2 launch type by registering a task definition, creating a cluster, and creating a service in the Amazon ECS console\.
 
 **Important**  
-For information about getting started with Amazon ECS using the Fargate launch type, see [Getting started with Amazon ECS using Fargate](getting-started-fargate.md)\.
+For information about getting started with Amazon ECS using AWS Fargate, see [Getting started with the Amazon ECS console using AWS Fargate](getting-started-fargate.md)\.
 
 Complete the following steps to get started with Amazon ECS using the EC2 launch type\.
 
 ## Prerequisites<a name="getting-started-ec2-prereqs"></a>
 
-Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or the [Amazon ECS First Run Wizard Permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
+Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) and that your AWS user has either the permissions specified in the `AdministratorAccess` or the [Amazon ECS first\-run wizard permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 
 ## Step 1: Register a task definition<a name="getting-started-ec2-task-def"></a>
 
@@ -89,7 +89,7 @@ The following steps walk you through creating a cluster with one Amazon EC2 inst
 
    1. For **Number of instances**, type **1**\. Amazon EC2 instances incur costs while they exist in your AWS resources\. For more information, see [Amazon EC2 Pricing](http://aws.amazon.com/ec2/pricing/)\.
 
-   1. For **EC2 Ami Id**, use the default value which is the Amazon Linux 2 Amazon ECS\-optimized AMI\. For more information about the Amazon ECS\-optimized AMI, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+   1. For **EC2 Ami Id**, use the default value which is the Amazon Linux 2 Amazon ECS\-optimized AMI\. For more information about the Amazon ECS\-optimized AMI, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
 
 1. In the **Networking** section, for **VPC** choose either **Create a new VPC** to have Amazon ECS create a new VPC for the cluster to use, or choose an existing VPC to use\. For more information on creating your own VPC, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
 

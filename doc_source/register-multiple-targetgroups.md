@@ -29,7 +29,7 @@ The following should be considered when you specify multiple target groups in a 
   + The service must use either an Application Load Balancer or Network Load Balancer\.
   + The service must use the rolling update \(`ECS`\) deployment controller type\.
 + Specifying multiple target groups is supported for services containing tasks using both the Fargate and EC2 launch types\.
-+ When creating a service that specifies multiple target groups, the Amazon ECS service\-linked role must be created\. The role is created by omitting the `role` parameter in API requests, or the `Role` property in AWS CloudFormation\. For more information, see [Service\-Linked Role for Amazon ECS](using-service-linked-roles.md)\.
++ When creating a service that specifies multiple target groups, the Amazon ECS service\-linked role must be created\. The role is created by omitting the `role` parameter in API requests, or the `Role` property in AWS CloudFormation\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
 
 ## Example service definitions<a name="multiple-targetgroups-examples"></a>
 

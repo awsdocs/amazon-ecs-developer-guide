@@ -1,27 +1,27 @@
 # CannotPullContainer task errors<a name="task_cannot_pull_image"></a>
 
-The following errors indicate that when creating a task, the container image specified could not be retrieved\.
+The following errors indicate that, when creating a task, the container image specified can't be retrieved\.
 
 Connection timed out  
-When a Fargate task is launched, its elastic network interface requires a route to the internet to pull container images\. If you receive an error similar to the following when launching a task, it is because a route to the internet does not exist:  
+When a Fargate task is launched, its elastic network interface requires a route to the internet to pull container images\. If you receive an error similar to the following when launching a task, it's because a route to the internet doesn't exist:  
 
 ```
 CannotPullContainerError: API error (500): Get https://111122223333.dkr.ecr.us-east-1.amazonaws.com/v2/: net/http: request canceled while waiting for connection"
 ```
 To resolve this issue, you can:  
 + For tasks in public subnets, specify **ENABLED** for **Auto\-assign public IP** when launching the task\. For more information, see [Run a standalone task](ecs_run_task.md)\.
-+ For tasks in private subnets, specify **DISABLED** for **Auto\-assign public IP** when launching the task, and configure a NAT gateway in your VPC to route requests to the internet\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide*\. For more information about creating a VPC with public and private subnets, including a NAT gateway for the private subnets, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
++ For tasks in private subnets, specify **DISABLED** for **Auto\-assign public IP** when launching the task, and configure a NAT gateway in your VPC to route requests to the internet\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide*\. For instructions on how to create a VPC with public and private subnets, including a NAT gateway for the private subnets, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
 
 Context canceled  
-The common cause for this error is because the VPC your task is using does not have a route to pull the container image from Amazon ECR\.
+The common cause for this error is because the VPC your task is using doesn't have a route to pull the container image from Amazon ECR\.
 
 Image not found  
-When you specify an Amazon ECR image in your container definition, you must use the full URI of your ECR repository along with the image name in that repository\. If the repository or image cannot be found, you receive the following error:  
+When you specify an Amazon ECR image in your container definition, you must use the full URI of your ECR repository along with the image name in that repository\. If the repository or image can't be found, you receive the following error:  
 
 ```
 CannotPullContainerError: API error (404): repository 111122223333.dkr.ecr.us-east-1.amazonaws.com/<repo>/<image> not found
 ```
-To resolve this issue, verify the repository URI and the image name\. Also ensure that you have set up the proper access using the task execution IAM role\. For more information about the task execution role, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
+To resolve this issue, verify the repository URI and the image name\. Also make sure that you have set up the proper access using the task execution IAM role\. For more information about the task execution role, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 Insufficient disk space  
 If the root volume of your container instance has insufficient disk space when pulling the container image, you see an error similar to the following:  
@@ -43,13 +43,13 @@ Example output:
 594M    /var/lib/docker/devicemapper/mnt/c8e3010e36ce4c089bf286a623699f5233097ca126ebd5a700af023a5127633d/rootfs/data/logs
 ...
 ```
-In some cases, like this example above, the root volume may be filled out by a running container\. If the container is using the default `json-file` log driver without a `max-size` limit, it may be that the log file is responsible for most of that space used\. You can use the `docker ps` command to verify which container is using the space by mapping the directory name from the output above to the container ID\. For example:  
+In some cases, similar to the preceding example, the root volume might be filled out by a running container\. If the container is using the default `json-file` log driver without a `max-size` limit, it may be that the log file is responsible for most of that space used\. You can use the `docker ps` command to verify which container is using the space by mapping the directory name from the output above to the container ID\. For example:  
 
 ```
 CONTAINER ID   IMAGE                            COMMAND             CREATED             STATUS              PORTS                            NAMES
 50501b5f4cbf   amazon/amazon-ecs-agent:latest   "/agent"            4 days ago          Up 4 days                                            ecs-agent
 ```
-By default, when using the `json-file` log driver, Docker captures the standard output \(and standard error\) of all of your containers and writes them in files using the JSON format\. You are able to set the `max-size` as a log driver option, which prevents the log file from taking up too much space\. For more information, see [Configure logging drivers](https://docs.docker.com/config/containers/logging/json-file/) in the Docker documentation\.  
+By default, when using the `json-file` log driver, Docker captures the standard output \(and standard error\) of all of your containers and writes them in files using the JSON format\. You can set the `max-size` as a log driver option, which prevents the log file from taking up too much space\. For more information, see [Configure logging drivers](https://docs.docker.com/config/containers/logging/json-file/) in the Docker documentation\.  
 The following is a container definition snippet showing how to use this option:  
 
 ```
@@ -63,7 +63,7 @@ The following is a container definition snippet showing how to use this option:
 An alternative if your container logs are taking up too much disk space is to use the `awslogs` log driver\. The `awslogs` log driver sends the logs to CloudWatch, which frees up the disk space that would otherwise be used for your container logs on the container instance\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.
 
 Docker Hub rate limiting  
-If you receive one of the following errors, you are likely hitting the Docker Hub rate limits:  
+If you receive one of the following errors, you're likely hitting the Docker Hub rate limits:  
 
 ```
 ERROR: toomanyrequests: Too Many Requests.
@@ -72,4 +72,4 @@ ERROR: toomanyrequests: Too Many Requests.
 ```
 You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limits.
 ```
-For more information on the Docker Hub rate limits, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits)\.
+For more information about the Docker Hub rate limits, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits)\.

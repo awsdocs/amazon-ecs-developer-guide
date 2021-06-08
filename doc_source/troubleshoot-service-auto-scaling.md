@@ -4,7 +4,7 @@
 
 As a best practice to prevent scale in processes from behaving like scale out processes, suspend dynamic scaling during deployments\. This will prevent alarms from triggering scale in and scale out processes that depend on the running task count\. Take the following steps to avoid this issue\.
 
-1. Call the `describe-scalable-targets` command, specifying the resource ID of the ECS service associated with the scalable target in Application Auto Scaling \(Example: service/default/sample\-webapp\)\. Record the output\. You will need it when you call the next command\.
+1. Call the `describe-scalable-targets` command, specifying the resource ID of the ECS service associated with the scalable target in Application Auto Scaling \(Example: service/default/sample\-webapp\)\. Record the output\. You need it when you call the next command\.
 
 1. Call the `register-scalable-target` command, specifying the resource ID, namespace, and scalable dimension\. Specify `true` for both `DynamicScalingInSuspended` and `DynamicScalingOutSuspended`\.
 

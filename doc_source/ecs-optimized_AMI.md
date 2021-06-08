@@ -1,4 +1,4 @@
-# Amazon ECS\-optimized AMIs<a name="ecs-optimized_AMI"></a>
+# Amazon ECS\-optimized AMI<a name="ecs-optimized_AMI"></a>
 
 An Amazon ECS container instance specification consists of the following components\.
 
@@ -20,11 +20,11 @@ The Amazon ECS\-optimized AMI metadata, including the AMI name, Amazon ECS conta
 
 ## Amazon ECS\-optimized AMI variants<a name="ecs-optimized-ami-variants"></a>
 
-Amazon ECS vends AMIs that are optimized for the service in the following variants\.
+The following variants of the Amazon ECS\-optimized AMI are available for your Amazon EC2 instances\.
 
 ### Linux variants<a name="ecs-optimized-ami-linux-variants"></a>
 + **Amazon ECS\-optimized Amazon Linux 2 AMI** – Recommended for launching your Amazon ECS container instances in most cases\.
-+ **Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 A1 instance type instances, which are powered by Arm\-based AWS Graviton Processors\. For more information, see [General Purpose Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/general-purpose-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
++ **Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your instances, which are powered by Arm\-based AWS Graviton/Graviton 2 Processors\. For more information, see [General Purpose Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/general-purpose-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 + **Amazon ECS GPU\-optimized AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 GPU\-based instances\. It comes pre\-configured with NVIDIA kernel drivers and a Docker GPU runtime which makes running workloads that take advantage of GPUs on Amazon ECS\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
 + **Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 Inf1 instances\. It comes pre\-configured with AWS Inferentia drivers and the AWS Neuron runtime for Docker which makes running machine learning inference workloads easier on Amazon ECS\. For more information, see [Working with inference workloads on Amazon ECS](ecs-inference.md)\.
 + **Amazon ECS\-optimized Amazon Linux AMI** – This AMI is based off of Amazon Linux\. We recommend that you migrate your workloads to the Amazon ECS\-optimized Amazon Linux 2 AMI\. Support for the Amazon ECS\-optimized Amazon Linux AMI is the same as the Amazon Linux AMI\. For more information, see [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\.
@@ -34,15 +34,15 @@ On April 15, 2021, the Amazon ECS\-optimized Amazon Linux AMI ended its standard
 ### Windows variants<a name="ecs-optimized-ami-windows-variants"></a>
 
 The following Windows Server variants of the Amazon ECS\-optimized AMI are available for your Amazon EC2 instances\. For more information, see [Windows containers](ECS_Windows.md)\.
-+ **Amazon ECS\-optimized Windows Server 2019 Full AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\.
-+ **Amazon ECS\-optimized Windows Server 2019 Core AMI** – Recommended for launching your Amazon ECS container instances on the Windows operating system\.
-+ **Amazon ECS\-optimized Windows Server 2004 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
-+ **Amazon ECS\-optimized Windows Server 20H2 Core AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
-+ **Amazon ECS\-optimized Windows Server 2016 Full AMI** – Available for launching your Amazon ECS container instances on the Windows operating system\.
++ **Amazon ECS\-optimized Windows Server 2019 Full AMI** –
++ **Amazon ECS\-optimized Windows Server 2019 Core AMI** –
++ **Amazon ECS\-optimized Windows Server 2004 Core AMI** –
++ **Amazon ECS\-optimized Windows Server 20H2 Core AMI** –
++ **Amazon ECS\-optimized Windows Server 2016 Full AMI** –
 
 Windows Server 2019 and Windows Server 2016 are Long\-Term Servicing Channel \(LTSC\) releases\. Windows Server 2004 and Windows Server 20H2 are Semi\-Annual Channel \(SAC\) releases\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
 
-## Linux Amazon ECS\-optimized AMIs<a name="ecs-optimized-ami-linux"></a>
+## Linux Amazon ECS\-optimized AMI<a name="ecs-optimized-ami-linux"></a>
 
 The following are the details for retrieving the AMI IDs for each of the Linux variants of the Amazon ECS\-optimized AMI\.
 
@@ -241,7 +241,7 @@ The following table provides a link to retrieve the current Amazon ECS\-optimize
 
 For a full list of current and previous versions of the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\.
 
-## Windows Amazon ECS\-optimized AMIs<a name="ecs-optimized-ami-windows"></a>
+## Windows Amazon ECS\-optimized AMI<a name="ecs-optimized-ami-windows"></a>
 
 The following are the details for retrieving the AMI IDs for each of the Windows variants of the Amazon ECS\-optimized AMI\. You can subscribe to the Windows AMI Amazon SNS topics to be notified when a new AMI is released or an AMI version is marked private\. For more information, see [Windows Amazon ECS\-optimized AMIs](ECS-AMI-SubscribeTopic.md#sns-topic-windows)\.
 

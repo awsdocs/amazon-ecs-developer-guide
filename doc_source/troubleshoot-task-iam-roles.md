@@ -47,7 +47,7 @@ The following procedure helps you to:
 
    1. Paste the sample task definition JSON below into the text area \(replacing the pre\-populated JSON there\) and choose **Save**\.
 **Note**  
-Replace the `awslogs-region` value with the region in which you created your CloudWatch Logs log group\.
+Replace the `awslogs-region` value with the Region where you created your CloudWatch Logs log group\.
 
       ```
       {

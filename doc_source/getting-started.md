@@ -5,6 +5,7 @@ The following guides provide an introduction to the tools available to access Am
 **Topics**
 + [Docker basics for Amazon ECS](docker-basics.md)
 + [Getting started with Amazon ECS using AWS Copilot](getting-started-aws-copilot-cli.md)
-+ [Getting started with Amazon ECS using Amazon EC2](getting-started-ecs-ec2.md)
-+ [Getting started with Amazon ECS using Fargate](getting-started-fargate.md)
++ [Getting started with Amazon ECS using the AWS CDK](tutorial-ecs-web-server-cdk.md)
++ [Getting started with the Amazon ECS console using AWS Fargate](getting-started-fargate.md)
++ [Getting started with the Amazon ECS console using Amazon EC2](getting-started-ecs-ec2.md)
 + [Getting started with Windows containers](ECS_Windows_getting_started.md)

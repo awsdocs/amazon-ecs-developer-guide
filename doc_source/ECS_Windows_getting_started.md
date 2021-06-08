@@ -42,7 +42,7 @@ Spot Instances are subject to possible interruptions\. We recommend that you avo
 
    1. For **Number of instances**, choose the number of Amazon EC2 instances to launch into your cluster\.
 
-   1. For **EC2 AMI Id**, choose the Amazon ECS\-optimized AMI to use for your container instances\. The available AMIs will be determined by the Region and instance type you chose\. For more information, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+   1. For **EC2 AMI Id**, choose the Amazon ECS\-optimized AMI to use for your container instances\. The available AMIs will be determined by the Region and instance type you chose\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
 
    1. For **EBS storage \(GiB\)**, choose the size of the Amazon EBS volume to use for data storage on your container instances\. You can increase the size of the data volume to allow for greater image and container storage\.
 

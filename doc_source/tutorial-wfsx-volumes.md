@@ -174,7 +174,7 @@ After your security group is verified and updated and your Active Directory is c
 
 **Launch an ECS Optimized Windows EC2 instance into the ECS cluster you just created using the AWS Management Console\.**
 
-1. Go to [Windows Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md#ecs-optimized-ami-windows) in the *Amazon ECS Developer Guide* to find the latest version of the Windows Server 2019 Full AMI in the same Region as your VPC\.
+1. Go to [Windows Amazon ECS\-optimized AMI](ecs-optimized_AMI.md#ecs-optimized-ami-windows) in the *Amazon ECS Developer Guide* to find the latest version of the Windows Server 2019 Full AMI in the same Region as your VPC\.
 
 1. You can get the latest version using one of the following steps\.
 

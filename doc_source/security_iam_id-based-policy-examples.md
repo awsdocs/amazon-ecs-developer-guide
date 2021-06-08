@@ -7,8 +7,8 @@ To learn how to create an IAM identity\-based policy using these example JSON po
 **Topics**
 + [Policy Best Practices](#security_iam_service-with-iam-policy-best-practices)
 + [Allow Users to View Their Own Permissions](#security_iam_id-based-policy-examples-view-own-permissions)
-+ [Amazon ECS First Run Wizard Permissions](#first-run-permissions)
-+ [Cluster Examples](#IAM_cluster_policies)
++ [Amazon ECS first\-run wizard permissions](#first-run-permissions)
++ [Cluster examples](#IAM_cluster_policies)
 + [Container Instance Examples](#IAM_container_instance_policies)
 + [Task Definition Examples](#IAM_task_definition_policies)
 + [Run Task Example](#IAM_run_policies)
@@ -65,9 +65,9 @@ This example shows how you might create a policy that allows IAM users to view t
 }
 ```
 
-## Amazon ECS First Run Wizard Permissions<a name="first-run-permissions"></a>
+## Amazon ECS first\-run wizard permissions<a name="first-run-permissions"></a>
 
-The Amazon ECS first\-run wizard simplifies the process of creating a cluster and running your tasks and services\. However, users require permissions to many API operations from multiple AWS services to complete the wizard\. The [AmazonECS\_FullAccess](ecs_managed_policies.md#AmazonECS_FullAccess) managed policy below shows the required permissions to complete the Amazon ECS first\-run wizard\.
+The Amazon ECS first\-run wizard in the classic console simplifies the process of creating a cluster and running your tasks and services\. However, users require permissions to many API operations from multiple AWS services to complete the wizard\. The [AmazonECS\_FullAccess](security-iam-awsmanpol.md#security-iam-awsmanpol-AmazonECS_FullAccess) managed policy below shows the required permissions to complete the Amazon ECS first\-run wizard\.
 
 ```
 {
@@ -280,13 +280,13 @@ The Amazon ECS first\-run wizard simplifies the process of creating a cluster an
 
 The first run wizard also attempts to automatically create different IAM roles depending on the launch type of the tasks used\. Examples are the Amazon ECS service role, container instance IAM role, and the task execution IAM role\. To ensure that the first\-run experience is able to create these IAM roles, one of the following must be true:
 + Your user has administrator access\. For more information, see [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
-+ Your user has the IAM permissions to create a service role\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
++ Your user has the IAM permissions to create a service role\. For more information, see [Creating a role to delegate permissions to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
 + You have a user with administrator access manually create the required IAM role so it is available on the account to be used\. For more information, see the following:
-  + [Service Scheduler IAM Role](ecs-legacy-iam-roles.md#service_IAM_role)
+  + [Service\-linked role for Amazon ECS](using-service-linked-roles.md)
   + [Amazon ECS container instance IAM role](instance_IAM_role.md)
   + [Amazon ECS task execution IAM role](task_execution_IAM_role.md)
 
-## Cluster Examples<a name="IAM_cluster_policies"></a>
+## Cluster examples<a name="IAM_cluster_policies"></a>
 
 The following IAM policy allows permission to create and list clusters\. The `CreateCluster` and `ListClusters` actions do not accept any resources, so the resource definition is set to `*` for all resources\.
 

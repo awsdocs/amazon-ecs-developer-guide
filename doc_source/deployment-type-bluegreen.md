@@ -84,7 +84,7 @@ Support for performing a blue/green deployment has been added for AWS CloudForma
 
 Amazon ECS blue/green deployments are made possible by a combination of the Amazon ECS and CodeDeploy APIs\. IAM users must have the appropriate permissions for these services before they can use Amazon ECS blue/green deployments in the AWS Management Console or with the AWS CLI or SDKs\. 
 
-In addition to the standard IAM permissions for creating and updating services, Amazon ECS requires the following permissions\. These permissions have been added to the `AmazonECS_FullAccess` IAM policy\. For more information, see [AmazonECS\_FullAccess](ecs_managed_policies.md#AmazonECS_FullAccess)\.
+In addition to the standard IAM permissions for creating and updating services, Amazon ECS requires the following permissions\. These permissions have been added to the `AmazonECS_FullAccess` IAM policy\. For more information, see [AmazonECS\_FullAccess](security-iam-awsmanpol.md#security-iam-awsmanpol-AmazonECS_FullAccess)\.
 
 ```
 {

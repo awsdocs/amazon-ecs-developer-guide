@@ -8,7 +8,7 @@ If you are unsure how to collect all of the various logs on your container insta
 + Windows Server 2016
 
 **Note**  
-The source code for the Amazon ECS logs collector is available on GitHub for both [Linux](https://github.com/awslabs/ecs-logs-collector) and [Windows](https://github.com/awslabs/aws-ecs-logs-collector-for-windows)\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services does not currently support running modified copies of this software\.
+The source code for the Amazon ECS logs collector is available on GitHub for both [Linux](https://github.com/awslabs/ecs-logs-collector) and [Windows](https://github.com/awslabs/aws-ecs-logs-collector-for-windows)\. We encourage you to submit pull requests for changes that you would like to have included\. However, Amazon Web Services doesn't currently support running modified copies of this software\.
 
 **To download and run the Amazon ECS logs collector for Linux**
 

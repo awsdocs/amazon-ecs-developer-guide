@@ -18,7 +18,7 @@ For a tutorial, see [Tutorial: Using Amazon FSx for Windows File Server file sys
 ## Amazon FSx for Windows File Server volume considerations<a name="wfsx-volume-considerations"></a>
 
 Consider the following when using Amazon FSx for Windows File Server volumes\.
-+ Amazon FSx for Windows File Server with Amazon ECS only supports [Windows Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md#ecs-optimized-ami-windows)\. Linux Amazon EC2 instances aren't supported\.
++ Amazon FSx for Windows File Server with Amazon ECS only supports [Windows Amazon ECS\-optimized AMI](ecs-optimized_AMI.md#ecs-optimized-ami-windows)\. Linux Amazon EC2 instances aren't supported\.
 + Amazon ECS only supports Amazon FSx for Windows File Server\. Amazon ECS doesn't support Amazon FSx for Lustre\.
 + Amazon FSx for Windows File Server with Amazon ECS doesn't support AWS Fargate\.
 + Amazon FSx for Windows File Server with Amazon ECS doesn't support the `awsvpc` network mode\.

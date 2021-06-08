@@ -18,7 +18,7 @@ To request an API rate limit quota increase, complete the following steps\.
 
 1. For **Limit type**, select **Fargate**\.
 
-1. For **Region**, select the region you want to submit the rate limit increase for\.
+1. For **Region**, select the Region that you want to submit the rate limit increase for\.
 
 1. For **Limit**, choose **Concurrent Task Limit**\.
 

@@ -8,11 +8,11 @@ By default, Amazon ECS tasks hosted on Fargate using platform version `1.4.0` or
 
 The pulled, compressed, and the uncompressed container image for the task is stored on the ephemeral storage\. To determine the total amount of ephemeral storage your task has to use, you must subtract the amount of storage your container image uses from the total amount of ephemeral storage your task is allocated\.
 
-For tasks using platform version `1.4.0` or later that are launched on May 28, 2020 or later, the ephemeral storage is encrypted with an AES\-256 encryption algorithm using an AWS Fargate\-managed encryption key\.
+For tasks using platform version `1.4.0` or later that are launched on May 28, 2020 or later, the ephemeral storage is encrypted with an AES\-256 encryption algorithm using an AWS owned encryption key\.
 
 ## Fargate tasks using platform version 1\.3\.0 or earlier<a name="fargate-task-storage-pv13"></a>
 
-For Amazon ECS on Fargate tasks using platform version 1\.3\.0 or earlier, each task receives the following ephemeral storage\.
+For Amazon ECS on Fargate tasks using platform version `1.3.0` or earlier, each task receives the following ephemeral storage\.
 + 10 GB of Docker layer storage
 **Note**  
 This amount includes both compressed and uncompressed container image artifacts\.

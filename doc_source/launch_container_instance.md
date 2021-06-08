@@ -16,7 +16,7 @@ Your Amazon ECS container instances are created using the Amazon EC2 console\. B
 
    1. Choose an AMI for your container instance\. You can search for one of the Amazon ECS\-optimized AMIs, for example the **Amazon ECS\-Optimized Amazon Linux 2 AMI**, or another operating system\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS container agent](ecs-agent-install.md)\.
 
-      For more information on the latest Amazon ECS\-optimized AMIs, see [Amazon ECS\-optimized AMIs](ecs-optimized_AMI.md)\.
+      For more information on the latest Amazon ECS\-optimized AMIs, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
 **Important**  
 The **Amazon ECS\-optimized Amazon Linux AMI** is deprecated as of April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
