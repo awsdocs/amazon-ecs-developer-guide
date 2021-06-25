@@ -5,21 +5,21 @@ An Amazon ECS container instance is an Amazon EC2 instance that is running the A
 **Note**  
 Tasks using the Fargate launch type are deployed onto infrastructure managed by AWS, so this topic does not apply\.
 
+Amazon ECS supports the followinwg container instances:
++ Linux
++ Windows
++ External, such as an on\-premises VM
+
 **Topics**
 + [Container instance concepts](#container_instance_concepts)
 + [Container instance lifecycle](#container_instance_life_cycle)
 + [Check the instance IAM role for your account](#check-instance-role)
-+ [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)
++ [Linux instances](ecs-linux.md)
++ [Windows instances](ecs-windows.md)
++ [External instances \(Amazon ECS Anywhere\)](ecs-anywhere.md)
 + [Using Bottlerocket with Amazon ECS](ecs-bottlerocket.md)
-+ [Launching an Amazon ECS container instance](launch_container_instance.md)
-+ [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)
-+ [Elastic network interface trunking](container-instance-eni.md)
-+ [Container Instance Memory Management](memory-management.md)
-+ [Connect to your container instance](instance-connect.md)
-+ [Using CloudWatch Logs with container instances](using_cloudwatch_logs.md)
++ [Monitoring your container instances](using_cloudwatch_logs.md)
 + [Container instance draining](container-instance-draining.md)
-+ [Manage container instances remotely using AWS Systems Manager](ec2-run-command.md)
-+ [Starting a task at container instance launch time](start_task_at_launch.md)
 + [Deregister an Amazon EC2 backed container instance](deregister_container_instance.md)
 
 ## Container instance concepts<a name="container_instance_concepts"></a>
@@ -35,8 +35,8 @@ Tasks using the Fargate launch type are deployed onto infrastructure managed by 
   If you do not have an interface VPC endpoint configured and your container instances do not have public IP addresses, then they must use network address translation \(NAT\) to provide this access\. For more information, see [NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide* and [HTTP proxy configuration](http_proxy_config.md) in this guide\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
 + The type of Amazon EC2 instance that you choose for your container instances determines the resources available in your cluster\. Amazon EC2 provides different instance types, each with different CPU, memory, storage, and networking capacity that you can use to run your tasks\. For more information, see [Amazon EC2 Instances](https://aws.amazon.com/ec2/instance-types/)\.
 + Because each container instance has unique state information that is stored locally on the container instance and within Amazon ECS:
-  + You should not deregister an instance from one cluster and re\-register it into another\. To relocate container instance resources, we recommend that you terminate container instances from one cluster and launch new container instances with the latest Amazon ECS\-optimized Amazon Linux 2 AMI in the new cluster\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances* and [Launching an Amazon ECS container instance](launch_container_instance.md)\.
-  + You cannot stop a container instance and change its instance type\. Instead, we recommend that you terminate the container instance and launch a new container instance with the desired instance size and the latest Amazon ECS\-optimized Amazon Linux 2 AMI in your desired cluster\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances* and [Launching an Amazon ECS container instance](launch_container_instance.md) in this guide\.
+  + You should not deregister an instance from one cluster and re\-register it into another\. To relocate container instance resources, we recommend that you terminate container instances from one cluster and launch new container instances with the latest Amazon ECS\-optimized Amazon Linux 2 AMI in the new cluster\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances* and [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\.
+  + You cannot stop a container instance and change its instance type\. Instead, we recommend that you terminate the container instance and launch a new container instance with the desired instance size and the latest Amazon ECS\-optimized Amazon Linux 2 AMI in your desired cluster\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances* and [Launching an Amazon ECS Linux container instance](launch_container_instance.md) in this guide\.
 
 ## Container instance lifecycle<a name="container_instance_life_cycle"></a>
 

@@ -57,7 +57,7 @@ If this attribute exists, the instance has a trunk network interface\. For more 
 If this attribute exists, it contains the Amazon Resource Name \(ARN\) of the Outpost\. For more information, see [Amazon Elastic Container Service on AWS Outposts](ecs-on-outposts.md)\.
 
 `ecs.capability.external`  
-If this attribute exists, the instance is identified as an external instance\. For more information, see [Amazon ECS Anywhere](ecs-anywhere.md)\.
+If this attribute exists, the instance is identified as an external instance\. For more information, see [External instances \(Amazon ECS Anywhere\)](ecs-anywhere.md)\.
 
 ### Custom attributes<a name="ecs-custom-attributes"></a>
 

@@ -1,6 +1,6 @@
-# Amazon ECS Anywhere<a name="ecs-anywhere"></a>
+# External instances \(Amazon ECS Anywhere\)<a name="ecs-anywhere"></a>
 
-Amazon ECS provides support for registering an *external instance* such as an on\-premises server or virtual machine \(VM\), to your Amazon ECS cluster\. External instances are optimized for running applications that generate outbound traffic or process data\. If your application requires inbound traffic, the lack of Elastic Load Balancing support makes running these workloads less efficient\. Amazon ECS added a new `EXTERNAL` launch type that you can use to create services or run tasks on your external instances\.
+Amazon ECS Anywhere provides support for registering an *external instance* such as an on\-premises server or virtual machine \(VM\), to your Amazon ECS cluster\. External instances are optimized for running applications that generate outbound traffic or process data\. If your application requires inbound traffic, the lack of Elastic Load Balancing support makes running these workloads less efficient\. Amazon ECS added a new `EXTERNAL` launch type that you can use to create services or run tasks on your external instances\.
 
 The following provides a high\-level system architecture overview of Amazon ECS Anywhere\.
 
@@ -34,6 +34,7 @@ Before you start using external instances, be aware of the following considerati
 + Amazon ECS capacity providers aren't supported\. To create a service or run a standalone task on your external instances, use the `EXTERNAL` launch type\.
 + ECS Exec isn't supported\.
 + SELinux isn't supported\.
++ Using Amazon EFS volumes or specifying an `EFSVolumeConfiguration` isn't supported\.
 + Specifying GPU requirements in the task definition isn't supported\.
 + Integration with App Mesh isn't supported\.
 

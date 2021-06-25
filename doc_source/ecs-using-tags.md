@@ -91,7 +91,7 @@ The following resources enable you to specify tags when you create the resource\
 |  Create a task set\.  |  [External Deployment](deployment-type-external.md)  | 
 |  Register a task definition\.  |  [Creating a task definition](create-task-definition.md)  | 
 |  Create a cluster\.  |  [Creating a cluster](create_cluster.md)  | 
-|  Run one or more container instances\.  |  [Launching an Amazon ECS container instance](launch_container_instance.md)  | 
+|  Run one or more container instances\.  |  [Launching an Amazon ECS Linux container instance](launch_container_instance.md)  | 
 
 ### Adding and deleting tags on an individual resource<a name="adding-or-deleting-tags"></a>
 

@@ -35,7 +35,7 @@ Before you launch a container instance with the increased ENI limits, the follow
 
   For more information, see [Account settings](ecs-account-settings.md)\.
 
-Once the prerequisites are met, you can launch a new container instance using one of the supported Amazon EC2 instance types, and the instance will have the increased ENI limits\. For a list of supported instance types, see [Supported Amazon EC2 instance types](#eni-trunking-supported-instance-types)\. The container instance must have version `1.28.1` or later of the container agent and version `1.28.1-2` or later of the ecs\-init package\. If you use the latest Linux variant of the Amazon ECS\-optimized AMI, these requirements will be met\. For more information, see [Launching an Amazon ECS container instance](launch_container_instance.md)\.
+Once the prerequisites are met, you can launch a new container instance using one of the supported Amazon EC2 instance types, and the instance will have the increased ENI limits\. For a list of supported instance types, see [Supported Amazon EC2 instance types](#eni-trunking-supported-instance-types)\. The container instance must have version `1.28.1` or later of the container agent and version `1.28.1-2` or later of the ecs\-init package\. If you use the latest Linux variant of the Amazon ECS\-optimized AMI, these requirements will be met\. For more information, see [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\.
 
 **To opt in all IAM users or roles on your account to the increased ENI limits using the console**
 
@@ -134,29 +134,29 @@ The following shows the supported Amazon EC2 instance types and how many tasks u
 Although other instance types are supported in the same instance family, the `c5n`, `m5n`, `m5dn`, `r5n`, and `r5dn` instance types are not supported\.
 
 
-| Instance Type | Current Task Limit per Instance | New Task Limit per Instance | 
+|  Instance Type  |  Current Task Limit per Instance  |  New Task Limit per Instance  | 
 | --- |--- |--- |
-| a1 instance family | 
+|  a1 instance family  | 
 | --- |
-|  a1\.medium  | 1 | 10 | 
-|  a1\.large  | 2 | 10 | 
-|  a1\.xlarge  | 3 | 20 | 
-|  a1\.2xlarge  | 3 | 40 | 
-|  a1\.4xlarge  | 7 | 60 | 
-| c5 instance family | 
+|  a1\.medium  |  1  |  10  | 
+|  a1\.large  |  2  |  10  | 
+|  a1\.xlarge  |  3  |  20  | 
+|  a1\.2xlarge  |  3  |  40  | 
+|  a1\.4xlarge  |  7  |  60  | 
+|  c5 instance family  | 
 | --- |
-|  c5\.large  | 2 | 10 | 
-|  c5\.xlarge  | 3 | 20 | 
-|  c5\.2xlarge  | 3 | 40 | 
-|  c5\.4xlarge  | 7 | 60 | 
-|  c5\.9xlarge  | 7 | 60 | 
-|  c5\.18xlarge  | 14 | 120 | 
+|  c5\.large  |  2  |  10  | 
+|  c5\.xlarge  |  3  |  20  | 
+|  c5\.2xlarge  |  3  |  40  | 
+|  c5\.4xlarge  |  7  |  60  | 
+|  c5\.9xlarge  |  7  |  60  | 
+|  c5\.18xlarge  |  14  |  120  | 
 |  c5\.24xlarge  | 14 |  120  | 
 |  c5a\.large  | 2 |  10  | 
-|  c5a\.xlarge  | 3 | 20 | 
-|  c5a\.2xlarge  | 3 | 40 | 
+|  c5a\.xlarge  | 3 |  20  | 
+|  c5a\.2xlarge  | 3 |  40  | 
 |  c5a\.4xlarge  | 7 | 60 | 
-|  c5a\.8xlarge  | 7 | 60 | 
+|  c5a\.8xlarge  | 7 |  60  | 
 |  c5a\.12xlarge  | 7 |  60  | 
 |  c5a\.16xlarge  | 14 |  120  | 
 |  c5a\.18xlarge  | 14 |  120  | 
@@ -170,15 +170,15 @@ Although other instance types are supported in the same instance family, the `c5
 |  c5ad\.16xlarge  | 14 | 120 | 
 |  c5ad\.18xlarge  | 14 | 120 | 
 |  c5ad\.24xlarge  | 14 | 120 | 
-|  c5d\.large  | 2 | 10 | 
-|  c5d\.xlarge  | 3 | 20 | 
-|  c5d\.2xlarge  | 3 | 40 | 
-|  c5d\.4xlarge  | 7 | 60 | 
-|  c5d\.9xlarge  | 7 | 60 | 
+|  c5d\.large  |  2  |  10  | 
+|  c5d\.xlarge  |  3  |  20  | 
+|  c5d\.2xlarge  |  3  |  40  | 
+|  c5d\.4xlarge  |  7  |  60  | 
+|  c5d\.9xlarge  |  7  |  60  | 
 |  c5d\.12xlarge  |  7  | 60 | 
-|  c5d\.18xlarge  | 14 | 120 | 
+|  c5d\.18xlarge  |  14  |  120  | 
 |  c5ad\.24xlarge  | 14 |  120  | 
-| c6 instance family | 
+|  c6 instance family  | 
 | --- |
 |  c6g\.medium  | 1 |  4  | 
 |  c6g\.metal  | 2 |  120  | 
@@ -198,116 +198,116 @@ Although other instance types are supported in the same instance family, the `c5
 |  c6gd\.8xlarge  | 7 |  60  | 
 |  c6gd\.12xlarge  | 7 |  60  | 
 |  c6gd\.16xlarge  | 14 |  120  | 
-| m5 instance family | 
+|  m5 instance family  | 
 | --- |
-|  m5\.large  | 2 | 10 | 
-|  m5\.xlarge  | 3 | 20 | 
-|  m5\.2xlarge  | 3 | 40 | 
-|  m5\.4xlarge  | 7 | 60 | 
-|  m5\.8xlarge  | 7 | 60 | 
-|  m5\.12xlarge  | 7 | 60 | 
-|  m5\.16xlarge  | 14 | 120 | 
-|  m5\.24xlarge  | 14 | 120 | 
-|  m5a\.large  | 2 | 10 | 
-|  m5a\.xlarge  | 3 | 20 | 
-|  m5a\.2xlarge  | 3 | 40 | 
-|  m5a\.4xlarge  | 7 | 60 | 
-|  m5a\.8xlarge  | 7 | 60 | 
-|  m5a\.12xlarge  | 7 | 60 | 
-|  m5a\.16xlarge  | 14 | 120 | 
-|  m5a\.24xlarge  | 14 | 120 | 
-|  m5ad\.large  | 2 | 10 | 
-|  m5ad\.xlarge  | 3 | 20 | 
-|  m5ad\.2xlarge  | 3 | 40 | 
-|  m5ad\.4xlarge  | 7 | 60 | 
-|  m5ad\.8xlarge  | 7 | 60 | 
-|  m5ad\.12xlarge  | 7 | 60 | 
-|  m5ad\.16xlarge  | 14 | 120 | 
-|  m5ad\.24xlarge  | 14 | 120 | 
-|  m5d\.large  | 2 | 10 | 
-|  m5d\.xlarge  | 3 | 20 | 
-|  m5d\.2xlarge  | 3 | 40 | 
-|  m5d\.4xlarge  | 7 | 60 | 
-|  m5d\.8xlarge  | 7 | 60 | 
-|  m5d\.12xlarge  | 7 | 60 | 
-|  m5d\.16xlarge  | 14 | 120 | 
-|  m5d\.24xlarge  | 14 | 120 | 
-|  m5d\.metal  | 14 | 120 | 
-| m6 instance family | 
+|  m5\.large  |  2  |  10  | 
+|  m5\.xlarge  |  3  |  20  | 
+|  m5\.2xlarge  |  3  |  40  | 
+|  m5\.4xlarge  |  7  |  60  | 
+|  m5\.8xlarge  |  7  |  60  | 
+|  m5\.12xlarge  |  7  |  60  | 
+|  m5\.16xlarge  |  14  |  120  | 
+|  m5\.24xlarge  |  14  |  120  | 
+|  m5a\.large  |  2  |  10  | 
+|  m5a\.xlarge  |  3  |  20  | 
+|  m5a\.2xlarge  |  3  |  40  | 
+|  m5a\.4xlarge  |  7  |  60  | 
+|  m5a\.8xlarge  |  7  |  60  | 
+|  m5a\.12xlarge  |  7  |  60  | 
+|  m5a\.16xlarge  |  14  |  120  | 
+|  m5a\.24xlarge  |  14  |  120  | 
+|  m5ad\.large  |  2  |  10  | 
+|  m5ad\.xlarge  |  3  |  20  | 
+|  m5ad\.2xlarge  |  3  |  40  | 
+|  m5ad\.4xlarge  |  7  |  60  | 
+|  m5ad\.8xlarge  |  7  |  60  | 
+|  m5ad\.12xlarge  |  7  |  60  | 
+|  m5ad\.16xlarge  |  14  |  120  | 
+|  m5ad\.24xlarge  |  14  |  120  | 
+|  m5d\.large  |  2  |  10  | 
+|  m5d\.xlarge  |  3  |  20  | 
+|  m5d\.2xlarge  |  3  |  40  | 
+|  m5d\.4xlarge  |  7  |  60  | 
+|  m5d\.8xlarge  |  7  |  60  | 
+|  m5d\.12xlarge  |  7  |  60  | 
+|  m5d\.16xlarge  |  14  |  120  | 
+|  m5d\.24xlarge  |  14  |  120  | 
+|  m5d\.metal  |  14  |  120  | 
+|  m6 instance family  | 
 | --- |
-|  m6g\.medium  | 1 | 4 | 
-|  m6g\.metal  | 14 | 120 | 
-|  m6g\.large  | 2 | 10 | 
-|  m6g\.xlarge  | 3 | 20 | 
-|  m6g\.2xlarge  | 3 | 40 | 
-|  m6g\.4xlarge  | 7 | 60 | 
-|  m6g\.8xlarge  | 7 | 60 | 
-|  m6g\.12xlarge  | 7 | 60 | 
-|  m6g\.16xlarge  | 14 | 120 | 
-|  m6gd\.medium  | 1 | 4 | 
-|  m6gd\.metal  | 14 | 120 | 
-|  m6gd\.large  | 2 | 10 | 
-|  m6gd\.xlarge  | 3 | 20 | 
-|  m6gd\.2xlarge  | 3 | 40 | 
-|  m6gd\.4xlarge  | 7 | 60 | 
-|  m6gd\.8xlarge  | 7 | 60 | 
-|  m6gd\.12xlarge  | 7 | 60 | 
-|  m6gd\.16xlarge  | 14 | 120 | 
-| p3 instance family | 
+|  m6g\.medium  |  1  |  4  | 
+|  m6g\.metal  |  14  |  120  | 
+|  m6g\.large  |  2  |  10  | 
+|  m6g\.xlarge  |  3  |  20  | 
+|  m6g\.2xlarge  |  3  |  40  | 
+|  m6g\.4xlarge  |  7  |  60  | 
+|  m6g\.8xlarge  |  7  |  60  | 
+|  m6g\.12xlarge  |  7  |  60  | 
+|  m6g\.16xlarge  |  14  |  120  | 
+|  m6gd\.medium  |  1  |  4  | 
+|  m6gd\.metal  |  14  |  120  | 
+|  m6gd\.large  |  2  |  10  | 
+|  m6gd\.xlarge  |  3  |  20  | 
+|  m6gd\.2xlarge  |  3  |  40  | 
+|  m6gd\.4xlarge  |  7  |  60  | 
+|  m6gd\.8xlarge  |  7  |  60  | 
+|  m6gd\.12xlarge  |  7  |  60  | 
+|  m6gd\.16xlarge  |  14  |  120  | 
+|  p3 instance family  | 
 | --- |
-|  p3\.2xlarge  | 3 | 40 | 
-|  p3\.8xlarge  | 7 | 60 | 
-|  p3\.16xlarge  | 7 | 120 | 
-| r5 instance family | 
+|  p3\.2xlarge  |  3  |  40  | 
+|  p3\.8xlarge  |  7  |  60  | 
+|  p3\.16xlarge  |  7  |  120  | 
+|  r5 instance family  | 
 | --- |
-|  r5\.large  | 2 | 10 | 
-|  r5\.xlarge  | 3 | 20 | 
-|  r5\.2xlarge  | 3 | 40 | 
-|  r5\.4xlarge  | 7 | 60 | 
-|  r5\.12xlarge  | 7 | 60 | 
-|  r5\.16xlarge  | 14 | 120 | 
-|  r5\.24xlarge  | 14 | 120 | 
-|  r5a\.large  | 2 | 10 | 
-|  r5a\.xlarge  | 3 | 20 | 
-|  r5a\.2xlarge  | 3 | 40 | 
-|  r5a\.4xlarge  | 7 | 60 | 
-|  r5a\.8xlarge  | 7 | 60 | 
-|  r5a\.12xlarge  | 7 | 60 | 
-|  r5a\.16xlarge  | 14 | 120 | 
-|  r5a\.24xlarge  | 14 | 120 | 
-|  r5ad\.large  | 2 | 10 | 
-|  r5ad\.xlarge  | 3 | 20 | 
-|  r5ad\.2xlarge  | 3 | 40 | 
-|  r5ad\.4xlarge  | 7 | 60 | 
-|  r5ad\.8xlarge  | 7 | 60 | 
-|  r5ad\.12xlarge  | 7 | 60 | 
-|  r5ad\.16xlarge  | 14 | 120 | 
-|  r5ad\.24xlarge  | 14 | 120 | 
-|  r5d\.large  | 2 | 10 | 
-|  r5d\.xlarge  | 3 | 20 | 
-|  r5d\.2xlarge  | 3 | 40 | 
-|  r5d\.4xlarge  | 7 | 60 | 
-|  r5d\.8xlarge  | 7 | 60 | 
-|  r5d\.12xlarge  | 7 | 60 | 
-|  r5d\.16xlarge  | 14 | 120 | 
-|  r5d\.24xlarge  | 14 | 120 | 
-| r6 instance family | 
+|  r5\.large  |  2  |  10  | 
+|  r5\.xlarge  |  3  |  20  | 
+|  r5\.2xlarge  |  3  |  40  | 
+|  r5\.4xlarge  |  7  |  60  | 
+|  r5\.12xlarge  |  7  |  60  | 
+|  r5\.16xlarge  |  14  |  120  | 
+|  r5\.24xlarge  |  14  |  120  | 
+|  r5a\.large  |  2  |  10  | 
+|  r5a\.xlarge  |  3  |  20  | 
+|  r5a\.2xlarge  |  3  |  40  | 
+|  r5a\.4xlarge  |  7  |  60  | 
+|  r5a\.8xlarge  |  7  |  60  | 
+|  r5a\.12xlarge  |  7  |  60  | 
+|  r5a\.16xlarge  |  14  |  120  | 
+|  r5a\.24xlarge  |  14  |  120  | 
+|  r5ad\.large  |  2  |  10  | 
+|  r5ad\.xlarge  |  3  |  20  | 
+|  r5ad\.2xlarge  |  3  |  40  | 
+|  r5ad\.4xlarge  |  7  |  60  | 
+|  r5ad\.8xlarge  |  7  |  60  | 
+|  r5ad\.12xlarge  |  7  |  60  | 
+|  r5ad\.16xlarge  |  14  |  120  | 
+|  r5ad\.24xlarge  |  14  |  120  | 
+|  r5d\.large  |  2  |  10  | 
+|  r5d\.xlarge  |  3  |  20  | 
+|  r5d\.2xlarge  |  3  |  40  | 
+|  r5d\.4xlarge  |  7  |  60  | 
+|  r5d\.8xlarge  |  7  |  60  | 
+|  r5d\.12xlarge  |  7  |  60  | 
+|  r5d\.16xlarge  |  14  |  120  | 
+|  r5d\.24xlarge  |  14  |  120  | 
+|  r6 instance family  | 
 | --- |
-|  r6g\.medium  | 1 | 4 | 
-|  r6g\.metal  | 14 | 120 | 
-|  r6g\.large  | 2 | 10 | 
-|  r6g\.xlarge  | 3 | 20 | 
-|  r6g\.2xlarge  | 3 | 40 | 
-|  r6g\.4xlarge  | 7 | 60 | 
-|  r6g\.8xlarge  | 7 |  60 | 
-|  r6g\.12xlarge  | 7 | 60 | 
-|  r6g\.16xlarge  | 14 | 120 | 
-|  r6gd\.medium  | 1 | 4 | 
-|  r6gd\.metal  | 14 | 120 | 
-|  r6gd\.large  | 2 | 10 | 
-|  r6gd\.xlarge  | 3 | 20 | 
-|  r6gd\.2xlarge  | 3 | 40 | 
-|  r6gd\.4xlarge  | 7 |  60 | 
-|  r6gd\.8xlarge  | 7 | 60 | 
-|  r6gd\.12xlarge  | 7 | 60 | 
-|  r6gd\.16xlarge  | 14 | 120 | 
+|  r6g\.medium  |  1  |  4  | 
+|  r6g\.metal  |  14  |  120  | 
+|  r6g\.large  |  2  |  10  | 
+|  r6g\.xlarge  |  3  |  20  | 
+|  r6g\.2xlarge  |  3  |  40  | 
+|  r6g\.4xlarge  |  7  |  60  | 
+|  r6g\.8xlarge  |  7  |   60  | 
+|  r6g\.12xlarge  |  7  |  60  | 
+|  r6g\.16xlarge  |  14  |  120  | 
+|  r6gd\.medium  |  1  |  4  | 
+|  r6gd\.metal  |  14  |  120  | 
+|  r6gd\.large  |  2  |  10  | 
+|  r6gd\.xlarge  |  3  |  20  | 
+|  r6gd\.2xlarge  |  3  |  40  | 
+|  r6gd\.4xlarge  |  7  |   60  | 
+|  r6gd\.8xlarge  |  7  |  60  | 
+|  r6gd\.12xlarge  |  7  |  60  | 
+|  r6gd\.16xlarge  |  14  |  120  | 

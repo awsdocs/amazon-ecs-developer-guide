@@ -1,4 +1,4 @@
-# Launching an Amazon ECS Linux container instance<a name="launch_container_instance"></a>
+# Launching an Amazon ECS Windows container instance<a name="launch_window-container_instance"></a>
 
 Your Amazon ECS container instances are created using the Amazon EC2 console\. Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 
@@ -14,11 +14,9 @@ Your Amazon ECS container instances are created using the Amazon EC2 console\. B
 
    1. Choose **AWS Marketplace**\.
 
-   1. Choose an AMI for your container instance\. You can search for one of the Amazon ECS\-optimized AMIs, for example the **Amazon ECS\-Optimized Amazon Linux 2 AMI**\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS container agent](ecs-agent-install.md)\.
+   1. Choose an AMI for your container instance\. You can search for one of the Amazon ECS\-optimized AMIs, for example the **Windows\_2019\_Full\_ECS\_Optimized**\. If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS container agent](ecs-agent-install.md)\.
 
-      For more information on the latest Amazon ECS\-optimized AMIs, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
-**Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is deprecated as of April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
+      For more information about the latest Amazon ECS\-optimized AMIs, see 
 
 1. On the **Choose an Instance Type** page, you can select the hardware configuration of your instance\. The `t2.micro` instance type is selected by default\. The instance type that you select determines the resources available for your tasks to run on\.
 
@@ -46,54 +44,22 @@ If you do not have an interface VPC endpoint configured and your container insta
 **Important**  
 If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent cannot connect to your cluster\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 
-   1. <a name="instance-launch-user-data-step"></a>\(Optional\) Configure your Amazon ECS container instance with user data, such as the agent environment variables from [Amazon ECS container agent configuration](ecs-agent-config.md)\. Amazon EC2 user data scripts are executed only one time, when the instance is first launched\. The following are common examples of what user data is used for:
+   1. <a name="instance-windows-launch-user-data-step"></a>Configure your Amazon ECS container instance with user data, such as the agent environment variables from [Amazon ECS container agent configuration](ecs-agent-config.md)\. Amazon EC2 user data scripts are executed only one time, when the instance is first launched\. The following are common examples of what user data is used for:
       + By default, your container instance launches into your default cluster\. To launch into a non\-default cluster, choose the **Advanced Details** list\. Then, paste the following script into the **User data** field, replacing *your\_cluster\_name* with the name of your cluster\.
 
         ```
-        #!/bin/bash
-        echo ECS_CLUSTER=your_cluster_name >> /etc/ecs/ecs.config
+        <powershell>
+        
+        Import-Module ECSTools
+        
+        Initialize-ECSAgent -Cluster your_cluster_name -EnableTaskENI -EnableTaskIAMRole -AwsvpcBlockIMDS
+        
+        </powershell>
         ```
-      + If you have an `ecs.config` file in Amazon S3 and have enabled Amazon S3 read\-only access to your container instance role, choose the **Advanced Details** list\. Then, paste the following script into the **User data** field, replacing *your\_bucket\_name* with the name of your bucket to install the AWS CLI and write your configuration file at launch time\. 
-**Note**  
-For more information about this configuration, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
-
-        ```
-        #!/bin/bash
-        yum install -y aws-cli
-        aws s3 cp s3://your_bucket_name/ecs.config /etc/ecs/ecs.config
-        ```
-      + Specify tags for your container instance using the `ECS_CONTAINER_INSTANCE_TAGS` configuration parameter\. This creates tags that are associated with Amazon ECS only, they cannot be listed using the Amazon EC2 API\.
-**Important**  
-If you launch your container instances using an Amazon EC2 Auto Scaling group, then you should use the ECS\_CONTAINER\_INSTANCE\_TAGS agent configuration parameter to add tags\. This is due to the way in which tags are added to Amazon EC2 instances that are launched using Auto Scaling groups\.
-
-        ```
-        #!/bin/bash
-        cat <<'EOF' >> /etc/ecs/ecs.config
-        ECS_CLUSTER=your_cluster_name
-        ECS_CONTAINER_INSTANCE_TAGS={"tag_key": "tag_value"}
-        EOF
-        ```
-      + Specify tags for your container instance and then use the `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM` configuration parameter to propagate them from Amazon EC2 to Amazon ECS
-
-        The following is an example of a user data script that would propagate the tags associated with a container instance, as well as register the container instance with a cluster named `your_cluster_name`:
-
-        ```
-        #!/bin/bash
-        cat <<'EOF' >> /etc/ecs/ecs.config
-        ECS_CLUSTER=your_cluster_name
-        ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM=ec2_instance
-        EOF
-        ```
-
-      For more information, see [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)\.
 
    1. Choose **Next: Add Storage**\.
 
 1. On the **Add Storage** page, configure the storage for your container instance\.
-
-   If you are using the Amazon ECS\-optimized Amazon Linux 2 AMI, your instance has a single 30 GiB volume configured, which is shared between the operating system and Docker\.
-
-   If you are using the Amazon ECS\-optimized AMI, your instance has two volumes configured\. The **Root** volume is for the operating system's use, and the second Amazon EBS volume \(attached to `/dev/xvdcz`\) is for Docker's use\.
 
    You can optionally increase or decrease the volume sizes for your instance to meet your application needs\.
 

@@ -1,11 +1,11 @@
-# Deprecated AWS managed policies for Amazon Elastic Container Service<a name="security-iam-awsmanpol-deprecated-policies"></a>
+# Phased out AWS managed policies for Amazon Elastic Container Service<a name="security-iam-awsmanpol-deprecated-policies"></a>
 
-The following AWS managed IAM policies have been deprecated\. These policies have been replaced by updated policies and we recommend updating your IAM users or roles to use the updated policies\.
+The following AWS managed IAM policies are phased out\. These policies are now replaced by the updated policies\. We recommend that you update your IAM users or roles to use the updated policies\.
 
 ## AmazonEC2ContainerServiceFullAccess<a name="security-iam-awsmanpol-AmazonEC2ContainerServiceFullAccess"></a>
 
 **Important**  
-The `AmazonEC2ContainerServiceFullAccess` managed IAM policy is deprecated as of January 29, 2021 in response to a security finding with the `iam:passRole` permission which grants access to all resources including credentials to roles in the account\. Once the policy is deprecated, you won't be able to attach the policy to any new IAM users or roles\. Any existing users or roles that have the policy attached will be able to continue using it, however we recommend updating your IAM users or roles to use the `AmazonECS_FullAccess` managed policy instead\. For more information, see [Migrating to the `AmazonECS_FullAccess` managed policy](security-iam-awsmanpol-amazonecs-full-access-migration.md)\.
+The `AmazonEC2ContainerServiceFullAccess` managed IAM policy was phased out as of January 29, 2021, in response to a security finding with the `iam:passRole` permission\. This permission grants access to all resources including credentials to roles in the account\. Now that the policy is phased out, you can't attach the policy to any new IAM users or roles\. Any users or roles that already have the policy attached can continue using it\. However, we recommend that you update your IAM users or roles to use the `AmazonECS_FullAccess` managed policy instead\. For more information, see [Migrating to the `AmazonECS_FullAccess` managed policy](security-iam-awsmanpol-amazonecs-full-access-migration.md)\.
 
 This managed policy allows full administrator access to Amazon ECS\. 
 
@@ -46,7 +46,7 @@ This managed policy allows full administrator access to Amazon ECS\.
 ## AmazonEC2ContainerServiceRole<a name="security-iam-awsmanpol-AmazonEC2ContainerServiceRole"></a>
 
 **Important**  
-The `AmazonEC2ContainerServiceAutoscaleRole` managed IAM policy is deprecated\. It has been replaced by the Amazon ECS service\-linked role\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
+The `AmazonEC2ContainerServiceAutoscaleRole` managed IAM policy is phased out\. It's now replaced by the Amazon ECS service\-linked role\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
 
 This policy grants administrative permissions that allow Elastic Load Balancing load balancers to register and deregister Amazon ECS container instances on your behalf\.
 
@@ -80,14 +80,14 @@ This policy includes the following permissions\.
 ## AmazonEC2ContainerServiceAutoscaleRole<a name="security-iam-awsmanpol-AmazonEC2ContainerServiceAutoscaleRole"></a>
 
 **Important**  
-The `AmazonEC2ContainerServiceAutoscaleRole` managed IAM policy is deprecated\. It has been replaced by the Application Auto Scaling service\-linked role for Amazon ECS\. For more information, see [Service\-linked roles for Application Auto Scaling](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-service-linked-roles.html) in the *Application Auto Scaling User Guide*\.
+The `AmazonEC2ContainerServiceAutoscaleRole` managed IAM policy is phased out\. It's now replaced by the Application Auto Scaling service\-linked role for Amazon ECS\. For more information, see [Service\-linked roles for Application Auto Scaling](https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-service-linked-roles.html) in the *Application Auto Scaling User Guide*\.
 
-This policy grants administrative permissions that allow Application Auto Scaling to scale your Amazon ECS service's desired count up and down in response to CloudWatch alarms on your behalf\.
+This policy grants administrative permissions that allow Application Auto Scaling to scale up or down the desired count for your Amazon ECS service in response to CloudWatch alarms on your behalf\.
 
 **Permissions details**
 
 This policy includes the following permissions\.
-+ `ecs` – Allows you to view and modify the services running in a cluster\.
++ `ecs` – Allows you to view and modify the services that are running in a cluster\.
 + `cloudwatch` – Allows you to view, create, and modify Amazon CloudWatch alarms\.
 
 ```

@@ -17,7 +17,7 @@ To create a new Amazon ECS service that uses the rolling update deployment type,
 
 By default, when a service using the rolling update deployment type starts a new deployment, the service scheduler will launch new tasks until the desired count is reached\. You can optionally enable deployment circuit breaker logic on the service, which will cause the deployment to transition to a failed state if it can't reach a steady state\. The deployment circuit breaker logic can also trigger Amazon ECS to roll back to the last completed deployment upon a deployment failure\.
 
-The deployment circuit breaker can only be configured for a service using the Amazon ECS API, AWS CLI, or SDK\. The following `create-service` AWS CLI example shows how to create a service when the deployment circuit breaker enabled with rollback\.
+The following `create-service` AWS CLI example shows how to create a service when the deployment circuit breaker enabled with rollback\.
 
 ```
 aws ecs create-service \

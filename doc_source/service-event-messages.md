@@ -49,7 +49,7 @@ The service scheduler will send a `service service-name) has reached a steady st
 The service scheduler will send this event message when it could not find the available resources to add another task\. The possible causes for this are:
 
 No container instances were found in your cluster  
-If no container instances are registered in the cluster you attempt to run a task in, you will receive this error\. You should add container instances to your cluster\. For more information, see [Launching an Amazon ECS container instance](launch_container_instance.md)\.
+If no container instances are registered in the cluster you attempt to run a task in, you will receive this error\. You should add container instances to your cluster\. For more information, see [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\.
 
 Not enough ports  
 If your task uses fixed host port mapping \(for example, your task uses port 80 on the host for a web server\), you must have at least one container instance per task, because only one container can use a single host port at a time\. You should add container instances to your cluster or reduce your number of desired tasks\.
@@ -121,3 +121,7 @@ The `minimumHealthyPercent` represents the lower limit on the number of tasks th
 The `maximumPercent` represents the upper limit on the number of tasks that should be running for a service during a deployment or when a container instance is draining, as a percent of the desired number of tasks for a service\. This value is rounded down\. For example if the maximum percent is `200` and the desired task is four then scheduler can start four new tasks before stopping four existing tasks\. Likewise, if the maximum percent is `125` and the desired task count is three, the scheduler can't start any tasks due to the resulting value also being three\.
 
 When setting a minimum healthy percent or a maximum percent, you should ensure that the scheduler can stop or start at least one task when a deployment is triggered\.
+
+### service \(*service\-name*\) was unable to place a task\.<a name="service-event-messages-8"></a>
+
+This service is unable to place the task because you have reached the limit on the number of tasks\. For more information, see [Amazon ECS service quotas](service-quotas.md)\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.

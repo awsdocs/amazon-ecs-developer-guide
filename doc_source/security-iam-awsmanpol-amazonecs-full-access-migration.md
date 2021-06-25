@@ -1,10 +1,10 @@
 # Migrating to the `AmazonECS_FullAccess` managed policy<a name="security-iam-awsmanpol-amazonecs-full-access-migration"></a>
 
-The `AmazonEC2ContainerServiceFullAccess` managed IAM policy was deprecated on January 29, 2021 in response to a security finding with the `iam:passRole` permission which grants access to all resources including credentials to roles in the account\. Once the policy is deprecated, you won't be able to attach the policy to any new IAM groups, users, or roles\. Any existing groups, users, or roles that have the policy attached will be able to continue using it, however we recommend updating your IAM groups, users, or roles to use the `AmazonECS_FullAccess` managed policy instead\.
+The `AmazonEC2ContainerServiceFullAccess` managed IAM policy was phased out on January 29, 2021, in response to a security finding with the `iam:passRole` permission\. This permission grants access to all resources including credentials to roles in the account\. Now that the policy is phased out, you can't attach the policy to any new IAM groups, users, or roles\. Any groups, users, or roles that already have the policy attached can continue using it\. However, we recommend that you update your IAM groups, users, or roles to use the `AmazonECS_FullAccess` managed policy instead\.
 
-The permissions granted by the `AmazonECS_FullAccess` policy have finer detail than the `AmazonEC2ContainerServiceFullAccess` policy\. If you are currently using permissions granted by the `AmazonEC2ContainerServiceFullAccess` policy that are not present in the `AmazonECS_FullAccess` policy you can add additional permissions to an IAM group, user, or role by adding an in\-line policy statement\. For more information about each of these policies, see [AWS managed policies for Amazon Elastic Container Service](security-iam-awsmanpol.md)\.
+The permissions that are granted by the `AmazonECS_FullAccess` policy include the complete list of permissions that are necessary to use ECS as an administrator\. If you currently use permissions that are granted by the `AmazonEC2ContainerServiceFullAccess` policy that aren't in the `AmazonECS_FullAccess` policy, you can add them to an in\-line policy statement\. For more information, see [AWS managed policies for Amazon Elastic Container Service](security-iam-awsmanpol.md)\.
 
-Use the following steps to determine if you have any IAM groups, users, or roles that are currently using the `AmazonEC2ContainerServiceFullAccess` managed IAM policy and then update them to detach the deprecated policy and attach the `AmazonECS_FullAccess` policy\.
+Use the following steps to determine if you have any IAM groups, users, or roles that are currently using the `AmazonEC2ContainerServiceFullAccess` managed IAM policy\. Then, update them to detach the earlier policy and attach the `AmazonECS_FullAccess` policy\.
 
 **To update an IAM group, user, or role to use the AmazonECS\_FullAccess policy \(AWS Management Console\)**
 
@@ -12,9 +12,9 @@ Use the following steps to determine if you have any IAM groups, users, or roles
 
 1. In the navigation pane, choose **Policies** and search for and select the `AmazonEC2ContainerServiceFullAccess` policy\.
 
-1. Choose the **Policy usage** tab which will display any IAM role currently using this policy\.
+1. Choose the **Policy usage** tab that displays any IAM role that's currently using this policy\.
 
-1. For each IAM role currently using the `AmazonEC2ContainerServiceFullAccess` policy, select the role and use the following steps to detach the deprecated policy and attach the `AmazonECS_FullAccess` policy\.
+1. For each IAM role that's currently using the `AmazonEC2ContainerServiceFullAccess` policy, select the role and use the following steps to detach the deprecated policy and attach the `AmazonECS_FullAccess` policy\.
 
    1. On the **Permissions** tab, choose the **X** next to the **AmazonEC2ContainerServiceFullAccess** policy\.
 
@@ -24,7 +24,7 @@ Use the following steps to determine if you have any IAM groups, users, or roles
 
    1. Review the changes and then choose **Add permissions**\.
 
-   1. Repeat these steps for each IAM group, user, or role that is using the `AmazonEC2ContainerServiceFullAccess` policy\.
+   1. Repeat these steps for each IAM group, user, or role that's using the `AmazonEC2ContainerServiceFullAccess` policy\.
 
 **To update an IAM group, user, or role to use the `AmazonECS_FullAccess` policy \(AWS CLI\)**
 
@@ -43,7 +43,7 @@ Use the following steps to determine if you have any IAM groups, users, or roles
    }
    ```
 
-1. Use the job ID from the previous output with the [get\-service\-last\-accessed\-details](https://docs.aws.amazon.com/cli/latest/reference/iam/get-service-last-accessed-details.html) command to retrieve the service last accessed report\. This report will display the Amazon Resource Name \(ARN\) of the IAM entities that last used the deprecated policy\.
+1. Use the job ID from the previous output with the [get\-service\-last\-accessed\-details](https://docs.aws.amazon.com/cli/latest/reference/iam/get-service-last-accessed-details.html) command to retrieve the last accessed report of the service\. This report displays the Amazon Resource Name \(ARN\) of the IAM entities that last used the deprecated policy\.
 
    ```
    aws iam get-service-last-accessed-details \

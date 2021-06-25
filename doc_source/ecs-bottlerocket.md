@@ -24,8 +24,6 @@ The following should be considered when using the Bottlerocket AMI with Amazon E
 + Using Amazon EFS file system volumes are not supported\.
 + The `initProcessEnabled` task definition parameter is not supported\.
 
-## Retrieving the Bottlerocket AMI<a name="ecs-bottlerocket-retrieve"></a>
-
 The Amazon ECS variant of the Bottlerocket AMI can be retrieved using a Systems Manager parameter\. The following is the format of the parameter name\.
 
 ```

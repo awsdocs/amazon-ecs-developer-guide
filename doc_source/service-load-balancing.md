@@ -12,6 +12,8 @@ Application Load Balancers offer several features that make them attractive for 
 
 We recommend that you use Application Load Balancers for your Amazon ECS services so that you can take advantage of these latest features, unless your service requires a feature that is only available with Network Load Balancers or Classic Load Balancers\. For more information about Elastic Load Balancing and the differences between the load balancer types, see the [Elastic Load Balancing User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/)\.
 
+With your load balancer, you pay only for what you use\. For more information, see [Elastic Load Balancing pricing](https://aws.amazon.com/elasticloadbalancing/pricing/)\. 
+
 **Topics**
 + [Service load balancing considerations](#load-balancing-considerations)
 + [Load balancer types](load-balancer-types.md)

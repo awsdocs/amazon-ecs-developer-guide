@@ -49,7 +49,7 @@ Output:
 
 ## Step 2: Launch an Instance with the Amazon ECS AMI<a name="AWSCLI_EC2_launch_container_instance"></a>
 
-You must have an Amazon ECS container instance in your cluster before you can run tasks on it\. If you do not have any container instances in your cluster, see [Launching an Amazon ECS container instance](launch_container_instance.md) for more information\.
+You must have an Amazon ECS container instance in your cluster before you can run tasks on it\. If you do not have any container instances in your cluster, see [Launching an Amazon ECS Linux container instance](launch_container_instance.md) for more information\.
 
 ## Step 3: List Container Instances<a name="AWSCLI_EC2_list_container_instances"></a>
 

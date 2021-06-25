@@ -12,11 +12,11 @@ Amazon ECS and Amazon ECR provide several managed policies and trust relationshi
 
 You can attach the `AmazonECS_FullAccess` policy to your IAM identities\.
 
-This policy grants administrative access to Amazon ECS resources and enables a principal to utilize all Amazon ECS features through access to the AWS services that Amazon ECS integrates with\. Using this policy, all features available in the AWS Management Console are allowed\.
+This policy grants administrative access to Amazon ECS resources and grants an IAM identity \(such as a user, group, or role\) access to the AWS services that Amazon ECS is integrated with to use all of Amazon ECS features\. Using this policy allows access to all of Amazon ECS features that are available in the AWS Management Console\.
 
 ### Permissions details<a name="security-iam-awsmanpol-AmazonECS_FullAccess-permissions"></a>
 
-The `AmazonECS_FullAccess` managed IAM policy includes the following permissions\. Following the standard security advice of granting least privilege, the `AmazonECS_FullAccess` managed policy can be used as a guide\. If any of the permissions granted in the managed policy aren't needed for your use case, create a custom policy and add only the permissions you require\.
+The `AmazonECS_FullAccess` managed IAM policy includes the following permissions\. Following the best practice of granting least privilege, you can use the `AmazonECS_FullAccess` managed policy as a template for creating you own custom policy\. That way, you can take away or add permissions to and from the managed policy based on your specific requirements\.
 + `ecs` – Allows principals full access to all Amazon ECS APIs\.
 + `application-autoscaling` – Allows principals to create, describe, and manage Application Auto Scaling resources\. This is required when enabling service auto scaling for your Amazon ECS services\.
 + `appmesh` – Allows principals to list App Mesh service meshes and virtual nodes and describe App Mesh virtual nodes\. This is required when integrating your Amazon ECS services with App Mesh\.
@@ -34,7 +34,7 @@ The `AmazonECS_FullAccess` managed IAM policy includes the following permissions
 + `route53` – Allows principals to create, manage, and delete Amazon Route 53 hosted zones\. Principals can also view Amazon Route 53 health check configuration and information\. For more information about hosted zones, see [Working with hosted zones](Route53/latest/DeveloperGuide/hosted-zones-working-with.html)\.
 + `servicediscovery` – Allows principals to create, manage, and delete AWS Cloud Map services and create private DNS namespaces\.
 
-The `AmazonECS_FullAccess` policy is shown below\.
+The following is an example `AmazonECS_FullAccess` policy\.
 
 ```
 {
@@ -253,11 +253,11 @@ This policy grants administrative permissions that allow Amazon ECS container in
 
 ### Considerations<a name="instance-iam-role-considerations"></a>
 
-The following should be considered when using the `AmazonEC2ContainerServiceforEC2Role` managed IAM policy\.
-+ Following the standard security advice of granting least privilege, the `AmazonEC2ContainerServiceforEC2Role` managed policy can be used as a guide\. If any of the permissions granted in the managed policy aren't needed for your use case, create a custom policy and add only the permissions you require\. For example, the `UpdateContainerInstancesState` permission is provided for Spot Instance draining\. If that permission is not needed for your use case, you can exclude it using a custom policy\. For more information, see [Permissions details](#instance-iam-role-permissions)\.
-+ Containers that are running on your container instances have access to all of the permissions that are supplied to the container instance role through [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)\. We recommend that you limit the permissions in your container instance role to the minimal list of permissions provided in the managed `AmazonEC2ContainerServiceforEC2Role` policy shown below\. If the containers in your tasks need extra permissions that are not listed here, we recommend providing those tasks with their own IAM roles\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
+You should consider the following recommendations and considerations when using the `AmazonEC2ContainerServiceforEC2Role` managed IAM policy\.
++ Following the standard security advice of granting least privilege, you can modify the `AmazonEC2ContainerServiceforEC2Role` managed policy to fit your specific needs\. If any of the permissions granted in the managed policy aren't needed for your use case, create a custom policy and add only the permissions that you require\. For example, the `UpdateContainerInstancesState` permission is provided for Spot Instance draining\. If that permission isn't needed for your use case, exclude it using a custom policy\. For more information, see [Permissions details](#instance-iam-role-permissions)\.
++ Containers that are running on your container instances have access to all of the permissions that are supplied to the container instance role through [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)\. We recommend that you limit the permissions in your container instance role to the minimal list of permissions that are provided in the managed `AmazonEC2ContainerServiceforEC2Role` policy\. If the containers in your tasks need extra permissions that aren't listed, we recommend providing those tasks with their own IAM roles\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
 
-  You can prevent containers on the `docker0` bridge from accessing the permissions supplied to the container instance role \(while still allowing the permissions that are provided by [IAM Roles for Tasks](task-iam-roles.md)\) by running the following iptables command on your container instances; however, containers will not be able to query instance metadata with this rule in effect\. Note that this command assumes the default Docker bridge configuration and it will not work for containers that use the `host` network mode\. For more information, see [Network mode](task_definition_parameters.md#network_mode)\.
+  You can prevent containers on the `docker0` bridge from accessing the permissions supplied to the container instance role\. You can do this while still allowing the permissions that are provided by [IAM Roles for Tasks](task-iam-roles.md) by running the following iptables command on your container instances\. Containers can't query instance metadata with this rule in effect\. This command assumes the default Docker bridge configuration and it doesn't work with containers that use the `host` network mode\. For more information, see [Network mode](task_definition_parameters.md#network_mode)\.
 
   ```
   sudo yum install -y iptables-services; sudo iptables --insert FORWARD 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP
@@ -277,8 +277,8 @@ The following should be considered when using the `AmazonEC2ContainerServiceforE
 
 ### Permissions details<a name="instance-iam-role-permissions"></a>
 
-The `AmazonEC2ContainerServiceforEC2Role` managed IAM policy includes the following permissions\. Following the standard security advice of granting least privilege, the `AmazonEC2ContainerServiceforEC2Role` managed policy can be used as a guide\. If any of the permissions granted in the managed policy aren't needed for your use case, create a custom policy and add only the permissions you require\.
-+ `ec2:DescribeTags` – Allows a principal to describe the tags associated with an Amazon EC2 instance\. This permission is used by the Amazon ECS container agent to support resource tag propagation\. For more information, see [Tagging your resources](ecs-using-tags.md#tag-resources)\.
+The `AmazonEC2ContainerServiceforEC2Role` managed IAM policy includes the following permissions\. Following the standard security advice of granting least privilege, the `AmazonEC2ContainerServiceforEC2Role` managed policy can be used as a guide\. If you don't need any of the permissions that are granted in the managed policy for your use case, create a custom policy and add only the permissions that you need\.
++ `ec2:DescribeTags` – Allows a principal to describe the tags that are associated with an Amazon EC2 instance\. This permission is used by the Amazon ECS container agent to support resource tag propagation\. For more information, see [Tagging your resources](ecs-using-tags.md#tag-resources)\.
 + `ecs:CreateCluster` – Allows a principal to create an Amazon ECS cluster\. This permission is used by the Amazon ECS container agent to create a `default` cluster, if one doesn't already exist\.
 + `ecs:DeregisterContainerInstance` – Allows a principal to deregister an Amazon ECS container instance from a cluster\. The Amazon ECS container agent doesn't call this API, but this permission remains to ensure backwards compatibility\.
 + `ecs:DiscoverPollEndpoint` – This action returns endpoints that the Amazon ECS container agent uses to poll for updates\.
@@ -286,15 +286,15 @@ The `AmazonEC2ContainerServiceforEC2Role` managed IAM policy includes the follow
 + `ecs:RegisterContainerInstance` – Allows a principal to register a container instance with a cluster\. This permission is used by the Amazon ECS container agent to register the Amazon EC2 instance with a cluster as well as to support resource tag propagation\.
 + `ecs:StartTelemetrySession` – Allows the Amazon ECS container agent to communicate with the Amazon ECS control plane to report health information and metrics for each container and task\.
 + `ecs:UpdateContainerInstancesState` – Allows a principal to modify the status of an Amazon ECS container instance\. This permission is used by the Amazon ECS container agent for Spot Instance draining\. For more information, see [Spot Instance Draining](container-instance-spot.md#spot-instance-draining)\.
-+ `ecs:Submit*` – This includes the `SubmitAttachmentStateChanges`, `SubmitContainerStateChange`, and `SubmitTaskStateChange` API actions which are used by the Amazon ECS container agent to report state changes for each resource to the Amazon ECS control plane\. The `SubmitContainerStateChange` permission is no longer used by the Amazon ECS container agent but remains to ensure backwards compatibility\.
++ `ecs:Submit*` – This includes the `SubmitAttachmentStateChanges`, `SubmitContainerStateChange`, and `SubmitTaskStateChange` API actions\. They're used by the Amazon ECS container agent to report state changes for each resource to the Amazon ECS control plane\. The `SubmitContainerStateChange` permission is no longer used by the Amazon ECS container agent but remains to ensure backwards compatibility\.
 + `ecr:GetAuthorizationToken` – Allows a principal to retrieve an authorization token\. The authorization token represents your IAM authentication credentials and can be used to access any Amazon ECR registry that the IAM principal has access to\. The authorization token received is valid for 12 hours\.
-+ `ecr:BatchCheckLayerAvailability` – When a container image is pushed to an Amazon ECR private repository, each image layer is checked to verify if it has already been pushed\. If it has, then the image layer is skipped\.
-+ `ecr:GetDownloadUrlForLayer` – When a container image is pulled from an Amazon ECR private repository, this API is called once per image layer that is not already cached\.
++ `ecr:BatchCheckLayerAvailability` – When a container image is pushed to an Amazon ECR private repository, each image layer is checked to verify if it's already pushed\. If it is, then the image layer is skipped\.
++ `ecr:GetDownloadUrlForLayer` – When a container image is pulled from an Amazon ECR private repository, this API is called once for each image layer that's not already cached\.
 + `ecr:BatchGetImage` – When a container image is pulled from an Amazon ECR private repository, this API is called once to retrieve the image manifest\.
 + `logs:CreateLogStream` – Allows a principal to create a CloudWatch Logs log stream for a specified log group\.
 + `logs:PutLogEvents` – Allows a principal to upload a batch of log events to a specified log stream\.
 
-The `AmazonEC2ContainerServiceforEC2Role` policy is shown below\.
+The following is an example `AmazonEC2ContainerServiceforEC2Role` policy\.
 
 ```
 {
@@ -327,7 +327,7 @@ The `AmazonEC2ContainerServiceforEC2Role` policy is shown below\.
 
 ## AmazonEC2ContainerServiceEventsRole<a name="security-iam-awsmanpol-AmazonEC2ContainerServiceEventsRole"></a>
 
-This policy grants permissions that allow Amazon EventBridge \(formerly CloudWatch Events\) to run tasks on your behalf\. This policy can be attached to the IAM role specified when creating scheduled tasks\. For more information, see [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)\.
+This policy grants permissions that allow Amazon EventBridge \(formerly CloudWatch Events\) to run tasks on your behalf\. This policy can be attached to the IAM role that's specified when you create scheduled tasks\. For more information, see [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 
 **Permissions details**
 
@@ -335,7 +335,7 @@ This policy includes the following permissions\.
 + `ecs` – Allows a principal in a service to call the Amazon ECS RunTask API\.
 + `iam` – Allows passing any IAM service role to any Amazon ECS tasks\.
 
-The `AmazonEC2ContainerServiceEventsRole` policy is shown below\.
+The following is an example `AmazonEC2ContainerServiceEventsRole` policy\.
 
 ```
 {
@@ -368,19 +368,19 @@ The `AmazonEC2ContainerServiceEventsRole` policy is shown below\.
 
 ## AmazonECSTaskExecutionRolePolicy<a name="security-iam-awsmanpol-AmazonECSTaskExecutionRolePolicy"></a>
 
-The `AmazonECSTaskExecutionRolePolicy` managed IAM policy grants the permissions needed by the Amazon ECS container agent and AWS Fargate container agents to make AWS API calls on your behalf\. This policy can be added to your task execution IAM role\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
+The `AmazonECSTaskExecutionRolePolicy` managed IAM policy grants the permissions that are needed by the Amazon ECS container agent and AWS Fargate container agents to make AWS API calls on your behalf\. This policy can be added to your task execution IAM role\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 ### Permissions details<a name="taskexecution-iam-role-permissions"></a>
 
-The `AmazonECSTaskExecutionRolePolicy` managed IAM policy includes the following permissions\. Following the standard security advice of granting least privilege, the `AmazonECSTaskExecutionRolePolicy` managed policy can be used as a guide\. If any of the permissions granted in the managed policy aren't needed for your use case, create a custom policy and add only the permissions you require\.
+The `AmazonECSTaskExecutionRolePolicy` managed IAM policy includes the following permissions\. Following the standard security advice of granting least privilege, the `AmazonECSTaskExecutionRolePolicy` managed policy can be used as a guide\. If any of the permissions that are granted in the managed policy aren't needed for your use case, create a custom policy and add only the permissions that you require\.
 + `ecr:GetAuthorizationToken` – Allows a principal to retrieve an authorization token\. The authorization token represents your IAM authentication credentials and can be used to access any Amazon ECR registry that the IAM principal has access to\. The authorization token received is valid for 12 hours\.
-+ `ecr:BatchCheckLayerAvailability` – When a container image is pushed to an Amazon ECR private repository, each image layer is checked to verify if it has already been pushed\. If it has, then the image layer is skipped\.
-+ `ecr:GetDownloadUrlForLayer` – When a container image is pulled from an Amazon ECR private repository, this API is called once per image layer that is not already cached\.
++ `ecr:BatchCheckLayerAvailability` – When a container image is pushed to an Amazon ECR private repository, each image layer is checked to verify if it's already pushed\. If it's pushed, then the image layer is skipped\.
++ `ecr:GetDownloadUrlForLayer` – When a container image is pulled from an Amazon ECR private repository, this API is called once for each image layer that's not already cached\.
 + `ecr:BatchGetImage` – When a container image is pulled from an Amazon ECR private repository, this API is called once to retrieve the image manifest\.
 + `logs:CreateLogStream` – Allows a principal to create a CloudWatch Logs log stream for a specified log group\.
 + `logs:PutLogEvents` – Allows a principal to upload a batch of log events to a specified log stream\.
 
-The `AmazonECSTaskExecutionRolePolicy` policy is shown below\.
+The following is an example `AmazonECSTaskExecutionRolePolicy` policy\.
 
 ```
 {
@@ -402,9 +402,21 @@ The `AmazonECSTaskExecutionRolePolicy` policy is shown below\.
 }
 ```
 
+## `AWSApplicationAutoscalingECSServicePolicy`<a name="security-iam-awsmanpol-AWSApplicationAutoscalingECSServicePolicy"></a>
+
+You can't attach `AWSApplicationAutoscalingECSServicePolicy` to your IAM entities\. This policy is attached to a service\-linked role that allows Application Auto Scaling to perform actions on your behalf\. For more information, see [Service\-linked roles for Application Auto Scaling](autoscaling/application/userguide/application-auto-scaling-service-linked-roles.html)\.
+
+## `AWSCodeDeployRoleForECS`<a name="security-iam-awsmanpol-AWSCodeDeployRoleForECS"></a>
+
+You can't attach `AWSCodeDeployRoleForECS` to your IAM entities\. This policy is attached to a service\-linked role that allows CodeDeploy to perform actions on your behalf\. For more information, see [Create a service role for CodeDeploy](codedeploy/latest/userguide/getting-started-create-service-role.html)\.
+
+## `AWSCodeDeployRoleForECSLimited`<a name="security-iam-awsmanpol-AWSCodeDeployRoleForECSLimited"></a>
+
+You can't attach `AWSCodeDeployRoleForECSLimited` to your IAM entities\. This policy is attached to a service\-linked role that allows CodeDeploy to perform actions on your behalf\. For more information, see [Create a service role for CodeDeploy](codedeploy/latest/userguide/getting-started-create-service-role.html)\.
+
 ## Amazon ECS updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
 
-View details about updates to AWS managed policies for Amazon ECS since this service began tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the Amazon ECS Document history page\.
+View details about updates to AWS managed policies for Amazon ECS since this service started tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the Amazon ECS Document history page\.
 
  
 

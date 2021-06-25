@@ -1,12 +1,6 @@
-# Subscribing to Amazon ECS\-optimized AMI update notifications<a name="ECS-AMI-SubscribeTopic"></a>
+# Subscribing to Amazon ECS\-optimized AMI update notifications<a name="ECS-AMI-windows-SubscribeTopic"></a>
 
-**Important**  
-The **Amazon ECS\-optimized Amazon Linux AMI** is deprecated as of April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
-
-**Important**  
-For the Linux variants of the Amazon ECS\-optimized AMI, the Amazon SNS alert is only sent when there is a new Amazon ECS\-optimized Amazon Linux AMI deployed\. Generally when a new Amazon ECS\-optimized Amazon Linux AMI is deployed, a new AMI for each of the other Linux variants of the Amazon ECS\-optimized AMI are deployed as well although there are not separate Amazon SNS alerts for them\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
-
-The Amazon ECS\-optimized AMIs receive regular updates for Amazon ECS container agent changes, Docker version updates, and Linux kernel security updates\. You can subscribe to the AMI update Amazon SNS topic for the Linux Amazon ECS\-optimized AMIs to receive notifications when a new Amazon ECS\-optimized AMI is available\. Notifications are available in all formats that Amazon SNS supports\.
+The Amazon ECS\-optimized AMIs receive regular updates for Amazon ECS container agent changes, Docker version updates, and Windows osecurity updates\. You can subscribe to the AMI update Amazon SNS topic for the Windows Amazon ECS\-optimized AMIs to receive notifications when a new Amazon ECS\-optimized AMI is available\. Notifications are available in all formats that Amazon SNS supports\.
 
 **Note**  
 Your user account must have `sns::subscribe` IAM permissions to subscribe to an SNS topic\.
@@ -15,29 +9,7 @@ You can subscribe an Amazon SQS queue to this notification topic, but you must u
 
 You can also use an AWS Lambda function to trigger events when notifications are received\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-lambda-as-subscriber.html) in the *Amazon Simple Notification Service Developer Guide*\.
 
-## Linux Amazon ECS\-optimized AMIs<a name="sns-topic-linux"></a>
-
-The Amazon SNS topic ARNs for the Linux variants of the Amazon ECS\-optimized AMI for each region are shown below\.
-
-
-| AWS Region | Amazon SNS Topic ARN | 
-| --- | --- | 
-| `us-east-1` | `arn:aws:sns:us-east-1:177427601217:ecs-optimized-amazon-ami-update` | 
-| `us-east-2` | `arn:aws:sns:us-east-2:177427601217:ecs-optimized-amazon-ami-update` | 
-| `us-west-1` | `arn:aws:sns:us-west-1:177427601217:ecs-optimized-amazon-ami-update` | 
-| `us-west-2` | `arn:aws:sns:us-west-2:177427601217:ecs-optimized-amazon-ami-update` | 
-| `ap-east-1` | `arn:aws:sns:ap-east-1:177427601217:ecs-optimized-amazon-ami-update` | 
-| `ap-northeast-1` | `arn:aws:sns:ap-northeast-1:177427601217:ecs-optimized-amazon-ami-update` | 
-| `ap-northeast-2` | `arn:aws:sns:ap-northeast-2:177427601217:ecs-optimized-amazon-ami-update` | 
-| `ap-southeast-1` | `arn:aws:sns:ap-southeast-1:177427601217:ecs-optimized-amazon-ami-update` | 
-| `ap-southeast-2` | `arn:aws:sns:ap-southeast-2:177427601217:ecs-optimized-amazon-ami-update` | 
-| `ap-south-1` | `arn:aws:sns:ap-south-1:177427601217:ecs-optimized-amazon-ami-update` | 
-| `ca-central-1` | `arn:aws:sns:ca-central-1:177427601217:ecs-optimized-amazon-ami-update` | 
-| `eu-west-1` | `arn:aws:sns:eu-west-1:177427601217:ecs-optimized-amazon-ami-update` | 
-| `eu-west-2` | `arn:aws:sns:eu-west-2:177427601217:ecs-optimized-amazon-ami-update` | 
-| `eu-west-3` | `arn:aws:sns:eu-west-3:177427601217:ecs-optimized-amazon-ami-update` | 
-| `eu-central-1` | `arn:aws:sns:eu-central-1:177427601217:ecs-optimized-amazon-ami-update` | 
-| `sa-east-1` | `arn:aws:sns:sa-east-1:177427601217:ecs-optimized-amazon-ami-update` | 
+## <a name="sns-topic-linux"></a>
 
 **To subscribe to AMI update notification email in the AWS Management Console**
 
@@ -69,7 +41,7 @@ The Amazon SNS topic ARNs for the Linux variants of the Amazon ECS\-optimized AM
 
    Your web browser displays a confirmation response from Amazon SNS\.
 
-### Amazon SNS Message Format<a name="ECS-AMI-Notification-format"></a>
+### Amazon SNS Message Format<a name="ECS-AMI-windows-Notification-format"></a>
 
 An example AMI update notification message is shown below:
 
@@ -175,3 +147,7 @@ The parsed `Message` value \(with escaped quotes removed\) is shown below:
   ]
 }
 ```
+
+## Windows Amazon ECS\-optimized AMIs<a name="sns-topic-windows"></a>
+
+AWS provides two Amazon SNS topic ARNs for variants of the Windows Amazon ECS\-optimized AMI\. One topic sends update notifications when new Windows AMIs are released\. The other topic sends notifications when previously released Windows AMIs are made private\. For more information on subscribing to Windows AMI notifications, see [Subscribing to Windows AMI notifications](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-ami-version-history.html#subscribe-notifications) in the *Amazon EC2 User Guide for Windows Instances*\.

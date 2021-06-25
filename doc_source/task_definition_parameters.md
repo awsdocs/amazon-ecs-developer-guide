@@ -271,8 +271,7 @@ Type: object array
 Required: no  
 A list of files containing the environment variables to pass to a container\. This parameter maps to the `--env-file` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 You can specify up to ten environment files\. The file must have a `.env` file extension\. Each line in an environment file should contain an environment variable in `VARIABLE=VALUE` format\. Lines beginning with `#` are treated as comments and are ignored\. For more information on the environment variable file syntax, see [Declare default environment variables in file](https://docs.docker.com/compose/env-file/)\.  
-If there are individual environment variables specified in the container definition, they take precedence over the variables contained within an environment file\. If multiple environment files are specified that contain the same variable, they are processed from the top down\. It is recommended to use unique variable names\. For more information, see [Specifying environment variables](taskdef-envfiles.md)\.  
-This field is not valid for containers in tasks using the Fargate launch type\.    
+If there are individual environment variables specified in the container definition, they take precedence over the variables contained within an environment file\. If multiple environment files are specified that contain the same variable, they are processed from the top down\. It is recommended to use unique variable names\. For more information, see [Specifying environment variables](taskdef-envfiles.md)\.    
 `value`  
 Type: String  
 Required: Yes  
@@ -969,16 +968,15 @@ The type of constraint\. Use `memberOf` to restrict the selection to a group of 
 
 ## Launch types<a name="requires_compatibilities"></a>
 
-When you register a task definition, you specify the launch type to use for your task\. For more information, see [Amazon ECS launch types](launch_types.md)\.
+When you register a task definition, you can specify a launch type that Amazon ECS should validate the task definition against\. A client exception is returned if the task definition doesn't validate against the compatibilities specified\. For more information, see [Amazon ECS launch types](launch_types.md)\.
 
 The following parameter is allowed in a task definition:
 
 `requiresCompatibilities`  
 Type: string array  
 Required: no  
-Valid Values: `EC2` \| `FARGATE`  
-The launch type the task is using\. This enables a check to ensure that all of the parameters used in the task definition meet the requirements of the launch type\.  
-Valid values are `FARGATE` and `EC2`\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
+Valid Values: `EC2` \| `FARGATE` \| `EXTERNAL`  
+The launch type to validate the task definition against\. This enables a check to ensure that all of the parameters used in the task definition meet the requirements of the launch type\.
 
 ## Task size<a name="task_size"></a>
 

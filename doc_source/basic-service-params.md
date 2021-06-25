@@ -46,6 +46,8 @@ If your launch type is `EC2`, and your task definition uses static host port map
       + **Minimum healthy percent**: Specify a lower limit on the number of your service's tasks that must remain in the `RUNNING` state during a deployment, as a percentage of the service's desired number of tasks \(rounded up to the nearest integer\)\.
       + **Maximum percent**: Specify an upper limit on the number of your service's tasks that are allowed in the `RUNNING` or `PENDING` state during a deployment, as a percentage of the service's desired number of tasks \(rounded down to the nearest integer\)\.
 
+1. For **Deployment circuit breaker**, choose the deployment circuit breaker logic\. For more information, see [Using the deployment circuit breaker](deployment-type-ecs.md#deployment-circuit-breaker)\.
+
 1. On the **Deployments** page, complete the following steps\.
 
    1. For **Deployment type**, choose whether your service should use a rolling update deployment or a blue/green deployment using AWS CodeDeploy\. For more information, see [Amazon ECS Deployment types](deployment-types.md)\.

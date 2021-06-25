@@ -443,7 +443,7 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
 
 1. Complete the earlier procedures in this section to allow read\-only Amazon S3 access to your container instances and store an `ecs.config` file in a private S3 bucket\.
 
-1. Launch new container instances by following the steps in [Launching an Amazon ECS container instance](launch_container_instance.md)\. In [Step 7](launch_container_instance.md#instance-launch-user-data-step), use the following example script that installs the AWS CLI and copies your configuration file to `/etc/ecs/ecs.config`\.
+1. Launch new container instances by following the steps in [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\. In [Step 7](launch_container_instance.md#instance-launch-user-data-step), use the following example script that installs the AWS CLI and copies your configuration file to `/etc/ecs/ecs.config`\.
 
    ```
    #!/bin/bash

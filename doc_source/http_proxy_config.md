@@ -44,7 +44,7 @@ Setting these environment variables in the above files only affects the Amazon E
 
 **Example Amazon Linux HTTP proxy user data script**  
 The example user data `cloud-boothook` script below configures the Amazon ECS container agent, `ecs-init`, the Docker daemon, and yum to use an HTTP proxy that you specify\. You can also specify a cluster into which the container instance registers itself\.  
-To use this script when you launch a container instance, follow the steps in [Launching an Amazon ECS container instance](launch_container_instance.md), and in [Step 7](launch_container_instance.md#instance-launch-user-data-step)\. Then, copy and paste the `cloud-boothook` script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
+To use this script when you launch a container instance, follow the steps in [Launching an Amazon ECS Linux container instance](launch_container_instance.md), and in [Step 7](launch_container_instance.md#instance-launch-user-data-step)\. Then, copy and paste the `cloud-boothook` script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
 The user data script below only supports Amazon Linux 2 and Amazon Linux AMI variants of the Amazon ECS\-optimized AMI\.
 
 ```
@@ -144,7 +144,7 @@ Set `NO_PROXY` to `169.254.169.254,169.254.170.2,\\.\pipe\docker_engine` to filt
 
 **Example Windows HTTP proxy user data script**  
 The example user data PowerShell script below configures the Amazon ECS container agent and the Docker daemon to use an HTTP proxy that you specify\. You can also specify a cluster into which the container instance registers itself\.  
-To use this script when you launch a container instance, follow the steps in [Launching an Amazon ECS container instance](launch_container_instance.md)\. Just copy and paste the PowerShell script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
+To use this script when you launch a container instance, follow the steps in [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\. Just copy and paste the PowerShell script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
 The `-EnableTaskIAMRole` option is required to enable IAM roles for tasks\. For more information, see [Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
 
 ```

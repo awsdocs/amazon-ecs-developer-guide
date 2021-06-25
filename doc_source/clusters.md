@@ -9,7 +9,6 @@ When you first use Amazon ECS, a default cluster is created for you, but you can
 + [Creating a cluster](create_cluster.md)
 + [Amazon ECS capacity providers](cluster-capacity-providers.md)
 + [Amazon ECS cluster auto scaling](cluster-auto-scaling.md)
-+ [Amazon ECS Anywhere](ecs-anywhere.md)
 + [Amazon ECS clusters in Local Zones, Wavelength Zones, and AWS Outposts](cluster-regions-zones.md)
 + [Updating cluster settings](update-cluster-settings.md)
 + [Deleting a cluster](delete_cluster.md)

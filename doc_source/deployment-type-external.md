@@ -1,6 +1,6 @@
 # External Deployment<a name="deployment-type-external"></a>
 
-The *external* deployment type enables you to use any third\-party deployment controller for full control over the deployment process for an Amazon ECS service\. The details for your service are managed by either the service management API actions \(`CreateService`, `UpdateService`, and `DeleteService`\) or the task set management API actions \(`CreateTaskSet`, `UpdateTaskSet`, `UpdateServicePrimaryTaskSet`, and `DeleteTask`\)\. Each API action has a subset of the service definition parameters that it can manage\.
+The *external* deployment type enables you to use any third\-party deployment controller for full control over the deployment process for an Amazon ECS service\. The details for your service are managed by either the service management API actions \(`CreateService`, `UpdateService`, and `DeleteService`\) or the task set management API actions \(`CreateTaskSet`, `UpdateTaskSet`, `UpdateServicePrimaryTaskSet`, and `DeleteTaskSet`\)\. Each API action has a subset of the service definition parameters that it can manage\.
 
 The `UpdateService` API action updates the desired count and health check grace period parameters for a service\. If the launch type, platform version, load balancer details, network configuration, or task definition need to be updated, you must create a new task set\.
 
@@ -108,7 +108,7 @@ The placement strategy objects to use for tasks in your service\. You can specif
 The task definition for the tasks in the task set to use\.  
 `launchType`  
 Type: String  
-Valid values: `EC2` \| `FARGATE`  
+Valid values: `EC2` \| `FARGATE` \| `EXTERNAL`  
 Required: No  
 The launch type on which to run your service\. If a launch type is not specified, `EC2` is used by default\. For more information, see [Amazon ECS launch types](launch_types.md)\.  
 If a `launchType` is specified, the `capacityProviderStrategy` parameter must be omitted\.  

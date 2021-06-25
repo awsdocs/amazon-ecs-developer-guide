@@ -53,4 +53,4 @@ The following diagram shows the general architecture:
 
 ## External launch type<a name="launch-type-external"></a>
 
-The External launch type is used to run your containerized applications on your on\-premise server or virtual machine \(VM\) that you register to your Amazon ECS cluster and manage remotely\. For more information, see [Amazon ECS Anywhere](ecs-anywhere.md)\.
+The External launch type is used to run your containerized applications on your on\-premise server or virtual machine \(VM\) that you register to your Amazon ECS cluster and manage remotely\. For more information, see [External instances \(Amazon ECS Anywhere\)](ecs-anywhere.md)\.

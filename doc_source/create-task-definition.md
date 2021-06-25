@@ -192,7 +192,7 @@ An empty task definition template is shown as follows\. You can use this templat
     "family": "",
     "taskRoleArn": "",
     "executionRoleArn": "",
-    "networkMode": "host",
+    "networkMode": "awsvpc",
     "containerDefinitions": [
         {
             "name": "",
@@ -210,7 +210,7 @@ An empty task definition template is shown as follows\. You can use this templat
                 {
                     "containerPort": 0,
                     "hostPort": 0,
-                    "protocol": "udp"
+                    "protocol": "tcp"
                 }
             ],
             "essential": true,
@@ -259,7 +259,7 @@ An empty task definition template is shown as follows\. You can use this templat
                         "hostPath": "",
                         "containerPath": "",
                         "permissions": [
-                            "mknod"
+                            "write"
                         ]
                     }
                 ],
@@ -286,7 +286,7 @@ An empty task definition template is shown as follows\. You can use this templat
             "dependsOn": [
                 {
                     "containerName": "",
-                    "condition": "SUCCESS"
+                    "condition": "COMPLETE"
                 }
             ],
             "startTimeout": 0,
@@ -319,13 +319,13 @@ An empty task definition template is shown as follows\. You can use this templat
             },
             "ulimits": [
                 {
-                    "name": "rtprio",
+                    "name": "rttime",
                     "softLimit": 0,
                     "hardLimit": 0
                 }
             ],
             "logConfiguration": {
-                "logDriver": "splunk",
+                "logDriver": "fluentd",
                 "options": {
                     "KeyName": ""
                 },
@@ -354,7 +354,7 @@ An empty task definition template is shown as follows\. You can use this templat
             "resourceRequirements": [
                 {
                     "value": "",
-                    "type": "GPU"
+                    "type": "InferenceAccelerator"
                 }
             ],
             "firelensConfiguration": {
@@ -372,7 +372,7 @@ An empty task definition template is shown as follows\. You can use this templat
                 "sourcePath": ""
             },
             "dockerVolumeConfiguration": {
-                "scope": "shared",
+                "scope": "task",
                 "autoprovision": true,
                 "driver": "",
                 "driverOpts": {
@@ -390,14 +390,6 @@ An empty task definition template is shown as follows\. You can use this templat
                 "authorizationConfig": {
                     "accessPointId": "",
                     "iam": "DISABLED"
-                }
-            },
-            "fsxWindowsFileServerVolumeConfiguration": {
-                "fileSystemId": "",
-                "rootDirectory": "",
-                "authorizationConfig": {
-                    "credentialsParameter": "",
-                    "domain": ""
                 }
             }
         }
@@ -419,10 +411,7 @@ An empty task definition template is shown as follows\. You can use this templat
             "value": ""
         }
     ],
-    "ephemeralStorage": {
-        "sizeInGiB": 0
-    },
-    "pidMode": "host",
+    "pidMode": "task",
     "ipcMode": "host",
     "proxyConfiguration": {
         "type": "APPMESH",

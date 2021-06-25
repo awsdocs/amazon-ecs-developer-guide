@@ -82,6 +82,7 @@ This `LaunchType` metadata is only included when using Amazon ECS container agen
 A list of container metadata for each container associated with the task\.    
 `DockerId`  
 The Docker ID for the container\.  
+When you use Fargate, the id is a 32\-digit hex followed by a 10 digit number\.  
 `Name`  
 The name of the container as specified in the task definition\.  
 `DockerName`  

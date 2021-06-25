@@ -1,4 +1,4 @@
-# Using CloudWatch Logs with container instances<a name="using_cloudwatch_logs"></a>
+# Monitoring your container instances<a name="using_cloudwatch_logs"></a>
 
 You can configure your container instances to send log information to CloudWatch Logs\. This enables you to view different logs from your container instances in one convenient location\. This topic helps you get started using CloudWatch Logs on your container instances that were launched with the Amazon ECS\-optimized Amazon Linux AMI\.
 

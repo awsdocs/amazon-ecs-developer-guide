@@ -28,7 +28,7 @@ You can check the version of the container agent that is running on your contain
    + If your container instance is running an Amazon ECS\-optimized AMI, see [Updating the Amazon ECS container agent on an Amazon ECS\-optimized AMI](agent-update-ecs-ami.md)\.
    + If your container instance is not running an Amazon ECS\-optimized AMI, see [Manually updating the Amazon ECS container agent \(for non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
 **Important**  
-To update the Amazon ECS agent version from versions before v1\.0\.0 on your Amazon ECS\-optimized AMI, we recommend that you terminate your current container instance and launch a new instance with the most recent AMI version\. Any container instances that use a preview version should be retired and replaced with the most recent AMI\. For more information, see [Launching an Amazon ECS container instance](launch_container_instance.md)\.
+To update the Amazon ECS agent version from versions before v1\.0\.0 on your Amazon ECS\-optimized AMI, we recommend that you terminate your current container instance and launch a new instance with the most recent AMI version\. Any container instances that use a preview version should be retired and replaced with the most recent AMI\. For more information, see [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\.
 
 You can also use the Amazon ECS container agent introspection API to check the agent version from the container instance itself\. For more information, see [Amazon ECS container agent introspection](ecs-agent-introspection.md)\.
 

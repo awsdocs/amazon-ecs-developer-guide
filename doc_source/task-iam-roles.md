@@ -27,7 +27,7 @@ You define the IAM role to use in your task definitions, or you can use a `taskR
 **Note**  
 When you specify an IAM role for a task, the AWS CLI or other SDKs in the containers for that task use the AWS credentials provided by the task role exclusively and they no longer inherit any IAM permissions from the container instance\.
 
-From inside the container, you can query the credentials with the following command:
+From inside the container, you can query the credential endpoint with the following command:
 
 ```
 curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI

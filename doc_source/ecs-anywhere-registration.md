@@ -35,13 +35,19 @@ The AWS CLI can be used to create a Systems Manager activation before running th
 
 **To register an external instance \(AWS CLI\)**
 
-1. Create an Systems Manager activation pair\. This is used for Systems Manager managed instance activation\. The output includes an `ActivationId` and `ActivationCode`\. You use these in the next step\. Make sure that you specify the ECS Anywhere IAM role that you created\. For more information, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
+1. Create an Systems Manager activation pair\. This is used for Systems Manager managed instance activation\. The output includes an `ActivationId` and `ActivationCode`\. You use these in a later step\. Make sure that you specify the ECS Anywhere IAM role that you created\. For more information, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
 
    ```
-   aws ssm create-activation --iam-role ECSAnywhereRole | tee ssm-activation.json
+   aws ssm create-activation --iam-role ecsAnywhereRole | tee ssm-activation.json
    ```
 
-1. On your on\-premises server or virtual machine \(VM\), use the following steps to download and run the installation script\.
+1. On your on\-premises server or virtual machine \(VM\), download the installation script\.
+
+   ```
+   curl --proto "https" -o "/tmp/ecs-anywhere-install.sh" "https://amazon-ecs-agent.s3.amazonaws.com/ecs-anywhere-install-latest.sh"
+   ```
+
+1. \(Optional\) On your on\-premises server or virtual machine \(VM\), use the following steps to verify the installation script using the script signature file\.
 
    1. Download and install GnuPG\. For more information about GNUpg, see the [GnuPG website](https://www.gnupg.org)\. For Linux systems, install `gpg` using the package manager on your flavor of Linux\.
 
@@ -75,7 +81,7 @@ The AWS CLI can be used to create a Systems Manager activation before running th
            Subkey fingerprint: D64B B6F9 0CF3 77E9 B5FB  346F 50DE CCC4 710E 61AF
       ```
 
-1. Run the installation script\. Specify the cluster name, Region, and the Systems Manager activation ID and activation code from the first step\.
+1. On your on\-premises server or virtual machine \(VM\), run the installation script\. Specify the cluster name, Region, and the Systems Manager activation ID and activation code from the first step\.
 
    ```
    sudo bash /tmp/ecs-anywhere-install.sh --region $REGION --cluster $CLUSTER_NAME --activation-id $ACTIVATION_ID --activation-code $ACTIVATION_CODE
@@ -91,7 +97,7 @@ Use the following steps to register an existing external instance with a differe
    sudo systemctl stop ecs.service
    ```
 
-1. Edit the `/ecs/etc/ecs.config` file and on the `ECS_CLUSTER` line, ensure the cluster name matches the name of the cluster to register the external instance with\.
+1. Edit the `/etc/ecs/ecs.config` file and on the `ECS_CLUSTER` line, ensure the cluster name matches the name of the cluster to register the external instance with\.
 
 1. Remove the existing Amazon ECS agent data\.
 
