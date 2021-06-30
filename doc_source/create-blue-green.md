@@ -298,7 +298,7 @@ Use the following steps to create your CodeDeploy application, the Application L
    }
    ```
 
-## Step 6: Create and monitor an CodeDeploy deployment<a name="create-blue-green-verify"></a>
+## Step 6: Create and monitor a CodeDeploy deployment<a name="create-blue-green-verify"></a>
 
 Use the following steps to create and upload an application specification file \(AppSpec file\) and an CodeDeploy deployment\.
 

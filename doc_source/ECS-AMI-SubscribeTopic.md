@@ -11,7 +11,7 @@ The Amazon ECS\-optimized AMIs receive regular updates for Amazon ECS container 
 **Note**  
 Your user account must have `sns::subscribe` IAM permissions to subscribe to an SNS topic\.
 
-You can subscribe an Amazon SQS queue to this notification topic, but you must use a topic ARN that is in the same Region as the Amazon SNS topic\. For more information, see [Tutorial: Subscribing an Amazon SQS Queue to an Amazon SNS Topic](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-subscribe-queue-sns-topic.html) in the *Amazon Simple Queue Service Developer Guide*\.
+You can subscribe an Amazon SQS queue to this notification topic, but you must use a topic ARN that is in the same Region as the Amazon SNS topic\. For more information, see [Tutorial: Subscribing an Amazon SQS Queue to an Amazon SNS Topic](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-subscribe-queue-sns-topic.html) in the *Amazon Simple Queue Service Developer Guide*\.
 
 You can also use an AWS Lambda function to trigger events when notifications are received\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-lambda-as-subscriber.html) in the *Amazon Simple Notification Service Developer Guide*\.
 

@@ -24,7 +24,7 @@ The `RunTask` action is ideally suited for processes such as batch jobs that per
 
 **Running tasks on a `cron`\-like schedule**
 
-If you have tasks to run at set intervals in your cluster, such as a backup operation or a log scan, you can use the Amazon ECS console to create a CloudWatch Events rule that runs one or more tasks in your cluster at specified times\. Your scheduled event rule can be set to either a specific interval \(run every *N* minutes, hours, or days\), or for more complicated scheduling, you can use a `cron` expression\. For more information, see [Scheduled tasks \(`cron`\)](scheduled_tasks.md)\.
+If you have tasks to run at set intervals in your cluster, such as a backup operation or a log scan, you can use the Amazon ECS console to create a CloudWatch Events rule that runs one or more tasks in your cluster at specified times\. Your scheduled event rule can be set to either a specific interval \(run every *N* minutes, hours, or days\), or for more complicated scheduling, you can use a `cron` expression\. For more information, see [Scheduled tasks](scheduled_tasks.md)\.
 
 **Custom schedulers**
 
@@ -40,7 +40,7 @@ The `RunTask` and `CreateService` actions enable you to specify task placement c
 **Topics**
 + [Run a standalone task](ecs_run_task.md)
 + [Amazon ECS task placement](task-placement.md)
-+ [Scheduled tasks \(`cron`\)](scheduled_tasks.md)
++ [Scheduled tasks](scheduled_tasks.md)
 + [Task lifecycle](task-lifecycle.md)
 + [Task retirement](task-retirement.md)
 + [Fargate task recycling](task-recycle.md)

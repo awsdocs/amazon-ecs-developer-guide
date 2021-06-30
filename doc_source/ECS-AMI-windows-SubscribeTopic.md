@@ -5,7 +5,7 @@ The Amazon ECS\-optimized AMIs receive regular updates for Amazon ECS container 
 **Note**  
 Your user account must have `sns::subscribe` IAM permissions to subscribe to an SNS topic\.
 
-You can subscribe an Amazon SQS queue to this notification topic, but you must use a topic ARN that is in the same Region as the Amazon SNS topic\. For more information, see [Tutorial: Subscribing an Amazon SQS Queue to an Amazon SNS Topic](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-subscribe-queue-sns-topic.html) in the *Amazon Simple Queue Service Developer Guide*\.
+You can subscribe an Amazon SQS queue to this notification topic, but you must use a topic ARN that is in the same Region as the Amazon SNS topic\. For more information, see [Tutorial: Subscribing an Amazon SQS Queue to an Amazon SNS Topic](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-subscribe-queue-sns-topic.html) in the *Amazon Simple Queue Service Developer Guide*\.
 
 You can also use an AWS Lambda function to trigger events when notifications are received\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-lambda-as-subscriber.html) in the *Amazon Simple Notification Service Developer Guide*\.
 
@@ -150,4 +150,4 @@ The parsed `Message` value \(with escaped quotes removed\) is shown below:
 
 ## Windows Amazon ECS\-optimized AMIs<a name="sns-topic-windows"></a>
 
-AWS provides two Amazon SNS topic ARNs for variants of the Windows Amazon ECS\-optimized AMI\. One topic sends update notifications when new Windows AMIs are released\. The other topic sends notifications when previously released Windows AMIs are made private\. For more information on subscribing to Windows AMI notifications, see [Subscribing to Windows AMI notifications](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-ami-version-history.html#subscribe-notifications) in the *Amazon EC2 User Guide for Windows Instances*\.
+AWS provides two Amazon SNS topic ARNs for variants of the Windows Amazon ECS\-optimized AMI\. One topic sends update notifications when new Windows AMIs are released\. The other topic sends notifications when previously released Windows AMIs are made private\. For more information on subscribing to Windows AMI notifications, see [Subscribing to Windows AMI notifications](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/aws-windows-ami.html#subscribe-notifications) in the *Amazon EC2 User Guide for Windows Instances*\.

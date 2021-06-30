@@ -17,7 +17,6 @@ Amazon ECS supports the followinwg container instances:
 + [Linux instances](ecs-linux.md)
 + [Windows instances](ecs-windows.md)
 + [External instances \(Amazon ECS Anywhere\)](ecs-anywhere.md)
-+ [Using Bottlerocket with Amazon ECS](ecs-bottlerocket.md)
 + [Monitoring your container instances](using_cloudwatch_logs.md)
 + [Container instance draining](container-instance-draining.md)
 + [Deregister an Amazon EC2 backed container instance](deregister_container_instance.md)

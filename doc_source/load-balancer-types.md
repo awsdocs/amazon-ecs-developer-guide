@@ -6,6 +6,7 @@ Elastic Load Balancing supports the following types of load balancers: Applicati
 + [Application Load Balancer](#alb)
 + [Network Load Balancer](#nlb)
 + [Classic Load Balancer](#clb)
++ [Gateway Load Balancers](#gateway-load-balancer)
 
 ## Application Load Balancer<a name="alb"></a>
 
@@ -24,3 +25,7 @@ A Network Load Balancer makes routing decisions at the transport layer \(TCP/SSL
 A Classic Load Balancer makes routing decisions at either the transport layer \(TCP/SSL\) or the application layer \(HTTP/HTTPS\)\. Classic Load Balancers currently require a fixed relationship between the load balancer port and the container instance port\. For example, it is possible to map the load balancer port 80 to the container instance port 3030 and the load balancer port 4040 to the container instance port 4040\. However, it is not possible to map the load balancer port 80 to port 3030 on one container instance and port 4040 on another container instance\. This static mapping requires that your cluster has at least as many container instances as the desired count of a single service that uses a Classic Load Balancer\. For more information, see the [User Guide for Classic Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/)\.
 
 ![\[Classic Load Balancer\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/clb.png)
+
+## Gateway Load Balancers<a name="gateway-load-balancer"></a>
+
+Gateway Load Balancers enable you to deploy, scale, and manage virtual appliances, such as firewalls, intrusion detection and prevention systems, and deep packet inspection systems\. It combines a transparent network gateway \(that is, a single entry and exit point for all traffic\) and distributes traffic while scaling your virtual appliances with the demand\. A Gateway Load Balancer operates at the third layer of the Open Systems Interconnection \(OSI\) model, the network layer\. It listens for all IP packets across all ports and forwards traffic to the target group that's specified in the listener rule\. It maintains stickiness of flows to a specific target appliance using 5\-tuple \(for TCP/UDP flows\) or 3\-tuple \(for non\-TCP/UDP flows\)\. The Gateway Load Balancer and its registered virtual appliance instances exchange application traffic using the GENEVE protocol on port 6081\. It supports a maximum transmission unit \(MTU\) size of 8500 bytes\. Gateway Load Balancers use Gateway Load Balancer endpoints to securely exchange traffic across VPC boundaries\. A Gateway Load Balancer endpoint is a VPC endpoint that provides private connectivity between virtual appliances in the service provider VPC and application servers in the service consumer VPC\. You deploy the Gateway Load Balancer in the same VPC as the virtual appliances\. You register the virtual appliances with a target group for the Gateway Load Balancer\. For more information, see the [Gateway Load Balancers User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/introduction.html)\.

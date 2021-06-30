@@ -2,7 +2,7 @@
 
 Before you can use Amazon ECS scheduled tasks with CloudWatch Events rules and targets, the CloudWatch Events service needs permissions to run Amazon ECS tasks on your behalf\. These permissions are provided by the CloudWatch Events IAM role \(`ecsEventsRole`\)\.
 
-The CloudWatch Events role is automatically created for you in the AWS Management Console when you configure a scheduled task\. For more information, see [Scheduled tasks \(`cron`\)](scheduled_tasks.md)\.
+The CloudWatch Events role is automatically created for you in the AWS Management Console when you configure a scheduled task\. For more information, see [Scheduled tasks](scheduled_tasks.md)\.
 
 The `AmazonEC2ContainerServiceEventsRole` policy is shown below\.
 

@@ -379,6 +379,8 @@ With the following IAM policy, users can only launch tasks when ECS Exec is disa
 **Note**  
 Because the `execute-command` API action contains only task and cluster resources in a request, only cluster and task tags are evaluated\.
 
+For more information about IAM policy condition keys, see [Actions, resources, and condition keys for Amazon Elastic Container Service](/service-authorization/latest/reference/list_amazonelasticcontainerservice.html) in the *Service Authorization Reference*\.
+
 ### Limiting access to the Start Session action<a name="ecs-exec-limit-access-start-session"></a>
 
 While starting SSM sessions on your container outside of ECS Exec is possible, this could potentially result in the sessions not being logged\. Sessions started outside of ECS Exec also count against the session quota\. We recommend limiting this access by denying the `ssm:start-session` action directly for your Amazon ECS tasks using an IAM policy\. You can deny access to all Amazon ECS tasks or to specific tasks based on the tags used\.

@@ -1,14 +1,14 @@
-# How Amazon Elastic Container Service Works with IAM<a name="security_iam_service-with-iam"></a>
+# How Amazon Elastic Container Service works with IAM<a name="security_iam_service-with-iam"></a>
 
 Before you use IAM to manage access to Amazon ECS, you should understand what IAM features are available to use with Amazon ECS\. To get a high\-level view of how Amazon ECS and other AWS services work with IAM, see [AWS Services That Work with IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html) in the *IAM User Guide*\.
 
 **Topics**
-+ [Amazon ECS Identity\-Based Policies](#security_iam_service-with-iam-id-based-policies)
-+ [Amazon ECS Resource\-Based Policies](#security_iam_service-with-iam-resource-based-policies)
-+ [Authorization Based on Amazon ECS Tags](#security_iam_service-with-iam-tags)
-+ [Amazon ECS IAM Roles](#security_iam_service-with-iam-roles)
++ [Amazon ECS identity\-based policies](#security_iam_service-with-iam-id-based-policies)
++ [Amazon ECS resource\-based policies](#security_iam_service-with-iam-resource-based-policies)
++ [Authorization based on Amazon ECS tags](#security_iam_service-with-iam-tags)
++ [Amazon ECS IAM roles](#security_iam_service-with-iam-roles)
 
-## Amazon ECS Identity\-Based Policies<a name="security_iam_service-with-iam-id-based-policies"></a>
+## Amazon ECS identity\-based policies<a name="security_iam_service-with-iam-id-based-policies"></a>
 
 With IAM identity\-based policies, you can specify allowed or denied actions and resources as well as the conditions under which actions are allowed or denied\. Amazon ECS supports specific actions, resources, and condition keys\. To learn about all of the elements that you use in a JSON policy, see [IAM JSON Policy Elements Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html) in the *IAM User Guide*\.
 
@@ -103,11 +103,11 @@ The following table uses the new longer ARN format for Amazon ECS tasks, service
 |  Task definition  |  arn:aws:ecs:*region*:*account*:task\-definition/*task\-definition\-family\-name*:*task\-definition\-revision\-number*  | 
 |  Service  |  arn:aws:ecs:*region*:*account*:service/*cluster\-name*/*service\-name*  | 
 |  Task  |  arn:aws:ecs:*region*:*account*:task/*cluster\-name*/*task\-id*  | 
-|  Container  |  arn:aws:ecs:*region*:*account*:container/*container\-id*  | 
+|  Container  |  arn:aws:ecs:*region*:*account*:container/*cluster\-name*/*task\-id*/*container\-id*  | 
 
 To learn with which actions you can specify the ARN of each resource, see [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)\.
 
-### Condition Keys<a name="security_iam_service-with-iam-id-based-policies-conditionkeys"></a>
+### Condition keys<a name="security_iam_service-with-iam-id-based-policies-conditionkeys"></a>
 
 Administrators can use AWS JSON policies to specify who has access to what\. That is, which **principal** can perform **actions** on what **resources**, and under what **conditions**\.
 
@@ -143,13 +143,13 @@ To learn with which actions and resources you can use a condition key, see [Supp
 
 
 
-To view examples of Amazon ECS identity\-based policies, see [Amazon Elastic Container Service Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
+To view examples of Amazon ECS identity\-based policies, see [Amazon Elastic Container Service identity\-based policy examples](security_iam_id-based-policy-examples.md)\.
 
-## Amazon ECS Resource\-Based Policies<a name="security_iam_service-with-iam-resource-based-policies"></a>
+## Amazon ECS resource\-based policies<a name="security_iam_service-with-iam-resource-based-policies"></a>
 
 Amazon ECS does not support resource\-based policies\.
 
-## Authorization Based on Amazon ECS Tags<a name="security_iam_service-with-iam-tags"></a>
+## Authorization based on Amazon ECS tags<a name="security_iam_service-with-iam-tags"></a>
 
 You can attach tags to Amazon ECS resources or pass tags in a request to Amazon ECS\. To control access based on tags, you provide tag information in the [condition element](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) of a policy using the  `aws:RequestTag/key-name` or `aws:TagKeys` condition keys\. For more information, see [Controlling Access Using Tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *IAM User Guide*\.
 
@@ -157,23 +157,23 @@ For more information about tagging Amazon ECS resources, see [Resources and tags
 
 To view an example identity\-based policy for limiting access to a resource based on the tags on that resource, see [Describing Amazon ECS Services Based on Tags](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-view-cluster-tags)\.
 
-## Amazon ECS IAM Roles<a name="security_iam_service-with-iam-roles"></a>
+## Amazon ECS IAM roles<a name="security_iam_service-with-iam-roles"></a>
 
 An [IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) is an entity within your AWS account that has specific permissions\.
 
-### Using Temporary Credentials with Amazon ECS<a name="security_iam_service-with-iam-roles-tempcreds"></a>
+### Using temporary credentials with Amazon ECS<a name="security_iam_service-with-iam-roles-tempcreds"></a>
 
 You can use temporary credentials to sign in with federation, assume an IAM role, or to assume a cross\-account role\. You obtain temporary security credentials by calling AWS STS API operations such as [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) or [GetFederationToken](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetFederationToken.html)\.
 
 Amazon ECS supports using temporary credentials\.
 
-### Service\-Linked Roles<a name="security_iam_service-with-iam-roles-service-linked"></a>
+### Service\-linked roles<a name="security_iam_service-with-iam-roles-service-linked"></a>
 
 [Service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role) allow AWS services to access resources in other services to complete an action on your behalf\. Service\-linked roles appear in your IAM account and are owned by the service\. An IAM administrator can view but not edit the permissions for service\-linked roles\.
 
 Amazon ECS supports service\-linked roles\. For details about creating or managing Amazon ECS service\-linked roles, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
 
-### Service Roles<a name="security_iam_service-with-iam-roles-service"></a>
+### Service roles<a name="security_iam_service-with-iam-roles-service"></a>
 
 This feature allows a service to assume a [service role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-role) on your behalf\. This role allows the service to access resources in other services to complete an action on your behalf\. Service roles appear in your IAM account and are owned by the account\. This means that an IAM administrator can change the permissions for this role\. However, doing so might break the functionality of the service\.
 

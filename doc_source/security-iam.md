@@ -5,9 +5,9 @@ AWS Identity and Access Management \(IAM\) is an AWS service that helps an admin
 **Topics**
 + [Audience](#security_iam_audience)
 + [Authenticating With Identities](#security_iam_authentication)
-+ [Managing Access Using Policies](#security_iam_access-manage)
-+ [How Amazon Elastic Container Service Works with IAM](security_iam_service-with-iam.md)
-+ [Amazon Elastic Container Service Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)
++ [Managing access using policies](#security_iam_access-manage)
++ [How Amazon Elastic Container Service works with IAM](security_iam_service-with-iam.md)
++ [Amazon Elastic Container Service identity\-based policy examples](security_iam_id-based-policy-examples.md)
 + [AWS managed policies for Amazon Elastic Container Service](security-iam-awsmanpol.md)
 + [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)
 + [Service\-linked role for Amazon ECS](using-service-linked-roles.md)
@@ -25,9 +25,9 @@ How you use AWS Identity and Access Management \(IAM\) differs, depending on the
 
 **Service user** – If you use the Amazon ECS service to do your job, then your administrator provides you with the credentials and permissions that you need\. As you use more Amazon ECS features to do your work, you might need additional permissions\. Understanding how access is managed can help you request the right permissions from your administrator\. If you cannot access a feature in Amazon ECS, see [Troubleshooting Amazon Elastic Container Service identity and access](security_iam_troubleshoot.md)\.
 
-**Service administrator** – If you're in charge of Amazon ECS resources at your company, you probably have full access to Amazon ECS\. It's your job to determine which Amazon ECS features and resources your employees should access\. You must then submit requests to your IAM administrator to change the permissions of your service users\. Review the information on this page to understand the basic concepts of IAM\. To learn more about how your company can use IAM with Amazon ECS, see [How Amazon Elastic Container Service Works with IAM](security_iam_service-with-iam.md)\.
+**Service administrator** – If you're in charge of Amazon ECS resources at your company, you probably have full access to Amazon ECS\. It's your job to determine which Amazon ECS features and resources your employees should access\. You must then submit requests to your IAM administrator to change the permissions of your service users\. Review the information on this page to understand the basic concepts of IAM\. To learn more about how your company can use IAM with Amazon ECS, see [How Amazon Elastic Container Service works with IAM](security_iam_service-with-iam.md)\.
 
-**IAM administrator** – If you're an IAM administrator, you might want to learn details about how you can write policies to manage access to Amazon ECS\. To view example Amazon ECS identity\-based policies that you can use in IAM, see [Amazon Elastic Container Service Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
+**IAM administrator** – If you're an IAM administrator, you might want to learn details about how you can write policies to manage access to Amazon ECS\. To view example Amazon ECS identity\-based policies that you can use in IAM, see [Amazon Elastic Container Service identity\-based policy examples](security_iam_id-based-policy-examples.md)\.
 
 ## Authenticating With Identities<a name="security_iam_authentication"></a>
 
@@ -67,7 +67,7 @@ IAM roles with temporary credentials are useful in the following situations:
 
 To learn whether to use IAM roles or IAM users, see [When to create an IAM role \(instead of a user\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html#id_which-to-choose_role) in the *IAM User Guide*\.
 
-## Managing Access Using Policies<a name="security_iam_access-manage"></a>
+## Managing access using policies<a name="security_iam_access-manage"></a>
 
 You control access in AWS by creating policies and attaching them to IAM identities or AWS resources\. A policy is an object in AWS that, when associated with an identity or resource, defines their permissions\. You can sign in as the root user or an IAM user, or you can assume an IAM role\. When you then make a request, AWS evaluates the related identity\-based or resource\-based policies\. Permissions in the policies determine whether the request is allowed or denied\. Most policies are stored in AWS as JSON documents\. For more information about the structure and contents of JSON policy documents, see [Overview of JSON policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json) in the *IAM User Guide*\.
 
@@ -77,25 +77,25 @@ Every IAM entity \(user or role\) starts with no permissions\. In other words, b
 
 IAM policies define permissions for an action regardless of the method that you use to perform the operation\. For example, suppose that you have a policy that allows the `iam:GetRole` action\. A user with that policy can get role information from the AWS Management Console, the AWS CLI, or the AWS API\.
 
-### Identity\-Based Policies<a name="security_iam_access-manage-id-based-policies"></a>
+### Identity\-based policies<a name="security_iam_access-manage-id-based-policies"></a>
 
 Identity\-based policies are JSON permissions policy documents that you can attach to an identity, such as an IAM user, group of users, or role\. These policies control what actions users and roles can perform, on which resources, and under what conditions\. To learn how to create an identity\-based policy, see [Creating IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the *IAM User Guide*\.
 
 Identity\-based policies can be further categorized as *inline policies* or *managed policies*\. Inline policies are embedded directly into a single user, group, or role\. Managed policies are standalone policies that you can attach to multiple users, groups, and roles in your AWS account\. Managed policies include AWS managed policies and customer managed policies\. To learn how to choose between a managed policy or an inline policy, see [Choosing between managed policies and inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#choosing-managed-or-inline) in the *IAM User Guide*\.
 
-### Resource\-Based Policies<a name="security_iam_access-manage-resource-based-policies"></a>
+### Resource\-based policies<a name="security_iam_access-manage-resource-based-policies"></a>
 
 Resource\-based policies are JSON policy documents that you attach to a resource\. Examples of resource\-based policies are IAM *role trust policies* and Amazon S3 *bucket policies*\. In services that support resource\-based policies, service administrators can use them to control access to a specific resource\. For the resource where the policy is attached, the policy defines what actions a specified principal can perform on that resource and under what conditions\. You must [specify a principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html) in a resource\-based policy\. Principals can include accounts, users, roles, federated users, or AWS services\.
 
 Resource\-based policies are inline policies that are located in that service\. You can't use AWS managed policies from IAM in a resource\-based policy\.
 
-### Access Control Lists \(ACLs\)<a name="security_iam_access-manage-acl"></a>
+### Access control lists \(ACLs\)<a name="security_iam_access-manage-acl"></a>
 
 Access control lists \(ACLs\) control which principals \(account members, users, or roles\) have permissions to access a resource\. ACLs are similar to resource\-based policies, although they do not use the JSON policy document format\.
 
 Amazon S3, AWS WAF, and Amazon VPC are examples of services that support ACLs\. To learn more about ACLs, see [Access control list \(ACL\) overview](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
-### Other Policy Types<a name="security_iam_access-manage-other-policies"></a>
+### Other policy types<a name="security_iam_access-manage-other-policies"></a>
 
 AWS supports additional, less\-common policy types\. These policy types can set the maximum permissions granted to you by the more common policy types\. 
 + **Permissions boundaries** – A permissions boundary is an advanced feature in which you set the maximum permissions that an identity\-based policy can grant to an IAM entity \(IAM user or role\)\. You can set a permissions boundary for an entity\. The resulting permissions are the intersection of entity's identity\-based policies and its permissions boundaries\. Resource\-based policies that specify the user or role in the `Principal` field are not limited by the permissions boundary\. An explicit deny in any of these policies overrides the allow\. For more information about permissions boundaries, see [Permissions boundaries for IAM entities](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) in the *IAM User Guide*\.

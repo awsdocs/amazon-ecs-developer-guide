@@ -1,10 +1,5 @@
 # Using Bottlerocket with Amazon ECS<a name="ecs-bottlerocket"></a>
 
-
-|  | 
-| --- |
-| The Bottlerocket AMI variant is in developer preview release for Amazon ECS and is subject to change\. | 
-
 Bottlerocket is a Linux\-based open source operating system that is purpose\-built by AWS for running containers\. For more information, see [Bottlerocket on GitHub](https://github.com/bottlerocket-os/bottlerocket)\.
 
 An Amazon ECS\-optimized AMI variant of the Bottlerocket operating system is provided as an AMI you can use when launching Amazon ECS container instances\. For a detailed walkthrough of how to get started with the Bottlerocket operating system on Amazon ECS, see [Using a Bottlerocket AMI with Amazon ECS](https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-ECS.md)\.
@@ -14,6 +9,7 @@ You can request new features on the GitHub page\. For more information, see [Bot
 ## Considerations<a name="ecs-bottlerocket-considerations"></a>
 
 The following should be considered when using the Bottlerocket AMI with Amazon ECS\.
++ Bottlerocket is optimized for container workloads and has a focus on security\. It does not include a package manager and is immutable by default\. For information about the security features and guidance, see [Security Features](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_FEATURES.md) and [Security Guidance](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_GUIDANCE.md) on the GitHub website\.
 + The Amazon ECS variant of the Bottlerocket AMI is not supported in the following Regions:
   + China \(Beijing\) \(`cn-north-1`\)
   + China \(Ningxia\) \(`cn-northwest-1`\)
@@ -23,6 +19,13 @@ The following should be considered when using the Bottlerocket AMI with Amazon E
 + The `awsvpc` network mode is supported when using Bottlerocket AMI version `1.1.0` or later\.
 + Using Amazon EFS file system volumes are not supported\.
 + The `initProcessEnabled` task definition parameter is not supported\.
++ The following features are not supported:
+  + App Mesh in task definitions
+  + ECS Anywhere
+  + ECS Exec
+  + Amazon EFS in encrypted mode and `awsvpc` network mode
+  + Elastic Inference
+  + FireLens in task definitions
 
 The Amazon ECS variant of the Bottlerocket AMI can be retrieved using a Systems Manager parameter\. The following is the format of the parameter name\.
 

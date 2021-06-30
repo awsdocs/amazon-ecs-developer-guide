@@ -5,8 +5,13 @@ An Amazon ECS container instance is an Amazon EC2 instance that is running the A
 **Note**  
 Tasks using the Fargate launch type are deployed onto infrastructure managed by AWS, so this topic does not apply\.
 
+The following Linux container instance operating systems are available:
++ Amazon Linux: This is a general purpose operating system\.
++ Bottlerocket: This is an operating system that is optimized for container workloads and that has a focus on security\. It does not include a package manager and is immutable by default\. For information about the security features and guidance, see [Security Features](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_FEATURES.md) and [Security Guidance](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_GUIDANCE.md) on the GitHub website\.
+
 **Topics**
 + [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)
++ [Using Bottlerocket with Amazon ECS](ecs-bottlerocket.md)
 + [Launching an Amazon ECS Linux container instance](launch_container_instance.md)
 + [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)
 + [Starting a task at container instance launch time](start_task_at_launch.md)

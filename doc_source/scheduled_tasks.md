@@ -1,77 +1,138 @@
-# Scheduled tasks \(`cron`\)<a name="scheduled_tasks"></a>
+# Scheduled tasks<a name="scheduled_tasks"></a>
 
-Amazon ECS supports the ability to schedule tasks on either a `cron`\-like schedule or in a response to CloudWatch Events\. This is supported for Amazon ECS tasks using both the Fargate and EC2 launch types\.
+Amazon ECS supports creating scheduled tasks\. Scheduled tasks use Amazon EventBridge rules to run tasks either on a schedule or in a response to an EventBridge event\.
 
-If you have tasks to run at set intervals in your cluster, such as a backup operation or a log scan, you can use the Amazon ECS console to create a CloudWatch Events rule that runs one or more tasks in your cluster at the specified times\. Your scheduled event rule can be set to either a specific interval \(run every *N* minutes, hours, or days\), or for more complicated scheduling, you can use a `cron` expression\. For more information, see [Schedule Expressions for Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) in the *Amazon CloudWatch Events User Guide*\.
+If you want to run tasks at set intervals, such as a backup operation or a log scan, you can create a scheduled task that runs one or more tasks at specified times\. You can specify a regular interval \(run every *N* minutes, hours, or days\), or for more complicated scheduling, you can use a `cron` expression\. For more information, see [Cron expressions and rate expressions](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html) in the *Amazon EventBridge User Guide*\.
 
-You can also now set your Fargate tasks as a task target in CloudWatch Events, allowing you to launch tasks in response to changes that happen\. Additionally, you can modify the network configuration when using the `awsvpc` network mode via the CloudWatch Events console and AWS CLI, giving Fargate tasks triggered by CloudWatch Events the same networking properties as Amazon EC2 instances\. For more information, see [Tutorial: Run an Amazon ECS Task When a File is Uploaded to an Amazon S3 Bucket](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatch-Events-tutorial-ECS.html) in the *Amazon CloudWatch Events User Guide*\.
+If you want to run tasks that are triggered by an event, there are AWS managed events for services \(for example Amazon ECS task and container instance state change events\) or you can create a custom event pattern\. For more information, see [Event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html) in the *Amazon EventBridge User Guide*\.
 
+The EventBridge documentation includes a tutorial for creating a scheduled task based on a file being uploaded to an Amazon S3 bucket\. For more information, see [Tutorial: Run an Amazon ECS task when a file is uploaded to an Amazon S3 bucket](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-ecs-tutorial.html) in the *Amazon EventBridge User Guide*\.
+
+**Topics**
++ [Create a scheduled task](#scheduled-task-create)
++ [View your scheduled tasks](#scheduled-task-view)
++ [Edit a scheduled task](#scheduled-task-edit)
+
+## Create a scheduled task<a name="scheduled-task-create"></a>
+
+Scheduled tasks are triggered by Amazon EventBridge rules, which you can create using the EventBridge console\. Although you can create a scheduled task in the Amazon ECS console, currently the EventBridge console provides more functionality so the following steps walk you through creating an EventBridge rule that triggers a scheduled task\.
+
+**Create a scheduled task \(EventBridge console\)**
+
+1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
+
+1. In the navigation pane, choose **Rules**, **Create rule**\.
+
+1. Enter a name and description for the rule\.
 **Note**  
-This feature is not yet available for Fargate tasks in the following Regions:  
+A rule can't have the same name as another rule in the same Region and on the same event bus\.
 
+1. For a scheduled task that runs on a schedule, do the following\. To create a scheduled task that runs based on an event, skip to the next step\.
 
-| Region Name | Region | 
-| --- | --- | 
-| China \(Beijing\) | cn\-north\-1 | 
-| China \(Ningxia\) | cn\-northwest\-1 | 
-| South America \(São Paulo\) | sa\-east\-1 | 
-| Middle East \(Bahrain\) | me\-south\-1 | 
+   1. For **Define pattern**, choose **Schedule**\.
 
-**Creating a scheduled task**
+   1. Either choose **Fixed rate of** and specify how often the task is to run, or choose **Cron expression** and specify a cron expression that defines when the task is to be triggered\.
+
+   1. For **Select event bus**, choose **AWS default event bus**\. You can only create scheduled rules on the default event bus\.
+
+1. For a scheduled task that runs based on an event, do the following\. If you created your rule based on a schedule, skip to the next step\.
+
+   1. For **Define pattern**, choose **Event pattern**\.
+
+   1. Choose **Pre\-defined pattern by service**\.
+
+   1. For **Service provider**, choose **AWS**\.
+
+   1. For **Service name**, choose the name of the service that emits the event\.
+
+   1. For **Event type**, choose **All Events** or choose the type of event to use for this rule\. If you choose **All Events**, all events emitted by this AWS service will match the rule\.
+
+      To customize the event pattern, choose **Edit**, make your changes, and then choose **Save**\.
+
+   1. For **Select event bus**, choose the event bus that you want to associate with this rule\. If you want this rule to match events that come from your account, select ** AWS default event bus**\. When an AWS service in your account emits an event, it always goes to your account’s default event bus\.
+
+1. For **Select targets**, choose **ECS task**\.
+
+1. For **Cluster**, select an Amazon ECS cluster\.
+
+1. For **Task definition**, select a task definition family\.
+
+1. For **Launch type**, choose the launch type to use\.
+**Important**  
+To use a capacity provider strategy, don't select a launch type\. Specify the capacity provider strategy in a later step under the **Configure additional properties** section\.
+
+1. For **Platform version**, specify the platform version to use\. This is required for Amazon ECS tasks hosted on Fargate\. If a platform version isn't specified, the `LATEST` platform version is used by default\.
+
+1. \(Optional\) Expand **Configure task definition revision and task count** to change the default values\.
+
+   1. For **Task definition revision**, select **Revision** and select a task definition revision to use\.
+
+   1. For **Count**, specify the desired number of tasks to run\.
+
+1. \(Optional\) Expand **Configure network configuration** to specify a network configuration\. This is required for tasks hosted on Fargate and tasks using the `awsvpc` network mode\.
+
+   1. For **Subnets**, specify one or more subnet IDs\.
+
+   1. For **Security groups**, specify one or more security group IDs\.
+
+   1. For **Auto\-assign public IP**, specify whether to assign a public IP address from your subnet to the task\.
+
+1. \(Optional\) Expand **Configure additional properties** to specify the following additional parameters for your tasks\.
+
+   1. For **Placement constraint**, choose **Add placement constraint**\. Select the **Type** for the placement constraint and then enter an expression\. For more information, see [Amazon ECS task placement constraints](task-placement-constraints.md)\.
+**Note**  
+Task placement constraints aren't supported for tasks hosted on Fargate\.
+
+   1. For **Placement strategy**, choose **Add placement strategy**\. Select the **Type** for the placement strategy and then enter an expression\. Repeat this process for each placement strategy to add\. For more information, see [Amazon ECS task placement strategies](task-placement-strategies.md)\.
+**Note**  
+Task placement strategies aren't supported for tasks hosted on Fargate\.
+
+   1. For **Tags**, choose **Add tag** to associate key value pair tags for the task\.
+
+   1. For **Configure managed tags**, choose **Enable managed tags** to have Amazon ECS add tags that can be used when reviewing cost allocation in your Cost and Usage Report\. For more information, see [Tagging your resources for billing](ecs-using-tags.md#tag-resources-for-billing)\.
+
+   1. For **Configure execute command**, choose **Enable execute command** to enable the ECS Exec functionality for the task\. For more information, see [Using Amazon ECS Exec for debugging](ecs-exec.md)\.
+
+   1. For **Configure propagate tags**, choose **Propagate tags from task definition** to have Amazon ECS add the tags associated with the task definition to your task\. For more information, see [Tagging your resources](ecs-using-tags.md#tag-resources)\.
+**Note**  
+If you specify a tag with the same key in the **Tags** section, it will override the tag propagated from the task definition\.
+
+   1. For **ReferenceId**, specify a reference ID for the task\.
+
+1. For many target types, EventBridge needs permissions to send events to the target\. In these cases, EventBridge can create the IAM role needed for your rule to run\.
+   + To create an IAM role automatically, choose **Create a new role for this specific resource**
+   + To use an IAM role that you created earlier, choose **Use existing role**
+
+1. For **Retry policy and dead\-letter queue:**, under **Retry policy**:
+
+   1. For **Maximum age of event**, enter a value between one minute \(`00:01`\) and 24 hours \(`24:00`\)\.
+
+   1. For **Retry attempts**, enter a number between 0 and 185\.
+
+1. For **Dead\-letter queue**, choose whether to use a standard Amazon SQS queue as a dead\-letter queue\. EventBridge sends events that match this rule to the dead\-letter queue if they are not successfully delivered to the target\. Do one of the following:
+   + Choose **None** to not use a dead\-letter queue\.
+   + Choose **Select an Amazon SQS queue in the current AWS account to use as the dead\-letter queue** and then select the queue to use from the drop\-down list\.
+   + Choose **Select an Amazon SQS queue in an other AWS account as a dead\-letter queue** and then enter the ARN of the queue to use\. You must attach a resource\-based policy to the queue that grants EventBridge permission to send messages to it\. For more information, see [Granting permissions to the dead\-letter queue](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rule-dlq.html#eb-dlq-perms) in the *Amazon EventBridge User Guide*\.
+
+## View your scheduled tasks<a name="scheduled-task-view"></a>
+
+Your scheduled tasks can be viewed in the Amazon ECS console\. You can also view the Amazon EventBridge rules that trigger the scheduled tasks in the EventBridge console\.
+
+**To view your scheduled tasks \(Amazon ECS console\)**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. Choose the cluster in which to create your scheduled task\. If you do not have any clusters, see [Creating a cluster](create_cluster.md) for steps on creating a new cluster\.
+1. Choose the cluster your scheduled tasks are run in\.
 
-1. On the **Cluster: *cluster\-name*** page, choose **Scheduled Tasks**, **Create**\.
+1. On the **Cluster: *cluster\-name*** page, choose the **Scheduled Tasks** tab\.
 
-1. For **Schedule rule name**, enter a unique name for your schedule rule\. Up to 64 letters, numbers, periods, hyphens, and underscores are allowed\.
+1. All of your scheduled tasks are listed\.
 
-1. \(Optional\) For **Schedule rule description**, enter a description for your rule\. Up to 512 characters are allowed\.
+## Edit a scheduled task<a name="scheduled-task-edit"></a>
 
-1. For **Schedule rule type**, choose whether to use a fixed interval schedule or a `cron` expression for your schedule rule\. For more information, see [Schedule Expressions for Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) in the *Amazon CloudWatch Events User Guide*\.
-   + For **Run at fixed interval**, enter the interval and unit for your schedule\.
-   + For **Cron expression**, enter the `cron` expression for your task schedule\. These expressions have six required fields, and fields are separated by white space\. For more information, and examples of `cron` expressions, see [Cron Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions) in the *Amazon CloudWatch Events User Guide*\.
+Your scheduled tasks can be edited in the Amazon ECS console\. You can also edit the Amazon EventBridge rules that trigger the scheduled tasks in the EventBridge console\.
 
-1. Create a target for your schedule rule\.
-
-   1. For **Target id**, enter a unique identifier for your target\. Up to 64 letters, numbers, periods, hyphens, and underscores are allowed\.
-
-   1. For **Launch type**, choose the launch type for the tasks in your service\. For more information, see [Amazon ECS launch types](launch_types.md)\.
-
-   1. For **Task definition**, choose the family and revision \(family:revision\) of the task definition to run for this target\.
-
-   1. For **Platform version**, choose the platform version to use for this target\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
-**Note**  
-Platform versions are only applicable to tasks that use the Fargate launch type\.
-
-   1. For **Number of tasks**, enter the number of instantiations of the specified task definition to run on your cluster when the rule executes\.
-
-   1. \(Optional\) For **Task role override**, choose the IAM role to use for the task in your target, instead of the task definition default\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\. Only roles with the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\. You must add `iam:PassRole` permissions for any task role and task role overrides to the CloudWatch IAM role\. For more information, see [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)\.
-
-   1. If your scheduled task's task definition uses the `awsvpc` network mode, you must configure a VPC, subnet, and security group settings for your scheduled task\. For more information, see [Amazon ECS task networking](task-networking.md)\.\.
-
-      1. For **Cluster VPC**, if you selected the EC2 launch type, choose the VPC in which your container instances reside\. If you selected the Fargate launch type, select the VPC that the Fargate tasks should use\. Ensure that the VPC you choose is not configured to require dedicated hardware tenancy as that is not supported by Fargate tasks\.
-
-      1. For **Subnets**, choose the available subnets for your scheduled task placement\.
-**Important**  
-Only private subnets are supported for the `awsvpc` network mode\. Because tasks do not receive public IP addresses, a NAT gateway is required for outbound internet access, and inbound internet traffic should be routed through a load balancer\.
-
-      1. For **Security groups**, a security group has been created for your scheduled tasks, which allows HTTP traffic from the internet \(`0.0.0.0/0`\)\. To edit the name or the rules of this security group, or to choose an existing security group, choose **Edit** and then modify your security group settings\.
-
-      1. For **Auto\-assign Public IP**, choose whether to have your tasks receive a public IP address\. If you are using Fargate tasks, a public IP address must be assigned to the task's elastic network interface, with a route to the internet, or a NAT gateway that can route requests to the internet\. This allows the task to pull container images\.
-
-   1. For **CloudWatch Events IAM role for this target**, choose an existing CloudWatch Events service role \(`ecsEventsRole`\) that you may have already created\. Or, choose **Create new role** to create the required IAM role that allows CloudWatch Events to make calls to Amazon ECS to run tasks on your behalf\. For more information, see [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)\.
-**Important**  
-If your scheduled tasks require the use of the task execution role, a task role, or if they use a task role override, then you must add `iam:PassRole` permissions for your task execution role, task role, or task role override to the CloudWatch IAM role\. For more information, see [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)\.
-
-   1. \(Optional\) In the **Container overrides** section, you can expand individual containers and override the command and/or environment variables for that container that are defined in the task definition\.
-
-1. \(Optional\) To add additional targets \(other tasks to run when this rule is executed\), choose **Add targets** and repeat the previous substeps for each additional target\.
-
-1. Choose **Create**\.
-
-**To edit a scheduled task**
+**To edit a scheduled task \(Amazon ECS console\)**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
