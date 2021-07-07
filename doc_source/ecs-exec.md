@@ -25,7 +25,7 @@ For this topic, you should be familiar with the following aspects involved with 
 + The SSM agent requires that the container file system is able to be written to in order to create the required directories and files\. Therefore, making the root file system read\-only using the `readonlyRootFilesystem` task definition parameter, or any other method, isn't supported\.
 + Users can run all of the commands that are available within the container context\. The following actions might result in orphaned and zombie processes: terminating the main process of the container, terminating the command agent, and deleting dependencies\. To cleanup zombie processes, we recommend adding the `initProcessEnabled` flag to your task definition\.
 + While starting SSM sessions outside of the `execute-command` action is possible, this results in the sessions not being logged and being counted against the session limit\. We recommend limiting this access by denying the `ssm:start-session` action using an IAM policy\. For more information, see [Limiting access to the Start Session action](#ecs-exec-limit-access-start-session)\.
-+ ECS Exec will use some CPU and memory\. You'll want to accomodate for that when specifying the CPU and memory resource allocations in your task definition\.
++ ECS Exec will use some CPU and memory\. You'll want to accommodate for that when specifying the CPU and memory resource allocations in your task definition\.
 
 ## Prerequisites for using ECS Exec<a name="ecs-exec-prerequisites"></a>
 
