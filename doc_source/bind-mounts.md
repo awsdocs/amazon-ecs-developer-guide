@@ -117,7 +117,8 @@ If this value is `true`, the container has read\-only access to the volume\. If 
 `ephemeralStorage`  
 Type: Object  
 Required: No  
-The amount of ephemeral storage to allocate for the task\. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate using platform version `1.4.0` or later\.
+The amount of ephemeral storage to allocate for the task\. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate using platform version `1.4.0` or later\.  
+You can use the Copilot CLI, CloudFormation, the AWS SDK or the CLI to specify ephemeral storage for a bind mount\.
 
 ## Bind mount examples<a name="bind-mount-examples"></a>
 

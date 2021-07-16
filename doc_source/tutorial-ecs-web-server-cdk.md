@@ -432,5 +432,5 @@ For information about writing AWS CDK apps in your language of choice, see:
 ------
 
 For more information on the AWS Construct Library modules used in this tutorial, see the AWS CDK API Reference overviews below\.
-+ [aws\-ecs](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-readme.html)
-+ [aws\-ecs\-patterns](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-patterns-readme.html)
++ [https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-readme.html](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-readme.html)
++ [https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-patterns-readme.html](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-patterns-readme.html)

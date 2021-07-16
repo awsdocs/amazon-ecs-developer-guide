@@ -192,7 +192,7 @@ An empty task definition template is shown as follows\. You can use this templat
     "family": "",
     "taskRoleArn": "",
     "executionRoleArn": "",
-    "networkMode": "awsvpc",
+    "networkMode": "bridge",
     "containerDefinitions": [
         {
             "name": "",
@@ -259,7 +259,7 @@ An empty task definition template is shown as follows\. You can use this templat
                         "hostPath": "",
                         "containerPath": "",
                         "permissions": [
-                            "write"
+                            "read"
                         ]
                     }
                 ],
@@ -286,7 +286,7 @@ An empty task definition template is shown as follows\. You can use this templat
             "dependsOn": [
                 {
                     "containerName": "",
-                    "condition": "COMPLETE"
+                    "condition": "START"
                 }
             ],
             "startTimeout": 0,
@@ -319,13 +319,13 @@ An empty task definition template is shown as follows\. You can use this templat
             },
             "ulimits": [
                 {
-                    "name": "rttime",
+                    "name": "memlock",
                     "softLimit": 0,
                     "hardLimit": 0
                 }
             ],
             "logConfiguration": {
-                "logDriver": "fluentd",
+                "logDriver": "splunk",
                 "options": {
                     "KeyName": ""
                 },
@@ -358,7 +358,7 @@ An empty task definition template is shown as follows\. You can use this templat
                 }
             ],
             "firelensConfiguration": {
-                "type": "fluentd",
+                "type": "fluentbit",
                 "options": {
                     "KeyName": ""
                 }
@@ -372,7 +372,7 @@ An empty task definition template is shown as follows\. You can use this templat
                 "sourcePath": ""
             },
             "dockerVolumeConfiguration": {
-                "scope": "task",
+                "scope": "shared",
                 "autoprovision": true,
                 "driver": "",
                 "driverOpts": {
@@ -401,7 +401,7 @@ An empty task definition template is shown as follows\. You can use this templat
         }
     ],
     "requiresCompatibilities": [
-        "EC2"
+        "FARGATE"
     ],
     "cpu": "",
     "memory": "",
@@ -411,8 +411,8 @@ An empty task definition template is shown as follows\. You can use this templat
             "value": ""
         }
     ],
-    "pidMode": "task",
-    "ipcMode": "host",
+    "pidMode": "host",
+    "ipcMode": "none",
     "proxyConfiguration": {
         "type": "APPMESH",
         "containerName": "",

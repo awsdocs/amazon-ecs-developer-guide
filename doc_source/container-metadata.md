@@ -1,6 +1,6 @@
 # Amazon ECS container metadata file<a name="container-metadata"></a>
 
-Beginning with version 1\.15\.0 of the Amazon ECS container agent, various container metadata is available within your containers or the host container instance\. By enabling this feature, you can query the information about a task, container, and container instance from within the container or the host container instance\. The metadata file is created on the host instance and mounted in the container as a Docker volume\.
+Beginning with version 1\.15\.0 of the Amazon ECS container agent, various container metadata is available within your containers or the host container instance\. By enabling this feature, you can query the information about a task, container, and container instance from within the container or the host container instance\. The metadata file is created on the host instance and mounted in the container as a Docker volume and therefore is not available when a task is hosted on AWS Fargate\.
 
 The container metadata file is cleaned up on the host instance when the container is cleaned up\. You can adjust when this happens with the `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` container agent variable\. For more information, see [Automated task and image cleanup](automated_image_cleanup.md)\.
 

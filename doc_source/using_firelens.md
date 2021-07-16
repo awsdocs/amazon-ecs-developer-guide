@@ -12,6 +12,7 @@ The following should be considered when using FireLens for Amazon ECS:
 + For tasks that use the `bridge` network mode, the container with the FireLens configuration must start before any application containers that rely on it start\. To control the start order of your containers, use dependency conditions in your task definition\. For more information, see [Container dependency](task_definition_parameters.md#container_definition_dependson)\.
 **Note**  
 If you use dependency condition parameters in container definitions with a FireLens configuration, ensure that each container has a `START` or `HEALTHY` condition requirement\.
++ The Amazon ECS\-optimized Bottlerocket AMI does not support FireLens\.
 
 ## Required IAM permissions<a name="firelens-iam"></a>
 

@@ -53,12 +53,12 @@ To use Amazon EFS file system volumes for your containers, you must specify the 
                 "-c"
             ],
             "command": [
-                "ls -la \mount\efs"
+                "ls -la /mount/efs"
             ],
             "mountPoints": [
                 {
                     "sourceVolume": "myEfsVolume",
-                    "containerPath": "\mount\efs",
+                    "containerPath": "/mount/efs",
                     "readOnly": true
                 }
             ]
@@ -69,7 +69,7 @@ To use Amazon EFS file system volumes for your containers, you must specify the 
             "name": "myEfsVolume",
             "efsVolumeConfiguration": {
                 "fileSystemId": "fs-1234",
-                "rootDirectory": "\path\to\my\data",
+                "rootDirectory": "/path/to/my/data",
                 "transitEncryption": "ENABLED",
                 "transitEncryptionPort": integer,
                 "authorizationConfig": {

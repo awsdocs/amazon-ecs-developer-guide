@@ -12,7 +12,7 @@ Amazon ECS provides earlier versions of the task metadata endpoint\. To avoid th
 
 ## Enabling the task metadata endpoint<a name="task-metadata-endpoint-v4-enable"></a>
 
-The environment variable is injected by default into the containers of Amazon ECS tasks launched on Amazon EC2 instances that are running at least version `1.39.0` of the Amazon ECS container agent\. For more information, see [Amazon ECS container agent versions](ecs-agent-versions.md)\.
+The environment variable is injected by default into the containers of Amazon ECS tasks launched on Amazon EC2 Linux instances that are running at least version `1.39.0` of the Amazon ECS container agent\. For Amazon EC2 Windows instances that use `awsvpc` network mode, the Amazon ECS container agent must be at least version `1.54.0`\. For more information, see [Amazon ECS container agent versions](ecs-agent-versions.md)\.
 
 **Note**  
 You can add support for this feature on Amazon EC2 instances using older versions of the Amazon ECS container agent by updating the agent to the latest version\. For more information, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
@@ -29,15 +29,15 @@ This path returns metadata for the task, including a list of the container IDs a
 
 `${ECS_CONTAINER_METADATA_URI_V4}/taskWithTags`  
 This path returns the metadata for the task included in the `/task` endpoint in addition to the task and container instance tags that can be retrieved using the `ListTagsForResource` API\. Any errors received when retrieving the tag metadata will be included in the `Errors` field in the response\.  
-The `Errors` field is only in the response for tasks hosted on Amazon EC2 instances running at least version `1.50.0` of the container agent\.
+The `Errors` field is only in the response for tasks hosted on Amazon EC2 Linux instances running at least version `1.50.0` of the container agent\. For Amazon EC2 Windows instances that use `awsvpc` network mode, the Amazon ECS container agent must be at least version `1.54.0`
 
 `${ECS_CONTAINER_METADATA_URI_V4}/stats`  
 This path returns Docker stats for the specific container\. For more information about each of the returned stats, see [ContainerStats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) in the Docker API documentation\.  
-For Amazon ECS tasks that use the `awsvpc` or `bridge` network modes hosted on Amazon EC2 instances running at least version `1.43.0` of the container agent, there will be additional network rate stats included in the response\. For all other tasks, the response will only include the cumulative network stats\.
+For Amazon ECS tasks that use the `awsvpc` or `bridge` network modes hosted on Amazon EC2 Linux instances running at least version `1.43.0` of the container agent, there will be additional network rate stats included in the response\. For all other tasks, the response will only include the cumulative network stats\.
 
 `${ECS_CONTAINER_METADATA_URI_V4}/task/stats`  
 This path returns Docker stats for all of the containers associated with the task\. This can be used by sidecar containers to extract network metrics\. For more information about each of the returned stats, see [ContainerStats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) in the Docker API documentation\.  
-For Amazon ECS tasks that use the `awsvpc` or `bridge` network modes hosted on Amazon EC2 instances running at least version `1.43.0` of the container agent, there will be additional network rate stats included in the response\. For all other tasks, the response will only include the cumulative network stats\.
+For Amazon ECS tasks that use the `awsvpc` or `bridge` network modes hosted on Amazon EC2 Linux instances running at least version `1.43.0` of the container agent, there will be additional network rate stats included in the response\. For all other tasks, the response will only include the cumulative network stats\.
 
 ## Task metadata JSON response<a name="task-metadata-endpoint-v4-response"></a>
 
@@ -76,7 +76,7 @@ The Availability Zone metadata is only available for Fargate tasks using platfor
 
 `LaunchType`  
 The launch type the task is using\. When using cluster capacity providers, this indicates whether the task is using Fargate or EC2 infrastructure\.  
-This `LaunchType` metadata is only included when using Amazon ECS container agent version `1.45.0` or later\.
+This `LaunchType` metadata is only included when using Amazon ECS Linux container agent version `1.45.0` or later\.
 
 `Containers`  
 A list of container metadata for each container associated with the task\.    
@@ -113,13 +113,13 @@ The time stamp for when the container stopped\. This parameter is omitted if the
 The type of the container\. Containers that are specified in your task definition are of type `NORMAL`\. You can ignore other container types, which are used for internal task resource provisioning by the Amazon ECS container agent\.  
 `LogDriver`  
 The log driver the container is using\.  
-This `LogDriver` metadata is only included when using Amazon ECS container agent version `1.45.0` or later\.  
+This `LogDriver` metadata is only included when using Amazon ECS Linux container agent version `1.45.0` or later\.  
 `LogOptions`  
 The log driver options defined for the container\.  
-This `LogOptions` metadata is only included when using Amazon ECS container agent version `1.45.0` or later\.  
+This `LogOptions` metadata is only included when using Amazon ECS Linux container agent version `1.45.0` or later\.  
 `ContainerARN`  
 The full Amazon Resource Name \(ARN\) of the container\.  
-This `ContainerARN` metadata is only included when using Amazon ECS container agent version `1.45.0` or later\.  
+This `ContainerARN` metadata is only included when using Amazon ECS Linux container agent version `1.45.0` or later\.  
 `Networks`  
 The network information for the container, such as the network mode and IP address\. This parameter is omitted if no network information is defined\.
 

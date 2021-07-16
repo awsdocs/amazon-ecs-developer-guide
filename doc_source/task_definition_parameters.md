@@ -11,6 +11,18 @@ Type: string
 Required: yes  
 When you register a task definition, you give it a family, which is similar to a name for multiple versions of the task definition, specified with a revision number\. The first task definition that is registered into a particular family is given a revision of 1, and any task definitions registered after that are given a sequential revision number\.
 
+## Launch types<a name="requires_compatibilities"></a>
+
+When you register a task definition, you can specify a launch type that Amazon ECS should validate the task definition against\. A client exception is returned if the task definition doesn't validate against the compatibilities specified\. For more information, see [Amazon ECS launch types](launch_types.md)\.
+
+The following parameter is allowed in a task definition:
+
+`requiresCompatibilities`  
+Type: string array  
+Required: no  
+Valid Values: `EC2` \| `FARGATE` \| `EXTERNAL`  
+The launch type to validate the task definition against\. This enables a check to ensure that all of the parameters used in the task definition meet the requirements of the launch type\.
+
 ## Task role<a name="task_role_arn"></a>
 
 `taskRoleArn`  
@@ -31,15 +43,41 @@ The Amazon Resource Name \(ARN\) of the task execution role that grants the Amaz
 `networkMode`  
 Type: string  
 Required: no  
-The Docker networking mode to use for the containers in the task\. For Amazon ECS tasks hosted on Amazon EC2 instances, the valid values are `none`, `bridge`, `awsvpc`, and `host`\. If no network mode is specified, the default network mode is `bridge`\.  
+The Docker networking mode to use for the containers in the task\. For Amazon ECS tasks hosted on Amazon EC2 Linux instances, the valid values are `none`, `bridge`, `awsvpc`, and `host`\. If no network mode is specified, the default network mode is `bridge`\. For Amazon ECS tasks hosted on Amazon EC2 Windows instances, the valid values are `default`, and `awsvpc`\. If no network mode is specified, the `default` network mode is used\.   
 If the network mode is set to `none`, the task's containers do not have external connectivity and port mappings can't be specified in the container definition\.  
 If the network mode is `bridge`, the task utilizes Docker's built\-in virtual network which runs inside each container instance\.  
 If the network mode is `host`, the task bypasses Docker's built\-in virtual network and maps container ports directly to the Amazon EC2 instance's network interface\. In this mode, you can't run multiple instantiations of the same task on a single container instance when port mappings are used\.  
 When using the `host` network mode, you should not run containers using the root user \(UID 0\)\. It is considered best practice to use a non\-root user\.
 If the network mode is `awsvpc`, the task is allocated an elastic network interface, and you must specify a `NetworkConfiguration` when you create a service or run a task with the task definition\. For more information, see [Amazon ECS task networking](task-networking.md)\. Currently, only the Amazon ECS\-optimized AMI, other Amazon Linux variants with the `ecs-init` package, or AWS Fargate infrastructure support the `awsvpc` network mode\.  
 The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode\. With the `host` and `awsvpc` network modes, exposed container ports are mapped directly to the corresponding host port \(for the `host` network mode\) or the attached elastic network interface port \(for the `awsvpc` network mode\), so you cannot take advantage of dynamic host port mappings\.  
-Docker for Windows uses a different network mode \(known as `NAT`\) than Docker for Linux\. When you register a task definition with Windows containers, you must not specify a network mode\. If you use the AWS Management Console to register a task definition with Windows containers, you must choose the `default` network mode\.  
-If using the Fargate launch type, the `awsvpc` network mode is required\. If using the EC2 launch type, the allowable network mode depends on the underlying EC2 instance's operating system\. If Linux, any network mode can be used\. If Windows, only the `NAT` mode is allowed, as described above\.
+If using the Fargate launch type, the `awsvpc` network mode is required\. If using the EC2 launch type, the allowable network mode depends on the underlying EC2 instance's operating system\. If Linux, any network mode can be used\. If Windows, the `default`, and `awsvpc` modes can be used\. 
+
+## Task size<a name="task_size"></a>
+
+When you register a task definition, you can specify the total cpu and memory used for the task\. This is separate from the `cpu` and `memory` values at the container definition level\. For tasks hosted on Amazon EC2 instances, these fields are optional\. For tasks hosted on Fargate, these fields are required and there are specific values for both `cpu` and `memory` that are supported\.
+
+**Note**  
+Task\-level CPU and memory parameters are ignored for Windows containers\. We recommend specifying container\-level resources for Windows containers\.
+
+The following parameter is allowed in a task definition:
+
+`cpu`  
+Type: string  
+Required: conditional  
+This parameter is not supported for Windows containers\.
+The hard limit of CPU units to present for the task\. It can be expressed as an integer using CPU units, for example `1024`, or as a string using vCPUs, for example `1 vCPU` or `1 vcpu`, in a task definition\. When the task definition is registered, a vCPU value is converted to an integer indicating the CPU units\.  
+For tasks hosted on Amazon EC2 instances, this field is optional\. If your cluster does not have any registered container instances with the requested CPU units available, the task will fail\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
+For tasks hosted on Fargate, this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
+
+`memory`  
+Type: string  
+Required: conditional  
+This parameter is not supported for Windows containers\.
+The hard limit of memory \(in MiB\) to present to the task\. It can be expressed as an integer using MiB, for example `1024`, or as a string using GB, for example `1GB` or `1 GB`, in a task definition\. When the task definition is registered, a GB value is converted to an integer indicating the MiB\.  
+For tasks hosted on Amazon EC2 instances, this field is optional and any value can be used\. If a task\-level memory value is specified then the container\-level memory value is optional\. If your cluster does not have any registered container instances with the requested memory available, the task will fail\. If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.  
+For tasks hosted on Fargate, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 
 ## Container Definitions<a name="container_definitions"></a>
 
@@ -830,6 +868,77 @@ Type: Boolean
 Required: no  
 When this parameter is `true`, a TTY is allocated\. This parameter maps to `Tty` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--tty` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.
 
+## Task placement constraints<a name="constraints"></a>
+
+When you register a task definition, you can provide task placement constraints that customize how Amazon ECS places tasks\.
+
+If you are using the Fargate launch type, task placement constraints are not supported\. By default Fargate tasks are spread across Availability Zones\.
+
+For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS task placement constraints](task-placement-constraints.md)\.
+
+The following parameters are allowed in a container definition:
+
+`expression`  
+Type: string  
+Required: no  
+A cluster query language expression to apply to the constraint\. For more information, see [Cluster query language](cluster-query-language.md)\.
+
+`type`  
+Type: string  
+Required: yes  
+The type of constraint\. Use `memberOf` to restrict the selection to a group of valid candidates\.
+
+## Proxy configuration<a name="proxyConfiguration"></a>
+
+`proxyConfiguration`  
+Type: [ProxyConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ProxyConfiguration.html) object  
+Required: no  
+The configuration details for the App Mesh proxy\.  
+For tasks using the EC2 launch type, the container instances require at least version 1\.26\.0 of the container agent and at least version 1\.26\.0\-1 of the `ecs-init` package to enable a proxy configuration\. If your container instances are launched from the Amazon ECS\-optimized AMI version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.  
+For tasks using the Fargate launch type, this feature requires that the task or service uses platform version 1\.3\.0 or later\.  
+This parameter is not supported for Windows containers\.
+
+```
+"proxyConfiguration": {
+    "type": "APPMESH",
+    "containerName": "string",
+    "properties": [
+        {
+           "name": "string",
+           "value": "string"
+        }
+    ]
+}
+```  
+`type`  
+Type: String  
+Value values: `APPMESH`  
+Required: No  
+The proxy type\. The only supported value is `APPMESH`\.  
+`containerName`  
+Type: String  
+Required: Yes  
+The name of the container that will serve as the App Mesh proxy\.  
+`properties`  
+Type: Array of [KeyValuePair](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KeyValuePair.html) objects  
+Required: No  
+The set of network configuration parameters to provide the Container Network Interface \(CNI\) plugin, specified as key\-value pairs\.  
++ `IgnoredUID` – \(Required\) The user ID \(UID\) of the proxy container as defined by the `user` parameter in a container definition\. This is used to ensure the proxy ignores its own traffic\. If `IgnoredGID` is specified, this field can be empty\.
++ `IgnoredGID` – \(Required\) The group ID \(GID\) of the proxy container as defined by the `user` parameter in a container definition\. This is used to ensure the proxy ignores its own traffic\. If `IgnoredUID` is specified, this field can be empty\.
++ `AppPorts` – \(Required\) The list of ports that the application uses\. Network traffic to these ports is forwarded to the `ProxyIngressPort` and `ProxyEgressPort`\.
++ `ProxyIngressPort` – \(Required\) Specifies the port that incoming traffic to the `AppPorts` is directed to\.
++ `ProxyEgressPort` – \(Required\) Specifies the port that outgoing traffic from the `AppPorts` is directed to\.
++ `EgressIgnoredPorts` – \(Required\) The egress traffic going to these specified ports is ignored and not redirected to the `ProxyEgressPort`\. It can be an empty list\.
++ `EgressIgnoredIPs` – \(Required\) The egress traffic going to these specified IP addresses is ignored and not redirected to the `ProxyEgressPort`\. It can be an empty list\.  
+`name`  
+Type: String  
+Required: No  
+The name of the key\-value pair\.  
+`value`  
+Type: String  
+Required: No  
+The value of the key\-value pair\.
+
 ## Volumes<a name="volumes"></a>
 
 When you register a task definition, you can optionally specify a list of volumes to be passed to the Docker daemon on a container instance, which then becomes available for access by other containers on the same container instance\.
@@ -946,115 +1055,24 @@ Type: String
 Required: Yes  
 A fully qualified domain name hosted by an [AWS Directory Service](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html) Managed Microsoft AD \(Active Directory\) or self\-hosted EC2 AD\.
 
-## Task placement constraints<a name="constraints"></a>
+## Tags<a name="tags"></a>
 
-When you register a task definition, you can provide task placement constraints that customize how Amazon ECS places tasks\.
+When you register a task definition, you can optionally specify metadata tags that are applied to the task definition\. Tags help you categorize and organize your task definition\. Each tag consists of a key and an optional value, both of which you define\. For more information, see [Tagging your Amazon ECS resources](ecs-using-tags.md)\.
 
-If you are using the Fargate launch type, task placement constraints are not supported\. By default Fargate tasks are spread across Availability Zones\.
+**Important**  
+Do not add personally identifiable information \(PII\) or other confidential or sensitive information in tags\. Tags are accessible to many AWS services, including billing\. Tags are not intended to be used for private or sensitive data\.
 
-For tasks that use the EC2 launch type, you can use constraints to place tasks based on Availability Zone, instance type, or custom attributes\. For more information, see [Amazon ECS task placement constraints](task-placement-constraints.md)\.
+The following parameters are allowed in a tag object\.
 
-The following parameters are allowed in a container definition:
-
-`expression`  
+`key`  
 Type: string  
 Required: no  
-A cluster query language expression to apply to the constraint\. For more information, see [Cluster query language](cluster-query-language.md)\.
+One part of a key\-value pair that make up a tag\. A key is a general label that acts like a category for more specific tag values\.
 
-`type`  
-Type: string  
-Required: yes  
-The type of constraint\. Use `memberOf` to restrict the selection to a group of valid candidates\.
-
-## Launch types<a name="requires_compatibilities"></a>
-
-When you register a task definition, you can specify a launch type that Amazon ECS should validate the task definition against\. A client exception is returned if the task definition doesn't validate against the compatibilities specified\. For more information, see [Amazon ECS launch types](launch_types.md)\.
-
-The following parameter is allowed in a task definition:
-
-`requiresCompatibilities`  
-Type: string array  
-Required: no  
-Valid Values: `EC2` \| `FARGATE` \| `EXTERNAL`  
-The launch type to validate the task definition against\. This enables a check to ensure that all of the parameters used in the task definition meet the requirements of the launch type\.
-
-## Task size<a name="task_size"></a>
-
-When you register a task definition, you can specify the total cpu and memory used for the task\. This is separate from the `cpu` and `memory` values at the container definition level\. For tasks hosted on Amazon EC2 instances, these fields are optional\. For tasks hosted on Fargate, these fields are required and there are specific values for both `cpu` and `memory` that are supported\.
-
-**Note**  
-Task\-level CPU and memory parameters are ignored for Windows containers\. We recommend specifying container\-level resources for Windows containers\.
-
-The following parameter is allowed in a task definition:
-
-`cpu`  
-Type: string  
-Required: conditional  
-This parameter is not supported for Windows containers\.
-The hard limit of CPU units to present for the task\. It can be expressed as an integer using CPU units, for example `1024`, or as a string using vCPUs, for example `1 vCPU` or `1 vcpu`, in a task definition\. When the task definition is registered, a vCPU value is converted to an integer indicating the CPU units\.  
-For tasks hosted on Amazon EC2 instances, this field is optional\. If your cluster does not have any registered container instances with the requested CPU units available, the task will fail\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
-For tasks hosted on Fargate, this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
-
-`memory`  
-Type: string  
-Required: conditional  
-This parameter is not supported for Windows containers\.
-The hard limit of memory \(in MiB\) to present to the task\. It can be expressed as an integer using MiB, for example `1024`, or as a string using GB, for example `1GB` or `1 GB`, in a task definition\. When the task definition is registered, a GB value is converted to an integer indicating the MiB\.  
-For tasks hosted on Amazon EC2 instances, this field is optional and any value can be used\. If a task\-level memory value is specified then the container\-level memory value is optional\. If your cluster does not have any registered container instances with the requested memory available, the task will fail\. If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.  
-For tasks hosted on Fargate, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
-
-## Proxy configuration<a name="proxyConfiguration"></a>
-
-`proxyConfiguration`  
-Type: [ProxyConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ProxyConfiguration.html) object  
-Required: no  
-The configuration details for the App Mesh proxy\.  
-For tasks using the EC2 launch type, the container instances require at least version 1\.26\.0 of the container agent and at least version 1\.26\.0\-1 of the `ecs-init` package to enable a proxy configuration\. If your container instances are launched from the Amazon ECS\-optimized AMI version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.  
-For tasks using the Fargate launch type, this feature requires that the task or service uses platform version 1\.3\.0 or later\.  
-This parameter is not supported for Windows containers\.
-
-```
-"proxyConfiguration": {
-    "type": "APPMESH",
-    "containerName": "string",
-    "properties": [
-        {
-           "name": "string",
-           "value": "string"
-        }
-    ]
-}
-```  
-`type`  
-Type: String  
-Value values: `APPMESH`  
-Required: No  
-The proxy type\. The only supported value is `APPMESH`\.  
-`containerName`  
-Type: String  
-Required: Yes  
-The name of the container that will serve as the App Mesh proxy\.  
-`properties`  
-Type: Array of [KeyValuePair](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_KeyValuePair.html) objects  
-Required: No  
-The set of network configuration parameters to provide the Container Network Interface \(CNI\) plugin, specified as key\-value pairs\.  
-+ `IgnoredUID` – \(Required\) The user ID \(UID\) of the proxy container as defined by the `user` parameter in a container definition\. This is used to ensure the proxy ignores its own traffic\. If `IgnoredGID` is specified, this field can be empty\.
-+ `IgnoredGID` – \(Required\) The group ID \(GID\) of the proxy container as defined by the `user` parameter in a container definition\. This is used to ensure the proxy ignores its own traffic\. If `IgnoredUID` is specified, this field can be empty\.
-+ `AppPorts` – \(Required\) The list of ports that the application uses\. Network traffic to these ports is forwarded to the `ProxyIngressPort` and `ProxyEgressPort`\.
-+ `ProxyIngressPort` – \(Required\) Specifies the port that incoming traffic to the `AppPorts` is directed to\.
-+ `ProxyEgressPort` – \(Required\) Specifies the port that outgoing traffic from the `AppPorts` is directed to\.
-+ `EgressIgnoredPorts` – \(Required\) The egress traffic going to these specified ports is ignored and not redirected to the `ProxyEgressPort`\. It can be an empty list\.
-+ `EgressIgnoredIPs` – \(Required\) The egress traffic going to these specified IP addresses is ignored and not redirected to the `ProxyEgressPort`\. It can be an empty list\.  
-`name`  
-Type: String  
-Required: No  
-The name of the key\-value pair\.  
 `value`  
-Type: String  
-Required: No  
-The value of the key\-value pair\.
+Type: string  
+Required: no  
+The optional part of a key\-value pair that make up a tag\. A value acts as a descriptor within a tag category \(key\)\.
 
 ## Other task definition parameters<a name="other_task_definition_params"></a>
 

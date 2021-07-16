@@ -64,7 +64,7 @@ Specifies the password for the private registry\. We recommend using environment
 Required: No
 
 kms\_key\_id  
-Specifies the ARN, Key ID, or alias of the AWS KMS customer master key \(CMK\) to be used to encrypt the secret\. For more information, see [CreateSecret](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html)\.  
+Specifies the ARN, Key ID, or alias of the AWS KMS key \(KMS key\) to be used to encrypt the secret\. For more information, see [CreateSecret](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html)\.  
 Required: No
 
 container\_names  
@@ -135,7 +135,7 @@ registry_credential_outputs:
       - database
 ```
 
-### Create a Secret with Private Registry Authentication Credentials That Use a KMS Key<a name="cmd-ecs-cli-registry-creds-up-example-2"></a>
+### Create a Secret with Private Registry Authentication Credentials That Use a KMS key<a name="cmd-ecs-cli-registry-creds-up-example-2"></a>
 
 This example creates a secret with the private registry credentials that are encrypted using a KMS key specified in the `creds_input.yml` input file\.
 

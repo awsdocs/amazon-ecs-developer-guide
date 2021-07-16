@@ -284,7 +284,7 @@ The Fargate launch type isn't compatible with Windows containers\.
          ],
          "cpu": 512,
          "memory": 256,
-         "image": "microsoft/iis",
+         "image": "mcr.microsoft.com/windows/servercore/iis",
          "essential": false,
          "name": "container1"
        },
@@ -305,7 +305,7 @@ The Fargate launch type isn't compatible with Windows containers\.
          ],
          "cpu": 512,
          "memory": 256,
-         "image": "microsoft/iis",
+         "image": "mcr.microsoft.com/windows/servercore/iis",
          "essential": true,
          "name": "container2"
        }

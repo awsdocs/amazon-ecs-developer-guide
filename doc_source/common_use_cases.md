@@ -29,7 +29,7 @@ The application load for your microservice architecture can change over time\. A
 
 For example, Amazon ECS provides CloudWatch metrics for your clusters and services\. For more information, see [Amazon ECS CloudWatch metrics](cloudwatch-metrics.md)\. You can monitor the memory and CPU utilization for your clusters and services\. Then, use those metrics to trigger CloudWatch alarms that can automatically scale out your cluster when its resources are running low\. Scale them back in when you don't need as many resources\. For more information, see [Tutorial: Scaling container instances with CloudWatch alarms](cloudwatch_alarm_autoscaling.md)\.
 
-In addition to scaling your cluster size, your Amazon ECS service can optionally be configured to use Service Auto Scaling to adjust its desired count up or down in response to CloudWatch alarms\. Service Auto Scaling is available in all regions that support Amazon ECS\. For more information, see [Service Auto Scaling](service-auto-scaling.md)\.
+In addition to scaling your cluster size, your Amazon ECS service can optionally be configured to use Service Auto Scaling to adjust its desired count up or down in response to CloudWatch alarms\. Service Auto Scaling is available in all regions that support Amazon ECS\. For more information, see [Service auto scaling](service-auto-scaling.md)\.
 
 ### Service discovery<a name="microservices_service_discovery"></a>
 

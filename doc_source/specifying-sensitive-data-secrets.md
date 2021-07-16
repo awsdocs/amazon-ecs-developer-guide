@@ -247,7 +247,7 @@ Use Secrets Manager to create a secret for your sensitive data\.
 
    Alternatively, you can choose the **Plaintext** tab and enter the secret value in any way you like\.
 
-1. Choose the AWS KMS encryption key that you want to use to encrypt the protected text in the secret\. If you don't choose one, Secrets Manager checks to see if there's a default key for the account, and uses it if it exists\. If a default key doesn't exist, Secrets Manager creates one for you automatically\. You can also choose **Add new key** to create a custom CMK specifically for this secret\. To create your own AWS KMS CMK, you must have permissions to create CMKs in your account\.
+1. Choose the AWS KMS encryption key that you want to use to encrypt the protected text in the secret\. If you don't choose one, Secrets Manager checks to see if there's a default key for the account, and uses it if it exists\. If a default key doesn't exist, Secrets Manager creates one for you automatically\. You can also choose **Add new key** to create a custom KMS key specifically for this secret\. To create your own KMS key, you must have permissions to create KMS keys in your account\.
 
 1. Choose **Next**\.
 

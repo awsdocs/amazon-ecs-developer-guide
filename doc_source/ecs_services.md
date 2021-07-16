@@ -13,7 +13,7 @@ In addition to maintaining the desired number of tasks in your service, you can 
 + [Deleting a service](delete-service.md)
 + [Amazon ECS Deployment types](deployment-types.md)
 + [Service load balancing](service-load-balancing.md)
-+ [Service Auto Scaling](service-auto-scaling.md)
++ [Service auto scaling](service-auto-scaling.md)
 + [Service Discovery](service-discovery.md)
 + [Service throttle logic](service-throttle-logic.md)
 

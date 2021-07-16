@@ -57,19 +57,21 @@ A rule can't have the same name as another rule in the same Region and on the sa
 
 1. For **Task definition**, select a task definition family\.
 
-1. For **Launch type**, choose the launch type to use\.
-**Important**  
-To use a capacity provider strategy, don't select a launch type\. Specify the capacity provider strategy in a later step under the **Configure additional properties** section\.
+1. For **Task definition revision**, select either **Latest** or **Revision** and select a specific task definition revision to use\.
 
-1. For **Platform version**, specify the platform version to use\. This is required for Amazon ECS tasks hosted on Fargate\. If a platform version isn't specified, the `LATEST` platform version is used by default\.
+1. For **Count**, specify the desired number of tasks to run\.
 
-1. \(Optional\) Expand **Configure task definition revision and task count** to change the default values\.
+1. The **Compute options** section can be expanded to change the default compute options for the scheduled task\.
 
-   1. For **Task definition revision**, select **Revision** and select a task definition revision to use\.
+   1. Choose whether your scheduled task will use a **Capacity provider strategy** or **Launch type**\.
 
-   1. For **Count**, specify the desired number of tasks to run\.
+   1. To use a capacity provider strategy, choose **Use cluster default** to use the cluster's default capacity provider strategy\. If your cluster doesn't have a default capacity provider strategy, or to use a custom strategy, choose **Use custom**, **Add capacity provider strategy** and define your custom capacity provider strategy by specifying a **Capacity provider**, **Base**, and **Weight**\. In order for a capacity provider to be used in a strategy, it must be associated with the cluster\. For more information about capacity provider strategies, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
 
-1. \(Optional\) Expand **Configure network configuration** to specify a network configuration\. This is required for tasks hosted on Fargate and tasks using the `awsvpc` network mode\.
+   1. To use a launch type instead, specify **Launch type**, choose the launch type to use\.
+
+   1. \(Optional\) When the Fargate launch type is specified, for **Platform version**, specify the platform version to use\. If a platform version isn't specified, the `LATEST` platform version is used by default\.
+
+1. \(Optional\) Expand **Configure network configuration** to specify a network configuration\. This is required for tasks hosted on Fargate and for tasks using the `awsvpc` network mode\.
 
    1. For **Subnets**, specify one or more subnet IDs\.
 
@@ -78,6 +80,8 @@ To use a capacity provider strategy, don't select a launch type\. Specify the ca
    1. For **Auto\-assign public IP**, specify whether to assign a public IP address from your subnet to the task\.
 
 1. \(Optional\) Expand **Configure additional properties** to specify the following additional parameters for your tasks\.
+
+   1. For **Task group**, specify a task group name\. The task group name is used to identify a set of related tasks and is used in conjunction with the `spread` task placement strategy to ensure tasks in the same task group are spread out evently among the container instances in the cluster\.
 
    1. For **Placement constraint**, choose **Add placement constraint**\. Select the **Type** for the placement constraint and then enter an expression\. For more information, see [Amazon ECS task placement constraints](task-placement-constraints.md)\.
 **Note**  
@@ -96,8 +100,6 @@ Task placement strategies aren't supported for tasks hosted on Fargate\.
    1. For **Configure propagate tags**, choose **Propagate tags from task definition** to have Amazon ECS add the tags associated with the task definition to your task\. For more information, see [Tagging your resources](ecs-using-tags.md#tag-resources)\.
 **Note**  
 If you specify a tag with the same key in the **Tags** section, it will override the tag propagated from the task definition\.
-
-   1. For **ReferenceId**, specify a reference ID for the task\.
 
 1. For many target types, EventBridge needs permissions to send events to the target\. In these cases, EventBridge can create the IAM role needed for your rule to run\.
    + To create an IAM role automatically, choose **Create a new role for this specific resource**

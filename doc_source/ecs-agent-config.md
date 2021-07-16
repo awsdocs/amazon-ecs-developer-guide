@@ -266,25 +266,25 @@ An invalid JSON value for this variable causes the agent to exit with a code of 
 `ECS_ENABLE_TASK_ENI`  
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
-Default value on Windows: Not applicable  
+Default value on Windows: `false`  
 Whether to enable task networking for tasks to be launched with their own network interface\.
 
 `ECS_CNI_PLUGINS_PATH`  
 Example values: `/ecs/cni`  
 Default value on Linux: `/amazon-ecs-cni-plugins`  
 Default value on Windows: Not applicable  
-The path where the cni binary file is located\.
+The path where the cni binary file is located on Linux\.
 
 `ECS_AWSVPC_BLOCK_IMDS`  
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
-Default value on Windows: Not applicable  
+Default value on Windows: `false`  
 Whether to block access to [Instance Metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) for tasks started with `awsvpc` network mode\.
 
 `ECS_AWSVPC_ADDITIONAL_LOCAL_ROUTES`  
 Example values: `["10.0.15.0/24"]`  
 Default value on Linux: `[]`  
-Default value on Windows: Not applicable  
+Default value on Windows: `[]`  
 In `awsvpc` network mode, traffic to these prefixes is routed via the host bridge instead of the task elastic network interface\.
 
 `ECS_ENABLE_CONTAINER_METADATA`  

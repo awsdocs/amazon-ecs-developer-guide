@@ -126,7 +126,7 @@ If your account does not already have a task execution role, use the following s
    ```
    aws iam attach-role-policy \
          --role-name ecsTaskExecutionRole \
-         --policy-arn arn:aws:iam::aws:policy/AmazonECSTaskExecutionRolePolicy
+         --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
    ```
 
 ## Required IAM permissions for private registry authentication<a name="task-execution-private-auth"></a>

@@ -20,9 +20,17 @@ The Amazon ECS\-optimized AMI metadata, including the AMI name, Amazon ECS conta
 
 The following variants of the Amazon ECS\-optimized AMI are available for your Amazon EC2 instances\.
 + **Amazon ECS\-optimized Amazon Linux 2 AMI** – Recommended for launching your Amazon ECS container instances in most cases\.
+
+  The Amazon ECS\-optimized Amazon Linux 2 AMI does not come with the AWS CLI preinstalled\.
 + **Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your instances, which are powered by Arm\-based AWS Graviton/Graviton 2 Processors\. For more information, see [General Purpose Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/general-purpose-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+
+  The Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI does not come with the AWS CLI preinstalled\.
 + **Amazon ECS GPU\-optimized AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 GPU\-based instances\. It comes pre\-configured with NVIDIA kernel drivers and a Docker GPU runtime which makes running workloads that take advantage of GPUs on Amazon ECS\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
+
+  The Amazon ECS GPU\-optimized AMI does not come with the AWS CLI preinstalled\.
 + **Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 Inf1 instances\. It comes pre\-configured with AWS Inferentia drivers and the AWS Neuron runtime for Docker which makes running machine learning inference workloads easier on Amazon ECS\. For more information, see [Working with inference workloads on Amazon ECS](ecs-inference.md)\.
+
+  The Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI does not come with the AWS CLI preinstalled\.
 + **Amazon ECS\-optimized Amazon Linux AMI** – This AMI is based off of Amazon Linux\. We recommend that you migrate your workloads to the Amazon ECS\-optimized Amazon Linux 2 AMI\. Support for the Amazon ECS\-optimized Amazon Linux AMI is the same as the Amazon Linux AMI\. For more information, see [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\.
 **Important**  
 On April 15, 2021, the Amazon ECS\-optimized Amazon Linux AMI ended its standard support phase and entered a maintenance support phase\. In the maintenance support phase, Amazon ECS will continue providing critical and important security updates for a reduced list of packages\. During this period, Amazon ECS will no longer add support for new EC2 instance types, new services and features, and new packages\. Instead, Amazon ECS will provide updates only for critical and important security fixes that apply to a reduced set of packages\. Maintenance support period will end on June 30, 2023\.

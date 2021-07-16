@@ -18,10 +18,10 @@ For a tutorial, see [Tutorial: Using Amazon FSx for Windows File Server file sys
 ## Amazon FSx for Windows File Server volume considerations<a name="wfsx-volume-considerations"></a>
 
 Consider the following when using Amazon FSx for Windows File Server volumes\.
-+ Amazon FSx for Windows File Server with Amazon ECS only supports [](ecs-optimized_windows_AMI.md#ecs-optimized-ami-windows)\. Linux Amazon EC2 instances aren't supported\.
++ Amazon FSx for Windows File Server with Amazon ECS only supports Windows Amazon EC2 instances\. Linux Amazon EC2 instances aren't supported\.
 + Amazon ECS only supports Amazon FSx for Windows File Server\. Amazon ECS doesn't support Amazon FSx for Lustre\.
 + Amazon FSx for Windows File Server with Amazon ECS doesn't support AWS Fargate\.
-+ Amazon FSx for Windows File Server with Amazon ECS doesn't support the `awsvpc` network mode\.
++ Amazon FSx for Windows File Server with Amazon ECS with `awsvpc` network mode requires version `1.54.0` or later of the container agent\.
 + The maximum number of drive letters that can be used for an Amazon ECS task is 23\. Each task with an Amazon FSx for Windows File Server volume gets a drive letter assigned to it\.
 + Task resource cleanup time is 3 hours by default\. A file mapping created by a task persists for 3 hours even if no tasks are using it\. The default cleanup time can be configured by using the Amazon ECS environment variable `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION`\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 + Tasks typically only run in the same VPC as the Amazon FSx for Windows File Server file system\. However, it is possible to have cross\-VPC support if there is an established network connectivity between the Amazon ECS cluster VPC and the Amazon FSx for Windows File Server file\-system through VPC peering\.

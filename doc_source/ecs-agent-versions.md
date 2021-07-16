@@ -21,6 +21,7 @@ Amazon ECS agent versions 1\.20\.0 and later have deprecated support for Docker 
 
 |  Amazon ECS\-optimized Amazon Linux 2 AMI  |  Amazon ECS container agent version  |  Docker version  |  `ecs-init` version  | 
 | --- | --- | --- | --- | 
+| 20210708 | `1.54.0` | `19.03.13-ce` | `1.54.0-1` | 
 | 20210623 | `1.53.1` | `19.03.13-ce` | `1.53.1-1` | 
 | 20210609 | `1.53.0` | `19.03.13-ce` | `1.53.0-1` | 
 | 20210520 | `1.52.2` | `19.03.13-ce` | `1.52.2-1` | 

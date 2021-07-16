@@ -6,7 +6,7 @@ The IAM roles for tasks with Windows features requires extra configuration, but 
   ```
   <powershell>
   Import-Module ECSTools
-  Initialize-ECSAgent -Cluster 'windows' -EnableTaskIAMRole
+  Initialize-ECSAgent -Cluster 'windows' -EnableTaskIAMRole 
   </powershell>
   ```
 + You must bootstrap your container with the networking commands that are provided in [IAM roles for task container bootstrap script](#windows_task_IAM_roles_bootstrap)\.
@@ -19,6 +19,9 @@ The IAM roles for tasks with Windows features requires extra configuration, but 
 ## IAM roles for task container bootstrap script<a name="windows_task_IAM_roles_bootstrap"></a>
 
 Before containers can access the credential proxy on the container instance to get credentials, the container must be bootstrapped with the required networking commands\. The following code example script should be run on your containers when they start\.
+
+**Note**  
+You do not need to run this script when you use `awsvpc` network mode on Windows\.
 
 ```
 # Copyright 2014-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.

@@ -257,9 +257,9 @@ The following example inline policy adds the required Amazon S3 permissions\.
 
 ------
 
-### IAM permissions required for encryption using your own KMS customer master key \(CMK\)<a name="ecs-exec-required-kms-permissions"></a>
+### IAM permissions required for encryption using your own AWS KMS key \(KMS key\)<a name="ecs-exec-required-kms-permissions"></a>
 
-By default, the data transferred between your local client and the container uses TLS 1\.2 encryption that AWS provides\. To further encrypt data using your own CMK, you must create a CMK and add the `kms:Decrypt` permission to your task IAM role\. This permission is used by your container to decrypt the data\. For more information about creating a CMK, see [Creating keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html)\.
+By default, the data transferred between your local client and the container uses TLS 1\.2 encryption that AWS provides\. To further encrypt data using your own KMS key, you must create a KMS key and add the `kms:Decrypt` permission to your task IAM role\. This permission is used by your container to decrypt the data\. For more information about creating a KMS key, see [Creating keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html)\.
 
 You would add the following inling policy to your task IAM role which requires the AWS KMS permissions\. For more information, see [IAM permissions required for ECS Exec](#ecs-exec-required-iam-permissions)\.
 
@@ -278,9 +278,9 @@ You would add the following inling policy to your task IAM role which requires t
 }
 ```
 
-For the data to be encrypted using your own CMK, the user or group using the `execute-command` action must be granted the `kms:GenerateDataKey` permission\.
+For the data to be encrypted using your own KMS key, the user or group using the `execute-command` action must be granted the `kms:GenerateDataKey` permission\.
 
-The following example policy for your user or group contains the required permission to use your own CMK\. You must specify the Amazon Resource Name \(ARN\) of your CMK\.
+The following example policy for your user or group contains the required permission to use your own KMS key\. You must specify the Amazon Resource Name \(ARN\) of your KMS key\.
 
 ```
 {

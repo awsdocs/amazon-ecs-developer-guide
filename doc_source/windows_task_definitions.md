@@ -11,8 +11,8 @@ Supported: Yes
 IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set when you launch the Amazon ECS\-optimized Windows Server AMI\. Your containers must also run some configuration code in order to take advantage of the feature\. For more information, see [Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
 
 `networkMode`  
-Supported: No  
-Docker for Windows uses different network modes than Docker for Linux\. When you register a task definition with Windows containers, you must not specify a network mode\. If you use the console to register a task definition with Windows containers, you must choose the `<default>` network mode object\. 
+Supported: Yes  
+When you register a task definition with Windows containers, you must use `default` or `awsvpc` network mode\. 
 
 `containerDefinitions`  
 Supported: Yes  
@@ -92,20 +92,22 @@ The following task definition is the Amazon ECS console sample application that 
   "containerDefinitions": [
     {
       "name": "windows_sample_app",
-      "image": "microsoft/iis",
-      "cpu": 512,
+      "image": "mcr.microsoft.com/windows/servercore/iis",
+      "cpu": 1024,
       "entryPoint":["powershell", "-Command"],
       "command":["New-Item -Path C:\\inetpub\\wwwroot\\index.html -Type file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p>'; C:\\ServiceMonitor.exe w3svc"],
       "portMappings": [
         {
           "protocol": "tcp",
-          "containerPort": 80,
-          "hostPort": 8080
+          "containerPort": 80
         }
       ],
       "memory": 1024,
       "essential": true
     }
-  ]
+  ],
+  "networkMode": "awsvpc",
+  "memory": "1024",
+  "cpu": "1024"
 }
 ```

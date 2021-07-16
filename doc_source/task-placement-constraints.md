@@ -164,19 +164,6 @@ The following example uses built\-in attributes to list the T2 instances in the 
 aws ecs list-container-instances --filter "attribute:ecs.instance-type =~ t2.* and attribute:ecs.availability-zone == us-east-1a"
 ```
 
-## Task groups<a name="task-groups"></a>
-
-You can identify a set of related tasks as a *task group*\. All tasks with the same task group name are considered as a set when performing spread placement\. For example, suppose that you are running different applications in one cluster, such as databases and web servers\. To ensure that your databases are balanced across Availability Zones, add them to a task group named "databases" and then use this task group as a constraint for task placement\.
-
-When you launch a task using the `RunTask` or `StartTask` action, you can specify the name of the task group for the task\. If you don't specify a task group for the task, the default name is the family name of the task definition \(for example, `family:my-task-definition`\)\.
-
-For tasks launched by the service scheduler, the task group name is the name of the service \(for example, `service:my-service-name`\)\.
-
-**Limits**
-+ A task group name must be 255 characters or less\.
-+ Each task can be in exactly one group\.
-+ After launching a task, you cannot modify its task group\.
-
 ## Example constraints<a name="constraint-examples"></a>
 
 The following are task placement constraint examples\.

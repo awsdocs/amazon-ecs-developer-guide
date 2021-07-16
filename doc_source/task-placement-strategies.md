@@ -14,8 +14,22 @@ When this strategy is used and a scale\-in action is taken, Amazon ECS will term
 Tasks are placed randomly\.
 
 `spread`  
-Tasks are placed evenly based on the specified value\. Accepted values are `instanceId` \(or `host`, which has the same effect\), or any platform or custom attribute that is applied to a container instance, such as `attribute:ecs.availability-zone`\. Service tasks are spread based on the tasks from that service\. Standalone tasks are spread based on the tasks from the same task group\.  
-When this strategy is used and a scale\-in action is taken, Amazon ECS will select tasks to terminate that maintains a balance across Availability Zones\. Within an Availability Zone, tasks will be selected at random\.
+Tasks are placed evenly based on the specified value\. Accepted values are `instanceId` \(or `host`, which has the same effect\), or any platform or custom attribute that is applied to a container instance, such as `attribute:ecs.availability-zone`\.  
+Service tasks are spread based on the tasks from that service\. Standalone tasks are spread based on the tasks from the same task group\. For more information about task groups, see [Task groups](#task-groups)\.  
+When the `spread` strategy is used and a scale\-in action is taken, Amazon ECS will select tasks to terminate that maintain a balance across Availability Zones\. Within an Availability Zone, tasks will be selected at random\.
+
+## Task groups<a name="task-groups"></a>
+
+You can identify a set of related tasks as a *task group*\. All tasks with the same task group name are considered as a set when performing spread placement\. For example, suppose that you are running different applications in one cluster, such as databases and web servers\. To ensure that your databases are balanced across Availability Zones, add them to a task group named "databases" and then use this task group as a constraint for task placement\.
+
+When you launch a task using the `RunTask` or `StartTask` action, you can specify the name of the task group for the task\. If you don't specify a task group for the task, the default name is the family name of the task definition \(for example, `family:my-task-definition`\)\.
+
+For tasks launched by the service scheduler, the task group name is the name of the service \(for example, `service:my-service-name`\)\.
+
+**Limits**
++ A task group name must be 255 characters or less\.
++ Each task can be in exactly one group\.
++ After launching a task, you cannot modify its task group\.
 
 ## Example strategies<a name="strategy-examples"></a>
 
