@@ -167,6 +167,8 @@ If the previous example used the soft limit `memoryReservation` instead of the h
 
 If this task is performing CPU\-intensive work during a period and using all 2,048 of the available CPU units and 512 MiB of memory, the service reports 400% CPU utilization and 50% memory utilization\. If the task is idle and using 128 CPU units and 128 MiB of memory, the service reports 25% CPU utilization and 12\.5% memory utilization\.
 
+Note: In the example above, the CPU utilization will go above 100% only when the CPU units are configured in the container definition\. In case of the CPU units being defined at the task level, the utilization will have a ceiling at the configured task limits and not go above 100%\.  
+
 ## Service `RUNNING` task count<a name="cw_running_task_count"></a>
 
 You can use CloudWatch metrics to view the number of tasks in your services that are in the `RUNNING` state\. For example, you can set a CloudWatch alarm for this metric to alert you if the number of running tasks in your service falls below a specified value\. 
