@@ -47,13 +47,20 @@ If you do not launch your container instance with the proper IAM permissions, yo
    1. <a name="instance-windows-launch-user-data-step"></a>Configure your Amazon ECS container instance with user data, such as the agent environment variables from [Amazon ECS container agent configuration](ecs-agent-config.md)\. Amazon EC2 user data scripts are executed only one time, when the instance is first launched\. The following are common examples of what user data is used for:
       + By default, your container instance launches into your default cluster\. To launch into a non\-default cluster, choose the **Advanced Details** list\. Then, paste the following script into the **User data** field, replacing *your\_cluster\_name* with the name of your cluster\.
 
+        The `EnableTaskIAMRole` turns on the Task IAM roles feature for the tasks\.
+
+        When you want to use the `awsvpc` network mode, you must include the following flags as shown in the example\.
+        + `EnableTaskENI`: This flag turns on task networking\.
+        + `AwsvpcBlockIMDS`: This flag blocks IMDS
+        + `AwsvpcAdditionalLocalRoutes`: This flag allows you to have additional routes\.
+
+          Replace `ip-address` with the IP Address for the additional routes, for example 172\.31\.42\.23/32\.
+
         ```
         <powershell>
-        
         Import-Module ECSTools
-        
-        Initialize-ECSAgent -Cluster your_cluster_name -EnableTaskENI -EnableTaskIAMRole -AwsvpcBlockIMDS
-        
+        Initialize-ECSAgent -Cluster your_cluster_name -EnableTaskIAMRole -EnableTaskENI -AwsvpcBlockIMDS -AwsvpcAdditionalLocalRoutes
+        '["ip-address"]'
         </powershell>
         ```
 

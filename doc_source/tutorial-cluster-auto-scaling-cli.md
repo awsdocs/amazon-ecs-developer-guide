@@ -28,13 +28,26 @@ This tutorial assumes that the following prerequisites have been completed:
 
 ## Step 1: Create the Auto Scaling resources<a name="cli-tutorial-asg"></a>
 
-This step walks you through creating an Auto Scaling launch configuration and two Auto Scaling groups\. This step requires that you already have a VPC created along with at least one public subnet and a security group\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
+This step walks you through creating an Auto Scaling launch template and two Auto Scaling groups\. This step requires that you already have a VPC created along with at least one public subnet and a security group\. For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
 
 **To create the Auto Scaling resources**
 
-1. Create an Auto Scaling launch configuration with the following steps\. For more information, see [Launch Configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+1. Create an Amazon EC2 launch template with the following steps\. For more information, see [Launch Templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchTemplates.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
-   1. Create a file named `CLItutorial-launchconfig.json` with the following contents\. You must replace the following values:
+   1. Create a file named `CLItutorial-userdata.txt` with the following contents\. This user data script will be used to register the Amazon EC2 instances created by the Auto Scaling group with the Amazon ECS cluster used in the tutorial, which we have named `CLItutorial-cluster`\.
+
+      ```
+      #!/bin/bash
+      echo ECS_CLUSTER=CLItutorial-cluster >> /etc/ecs/ecs.config
+      ```
+
+      Encode the contents of the `CLItutorial-userdata.txt` file using base64 and save it to a new file using the following command:
+
+      ```
+      base64 CLItutorial-userdata.txt > CLItutorial-userdata-base64.txt
+      ```
+
+   1. Create a file named `CLItutorial-launchtemplate.json` with the following contents\. You must replace the following values:
       + Replace the `ImageId` with the latest Amazon Linux 2 Amazon ECS\-optimized AMI\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
       + Replace the `SecurityGroups` value with your security group ID associated with your VPC\.
       + Replace the `IamInstanceProfile` value with the full Amazon Resource Name \(ARN\) of the instance profile for your Amazon ECS container instance IAM role\. An instance profile enables you to pass IAM role information to an Amazon EC2 instance when the instance starts\. If your Amazon ECS container instance IAM role is created already, you can retrieve the ARN of the instance profile with the following command\. Replace the container instance IAM role name in this example with the name of your container instance IAM role\.
@@ -42,12 +55,12 @@ This step walks you through creating an Auto Scaling launch configuration and tw
         ```
         aws iam list-instance-profiles-for-role --role-name ecsInstanceRole
         ```
+      + Replace the `UserData` value with the contents of the `CLItutorial-userdata-base64.txt` file created in the previous step\.
 
       ```
       {
-          "LaunchConfigurationName": "CLItutorial-launchconfig",
           "ImageId": "ami-04240723d51aeeb2d",
-          "SecurityGroups": [
+          "SecurityGroupIds": [
               "sg-abcd1234"
           ],
           "InstanceType": "t2.micro",
@@ -62,31 +75,29 @@ This step walks you through creating an Auto Scaling launch configuration and tw
                   }
               }
           ],
-          "InstanceMonitoring": {
+          "Monitoring": {
               "Enabled": false
           },
-          "IamInstanceProfile": "arn:aws:iam::111122223333:instance-profile/ecsInstanceRole",
-          "AssociatePublicIpAddress": true
+          "IamInstanceProfile": {
+              "Arn": "arn:aws:iam::111122223333:instance-profile/ecsInstanceRole"
+          },
+          "UserData": "IyEvYmluL2Jhc2gKZWNobyBFQ1NfQ0xVU1RFUj1DTEl0dXRvcmlhbC1jbHVzdGVyID4+IC9ldGMvZWNzL2Vjcy5jb25maWc="
       }
       ```
 
-   1. Create a file named `CLItutorial-userdata.txt` with the following contents\. This user data script will be used to register the Amazon EC2 instances created by the Auto Scaling group with the Amazon ECS cluster used in the tutorial, which we have named `CLItutorial-cluster`\.
+   1. Create the Amazon EC2 launch template\.
 
       ```
-      #!/bin/bash
-      echo ECS_CLUSTER=CLItutorial-cluster >> /etc/ecs/ecs.config
+      aws ec2 create-launch-template --launch-template-name CLItutorial-launchtemplate \
+          --version-description v1 \
+          --launch-template-data file://CLItutorial-launchtemplate.json \
+          --region us-west-2
       ```
 
-   1. Create the Auto Scaling launch configuration\.
+      If the command is successful, the output returns the description of the launch template\. You can also use the following command to display the description of your launch template\.
 
       ```
-      aws autoscaling create-launch-configuration --cli-input-json file://CLItutorial-launchconfig.json --user-data file://CLItutorial-userdata.txt --region us-west-2
-      ```
-
-      If the command is successful, there will be no output\. Use the following command to display the details of your launch configuration\.
-
-      ```
-      aws autoscaling describe-launch-configurations --launch-configuration-names CLItutorial-launchconfig --region us-west-2
+      aws ec2 describe-launch-templates --launch-template-names CLItutorial-launchtemplate --region us-west-2
       ```
 
 1. Create an Auto Scaling group with the following steps\. For more information, see [Auto Scaling Groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html) in the *Amazon EC2 Auto Scaling User Guide*\.
@@ -100,7 +111,9 @@ Specifying `true` for the `NewInstancesProtectedFromScaleIn` value is required w
 
       ```
       {
-          "LaunchConfigurationName": "CLItutorial-launchconfig",
+          "LaunchTemplate": {
+              "LaunchTemplateName": "CLItutorial-launchtemplate"
+          },
           "MinSize": 0,
           "MaxSize": 100,
           "DesiredCapacity": 0,
@@ -149,13 +162,19 @@ Specifying `true` for the `NewInstancesProtectedFromScaleIn` value is required w
               {
                   "AutoScalingGroupName": "CLItutorial-asg",
                   "AutoScalingGroupARN": "arn:aws:autoscaling:us-west-2:111122223333:autoScalingGroup:24c44d96-606a-427f-826a-f64ba4cc918c:autoScalingGroupName/CLItutorial-asg",
-                  "LaunchConfigurationName": "CLItutorial-launchconfig",
+                  "LaunchTemplate": {
+                      "LaunchTemplateName": "CLItutorial-launchtemplate",
+                      "LaunchTemplateId": "lt-00001111aaaabbbb"
+                  }, 
                   ...
               },
               {
                   "AutoScalingGroupName": "CLItutorial-asg-burst",
                   "AutoScalingGroupARN": "arn:aws:autoscaling:us-west-2:111122223333:autoScalingGroup:407c3102-fb00-4a0c-a1a8-0b242203a262:autoScalingGroupName/CLItutorial-asg-burst",
-                  "LaunchConfigurationName": "CLItutorial-launchconfig",
+                  "LaunchTemplate": {
+                      "LaunchTemplateName": "CLItutorial-launchtemplate",
+                      "LaunchTemplateId": "lt-00001111aaaabbbb"
+                  }, 
                   ...
               }
           ]

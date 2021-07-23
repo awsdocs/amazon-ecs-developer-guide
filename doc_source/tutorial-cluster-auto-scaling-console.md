@@ -52,42 +52,44 @@ Use the following steps to create an Amazon ECS cluster\. This tutorial uses an 
 **Note**  
 Use the old version of the EC2 Console for the auto scaling group sections of this tutorial\.
 
-Use the following steps to create an Auto Scaling launch configuration and Auto Scaling group\.
+Use the following steps to create an Auto Scaling launch template and Auto Scaling group\.
 
-**To create an Auto Scaling launch configuration**
+**To create an Auto Scaling launch template**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. On the navigation bar at the top of the screen, select the **US West \(Oregon\)** Region\.
 
-1. On the navigation pane, under **Auto Scaling**, choose **Launch Configurations**\.
+1. On the navigation pane, under **Auto Scaling**, choose **Launch Templates**\.
 
-1. On the next page, choose **Create launch configuration**\.
+1. On the next page, choose **Create launch template**\.
 
-1. On the **Choose AMI** page, search for and choose the latest Amazon ECS\-optimized Amazon Linux 2 AMI in the `us-west-2` Region\. The AMI ID can be retrieved using the following link: [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Frecommended%252Fimage_id/description?region=us-west-2#)\.
+1. In the **Launch template name and description** section, do the following:
 
-1. On the **Choose Instance Type** page, select `t2.micro`, then choose **Next: Configure details**\.
+   1. For **Launch template name**, enter `ConsoleTutorial-launchtemplate` for the launch template name\.
 
-1. On the **Configure details** page, do the following:
+   1. For **Template version description**, enter `v1`\.
 
-   1. For **Name**, enter `ConsoleTutorial-ASGlaunchconfig` for the launch configuration name\.
+1. In the **Amazon Machine Image \(AMI\)** section, search for and choose the latest Amazon ECS\-optimized Amazon Linux 2 AMI in the `us-west-2` Region\. The AMI ID can be retrieved using the following link: [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Frecommended%252Fimage_id/description?region=us-west-2#)\.
 
-   1. For **IAM role**, select your container instance IAM role\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
+1. In the **Choose Instance Type** section, select `t2.micro`z\.
 
-   1. Expand the **Advanced Details** section to specify user data for your Amazon ECS container instances\.
+1. In the **Network settings** section, search for and choose the latest Amazon ECS\-optimized Amazon Linux 2 AMI in the `us-west-2` Region\. The AMI ID can be retrieved using the following link: [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/%252Faws%252Fservice%252Fecs%252Foptimized-ami%252Famazon-linux-2%252Frecommended%252Fimage_id/description?region=us-west-2#)\.
 
-      Paste the following script into the **User data** field\. The `ConsoleTutorial-cluster` cluster was created in the first step\.
+1. In the **Advanced details** section, do the following:
+
+   1. For **IAM instance profile**, select your container instance IAM role\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
+
+   1. Paste the following script into the **User data** field\. The `ConsoleTutorial-cluster` cluster was created in the first step\.
 
       ```
       #!/bin/bash
       echo ECS_CLUSTER=ConsoleTutorial-cluster >> /etc/ecs/ecs.config
       ```
 
-   1. Choose **Skip to review**\.
+1. Choose **Create launch template**\.
 
-1. Choose **Create launch configuration**\.
-
-Next, create an Auto Scaling group using that launch configuration\.
+Next, create an Auto Scaling group using that launch template\.
 
 **To create an Auto Scaling group**
 
@@ -95,39 +97,41 @@ Next, create an Auto Scaling group using that launch configuration\.
 
 1. On the navigation bar at the top of the screen, select the **US West \(Oregon\)** Region\.
 
-1. On the navigation pane, under **Auto Scaling**, choose **Launch Configurations**\.
+1. On the navigation pane, under **Auto Scaling**, choose **Launch Templates**\.
 
-1. On the next page, select the launch configuration we created in step 1 and choose **Create Auto Scaling group**\.
+1. On the next page, select the launch template we created in step 1 and choose **Actions, Create Auto Scaling group**\.
 
-1. On the **Configure Auto Scaling group details** page, do the following:
+1. On the **Choose launch template or configuration** page, do the following:
 
-   1. For **Group name**, enter `ConsoleTutorial-ASG` for the Auto Scaling group name\.
+   1. For **Auto Scaling group name**, enter `ConsoleTutorial-ASG` for the Auto Scaling group name\.
 
-   1. For **Group size**, enter `0`\. The tutorial uses Amazon ECS managed scaling so there is no need to have the Auto Scaling group launch any initial instances\.
+   1. Choose **Next**\.
 
-   1. For **Network**, choose a VPC for your Auto Scaling group\.
+1. On the **Configure settings** page, do the following:
 
-   1. For **Subnet**, choose a subnet in your VPC\.
+   1. For **Subnets**, select one of your available subnets\.
 
-   1. Expand the **Advanced Details** section\. For **Instance Protection**, choose **Protect From Scale In**\. This enables you to use managed termination protection for the instances in the Auto Scaling group, which prevents your container instances that contain tasks from being terminated during scale\-in actions\.
+   1. Choose **Next**\.
 
-1. Choose **Next: Configure scaling policies**\.
+1. On the **Configure advanced options** choose **Next**\.
 
-1. On the **Configure scaling policies** page, select **Keep this group at its initial size**\. The tutorial uses Amazon ECS managed scaling so there is no need to create a scaling policy\.
+1. In the **Group size** section of the **Configure group size and scaling policies** page, do the following:
 
-1. Choose **Review**, **Create Auto Scaling group**\.
+   1. For **Desired capacity**, enter `0`\. The tutorial uses Amazon ECS managed scaling so there is no need to have the Auto Scaling group launch any initial instances\.
 
-1. Repeat steps 3 to 8 to create a second Auto Scaling group but for **Group name** use `ConsoleTutorial-ASG-burst`\.
+   1. For **Minimum capacity**, enter `0`\.
 
-1. Use the following steps to edit the max capacity value for each of your Auto Scaling groups\.
+   1. For **Maximum capacity**, enter `100`\.
 
-   1. Choose **View your Auto Scaling groups**\.
+1. In the **Instance scale\-in protection** section of the **Configure group size and scaling policies** page, do the following:
 
-   1. Select your `ConsoleTutorial-ASG` scaling group\. From the **Details** tab, choose **Edit**\.
+   1. Select the **Enable scale\-in protection** option to enable it\.
 
-   1. For **Max**, enter `100`, then choose **Save**\.
+1. Choose **Skip to review**\.
 
-1. Repeat step 10 for your `ConsoleTutorial-ASG-burst` scaling group\.
+1. After reviewing your selections, choose **Create Auto Scaling group**\.
+
+1. Repeat steps 3 to 11 to create a second Auto Scaling group but for **Group name** use `ConsoleTutorial-ASG-burst`\.
 
 ## Step 3: Create a Capacity Provider<a name="console-tutorial-capacity-provider"></a>
 

@@ -17,7 +17,7 @@ Windows Server 2019 and Windows Server 2016 are Long\-Term Servicing Channel \(L
 
 ## <a name="ecs-optimized-ami-windows"></a>
 
-The following are the details for retrieving the AMI IDs for each of the Windows variants of the Amazon ECS\-optimized AMI\. You can subscribe to the Windows AMI Amazon SNS topics to be notified when a new AMI is released or an AMI version is marked private\. For more information, see [Windows Amazon ECS\-optimized AMIs](ECS-AMI-windows-SubscribeTopic.md#sns-topic-windows)\.
+The following are the details for retrieving the AMI IDs for each of the Windows variants of the Amazon ECS\-optimized AMI\. You can subscribe to the Windows AMI Amazon SNS topics to be notified when a new AMI is released or an AMI version is marked private\. For more information, see [Subscribing to Amazon ECS\-optimized AMI update notifications](ECS-AMI-windows-SubscribeTopic.md)\.
 
 **Important**  
 To ensure that customers have the latest security updates by default, Amazon ECS maintains at least the last three Windows Amazon ECS\-optimized AMIs\. After releasing new Windows Amazon ECS\-optimized AMIs, Amazon ECS makes the Windows Amazon ECS\-optimized AMIs that are older private\. If there is a private AMI that you need access to, let us know by filing a ticket with Cloud Support\.

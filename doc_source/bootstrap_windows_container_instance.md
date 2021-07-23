@@ -15,14 +15,22 @@ You can pass this user data when using the Amazon EC2 launch wizard\. For more i
 
 This example user data script shows the default user data that your Windows container instances receive if you use the [cluster creation wizard](create_cluster.md)\. The below script does the following:
 + Sets the cluster name to `windows`\.
-+ Enables IAM roles for tasks\.
++ Sets the IAM roles for tasks\.
 + Sets `json-file` and `awslogs` as the available logging drivers\.
+
+In addition, the following options are required whrn you use the `awsvpc` network mode\.
++ `EnableTaskENI`: This flag turns on task networking\.
++ `AwsvpcBlockIMDS`: This flag blocks IMDS
++ `AwsvpcAdditionalLocalRoutes`: This flag allows you to have additional routes\.
+
+  Replace `ip-address` with the IP Address for the additional routes, for example 172\.31\.42\.23/32\.
 
 You can use this script for your own container instances \(provided that they are launched from the Amazon ECS\-optimized Windows Server AMI\), but be sure to replace the `-Cluster windows` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
 
 ```
 <powershell>
-Initialize-ECSAgent -Cluster windows -EnableTaskIAMRole -LoggingDrivers '["json-file","awslogs"]'
+Initialize-ECSAgent -Cluster windows -EnableTaskIAMRole -LoggingDrivers '["json-file","awslogs"]' -EnableTaskENI -AwsvpcBlockIMDS -AwsvpcAdditionalLocalRoutes
+'["ip-address"]'
 </powershell>
 ```
 

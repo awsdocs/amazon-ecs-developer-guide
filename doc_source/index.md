@@ -176,6 +176,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Scheduling Amazon ECS tasks](scheduling_tasks.md)
    + [Run a standalone task](ecs_run_task.md)
    + [Amazon ECS task placement](task-placement.md)
+      + [Task groups](task-groups.md)
       + [Amazon ECS task placement strategies](task-placement-strategies.md)
       + [Amazon ECS task placement constraints](task-placement-constraints.md)
       + [Cluster query language](cluster-query-language.md)

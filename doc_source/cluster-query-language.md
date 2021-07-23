@@ -40,7 +40,7 @@ Select container instances by number of running tasks\. You can use this filter 
 Valid operators: equals \(==\), not\_equals \(\!=\), greater\_than \(>\), greater\_than\_equal \(>=\), less\_than \(<\), less\_than\_equal \(<=\)
 
 `task:group`  
-Select container instances by task group\. For more information, see [Task groups](task-placement-strategies.md#task-groups)\.
+Select container instances by task group\. For more information, see [Task groups](task-groups.md)\.
 
 **Operator**  
 The comparison operator\. The following operators are supported\.
