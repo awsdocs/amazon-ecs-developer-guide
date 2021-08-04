@@ -5,7 +5,7 @@ An Amazon ECS container instance is an Amazon EC2 instance that is running the A
 **Note**  
 Tasks using the Fargate launch type are deployed onto infrastructure managed by AWS, so this topic does not apply\.
 
-Amazon ECS supports the followinwg container instances:
+Amazon ECS supports the following container instances:
 + Linux
 + Windows
 + External, such as an on\-premises VM
