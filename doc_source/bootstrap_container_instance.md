@@ -9,7 +9,6 @@ You can pass this user data when using the Amazon EC2 launch wizard\. For more i
 **Topics**
 + [Amazon ECS container agent](#bootstrap_container_agent)
 + [Docker daemon](#bootstrap_docker_daemon)
-+ [Example container instance user data configuration scripts](example_user_data_scripts.md)
 
 ## Amazon ECS container agent<a name="bootstrap_container_agent"></a>
 

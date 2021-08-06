@@ -18,7 +18,7 @@ This example user data script shows the default user data that your Windows cont
 + Sets the IAM roles for tasks\.
 + Sets `json-file` and `awslogs` as the available logging drivers\.
 
-In addition, the following options are required whrn you use the `awsvpc` network mode\.
+In addition, the following options are required when you use the `awsvpc` network mode\.
 + `EnableTaskENI`: This flag turns on task networking\.
 + `AwsvpcBlockIMDS`: This flag blocks IMDS
 + `AwsvpcAdditionalLocalRoutes`: This flag allows you to have additional routes\.

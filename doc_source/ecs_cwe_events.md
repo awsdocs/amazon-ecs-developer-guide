@@ -290,10 +290,6 @@ For more information about CloudWatch Events parameters, see [Events and Event P
 }
 ```
 
-For a tutorial walkthrough of setting up a simple AWS Lambda function that listens for Amazon ECS task events and writes them out to a CloudWatch Logs log stream, see [Tutorial: Listening for Amazon ECS CloudWatch Events](ecs_cwet.md)\.
-
-For a tutorial walkthrough of creating an SNS topic to email you when a task state change event occurs, see [Tutorial: Sending Amazon Simple Notification Service alerts for task stopped events](ecs_cwet2.md)\.
-
 ## Service action events<a name="ecs_service_events"></a>
 
 Amazon ECS sends service action events with the detail type **ECS Service Action**\. Unlike the container instance and task state change events, the service action events do not include a version number in the `details` response field\. The following is an event pattern that is used to create an EventBridge rule for Amazon ECS service action events\. For more information, see [Creating an EventBridge Rule](https://docs.aws.amazon.com/eventbridge/latest/userguide/create-eventbridge-rule.html) in the *Amazon EventBridge User Guide*\.
@@ -354,8 +350,6 @@ A common cause of this service event being triggered is because tags were being 
 
 **Example Service steady state event**  
 Service steady state events are delivered in the following format\. For more information about EventBridge parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  
-For a tutorial walkthrough of setting up a simple AWS Lambda function that listens for Amazon ECS service action events and writes them out to a CloudWatch Logs log stream, see [Tutorial: Listening for Amazon ECS CloudWatch Events](ecs_cwet.md)\.  
-For a tutorial walkthrough of creating an SNS topic to email you when a service event event occurs, see [Tutorial: Sending Amazon Simple Notification Service alerts for task stopped events](ecs_cwet2.md)\.  
 
 ```
 {

@@ -58,6 +58,11 @@ Before you begin working with GPUs on Amazon ECS, be aware of the following cons
   ```
   echo "ip_resolve=4" >> /etc/yum.conf
   ```
++  When you build a container image that does not use the nvidia/cuda base images, you must set the `NVIDIA_DRIVER_CAPABILITIES` Container Runtime variable to one of the following values:
+  + `utility,compute`
+  + `all`
+
+  For information about how to set the variable, see [Controlling the NVIDIA Container Runtime](https://sarus.readthedocs.io/en/stable/user/custom-cuda-images.html#controlling-the-nvidia-container-runtime) on the NVIDIA website\.
 
 ## Specifying GPUs in your task definition<a name="ecs-gpu-specifying"></a>
 

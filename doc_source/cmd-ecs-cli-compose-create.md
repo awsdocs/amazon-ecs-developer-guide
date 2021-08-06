@@ -39,6 +39,8 @@ When using the `ecs-cli compose create` command, using the `--tags` flag enables
 
 This example creates a task definition with the project name `hello-world` from the `hello-world.yml` Compose file\.
 
+For information about the `compose` options, see [Options](cmd-ecs-cli-compose.md#cmd-ecs-cli-compose-options)\.
+
 ```
 ecs-cli compose --project-name hello-world --file hello-world.yml create --launch-type EC2
 ```

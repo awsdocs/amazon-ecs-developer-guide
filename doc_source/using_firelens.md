@@ -80,3 +80,9 @@ The IP address assigned to the FireLens container\.
 The port that the Fluent Forward protocol is listening on\.
 
 The `FLUENT_HOST` and `FLUENT_PORT` environment variables enable you to log directly to the log router from code instead of going through `stdout`\. For more information, see [fluent\-logger\-golang](https://github.com/fluent/fluent-logger-golang) on GitHub\.
+
+**Topics**
++ [Using the AWS for Fluent Bit image](firelens-using-fluentbit.md)
++ [Creating a task definition that uses a FireLens configuration](firelens-taskdef.md)
++ [Filtering logs using regular expressions](firelens-filtering-logs.md)
++ [Example task definitions](firelens-example-taskdefs.md)

@@ -49,7 +49,7 @@ Consider the following when using the blue/green deployment type:
   + You must define two target groups for the load balancer\. One target group should be the initial target group defined for the load balancer when the Amazon ECS service was created\. The second target group's only requirement is that it can't be associated with a different load balancer than the one the service uses\.
 + When you create a CodeDeploy deployment for an Amazon ECS service, CodeDeploy creates a *replacement task set* \(or *green task set*\) in the deployment\. If you added a test listener to the load balancer, CodeDeploy routes your test traffic to the replacement task set\. This is when you can run any validation tests\. Then CodeDeploy reroutes the production traffic from the original task set to the replacement task set according to the traffic rerouting settings for the deployment group\.
 
-## Amazon ECS Console Experience<a name="deployment-type-bluegreen-console"></a>
+## Amazon ECS console experience<a name="deployment-type-bluegreen-console"></a>
 
 The service create and service update workflows in the Amazon ECS console supports blue/green deployments\.
 
@@ -76,11 +76,9 @@ To view the details of a CodeDeploy deployment group in the CodeDeploy console, 
 
 To modify the settings for a CodeDeploy deployment group in the CodeDeploy console, see [Change Deployment Group Settings with CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-groups-edit.html) in the *AWS CodeDeploy User Guide*\.
 
-A tutorial walking through the steps needed to create a service using the blue/green deployment type is provided\. For more information, see [Tutorial: Creating a service using a blue/green deployment](create-blue-green.md)\.
-
 Support for performing a blue/green deployment has been added for AWS CloudFormation\. For more information, see [Perform Amazon ECS blue/green deployments through CodeDeploy using AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/blue-green.html) in the *AWS CloudFormation User Guide*\.
 
-## Blue/Green Deployment Required IAM Permissions<a name="deployment-type-bluegreen-IAM"></a>
+## Blue/green deployment required IAM permissions<a name="deployment-type-bluegreen-IAM"></a>
 
 Amazon ECS blue/green deployments are made possible by a combination of the Amazon ECS and CodeDeploy APIs\. IAM users must have the appropriate permissions for these services before they can use Amazon ECS blue/green deployments in the AWS Management Console or with the AWS CLI or SDKs\. 
 

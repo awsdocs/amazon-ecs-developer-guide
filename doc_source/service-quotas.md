@@ -33,7 +33,7 @@ Most of these service quotas, but not all, are listed under the Amazon Elastic C
 
 The following are Amazon ECS on AWS Fargate service quotas\.
 
-These service quotas are listed under the AWS Fargate namespace in the Service Quotas console\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
+These service quotas are listed under the AWS Fargate namespace in the Service Quotas console\. Quotas for the Fargate On\-Demand and Fargate Spot resource count vary\. For a new account, the quota can be lower\. The service quota for your account can be viewed in the Service Quotas console\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
 
 
 ****  

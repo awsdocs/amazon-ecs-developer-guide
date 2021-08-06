@@ -1,4 +1,4 @@
-# External Deployment<a name="deployment-type-external"></a>
+# External deployment<a name="deployment-type-external"></a>
 
 The *external* deployment type enables you to use any third\-party deployment controller for full control over the deployment process for an Amazon ECS service\. The details for your service are managed by either the service management API actions \(`CreateService`, `UpdateService`, and `DeleteService`\) or the task set management API actions \(`CreateTaskSet`, `UpdateTaskSet`, `UpdateServicePrimaryTaskSet`, and `DeleteTaskSet`\)\. Each API action has a subset of the service definition parameters that it can manage\.
 
@@ -8,14 +8,14 @@ The `UpdateTaskSet` API action updates only the scale parameter for a task set\.
 
 The `UpdateServicePrimaryTaskSet` API action modifies which task set in a service is the primary task set\. When you call the `DescribeServices` API action, it returns all fields specified for a primary task set\. If the primary task set for a service is updated, any task set parameter values that exist on the new primary task set that differ from the old primary task set in a service are updated to the new value when a new primary task set is defined\. If no primary task set is defined for a service, when describing the service, the task set fields are null\.
 
-## External Deployment Considerations<a name="deployment-type-external-considerations"></a>
+## External deployment considerations<a name="deployment-type-external-considerations"></a>
 
 Consider the following when using the external deployment type:
 + Service auto scaling is not supported when using an external deployment controller\.
 + If using a load balancer for the task, the supported load balancer types are either an Application Load Balancer or a Network Load Balancer\.
 + Tasks using the Fargate launch type or `EXTERNAL` deployment controller types don't support the `DAEMON` scheduling strategy\.
 
-## External Deployment Workflow<a name="deployment-type-external-workflow"></a>
+## External deployment workflow<a name="deployment-type-external-workflow"></a>
 
 The following is the basic workflow to managing an external deployment on Amazon ECS\.
 

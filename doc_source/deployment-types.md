@@ -5,4 +5,4 @@ An Amazon ECS deployment type determines the deployment strategy that your servi
 **Topics**
 + [Rolling update](deployment-type-ecs.md)
 + [Blue/Green deployment with CodeDeploy](deployment-type-bluegreen.md)
-+ [External Deployment](deployment-type-external.md)
++ [External deployment](deployment-type-external.md)

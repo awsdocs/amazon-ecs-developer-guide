@@ -37,10 +37,7 @@ Amazon ECS on AWS Fargate is supported in the following Regions\. The supported 
 |  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  | 
 |  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  | 
 
-The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
-+ [Getting started with the Amazon ECS console using AWS Fargate](getting-started-fargate.md)
-+ [Tutorial: Creating a cluster with a Fargate task using the AWS CLI](ECS_AWSCLI_Fargate.md)
-+ [Tutorial: Creating a cluster with a Fargate task using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)
+To get started using AWS Fargate with Amazon ECS, see [Getting started with the Amazon ECS console using AWS Fargate](getting-started-fargate.md)\.
 
 ## Task definitions<a name="fargate-task-defs"></a>
 
@@ -71,7 +68,7 @@ To ensure that your task definition validates for use with Fargate, you can spec
 
 ### Network mode<a name="fargate-tasks-networkmode"></a>
 
-Amazon ECS task definitions for Fargate require that the network mode is set to `awsvpc`\. The `awsvpc` network mode provides each task with its own elastic network interface\. For more information, see [Amazon ECS task networking](task-networking.md)\.
+Amazon ECS task definitions for Fargate require that the network mode is set to `awsvpc`\. The `awsvpc` network mode provides each task with its own elastic network interface\. For more information, see [Fargate task networking](https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-task-networking.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
 A network configuration is also required when creating a service or manually running tasks\. For more information, see [Task networking](#fargate-tasks-services-networking)\.
 
