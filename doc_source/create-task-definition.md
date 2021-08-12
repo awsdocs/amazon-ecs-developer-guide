@@ -182,6 +182,77 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 1. Choose **Create**\.
 
 ------
+#### [ External instance launch type ]
+
+**Using the external instance launch type**
+
+If you chose **External**, complete the following steps:
+
+1. \(Optional\) If you have a JSON representation of your task definition, complete the following steps:
+
+   1. On the **Configure task and container definitions** page, scroll to the bottom of the page and choose **Configure via JSON**\.
+
+   1. Paste your task definition JSON into the text area and choose **Save**\.
+
+   1. Verify your information and choose **Create**\.
+
+   Scroll to the bottom of the page and choose **Configure via JSON**\.
+
+1. For **task definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
+
+1. \(Optional\) For **Task Role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md) and [IAM permissions for Amazon ECS Anywhere](ecs-anywhere-iam.md)\.
+
+1. \(Optional\) For **Network Mode**, choose the Docker network mode to use for the containers in your task\. The available network modes correspond to those described in [Network settings](https://docs.docker.com/engine/reference/run/#/network-settings) in the Docker run reference\. 
+
+   The default Docker network mode is `bridge`\. If the network mode is set to `none`, you can't specify port mappings in your container definitions, and the task's containers don't have external connectivity\. If the network mode is `awsvpc`, the task is allocated an elastic network interface\. The `host` and `awsvpc` network modes offer the highest networking performance for containers\. This is because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode\. However, exposed container ports are mapped directly to the corresponding host port\. Therefore, you cannot take advantage of dynamic host port mappings or run multiple instantiations of the same task on a single container instance if port mappings are used\.
+
+1. \(Optional\) For **Task execution role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\.
+
+1. \(Optional\) For **Task size**, choose a value for **Task memory \(GB\)** and **Task CPU \(vCPU\)**\. Supported `Task CPU (vCPU)` values are between 128 CPU units \(0\.125 vCPUs\) and 10240 CPU units \(10 vCPUs\)\.
+**Note**  
+Task\-level CPU and memory parameters are ignored for Windows containers\. We recommend specifying container\-level resources for Windows containers\.
+
+1. For each container in your task definition, complete the following steps\.
+
+   1. Choose **Add container**\.
+
+   1. Enter each of the required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
+
+   1. Choose **Add** to add your container to the task definition\.
+
+1. \(Optional\) For **Constraint**, you define how tasks that are created from this task definition are placed in your cluster\. For more information, see [Amazon ECS task placement constraints](task-placement-constraints.md)\.
+
+1. \(Optional\) For **Log Router Integration**, you can add a custom log routing configuration\. Choose **Enable FireLens integration** and then do the following:
+
+   1. For **Type**, choose the log router type to use\.
+
+   1. For **Image**, type the image URI for your log router container\. If you chose the `fluentbit` log router type, the **Image** field prepopulates with the AWS for Fluent Bit image\. For more information, see [Using the AWS for Fluent Bit image](firelens-using-fluentbit.md)\.
+
+   1. Choose **Apply**\. This creates a new log router container to the task definition named `log_router`, and applies the settings to support it\. If you make changes to the log router integration fields, choose **Apply** again to update the FireLens container\.
+
+1. \(Optional\) To define data volumes for your task, choose **Add volume**\. You can create either a bind mount or Docker volume\. For more information, see [Using data volumes in tasks](using_data_volumes.md)\.
+
+   1. For **Name**, type a name for your volume\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
+
+   1. \(Optional\) To create a bind mount volume, for **Source path**, type the path on the host container instance to present to the container\. If you leave this field empty, the Docker daemon assigns a host path for you\. If you specify a source path, the data volume persists at the specified location on the host container instance until you delete it manually\. If the source path doesn't exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported to the container\.
+
+   1. To create a Docker volume, select **Specify a volume driver**\.
+
+      1. For **Driver**, choose the Docker volume driver to use\. The driver value must match the driver name provided by Docker\. Use `docker plugin ls` on your container instance to retrieve the driver name\.
+
+      1. For **Scope**, choose the option that determines the lifecycle of the Docker volume\. Docker volumes that are scoped to a `task` are automatically provisioned when the task starts and destroyed when the task stops\. Docker volumes that are scoped as `shared` persist after the task stops\.
+
+      1. Select **Enable auto\-provisioning** to have the Docker volume created if it does not already exist\. This option is only available for volumes that specify the `shared` scope\.
+
+      1. For **Driver options**, specify the driver\-specific key values to use\.
+
+      1. For **Volume labels**, specify the custom metadata to add to your Docker volume\.
+
+1. In the **Tags** section, specify the key and value for each tag to associate with the task definition\. For more information, see [Tagging Your Amazon ECS Resources](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html)\.
+
+1. Choose **Create**\.
+
+------
 
 ## Task definition template<a name="task-definition-template"></a>
 

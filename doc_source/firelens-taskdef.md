@@ -9,6 +9,9 @@ When creating a new task definition using the AWS Management Console, there is a
 
 Amazon ECS converts the log configuration and generates the Fluentd or Fluent Bit output configuration\. The output configuration is mounted in the log routing container at `/fluent-bit/etc/fluent-bit.conf` for Fluent Bit and `/fluentd/etc/fluent.conf` for Fluentd\.
 
+**Important**  
+FireLens listens on the port `24224`, so the security group used for your Amazon EC2 instance hosting your task shouldn't allow ingress traffic on port `24224`\. This will ensure that, for your tasks that use the `awsvpc` or `host` network mode, the FireLens log router isn't reachable outside of the task\. 
+
 The following task definition example defines a log router container that uses Fluent Bit to route its logs to CloudWatch Logs\. It also defines an application container that uses a log configuration to route logs to Amazon Kinesis Data Firehose\.
 
 ```

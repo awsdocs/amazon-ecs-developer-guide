@@ -6,6 +6,8 @@ Environment variables can be passed to your containers in the following ways:
 
 Specifying environment variables in a file enables you to bulk inject environment variables as opposed to specifying them individually\. Within your container definition, specify the `environmentFiles` object with a list of Amazon S3 buckets containing your environment variable files\. The files must use an `.env` file extension and there is a limit of ten files per task definition\.
 
+We do not enforce a size limit on the environment variables, but a large environment variables file might fill up the disk space\. Each task that uses an environment variables file causes a copy of the file to be downloaded to disk\. We remove the file as part of the task cleanup\. 
+
 The following is a snippet of a task definition showing how to specify individual environment variables\.
 
 ```

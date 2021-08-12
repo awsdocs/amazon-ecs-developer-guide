@@ -238,7 +238,6 @@ Amazon's trademarks and trade dress may not be used in
       + [AWS managed policies for Amazon Elastic Container Service](security-iam-awsmanpol.md)
          + [Phased out AWS managed policies for Amazon Elastic Container Service](security-iam-awsmanpol-deprecated-policies.md)
          + [Migrating to the AmazonECS_FullAccess managed policy](security-iam-awsmanpol-amazonecs-full-access-migration.md)
-      + [Supported Resource-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)
       + [Service-linked role for Amazon ECS](using-service-linked-roles.md)
       + [Amazon ECS task execution IAM role](task_execution_IAM_role.md)
       + [Amazon ECS container instance IAM role](instance_IAM_role.md)

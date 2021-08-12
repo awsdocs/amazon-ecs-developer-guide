@@ -5,6 +5,7 @@ Before you use IAM to manage access to Amazon ECS, you should understand what IA
 **Topics**
 + [Amazon ECS identity\-based policies](#security_iam_service-with-iam-id-based-policies)
 + [Amazon ECS resource\-based policies](#security_iam_service-with-iam-resource-based-policies)
++ [Supported resource\-level permissions for Amazon ECS API actions](#ecs-supported-iam-actions-resources)
 + [Authorization based on Amazon ECS tags](#security_iam_service-with-iam-tags)
 + [Amazon ECS IAM roles](#security_iam_service-with-iam-roles)
 
@@ -105,7 +106,7 @@ The following table uses the new longer ARN format for Amazon ECS tasks, service
 |  Task  |  arn:aws:ecs:*region*:*account*:task/*cluster\-name*/*task\-id*  | 
 |  Container  |  arn:aws:ecs:*region*:*account*:container/*cluster\-name*/*task\-id*/*container\-id*  | 
 
-To learn with which actions you can specify the ARN of each resource, see [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)\.
+To learn with which actions you can specify the ARN of each resource, see [Supported resource\-level permissions for Amazon ECS API actions](#ecs-supported-iam-actions-resources)\.
 
 ### Condition keys<a name="security_iam_service-with-iam-id-based-policies-conditionkeys"></a>
 
@@ -137,7 +138,7 @@ Amazon ECS implements the following service\-specific condition keys\.
 |  ecs:task\-definition  |  The context key is formatted `"ecs:task-definition":"task-definition-arn"` where *task\-definition\-arn* is the ARN for the Amazon ECS task definition\.  | ARN, Null | 
 |  ecs:service  |  The context key is formatted `"ecs:service":"service-arn"` where *service\-arn* is the ARN for the Amazon ECS service\.  | ARN, Null | 
 
-To learn with which actions and resources you can use a condition key, see [Supported Resource\-Level Permissions for Amazon ECS API Actions](ecs-supported-iam-actions-resources.md)\.
+To learn with which actions and resources you can use a condition key, see [Supported resource\-level permissions for Amazon ECS API actions](#ecs-supported-iam-actions-resources)\.
 
 ### Examples<a name="security_iam_service-with-iam-id-based-policies-examples"></a>
 
@@ -148,6 +149,12 @@ To view examples of Amazon ECS identity\-based policies, see [Amazon Elastic Con
 ## Amazon ECS resource\-based policies<a name="security_iam_service-with-iam-resource-based-policies"></a>
 
 Amazon ECS does not support resource\-based policies\.
+
+## Supported resource\-level permissions for Amazon ECS API actions<a name="ecs-supported-iam-actions-resources"></a>
+
+The term *resource\-level permissions* refers to the ability to specify which resources users are allowed to perform actions on\. Amazon ECS has partial support for resource\-level permissions\. This means that for certain Amazon ECS actions, you can control when users are allowed to use those actions based on conditions that have to be fulfilled, or specific resources that users are allowed to use\. For example, you can grant users permission to launch instances, but only of a specific type, and only using a specific AMI\.
+
+For more information about the resources that are created or modified by the Amazon ECS actions, and the ARNs and Amazon ECS condition keys that you can use in an IAM policy statement, see [Actions, Resources, and Condition Keys for Amazon Elastic Container Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonelasticcontainerservice.html) in the *IAM User Guide*\.
 
 ## Authorization based on Amazon ECS tags<a name="security_iam_service-with-iam-tags"></a>
 

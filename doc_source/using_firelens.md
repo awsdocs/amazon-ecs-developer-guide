@@ -9,6 +9,7 @@ Creating Amazon ECS task definitions with a FireLens configuration is supported 
 The following should be considered when using FireLens for Amazon ECS:
 + FireLens for Amazon ECS is supported for tasks hosted on both AWS Fargate and Amazon EC2\.
 + FireLens for Amazon ECS is supported in AWS CloudFormation templates\. For more information, see [AWS::ECS::TaskDefinition FirelensConfiguration](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-firelensconfiguration.html) in the *AWS CloudFormation User Guide*
++ FireLens listens on the port `24224`, so the security group used for your Amazon EC2 instance hosting your task shouldn't allow ingress traffic on port `24224`\. This will ensure that, for your tasks that use the `awsvpc` or `host` network mode, the FireLens log router isn't reachable outside of the task\. 
 + For tasks that use the `bridge` network mode, the container with the FireLens configuration must start before any application containers that rely on it start\. To control the start order of your containers, use dependency conditions in your task definition\. For more information, see [Container dependency](task_definition_parameters.md#container_definition_dependson)\.
 **Note**  
 If you use dependency condition parameters in container definitions with a FireLens configuration, ensure that each container has a `START` or `HEALTHY` condition requirement\.
@@ -69,9 +70,9 @@ Your task may also require the Amazon ECS task execution role under the followin
   }
   ```
 
-## Using Fluent logger libraries<a name="firelens-fluent-logger"></a>
+## Using Fluent logger libraries or Log4j over TCP<a name="firelens-fluent-logger"></a>
 
-When the `awsfirelens` log driver is specified in a task definition, the ECS agent injects the following environment variables into the container:
+When the `awsfirelens` log driver is specified in a task definition, the Amazon ECS container agent injects the following environment variables into the container:
 
 `FLUENT_HOST`  
 The IP address assigned to the FireLens container\.
