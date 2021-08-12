@@ -55,7 +55,7 @@ The following should be considered when using service discovery:
 + Service discovery is supported for tasks on Fargate that use platform version 1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + Services configured to use service discovery have a limit of 1,000 tasks per service\. This is due to a Route 53 service quota\.
 + The Create Service workflow in the Amazon ECS console only supports registering services into private DNS namespaces\. When an AWS Cloud Map private DNS namespace is created, a Route 53 private hosted zone will be created automatically\.
-+ The VPC DNS attributes must be configured for sucessful DNS resolution\. For information about how to configure the attributes, see [DNS support in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support) in the *Amazon VPC User Guide*\.
++ The VPC DNS attributes must be configured for successful DNS resolution\. For information about how to configure the attributes, see [DNS support in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support) in the *Amazon VPC User Guide*\.
 + The DNS records created for a service discovery service always register with the private IP address for the task, rather than the public IP address, even when public namespaces are used\.
 + Service discovery requires that tasks specify either the `awsvpc`, `bridge`, or `host` network mode \(`none` is not supported\)\.
 + If the task definition your service task specifies uses the `awsvpc` network mode, you can create any combination of A or SRV records for each service task\. If you use SRV records, a port is required\.
