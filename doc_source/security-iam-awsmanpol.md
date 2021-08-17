@@ -31,7 +31,7 @@ The `AmazonECS_FullAccess` managed IAM policy includes the following permissions
 + `events` – Allows principals to create, manage, and delete Amazon EventBridge rules and their targets\.
 + `iam`– Allows principals to list IAM roles and their attached policies\. Principals can also list instance profiles available to your Amazon EC2 instances\.
 + `logs` – Allows principals to create and describe Amazon CloudWatch Logs log groups\. Principals can also list log events for these log groups\.
-+ `route53` – Allows principals to create, manage, and delete Amazon Route 53 hosted zones\. Principals can also view Amazon Route 53 health check configuration and information\. For more information about hosted zones, see [Working with hosted zones](Route53/latest/DeveloperGuide/hosted-zones-working-with.html)\.
++ `route53` – Allows principals to create, manage, and delete Amazon Route 53 hosted zones\. Principals can also view Amazon Route 53 health check configuration and information\. For more information about hosted zones, see [Working with hosted zones](/Route53/latest/DeveloperGuide/hosted-zones-working-with.html)\.
 + `servicediscovery` – Allows principals to create, manage, and delete AWS Cloud Map services and create private DNS namespaces\.
 
 The following is an example `AmazonECS_FullAccess` policy\.
@@ -404,15 +404,15 @@ The following is an example `AmazonECSTaskExecutionRolePolicy` policy\.
 
 ## `AWSApplicationAutoscalingECSServicePolicy`<a name="security-iam-awsmanpol-AWSApplicationAutoscalingECSServicePolicy"></a>
 
-You can't attach `AWSApplicationAutoscalingECSServicePolicy` to your IAM entities\. This policy is attached to a service\-linked role that allows Application Auto Scaling to perform actions on your behalf\. For more information, see [Service\-linked roles for Application Auto Scaling](autoscaling/application/userguide/application-auto-scaling-service-linked-roles.html)\.
+You can't attach `AWSApplicationAutoscalingECSServicePolicy` to your IAM entities\. This policy is attached to a service\-linked role that allows Application Auto Scaling to perform actions on your behalf\. For more information, see [Service\-linked roles for Application Auto Scaling](/autoscaling/application/userguide/application-auto-scaling-service-linked-roles.html)\.
 
 ## `AWSCodeDeployRoleForECS`<a name="security-iam-awsmanpol-AWSCodeDeployRoleForECS"></a>
 
-You can't attach `AWSCodeDeployRoleForECS` to your IAM entities\. This policy is attached to a service\-linked role that allows CodeDeploy to perform actions on your behalf\. For more information, see [Create a service role for CodeDeploy](codedeploy/latest/userguide/getting-started-create-service-role.html)\.
+You can't attach `AWSCodeDeployRoleForECS` to your IAM entities\. This policy is attached to a service\-linked role that allows CodeDeploy to perform actions on your behalf\. For more information, see [Create a service role for CodeDeploy](/codedeploy/latest/userguide/getting-started-create-service-role.html)\.
 
 ## `AWSCodeDeployRoleForECSLimited`<a name="security-iam-awsmanpol-AWSCodeDeployRoleForECSLimited"></a>
 
-You can't attach `AWSCodeDeployRoleForECSLimited` to your IAM entities\. This policy is attached to a service\-linked role that allows CodeDeploy to perform actions on your behalf\. For more information, see [Create a service role for CodeDeploy](codedeploy/latest/userguide/getting-started-create-service-role.html)\.
+You can't attach `AWSCodeDeployRoleForECSLimited` to your IAM entities\. This policy is attached to a service\-linked role that allows CodeDeploy to perform actions on your behalf\. For more information, see [Create a service role for CodeDeploy](/codedeploy/latest/userguide/getting-started-create-service-role.html)\.
 
 ## Amazon ECS updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
 
