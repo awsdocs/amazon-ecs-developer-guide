@@ -35,7 +35,7 @@ Set this value to the hostname \(or IP address\) and port number of an HTTP prox
 Set this value to `169.254.169.254` to filter EC2 instance metadata from the proxy\. 
 
 `/etc/sysconfig/docker` \(Amazon Linux AMI and Amazon Linux 2 only\)    
-`export HTTP_PROXY=10.0.0.131:3128`  
+`export HTTP_PROXY=http://10.0.0.131:3128`  
 Set this value to the hostname \(or IP address\) and port number of an HTTP proxy to use for the Docker daemon to connect to the internet\. For example, your container instances may not have external network access through an Amazon VPC internet gateway, NAT gateway, or instance\.  
 `export NO_PROXY=169.254.169.254,169.254.170.2`  
 Set this value to `169.254.169.254` to filter EC2 instance metadata from the proxy\. 
