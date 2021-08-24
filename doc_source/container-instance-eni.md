@@ -156,7 +156,6 @@ Although other instance types are supported in the same instance family, the `c5
 |  c5a\.xlarge  | 3 |  20  | 
 |  c5a\.2xlarge  | 3 |  40  | 
 |  c5a\.4xlarge  | 7 | 60 | 
-|  c5a\.8xlarge  | 7 |  60  | 
 |  c5a\.12xlarge  | 7 |  60  | 
 |  c5a\.16xlarge  | 14 |  120  | 
 |  c5a\.18xlarge  | 14 |  120  | 
@@ -165,7 +164,6 @@ Although other instance types are supported in the same instance family, the `c5
 |  c5ad\.xlarge  | 3 | 20 | 
 |  c5ad\.2xlarge  | 3 | 40 | 
 |  c5ad\.4xlarge  | 7 | 60 | 
-|  c5ad\.8xlarge  | 7 | 60 | 
 |  c5ad\.12xlarge  | 7 | 60 | 
 |  c5ad\.16xlarge  | 14 | 120 | 
 |  c5ad\.18xlarge  | 14 | 120 | 
