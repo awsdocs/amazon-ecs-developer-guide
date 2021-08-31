@@ -115,6 +115,25 @@ The role permissions policy allows Amazon ECS to complete the following actions 
                 "logs:PutLogEvents"
             ],
             "Resource": "arn:aws:logs:*:*:log-group:/aws/ecs/*:log-stream:*"
+        },
+        {
+            "Sid": "ExecuteCommandSessionManagement",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:DescribeSessions"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "ExecuteCommand",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:StartSession"
+            ],
+            "Resource": [
+                "arn:aws:ecs:*:*:task/*",
+                "arn:aws:ssm:*:*:document/AmazonECS-ExecuteInteractiveCommand"
+            ]
         }
     ]
 }
