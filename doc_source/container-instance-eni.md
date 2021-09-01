@@ -150,13 +150,13 @@ Although other instance types are supported in the same instance family, the `c5
 |  c5\.2xlarge  |  3  |  40  | 
 |  c5\.4xlarge  |  7  |  60  | 
 |  c5\.9xlarge  |  7  |  60  | 
+|  c5\.12xlarge  |  7  |  60  | 
 |  c5\.18xlarge  |  14  |  120  | 
 |  c5\.24xlarge  | 14 |  120  | 
 |  c5a\.large  | 2 |  10  | 
 |  c5a\.xlarge  | 3 |  20  | 
 |  c5a\.2xlarge  | 3 |  40  | 
 |  c5a\.4xlarge  | 7 | 60 | 
-|  c5a\.8xlarge  | 7 |  60  | 
 |  c5a\.12xlarge  | 7 |  60  | 
 |  c5a\.16xlarge  | 14 |  120  | 
 |  c5a\.18xlarge  | 14 |  120  | 
@@ -165,7 +165,6 @@ Although other instance types are supported in the same instance family, the `c5
 |  c5ad\.xlarge  | 3 | 20 | 
 |  c5ad\.2xlarge  | 3 | 40 | 
 |  c5ad\.4xlarge  | 7 | 60 | 
-|  c5ad\.8xlarge  | 7 | 60 | 
 |  c5ad\.12xlarge  | 7 | 60 | 
 |  c5ad\.16xlarge  | 14 | 120 | 
 |  c5ad\.18xlarge  | 14 | 120 | 
@@ -177,27 +176,27 @@ Although other instance types are supported in the same instance family, the `c5
 |  c5d\.9xlarge  |  7  |  60  | 
 |  c5d\.12xlarge  |  7  | 60 | 
 |  c5d\.18xlarge  |  14  |  120  | 
-|  c5ad\.24xlarge  | 14 |  120  | 
+|  c5d\.24xlarge  | 14 |  120  | 
 |  c6 instance family  | 
 | --- |
 |  c6g\.medium  | 1 |  4  | 
-|  c6g\.metal  | 2 |  120  | 
-|  c6g\.large  | 3 |  10  | 
+|  c6g\.large  | 2 |  10  | 
 |  c6g\.xlarge  | 3 |  20  | 
-|  c6g\.2xlarge  | 7 |  40  | 
+|  c6g\.2xlarge  | 3 |  40  | 
 |  c6g\.4xlarge  | 7 |  60  | 
 |  c6g\.8xlarge  | 7 |  60  | 
-|  c6g\.12xlarge  | 14 |  60  | 
+|  c6g\.12xlarge  | 7 |  60  | 
 |  c6g\.16xlarge  | 14 |  120  | 
+|  c6g\.metal  | 14 |  120  | 
 |  c6gd\.medium  | 1 |  4  | 
-|  c6gd\.metal  | 14 |  120  | 
 |  c6gd\.large  | 2 |  10  | 
 |  c6gd\.xlarge  | 3 |  20  | 
-|  c6gd\.2xlarge  | 7 |  40  | 
+|  c6gd\.2xlarge  | 3 |  40  | 
 |  c6gd\.4xlarge  | 7 |  60  | 
 |  c6gd\.8xlarge  | 7 |  60  | 
 |  c6gd\.12xlarge  | 7 |  60  | 
 |  c6gd\.16xlarge  | 14 |  120  | 
+|  c6gd\.metal  | 14 |  120  | 
 |  m5 instance family  | 
 | --- |
 |  m5\.large  |  2  |  10  | 
@@ -235,8 +234,16 @@ Although other instance types are supported in the same instance family, the `c5
 |  m5d\.metal  |  14  |  120  | 
 |  m6 instance family  | 
 | --- |
+|  m6i\.large  |  2  |  1  | 
+|  m6i\.xlarge  |  3  |  6  | 
+|  m6i\.2xlarge  |  3  |  19  | 
+|  m6i\.4xlarge  |  7  |  40  | 
+|  m6i\.8xlarge  |  7  |  90  | 
+|  m6i\.12xlarge  |  7  |  60  | 
+|  m6i\.16xlarge  |  14  |  120  | 
+|  m6i\.24xlarge  |  14  |  120  | 
+|  m6i\.32xlarge  |  14  |  120  | 
 |  m6g\.medium  |  1  |  4  | 
-|  m6g\.metal  |  14  |  120  | 
 |  m6g\.large  |  2  |  10  | 
 |  m6g\.xlarge  |  3  |  20  | 
 |  m6g\.2xlarge  |  3  |  40  | 
@@ -244,8 +251,8 @@ Although other instance types are supported in the same instance family, the `c5
 |  m6g\.8xlarge  |  7  |  60  | 
 |  m6g\.12xlarge  |  7  |  60  | 
 |  m6g\.16xlarge  |  14  |  120  | 
+|  m6g\.metal  |  14  |  120  | 
 |  m6gd\.medium  |  1  |  4  | 
-|  m6gd\.metal  |  14  |  120  | 
 |  m6gd\.large  |  2  |  10  | 
 |  m6gd\.xlarge  |  3  |  20  | 
 |  m6gd\.2xlarge  |  3  |  40  | 
@@ -253,6 +260,7 @@ Although other instance types are supported in the same instance family, the `c5
 |  m6gd\.8xlarge  |  7  |  60  | 
 |  m6gd\.12xlarge  |  7  |  60  | 
 |  m6gd\.16xlarge  |  14  |  120  | 
+|  m6gd\.metal  |  14  |  120  | 
 |  p3 instance family  | 
 | --- |
 |  p3\.2xlarge  |  3  |  40  | 
@@ -294,7 +302,6 @@ Although other instance types are supported in the same instance family, the `c5
 |  r6 instance family  | 
 | --- |
 |  r6g\.medium  |  1  |  4  | 
-|  r6g\.metal  |  14  |  120  | 
 |  r6g\.large  |  2  |  10  | 
 |  r6g\.xlarge  |  3  |  20  | 
 |  r6g\.2xlarge  |  3  |  40  | 
@@ -302,8 +309,8 @@ Although other instance types are supported in the same instance family, the `c5
 |  r6g\.8xlarge  |  7  |   60  | 
 |  r6g\.12xlarge  |  7  |  60  | 
 |  r6g\.16xlarge  |  14  |  120  | 
+|  r6g\.metal  |  14  |  120  | 
 |  r6gd\.medium  |  1  |  4  | 
-|  r6gd\.metal  |  14  |  120  | 
 |  r6gd\.large  |  2  |  10  | 
 |  r6gd\.xlarge  |  3  |  20  | 
 |  r6gd\.2xlarge  |  3  |  40  | 
@@ -311,3 +318,4 @@ Although other instance types are supported in the same instance family, the `c5
 |  r6gd\.8xlarge  |  7  |  60  | 
 |  r6gd\.12xlarge  |  7  |  60  | 
 |  r6gd\.16xlarge  |  14  |  120  | 
+|  r6gd\.metal  |  14  |  120  | 
