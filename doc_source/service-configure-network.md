@@ -13,7 +13,7 @@ For tasks hosted on Amazon EC2 instances, the `awsvpc` network mode doesn't prov
 
 1. If you have not done so already, follow the basic service configuration procedures in [Step 1: Configuring basic service parameters](basic-service-params.md)\.
 
-1. For **Cluster VPC**, if you are hosting tasks on Amazon EC2 instanaces, choose the VPC in which your instances reside\. If you're hosting tasks on Fargate, select the VPC that the Amazon ECS on Fargate tasks should use\. Ensure that the VPC you choose is not configured to require dedicated hardware tenancy, as that isn't supported by Fargate\.
+1. For **Cluster VPC**, if you are hosting tasks on Amazon EC2 instances, choose the VPC in which your instances reside\. If you're hosting tasks on Fargate, select the VPC that the Amazon ECS on Fargate tasks should use\. Ensure that the VPC you choose is not configured to require dedicated hardware tenancy, as that isn't supported by Fargate\.
 
 1. For **Subnets**, choose the available subnets for your service task placement\.
 

@@ -44,9 +44,9 @@ task_definition:
   docker_volumes:
       - name: string
         scope: string
-        autoprovision: 
+        autoprovision: boolean
         driver: string
-        driver_opts: boolean
+        driver_opts: string
            string: string
         labels:
            string: string

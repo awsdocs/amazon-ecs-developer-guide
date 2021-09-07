@@ -124,4 +124,9 @@ When setting a minimum healthy percent or a maximum percent, you should ensure t
 
 ### service \(*service\-name*\) was unable to place a task\.<a name="service-event-messages-8"></a>
 
-This service is unable to place the task because you have reached the limit on the number of tasks\. For more information, see [Amazon ECS service quotas](service-quotas.md)\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
+ The follwing are the list of error messages:
++ This service is unable to place the task because you have reached the limit on the number of tasks\. 
++ This service is unable to place a task\. Reason: The requested CPU configuration is above your limit\. 
++ This service is unable to place a task\. Reason: The requested MEMORY configuration is above your limit\. 
+
+You can request a quota increase for the resource that caused the error\. For more information, see [Amazon ECS service quotas](service-quotas.md)\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.

@@ -72,4 +72,15 @@ ERROR: toomanyrequests: Too Many Requests.
 ```
 You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limits.
 ```
-For more information about the Docker Hub rate limits, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits)\.
+For more information about the Docker Hub rate limits, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits)\.  
+If you have increased the Docker Hub rate limit and you need to authenticate your Docker pulls for your container instances, see [Private registry authentication for container instances](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/private-auth-container-instances.html) in the *Amazon Elastic Container Service Developer Guide*\.
+
+Fail to copy image  
+If you receive an error similar to the following when launching a task, it's because there is no access to the image:  
+
+```
+CannotPullContainerError: ref pull has been retried 1 time(s): failed to copy: httpReaderSeeker: failed open: unexpected status code
+```
+To resolve this issue, you can:  
++ For Fargate tasks, see [How do I resolve the "cannotpullcontainererror" error for my Amazon ECS tasks on Fargate](https://aws.amazon.com/premiumsupport/knowledge-center/ecs-fargate-pull-container-error/)\.
++ For other tasks, see [How do I resolve the "cannotpullcontainererror" error for my Amazon ECS tasks](https://aws.amazon.com/premiumsupport/knowledge-center/ecs-fargate-pull-container-error/)\.

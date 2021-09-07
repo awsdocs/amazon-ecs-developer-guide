@@ -94,6 +94,8 @@ You must also create a role for your tasks to use before you can specify it in y
 
 If you have multiple task definitions or services that require IAM permissions, you should consider creating a role for each specific task definition or service with the minimum required permissions for the tasks to operate so that you can minimize the access that you provide for each task\. 
 
+For information about the service endpoint for your Region, see [Service endpoints](https://docs.aws.amazon.com/general/latest/gr/ecs-service.html#ecs_region) in the *Amazon Web Services General Reference Reference Guide*\.
+
 The Amazon ECS Task Role trust relationship is shown below\.
 
 ```

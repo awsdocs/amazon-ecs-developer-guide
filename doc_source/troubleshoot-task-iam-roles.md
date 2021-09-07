@@ -29,7 +29,7 @@ The following procedure helps you to:
 
    1. For **Select your use case**, choose **Elastic Container Service Task**, **Next: Permissions**\.
 
-   1. On the **Attached permissions policy** page, choose **AmazonECS_FullAccess**, **Next: Review**\.
+   1. On the **Attached permissions policy** page, choose **AmazonECS\_FullAccess**, **Next: Review**\.
 
    1. On the **Review** page, for **Role name**, enter `ECS-task-full-access` and choose **Create role**\.
 

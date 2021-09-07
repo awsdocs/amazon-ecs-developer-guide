@@ -20,6 +20,7 @@ Before you start using external instances, be aware of the following considerati
 + Currently, you can't register external instances with Amazon ECS Anywhere in the China \(Beijing\) and China \(Ningxia\) Regions\.
 + You can register an external instance to one cluster at a time\. For instructions on how to register an external instance with a different cluster, see [Deregistering an external instance](ecs-anywhere-deregistration.md)\.
 + Your external instances require an IAM role that allows them to communicate with AWS APIs\. For more information, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
++ Your external instances should not have a preconfigured instance credential chain defined locally as this will interfere with the registration script\.
 + To send container logs to CloudWatch Logs, make sure that you create and specify a task execution IAM role in your task definition\. For more information, see [Conditional IAM permissions](ecs-anywhere-iam.md#ecs-anywhere-iam-conditional)\.
 + When an external instance is registered to a cluster, the `ecs.capability.external` attribute is associated with the instance\. This attribute identifies the instance as an external instance\.
 + You can add custom attributes to your external instances to use as a task placement constraint\. For more information, see [Custom attributes](task-placement-constraints.md#ecs-custom-attributes)\.

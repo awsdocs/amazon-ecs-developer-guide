@@ -14,9 +14,9 @@ You can monitor your Amazon ECS resources using Amazon CloudWatch, which collect
 
 ## Enabling CloudWatch metrics<a name="enable_cloudwatch"></a>
 
-Any Amazon ECS service using the Fargate launch type is enabled for CloudWatch CPU and memory utilization metrics automatically, so you don't need to take any manual steps\.
+Any Amazon ECS service hosted on Fargate is enabled for CloudWatch CPU and memory utilization metrics automatically, so you don't need to take any manual steps\.
 
-For any Amazon ECS task or service using the EC2 launch type, your Amazon ECS container instances require version 1\.4\.0 or later of the container agent to enable CloudWatch metrics\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
+For any Amazon ECS task or service hosted on EC2, your Amazon ECS container instances require version `1.4.0` or later of the container agent to enable CloudWatch metrics\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
 If you're starting your agent manually \(for example, if you're not using the Amazon ECS\-optimized AMI for your container instances\), see [Manually updating the Amazon ECS container agent \(for non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
 
@@ -167,7 +167,8 @@ If the previous example used the soft limit `memoryReservation` instead of the h
 
 If this task is performing CPU\-intensive work during a period and using all 2,048 of the available CPU units and 512 MiB of memory, the service reports 400% CPU utilization and 50% memory utilization\. If the task is idle and using 128 CPU units and 128 MiB of memory, the service reports 25% CPU utilization and 12\.5% memory utilization\.
 
-Note: In the example above, the CPU utilization will go above 100% only when the CPU units are configured in the container definition\. In case of the CPU units being defined at the task level, the utilization will have a ceiling at the configured task limits and not go above 100%\.  
+**Note**  
+In this example, the CPU utilization will only go above 100% when the CPU units are defined at the container level\. If you define CPU units at the task level, the utilization will not go above the defined task\-level limit\.
 
 ## Service `RUNNING` task count<a name="cw_running_task_count"></a>
 

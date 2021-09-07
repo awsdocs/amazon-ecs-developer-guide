@@ -7,6 +7,7 @@ This tutorial shows a simple walkthrough of creating an Amazon ECS service that 
 It is expected that you have completed the following prerequisites before continuing on:
 + Set up an AWS account\.
 + Install the Amazon ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
++ Create a VPC\. For more information, see [Create a virtual private cloud](get-set-up-for-amazon-ecs.md#create-a-vpc)\.
 
 ## Configure the Amazon ECS CLI<a name="ECS_CLI_tutorial_servicediscovery_configure"></a>
 

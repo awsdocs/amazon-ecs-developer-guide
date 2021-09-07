@@ -274,7 +274,7 @@ If you receive an `Error response from daemon: Cannot start container` message, 
       1. Option 1: Retrieve the key with the following command\.
 
          ```
-         gpg --keyserver hkp://keys.gnupg.net --recv BCE9D9A42D51784F
+         gpg --keyserver hkps://keys.openpgp.org  --recv BCE9D9A42D51784F
          ```
 
       1. Option 2: Create a file with the following contents of the Amazon ECS PGP public key and then import it:

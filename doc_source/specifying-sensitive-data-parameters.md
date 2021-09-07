@@ -113,7 +113,7 @@ You can use the AWS Systems Manager console to create a Systems Manager Paramete
 
 1. In the navigation pane, choose **Parameter Store**, **Create parameter**\.
 
-1. For **Name**, type a hierarchy and a parameter name\. For example, type `test/database_password`\.
+1. For **Name**, type a hierarchy and a parameter name\. For example, type `/test/database_password`\.
 
 1. For **Description**, type an optional description\.
 
@@ -143,7 +143,7 @@ You can use the Amazon ECS console to create a task definition that references a
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. In the navigation pane, choose **task definitions**, **Create new task definition**\.
+1. In the navigation pane, choose **task definitions**, **Create New Task Definition**\.
 
 1. On the **Select launch type compatibility** page, choose the launch type for your tasks and choose **Next step**\.
 **Note**  

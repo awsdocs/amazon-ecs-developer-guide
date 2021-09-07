@@ -17,11 +17,12 @@ You can audit which user accessed the container using AWS CloudTrail and log eac
 ## Considerations for using ECS Exec<a name="ecs-exec-considerations"></a>
 
 For this topic, you should be familiar with the following aspects involved with using ECS Exec:
-+ ECS Exec is only supported on Linux containers\.
++ ECS Exec is only supported for Linux containers\.
 + ECS Exec is not currently supported using the AWS Management Console\.
 + If you are using interface Amazon VPC endpoints with Amazon ECS, you must create the interface Amazon VPC endpoints for Systems Manager Session Manager\. For more information, see [Create the Systems Manager endpoints](vpc-endpoints.md#ecs-vpc-endpoint-ecsexec)\.
 + You can't enable ECS Exec for existing tasks\. It can only be enabled for new tasks\.
 + When a user runs commands on a container using ECS Exec, these commands are run as the `root` user\. The SSM agent and its child processes run as root even when you specify a user ID for the container\.
++ The ECS Exec session has a default idle timeout time of 20 minutes\. For more information, see see [Specify an idle session timeout value](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-timeout.html) in the *AWS Systems Manager User Guide*\.
 + The SSM agent requires that the container file system is able to be written to in order to create the required directories and files\. Therefore, making the root file system read\-only using the `readonlyRootFilesystem` task definition parameter, or any other method, isn't supported\.
 + Users can run all of the commands that are available within the container context\. The following actions might result in orphaned and zombie processes: terminating the main process of the container, terminating the command agent, and deleting dependencies\. To cleanup zombie processes, we recommend adding the `initProcessEnabled` flag to your task definition\.
 + While starting SSM sessions outside of the `execute-command` action is possible, this results in the sessions not being logged and being counted against the session limit\. We recommend limiting this access by denying the `ssm:start-session` action using an IAM policy\. For more information, see [Limiting access to the Start Session action](#ecs-exec-limit-access-start-session)\.
@@ -166,6 +167,8 @@ Amazon ECS provides a default configuration for logging commands run using ECS E
 This configuration only handles the logging of the `execute-command` session\. It doesn't affect logging of your application\.
 
 The following example creates a service and then logs the output to your CloudWatch Logs LogGroup named `cloudwatch-log-group-name` and your Amazon S3 bucket named `s3-bucket-name`\.
+
+You must use an AWS KMS customer managed key to encrypt the log group when you set the `CloudWatchEncryptionEnabled` option to `true`\. For information about how to encrypt the log group, see [Encrypt log data in CloudWatch Logs using AWS Key Management Service](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html#encrypt-log-data-kms-policy), in the *Amazon CloudWatch Logs User Guide*\.
 
 ```
 aws ecs create-cluster \

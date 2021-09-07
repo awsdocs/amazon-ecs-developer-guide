@@ -17,5 +17,6 @@ The following should be considered when using Auto Scaling group capacity provid
 **Note**  
 To create an empty Auto Scaling group, set the desired count to zero\. After you have created the capacity provider and associated it with a cluster, you can then scale it out\.
 + An Auto Scaling group must have a `MaxSize` greater than zero to enable it to scale out\.
++ If the Auto Scaling group is unable to scale out to accommodate the number of tasks run, the tasks will fail to transition beyond the `PROVISIONING` state\.
 + When using managed termination protection, managed scaling must be enabled otherwise managed termination protection will not work\.
 + When using managed scaling, the Auto Scaling group shouldn't have any scaling policies attached to it other than the ones Amazon ECS creates, otherwise the Amazon ECS created scaling plans will receive an `ActiveWithProblems` error\. For more information, see [Avoiding the ActiveWithProblems error](https://docs.aws.amazon.com/autoscaling/plans/userguide/gs-best-practices.html#gs-activewithproblems) in the *AWS Auto Scaling User Guide*\.
