@@ -197,6 +197,12 @@ Although other instance types are supported in the same instance family, the `c5
 |  c6gd\.12xlarge  | 7 |  60  | 
 |  c6gd\.16xlarge  | 14 |  120  | 
 |  c6gd\.metal  |  14  |  120  | 
+|  g3 instance family  | 
+| --- |
+|  g3\.4xlarge  |  7  |  12  | 
+|  g3\.8xlarge  |  7  |  12  | 
+|  g3\.16xlarge  |  14  |  12  | 
+|  g3s\.xlarge  |  3  |  12  | 
 |  m5 instance family  | 
 | --- |
 |  m5\.large  |  2  |  10  | 
