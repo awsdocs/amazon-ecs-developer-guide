@@ -234,12 +234,12 @@ Although other instance types are supported in the same instance family, the `c5
 |  m5d\.metal  |  14  |  120  | 
 |  m6 instance family  | 
 | --- |
-|  m6i\.large  |  2  |  1  | 
-|  m6i\.xlarge  |  3  |  6  | 
-|  m6i\.2xlarge  |  3  |  19  | 
-|  m6i\.4xlarge  |  7  |  40  | 
+|  m6i\.large  |  2  |  10  | 
+|  m6i\.xlarge  |  3  |  20  | 
+|  m6i\.2xlarge  |  3  |  40  | 
+|  m6i\.4xlarge  |  7  |  60  | 
 |  m6i\.8xlarge  |  7  |  90  | 
-|  m6i\.12xlarge  |  7  |  60  | 
+|  m6i\.12xlarge  |  7  |  120  | 
 |  m6i\.16xlarge  |  14  |  120  | 
 |  m6i\.24xlarge  |  14  |  120  | 
 |  m6i\.32xlarge  |  14  |  120  | 
