@@ -133,18 +133,22 @@ The following shows the supported Amazon EC2 instance types and how many tasks u
 **Important**  
 Although other instance types are supported in the same instance family, the `c5n`, `m5n`, `m5dn`, `r5n`, and `r5dn` instance types are not supported\.
 
+### a1 instance family<a name="eni-trunking-family-a1"></a>
 
-|  Instance Type  |  Current Task Limit per Instance  |  New Task Limit per Instance  | 
-| --- |--- |--- |
-|  a1 instance family  | 
-| --- |
+
+|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| --- | --- | --- | 
 |  a1\.medium  |  1  |  10  | 
 |  a1\.large  |  2  |  10  | 
 |  a1\.xlarge  |  3  |  20  | 
 |  a1\.2xlarge  |  3  |  40  | 
 |  a1\.4xlarge  |  7  |  60  | 
-|  c5 instance family  | 
-| --- |
+
+### c5 instance family<a name="eni-trunking-family-c5"></a>
+
+
+|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| --- | --- | --- | 
 |  c5\.large  |  2  |  10  | 
 |  c5\.xlarge  |  3  |  20  | 
 |  c5\.2xlarge  |  3  |  40  | 
@@ -177,8 +181,12 @@ Although other instance types are supported in the same instance family, the `c5
 |  c5d\.12xlarge  |  7  | 60 | 
 |  c5d\.18xlarge  |  14  |  120  | 
 |  c5d\.24xlarge  | 14 |  120  | 
-|  c6 instance family  | 
-| --- |
+
+### c6 instance family<a name="eni-trunking-family-c6"></a>
+
+
+|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| --- | --- | --- | 
 |  c6g\.medium  | 1 |  4  | 
 |  c6g\.large  | 2 |  10  | 
 |  c6g\.xlarge  | 3 |  20  | 
@@ -197,8 +205,12 @@ Although other instance types are supported in the same instance family, the `c5
 |  c6gd\.12xlarge  | 7 |  60  | 
 |  c6gd\.16xlarge  | 14 |  120  | 
 |  c6gd\.metal  |  14  |  120  | 
-|  m5 instance family  | 
-| --- |
+
+### m5 instance family<a name="eni-trunking-family-m5"></a>
+
+
+|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| --- | --- | --- | 
 |  m5\.large  |  2  |  10  | 
 |  m5\.xlarge  |  3  |  20  | 
 |  m5\.2xlarge  |  3  |  40  | 
@@ -232,8 +244,12 @@ Although other instance types are supported in the same instance family, the `c5
 |  m5d\.16xlarge  |  14  |  120  | 
 |  m5d\.24xlarge  |  14  |  120  | 
 |  m5d\.metal  |  14  |  120  | 
-|  m6 instance family  | 
-| --- |
+
+### m6 instance family<a name="eni-trunking-family-m6"></a>
+
+
+|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| --- | --- | --- | 
 |  m6i\.large  |  2  |  1  | 
 |  m6i\.xlarge  |  3  |  6  | 
 |  m6i\.2xlarge  |  3  |  19  | 
@@ -261,13 +277,21 @@ Although other instance types are supported in the same instance family, the `c5
 |  m6gd\.12xlarge  |  7  |  60  | 
 |  m6gd\.16xlarge  |  14  |  120  | 
 |  m6gd\.metal  |  14  |  120  | 
-|  p3 instance family  | 
-| --- |
+
+### p3 instance family<a name="eni-trunking-family-p3"></a>
+
+
+|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| --- | --- | --- | 
 |  p3\.2xlarge  |  3  |  40  | 
 |  p3\.8xlarge  |  7  |  60  | 
 |  p3\.16xlarge  |  7  |  120  | 
-|  r5 instance family  | 
-| --- |
+
+### r5 instance family<a name="eni-trunking-family-r5"></a>
+
+
+|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| --- | --- | --- | 
 |  r5\.large  |  2  |  10  | 
 |  r5\.xlarge  |  3  |  20  | 
 |  r5\.2xlarge  |  3  |  40  | 
@@ -299,8 +323,12 @@ Although other instance types are supported in the same instance family, the `c5
 |  r5d\.12xlarge  |  7  |  60  | 
 |  r5d\.16xlarge  |  14  |  120  | 
 |  r5d\.24xlarge  |  14  |  120  | 
-|  r6 instance family  | 
-| --- |
+
+### r6 instance family<a name="eni-trunking-family-r6"></a>
+
+
+|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| --- | --- | --- | 
 |  r6g\.medium  |  1  |  4  | 
 |  r6g\.large  |  2  |  10  | 
 |  r6g\.xlarge  |  3  |  20  | 

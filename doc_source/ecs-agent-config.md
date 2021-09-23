@@ -408,6 +408,13 @@ Default value on Linux: `false`
 Default value on Windows: `false`  
 Whether to pull images for containers with dependencies before the `dependsOn` condition has been satisfied\.
 
+`ECS_EXCLUDE_IPV6_PORTBINDING`  
+Example values: `true` \| `false`  
+Default value on Linux: `true`  
+Default value on Windows: `true`  
+Whether the agent should exclude IPv6 port bindings when the `default` network mode is used\. When this vlaue is true, IPv6 port bindings are filterned and task IPv6 port bindings are not returned in the [DescribeTasks ](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html)response\. The bindings are included in the task metadata endpoint\.  
+This is available in agent version `1.55.3` and later\.
+
 ## Storing Container Instance Configuration in Amazon S3<a name="ecs-config-s3"></a>
 
 Amazon ECS container agent configuration is controlled with the environment variables described in the previous section\. Linux variants of the Amazon ECS\-optimized AMI look for these variables in `/etc/ecs/ecs.config` when the container agent starts and configure the agent accordingly\. Certain innocuous environment variables, such as `ECS_CLUSTER`, can be passed to the container instance at launch through Amazon EC2 user data and written to this file without consequence\. However, other sensitive information, such as your AWS credentials or the `ECS_ENGINE_AUTH_DATA` variable, should never be passed to an instance in user data or written to `/etc/ecs/ecs.config` in a way that would allow them to show up in a `.bash_history` file\.

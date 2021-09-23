@@ -5,7 +5,7 @@ The following are some example task definitions demonstrating common custom log 
 **Topics**
 + [Forwarding logs to CloudWatch Logs](#firelens-example-cloudwatch)
 + [Forwarding logs to an Amazon Kinesis Data Firehose delivery stream](#firelens-example-firehose)
-+ [Forwarding logs to an Amazon Elasticsearch Service domain](#firelens-example-elasticsearch)
++ [Forwarding logs to an domain](#firelens-example-opensearch)
 + [Parsing container logs that are serialized JSON](#firelens-example-parsing)
 + [Forwarding to an external Fluentd or Fluent Bit](#firelens-example-forward)
 
@@ -112,18 +112,18 @@ In the log configuration options, specify the delivery stream name and the Regio
 }
 ```
 
-## Forwarding logs to an Amazon Elasticsearch Service domain<a name="firelens-example-elasticsearch"></a>
+## Forwarding logs to an domain<a name="firelens-example-opensearch"></a>
 
 **Note**  
 For more examples, see [Amazon ECS FireLens examples](https://github.com/aws-samples/amazon-ecs-firelens-examples) on GitHub\.
 
-The following task definition example demonstrates how to specify a log configuration that forwards logs to an Amazon Elasticsearch Service domain\. The Amazon Elasticsearch Service domain must already exist\. For more information, see [What is Amazon Elasticsearch Service](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/what-is-amazon-elasticsearch-service.html) in the *Amazon Elasticsearch Service Developer Guide*\.
+The following task definition example demonstrates how to specify a log configuration that forwards logs to an ; domain\. The domain must already exist\. For more information, see [What is ](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html) in the **\.
 
-In the log configuration options, specify the log options required for Elasticsearch integration\. For more information, see [Fluent Bit for Amazon Elasticsearch Service](https://docs.fluentbit.io/manual/pipeline/outputs/elasticsearch)\.
+In the log configuration options, specify the log options required for integration\. For more information, see [Fluent Bit for ](https://docs.fluentbit.io/manual/pipeline/outputs/elasticsearch)\.
 
 ```
 {
-    "family": "firelens-example-elasticsearch",
+    "family": "firelens-example-opensearch",
     "taskRoleArn": "arn:aws:iam::123456789012:role/ecs_task_iam_role",
     "containerDefinitions": [
         {

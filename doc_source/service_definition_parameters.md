@@ -110,7 +110,7 @@ If a service is using the rolling update \(`ECS`\) deployment type, the `minimum
 For services that *do not* use a load balancer, the following should be noted:  
 + A service is considered healthy if all essential containers within the tasks in the service pass their health checks\.
 + If a task has no essential containers with a health check defined, the service scheduler will wait for 40 seconds after a task reaches a `RUNNING` state before the task is counted towards the minimum healthy percent total\.
-+ If a task has one or more essential containers with a health check defined, the service scheduler will wait for the task to reach a healthy status before counting it towards the minimum healthy percent total\. A task is considered healthy when all essential containers within the task have passed their health checks\. The amount of time the service scheduler can wait for is determined by the container health check settings\. For more information, see [Health Check](task_definition_parameters.md#container_definition_healthcheck)\. 
++ If a task has one or more essential containers with a health check defined, the service scheduler will wait for the task to reach a healthy status before counting it towards the minimum healthy percent total\. A task is considered healthy when all essential containers within the task have passed their health checks\. The amount of time the service scheduler can wait for is determined by the container health check settings\. For more information, see [Health check](task_definition_parameters.md#container_definition_healthcheck)\. 
 For services are that *do* use a load balancer, the following should be noted:  
 + If a task has no essential containers with a health check defined, the service scheduler will wait for the load balancer target group health check to return a healthy status before counting the task towards the minimum healthy percent total\.
 + If a task has an essential container with a health check defined, the service scheduler will wait for both the task to reach a healthy status and the load balancer target group health check to return a healthy status before counting the task towards the minimum healthy percent total\.
@@ -192,7 +192,7 @@ Specifies whether to enable Amazon ECS managed tags for the tasks in the service
 Type: String  
 Valid values: `TASK_DEFINITION` \| `SERVICE`  
 Required: No  
-Specifies whether to copy the tags from the task definition or the service to the tasks in the service\. If no value is specified, the tags are not copied\. Tags can only be copied to the tasks within the service during service creation\. To add tags to a task after service creation, use the `TagResource` API action\.
+Specifies whether to copy the tags from the task definition or the service to the tasks in the service\. If no value is specified, the tags are not copied\. Tags can only be copied to the tasks within the service during service creation\. To add tags to a task after service creation or task creation, use the `TagResource` API action\.
 
 ## Network configuration<a name="sd-networkconfiguration"></a>
 

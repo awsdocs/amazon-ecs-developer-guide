@@ -58,7 +58,7 @@ The following task definition parameters are not valid in Fargate tasks:
 + `systemControls`
 
 The following task definition parameters are valid in Fargate tasks, but have limitations that should be noted:
-+ `linuxParameters` – When specifying Linux\-specific options that are applied to the container, for `capabilities` the `add` parameter is not supported\. The `devices`, `sharedMemorySize`, and `tmpfs` parameters are not supported\. For more information, see [Linux Parameters](task_definition_parameters.md#container_definition_linuxparameters)\.
++ `linuxParameters` – When specifying Linux\-specific options that are applied to the container, for `capabilities` the `add` parameter is not supported\. The `devices`, `sharedMemorySize`, and `tmpfs` parameters are not supported\. For more information, see [Linux parameters](task_definition_parameters.md#container_definition_linuxparameters)\.
 + `volumes` – Fargate tasks only support bind mount host volumes, so the `dockerVolumeConfiguration` parameter is not supported\. For more information, see [Volumes](task_definition_parameters.md#volumes)\.
 
 To ensure that your task definition validates for use with Fargate, you can specify the following when you register the task definition: 
@@ -259,11 +259,13 @@ AWS Fargate usage metrics correspond to AWS service quotas\. You can configure a
 
 For more information about AWS Fargate usage metrics, see [Fargate usage metrics](https://docs.aws.amazon.com/AmazonECS/latest/userguide/monitoring-fargate-usage.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
-## Task retirement<a name="fargate-task-retirement"></a>
+## Task maintenance<a name="fargate-task-retirement"></a>
 
-A Fargate task is scheduled to be retired when AWS detects the irreparable failure of the underlying hardware hosting the task or if a security issue needs to be patched\. Most security patches are handled transparently without requiring any action on your part or having to restart your tasks\. But for certain issues, we may require that the task be restarted\. 
+When AWS determines that a security or infrastructure update is needed for an Amazon ECS task hosted on AWS Fargate, the tasks need to be stopped and new tasks launched to replace them\. For more information, see [Task maintenance](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-maintenance.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
-When a task reaches its scheduled retirement date, it is stopped or terminated by AWS\. If the task is part of a service, then the task is automatically stopped and the service scheduler starts a new one to replace it\. If you are using standalone tasks, then you receive notification of the task retirement\. For more information, see [Task retirement](task-retirement.md)\.
+The following table describes these scenarios\.
+
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html)
 
 ## Savings Plans<a name="fargate-savings-plans"></a>
 

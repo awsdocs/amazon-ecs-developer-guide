@@ -14,7 +14,7 @@ A Windows container running with gMSA relies on its host Amazon EC2 instance to 
 ## Considerations<a name="windows-gmsa-considerations"></a>
 
 The following should be considered when using gMSAs for Windows containers:
-+ When using the Amazon ECS\-optimized Windows Server 2016 Full AMI for your container instances, the container hostname must be the same as the gMSA account name defined in the credential spec file\. To specify a hostname for a container, use the `hostname` container definition parameter\. For more information, see [Network Settings](task_definition_parameters.md#container_definition_network)\.
++ When using the Amazon ECS\-optimized Windows Server 2016 Full AMI for your container instances, the container hostname must be the same as the gMSA account name defined in the credential spec file\. To specify a hostname for a container, use the `hostname` container definition parameter\. For more information, see [Network settings](task_definition_parameters.md#container_definition_network)\.
 
 ## Prerequisites<a name="windows-gmsa-prerequisites"></a>
 

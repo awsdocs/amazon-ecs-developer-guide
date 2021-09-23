@@ -79,16 +79,16 @@ For tasks hosted on Amazon EC2 instances, this field is optional and any value c
 For tasks hosted on Fargate, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 
-## Container Definitions<a name="container_definitions"></a>
+## Container definitions<a name="container_definitions"></a>
 
 When you register a task definition, you must specify a list of container definitions that are passed to the Docker daemon on a container instance\. The following parameters are allowed in a container definition\.
 
 **Topics**
-+ [Standard Container Definition Parameters](#standard_container_definition_params)
-+ [Advanced Container Definition Parameters](#advanced_container_definition_params)
-+ [Other Container Definition Parameters](#other_container_definition_params)
++ [Standard container definition parameters](#standard_container_definition_params)
++ [Advanced container definition parameters](#advanced_container_definition_params)
++ [Other container definition parameters](#other_container_definition_params)
 
-### Standard Container Definition Parameters<a name="standard_container_definition_params"></a>
+### Standard container definition parameters<a name="standard_container_definition_params"></a>
 
 The following task definition parameters are either required or used in most container definitions\.
 
@@ -96,7 +96,7 @@ The following task definition parameters are either required or used in most con
 + [Name](#container_definition_name)
 + [Image](#container_definition_image)
 + [Memory](#container_definition_memory)
-+ [Port Mappings](#container_definition_portmappings)
++ [Port mappings](#container_definition_portmappings)
 
 #### Name<a name="container_definition_name"></a>
 
@@ -137,7 +137,7 @@ If a task\-level memory value is not specified, you must specify a non\-zero int
 For example, if your container normally uses 128 MiB of memory, but occasionally bursts to 256 MiB of memory for short periods of time, you can set a `memoryReservation` of 128 MiB, and a `memory` hard limit of 300 MiB\. This configuration would allow the container to only reserve 128 MiB of memory from the remaining resources on the container instance, but also allow the container to consume more memory resources when needed\.  
 The Docker daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.
 
-#### Port Mappings<a name="container_definition_portmappings"></a>
+#### Port mappings<a name="container_definition_portmappings"></a>
 
 `portMappings`  
 Type: object array  
@@ -191,20 +191,20 @@ If you want an automatically assigned host port, use the following syntax:
 ]
 ```
 
-### Advanced Container Definition Parameters<a name="advanced_container_definition_params"></a>
+### Advanced container definition parameters<a name="advanced_container_definition_params"></a>
 
 The following advanced container definition parameters provide extended capabilities to the [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/) command that is used to launch containers on your Amazon ECS container instances\.
 
 **Topics**
-+ [Health Check](#container_definition_healthcheck)
++ [Health check](#container_definition_healthcheck)
 + [Environment](#container_definition_environment)
-+ [Network Settings](#container_definition_network)
-+ [Storage and Logging](#container_definition_storage)
++ [Network settings](#container_definition_network)
++ [Storage and logging](#container_definition_storage)
 + [Security](#container_definition_security)
 + [Resource limits](#container_definition_limits)
-+ [Docker Labels](#container_definition_labels)
++ [Docker labels](#container_definition_labels)
 
-#### Health Check<a name="container_definition_healthcheck"></a>
+#### Health check<a name="container_definition_healthcheck"></a>
 
 `healthCheck`  
 The container health check command and associated configuration parameters for the container\. This parameter maps to `HealthCheck` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `HEALTHCHECK` parameter of [docker run](https://docs.docker.com/engine/reference/run/)\.   
@@ -264,7 +264,7 @@ Type: [ResourceRequirement](https://docs.aws.amazon.com/AmazonECS/latest/APIRefe
 Required: no  
 The number of physical `GPUs` the Amazon ECS container agent will reserve for the container\. The number of GPUs reserved for all containers in a task should not exceed the number of available GPUs on the container instance the task is launched on\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.  
   
-This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
+This parameter is not supported for Windows containers or containers hosted on Fargate\.
 
 `essential`  
 Type: Boolean  
@@ -363,7 +363,7 @@ If the Systems Manager Parameter Store parameter exists in the same Region as th
 ]
 ```
 
-#### Network Settings<a name="container_definition_network"></a>
+#### Network settings<a name="container_definition_network"></a>
 
 `disableNetworking`  
 Type: Boolean  
@@ -442,7 +442,7 @@ Type: string
 Required: yes, when `extraHosts` are used  
 The IP address to use in the `/etc/hosts` entry\.
 
-#### Storage and Logging<a name="container_definition_storage"></a>
+#### Storage and logging<a name="container_definition_storage"></a>
 
 `readonlyRootFilesystem`  
 Type: Boolean  
@@ -665,7 +665,7 @@ Type: integer
 Required: yes, when `ulimits` are used  
 The soft limit for the `ulimit` type\.
 
-#### Docker Labels<a name="container_definition_labels"></a>
+#### Docker labels<a name="container_definition_labels"></a>
 
 `dockerLabels`  
 Type: string to string map  
@@ -678,19 +678,19 @@ This parameter requires version 1\.18 of the Docker Remote API or greater on you
       ...}
 ```
 
-### Other Container Definition Parameters<a name="other_container_definition_params"></a>
+### Other container definition parameters<a name="other_container_definition_params"></a>
 
 The following container definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition](create-task-definition.md)\.
 
 **Topics**
-+ [Linux Parameters](#container_definition_linuxparameters)
++ [Linux parameters](#container_definition_linuxparameters)
 + [Container dependency](#container_definition_dependson)
 + [Container timeouts](#container_definition_timeout)
-+ [System Controls](#container_definition_systemcontrols)
++ [System controls](#container_definition_systemcontrols)
 + [Interactive](#container_definition_interactive)
-+ [Pseudo Terminal](#container_definition_pseudoterminal)
++ [Pseudo terminal](#container_definition_pseudoterminal)
 
-#### Linux Parameters<a name="container_definition_linuxparameters"></a>
+#### Linux parameters<a name="container_definition_linuxparameters"></a>
 
 `linuxParameters`  
 Type: [LinuxParameters](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LinuxParameters.html) object  
@@ -821,7 +821,7 @@ Time duration \(in seconds\) to wait before the container is forcefully killed i
 For tasks using the Fargate launch type, the task or service requires platform version 1\.3\.0 or later\. The max stop timeout value is 120 seconds and if the parameter is not specified, the default value of 30 seconds is used\.  
 For tasks using the EC2 launch type, if the `stopTimeout` parameter is not specified, the value set for the Amazon ECS container agent configuration variable `ECS_CONTAINER_STOP_TIMEOUT` is used by default\. If neither the `stopTimeout` parameter or the `ECS_CONTAINER_STOP_TIMEOUT` agent configuration variable are set, then the default values of 30 seconds for Linux containers and 30 seconds on Windows containers are used\. Container instances require at least version 1\.26\.0 of the container agent to enable a container stop timeout value\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version 1\.26\.0\-1 of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
 
-#### System Controls<a name="container_definition_systemcontrols"></a>
+#### System controls<a name="container_definition_systemcontrols"></a>
 
 `systemControls`  
 Type: [SystemControl](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_SystemControl.html) object  
@@ -861,7 +861,7 @@ Type: Boolean
 Required: no  
 When this parameter is `true`, this allows you to deploy containerized applications that require stdin or a tty to be allocated\. This parameter maps to `OpenStdin` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--interactive` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.
 
-#### Pseudo Terminal<a name="container_definition_pseudoterminal"></a>
+#### Pseudo terminal<a name="container_definition_pseudoterminal"></a>
 
 `pseudoTerminal`  
 Type: Boolean  
@@ -1098,7 +1098,7 @@ Type: String
 Required: No  
 The IPC resource namespace to use for the containers in the task\. The valid values are `host`, `task`, or `none`\. If `host` is specified, then all containers within the tasks that specified the `host` IPC mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same IPC resources\. If `none` is specified, then IPC resources within the containers of a task are private and not shared with other containers in a task or on the container instance\. If no value is specified, then the IPC resource namespace sharing depends on the Docker daemon setting on the container instance\. For more information, see [IPC settings](https://docs.docker.com/engine/reference/run/#ipc-settings---ipc) in the *Docker run reference*\.  
 If the `host` IPC mode is used, be aware that there is a heightened risk of undesired IPC namespace exposure\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.  
-If you are setting namespaced kernel parameters using `systemControls` for the containers in the task, the following will apply to your IPC resource namespace\. For more information, see [System Controls](#container_definition_systemcontrols)\.  
+If you are setting namespaced kernel parameters using `systemControls` for the containers in the task, the following will apply to your IPC resource namespace\. For more information, see [System controls](#container_definition_systemcontrols)\.  
 + For tasks that use the `host` IPC mode, IPC namespace related `systemControls` are not supported\.
 + For tasks that use the `task` IPC mode, IPC namespace related `systemControls` will apply to all containers within a task\.
 

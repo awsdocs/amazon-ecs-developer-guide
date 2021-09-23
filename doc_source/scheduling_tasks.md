@@ -42,6 +42,4 @@ Use `RunTask` and `CreateService` actions to specify task placement constraints 
 + [Amazon ECS task placement](task-placement.md)
 + [Scheduled tasks](scheduled_tasks.md)
 + [Task lifecycle](task-lifecycle.md)
-+ [Task retirement](task-retirement.md)
-+ [Fargate task recycling](task-recycle.md)
 + [Creating a scheduled task using the AWS CLI](scheduled_tasks_cli_tutorial.md)

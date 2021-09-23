@@ -50,7 +50,7 @@ Specifies whether to enable Amazon ECS managed tags for the tasks within the ser
 Type: String  
 Valid values: `TASK_DEFINITION` \| `SERVICE`  
 Required: No  
-Specifies whether to copy the tags from the task definition or the service to the tasks in the service\. If no value is specified, the tags are not copied\. Tags can only be copied to the tasks within the service during service creation\. To add tags to a task after service creation, use the `TagResource` API action\.  
+Specifies whether to copy the tags from the task definition or the service to the tasks in the service\. If no value is specified, the tags are not copied\. Tags can only be copied to the tasks within the service during service creation\. To add tags to a task after service creation or task creation, use the `TagResource` API action\.  
 `healthCheckGracePeriodSeconds`  
 Type: Integer  
 Required: No  

@@ -30,7 +30,7 @@ You can complete this first\-run wizard using these steps for any Region that su
 
 1. Configure your container definition parameters\. 
 
-   For **Container definition**, the first\-run wizard comes preloaded with the `sample-app`, `nginx`, and `tomcat-webserver` container definitions in the console\. You can optionally rename the container or review and edit the resources used by the container \(such as CPU units and memory limits\) by choosing **Edit** and editing the values shown\. For more information, see [Container Definitions](task_definition_parameters.md#container_definitions)\.
+   For **Container definition**, the first\-run wizard comes preloaded with the `sample-app`, `nginx`, and `tomcat-webserver` container definitions in the console\. You can optionally rename the container or review and edit the resources used by the container \(such as CPU units and memory limits\) by choosing **Edit** and editing the values shown\. For more information, see [Container definitions](task_definition_parameters.md#container_definitions)\.
 **Note**  
 If you are using an Amazon ECR image in your container definition, be sure to use the full `registry/repository:tag` naming for your Amazon ECR images\. For example, `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app:latest`\.
 

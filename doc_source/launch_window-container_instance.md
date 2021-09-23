@@ -49,10 +49,10 @@ If you do not launch your container instance with the proper IAM permissions, yo
 
         The `EnableTaskIAMRole` turns on the Task IAM roles feature for the tasks\.
 
-        When you want to use the `awsvpc` network mode, you must include the following flags as shown in the example\.
-        + `EnableTaskENI`: This flag turns on task networking\.
-        + `AwsvpcBlockIMDS`: This flag blocks IMDS
-        + `AwsvpcAdditionalLocalRoutes`: This flag allows you to have additional routes\.
+        In addition, the following options are available when you use the `awsvpc` network mode\.
+        + `EnableTaskENI`: This flag turns on task networking and is required when you use the `awsvpc` network mode\.
+        + `AwsvpcBlockIMDS`: This optional flag blocks IMDS access for the task containers running in the `awsvpc` network mode\.
+        + `AwsvpcAdditionalLocalRoutes`: This optional flag allows you to have additional routes in the task namespace\.
 
           Replace `ip-address` with the IP Address for the additional routes, for example 172\.31\.42\.23/32\.
 
