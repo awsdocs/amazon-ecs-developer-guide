@@ -1032,15 +1032,15 @@ Whether or not to use the Amazon ECS task IAM role defined in a task definition 
 `FSxWindowsFileServerVolumeConfiguration`  
 Type: Object  
 Required: Yes  
-This parameter is specified when you are using the [Amazon FSx for Windows File Server](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) file system for task storage\.    
+This parameter is specified when you are using the [FSx for Windows File Server](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) file system for task storage\.    
 `fileSystemId`  
 Type: String  
 Required: Yes  
-The Amazon FSx for Windows File Server file system ID to use\.  
+The FSx for Windows File Server file system ID to use\.  
 `rootDirectory`  
 Type: String  
 Required: Yes  
-The directory within the Amazon FSx for Windows File Server file system to mount as the root directory inside the host\.  
+The directory within the FSx for Windows File Server file system to mount as the root directory inside the host\.  
 `authorizationConfig`    
 `credentialsParameter`  
 Type: String  

@@ -355,9 +355,9 @@ You can verify that everything has been created properly by querying your servic
    }
    ```
 
-1. The DNS records created in the Route 53 hosted zone for the service discovery service can be queried with the following AWS CLI commands\.
+1. The DNS records created in the Route 53 hosted zone for the service discovery service can be queried with the following AWS CLI commands\.
 
-   Using the namespace ID, get information about the namespace, which includes the Route 53 hosted zone ID:
+   Using the namespace ID, get information about the namespace, which includes the Route 53 hosted zone ID:
 
    ```
    aws servicediscovery get-namespace --id ns-uejictsjen2i4eeg --region us-east-1
@@ -383,7 +383,7 @@ You can verify that everything has been created properly by querying your servic
    }
    ```
 
-1. Using the Route 53 hosted zone ID, get the resource record set for the hosted zone:
+1. Using the Route 53 hosted zone ID, get the resource record set for the hosted zone:
 
    ```
    aws route53 list-resource-record-sets --hosted-zone-id Z35JQ4ZFDRYPLV --region us-east-1

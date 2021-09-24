@@ -11,4 +11,4 @@ The following tutorials show you how to perform common tasks when using Amazon E
 + [Tutorial: Listening for Amazon ECS CloudWatch Events](ecs_cwet.md)
 + [Tutorial: Sending Amazon Simple Notification Service alerts for task stopped events](ecs_cwet2.md)
 + [Tutorial: Using Amazon EFS file systems with Amazon ECS](tutorial-efs-volumes.md)
-+ [Tutorial: Using Amazon FSx for Windows File Server file systems with Amazon ECS](tutorial-wfsx-volumes.md)
++ [Tutorial: Using FSx for Windows File Server file systems with Amazon ECS](tutorial-wfsx-volumes.md)

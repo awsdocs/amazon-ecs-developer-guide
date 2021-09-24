@@ -38,7 +38,7 @@ Service discovery consists of the following components:
   + **Service registry**: Allows you to look up a service via DNS or AWS Cloud Map API actions and get back one or more available endpoints that can be used to connect to the service\.
 + **Service discovery instance**: Exists within the service discovery service and consists of the attributes associated with each Amazon ECS service in the service directory\.
   + **Instance attributes**: The following metadata is added as custom attributes for each Amazon ECS service that is configured to use service discovery:
-    + **`AWS_INSTANCE_IPV4`** – For an `A` record, the IPv4 address that Route 53 returns in response to DNS queries and AWS Cloud Map returns when discovering instance details, for example, `192.0.2.44`\.
+    + **`AWS_INSTANCE_IPV4`** – For an `A` record, the IPv4 address that Route 53 returns in response to DNS queries and AWS Cloud Map returns when discovering instance details, for example, `192.0.2.44`\.
     + **`AWS_INSTANCE_PORT`** – The port value associated with the service discovery service\.
     + **`AVAILABILITY_ZONE`** – The Availability Zone into which the task was launched\. For tasks using the EC2 launch type, this is the Availability Zone in which the container instance exists\. For tasks using the Fargate launch type, this is the Availability Zone in which the elastic network interface exists\.
     + **`REGION`** – The Region in which the task exists\.
@@ -53,8 +53,8 @@ Service discovery consists of the following components:
 
 The following should be considered when using service discovery:
 + Service discovery is supported for tasks on Fargate that use platform version 1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
-+ Services configured to use service discovery have a limit of 1,000 tasks per service\. This is due to a Route 53 service quota\.
-+ The Create Service workflow in the Amazon ECS console only supports registering services into private DNS namespaces\. When an AWS Cloud Map private DNS namespace is created, a Route 53 private hosted zone will be created automatically\.
++ Services configured to use service discovery have a limit of 1,000 tasks per service\. This is due to a Route 53 service quota\.
++ The Create Service workflow in the Amazon ECS console only supports registering services into private DNS namespaces\. When an AWS Cloud Map private DNS namespace is created, a Route 53 private hosted zone will be created automatically\.
 + The VPC DNS attributes must be configured for successful DNS resolution\. For information about how to configure the attributes, see [DNS support in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support) in the *Amazon VPC User Guide*\.
 + The DNS records created for a service discovery service always register with the private IP address for the task, rather than the public IP address, even when public namespaces are used\.
 + Service discovery requires that tasks specify either the `awsvpc`, `bridge`, or `host` network mode \(`none` is not supported\)\.
@@ -62,8 +62,8 @@ The following should be considered when using service discovery:
 + If the task definition that your service task specifies uses the `bridge` or `host` network mode, an SRV record is the only supported DNS record type\. Create an SRV record for each service task\. The SRV record must specify a container name and container port combination from the task definition\.
 + DNS records for a service discovery service can be queried within your VPC\. They use the following format: `<service discovery service name>.<service discovery namespace>`\.
 + When doing a DNS query on the service name, A records return a set of IP addresses that correspond to your tasks\. SRV records return a set of IP addresses and ports per task\.
-+ If you have eight or fewer healthy records, Route 53 responds to all DNS queries with all of the healthy records\.
-+ When all records are unhealthy, Route 53 responds to DNS queries with up to eight unhealthy records\.
++ If you have eight or fewer healthy records, Route 53 responds to all DNS queries with all of the healthy records\.
++ When all records are unhealthy, Route 53 responds to DNS queries with up to eight unhealthy records\.
 + You can configure service discovery for an ECS service that is behind a load balancer, but service discovery traffic is always routed to the task and not the load balancer\.
 + Service discovery does not support the use of Classic Load Balancers\.
 + It is recommended to use container\-level health checks managed by Amazon ECS for your service discovery service\.
@@ -80,6 +80,6 @@ To create a new Amazon ECS service that uses service discovery, see [Creating an
 
 ## Service discovery pricing<a name="service-discovery-pricing"></a>
 
-Customers using Amazon ECS service discovery are charged for Route 53 resources and AWS Cloud Map discovery API operations\. This involves costs for creating the Route 53 hosted zones and queries to the service registry\. For more information, see [AWS Cloud Map Pricing](https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-pricing.html) in the *AWS Cloud Map Developer Guide*\.
+Customers using Amazon ECS service discovery are charged for Route 53 resources and AWS Cloud Map discovery API operations\. This involves costs for creating the Route 53 hosted zones and queries to the service registry\. For more information, see [AWS Cloud Map Pricing](https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-pricing.html) in the *AWS Cloud Map Developer Guide*\.
 
 Amazon ECS performs container level health checks and exposes them to AWS Cloud Map custom health check API operations\. This is currently made available to customers at no extra cost\. If you configure additional network health checks for publicly exposed tasks, you are charged for those health checks\.

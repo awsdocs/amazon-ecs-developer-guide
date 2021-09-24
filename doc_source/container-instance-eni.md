@@ -206,6 +206,16 @@ Although other instance types are supported in the same instance family, the `c5
 |  c6gd\.16xlarge  | 14 |  120  | 
 |  c6gd\.metal  |  14  |  120  | 
 
+### g3 instance family<a name="eni-trunking-family-g3"></a>
+
+
+|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| --- | --- | --- | 
+|  g3\.4xlarge  |  7  |  12  | 
+|  g3\.8xlarge  |  7  |  12  | 
+|  g3\.16xlarge  |  14  |  12  | 
+|  g3s\.xlarge  |  3  |  12  | 
+
 ### m5 instance family<a name="eni-trunking-family-m5"></a>
 
 
@@ -250,12 +260,12 @@ Although other instance types are supported in the same instance family, the `c5
 
 |  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
 | --- | --- | --- | 
-|  m6i\.large  |  2  |  1  | 
-|  m6i\.xlarge  |  3  |  6  | 
-|  m6i\.2xlarge  |  3  |  19  | 
-|  m6i\.4xlarge  |  7  |  40  | 
+|  m6i\.large  |  2  |  10  | 
+|  m6i\.xlarge  |  3  |  20  | 
+|  m6i\.2xlarge  |  3  |  40  | 
+|  m6i\.4xlarge  |  7  |  60  | 
 |  m6i\.8xlarge  |  7  |  90  | 
-|  m6i\.12xlarge  |  7  |  60  | 
+|  m6i\.12xlarge  |  7  |  120  | 
 |  m6i\.16xlarge  |  14  |  120  | 
 |  m6i\.24xlarge  |  14  |  120  | 
 |  m6i\.32xlarge  |  14  |  120  | 

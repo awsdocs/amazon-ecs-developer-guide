@@ -31,7 +31,7 @@ The `AmazonECS_FullAccess` managed IAM policy includes the following permissions
 + `events` – Allows principals to create, manage, and delete Amazon EventBridge rules and their targets\.
 + `iam`– Allows principals to list IAM roles and their attached policies\. Principals can also list instance profiles available to your Amazon EC2 instances\.
 + `logs` – Allows principals to create and describe Amazon CloudWatch Logs log groups\. Principals can also list log events for these log groups\.
-+ `route53` – Allows principals to create, manage, and delete Amazon Route 53 hosted zones\. Principals can also view Amazon Route 53 health check configuration and information\. For more information about hosted zones, see [Working with hosted zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html)\.
++ `route53` – Allows principals to create, manage, and delete Amazon Route 53 hosted zones\. Principals can also view Amazon Route 53 health check configuration and information\. For more information about hosted zones, see [Working with hosted zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-working-with.html)\.
 + `servicediscovery` – Allows principals to create, manage, and delete AWS Cloud Map services and create private DNS namespaces\.
 
 The following is an example `AmazonECS_FullAccess` policy\.

@@ -1,36 +1,36 @@
-# Amazon FSx for Windows File Server volumes<a name="wfsx-volumes"></a>
+# FSx for Windows File Server volumes<a name="wfsx-volumes"></a>
 
-Amazon FSx for Windows File Server provides fully managed Microsoft Windows file servers, that are backed by a fully native Windows file system\. When using Amazon FSx for Windows File Server together with ECS, you can provision your Windows tasks with persistent, distributed, shared, static file storage\. For more information, see [What Is Amazon FSx for Windows File Server?](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html)\.
+FSx for Windows File Server provides fully managed Microsoft Windows file servers, that are backed by a fully native Windows file system\. When using FSx for Windows File Server together with ECS, you can provision your Windows tasks with persistent, distributed, shared, static file storage\. For more information, see [What Is FSx for Windows File Server?](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html)\.
 
 **Note**  
-EC2 instances that use the Amazon ECS\-Optimized Windows Server 2016 Full AMI, do not support Amazon FSx for Windows File Server ECS task volumes\.
+EC2 instances that use the Amazon ECS\-Optimized Windows Server 2016 Full AMI, do not support FSx for Windows File Server ECS task volumes\.
 
-You can use Amazon FSx for Windows File Server to deploy Windows workloads that require access to shared external storage, highly\-available regional storage, or high\-throughput storage\. You can mount one or more Amazon FSx for Windows File Server file system volumes to an ECS container running on an ECS Windows instance\. You can share Amazon FSx for Windows File Server file system volumes between multiple ECS containers within a single ECS task\.
+You can use FSx for Windows File Server to deploy Windows workloads that require access to shared external storage, highly\-available regional storage, or high\-throughput storage\. You can mount one or more FSx for Windows File Server file system volumes to an ECS container running on an ECS Windows instance\. You can share FSx for Windows File Server file system volumes between multiple ECS containers within a single ECS task\.
 
-To enable the use of Amazon FSx for Windows File Server with ECS, you need to include the Amazon FSx for Windows File Server file system id and related information in a task definition as shown in the following example task definition JSON snippet\. Before creating and running a task definition, you need the following\.
+To enable the use of FSx for Windows File Server with ECS, you need to include the FSx for Windows File Server file system id and related information in a task definition as shown in the following example task definition JSON snippet\. Before creating and running a task definition, you need the following\.
 + An ECS Windows EC2 instance that is joined to a valid domain, hosted by an [AWS Directory Service for Microsoft Active Directory](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html), On\-premises Active Directory or self\-hosted Active Directory on Amazon EC2\.
-+ An AWS Secrets Manager secret or Systems Manager parameter that contains the credentials that are used to domain join the Active Directory and attach the Amazon FSx for Windows File Server file system\. The credential values are the name and password credentials that you entered when creating the Active Directory\.
++ An AWS Secrets Manager secret or Systems Manager parameter that contains the credentials that are used to domain join the Active Directory and attach the FSx for Windows File Server file system\. The credential values are the name and password credentials that you entered when creating the Active Directory\.
 
-The following sections are provided to help you get started using Amazon FSx for Windows File Server with Amazon ECS\.
+The following sections are provided to help you get started using FSx for Windows File Server with Amazon ECS\.
 
-For a tutorial, see [Tutorial: Using Amazon FSx for Windows File Server file systems with Amazon ECS](tutorial-wfsx-volumes.md)\.
+For a tutorial, see [Tutorial: Using FSx for Windows File Server file systems with Amazon ECS](tutorial-wfsx-volumes.md)\.
 
-## Amazon FSx for Windows File Server volume considerations<a name="wfsx-volume-considerations"></a>
+## FSx for Windows File Server volume considerations<a name="wfsx-volume-considerations"></a>
 
-Consider the following when using Amazon FSx for Windows File Server volumes\.
-+ Amazon FSx for Windows File Server with Amazon ECS only supports Windows Amazon EC2 instances\. Linux Amazon EC2 instances aren't supported\.
-+ Amazon ECS only supports Amazon FSx for Windows File Server\. Amazon ECS doesn't support Amazon FSx for Lustre\.
-+ Amazon FSx for Windows File Server with Amazon ECS doesn't support AWS Fargate\.
-+ Amazon FSx for Windows File Server with Amazon ECS with `awsvpc` network mode requires version `1.54.0` or later of the container agent\.
-+ The maximum number of drive letters that can be used for an Amazon ECS task is 23\. Each task with an Amazon FSx for Windows File Server volume gets a drive letter assigned to it\.
+Consider the following when using FSx for Windows File Server volumes\.
++ FSx for Windows File Server with Amazon ECS only supports Windows Amazon EC2 instances\. Linux Amazon EC2 instances aren't supported\.
++ Amazon ECS only supports FSx for Windows File Server\. Amazon ECS doesn't support FSx for Lustre\.
++ FSx for Windows File Server with Amazon ECS doesn't support AWS Fargate\.
++ FSx for Windows File Server with Amazon ECS with `awsvpc` network mode requires version `1.54.0` or later of the container agent\.
++ The maximum number of drive letters that can be used for an Amazon ECS task is 23\. Each task with an FSx for Windows File Server volume gets a drive letter assigned to it\.
 + Task resource cleanup time is 3 hours by default\. A file mapping created by a task persists for 3 hours even if no tasks are using it\. The default cleanup time can be configured by using the Amazon ECS environment variable `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION`\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
-+ Tasks typically only run in the same VPC as the Amazon FSx for Windows File Server file system\. However, it is possible to have cross\-VPC support if there is an established network connectivity between the Amazon ECS cluster VPC and the Amazon FSx for Windows File Server file\-system through VPC peering\.
-+ You control access to an Amazon FSx for Windows File Server file system at the network level by configuring the VPC security groups\. Only tasks hosted on EC2 instances joined to the AD domain with correctly configured AD security groups will be able to access the Amazon FSx for Windows File Server file\-share\. If the security groups are misconfigured, ECS will fail the Task launch with the following error message: `unable to mount file system fs-id`\.” 
-+ Amazon FSx for Windows File Server is integrated with AWS Identity and Access Management \(IAM\) to control the actions that your IAM users and groups can take on specific Amazon FSx for Windows File Server resources\. With client authorization, customers can define IAM roles that allow or deny access to specific Amazon FSx for Windows File Server file systems, optionally require read\-only access, and optionally allow or disallow root access to the file system from the client\. For more information, see [Security](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/security.html) in the Amazon FSx Windows User Guide\.
++ Tasks typically only run in the same VPC as the FSx for Windows File Server file system\. However, it is possible to have cross\-VPC support if there is an established network connectivity between the Amazon ECS cluster VPC and the FSx for Windows File Server file\-system through VPC peering\.
++ You control access to an FSx for Windows File Server file system at the network level by configuring the VPC security groups\. Only tasks hosted on EC2 instances joined to the AD domain with correctly configured AD security groups will be able to access the FSx for Windows File Server file\-share\. If the security groups are misconfigured, ECS will fail the Task launch with the following error message: `unable to mount file system fs-id`\.” 
++ FSx for Windows File Server is integrated with AWS Identity and Access Management \(IAM\) to control the actions that your IAM users and groups can take on specific FSx for Windows File Server resources\. With client authorization, customers can define IAM roles that allow or deny access to specific FSx for Windows File Server file systems, optionally require read\-only access, and optionally allow or disallow root access to the file system from the client\. For more information, see [Security](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/security.html) in the Amazon FSx Windows User Guide\.
 
-## Specifying an Amazon FSx for Windows File Server file system in your task definition<a name="specify-wfsx-config"></a>
+## Specifying an FSx for Windows File Server file system in your task definition<a name="specify-wfsx-config"></a>
 
-To use Amazon FSx for Windows File Server file system volumes for your containers, you must specify the volume and mount point configurations in your task definition\. The following task definition JSON snippet shows the syntax for the `volumes` and `mountPoints` objects for a container:
+To use FSx for Windows File Server file system volumes for your containers, you must specify the volume and mount point configurations in your task definition\. The following task definition JSON snippet shows the syntax for the `volumes` and `mountPoints` objects for a container:
 
 ```
 {
@@ -71,15 +71,15 @@ To use Amazon FSx for Windows File Server file system volumes for your container
 `FSxWindowsFileServerVolumeConfiguration`  
 Type: Object  
 Required: No  
-This parameter is specified when you are using [Amazon FSx for Windows File Server](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) file system for task storage\.    
+This parameter is specified when you are using [FSx for Windows File Server](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) file system for task storage\.    
 `fileSystemId`  
 Type: String  
 Required: Yes  
-The Amazon FSx for Windows File Server file system ID to use\.  
+The FSx for Windows File Server file system ID to use\.  
 `rootDirectory`  
 Type: String  
 Required: Yes  
-The directory within the Amazon FSx for Windows File Server file system to mount as the root directory inside the host\.  
+The directory within the FSx for Windows File Server file system to mount as the root directory inside the host\.  
 `authorizationConfig`    
 `credentialsParameter`  
 Type: String  
