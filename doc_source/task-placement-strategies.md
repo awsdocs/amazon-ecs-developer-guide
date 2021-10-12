@@ -8,15 +8,15 @@ Amazon ECS supports the following task placement strategies:
 
 `binpack`  
 Tasks are placed on container instances so as to leave the least amount of unused CPU or memory\. This strategy minimizes the number of container instances in use\.  
-When this strategy is used and a scale\-in action is taken, Amazon ECS will terminate tasks based on the amount of resources that will be left on the container instance after the task is terminated\. The container instance that will have the most available resources left after task termination will have that task terminated\.
+When this strategy is used and a scale\-in action is taken, Amazon ECS terminates tasks\. It does this based on the amount of resources that are left on the container instance after the task is terminated\. The container instance that has the most available resources left after task termination has that task terminated\.
 
 `random`  
 Tasks are placed randomly\.
 
 `spread`  
-Tasks are placed evenly based on the specified value\. Accepted values are `instanceId` \(or `host`, which has the same effect\), or any platform or custom attribute that is applied to a container instance, such as `attribute:ecs.availability-zone`\.  
+Tasks are placed evenly based on the specified value\. Accepted values are `instanceId` \(or `host`, which has the same effect\), or any platform or custom attribute that's applied to a container instance, such as `attribute:ecs.availability-zone`\.  
 Service tasks are spread based on the tasks from that service\. Standalone tasks are spread based on the tasks from the same task group\. For more information about task groups, see [Task groups](task-groups.md)\.  
-When the `spread` strategy is used and a scale\-in action is taken, Amazon ECS will select tasks to terminate that maintain a balance across Availability Zones\. Within an Availability Zone, tasks will be selected at random\.
+When the `spread` strategy is used and a scale\-in action is taken, Amazon ECS selects tasks to terminate that maintain a balance across Availability Zones\. Within an Availability Zone, tasks are selected at random\.
 
 ## Example strategies<a name="strategy-examples"></a>
 

@@ -5,7 +5,7 @@ The following are some example task definitions demonstrating common custom log 
 **Topics**
 + [Forwarding logs to CloudWatch Logs](#firelens-example-cloudwatch)
 + [Forwarding logs to an Amazon Kinesis Data Firehose delivery stream](#firelens-example-firehose)
-+ [Forwarding logs to an Amazon OpenSearch Service domain](#firelens-example-opensearch)
++ [Forwarding logs to an domain](#firelens-example-opensearch)
 + [Parsing container logs that are serialized JSON](#firelens-example-parsing)
 + [Forwarding to an external Fluentd or Fluent Bit](#firelens-example-forward)
 
@@ -25,7 +25,7 @@ In the log configuration options, specify the log group name and the Region it e
 	"containerDefinitions": [
 		{
 			"essential": true,
-			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest",
+			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
 			"name": "log_router",
 			"firelensConfiguration": {
 				"type": "fluentbit"
@@ -78,7 +78,7 @@ In the log configuration options, specify the delivery stream name and the Regio
 	"containerDefinitions": [
 		{
 			"essential": true,
-			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest",
+			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
 			"name": "log_router",
 			"firelensConfiguration": {
 				"type": "fluentbit"
@@ -112,14 +112,14 @@ In the log configuration options, specify the delivery stream name and the Regio
 }
 ```
 
-## Forwarding logs to an Amazon OpenSearch Service domain<a name="firelens-example-opensearch"></a>
+## Forwarding logs to an domain<a name="firelens-example-opensearch"></a>
 
 **Note**  
 For more examples, see [Amazon ECS FireLens examples](https://github.com/aws-samples/amazon-ecs-firelens-examples) on GitHub\.
 
-The following task definition example demonstrates how to specify a log configuration that forwards logs to an Amazon OpenSearch Service; domain\. The Amazon OpenSearch Service domain must already exist\. For more information, see [What is Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html) in the *Amazon OpenSearch Service Developer Guide*\.
+The following task definition example demonstrates how to specify a log configuration that forwards logs to an ; domain\. The domain must already exist\. For more information, see [What is ](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html) in the **\.
 
-In the log configuration options, specify the log options required for OpenSearch Service integration\. For more information, see [Fluent Bit for Amazon OpenSearch Service](https://docs.fluentbit.io/manual/pipeline/outputs/elasticsearch)\.
+In the log configuration options, specify the log options required for integration\. For more information, see [Fluent Bit for ](https://docs.fluentbit.io/manual/pipeline/outputs/elasticsearch)\.
 
 ```
 {
@@ -128,7 +128,7 @@ In the log configuration options, specify the log options required for OpenSearc
     "containerDefinitions": [
         {
             "essential": true,
-            "image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest",
+            "image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
             "name": "log_router",
             "firelensConfiguration": {
                 "type": "fluentbit"
@@ -235,7 +235,7 @@ The following task definition example demonstrates how to specify a log configur
 	"containerDefinitions": [
 		{
 			"essential": true,
-			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest",
+			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
 			"name": "log_router",
 			"firelensConfiguration": {
 				"type": "fluentbit"

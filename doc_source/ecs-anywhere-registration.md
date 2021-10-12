@@ -84,7 +84,22 @@ The AWS CLI can be used to create a Systems Manager activation before running th
 1. On your on\-premises server or virtual machine \(VM\), run the installation script\. Specify the cluster name, Region, and the Systems Manager activation ID and activation code from the first step\.
 
    ```
-   sudo bash /tmp/ecs-anywhere-install.sh --region $REGION --cluster $CLUSTER_NAME --activation-id $ACTIVATION_ID --activation-code $ACTIVATION_CODE
+   sudo bash /tmp/ecs-anywhere-install.sh \
+       --region $REGION \
+       --cluster $CLUSTER_NAME \
+       --activation-id $ACTIVATION_ID \
+       --activation-code $ACTIVATION_CODE
+   ```
+
+   For an on\-premises server or virtual machine \(VM\) that has the NVIDIA driver installed for GPU workloads, you must add the `--enable-gpu` flag to the installation script\. When this flag is specified, the install script verifies that the NVIDIA driver is running and then adds the required configuration variables to run your Amazon ECS tasks\. For more information about running GPU workloads and specifying GPU requirements in a task definition, see [Specifying GPUs in your task definition](ecs-gpu.md#ecs-gpu-specifying)\.
+
+   ```
+   sudo bash /tmp/ecs-anywhere-install.sh \
+       --region $REGION \
+       --cluster $CLUSTER_NAME \
+       --activation-id $ACTIVATION_ID \
+       --activation-code $ACTIVATION_CODE
+       --enable-gpu
    ```
 
 Use the following steps to register an existing external instance with a different cluster\.

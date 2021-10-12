@@ -16,10 +16,10 @@ The following shows the syntax to use for the Docker CLI\.
 docker pull public.ecr.aws/aws-observability/aws-for-fluent-bit:tag
 ```
 
-For example, you can pull the latest AWS for Fluent Bit image using this Docker CLI command:
+For example, you can pull the latest stable AWS for Fluent Bit image using this Docker CLI command:
 
 ```
-docker pull public.ecr.aws/aws-observability/aws-for-fluent-bit:latest
+docker pull public.ecr.aws/aws-observability/aws-for-fluent-bit:stable
 ```
 
 **Note**  
@@ -33,11 +33,11 @@ aws ecr-public get-login-password --region us-east-1 | docker login --username A
 
 The AWS for Fluent Bit image is available on Amazon ECR for high availability\. These images are available in most AWS Regions, including AWS GovCloud \(US\)\.
 
-The latest AWS for Fluent Bit image URI can be retrieved using the following command\.
+The latest stable AWS for Fluent Bit image URI can be retrieved using the following command\.
 
 ```
 aws ssm get-parameters \
-      --names /aws/service/aws-for-fluent-bit/latest \
+      --names /aws/service/aws-for-fluent-bit/stable \
       --region us-east-1
 ```
 
@@ -49,14 +49,14 @@ aws ssm get-parameters-by-path \
       --region us-east-1
 ```
 
-The latest AWS for Fluent Bit image can be referenced in an AWS CloudFormation template by referencing the Systems Manager parameter store name\. The following is an example:
+The latest stable AWS for Fluent Bit image can be referenced in an AWS CloudFormation template by referencing the Systems Manager parameter store name\. The following is an example:
 
 ```
 Parameters:
   FireLensImage:
     Description: Fluent Bit image for the FireLens Container
     Type: AWS::SSM::Parameter::Value<String>
-    Default: /aws/service/aws-for-fluent-bit/latest
+    Default: /aws/service/aws-for-fluent-bit/stable
 ```
 
 ## Dockerhub<a name="firelens-image-dockerhub"></a>

@@ -1,6 +1,6 @@
 # Run a standalone task<a name="ecs_run_task"></a>
 
-Deploying your application as a standalone task is better in some situations\. For example, suppose that you're developing an application but you're not ready to deploy it with the service scheduler\. Perhaps your application is a one\-time or periodic batch job that doesn't make sense to keep running or restart when it finishes\.
+We recommend that you deploy your application as a standalone task in some situations\. For example, suppose that you're developing an application but you're not ready to deploy it with the service scheduler\. If your application is a one\-time or periodic batch job, it doesn't make sense to keep running or restart when it finishes\.
 
 To deploy your application to run continually or to place it behind a load balancer, create an Amazon ECS service\. For more information, see [Amazon ECS services](ecs_services.md)\.
 
@@ -33,7 +33,7 @@ The console validates the selection to ensure that the selected task definition 
 
 1. The **Networking** section can be expanded to define the Amazon VPC, subnet, and security group configuration if your task requires it\. Task definitions that use the `awsvpc` network mode must have a networking configuration\. By default, the console selects the default Amazon VPC along with all subnets and the default security group within the default Amazon VPC\. If your application requires it, create a new security group\.
 
-1. \(Optional\) The **Tags** section can be expanded to add tags, in the form of key\-value pairs, to the service\.
+1. \(Optional\) The **Tags** section can be expanded to add tags, as key\-value pairs, to the service\.
 
 1. Choose **Deploy**\.
 
@@ -45,15 +45,15 @@ To run a standalone task using the old console
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Task Definitions** and select the task definition to run\.
-   + To run the latest revision of a task definition shown here, select the box to the left of the task definition to run\.
-   + To run an earlier revision of a task definition shown here, select the task definition to view all active revisions, then select the revision to run\.
+   + To run the latest revision of a task definition, select the box to the left of the task definition to run\.
+   + To run an earlier revision of a task definition, select the task definition to view all active revisions\. Last, select the revision to run\.
 
 1. Choose **Actions**, **Run Task**\.
 
 1. On the **Run Task** page, complete the following steps\.
 
    1. Choose either a capacity provider strategy or a launch type\.
-      + To use a **Capacity provider strategy** and choose **Switch to capacity provider strategy**\. Then, choose whether your task should use the default capacity provider strategy that's defined for the cluster or a custom capacity provider strategy\. A capacity provider must be associated with the cluster to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
+      + To use a **Capacity provider strategy** and choose **Switch to capacity provider strategy**\. Then, choose whether your task uses the default capacity provider strategy that's defined for the cluster or a custom capacity provider strategy\. A capacity provider must be associated with the cluster to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
       + To use a **Launch type**, choose **Switch to launch type** and select either **EC2** or **EXTERNAL**\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 
    1. For **Cluster**, choose the cluster to use\.
@@ -68,9 +68,9 @@ To run a standalone task using the old console
 
    1. For **Subnets**, choose the available subnets for your task\.
 **Important**  
-Only private subnets are supported for the `awsvpc` network mode\. Tasks don't receive public IP addresses\. Therefore, a NAT gateway is required for outbound internet access, and inbound internet traffic should be routed through a load balancer\.
+Only private subnets are supported for the `awsvpc` network mode\. Tasks don't receive public IP addresses\. Therefore, a NAT gateway is required for outbound internet access, and inbound internet traffic is routed through a load balancer\.
 
-   1. For **Security groups**, a security group was created for your task that allows HTTP traffic from the internet \(0\.0\.0\.0/0\)\. To edit the name or the rules of this security group, or to choose an existing security group, choose **Edit** and then modify your security group settings\.
+   1. For **Security groups**, a security group was created for your task that allows HTTP traffic from the internet \(0\.0\.0\.0/0\)\. To edit the name or the rules of this security group, choose **Edit** and then modify your security group settings\. Do the same if you want to choose an existing security group\.
 
 1. \(Optional\) For **Task Placement**, you can specify how tasks are placed using task placement strategies and constraints\. Choose from the following options:
    + **AZ Balanced Spread** \- Distribute tasks across Availability Zones and across container instances in the Availability Zone\.
@@ -98,12 +98,12 @@ If you intend to use the parameter values from your task definition, you don't n
         /bin/sh,-c,echo,$DATE
         ```
 
-        If your container definition specifies an `ENTRYPOINT` \(such as sh,\-c\), the format is an unquoted string, which is surrounded with double quotation marks \(" "\) and passed as an argument to the `ENTRYPOINT` command\.
+        If your container definition specifies an `ENTRYPOINT` \(such as sh,\-c\), the format is an unquoted string\. This string is surrounded with double quotation marks \(" "\) and passed as an argument to the `ENTRYPOINT` command\.
 
         ```
         while true; do echo $DATE > /var/www/html/index.html; sleep 1; done
         ```
-      + **For environment variable overrides:** Choose **Add Environment Variable**\. For **Key**, type the name of your environment variable\. For **Value**, enter a string value for your environment value \(without the surrounding double quotation marks \(`" "`\)\)\.  
+      + **For environment variable overrides:** Choose **Add Environment Variable**\. For **Key**, enter the name of your environment variable\. For **Value**, enter a string value for your environment value \(without the surrounding double quotation marks \(`" "`\)\)\.  
 ![\[Environment variable override\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/env_var.png)
 
         This environment variable override is sent to the container in the following format:
@@ -126,6 +126,6 @@ If you specify a tag with the same `key` in the **Tags** section, it will overri
 
 1. Review your task information and choose **Run Task**\.
 **Note**  
-If your task moves from the `PENDING` to the `STOPPED` status, or if it displays a `PENDING` status and then disappears from the listed tasks, your task might be stopping because of an error\. For more information, see [Checking stopped tasks for errors](stopped-task-errors.md) in the troubleshooting section\.
+If your task moves from the `PENDING` to the `STOPPED` status, your task might be stopping because of an error\. This is also the case if it displays a `PENDING` status and then disappears from the listed tasks\. For more information, see [Checking stopped tasks for errors](stopped-task-errors.md) in the troubleshooting section\.
 
 ------

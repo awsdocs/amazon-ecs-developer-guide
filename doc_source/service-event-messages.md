@@ -55,7 +55,14 @@ Not enough ports
 If your task uses fixed host port mapping \(for example, your task uses port 80 on the host for a web server\), you must have at least one container instance per task, because only one container can use a single host port at a time\. You should add container instances to your cluster or reduce your number of desired tasks\.
 
 Too many ports registered  
-The closest matching container instance for task placement can not exceed the maximum allowed reserved port limit of 100 host ports per container instance\. Using Dynamic host port mapping may remediate the issue\.
+The closest matching container instance for task placement can not exceed the maximum allowed reserved port limit of 100 host ports per container instance\. Using dynamic host port mapping may remediate the issue\.
+
+Port already in\-use  
+The task definition of this task uses the same port in its port mapping as an task already running on the container instance that was chosen to run on\. The service event message would have the chosen container instance ID as part of the message below\.  
+
+```
+The closest matching container-instance is already using a port required by your task.
+```
 
 Not enough memory  
 If your task definition specifies 1000 MiB of memory, and the container instances in your cluster each have 1024 MiB of memory, you can only run one copy of this task per container instance\. You can experiment with less memory in your task definition so that you could launch more than one task per container instance, or launch more container instances into your cluster\.  
@@ -84,13 +91,13 @@ The closest matching container instance for task placement does not container en
 
 ### service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\. The closest matching container\-instance *container\-instance\-id* encountered error "AGENT"\.<a name="service-event-messages-3"></a>
 
-The Amazon ECS container agent on the closest matching container instance for task placement is disconnected\. If you can connect to the container instance with SSH, you can examine the agent logs; for more information, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\. You should also verify that the agent is running on the instance\. If you are using the Amazon ECS\-optimized AMI, you can try stopping and restarting the agent with the following command:
-+ For the Amazon ECS\-optimized Amazon Linux 2 AMI:
+The Amazon ECS container agent on the closest matching container instance for task placement is disconnected\. If you can connect to the container instance with SSH, you can examine the agent logs; for more information, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\. You should also verify that the agent is running on the instance\. If you are using the Amazon ECS\-optimized AMI, you can try stopping and restarting the agent with the following command\.
++ For the Amazon ECS\-optimized Amazon Linux 2 AMI
 
   ```
   sudo systemctl restart ecs
   ```
-+ For the Amazon ECS\-optimized Amazon Linux AMI:
++ For the Amazon ECS\-optimized Amazon Linux AMI
 
   ```
   sudo stop ecs && sudo start ecs

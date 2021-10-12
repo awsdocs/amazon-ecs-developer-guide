@@ -15,6 +15,38 @@ For details on referencing the Systems Manager Parameter Store parameter in an A
 To ensure that customers have the latest security updates by default, Amazon ECS maintains at least the last three Windows Amazon ECS\-optimized AMIs\. After releasing new Windows Amazon ECS\-optimized AMIs, Amazon ECS makes the Windows Amazon ECS\-optimized AMIs that are older private\. If there is a private AMI that you need access to, let us know by filing a ticket with Cloud Support\.
 
 ------
+#### [ Windows Server 2022 Full AMI versions ]
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 2022 Full AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
+
+
+|  Amazon ECS\-optimized Windows Server 2022 Full AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
+| --- | --- | --- | --- | 
+|  **Windows\_Server\-2022\-English\-Full\-ECS\_Optimized\-2021\.009\.23**  |  `1.55.3`  |  `20.10.7`  |  Public  | 
+
+Use the following AWS CLI command to retrieve the current Amazon ECS\-optimized Windows Server 2022 Full AMI\.
+
+```
+aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2022-English-Full-ECS_Optimized
+```
+
+------
+#### [ Windows Server 2022Core AMI versions ]
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 2022 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
+
+
+|  Amazon ECS\-optimized Windows Server 2022 Core AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
+| --- | --- | --- | --- | 
+|  **Windows\_Server\-2022\-English\-Core\-ECS\_Optimized\-2021\.009\.23**  |  `1.55.3`  |  `20.10.7`  |  Public  | 
+
+Use the following AWS CLI command to retrieve the current Amazon ECS\-optimized Windows Server 2022 Full AMI\.
+
+```
+aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2022-English-Core-ECS_Optimized
+```
+
+------
 #### [ Windows Server 2019 Full AMI versions ]
 
 The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 2019 Full AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
@@ -22,6 +54,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Windows Server 2019 Full AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
 | --- | --- | --- | --- | 
+|  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2021\.009\.23**  |  `1.55.3`  |  `20.10.7`  |  Public  | 
 |  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2021\.08\.12**  |  `1.55.0`  |  `20.10.6`  |  Public  | 
 |  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2021\.07\.13**  |  `1.54.02`  |  `20.10.6`  |  Public  | 
 |  **Windows\_Server\-2019\-English\-Full\-ECS\_Optimized\-2021\.07\.08**  |  `1.54.0`  |  `20.10.5`  |  Public  | 
@@ -62,6 +95,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Windows Server 2019 Core AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
 | --- | --- | --- | --- | 
+|  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2021\.09\.23**  |  `1.55.3`  |  `20.10.7`  |  Public  | 
 |  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2021\.08\.12**  |  `1.55.0`  |  `20.10.6`  |  Public  | 
 |  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2021\.07\.13**  |  `1.54.02`  |  `20.10.6`  |  Public  | 
 |  **Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2021\.07\.08**  |  `1.54.0`  |  `20.10.6`  |  Public  | 
@@ -99,6 +133,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Windows Server 2016 Full AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
 | --- | --- | --- | --- | 
+|  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2021\.09\.23**  |  `1.55.3`  |  `20.10.7`  |  Public  | 
 |  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2021\.08\.12**  |  `1.55.0`  |  `20.10.6`  |  Public  | 
 |  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2021\.07\.13**  |  `1.54.02`  |  `20.10.6`  |  Public  | 
 |  **Windows\_Server\-2016\-English\-Full\-ECS\_Optimized\-2021\.07\.08**  |  `1.54.0`  |  `20.10.5`  |  Public  | 
@@ -140,6 +175,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Windows Server 2004 Core AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
 | --- | --- | --- | --- | 
+|  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2021\.09\.23**  |  `1.55.3`  |  `20.10.7`  |  Public  | 
 |  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2021\.08\.12**  |  `1.55.0`  |  `20.10.6`  |  Public  | 
 |  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2021\.07\.13**  |  `1.54.02`  |  `20.10.6`  |  Public  | 
 |  **Windows\_Server\-2004\-English\-Core\-ECS\_Optimized\-2021\.07\.08**  |  `1.54.0`  |  `20.10.5`  |  Public  | 
