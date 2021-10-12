@@ -7,7 +7,7 @@ Use the following information to help you diagnose and fix common issues that yo
 + [I'm not authorized to perform iam:PassRole](#security_iam_troubleshoot-passrole)
 + [I want to view my access keys](#security_iam_troubleshoot-access-keys)
 + [I'm an administrator and want to allow others to access Amazon ECS](#security_iam_troubleshoot-admin-delegate)
-+ [I want to allow people outside of my AWS account to access m Amazon ECS resources](#security_iam_troubleshoot-cross-account-access)
++ [I want to allow people outside of my AWS account to access my Amazon ECS resources](#security_iam_troubleshoot-cross-account-access)
 
 ## I'm not authorized to perform an action in Amazon ECS<a name="security_iam_troubleshoot-no-permissions"></a>
 
@@ -52,7 +52,7 @@ To allow others to access Amazon ECS, you must create an IAM entity \(user or ro
 
 To get started right away, see [Creating your first IAM delegated user and group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-delegated-user.html) in the *IAM User Guide*\.
 
-## I want to allow people outside of my AWS account to access m Amazon ECS resources<a name="security_iam_troubleshoot-cross-account-access"></a>
+## I want to allow people outside of my AWS account to access my Amazon ECS resources<a name="security_iam_troubleshoot-cross-account-access"></a>
 
 You can create a role that users in other accounts or people outside of your organization can use to access your resources\. You can specify who is trusted to assume the role\. For services that support resource\-based policies or access control lists \(ACLs\), you can use those policies to grant people access to your resources\.
 

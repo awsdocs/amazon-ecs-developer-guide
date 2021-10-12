@@ -55,7 +55,7 @@ The comparison operator\. The following operators are supported\.
 |  <, less\_than  |  Less than  | 
 |  <=, less\_than\_equal  |  Less than or equal to  | 
 |  exists  |  Subject exists  | 
-|  \!exists, not\_exists  |  Subject does not exist  | 
+|  \!exists, not\_exists  |  Subject doesn't exist  | 
 |  in  |  Value in argument list  | 
 |  \!in, not\_in  |  Value not in argument list  | 
 |  =\~, matches  |  Pattern match  | 
@@ -107,7 +107,7 @@ attribute:ecs.availability-zone in [us-east-1a, us-east-1b]
 ```
 
 **Example: Compound Expression**  
-The following expression selects G2 instances that are not in the us\-east\-1d Availability Zone\.
+The following expression selects G2 instances that aren't in the us\-east\-1d Availability Zone\.
 
 ```
 attribute:ecs.instance-type =~ g2.* and attribute:ecs.availability-zone != us-east-1d
@@ -121,7 +121,7 @@ task:group == service:production
 ```
 
 **Example: Task Anti\-Affinity**  
-The following expression selects instances that are not hosting tasks in the database group\.
+The following expression selects instances that aren't hosting tasks in the database group\.
 
 ```
 not(task:group == database)

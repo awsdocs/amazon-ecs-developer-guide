@@ -1,6 +1,6 @@
 # Amazon ECS task placement constraints<a name="task-placement-constraints"></a>
 
-A *task placement constraint* is a rule that is considered during task placement\. Task placement constraints can be specified when either running a task or creating a new service\. The task placement constraints can be updated for existing services as well\. For more information, see [Amazon ECS task placement](task-placement.md)\.
+A *task placement constraint* is a rule that's considered during task placement\. Task placement constraints can be specified when either running a task or creating a new service\. The task placement constraints can be updated for existing services as well\. For more information, see [Amazon ECS task placement](task-placement.md)\.
 
 ## Constraint types<a name="constraint-types"></a>
 
@@ -63,9 +63,9 @@ If this attribute exists, the instance is identified as an external instance\. F
 
 You can apply custom attributes to your container instances\. For example, you can define an attribute with the name "stack" and a value of "prod"\.
 
-When specifying custom attributes, the following should be considered\.
+When specifying custom attributes, you must consider the following\.
 + The `name` must contain between 1 and 128 characters and name may contain letters \(uppercase and lowercase\), numbers, hyphens, underscores, forward slashes, back slashes, or periods\.
-+ The `value` must contain between 1 and 128 characters and may contain letters \(uppercase and lowercase\), numbers, hyphens, underscores, periods, at signs \(@\), forward slashes, back slashes, colons, or spaces\. The value cannot contain any leading or trailing whitespace\.
++ The `value` must contain between 1 and 128 characters and may contain letters \(uppercase and lowercase\), numbers, hyphens, underscores, periods, at signs \(@\), forward slashes, back slashes, colons, or spaces\. The value can't contain any leading or trailing whitespace\.
 
 ## Adding an attribute<a name="add-attribute"></a>
 
@@ -85,9 +85,9 @@ You can add custom attributes at instance registration time using the container 
 
    1. Choose **Add attribute**\.
 
-   1. Type a name and a value for the attribute and choose the checkmark icon\.
+   1. Enter a name and a value for the attribute and choose the checkmark icon\.
 
-1. When you are finished adding attributes, choose **Close**\.
+1. When you're finished adding attributes, choose **Close**\.
 
 **Adding custom attributes using the AWS CLI**  
 The following examples demonstrate how to add custom attributes using the [put\-attributes](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-attributes.html) command\.
@@ -120,9 +120,9 @@ You can apply a filter for your container instances, allowing you to see custom 
 
 1. Set column visibility preferences by choosing the gear icon \(![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/cog.png)\) and selecting the attributes to display\. This setting persists across all container clusters associated with your account\.
 
-1. Using the **Filter by attributes** text field, type or select the attributes you would like to filter by\. The format must be *AttributeName:AttributeValue*\.
+1. Using the **Filter by attributes** text field, enter or select the attributes you want to filter by\. The format must be *AttributeName:AttributeValue*\.
 
-   For **Filter by attributes**, type or select the attributes by which to filter\. After you select the attribute name, you are prompted for the attribute value\.
+   For **Filter by attributes**, enter or select the attributes to filter by\. After you select the attribute name, you're prompted for the attribute value\.
 
 1. Add additional attributes to the filter as needed\. Remove an attribute by choosing the **X** next to it\.
 

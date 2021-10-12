@@ -45,7 +45,7 @@ A rule can't have the same name as another rule in the same Region and on the sa
 
    1. For **Service name**, choose the name of the service that emits the event\.
 
-   1. For **Event type**, choose **All Events** or choose the type of event to use for this rule\. If you choose **All Events**, all events emitted by this AWS service will match the rule\.
+   1. For **Event type**, choose **All Events** or choose the type of event to use for this rule\. If you choose **All Events**, all events emitted by this AWS service match the rule\.
 
       To customize the event pattern, choose **Edit**, make your changes, and then choose **Save**\.
 
@@ -63,7 +63,7 @@ A rule can't have the same name as another rule in the same Region and on the sa
 
 1. The **Compute options** section can be expanded to change the default compute options for the scheduled task\.
 
-   1. Choose whether your scheduled task will use a **Capacity provider strategy** or **Launch type**\.
+   1. Choose whether your scheduled task uses a **Capacity provider strategy** or **Launch type**\.
 
    1. To use a capacity provider strategy, choose **Use cluster default** to use the cluster's default capacity provider strategy\. If your cluster doesn't have a default capacity provider strategy, or to use a custom strategy, choose **Use custom**, **Add capacity provider strategy** and define your custom capacity provider strategy by specifying a **Capacity provider**, **Base**, and **Weight**\. In order for a capacity provider to be used in a strategy, it must be associated with the cluster\. For more information about capacity provider strategies, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
 
@@ -99,7 +99,7 @@ Task placement strategies aren't supported for tasks hosted on Fargate\.
 
    1. For **Configure propagate tags**, choose **Propagate tags from task definition** to have Amazon ECS add the tags associated with the task definition to your task\. For more information, see [Tagging your resources](ecs-using-tags.md#tag-resources)\.
 **Note**  
-If you specify a tag with the same key in the **Tags** section, it will override the tag propagated from the task definition\.
+If you specify a tag with the same key in the **Tags** section, that tag overrides the tag that's propagated from the task definition\.
 
 1. For many target types, EventBridge needs permissions to send events to the target\. In these cases, EventBridge can create the IAM role needed for your rule to run\.
    + To create an IAM role automatically, choose **Create a new role for this specific resource**
@@ -111,7 +111,7 @@ If you specify a tag with the same key in the **Tags** section, it will override
 
    1. For **Retry attempts**, enter a number between 0 and 185\.
 
-1. For **Dead\-letter queue**, choose whether to use a standard Amazon SQS queue as a dead\-letter queue\. EventBridge sends events that match this rule to the dead\-letter queue if they are not successfully delivered to the target\. Do one of the following:
+1. For **Dead\-letter queue**, choose whether to use a standard Amazon SQS queue as a dead\-letter queue\. EventBridge sends events that match this rule to the dead\-letter queue if they aren't successfully delivered to the target\. Do one of the following:
    + Choose **None** to not use a dead\-letter queue\.
    + Choose **Select an Amazon SQS queue in the current AWS account to use as the dead\-letter queue** and then select the queue to use from the drop\-down list\.
    + Choose **Select an Amazon SQS queue in an other AWS account as a dead\-letter queue** and then enter the ARN of the queue to use\. You must attach a resource\-based policy to the queue that grants EventBridge permission to send messages to it\. For more information, see [Granting permissions to the dead\-letter queue](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rule-dlq.html#eb-dlq-perms) in the *Amazon EventBridge User Guide*\.

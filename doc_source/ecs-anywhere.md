@@ -36,7 +36,6 @@ Before you start using external instances, be aware of the following considerati
 + ECS Exec isn't supported\.
 + SELinux isn't supported\.
 + Using Amazon EFS volumes or specifying an `EFSVolumeConfiguration` isn't supported\.
-+ Specifying GPU requirements in the task definition isn't supported\.
 + Integration with App Mesh isn't supported\.
 
 ### Supported operating systems and system architectures<a name="ecs-anywhere-supported-os"></a>

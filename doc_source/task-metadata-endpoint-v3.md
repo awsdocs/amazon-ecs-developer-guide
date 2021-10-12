@@ -103,6 +103,16 @@ The type of the container\. Containers that are specified in your task definitio
 `Networks`  
 The network information for the container, such as the network mode and IP address\. This parameter is omitted if no network information is defined\.
 
+`ClockDrift`  
+The information about the difference between the reference time and the system time\.    
+`ReferenceTime`  
+The basis of clock accuracy\. Amazon ECS uses the Coordinated Universal Time \(UTC\) global standard through NTP, for example `2021-09-07T16:57:44Z`\.  
+`ClockErrorBound`  
+The measure of clock error, defined as the offset to UTC\. This error is the difference in milliseconds between the reference time and the system time\.  
+`ClockSynchronizationStatus`  
+Indicates whether the most recent synchronization attempt between the system time and the reference time was successful\.  
+The valid values are `SYNCHRONIZED` and ` NOT_SYNCHRONIZED`\.
+
 `ExecutionStoppedAt`  
 The time stamp for when the tasks `DesiredStatus` moved to `STOPPED`\. This occurs when an essential container moves to `STOPPED`\.
 

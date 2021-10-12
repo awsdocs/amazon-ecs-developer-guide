@@ -15,6 +15,7 @@ When registering an external instance with your Amazon ECS cluster, the followin
 + Amazon ECS provides an installation script that installs Docker, the Amazon ECS container agent, and the Systems Manager Agent on your external instance\. If the installation script fails, it's likely that the script can't be run again on the same instance without an error occurring\. If this happens, follow the cleanup process to clear AWS resources from the instance so you can run the installation script again\. For more information, see [Deregistering an external instance](ecs-anywhere-deregistration.md)\.
 **Note**  
 Be aware that, if the installation script successfully requested and used the Systems Manager activation, running the installation script a second time uses the Systems Manager activation again\. This might in turn cause you to reach the registration limit for that activation\. If this limit is reached, you must create a new activation\.
++ When running the installation script on an external instance for GPU workloads, if the NVIDIA driver is not detected or configured properly an error will occur\. The installation script uses the `nvidia-smi` command to confirm the existence of the NVIDIA driver\.
 
 ## External instance network issues<a name="ecs-anywhere-troubleshooting-networking"></a>
 

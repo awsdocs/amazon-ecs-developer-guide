@@ -11,6 +11,16 @@ ssm:GetParametersByPath
 ## Systems Manager Parameter Store parameter format<a name="ecs-optimized-ami-parameter-format"></a>
 
 The following is the format of the parameter name for each Amazon ECS\-optimized AMI variant\.
++ Windows Server 2022 Full AMI metadata:
+
+  ```
+  /aws/service/ami-windows-latest/Windows_Server-2022-English-Full-ECS_Optimized
+  ```
++ Windows Server 2022 Core AMI metadata:
+
+  ```
+  /aws/service/ami-windows-latest/Windows_Server-2022-English-Core-ECS_Optimized
+  ```
 + Windows Server 2019 Full AMI metadata:
 
   ```
@@ -87,6 +97,16 @@ The following examples show ways in which you can retrieve the metadata for each
 ### Retrieving the metadata of the latest stable Amazon ECS\-optimized AMI<a name="ecs-optimized-ami-windows-parameter-examples-1"></a>
 
 You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI with the following AWS CLI commands\.
++ **For the Amazon ECS\-optimized Windows Server 2022 Full AMI:**
+
+  ```
+  aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2022-English-Full-ECS_Optimized --region us-east-1
+  ```
++ **For the Amazon ECS\-optimized Windows Server 2022 Core AMI:**
+
+  ```
+  aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2022-English-Core-ECS_Optimized --region us-east-1
+  ```
 + **For the Amazon ECS\-optimized Windows Server 2019 Full AMI:**
 
   ```

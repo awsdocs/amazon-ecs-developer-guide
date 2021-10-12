@@ -21,7 +21,7 @@ The following task definition example defines a log router container that uses F
 	"containerDefinitions": [
 		{
 			"essential": true,
-			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest",
+			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
 			"name": "log_router",
 			"firelensConfiguration": {
 				"type": "fluentbit"
@@ -83,7 +83,7 @@ The following shows the syntax required when specifying an Amazon ECS log metada
    "containerDefinitions":[
       {
          "essential":true,
-         "image":"906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest",
+         "image":"906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
          "name":"log_router",
          "firelensConfiguration":{
             "type":"fluentbit",
@@ -124,7 +124,7 @@ The following shows the syntax required when specifying a custom configuration:
    "containerDefinitions":[
       {
          "essential":true,
-         "image":"906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest",
+         "image":"906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
          "name":"log_router",
          "firelensConfiguration":{
             "type":"fluentbit",

@@ -50,6 +50,8 @@ Record the VPC and security group IDs you use for your cluster as you will need 
    1. For **Subnets**, select the subnets to use for your VPC\. If you choose to create a new VPC, you can keep the default settings or you can modify them to meet your needs\. If you choose to use an existing VPC, select one or more subnets in that VPC to use for your cluster\.
 
    1. For **Security group**, select the security group to attach to the container instances in your cluster\. If you choose to create a new security group, you can specify a CIDR block to allow inbound traffic from\. The default port 0\.0\.0\.0/0 is open to the internet\. You can also select a single port or a range of contiguous ports to open on the container instance\. For more complicated security group rules, you can choose an existing security group that you have already created\.
+
+      You will also use this security group when you create a security group for the Amazon EFS file system, so note the ID\.
 **Note**  
 You can also choose to create a new security group and then modify the rules after the cluster is created\. For more information, see [Amazon EC2 Security Groups for Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
@@ -81,7 +83,7 @@ In this step, you create a security group for your Amazon EFS file system that a
 
 1. For **Type**, choose **NFS**\.
 
-1. For **Source**, choose **Custom** and then enter the security group ID that you identified earlier for your cluster\.
+1. For **Source**, choose **Custom** and then enter the security group ID that you identified when you created the cluster\.
 
 1. Choose **Create security group**\.
 
