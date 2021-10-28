@@ -49,7 +49,7 @@ The following task definition example defines a log router container that uses F
 					"delivery_stream": "my-stream"
 				}
 			},
-			"memoryReservation": 100		
+			"memoryReservation": 100
             }
 	]
 }
@@ -80,19 +80,19 @@ The following shows the syntax required when specifying an Amazon ECS log metada
 
 ```
 {
-   "containerDefinitions":[
-      {
-         "essential":true,
-         "image":"906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
-         "name":"log_router",
-         "firelensConfiguration":{
-            "type":"fluentbit",
-            "options":{
-               "enable-ecs-log-metadata":"true | false"
-            }
-         }
-      }
-   ]
+	"containerDefinitions": [
+		{
+			"essential": true,
+			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
+			"name": "log_router",
+			"firelensConfiguration": {
+				"type": "fluentbit",
+				"options": {
+					"enable-ecs-log-metadata": "true | false"
+				}
+			}
+		}
+	]
 }
 ```
 
@@ -121,20 +121,20 @@ The following shows the syntax required when specifying a custom configuration:
 
 ```
 {
-   "containerDefinitions":[
-      {
-         "essential":true,
-         "image":"906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
-         "name":"log_router",
-         "firelensConfiguration":{
-            "type":"fluentbit",
-            "options":{
-               "config-file-type":"s3 | file",
-               "config-file-value":"arn:aws:s3:::mybucket/fluent.conf | filepath"
-            }
-         }
-      }
-   ]
+	"containerDefinitions": [
+		{
+			"essential": true,
+			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
+			"name": "log_router",
+			"firelensConfiguration": {
+				"type": "fluentbit",
+				"options": {
+					"config-file-type": "s3 | file",
+					"config-file-value": "arn:aws:s3:::mybucket/fluent.conf | filepath"
+				}
+			}
+		}
+	]
 }
 ```
 
