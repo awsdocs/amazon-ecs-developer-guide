@@ -94,4 +94,4 @@ For more information about creating an `ecs.config` file, storing it in Amazon S
 
 1. Check the box to the left of the **AmazonS3ReadOnlyAccess** policy and click **Attach policy**\.
 **Note**  
-This policy allows read\-only access to all Amazon S3 resources\. For more restrictive bucket policy examples, see [Bucket Policy Examples](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html) in the Amazon Simple Storage Service Developer Guide\.
+This policy allows read\-only access to all Amazon S3 resources\. For more restrictive bucket policy examples, see [Bucket Policy Examples](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html) in the Amazon Simple Storage Service User Guide\.

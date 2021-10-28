@@ -72,11 +72,11 @@ The timestamp for when the last container image pull finished\.
 
 `AvailabilityZone`  
 The Availability Zone the task is in\.  
-The Availability Zone metadata is only available for Fargate tasks using platform version 1\.4 or later\.
+The Availability Zone metadata is only available for Fargate tasks using platform version 1\.4 or later \(Linux\) or 1\.0\.0 \(Windows\)\.
 
 `LaunchType`  
 The launch type the task is using\. When using cluster capacity providers, this indicates whether the task is using Fargate or EC2 infrastructure\.  
-This `LaunchType` metadata is only included when using Amazon ECS Linux container agent version `1.45.0` or later\.
+This `LaunchType` metadata is only included when using Amazon ECS Linux container agent version `1.45.0` or later \(Linux\) or 1\.0\.0 or later \(Windows\)\.
 
 `Containers`  
 A list of container metadata for each container associated with the task\.    

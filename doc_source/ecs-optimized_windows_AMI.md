@@ -6,12 +6,14 @@ The Amazon ECS\-optimized AMI metadata, including the AMI name, Amazon ECS conta
 
 ## Amazon ECS\-optimized AMI variants<a name="ecs-optimized-ami-variants"></a>
 
-The following Windows Server variants of the Amazon ECS\-optimized AMI are available for your Amazon EC2 instances\. For more information, see [Windows containers](ECS_Windows.md)\.
+The following Windows Server variants of the Amazon ECS\-optimized AMI are available for your Amazon EC2 instances\. For more information, see [Amazon EC2 Windows containers](ECS_Windows.md)\.
 + **Amazon ECS\-optimized Windows Server 2022 Full AMI** 
 + **Amazon ECS\-optimized Windows Server 2022 Core AMI** 
 + **Amazon ECS\-optimized Windows Server 2019 Full AMI** 
 + **Amazon ECS\-optimized Windows Server 2019 Core AMI** 
-+ **Amazon ECS\-optimized Windows Server 2004 Core AMI** 
++ **Amazon ECS\-optimized Windows Server 2004 Core AMI**
+**Important**  
+On December 14, 2021, the Amazon ECS\-optimized Windows Server 2004 Core AMI reaches it's end of support date\. After this date, no new versions of this AMI will be released\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
 + **Amazon ECS\-optimized Windows Server 20H2 Core AMI**
 + **Amazon ECS\-optimized Windows Server 2016 Full AMI**
 
@@ -213,6 +215,9 @@ The following table provides a link to retrieve the current Amazon ECS\-optimize
 |  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-2004-English-Core-ECS_Optimized?region=cn-northwest-1#)  | 
 
 For a full list of current and previous versions of the Amazon ECS\-optimized Windows Server 2004 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker see [Windows Amazon ECS\-optimized AMIs versions](ecs-windows-ami-versions.md#ecs-ami-versions-windows)\.
+
+**Important**  
+On December 14, 2021, the Amazon ECS\-optimized Windows Server 2004 Core AMI reaches it's end of support date\. After this date, no new versions of this AMI will be released\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
 
 ### Windows Server 20H2 Core<a name="windows-20H2-core-ami"></a>
 

@@ -42,9 +42,21 @@ aws configure
 
 Clone a simple Flask application and Dockerfile\.
 
+------
+#### [ Amazon Linux containers on Fargate ]
+
 ```
 git clone https://github.com/aws-samples/amazon-ecs-cli-sample-app.git demo-app
 ```
+
+------
+#### [ Windows containers on Fargate ]
+
+```
+git clone https://github.com/aws-samples/amazon-ecs-cli-sample-windows-app.git demo-app
+```
+
+------
 
 ### Step 3: Set up your application<a name="getting-started-ecs-copilot-cli-setup-app"></a>
 

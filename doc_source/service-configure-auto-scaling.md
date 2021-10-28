@@ -43,7 +43,7 @@ These steps help you create target tracking scaling policies and CloudWatch alar
 
 1. For **Scale\-in cooldown period**, enter the amount of time, in seconds, after a scale\-in activity completes before another scale\-in activity can start\. The scale\-in cooldown period is used to block subsequent scale\-in requests until it has expired\. The intention is to scale in conservatively to protect your application's availability\. However, if another alarm triggers a scale out activity during the cooldown period after a scale\-in, Service Auto Scaling scales out your scalable target immediately\. 
 
-1. \(Optional\) To disable the scale\-in actions for this policy, choose **Disable scale\-in**\. This allows you to create a separate scaling policy for scale\-in later\.
+1. \(Optional\) To turn off the scale\-in actions for this policy, choose **Disable scale\-in**\. This allows you to create a separate scaling policy for scale\-in later\.
 
 1. Choose **Next step**\.
 

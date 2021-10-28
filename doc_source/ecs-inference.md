@@ -65,7 +65,7 @@ To deploy Neuron on Amazon ECS, your task definition must contain the container 
 
 Alternatively, you can build your own Neuron sidecar container image\. For more information, see [Tutorial: Neuron TensorFlow Serving](https://github.com/aws/aws-neuron-sdk/blob/master/neuron-guide/neuron-frameworks/tensorflow-neuron/tutorials/tutorial-tensorflow-serving.rst) on GitHub\.
 
-Currently, the Inferentia resource requirement can't be defined in a task definition\. However, you can configure a container to use specific Inferentia available on the host container instance using the `linuxParameters` parameter\. The following is an example task definition, displaying the syntax to use\.
+Currently, the Inferentia resource requirement can't be defined in a task definition\. However, you can configure a container to use specific Inferentia available on the host container instance using the `linuxParameters` parameter\. The following is an example Linux containers on Fargate task definition, displaying the syntax to use\.
 
 ```
 {

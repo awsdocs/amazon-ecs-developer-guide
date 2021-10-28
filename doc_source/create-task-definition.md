@@ -9,8 +9,6 @@ Before you can run Docker containers on Amazon ECS, you must create a task defin
 1. In the navigation pane, choose **task definitions**, **Create new task definition**\.
 
 1. On the **Select compatibilities** page, select the launch type that your task should use and choose **Next step**\.
-**Note**  
-The Fargate launch type isn't compatible with Windows containers\.
 
 1. Follow the steps under one of the following tabs, according to the launch type that you have chosen\.
 
@@ -37,6 +35,8 @@ If you chose **Fargate**, complete the following steps:
 **Note**  
 Only roles that have the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
+1. For **Operating system family**, choose the container operating system\.
+
 1. For **Task execution IAM role**, either select your task execution role or choose **Create new role** so that the console can create one for you\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 1. For **Task size**, choose a value for **Task memory \(GB\)** and **Task CPU \(vCPU\)**\. The table below shows the valid combinations\.    
@@ -53,6 +53,8 @@ Only roles that have the **Amazon EC2 Container Service Task Role** trust relati
 1. \(Optional\) For **Service Integration**, to configure the parameters for App Mesh integration, choose **Enable App Mesh integration** and then do the following:
 
    1. For **Mesh name**, choose the existing App Mesh service mesh to use\. If you don't see any meshes listed, then you need to create one first\. For more information, see [Service meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
+**Note**  
+This option is not available for Windows containers on Fargate\.
 
    1. For **App Mesh endpoints**, select one of the following options\.
       + **Virtual node** – Enter or select the following information\.
@@ -135,6 +137,8 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 1. \(Optional\) For **Service Integration**, to configure the parameters for App Mesh integration, choose **Enable App Mesh integration** and then do the following:
 
    1. For **Mesh name**, choose the existing App Mesh service mesh to use\. If you don't see any meshes listed, then you need to create one first\. For more information, see [Service meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html) in the *AWS App Mesh User Guide*\.
+**Note**  
+This option is not available for Windows containers on Fargate\.
 
    1. For **App Mesh endpoints**, select one of the following options\.
       + **Virtual node** – Enter or select the following information\.

@@ -20,7 +20,7 @@ When using scaling policies, note the following considerations:
 
 ## Amazon ECS console experience<a name="service-auto-scaling-console"></a>
 
-Service Auto Scaling is disabled by default\. You can enable it by configuring scaling policies from the **Auto Scaling** tab of your services in the AWS Management Console for Amazon ECS\. 
+Service Auto Scaling is off by default\. You can turn it on by configuring scaling policies from the **Auto Scaling** tab of your services in the AWS Management Console for Amazon ECS\. 
 
 For step\-by\-step guidance for working with scaling policies from the console, see [Creating an Amazon ECS service](create-service.md) and [Updating a service](update-service.md)\. For more information about step scaling and a walkthrough, see [Automatic Scaling with Amazon ECS](http://aws.amazon.com/blogs/compute/automatic-scaling-with-amazon-ecs/) in the *AWS Compute Blog*\. For a target tracking walkthrough, see [Target tracking scaling policies](service-autoscaling-targettracking.md)\.
 

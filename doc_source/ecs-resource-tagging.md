@@ -7,4 +7,5 @@ The following topics provide an overview on these resources and tags and show ho
 **Topics**
 + [Tagging your Amazon ECS resources](ecs-using-tags.md)
 + [Amazon ECS service quotas](service-quotas.md)
++ [Supported Regions for Amazon ECS on AWS Fargate](AWS_Fargate-Regions.md)
 + [Amazon ECS usage reports](usage-reports.md)

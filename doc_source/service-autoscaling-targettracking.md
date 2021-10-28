@@ -55,7 +55,7 @@ Application Load Balancers do incur costs while they exist in your AWS resources
 
 ## Step 2: Configure service auto scaling<a name="tt-configure-autoscaling"></a>
 
-Now that you have launched a cluster and created a service in that cluster that is running behind a load balancer, you can enable Service Auto Scaling by creating a target tracking scaling policy\.
+Now that you have launched a cluster and created a service in that cluster that is running behind a load balancer, you can use Service Auto Scaling by creating a target tracking scaling policy\.
 
 **To configure basic Service Auto Scaling parameters**
 

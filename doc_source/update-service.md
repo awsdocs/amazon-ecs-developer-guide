@@ -1,6 +1,6 @@
 # Updating a service<a name="update-service"></a>
 
-You can update an existing service to change some of the service configuration parameters, such as the number of tasks that are maintained by a service, which task definition is used by the tasks, or if your tasks are using the Fargate launch type, you can change the platform version your service uses\. If you have an application that needs more capacity, you can scale up your service\. If you have unused capacity to scale down, you can reduce the number of desired tasks in your service and free up resources\.
+You can update an existing service to change some of the service configuration parameters, such as the number of tasks that are maintained by a service, which task definition is used by the tasks, or if your tasks are using the Fargate launch type, you can change the platform version your service uses\. A service using a Linux platform version can't be updated to use a Windows platform version and vice versa\. If you have an application that needs more capacity, you can scale up your service\. If you have unused capacity to scale down, you can reduce the number of desired tasks in your service and free up resources\.
 
 If you want to use an updated container image for your tasks, you can create a new task definition revision with that image and deploy it to your service by using the **force new deployment** option in the console\.
 

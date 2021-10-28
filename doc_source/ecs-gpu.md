@@ -22,16 +22,16 @@ The g4 instance type family is supported on version `20190913` and later of the 
 |  p3\.16xlarge  |  8  |  128  |  64  |  488  | 
 |  p3dn\.24xlarge  |  8  |  256  |  96  |  768  | 
 |  p4d\.24xlarge  | 8 | 320 | 96 | 1152 | 
-|  g3s\.xlarge  | 1 | 8 | 4 | 30\.5 | 
-|  g3\.4xlarge  | 1 | 8 | 16 | 122 | 
-|  g3\.8xlarge  | 2 | 16 | 32 | 244 | 
-|  g3\.16xlarge  | 4 | 32 | 64 | 488 | 
-|  g4dn\.xlarge  | 1 | 16 | 4 | 16 | 
-|  g4dn\.2xlarge  | 1 | 16 | 8 | 32 | 
-|  g4dn\.4xlarge  | 1 | 16 | 16 | 64 | 
-|  g4dn\.8xlarge  | 1 | 16 | 32 | 128 | 
-|  g4dn\.12xlarge  | 4 | 64 | 48 | 192 | 
-|  g4dn\.16xlarge  | 1 | 16 | 64 | 256 | 
+|  g3s\.xlarge  |  1  |  8  |  4  |  30\.5  | 
+|  g3\.4xlarge  |  1  |  8  |  16  |  122  | 
+|  g3\.8xlarge  |  2  |  16  |  32  |  244  | 
+|  g3\.16xlarge  |  4  |  32  |  64  |  488  | 
+|  g4dn\.xlarge  |  1  |  16  |  4  |  16  | 
+|  g4dn\.2xlarge  |  1  |  16  |  8  |  32  | 
+|  g4dn\.4xlarge  |  1  |  16  |  16  |  64  | 
+|  g4dn\.8xlarge  |  1  |  16  |  32  |  128  | 
+|  g4dn\.12xlarge  |  4  |  64  |  48  |  192  | 
+|  g4dn\.16xlarge  |  1  |  16  |  64  |  256  | 
 
 **Topics**
 + [Considerations](#gpu-considerations)

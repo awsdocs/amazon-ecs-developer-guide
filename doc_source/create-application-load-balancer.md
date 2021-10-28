@@ -34,7 +34,7 @@ If you plan on routing traffic to more than one target group, see [ListenerRules
 
    1. For **VPC**, select the same VPC that you used for the container instances on which you intend to run your service\.
 
-   1. For **Availability Zones**, select the check box for the Availability Zones to enable for your load balancer\. If there is one subnet for that Availability Zone, it is selected\. If there is more than one subnet for that Availability Zone, select one of the subnets\. You can select only one subnet per Availability Zone\. Your load balancer subnet configuration must include all Availability Zones that your container instances reside in\.
+   1. For **Availability Zones**, select the check box for the Availability Zones to use for your load balancer\. If there is one subnet for that Availability Zone, it is selected\. If there is more than one subnet for that Availability Zone, select one of the subnets\. You can select only one subnet per Availability Zone\. Your load balancer subnet configuration must include all Availability Zones that your container instances reside in\.
 
    1. Choose **Next: Configure Security Settings**\.
 

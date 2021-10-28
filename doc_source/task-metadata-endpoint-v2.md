@@ -64,7 +64,7 @@ The timestamp for when the last container image pull finished\.
 
 `AvailabilityZone`  
 The Availability Zone the task is in\.  
-The Availability Zone metadata is only available for Fargate tasks using platform version 1\.4 or later\.
+The Availability Zone metadata is only available for Fargate tasks using platform version 1\.4 or later \(Linux\) or 1\.0\.0 or later \(Windows\)\.
 
 `Containers`  
 A list of container metadata for each container associated with the task\.    

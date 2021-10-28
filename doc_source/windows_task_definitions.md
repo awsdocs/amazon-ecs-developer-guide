@@ -60,7 +60,7 @@ Supported: Limited
 Windows containers can mount whole directories on the same drive as `$env:ProgramData`\. Windows containers can't mount directories on a different drive, and mount point can't be across drives\. For example, you can mount `C:\my\path:C:\my\path` and `D:\:D:\`, but not `D:\my\path:C:\my\path` or `D:\:C:\my\path`\.  
 `FSxWindowsFileServerVolumeConfiguration`  
 Supported: Yes  
-This parameter is specified when you are using the [Amazon FSx for Windows File Server](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) file system for task storage\. For more information, see [Amazon FSx for Windows File Server volumes](wfsx-volumes.md)\.
+This parameter is specified when you are using the [FSx for Windows File Server](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) file system for task storage\. For more information, see [FSx for Windows File Server volumes](wfsx-volumes.md)\.
 
 `cpu`  
 Supported: No  

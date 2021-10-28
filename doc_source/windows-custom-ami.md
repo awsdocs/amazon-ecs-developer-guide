@@ -5,11 +5,11 @@ EC2 Image Builder can be used to build your own custom Amazon ECS\-optimized Win
 For a full walkthrough of using EC2 Image Builder, see [Getting started with EC2 Image Builder](https://docs.aws.amazon.com/imagebuilder/latest/userguide/getting-started-image-builder.html) in the *EC2 Image Builder User Guide*\.
 
 When building your own Amazon ECS\-optimized Windows AMI using EC2 Image Builder, you create an image recipe\. Your image recipe must meet the following requirements:
-+ The **Source image** should be based on Windows Server 2004 Core, Windows Server 2016 Full, Windows Server 2019 Core, or Windows Server 2019 Full\. Any other Windows operating system is not supported and may not be compatible with the component\.
++ The **Source image** should be based on Windows Server 20H2 Core, Windows Server 2004 Core, Windows Server 2016 Full, Windows Server 2019 Core, Windows Server 2019 Full, Windows Server 2022 Core, or Windows Server 2022 Full\. Any other Windows operating system is not supported and may not be compatible with the component\.
 + When specifying the **Build components**, the `ecs-optimized-ami-windows` component is required\. The `update-windows` component is recommended, which ensures the image contains the latest security updates\.  
 ![\[The required components for building a custom Amazon ECS Windows-optimized AMI\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ecs-windows-custom-ami-component.png)
-**Note**  
-By default, the `ecs-optimized-ami-windows` component uses the latest Amazon ECS container agent\. To specify a different component version, expand the **Versioning options** menu and specify the component version you want to use\. For more information, see [Listing the `ecs-optimized-ami-windows` component versions](#windows-component-list)\.
+
+  To specify a different component version, expand the **Versioning options** menu and specify the component version you want to use\. For more information, see [Listing the `ecs-optimized-ami-windows` component versions](#windows-component-list)\.
 
 ## Listing the `ecs-optimized-ami-windows` component versions<a name="windows-component-list"></a>
 

@@ -6,6 +6,9 @@ Windows based network applications such as \.NET applications often use Active D
 
 A Windows container running with gMSA relies on its host Amazon EC2 instance to retrieve the gMSA credentials from the Active Directory domain controller and provide them to the container instance\. For more information, see [Create gMSAs for Windows containers](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/manage-serviceaccounts)\.
 
+**Note**  
+This feature is not supported on Windows containers on Fargate\.
+
 **Topics**
 + [Considerations](#windows-gmsa-considerations)
 + [Prerequisites](#windows-gmsa-prerequisites)

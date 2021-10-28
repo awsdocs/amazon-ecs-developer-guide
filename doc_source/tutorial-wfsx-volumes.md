@@ -1,20 +1,20 @@
-# Tutorial: Using Amazon FSx for Windows File Server file systems with Amazon ECS<a name="tutorial-wfsx-volumes"></a>
+# Tutorial: Using FSx for Windows File Server file systems with Amazon ECS<a name="tutorial-wfsx-volumes"></a>
 
-Amazon FSx for Windows File Server provides fully managed Microsoft Windows file servers, that are backed by a fully native Windows file system\. When using Amazon FSx for Windows File Server together with ECS, you can provision your Windows tasks with persistent, distributed, shared, static file storage\. For more information, see [What Is Amazon FSx for Windows File Server?](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) in the *Amazon FSx for Windows File Server User Guide*\.
+FSx for Windows File Server provides fully managed Microsoft Windows file servers, that are backed by a fully native Windows file system\. When using FSx for Windows File Server together with ECS, you can provision your Windows tasks with persistent, distributed, shared, static file storage\. For more information, see [What Is FSx for Windows File Server?](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) in the *FSx for Windows File Server User Guide*\.
 
-You can use Amazon FSx for Windows File Server to deploy Windows workloads that require access to shared external storage, highly available regional storage, or high\-throughput storage\. You can mount one or more Amazon FSx for Windows File Server file system volumes to an ECS container running on an ECS Windows instance\. You can share Amazon FSx for Windows File Server file system volumes among multiple ECS containers within a single ECS task\. 
+You can use FSx for Windows File Server to deploy Windows workloads that require access to shared external storage, highly available regional storage, or high\-throughput storage\. You can mount one or more FSx for Windows File Server file system volumes to an ECS container running on an ECS Windows instance\. You can share FSx for Windows File Server file system volumes among multiple ECS containers within a single ECS task\. 
 
 **Note**  
-Amazon FSx for Windows File Server might not be available in all Regions\. For more information about which Regions support Amazon FSx for Windows File Server, see [Amazon FSx Endpoints and Quotas](https://docs.aws.amazon.com/general/latest/gr/fsxn.html) in the *AWS General Reference*\.
+FSx for Windows File Server might not be available in all Regions\. For more information about which Regions support FSx for Windows File Server, see [Amazon FSx Endpoints and Quotas](https://docs.aws.amazon.com/general/latest/gr/fsxn.html) in the *AWS General Reference*\.
 
-In this tutorial, you launch an ECS Optimized Windows instance that hosts an Amazon FSx for Windows File Server file system and containers that can access the file system\. To do this, you first create an AWS Directory Service AWS Managed Microsoft Active Directory\. Then, you create an Amazon FSx for Windows File Server file system and an ECS cluster with an ECS instance and an ECS task definition\. You configure the task definition for your containers to use the Amazon FSx for Windows File Server file system\. Finally, you test the file system\.
+In this tutorial, you launch an ECS Optimized Windows instance that hosts an FSx for Windows File Server file system and containers that can access the file system\. To do this, you first create an AWS Directory Service AWS Managed Microsoft Active Directory\. Then, you create an Amazon FSx for Windows File Server file system and an ECS cluster with an ECS instance and an ECS task definition\. You configure the task definition for your containers to use the FSx for Windows File Server file system\. Finally, you test the file system\.
 
-It takes 20 to 45 minutes each time you launch or delete either the Active Directory or the Amazon FSx for Windows File Server file system\. Be prepared to reserve at least 90 minutes to complete the tutorial or complete the tutorial over a few sessions\.
+It takes 20 to 45 minutes each time you launch or delete either the Active Directory or the FSx for Windows File Server file system\. Be prepared to reserve at least 90 minutes to complete the tutorial or complete the tutorial over a few sessions\.
 
 ## Prerequisites for the tutorial<a name="wfsx-prerequisites"></a>
 + An IAM Account with administrator access\. See [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 + \(Optional\) A pem key pair for connecting to your EC2 Windows instance through RDP access\. For information about how to create key pairs, see [Amazon EC2 key pairs and Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html) in the *User Guide for Windows Instances*\.
-+ A VPC with at least one public and one private subnet, and one security group\. You can use your default VPC\. You don't need a NAT gateway or device\. AWS Directory Service doesn't support Network Address Translation \(NAT\) with Active Directory\. For this to work, the Active Directory, Amazon FSx for Windows File Server file system, ECS Cluster, and ECS instance must be located within your VPC\. For more information regarding VPCs and Active Directories, see [Amazon VPC console wizard configurations](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_wizard.html) and [AWS Managed Microsoft AD Prerequisites](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started_prereqs.html)\.
++ A VPC with at least one public and one private subnet, and one security group\. You can use your default VPC\. You don't need a NAT gateway or device\. AWS Directory Service doesn't support Network Address Translation \(NAT\) with Active Directory\. For this to work, the Active Directory, FSx for Windows File Server file system, ECS Cluster, and ECS instance must be located within your VPC\. For more information regarding VPCs and Active Directories, see [Amazon VPC console wizard configurations](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_wizard.html) and [AWS Managed Microsoft AD Prerequisites](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started_prereqs.html)\.
 + The IAM ecsInstanceRole and ecsTaskExecutionRole permissions are associated with your account\. These service\-linked roles allow services to make API calls and access containers, secrets, directories and file servers on your behalf\.
 
 ## Step 1: Create IAM access roles<a name="iam-roles"></a>
@@ -82,7 +82,7 @@ In this step, you verify and update the rules for the security group that you're
 
 **Verify and update security group\.**
 
-You need to create or edit your security group to send data from and to the ports, which are described in [Amazon VPC Security Groups](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/limit-access-security-groups.html#fsx-vpc-security-groups) in the *Amazon FSx for Windows File Server User Guide*\. You can do this by creating the security group inbound rule shown in the first row of the following table of inbound rules\. This rule allows inbound traffic from network interfaces \(and their associated instances\) that are assigned to the security group\. All of the cloud resources you create are within the same VPC and attached to the same security group\. Therefore, this rule allows traffic to be sent to and from the Amazon FSx for Windows File Server file system, Active Directory, and ECS instance as required\. The other inbound rules allow traffic to serve the website and RDP access for connecting to your ECS instance\.
+You need to create or edit your security group to send data from and to the ports, which are described in [Amazon VPC Security Groups](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/limit-access-security-groups.html#fsx-vpc-security-groups) in the *FSx for Windows File Server User Guide*\. You can do this by creating the security group inbound rule shown in the first row of the following table of inbound rules\. This rule allows inbound traffic from network interfaces \(and their associated instances\) that are assigned to the security group\. All of the cloud resources you create are within the same VPC and attached to the same security group\. Therefore, this rule allows traffic to be sent to and from the FSx for Windows File Server file system, Active Directory, and ECS instance as required\. The other inbound rules allow traffic to serve the website and RDP access for connecting to your ECS instance\.
 
 The following table shows which security group inbound rules are required for this tutorial\.
 
@@ -108,9 +108,9 @@ The following table shows which security group outbound rules are required for t
 
 1. Edit the inbound and outbound rules by selecting the **Inbound rules** or **Outbound rules** tabs and choosing the **Edit inbound rules** or **Edit outbound rules** buttons\. Edit the rules to match those displayed in the preceding tables\. After you create your EC2 instance later on in this tutorial, edit the inbound rule RDP source with the public IP address of your EC2 instance as described in [Connect to your Windows instance](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html) from the *Amazon EC2 User Guide for Windows Instances*\.
 
-## Step 4: Create an Amazon FSx for Windows File Server file system<a name="wfsx-create-fsx"></a>
+## Step 4: Create an FSx for Windows File Server file system<a name="wfsx-create-fsx"></a>
 
-After your security group is verified and updated and your Active Directory is created and is in the active status, create the Amazon FSx for Windows File Server file system in the same VPC as your Active Directory\. Use the following steps to create an Amazon FSx for Windows File Server file system for your Windows tasks\.
+After your security group is verified and updated and your Active Directory is created and is in the active status, create the FSx for Windows File Server file system in the same VPC as your Active Directory\. Use the following steps to create an FSx for Windows File Server file system for your Windows tasks\.
 
 **Create your first file system\.**
 
@@ -118,7 +118,7 @@ After your security group is verified and updated and your Active Directory is c
 
 1. On the dashboard, choose **Create file system** to start the file system creation wizard\.
 
-1. On the **Select file system type** page, choose **Amazon FSx for Windows File Server**, and then choose **Next**\. The **Create file system** page appears\.
+1. On the **Select file system type** page, choose **FSx for Windows File Server**, and then choose **Next**\. The **Create file system** page appears\.
 
 1. In the **File system details** section, provide a name for your file system\. Naming your file systems makes it easier to find and manage your them\. You can use up to 256 Unicode characters\. Allowed characters are letters, numbers, spaces, and the special characters plus sign \(\+\)\. minus sign \(\-\), equal sign \(=\), period \(\.\), underscore \(\_\), colon \(:\), and forward slash \(/\)\.
 
@@ -146,7 +146,7 @@ After your security group is verified and updated and your Active Directory is c
 
 1. Note the file system ID\. You will need to use it in a later step\.
 
-   You can go on to the next steps to create a cluster and EC2 instance while the Amazon FSx for Windows File Server file system is being created\.
+   You can go on to the next steps to create a cluster and EC2 instance while the FSx for Windows File Server file system is being created\.
 
 ## Step 5: Create an Amazon ECS cluster<a name="wfsx-create-cluster"></a>
 
@@ -174,7 +174,7 @@ After your security group is verified and updated and your Active Directory is c
 
 **Launch an ECS Optimized Windows EC2 instance into the ECS cluster you just created using the AWS Management Console\.**
 
-1. Go to [](ecs-optimized_windows_AMI.md#ecs-optimized-ami-windows) in the *Amazon ECS Developer Guide* to find the latest version of the Windows Server 2019 Full AMI in the same Region as your VPC\.
+1. Go to [Amazon ECS\-optimized AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_windows_AMI.html) in the *Amazon ECS Developer Guide* to find the latest version of the Windows Server 2019 Full AMI in the same Region as your VPC\.
 
 1. You can get the latest version using one of the following steps\.
 
@@ -316,11 +316,11 @@ The Fargate launch type isn't compatible with Windows containers\.
 
 1. Directly above the **Configure via JSON** button, click the **plus sign** to the left of **Add volume**\.
 
-   1. For **Volume type**, select **Amazon FSx for Windows File Server**\.
+   1. For **Volume type**, select **FSx for Windows File Server**\.
 
    1. For **Name**, enter **fsx\-windows\-vol** and save it for following steps\.
 
-   1. For **File system ID**, select the ID of the Amazon FSx for Windows File Server file system that you created in preceding steps\.
+   1. For **File system ID**, select the ID of the FSx for Windows File Server file system that you created in preceding steps\.
 
    1. For **Root Directory**, enter **share**\.
 
@@ -344,7 +344,7 @@ The Fargate launch type isn't compatible with Windows containers\.
 
 ## Step 8: Run a task and view the results<a name="wfsx-run-task"></a>
 
-Before running the task, verify that the status of your Amazon FSx for Windows File Server file system is **Available**\. After it is available, you can run a task using the task definition that you created\. The task starts out by creating containers that shuffle an HTML file between them using the file system\. After the shuffle, a web server serves the simple HTML page\.
+Before running the task, verify that the status of your FSx for Windows File Server file system is **Available**\. After it is available, you can run a task using the task definition that you created\. The task starts out by creating containers that shuffle an HTML file between them using the file system\. After the shuffle, a web server serves the simple HTML page\.
 
 **Note**  
 You might not be able to connect to the website from within a VPN\.
@@ -374,13 +374,13 @@ If you don't see this message, check that you aren't running in a VPN and make s
 ## Step 9: Clean up<a name="wfsx-cleanup"></a>
 
 **Note**  
-It takes 20 to 45 minutes to delete the Amazon FSx for Windows File Server file system or the AD\. You must wait until the Amazon FSx for Windows File Server file system delete operations are complete before starting the AD delete operations\.
+It takes 20 to 45 minutes to delete the FSx for Windows File Server file system or the AD\. You must wait until the FSx for Windows File Server file system delete operations are complete before starting the AD delete operations\.
 
-**Remove Amazon FSx for Windows File Server file system\.**
+**Remove FSx for Windows File Server file system\.**
 
 1. Open the [Amazon FSx console](https://console.aws.amazon.com/fsx/)
 
-1. Click the radio button to the left of the Amazon FSx for Windows File Server file system that you just created\.
+1. Click the radio button to the left of the FSx for Windows File Server file system that you just created\.
 
 1. Click on **Actions**\.
 

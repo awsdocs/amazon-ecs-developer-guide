@@ -4,40 +4,13 @@ AWS Fargate is a technology that you can use with Amazon ECS to run [containers]
 
 When you run your tasks and services with the Fargate launch type, you package your application in containers, specify the CPU and memory requirements, define networking and IAM policies, and launch the application\. Each Fargate task has its own isolation boundary and does not share the underlying kernel, CPU resources, memory resources, or elastic network interface with another task\.
 
+Fargate offers platform versions for Amazon Linux 2 and Microsoft Windows 2019 Server Full and Core editions\. Unless otherwise specified, the information on this page applies to all Fargate platforms\.
+
 This topic describes the different components of Fargate tasks and services, and calls out special considerations for using Fargate with Amazon ECS\.
 
-Amazon ECS on AWS Fargate is supported in the following Regions\. The supported Availability Zone IDs are noted when applicable\.
+For information about the Regions that support Linux containers on Fargate, see [Supported Regions for Linux containers on AWS Fargate](AWS_Fargate-Regions.md#linux-regions)\.
 
-
-| Region Name | Region | 
-| --- | --- | 
-|  US East \(Ohio\)  |  us\-east\-2  | 
-|  US East \(N\. Virginia\)  |  us\-east\-1  | 
-|  US West \(N\. California\)  |  us\-west\-1 \(`usw1-az1` & `usw1-az3` only\)  | 
-|  US West \(Oregon\)  |  us\-west\-2  | 
-|  Africa \(Cape Town\)  |  af\-south\-1  | 
-|  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  | 
-|  Asia Pacific \(Mumbai\)  |  ap\-south\-1  | 
-|  Asia Pacific \(Osaka\)  |  ap\-northeast\-3  | 
-|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
-|  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
-|  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
-|  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1 \(`apne1-az1`, `apne1-az2`, & `apne1-az4` only\)  | 
-|  Canada \(Central\)  |  ca\-central\-1 \(`cac1-az1` & `cac1-az2` only\)  | 
-|  China \(Beijing\)  |  cn\-north\-1 \(`cnn1-az1` & `cnn1-az2` only\)  | 
-|  China \(Ningxia\)  |  cn\-northwest\-1  | 
-|  Europe \(Frankfurt\)  |  eu\-central\-1  | 
-|  Europe \(Ireland\)  |  eu\-west\-1  | 
-|  Europe \(London\)  |  eu\-west\-2  | 
-|  Europe \(Paris\)  |  eu\-west\-3  | 
-|  Europe \(Milan\)  |  eu\-south\-1  | 
-|  Europe \(Stockholm\)  |  eu\-north\-1  | 
-|  South America \(São Paulo\)  |  sa\-east\-1  | 
-|  Middle East \(Bahrain\)  |  me\-south\-1  | 
-|  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  | 
-|  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  | 
-
-To get started using AWS Fargate with Amazon ECS, see [Getting started with the Amazon ECS console using AWS Fargate](getting-started-fargate.md)\.
+For information about the Regions that support Windows containers on Fargate, see [Supported Regions for Windows containers on AWS Fargate](AWS_Fargate-Regions.md#windows-regions)\.
 
 ## Task definitions<a name="fargate-task-defs"></a>
 
@@ -60,6 +33,7 @@ The following task definition parameters are not valid in Fargate tasks:
 The following task definition parameters are valid in Fargate tasks, but have limitations that should be noted:
 + `linuxParameters` – When specifying Linux\-specific options that are applied to the container, for `capabilities` the `add` parameter is not supported\. The `devices`, `sharedMemorySize`, and `tmpfs` parameters are not supported\. For more information, see [Linux parameters](task_definition_parameters.md#container_definition_linuxparameters)\.
 + `volumes` – Fargate tasks only support bind mount host volumes, so the `dockerVolumeConfiguration` parameter is not supported\. For more information, see [Volumes](task_definition_parameters.md#volumes)\.
++ `cpu` \- For Windows containers on Fargate, the value cannot be less than 1 vCPU\.
 
 To ensure that your task definition validates for use with Fargate, you can specify the following when you register the task definition: 
 + In the AWS Management Console, for the **Requires Compatibilities** field, specify `FARGATE`\.
@@ -72,22 +46,31 @@ Amazon ECS task definitions for Fargate require that the network mode is set to 
 
 A network configuration is also required when creating a service or manually running tasks\. For more information, see [Fargate task networking ](https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-task-networking.html)in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
+### Task Operating Systems<a name="fargate-task-os"></a>
+
+When you configure a task and container definition for Fargate, you must specify the Operating System that the container runs\. The following Operating Systems are supported for Fargate:
++ Amazon Linux 2
++ Windows Server 2019 Full
++ Windows Server 2019 Core
+
 ### Task CPU and memory<a name="fargate-tasks-size"></a>
 
 Amazon ECS task definitions for Fargate require that you specify CPU and memory at the task level\. Although you can also specify CPU and memory at the container level for Fargate tasks, this is optional\. Most use cases are satisfied by only specifying these resources at the task level\. The table below shows the valid combinations of task\-level CPU and memory\.
 
 
-| CPU value | Memory value | 
-| --- | --- | 
-| 256 \(\.25 vCPU\) | 0\.5 GB, 1 GB, 2 GB | 
-| 512 \(\.5 vCPU\) | 1 GB, 2 GB, 3 GB, 4 GB | 
-| 1024 \(1 vCPU\) | 2 GB, 3 GB, 4 GB, 5 GB, 6 GB, 7 GB, 8 GB | 
-| 2048 \(2 vCPU\) | Between 4 GB and 16 GB in 1\-GB increments | 
-| 4096 \(4 vCPU\) | Between 8 GB and 30 GB in 1\-GB increments | 
+| CPU value | Memory value | Operating systems supported for Fargate  | 
+| --- | --- | --- | 
+| 256 \(\.25 vCPU\) | 512 MB, 1 GB, 2 GB | Linux | 
+| 512 \(\.5 vCPU\) | 1 GB, 2 GB, 3 GB, 4 GB | Linux | 
+| 1024 \(1 vCPU\) | 2 GB, 3 GB, 4 GB, 5 GB, 6 GB, 7 GB, 8 GB | Linux, Windows | 
+| 2048 \(2 vCPU\) | Between 4 GB and 16 GB in 1 GB increments | Linux, Windows | 
+| 4096 \(4 vCPU\) | Between 8 GB and 30 GB in 1 GB increments | Linux, Windows | 
 
 ### Task resource limits<a name="fargate-resource-limits"></a>
 
-Amazon ECS task definitions for Fargate support the `ulimits` parameter to define the resource limits to set for a container\.
+Amazon ECS task definitions for Linux containers on Fargate support the `ulimits` parameter to define the resource limits to set for a container\.
+
+Amazon ECS task definitions for Windows on Fargate do not support the `ulimits` parameter to define the resource limits to set for a container\.
 
 Amazon ECS tasks hosted on Fargate use the default resource limit values set by the operating system with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\.
 
@@ -132,9 +115,9 @@ For more information about using the `splunk` log driver in a task definition, s
 
 There is an optional task execution IAM role that you can specify with Fargate to allow your Fargate tasks to make API calls to Amazon ECR\. The API calls pull container images as well as calling CloudWatch to store container application logs\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
-### Example task definition<a name="fargate-tasks-example"></a>
+### Example Amazon Linux 2 task definition<a name="fargate-tasks-example"></a>
 
-The following is an example task definition that sets up a web server using the Fargate launch type:
+The following is an example task definition that sets up a web server using the Fargate launch type with an Amazon Linux 2 operating system:
 
 ```
 {
@@ -170,10 +153,62 @@ The following is an example task definition that sets up a web server using the 
    "cpu": "256",
    "executionRoleArn": "arn:aws:iam::012345678910:role/ecsTaskExecutionRole",
    "family": "fargate-task-definition",
+   "platformFamily": "LINUX",
    "memory": "512",
    "networkMode": "awsvpc",
    "requiresCompatibilities": [ 
        "FARGATE" 
+    ]
+}
+```
+
+### Example Windows task definition<a name="fargate-windows-tasks-example"></a>
+
+The following is an example task definition that sets up a web server using the Fargate launch type with a Windows 2019 Server operating system\. 
+
+```
+{
+    "containerDefinitions": [
+        {
+            "command": [
+                "New-Item -Path C:\\inetpub\\wwwroot\\index.html -Type file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p>'; C:\\ServiceMonitor.exe w3svc"
+            ],
+            "entryPoint": [
+                "powershell",
+                "-Command"
+            ],
+            "essential": true,
+            "cpu": 2048,
+            "memory": 4096,      
+            "image": "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019",
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/fargate-windows-task-definition",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "name": "sample_windows_app",
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80,
+                    "protocol": "tcp"
+                }
+            ]
+        }
+    ],
+    "memory": "4096",
+    "cpu": "2048",
+    "networkMode": "awsvpc",
+    "family": "windows-simple-iis-2019-core",
+    "executionRoleArn": "arn:aws:iam::012345678910:role/ecsTaskExecutionRole",
+    "runtimePlatform": {
+        "operatingSystemFamily": "WINDOWS_SERVER_2019_CORE"
+    },
+    "requiresCompatibilities": [
+        "FARGATE"
     ]
 }
 ```
@@ -214,7 +249,7 @@ Amazon ECS services on Fargate support the Application Load Balancer and Network
 
 When you create a target group for these services, you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\. For more information, see [Service load balancing](service-load-balancing.md)\.
 
-Using a Network Load Balancer to route UDP traffic to your Amazon ECS on Fargate tasks is only supported when using platform version 1\.4 and for tasks launched in the following Regions:
+Using a Network Load Balancer to route UDP traffic to your Amazon ECS on Fargate tasks is only supported when using platform version 1\.4 or and for tasks launched in the following Regions:
 + US East \(N\. Virginia\) \- `us-east-1`
 + US West \(Oregon\) \- `us-west-2`
 + EU \(Ireland\) \- `eu-west-1`
@@ -249,6 +284,8 @@ For more information about Amazon ECS clusters, including a walkthrough for crea
 
 Amazon ECS capacity providers enable you to use both Fargate and Fargate Spot capacity with your Amazon ECS tasks\.
 
+Windows containers on Fargate cannot use the Fargate Spot capacity provider\.
+
 With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discounted rate compared to the Fargate price\. Fargate Spot runs tasks on spare compute capacity\. When AWS needs the capacity back, your tasks will be interrupted with a two\-minute warning\. For more information, see [AWS Fargate capacity providers](fargate-capacity-providers.md)\.
 
 ## Usage metrics<a name="fargate-usage-metrics"></a>
@@ -267,8 +304,43 @@ The following table describes these scenarios\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html)
 
-## Savings Plans<a name="fargate-savings-plans"></a>
+## Savings plans<a name="fargate-savings-plans"></a>
 
 Savings Plans are a pricing model that offer significant savings on AWS usage\. You commit to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years, and receive a lower price for that usage\. For more information, see the [Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
 
 To create a Savings Plan for your Fargate usage, use the **Compute Savings Plans** type\. To get started, see [Getting started with Savings Plans](https://docs.aws.amazon.com/savingsplans/latest/userguide/get-started.html) in the *Savings Plans User Guide*\.
+
+## Windows containers on Fargate considerations<a name="windows-considerations"></a>
+
+Windows containers on AWS Fargate supports the following operating systems:
++ Windows Server 2019 Full
++ Windows Server 2019 Core
+
+AWS handles the operating system license management, so you do not need any additional Microsoft licenses\.
+
+Windows containers on AWS Fargate supports the awslogs driver\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.
+
+Your tasks can run either Linux containers or Windows containers\. If you need run both container types, you must create separate tasks\.
+
+The following features are not supported on Windows containers on Fargate:
++ Group managed service accounts \(gMSA\)
++ Amazon FSx
++ ENI trunking
++ App Mesh service and proxy integration for tasks
++ Firelens log router integration for tasks
++ ECS Exec
++ Configurable ephemeral storage
++ EFS volumes
++ The Fargate Spot capacity provider
++ Image volumes
+
+  The Dockerfile `volume` option is ignored\. Instead, use bind mounts in your task definition\. For more information, see [Bind mounts](bind-mounts.md)\. 
+
+## Getting started walkthroughs<a name="welcome-tutorials"></a>
+
+The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
++ [Getting started with the Amazon ECS console using Linux containers on AWS Fargate](getting-started-fargate.md)
++ [Getting started with the Amazon ECS console using Windows containers on AWS Fargate](Windows_fargate-getting_started.md)
++ [Tutorial: Creating a cluster with a Fargate Linux task using the AWS CLI](ECS_AWSCLI_Fargate.md)
++ [Tutorial: Creating a cluster with a Fargate Windows task using the AWS CLI](ECS_AWSCLI_Fargate_windows.md)
++ [Tutorial: Creating a cluster with a Fargate task using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)

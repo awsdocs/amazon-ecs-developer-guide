@@ -19,7 +19,7 @@ If you add or modify the underlying cluster resources directly after they are cr
 1. For **Select cluster compatibility**, choose one of the following options and then choose **Next Step**:
    + **Networking only**– This cluster template creates an empty cluster\. Optionally, you can create a new VPC to use\. This cluster template is typically used for workloads hosted on either AWS Fargate or external instances \(ECS Anywhere\)\. The `FARGATE` and `FARGATE_SPOT` capacity providers will be automatically associated with the cluster\. For more information, see [AWS Fargate capacity providers](fargate-capacity-providers.md)\.
    + **EC2 Linux \+ Networking**– This cluster template is used to create a cluster of Amazon EC2 instances to run Linux\-based containers on\. An Auto Scaling group is created for the Amazon EC2 instances\.
-   + **EC2 Windows \+ Networking** – This cluster template is used to create a cluster of Amazon EC2 instances to run Windows\-based containers on\. An Auto Scaling group is created for the Amazon EC2 instances\. For more information, see [Windows containers](ECS_Windows.md)\.
+   + **EC2 Windows \+ Networking** – This cluster template is used to create a cluster of Amazon EC2 instances to run Windows\-based containers on\. An Auto Scaling group is created for the Amazon EC2 instances\. For more information, see [Amazon EC2 Windows containers](ECS_Windows.md)\.
 
 ## Using the Networking only template<a name="create-cluster-fargate"></a>
 

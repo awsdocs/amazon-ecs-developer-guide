@@ -53,7 +53,7 @@ The following are considerations when you use the Linux operating system:
 + When a task is started with the `awsvpc` network mode, the Amazon ECS container agent creates an additional `pause` container for each task before starting the containers in the task definition\. It then configures the network namespace of the `pause` container by running the [amazon\-ecs\-cni\-plugins ](https://github.com/aws/amazon-ecs-cni-plugins) CNI plugins\. The agent then starts the rest of the containers in the task so that they share the network stack of the `pause` container\. This means that all containers in a task are addressable by the IP addresses of the ENI, and they can communicate with each other over the `localhost` interface\.
 + Services with tasks that use the `awsvpc` network mode only support Application Load Balancers and Network Load Balancers; Classic Load Balancers are not supported\. Also, when you create any target groups for these services, you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an ENI, not with an Amazon EC2 Windows instance\. For more information, see [Service load balancing](service-load-balancing.md)\.
 + If a VPC is updated, for example to change the DHCP options set it uses, and you want tasks using the VPC to pick up the changes, those tasks must be stopped and new tasks started\.
-+ The following are not supported when you use `awsvpc` network mode in a Windows configuration:
++ The following are not supported when you use `awsvpc` network mode in an EC2 Windows configuration:
   + Dual\-stack configuration
   + IPv6
   + ENI trunking

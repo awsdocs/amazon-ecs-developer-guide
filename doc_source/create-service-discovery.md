@@ -6,36 +6,7 @@ The following tutorial shows how to create an ECS service containing a Fargate t
 
 For a list of Regions that support service discovery, see [Service Discovery](service-discovery.md)\.
 
-Fargate tasks are only supported in the following Regions:
-
-
-| Region Name | Region | 
-| --- | --- | 
-|  US East \(Ohio\)  |  us\-east\-2  | 
-|  US East \(N\. Virginia\)  |  us\-east\-1  | 
-|  US West \(N\. California\)  |  us\-west\-1 \(`usw1-az1` & `usw1-az3` only\)  | 
-|  US West \(Oregon\)  |  us\-west\-2  | 
-|  Africa \(Cape Town\)  |  af\-south\-1  | 
-|  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  | 
-|  Asia Pacific \(Mumbai\)  |  ap\-south\-1  | 
-|  Asia Pacific \(Osaka\)  |  ap\-northeast\-3  | 
-|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
-|  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
-|  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
-|  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1 \(`apne1-az1`, `apne1-az2`, & `apne1-az4` only\)  | 
-|  Canada \(Central\)  |  ca\-central\-1 \(`cac1-az1` & `cac1-az2` only\)  | 
-|  China \(Beijing\)  |  cn\-north\-1 \(`cnn1-az1` & `cnn1-az2` only\)  | 
-|  China \(Ningxia\)  |  cn\-northwest\-1  | 
-|  Europe \(Frankfurt\)  |  eu\-central\-1  | 
-|  Europe \(Ireland\)  |  eu\-west\-1  | 
-|  Europe \(London\)  |  eu\-west\-2  | 
-|  Europe \(Paris\)  |  eu\-west\-3  | 
-|  Europe \(Milan\)  |  eu\-south\-1  | 
-|  Europe \(Stockholm\)  |  eu\-north\-1  | 
-|  South America \(São Paulo\)  |  sa\-east\-1  | 
-|  Middle East \(Bahrain\)  |  me\-south\-1  | 
-|  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  | 
-|  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  | 
+For information about the Regions that support Fargate, see [Supported Regions for Amazon ECS on AWS Fargate](AWS_Fargate-Regions.md)\.
 
 ## Prerequisites<a name="create-service-discovery-prereqs"></a>
 
@@ -355,9 +326,9 @@ You can verify that everything has been created properly by querying your servic
    }
    ```
 
-1. The DNS records created in the Route 53 hosted zone for the service discovery service can be queried with the following AWS CLI commands\.
+1. The DNS records created in the Route 53 hosted zone for the service discovery service can be queried with the following AWS CLI commands\.
 
-   Using the namespace ID, get information about the namespace, which includes the Route 53 hosted zone ID:
+   Using the namespace ID, get information about the namespace, which includes the Route 53 hosted zone ID:
 
    ```
    aws servicediscovery get-namespace --id ns-uejictsjen2i4eeg --region us-east-1
@@ -383,7 +354,7 @@ You can verify that everything has been created properly by querying your servic
    }
    ```
 
-1. Using the Route 53 hosted zone ID, get the resource record set for the hosted zone:
+1. Using the Route 53 hosted zone ID, get the resource record set for the hosted zone:
 
    ```
    aws route53 list-resource-record-sets --hosted-zone-id Z35JQ4ZFDRYPLV --region us-east-1

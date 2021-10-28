@@ -120,6 +120,7 @@ version: 1
 task_definition:
   task_execution_role: ecsTaskExecutionRole
   ecs_network_mode: awsvpc
+  os_family: Linux
   task_size:
     mem_limit: 0.5GB
     cpu_limit: 256

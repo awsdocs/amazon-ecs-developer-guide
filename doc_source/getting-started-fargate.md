@@ -1,11 +1,11 @@
-# Getting started with the Amazon ECS console using AWS Fargate<a name="getting-started-fargate"></a>
+# Getting started with the Amazon ECS console using Linux containers on AWS Fargate<a name="getting-started-fargate"></a>
 
 Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage your containers\. You can host your containers on a serverless infrastructure that is managed by Amazon ECS by launching your services or tasks on AWS Fargate\. For a broad overview on Amazon ECS on Fargate, see [What is Amazon Elastic Container Service?](Welcome.md)\.
 
 Get started with Amazon ECS on AWS Fargate by using the Fargate launch type for your tasks\. In the Regions where Amazon ECS supports AWS Fargate, the Amazon ECS first\-run wizard guides you through the process of getting started with Amazon ECS using the Fargate launch type\. The wizard gives you the option of creating a cluster and launching a sample web application\. If you already have a Docker image to launch in Amazon ECS, you can create a task definition with that image and use that for your cluster instead\.
 
 **Important**  
-For information about getting started with Amazon ECS using Amazon EC2, see [Getting started with the Amazon ECS console using Amazon EC2](getting-started-ecs-ec2.md)\.
+For information about getting started with Amazon ECS using Amazon EC2, see [Getting started with the Amazon ECS console using Amazon EC2 ](getting-started-ecs-ec2.md)\.
 
 Complete the following steps to get started with Amazon ECS on AWS Fargate\.
 

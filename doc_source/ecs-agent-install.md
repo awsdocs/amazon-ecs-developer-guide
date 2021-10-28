@@ -429,9 +429,9 @@ If you receive an `Error response from daemon: Cannot start container` message, 
          gpg --import <public_key_filename>
          ```
 
-   1. Download the ECS container agent signature\. ECS container agent signatures are ascii detached PGP signatures stored in files with the extension `.asc`\. The signatures file has the same name as its corresponding executable, with `.asc` appended\.
+   1. Download the ECS container agent signature\. ECS container agent signatures are ASCII detached PGP signatures stored in files with the extension `.asc`\. The signatures file has the same name as its corresponding executable, with `.asc` appended\.
 
-      Substitute `REGION` with the the Region that hosts the S3 bucket, for example `us-east-1`\.
+      Substitute `REGION` with the Region that hosts the S3 bucket, for example `us-east-1`\.
 
       ```
       curl -o ecs-agent.asc https://s3.amazonaws.com/amazon-ecs-agent-REGION/ecs-agent-latest.tar.asc 

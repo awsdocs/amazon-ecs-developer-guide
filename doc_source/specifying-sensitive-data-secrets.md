@@ -9,7 +9,7 @@ When you inject a secret as an environment variable, you can specify the full co
 The following should be considered when using Secrets Manager to specify sensitive data for containers\.
 + For Amazon ECS tasks on AWS Fargate, the following should be considered:
   + To inject the full content of a secret as an environment variable or in a log configuration, you must use platform version `1.3.0` or later\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
-  + To inject a specific JSON key or version of a secret as an environment variable or in a log configuration, you must use platform version `1.4.0` or later\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
+  + To inject a specific JSON key or version of a secret as an environment variable or in a log configuration, you must use platform version `1.4.0` or later \(Linux\) or `1.0.0` \(Windows\)\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
 + For Amazon ECS tasks on EC2, the following should be considered:
   + To inject a secret using a specific JSON key or version of a secret, your container instance must have version `1.37.0` or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 

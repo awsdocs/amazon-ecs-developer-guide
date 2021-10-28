@@ -442,9 +442,9 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
    ECS_ENGINE_AUTH_DATA={"https://index.docker.io/v1/":{"auth":"zq212MzEXAMPLE7o6T25Dk0i","email":"email@example.com"}}
    ```
 
-1. To store your configuration file, create a private bucket in Amazon S3\. For more information, see [Create a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) in the *Amazon Simple Storage Service Getting Started Guide*\. 
+1. To store your configuration file, create a private bucket in Amazon S3\. For more information, see [Create a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) in the *Amazon Simple Storage Service User Guide*\. 
 
-1. Upload the `ecs.config` file to your S3 bucket\. For more information, see [Add an Object to a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/PuttingAnObjectInABucket.html) in the *Amazon Simple Storage Service Getting Started Guide*\.
+1. Upload the `ecs.config` file to your S3 bucket\. For more information, see [Add an Object to a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/PuttingAnObjectInABucket.html) in the *Amazon Simple Storage Service User Guide*\.
 
 **To load an `ecs.config` file from Amazon S3 at launch**
 

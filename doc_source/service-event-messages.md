@@ -137,3 +137,11 @@ When setting a minimum healthy percent or a maximum percent, you should ensure t
 + This service is unable to place a task\. Reason: The requested MEMORY configuration is above your limit\. 
 
 You can request a quota increase for the resource that caused the error\. For more information, see [Amazon ECS service quotas](service-quotas.md)\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
+
+### service \(*service\-name*\) was unable to place a task\. Reason: Internal error\.<a name="service-event-messages-9"></a>
+
+The sevice is unable to start a task due to a subnet being in an unsupported Availability Zone\.
+
+For information about the supported Fargate Regions and Availability Zones, see [Supported Regions for Amazon ECS on AWS Fargate](AWS_Fargate-Regions.md)\.
+
+For information about how to view the subnet Availability Zone, see [View your subnet ](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#view-subnet)in the *Amazon VPC User Guide*\.

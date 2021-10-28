@@ -19,7 +19,8 @@ Amazon ECS has provided a new console experience for updating a service\. For mo
 
 1. On the **Configure service** page, your service information is pre\-populated\. Change the task definition, capacity provider strategy, platform version, deployment configuration, or number of desired tasks \(or any combination of these\)\. To have your service start a new deployment, which will stop and relaunch all tasks using the new configuration, select **Force new deployment**\. Choose **Next step** when finished changing the service configuration\.
 **Note**  
-A service using an Auto Scaling group capacity provider can't be updated to use a Fargate capacity provider and vice versa\.
+A service using an Auto Scaling group capacity provider can't be updated to use a Fargate capacity provider and vice versa\.  
+A service using a Linux platform version can't be updated to use a Windows platform version and vice versa\.
 
 1. On the **Configure deployments** page, if your service is using the blue/green deployment type, the components of your service deployment is pre\-populated\. Confirm the following settings\.
 

@@ -46,6 +46,17 @@ Required: No
 The `family` and `revision` \(`family:revision`\) or full Amazon Resource Name \(ARN\) of the task definition to run in your service\. If a `revision` is not specified, the latest `ACTIVE` revision of the specified family is used\.  
 A task definition must be specified when using the rolling update \(`ECS`\) deployment controller\.
 
+## Platform operating system<a name="platform-os"></a>
+
+`platformFamily`  
+Type: string  
+Required: Conditional  
+Default: Linux  
+This parameter s required for Amazon ECS services hosted on Fargate\.  
+This parameter is ignored for Amazon ECS services hosted onAmazon EC2\.  
+The operating system on the containers that runs the service\. The valid values are `LINUX`, `WINDOWS_SERVER_2019_FULL` and `WINDOWS_SERVER_2019_CORE`\.  
+The `platformFamily` value for every task that you specify for the service must match the service `platformFamily` value\. For example, if you set the `platformFamily` to `WINDOWS_SERVER_2019_FULL`, the `platformFamily` value for all the tasks must be `WINDOWS_SERVER_2019_FULL`\.
+
 ## Platform version<a name="sd-platformversion"></a>
 
 `platformVersion`  
@@ -186,7 +197,7 @@ The optional part of a key\-value pair that make up a tag\. A value acts as a de
 Type: Boolean  
 Valid values: `true` \| `false`  
 Required: No  
-Specifies whether to enable Amazon ECS managed tags for the tasks in the service\. If no value is specified, the default value is `false`\. For more information, see [Tagging your resources for billing](ecs-using-tags.md#tag-resources-for-billing)\.
+Specifies whether to use Amazon ECS managed tags for the tasks in the service\. If no value is specified, the default value is `false`\. For more information, see [Tagging your resources for billing](ecs-using-tags.md#tag-resources-for-billing)\.
 
 `propagateTags`  
 Type: String  
@@ -221,7 +232,7 @@ Whether the task's elastic network interface receives a public IP address\. If n
 `healthCheckGracePeriodSeconds`  
 Type: Integer  
 Required: No  
-The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks, container health checks, and Route 53 health checks after a task enters a `RUNNING` state\. This is only valid if your service is configured to use a load balancer\. If your service has a load balancer defined and you do not specify a health check grace period value, the default value of `0` is used\.  
+The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks, container health checks, and Route 53 health checks after a task enters a `RUNNING` state\. This is only valid if your service is configured to use a load balancer\. If your service has a load balancer defined and you do not specify a health check grace period value, the default value of `0` is used\.  
 If your service's tasks take a while to start and respond to health checks, you can specify a health check grace period of up to 2,147,483,647 seconds during which the ECS service scheduler ignores the health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\.
 
 `loadBalancers`  
@@ -321,6 +332,7 @@ The following shows the JSON representation of an Amazon ECS service definition\
         }
     ],
     "platformVersion": "",
+    "platformFamily": "",
     "role": "",
     "deploymentConfiguration": {
         "maximumPercent": 0,

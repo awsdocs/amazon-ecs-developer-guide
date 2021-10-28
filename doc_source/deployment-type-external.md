@@ -45,7 +45,7 @@ Length Constraints: Minimum length of 0\. Maximum length of 256\.
 Required: No  
 The optional part of a key\-value pair that make up a tag\. A value acts as a descriptor within a tag category \(key\)\.  
 `enableECSManagedTags`  
-Specifies whether to enable Amazon ECS managed tags for the tasks within the service\. For more information, see [Tagging your resources for billing](ecs-using-tags.md#tag-resources-for-billing)\.  
+Specifies whether to use Amazon ECS managed tags for the tasks within the service\. For more information, see [Tagging your resources for billing](ecs-using-tags.md#tag-resources-for-billing)\.  
 `propagateTags`  
 Type: String  
 Valid values: `TASK_DEFINITION` \| `SERVICE`  
@@ -54,7 +54,7 @@ Specifies whether to copy the tags from the task definition or the service to th
 `healthCheckGracePeriodSeconds`  
 Type: Integer  
 Required: No  
-The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks, container health checks, and Route 53 health checks after a task enters a `RUNNING` state\. This is only valid if your service is configured to use a load balancer\. If your service has a load balancer defined and you do not specify a health check grace period value, the default value of `0` is used\.  
+The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks, container health checks, and Route 53 health checks after a task enters a `RUNNING` state\. This is only valid if your service is configured to use a load balancer\. If your service has a load balancer defined and you do not specify a health check grace period value, the default value of `0` is used\.  
 If your service's tasks take a while to start and respond to health checks, you can specify a health check grace period of up to 2,147,483,647 seconds during which the ECS service scheduler ignores the health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\.  
 `schedulingStrategy`  
 The scheduling strategy to use\. Services using an external deployment controller support only the `REPLICA` scheduling strategy\. For more information, see [Service scheduler concepts](ecs_services.md#service_scheduler)\.  

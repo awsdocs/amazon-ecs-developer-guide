@@ -5,8 +5,8 @@ This topic describes how to create a scheduled task using the AWS CLI\. The sche
 Complete the following prerequisites:
 + Set up an AWS account and an *ecsEventsRole* associated with your account\.
 + Install and configure the AWS CLI version 2\. For more information, see [Installing the AWS CLI version 2](https://docs.aws.amazon.com/https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) and [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
-+ A registered task definition\. If you haven't yet created and registered a task definition, see [Getting started with the Amazon ECS console using AWS Fargate](getting-started-fargate.md)\.
-+ An Amazon EC2 Linux instance running on your default ECS cluster\. For instructions on how to create these resources, see [Getting started with the Amazon ECS console using AWS Fargate](getting-started-fargate.md)\.
++ A registered task definition\. If you haven't yet created and registered a task definition, see [Getting started with the Amazon ECS console using Linux containers on AWS Fargate](getting-started-fargate.md)\.
++ An Amazon EC2 Linux instance running on your default ECS cluster\. For instructions on how to create these resources, see [Getting started with the Amazon ECS console using Linux containers on AWS Fargate](getting-started-fargate.md)\.
 
   Before you verify the scheduling results, make sure that the cluster isn't running a service or task\. From the ECS console, delete the cluster tasks and service before trying the example\.
 

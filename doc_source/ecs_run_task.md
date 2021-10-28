@@ -6,6 +6,8 @@ To deploy your application to run continually or to place it behind a load balan
 
 To run a standalone task use one of the following procedures\.
 
+If you are creating a Windows service for the Fargate launch type, you must use the classic console\. 
+
 ------
 #### [ New console ]
 
@@ -38,9 +40,9 @@ The console validates the selection to ensure that the selected task definition 
 1. Choose **Deploy**\.
 
 ------
-#### [ Old console ]
+#### [ Classic console ]
 
-To run a standalone task using the old console
+To run a standalone task using the classic console
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 

@@ -1,5 +1,8 @@
 # Creating a service using the new console<a name="create-service-console-v2"></a>
 
+**Important**  
+If you are creating a Windows service for the Fargate launch type, you must use the classic console\. For more information, see [Creating a service using the classic console](create-service-console-v1.md)\.
+
 You can create an Amazon ECS service using the new Amazon ECS console\. To make the service creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\.
 
 **To create a service using the new console**

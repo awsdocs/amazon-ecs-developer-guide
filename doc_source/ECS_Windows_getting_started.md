@@ -1,6 +1,8 @@
-# Getting started with Windows containers<a name="ECS_Windows_getting_started"></a>
+# Getting started with the Amazon ECS console using Amazon EC2 Windows containers<a name="ECS_Windows_getting_started"></a>
 
-This tutorial walks you through getting Windows containers running on Amazon ECS with the Amazon ECS\-optimized Windows Server AMI in the AWS Management Console\. You create a cluster for your Windows container instances, launch one or more container instances into your cluster, register a task definition that uses a Windows container image, create a service that uses that task definition, and then view the sample webpage that the container runs\. For more information, see [Windows containers](ECS_Windows.md)\.
+This tutorial walks you through getting Windows containers running on either Amazon ECS with the Amazon ECS\-optimized Windows Server AMI in the AWS Management Console\. 
+
+You create a cluster for your Windows container instances, launch one or more container instances into your cluster, register a task definition that uses a Windows container image, create a service that uses that task definition, and then view the sample webpage that the container runs\. For more information, see [Amazon EC2 Windows containers](ECS_Windows.md)\.
 
 **Topics**
 + [Step 1: Create a Windows cluster](#create_windows_cluster)
@@ -87,8 +89,6 @@ Before you can run Windows containers in your Amazon ECS cluster, you must regis
 1. On the **Task Definitions** page, choose **Create new Task Definition**\.
 
 1. On the **Select launch type compatibilities** page, choose **EC2**, **Next step**\.
-**Note**  
-The Fargate launch type is not compatible with Windows containers\.
 
 1. Scroll to the bottom of the page and choose **Configure via JSON**\.
 

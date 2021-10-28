@@ -11,6 +11,17 @@ Type: string
 Required: yes  
 When you register a task definition, you give it a family, which is similar to a name for multiple versions of the task definition, specified with a revision number\. The first task definition that is registered into a particular family is given a revision of 1, and any task definitions registered after that are given a sequential revision number\.
 
+## Platform family<a name="os-family"></a>
+
+`platformFamily`  
+Type: string  
+Required: Conditional  
+Default: LINUX  
+The operating system of the instance that runs the Amazon ECS service;\.  
+The valid values are `LINUX`, `WINDOWS_SERVER_2019_FULL`, and `WINDOWS_SERVER_2019_CORE`\.  
+This is required for Fargate tasks\.  
+ All tasks that run as part of this service must use the same `platformFamily` value as the service, for example, `LINUX`\.
+
 ## Launch types<a name="requires_compatibilities"></a>
 
 When you register a task definition, you can specify a launch type that Amazon ECS should validate the task definition against\. A client exception is returned if the task definition doesn't validate against the compatibilities specified\. For more information, see [Amazon ECS launch types](launch_types.md)\.
@@ -52,9 +63,22 @@ If the network mode is `awsvpc`, the task is allocated an elastic network interf
 The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack instead of the virtualized network stack provided by the `bridge` mode\. With the `host` and `awsvpc` network modes, exposed container ports are mapped directly to the corresponding host port \(for the `host` network mode\) or the attached elastic network interface port \(for the `awsvpc` network mode\), so you cannot take advantage of dynamic host port mappings\.  
 If using the Fargate launch type, the `awsvpc` network mode is required\. If using the EC2 launch type, the allowable network mode depends on the underlying EC2 instance's operating system\. If Linux, any network mode can be used\. If Windows, the `default`, and `awsvpc` modes can be used\. 
 
+## Runtime platform<a name="runtime-platform"></a>
+
+The following parameter are required for Fargate launch types\.
+
+`operatingSystemFamily`  
+Type: string  
+Required: Conditional  
+Default: Linux  
+This parameter s required for Amazon ECS tasks hosted on Fargate  
+When you register a task definition, you specify the operating system family\. The valid values are `LINUX`, `WINDOWS_SERVER_2019_FULL`, and `WINDOWS_SERVER_2019_CORE`\.  
+All task definitions that are used in a service must have the same value for this parameter\.  
+When a task definition is part of a service, this value must match the service `platformFamily` value\.
+
 ## Task size<a name="task_size"></a>
 
-When you register a task definition, you can specify the total cpu and memory used for the task\. This is separate from the `cpu` and `memory` values at the container definition level\. For tasks hosted on Amazon EC2 instances, these fields are optional\. For tasks hosted on Fargate, these fields are required and there are specific values for both `cpu` and `memory` that are supported\.
+When you register a task definition, you can specify the total cpu and memory used for the task\. This is separate from the `cpu` and `memory` values at the container definition level\. For tasks hosted on Amazon EC2 instances, these fields are optional\. For tasks hosted on Fargate \(both Linux and Windows\), these fields are required and there are specific values for both `cpu` and `memory` that are supported\.
 
 **Note**  
 Task\-level CPU and memory parameters are ignored for Windows containers\. We recommend specifying container\-level resources for Windows containers\.
@@ -67,7 +91,7 @@ Required: conditional
 This parameter is not supported for Windows containers\.
 The hard limit of CPU units to present for the task\. It can be expressed as an integer using CPU units, for example `1024`, or as a string using vCPUs, for example `1 vCPU` or `1 vcpu`, in a task definition\. When the task definition is registered, a vCPU value is converted to an integer indicating the CPU units\.  
 For tasks hosted on Amazon EC2 instances, this field is optional\. If your cluster does not have any registered container instances with the requested CPU units available, the task will fail\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
-For tasks hosted on Fargate, this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
+For tasks hosted on Fargate \(both Linux and Windows containers\), this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 
 `memory`  
@@ -76,7 +100,7 @@ Required: conditional
 This parameter is not supported for Windows containers\.
 The hard limit of memory \(in MiB\) to present to the task\. It can be expressed as an integer using MiB, for example `1024`, or as a string using GB, for example `1GB` or `1 GB`, in a task definition\. When the task definition is registered, a GB value is converted to an integer indicating the MiB\.  
 For tasks hosted on Amazon EC2 instances, this field is optional and any value can be used\. If a task\-level memory value is specified then the container\-level memory value is optional\. If your cluster does not have any registered container instances with the requested memory available, the task will fail\. If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.  
-For tasks hosted on Fargate, this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
+For tasks hosted on Fargate \(both Linux and Windows containers\), this field is required and you must use one of the following values, which determines your range of supported values for the `cpu` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 
 ## Container definitions<a name="container_definitions"></a>
@@ -122,12 +146,10 @@ The image used to start a container\. This string is passed directly to the Dock
 
 `memory`  
 Type: integer  
-Required: no  
+Required: conditional  
 The amount \(in MiB\) of memory to present to the container\. If your container attempts to exceed the memory specified here, the container is killed\. The total amount of memory reserved for all containers within a task must be lower than the task `memory` value, if one is specified\. This parameter maps to `Memory` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--memory` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-If using the Fargate launch type, this parameter is optional\.  
+If using the Fargate launch type, this parameter is required\.  
 If using the EC2 launch type, you must specify either a task\-level memory value or a container\-level memory value\. If you specify both a container\-level `memory` and `memoryReservation` value, `memory` must be greater than `memoryReservation`\. If you specify `memoryReservation`, then that value is subtracted from the available memory resources for the container instance on which the container is placed\. Otherwise, the value of `memory` is used\.  
-The Docker 20.10.0 or later daemon reserves a minimum of 6 MiB of memory for a container, so you should not specify fewer than 6 MiB of memory for your containers\.  
-The Docker 19.03.13-ce or earlier daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.  
 The Docker 20\.10\.0 or later daemon reserves a minimum of 6 MiB of memory for a container, so you should not specify fewer than 6 MiB of memory for your containers\.  
 The Docker 19\.03\.13\-ce or earlier daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.  
 If you are trying to maximize your resource utilization by providing your tasks as much memory as possible for a particular instance type, see [Container Instance Memory Management](memory-management.md)\.
@@ -140,7 +162,6 @@ If a task\-level memory value is not specified, you must specify a non\-zero int
 For example, if your container normally uses 128 MiB of memory, but occasionally bursts to 256 MiB of memory for short periods of time, you can set a `memoryReservation` of 128 MiB, and a `memory` hard limit of 300 MiB\. This configuration would allow the container to only reserve 128 MiB of memory from the remaining resources on the container instance, but also allow the container to consume more memory resources when needed\.  
 The Docker 20\.10\.0 or later daemon reserves a minimum of 6 MiB of memory for a container, so you should not specify fewer than 6 MiB of memory for your containers\.  
 The Docker 19\.03\.13\-ce or earlier daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.
-
 
 #### Port mappings<a name="container_definition_portmappings"></a>
 
@@ -160,6 +181,7 @@ Type: integer
 Required: yes, when `portMappings` are used  
 The port number on the container that is bound to the user\-specified or automatically assigned host port\.  
 If using containers in a task with the Fargate launch type, exposed ports should be specified using `containerPort`\.  
+For Windows containers on Fargate, you cannot use port 3150 for the `containerPort`, because it is reserved\.  
 If using containers in a task with the EC2 launch type and you specify a container port and not a host port, your container automatically receives a host port in the ephemeral port range\. For more information, see `hostPort`\. Port mappings that are automatically assigned in this way do not count toward the 100 reserved ports limit of a container instance\.  
 `hostPort`  
 Type: integer  
@@ -254,9 +276,9 @@ The optional grace period within which to provide containers time to bootstrap b
 
 `cpu`  
 Type: integer  
-Required: no  
+Required: conditional  
 The number of `cpu` units the Amazon ECS container agent will reserve for the container\. This parameter maps to `CpuShares` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--cpu-shares` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This field is optional for tasks using the Fargate launch type, and the only requirement is that the total amount of CPU reserved for all containers within a task be lower than the task\-level `cpu` value\.  
+This field is required for tasks using the Fargate launch type\. The total amount of CPU reserved for all containers within a task must be lower than the task\-level `cpu` value\.  
 You can determine the number of CPU units that are available per Amazon EC2 instance type by multiplying the number of vCPUs listed for that instance type on the [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) detail page by 1,024\.
 Linux containers share unallocated CPU units with other containers on the container instance with the same ratio as their allocated amount\. For example, if you run a single\-container task on a single\-core instance type with 512 CPU units specified for that container, and that is the only task running on the container instance, that container could use the full 1,024 CPU unit share at any given time\. However, if you launched another copy of the same task on that container instance, each task would be guaranteed a minimum of 512 CPU units when needed, and each container could float to higher CPU usage if the other container was not using it, but if both tasks were 100% active all of the time, they would be limited to 512 CPU units\.  
 On Linux container instances, the Docker daemon on the container instance uses the CPU value to calculate the relative CPU share ratios for running containers\. For more information, see [CPU share constraint](https://docs.docker.com/engine/reference/run/#cpu-share-constraint) in the Docker documentation\. The minimum valid CPU share value that the Linux kernel allows is 2\. However, the CPU parameter is not required, and you can use CPU values below 2 in your container definitions\. For CPU values below 2 \(including null\), the behavior varies based on your Amazon ECS container agent version:  
@@ -373,7 +395,7 @@ If the Systems Manager Parameter Store parameter exists in the same Region as th
 `disableNetworking`  
 Type: Boolean  
 Required: no  
-When this parameter is true, networking is disabled within the container\. This parameter maps to `NetworkDisabled` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/)\.  
+When this parameter is true, networking is off within the container\. This parameter maps to `NetworkDisabled` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/)\.  
 This parameter is not supported for Windows containers or tasks using the `awsvpc` network mode\.
 
 ```
@@ -784,7 +806,7 @@ Required: no
 The dependencies defined for container startup and shutdown\. A container can contain multiple dependencies\. When a dependency is defined for container startup, for container shutdown it is reversed\. For an example, see [Example: Container dependency](example_task_definitions.md#example_task_definition-containerdependency)\.  
 If a container does not meet a dependency constraint or times out before meeting the constraint, Amazon ECS doesn't progress dependent containers to their next state\.
 For Amazon ECS tasks hosted on Amazon EC2 instances, the instances require at least version `1.26.0` of the container agent to enable container dependencies\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version `1.26.0-1` of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.  
-For Amazon ECS tasks hosted on Fargate, this parameter requires that the task or service uses platform version `1.3.0` or later\.  
+For Amazon ECS tasks hosted on Fargate, this parameter requires that the task or service uses platform version `1.3.0` or later \(Linux\) or `1.0.0` \(Windows\)\.  
 
 ```
 "dependsOn": [
@@ -816,14 +838,14 @@ Example values: `120`
 Time duration \(in seconds\) to wait before giving up on resolving dependencies for a container\.  
 For example, you specify two containers in a task definition with `containerA` having a dependency on `containerB` reaching a `COMPLETE`, `SUCCESS`, or `HEALTHY` status\. If a `startTimeout` value is specified for `containerB` and it doesn't reach the desired status within that time then `containerA` will give up and not start\.  
 If a container does not meet a dependency constraint or times out before meeting the constraint, Amazon ECS doesn't progress dependent containers to their next state\.
-For Amazon ECS tasks hosted on Fargate, this parameter requires that the task or service uses platform version `1.3.0` or later\. When using platform version `1.4.0`, if this parameter is not specified, the default value of `60` seconds is used\.
+For Amazon ECS tasks hosted on Fargate, this parameter requires that the task or service uses platform version `1.3.0` or later \(Linux\)\. When using platform version `1.4.0` \(Linux\) or `1.0.0` \(Windows\), if this parameter is not specified, the default value of `60` seconds is used\.
 
 `stopTimeout`  
 Type: Integer  
 Required: no  
 Example values: `120`  
 Time duration \(in seconds\) to wait before the container is forcefully killed if it doesn't exit normally on its own\.  
-For tasks using the Fargate launch type, the task or service requires platform version 1\.3\.0 or later\. The max stop timeout value is 120 seconds and if the parameter is not specified, the default value of 30 seconds is used\.  
+For tasks using the Fargate launch type, the task or service requires platform version 1\.3\.0 or later \(Linux\) or 1\.0\.0 or later \(for Windows\)\. The max stop timeout value is 120 seconds and if the parameter is not specified, the default value of 30 seconds is used\.  
 For tasks using the EC2 launch type, if the `stopTimeout` parameter is not specified, the value set for the Amazon ECS container agent configuration variable `ECS_CONTAINER_STOP_TIMEOUT` is used by default\. If neither the `stopTimeout` parameter or the `ECS_CONTAINER_STOP_TIMEOUT` agent configuration variable are set, then the default values of 30 seconds for Linux containers and 30 seconds on Windows containers are used\. Container instances require at least version 1\.26\.0 of the container agent to enable a container stop timeout value\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized Amazon Linux AMI, your instance needs at least version 1\.26\.0\-1 of the `ecs-init` package\. If your container instances are launched from version `20190301` or later, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
 
 #### System controls<a name="container_definition_systemcontrols"></a>
@@ -1037,15 +1059,15 @@ Whether or not to use the Amazon ECS task IAM role defined in a task definition 
 `FSxWindowsFileServerVolumeConfiguration`  
 Type: Object  
 Required: Yes  
-This parameter is specified when you are using the [Amazon FSx for Windows File Server](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) file system for task storage\.    
+This parameter is specified when you are using the [FSx for Windows File Server](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) file system for task storage\.    
 `fileSystemId`  
 Type: String  
 Required: Yes  
-The Amazon FSx for Windows File Server file system ID to use\.  
+The FSx for Windows File Server file system ID to use\.  
 `rootDirectory`  
 Type: String  
 Required: Yes  
-The directory within the Amazon FSx for Windows File Server file system to mount as the root directory inside the host\.  
+The directory within the FSx for Windows File Server file system to mount as the root directory inside the host\.  
 `authorizationConfig`    
 `credentialsParameter`  
 Type: String  
@@ -1094,7 +1116,7 @@ The following task definition parameters are able to be used when registering ta
 Type: Object  
 Required: No  
 The amount of ephemeral storage in GB to allocate for the task\. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate\. For more information, see [Fargate task storage](fargate-task-storage.md)\.  
-This parameter is only supported for tasks hosted on AWS Fargate using platform version `1.4.0` or later\.
+This parameter is only supported for tasks hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\)\. This is not supported for Windows containers on Fargate\.
 
 ### IPC mode<a name="task_definition_ipcmode"></a>
 

@@ -5,7 +5,7 @@ Amazon Elastic Container Service \(Amazon ECS\) is a fast and highly scalable co
 Get started with Amazon ECS using the EC2 launch type by registering a task definition, creating a cluster, and creating a service in the Amazon ECS console\.
 
 **Important**  
-For information about getting started with Amazon ECS using AWS Fargate, see [Getting started with the Amazon ECS console using AWS Fargate](getting-started-fargate.md)\.
+For information about getting started with Amazon ECS using AWS Fargate, see [Getting started with the Amazon ECS console using Linux containers on AWS Fargate](getting-started-fargate.md) or [Getting started with the Amazon ECS console using Windows containers on AWS Fargate](Windows_fargate-getting_started.md)\.
 
 Complete the following steps to get started with Amazon ECS using the EC2 launch type\.
 

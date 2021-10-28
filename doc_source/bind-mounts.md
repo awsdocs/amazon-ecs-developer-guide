@@ -11,7 +11,7 @@ The following are common use cases for bind mounts\.
 ## Considerations when using bind mounts<a name="bind-mount-considerations"></a>
 
 When using bind mounts, the following should be considered\.
-+ For tasks hosted on AWS Fargate using platform version `1.4.0` or later, by default they receive a minimum of 20 GiB of ephemeral storage for bind mounts\. The total amount of ephemeral storage can be increased to a maximum of 200 GiB by specifying the `ephemeralStorage` object in your task definition\.
++ For tasks hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` or later \(Windows\), by default they receive a minimum of 20 GiB of ephemeral storage for bind mounts\. The total amount of ephemeral storage can be increased to a maximum of 200 GiB by specifying the `ephemeralStorage` object in your task definition\.
 + To expose files from a Dockerfile to a data volume when a task is run, the Amazon ECS data plane looks for a `VOLUME` directive\. If the absolute path specified in the `VOLUME` directive is the same as the `containerPath` specified in the task definition, the data in the `VOLUME` directive path is copied to the data volume\. In the following Dockerfile example, a file named `examplefile` in the `/var/log/exported` directory is written to the host and then mounted inside the container\.
 
   ```
@@ -117,7 +117,7 @@ If this value is `true`, the container has read\-only access to the volume\. If 
 `ephemeralStorage`  
 Type: Object  
 Required: No  
-The amount of ephemeral storage to allocate for the task\. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate using platform version `1.4.0` or later\.  
+The amount of ephemeral storage to allocate for the task\. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` or later \(Windows\)\.  
 You can use the Copilot CLI, CloudFormation, the AWS SDK or the CLI to specify ephemeral storage for a bind mount\.
 
 ## Bind mount examples<a name="bind-mount-examples"></a>
@@ -126,7 +126,7 @@ The following examples cover the most common use cases for using a bind mount fo
 
 **To allocate an increased amount of ephemeral storage space for a Fargate task**
 
-For Amazon ECS tasks hosted on Fargate using platform version `1.4.0` or later, you can allocate more than the default amount of ephemeral storage for the containers in your task to use\. This example can be incorporated into the other examples to allocate more ephemeral storage for your Fargate tasks\.
+For Amazon ECS tasks hosted on Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` \(Windows\), you can allocate more than the default amount of ephemeral storage for the containers in your task to use\. This example can be incorporated into the other examples to allocate more ephemeral storage for your Fargate tasks\.
 + In the task definition, define an `ephemeralStorage` object\. The `sizeInGiB` must be an integer between the values of `21` and `200` and is expressed in GiB\.
 
   ```

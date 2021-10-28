@@ -28,9 +28,11 @@ If your cluster is configured with a default capacity provider strategy, you wil
       + To use a **Capacity provider strategy**, choose **Switch to capacity provider strategy** and then choose whether your service should use the default capacity provider strategy defined for the cluster or a custom capacity provider strategy\. A capacity provider must already be associated with the cluster in order to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
       + To use a **Launch type**, choose **Switch to launch type** and select **FARGATE**, **EC2**, or **EXTERNAL**\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 
+   1. For **Platform operating system**, if you chose the Fargate launch type, then select the platform operating system\. for example, **LINUX**\.
+
    1. For **Platform version**, if you chose a Fargate capacity provider or the Fargate launch type, then select the platform version to use\.
 **Note**  
-When the **LATEST** platform version is selected, the `1.4.0` platform version is used\.
+When the **LATEST** platform version is selected, we validate the operating system that was specified for the task, and then set the appropriate platform version\. If the Operating System is set to `Windows-Server-2019-Full` or `Windows-Server-2019-Core`, the `1.0.0` platform is used\. If theoperating system is Linux, the `1.4.0` platform version is used\.
 
    1. **Cluster**: Select the cluster in which to create your service\.
 

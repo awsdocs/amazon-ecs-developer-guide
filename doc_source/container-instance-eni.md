@@ -1,5 +1,8 @@
 # Elastic network interface trunking<a name="container-instance-eni"></a>
 
+**Note**  
+This feature is not available on Window containers on Fargate\.
+
 Each Amazon ECS task that uses the `awsvpc` network mode receives its own elastic network interface \(ENI\), which is attached to the container instance that hosts it\. There is a default limit to the number of network interfaces that can be attached to an Amazon EC2 instance, and the primary network interface counts as one\. For example, by default a `c5.large` instance may have up to three ENIs attached to it\. The primary network interface for the instance counts as one, so you can attach an additional two ENIs to the instance\. Because each task using the `awsvpc` network mode requires an ENI, you can typically only run two such tasks on this instance type\.
 
 Amazon ECS supports launching container instances with increased ENI density using supported Amazon EC2 instance types\. When you use these instance types and opt in to the `awsvpcTrunking` account setting, additional ENIs are available on newly launched container instances\. This configuration allows you to place more tasks using the `awsvpc` network mode on each container instance\. Using this feature, a `c5.large` instance with `awsvpcTrunking` enabled has an increased ENI limit of twelve\. The container instance will have the primary network interface and Amazon ECS creates and attaches a "trunk" network interface to the container instance\. So this configuration allows you to launch ten tasks on the container instance instead of the current two tasks\.
@@ -60,6 +63,7 @@ Any user on an account can use one of the following commands to modify the defau
 
   ```
   aws ecs put-account-setting-default \
+  
         --name awsvpcTrunking \
         --value enabled \
         --region us-east-1

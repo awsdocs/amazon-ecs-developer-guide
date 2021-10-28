@@ -14,9 +14,9 @@ You can monitor your Amazon ECS resources using Amazon CloudWatch, which collect
 
 ## Enabling CloudWatch metrics<a name="enable_cloudwatch"></a>
 
-Any Amazon ECS service hosted on Fargate is enabled for CloudWatch CPU and memory utilization metrics automatically, so you don't need to take any manual steps\.
+Any Amazon ECS service using the Fargate launch type is enabled for CloudWatch CPU and memory utilization metrics automatically, so you don't need to take any manual steps\.
 
-For any Amazon ECS task or service hosted on EC2, your Amazon ECS container instances require version `1.4.0` or later of the container agent to enable CloudWatch metrics\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
+For any Amazon ECS task or service using the EC2 launch type, your Amazon ECS container instances require version 1\.4\.0 or later \(Linux\) or 1\.0\.0 or later \(Windows\) of the container agent to enable CloudWatch metrics\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
 If you're starting your agent manually \(for example, if you're not using the Amazon ECS\-optimized AMI for your container instances\), see [Manually updating the Amazon ECS container agent \(for non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
 
