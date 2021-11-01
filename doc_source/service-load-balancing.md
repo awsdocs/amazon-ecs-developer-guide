@@ -34,29 +34,9 @@ The following considerations are specific to Amazon ECS services using Applicati
 + Your load balancer subnet configuration must include all Availability Zones that your container instances reside in\.
 + After you create a service, the target group ARN or load balancer name, container name, and container port specified in the service definition are immutable\. You cannot add, remove, or change the load balancer configuration of an existing service\. If you update the task definition for the service, the container name and container port that were specified when the service was created must remain in the task definition\. 
 + If a service's task fails the load balancer health check criteria, the task is stopped and restarted\. This process continues until your service reaches the number of desired running tasks\.
-+ The Application Load Balancer slow start mode is supported\. For more information, see [Application Load Balancer slow start mode considerations](#alb-slowstart-considerations)\.
 + When using Network Load Balancers configured with IP addresses as targets, requests are seen as coming from the Network Load Balancers private IP address\. This means that services behind an Network Load Balancer are effectively open to the world as soon as you allow incoming requests and health checks in the target's security group\.
 + Using a Network Load Balancer to route UDP traffic to your Amazon ECS tasks on Fargate require the task to use platform version `1.4.0` \(Linux\) or `1.0.0` \(Windows\)\.
 + If you are experiencing problems with your load balancer\-enabled services, see [Troubleshooting service load balancers](troubleshoot-service-load-balancers.md)\.
-
-### Application Load Balancer slow start mode considerations<a name="alb-slowstart-considerations"></a>
-
-Application Load Balancers enabled for slow start mode are supported for Amazon ECS services\. For more information about slow start mode, see [Target groups for your Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html)\.
-
-To ensure that the service scheduler ignores unhealthy container health checks until your tasks have warmed up and are ready to receive traffic, the following configurations are required:
-+ You must configure your container health check to return an `UNHEALTHY` status until the slow start period has ended\.
-+ You must configure the health check grace period value for your Amazon ECS service for the same duration as the slow start mode duration\.
-
-Consider the following when you use different task network modes with Application Load Balancer slow start mode:
-+ When using `awsvpc` network mode, each task is assigned its own elastic network interface \(ENI\) and IP address which allows the Application Load Balancer to register each task as a target in the target group\. This enables each newly registered target to have slow start mode enabled\.
-+ When using `host` network mode, the task bypasses the Docker networking constructs and maps container ports directly to the Amazon EC2 instance’s network interface or interfaces\. You register the container instance as the Application Load Balancer target as opposed to the IP address of the task\. This means you can only run one task per instance if you want slow start mode to work effectively\. If you were to update an existing task or service, or restart the container instance, this does not re\-register the container instance as an Application Load Balancer target, which would not cause the slow start duration to begin\.
-+ When using `bridge` network mode, similarly to using `host` network mode, you register the container instance as the Application Load Balancer target as opposed to the Amazon ECS task so the same considerations described above apply\.
-
-Additionally, the following considerations are specific for using Application Load Balancer slow start mode and adding Amazon ECS tasks as targets:
-+ When you turn on slow start for a target group, the targets already registered with the target group do not enter slow start mode\.
-+ When you turn on slow start for an empty target group and then register one or more targets using a single registration operation, these targets do not enter slow start mode\. Newly registered targets enter slow start mode only when there is at least one registered target that is not in slow start mode\.
-+ If you deregister a target in slow start mode, the target exits slow start mode\. If you register the same target again, it enters slow start mode again\.
-+ If a target in slow start mode becomes unhealthy and then healthy again before the duration period elapses, the target remains in slow start mode until the duration period elapses and then exits slow start mode\. If a target that is not in slow start mode changes from unhealthy to healthy, it does not enter slow start mode\.
 
 ### Classic Load Balancer considerations<a name="clb-considerations"></a>
 

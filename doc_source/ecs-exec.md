@@ -17,7 +17,13 @@ You can audit which user accessed the container using AWS CloudTrail and log eac
 ## Considerations for using ECS Exec<a name="ecs-exec-considerations"></a>
 
 For this topic, you should be familiar with the following aspects involved with using ECS Exec:
-+ ECS Exec is only supported for Linux containers\.
++ ECS Exec is only supported for Linux containers and the following Windows Amazon ECS Optimized AMIs \(with the container agent version 1\.56 or later\):
+  + Amazon ECS\-optimized Windows Server 2022 Full AMI
+  + Amazon ECS\-optimized Windows Server 2022 Core AMI
+  + Amazon ECS\-optimized Windows Server 2019 Full AMI
+  + Amazon ECS\-optimized Windows Server 2019 Core AMI
+  + Amazon ECS\-optimized Windows Server 2004 Core AMI
+  + Amazon ECS\-optimized Windows Server 20H2 Core AMI
 + ECS Exec is not currently supported using the AWS Management Console\.
 + If you are using interface Amazon VPC endpoints with Amazon ECS, you must create the interface Amazon VPC endpoints for Systems Manager Session Manager\. For more information, see [Create the Systems Manager endpoints](vpc-endpoints.md#ecs-vpc-endpoint-ecsexec)\.
 + You can't enable ECS Exec for existing tasks\. It can only be enabled for new tasks\.
