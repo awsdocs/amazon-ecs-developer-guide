@@ -12,16 +12,16 @@ The following is a snippet of a task definition showing how to specify individua
 
 ```
 {
-    "family": "",
-    "containerDefinitions": [
+    "Family": "",
+    "ContainerDefinitions": [
         {
-            "name": "",
-            "image": "",
+            "Name": "",
+            "Image": "",
             ...
-            "environment": [
+            "Environment": [
                 {
-                    "name": "variable",
-                    "value": "value"
+                    "Name": "variable",
+                    "Value": "value"
                 }
             ],
             ...
@@ -35,16 +35,16 @@ The following is a snippet of a task definition showing how to specify an enviro
 
 ```
 {
-    "family": "",
-    "containerDefinitions": [
+    "Family": "",
+    "ContainerDefinitions": [
         {
-            "name": "",
-            "image": "",
+            "Name": "",
+            "Image": "",
             ...
-            "environmentFiles": [
+            "EnvironmentFiles": [
                 {
-                    "value": "arn:aws:s3:::s3_bucket_name/envfile_object_name.env",
-                    "type": "s3"
+                    "Value": "arn:aws:s3:::s3_bucket_name/envfile_object_name.env",
+                    "Type": "s3"
                 }
             ],
             ...
