@@ -707,7 +707,7 @@ This parameter requires version 1\.18 of the Docker Remote API or greater on you
 
 ### Other container definition parameters<a name="other_container_definition_params"></a>
 
-The following container definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition](create-task-definition.md)\.
+The following container definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
 
 **Topics**
 + [Linux parameters](#container_definition_linuxparameters)
@@ -1103,7 +1103,7 @@ The optional part of a key\-value pair that make up a tag\. A value acts as a de
 
 ## Other task definition parameters<a name="other_task_definition_params"></a>
 
-The following task definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition](create-task-definition.md)\.
+The following task definition parameters are able to be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
 
 **Topics**
 + [Ephemeral storage](#task_definition_ephemeralStorage)

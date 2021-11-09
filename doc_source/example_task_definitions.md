@@ -1,6 +1,6 @@
 # Example task definitions<a name="example_task_definitions"></a>
 
-This section provides some task definition examples that you can use to start creating your own task definitions\. For more information, see [Task definition parameters](task_definition_parameters.md) and [Creating a task definition](create-task-definition.md)\.
+This section provides some task definition examples that you can use to start creating your own task definitions\. For more information, see [Task definition parameters](task_definition_parameters.md) and [Creating a task definition using the new console](create-task-definition.md)\.
 
 For additional task definition examples, see [AWS Sample Task Definitions](https://github.com/aws-samples/aws-containers-task-definitions) on GitHub\.
 

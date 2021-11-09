@@ -8,7 +8,7 @@ The Amazon EC2 user data script in the following procedure uses the Amazon ECS i
 
 **To start a task at container instance launch time**
 
-1. If you have not done so already, create a task definition with the container you want to run on your container instance at launch by following the procedures in [Creating a task definition](create-task-definition.md)\.
+1. If you have not done so already, create a task definition with the container you want to run on your container instance at launch by following the procedures in [Creating a task definition using the new console](create-task-definition.md)\.
 
 1. Modify your `ecsInstanceRole` IAM role to add permissions for the `StartTask` API operation\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 

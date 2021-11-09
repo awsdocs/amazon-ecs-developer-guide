@@ -67,7 +67,7 @@ Before you begin working with GPUs on Amazon ECS, be aware of the following cons
 
 ## Specifying GPUs in your task definition<a name="ecs-gpu-specifying"></a>
 
-To take advantage of the GPUs on a container instance and the Docker GPU runtime, ensure you designate the number of GPUs your container requires in the task definition\. As GPU\-enabled containers are placed, the Amazon ECS container agent pins the desired number of physical GPUs to the appropriate container\. The number of GPUs reserved for all containers in a task should not exceed the number of available GPUs on the container instance the task is launched on\. For more information, see [Creating a task definition](create-task-definition.md)\.
+To take advantage of the GPUs on a container instance and the Docker GPU runtime, ensure you designate the number of GPUs your container requires in the task definition\. As GPU\-enabled containers are placed, the Amazon ECS container agent pins the desired number of physical GPUs to the appropriate container\. The number of GPUs reserved for all containers in a task should not exceed the number of available GPUs on the container instance the task is launched on\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
 
 **Important**  
 If your GPU requirements aren't specified in the task definition, the task uses the default Docker runtime\.

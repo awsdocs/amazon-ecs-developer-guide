@@ -6,10 +6,10 @@ You can register Spot Instances to your Amazon ECS clusters\. For more informati
 
 ## Spot Instance Draining<a name="spot-instance-draining"></a>
 
-Amazon EC2 terminates, stops, or hibernates your Spot Instance when the Spot price exceeds the maximum price for your request or capacity is no longer available\. Amazon EC2 provides a Spot Instance interruption notice, which gives the instance a two\-minute warning before it is interrupted\. If Amazon ECS Spot Instance draining is enabled on the instance, ECS receives the Spot Instance interruption notice and places the instance in `DRAINING` status\.
+Amazon EC2 terminates, stops, or hibernates your Spot Instance when the Spot price exceeds the maximum price for your request or capacity is no longer available\. Amazon EC2 provides a Spot Instance two\-minute interruption notice for terminate and stop actions\. It does not provide the two\-minute notice for the hibernate action\. If Amazon ECS Spot Instance draining is enabled on the instance, ECS receives the Spot Instance interruption notice and places the instance in `DRAINING` status\. 
 
 **Important**  
-Amazon ECS monitors for the Spot Instance interruption notices that have the `terminate` and `stop` instance\-actions\. If you specified either the `hibernate` instance interruption behavior when requesting your Spot Instances or Spot Fleet, then Amazon ECS Spot Instance draining is not supported for those instances\.
+Amazon ECS does not receive a notice from Amazon EC2 when instances are removed by Auto Scaling Capacity Rebalancing\. For more information, see [Amazon EC2 Auto Scaling Capacity Rebalancing](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-capacity-rebalancing.html)\.
 
 When a container instance is set to `DRAINING`, Amazon ECS prevents new tasks from being scheduled for placement on the container instance\. Service tasks on the draining container instance that are in the `PENDING` state are stopped immediately\. If there are container instances in the cluster that are available, replacement service tasks are started on them\.
 

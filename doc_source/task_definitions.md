@@ -17,7 +17,8 @@ Your entire application stack does not need to be on a single task definition, a
 
 **Topics**
 + [Application architecture](application_architecture.md)
-+ [Creating a task definition](create-task-definition.md)
++ [Creating a task definition using the new console](create-task-definition.md)
++ [Creating a task definition using the classic console](create-task-definition-classic.md)
 + [Task definition parameters](task_definition_parameters.md)
 + [Amazon ECS launch types](launch_types.md)
 + [Working with GPUs on Amazon ECS](ecs-gpu.md)
@@ -32,4 +33,4 @@ Your entire application stack does not need to be on a single task definition, a
 + [Specifying environment variables](taskdef-envfiles.md)
 + [Example task definitions](example_task_definitions.md)
 + [Updating a task definition](update-task-definition.md)
-+ [Deregistering task definition revisions](deregister-task-definition.md)
++ [Deregistering a task definition revision](deregister-task-definition.md)

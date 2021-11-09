@@ -37,6 +37,7 @@ The following are considerations when you use the Linux operating system:
 
  The following are considerations when you use the Windows operating system:
 + Container instances using the Amazon ECS\-optimized Windows Server 2016 AMI can't host tasks that use the `awsvpc` network mode\. If you have a cluster that contains Amazon ECS\-optimized Windows Server 2016 AMIs and Windows AMIs that do support `awsvpc` network mode, tasks that use `awsvpc` network mode are not launched on the Windows 2016 Server instances, but will be launched on instances that support `awsvpc` network mode\.
++ Currently, CloudWatch metrics are not supported for Windows containers that use the `awsvpc` network mode\.
 + Tasks and services that use the `awsvpc` network mode require the Amazon ECS service\-linked role to provide Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster, or if you create or update a service, in the AWS Management Console\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command:
 
   ```

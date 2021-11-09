@@ -105,7 +105,7 @@ When `non-blocking` mode is used, the `max-buffer-size` log option controls the 
 
 ## Specifying a log configuration in your task definition<a name="specify-log-config"></a>
 
-Before your containers can send logs to CloudWatch, you must specify the `awslogs` log driver for containers in your task definition\. This section describes the log configuration for a container to use the `awslogs` log driver\. For more information, see [Creating a task definition](create-task-definition.md)\.
+Before your containers can send logs to CloudWatch, you must specify the `awslogs` log driver for containers in your task definition\. This section describes the log configuration for a container to use the `awslogs` log driver\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
 
 The task definition JSON shown below has a `logConfiguration` object specified for each container; one for the WordPress container that sends logs to a log group called `awslogs-wordpress`, and one for a MySQL container that sends logs to a log group called `awslogs-mysql`\. Both containers use the `awslogs-example` log stream prefix\.
 

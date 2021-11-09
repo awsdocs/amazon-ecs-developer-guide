@@ -97,7 +97,7 @@ The following resources enable you to specify tags when you create the resource\
 |  Run one or more tasks\.  |  [Run a standalone task](ecs_run_task.md)  | 
 |  Create a service\.  |  [Creating an Amazon ECS service](create-service.md)  | 
 |  Create a task set\.  |  [External deployment](deployment-type-external.md)  | 
-|  Register a task definition\.  |  [Creating a task definition](create-task-definition.md)  | 
+|  Register a task definition\.  |  [Creating a task definition using the new console](create-task-definition.md)  | 
 |  Create a cluster\.  |  [Creating a cluster](create_cluster.md)  | 
 |  Run one or more container instances\.  |  [Launching an Amazon ECS Linux container instance](launch_container_instance.md)  | 
 
