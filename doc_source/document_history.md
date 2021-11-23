@@ -5,7 +5,10 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Amazon ECS\-optimized Linux AMI build script  |  Amazon ECS has open\-sourced the build scripts that are used to build the Linux variants of the Amazon ECS\-optimized AMI\. For more information, see [Amazon ECS\-optimized Linux AMI build script](ecs-ami-build-scripts.md)\.  |  19 Nov 2021  | 
+|  Container instance health  |  Amazon ECS adds support for container instance health monitoring\. For more information, see [Container instance health](container-instance-health.md)\.  |  10 Nov 2021  | 
 |  Support for Windows Amazon ECS Exec  |  Amazon ECS Exec supports Windows\. For more information, see [Using Amazon ECS Exec for debugging](ecs-exec.md)\.  |  01 Nov 2021  | 
+|  Support for Windows Amazon ECS Exec  |  ontainer instance health monitoring For more information, see [Container instance health](container-instance-health.md)\.  |  01 Nov 2021  | 
 |  Support for Windows containers on Fargate\.  |  Amazon ECS supports Windows containers on Fargate\. For more information, see [Windows platform versions](platform-windows-fargate.md)\.  |  28 Oct 2021  | 
 |  GPU support for external instances on Amazon ECS Anywhere  |  Amazon ECS supports specifying GPU requirements in the task definition for tasks run on external instances\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md) and [Registering an external instance to a cluster](ecs-anywhere-registration.md)\.  |  8 Oct 2021  | 
 |  Support of `awsvpc` network mode on Windows  |  Amazon ECS supports `awsvpc` network mode on Windows\. For more information, see [Task networking with the `awsvpc` network mode](task-networking-awsvpc.md)\.  |  15 July 2021  | 

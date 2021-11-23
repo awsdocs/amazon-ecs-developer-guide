@@ -284,7 +284,8 @@ Linux containers share unallocated CPU units with other containers on the contai
 On Linux container instances, the Docker daemon on the container instance uses the CPU value to calculate the relative CPU share ratios for running containers\. For more information, see [CPU share constraint](https://docs.docker.com/engine/reference/run/#cpu-share-constraint) in the Docker documentation\. The minimum valid CPU share value that the Linux kernel allows is 2\. However, the CPU parameter is not required, and you can use CPU values below 2 in your container definitions\. For CPU values below 2 \(including null\), the behavior varies based on your Amazon ECS container agent version:  
 + **Agent versions <= 1\.1\.0:** Null and zero CPU values are passed to Docker as 0, which Docker then converts to 1,024 CPU shares\. CPU values of 1 are passed to Docker as 1, which the Linux kernel converts to two CPU shares\.
 + **Agent versions >= 1\.2\.0:** Null, zero, and CPU values of 1 are passed to Docker as two CPU shares\.
-On Windows container instances, the CPU limit is enforced as an absolute limit, or a quota\. Windows containers only have access to the specified amount of CPU that is defined in the task definition\. A null or zero CPU value is passed to Docker as `0`, which Windows interprets as 1% of one CPU\.
+On Windows container instances, the CPU limit is enforced as an absolute limit, or a quota\. Windows containers only have access to the specified amount of CPU that is defined in the task definition\. A null or zero CPU value is passed to Docker as `0`, which Windows interprets as 1% of one CPU\.  
+For additional examples, see [How Amazon ECS manages CPU and memory resources](http://aws.amazon.com/blogs/containers/how-amazon-ecs-manages-cpu-and-memory-resources/)\.
 
 `gpu`  
 Type: [ResourceRequirement](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ResourceRequirement.html) object  
@@ -838,7 +839,7 @@ Example values: `120`
 Time duration \(in seconds\) to wait before giving up on resolving dependencies for a container\.  
 For example, you specify two containers in a task definition with `containerA` having a dependency on `containerB` reaching a `COMPLETE`, `SUCCESS`, or `HEALTHY` status\. If a `startTimeout` value is specified for `containerB` and it doesn't reach the desired status within that time then `containerA` will give up and not start\.  
 If a container does not meet a dependency constraint or times out before meeting the constraint, Amazon ECS doesn't progress dependent containers to their next state\.
-For Amazon ECS tasks hosted on Fargate, this parameter requires that the task or service uses platform version `1.3.0` or later \(Linux\)\. When using platform version `1.4.0` \(Linux\) or `1.0.0` \(Windows\), if this parameter is not specified, the default value of `60` seconds is used\.
+For Amazon ECS tasks hosted on Fargate, this parameter requires that the task or service uses platform version `1.3.0` or later \(Linux\)\.
 
 `stopTimeout`  
 Type: Integer  

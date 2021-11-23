@@ -155,7 +155,7 @@ Amazon ECR is a managed AWS Docker registry service\. You can use the Docker CLI
 
 This section requires the following:
 + You have the AWS CLI installed and configured\. If you do not have the AWS CLI installed on your system, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
-+ Your user has the required IAM permissions to access the Amazon ECR service\. For more information, see [Amazon ECR managed policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html)\.
++ Your user has the required IAM permissions to access the Amazon ECR service\. For more information, see [Amazon ECR managed policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/security-iam-awsmanpol.html)\.
 
 **To tag your image and push it to Amazon ECR**
 

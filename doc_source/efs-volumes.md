@@ -24,7 +24,7 @@ Amazon Linux
   yum install amazon-efs-utils
   sudo shutdown -r now
   ```
-+ For tasks hosted on Fargate, Amazon EFS file systems are supported on platform version 1\.4\.0 or later \(Linux\) or 1\.0\.0 or later \(Windows\)\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
++ For tasks hosted on Fargate, Amazon EFS file systems are supported on platform version 1\.4\.0 or later \(Linux\)\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + When using Amazon EFS volumes for tasks hosted on Fargate, Fargate creates a supervisor container that is responsible for managing the Amazon EFS volume\. The supervisor container uses a small amount of the task's memory\. The supervisor container is visible when querying the task metadata version 4 endpoint, but isn't visible in CloudWatch Container Insights\. For more information, see [Task metadata endpoint version 4](task-metadata-endpoint-v4.md)\.
 
 ## Using Amazon EFS access points<a name="efs-volume-accesspoints"></a>

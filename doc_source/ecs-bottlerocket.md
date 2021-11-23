@@ -13,8 +13,6 @@ The following should be considered when using the Bottlerocket AMI with Amazon E
 + The Amazon ECS variant of the Bottlerocket AMI is not supported in the following Regions:
   + China \(Beijing\) \(`cn-north-1`\)
   + China \(Ningxia\) \(`cn-northwest-1`\)
-  + AWS GovCloud \(US\-East\) \(`us-gov-east-1`\)
-  + AWS GovCloud \(US\-West\) \(`us-gov-west-1`\)
 + Amazon EC2 instances with x86 or arm64 processors are supported\. Amazon EC2 instances with GPUs or Inferentia chips are not supported\.
 + The `awsvpc` network mode is supported when using Bottlerocket AMI version `1.1.0` or later\.
 + Using Amazon EFS file system volumes are not supported\.
@@ -71,3 +69,5 @@ The following table provides a link to retrieve the latest AMI ID of the Amazon 
 |  Europe \(Milan\)  |  `eu-south-1`  |  [View AMI ID](https://eu-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=eu-south-1#)  | 
 |  Middle East \(Bahrain\)  |  `me-south-1`  |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=me-south-1#)  | 
 |  South America \(São Paulo\)  |  `sa-east-1`  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=sa-east-1#)  | 
+|  AWS GovCloud \(US\-East\)  | `us-gov-east-1` |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=us-gov-east-1#)  | 
+|  AWS GovCloud \(US\-West\)  | `us-gov-west-1` |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=us-gov-west-1#)  | 

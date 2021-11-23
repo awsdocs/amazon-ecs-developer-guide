@@ -165,6 +165,8 @@ For example, the task definition for a service specifies a total of 512 CPU unit
 
 If the previous example used the soft limit `memoryReservation` instead of the hard limit `memory` parameter, the service's tasks could use more than the specified 1,024 MiB of memory as needed\. In this case, the service's memory utilization could exceed 100%\.
 
+If your application has a sudden spike in memory utilization for a short amount of time, you will not see the service memory utilization increasing because Amazon ECS collects multiple data points every minute, and then aggregates them to one data point that is sent to CloudWatch\.
+
 If this task is performing CPU\-intensive work during a period and using all 2,048 of the available CPU units and 512 MiB of memory, the service reports 400% CPU utilization and 50% memory utilization\. If the task is idle and using 128 CPU units and 128 MiB of memory, the service reports 25% CPU utilization and 12\.5% memory utilization\.
 
 **Note**  

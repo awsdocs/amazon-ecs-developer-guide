@@ -23,5 +23,6 @@ To establish a baseline you should, at a minimum, monitor the following items:
 + [Amazon ECS CloudWatch metrics](cloudwatch-metrics.md)
 + [Amazon ECS events and EventBridge](cloudwatch_event_stream.md)
 + [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)
++ [Container instance health](container-instance-health.md)
 + [Collecting application trace data](trace-data.md)
 + [Logging Amazon ECS API calls with AWS CloudTrail](logging-using-cloudtrail.md)

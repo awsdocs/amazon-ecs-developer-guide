@@ -464,3 +464,11 @@ aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux/recom
 ```
 
 ------
+
+## Additional resources<a name="additional-resources"></a>
+
+The following pages provide additional information about the changes:
++ [Amazon ECS changelog](https://github.com/aws/amazon-ecs-agent/blob/master/CHANGELOG.md) on GitHub
++ [Amazon ecs\-init changelog](https://github.com/aws/amazon-ecs-init/blob/master/CHANGELOG.md) on GitHub
++ [Docker Engine release notes](https://docs.docker.com/engine/release-notes/) in the Docker documentation
++ [NVIDIA Driver Documentation](https://docs.nvidia.com/datacenter/tesla/index.html) in the NVIDIA documentation

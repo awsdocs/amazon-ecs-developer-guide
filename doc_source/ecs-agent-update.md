@@ -27,6 +27,8 @@ You can check the version of the container agent that is running on your contain
    If your agent version is outdated, you can update your container agent with the following procedures:
    + If your container instance is running an Amazon ECS\-optimized AMI, see [Updating the Amazon ECS container agent on an Amazon ECS\-optimized AMI](agent-update-ecs-ami.md)\.
    + If your container instance is not running an Amazon ECS\-optimized AMI, see [Manually updating the Amazon ECS container agent \(for non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
+
+     An Amazon ECS\-optimized AMI will have "ECS\-Optimized" in the AMI name\. for example, "Windows\_Server\-2019\-English\-Core\-ECS\_Optimized\-2021\.10\.25"\. You can view the AMI name on the instance details page in the Amazon EC2 console\.
 **Important**  
 To update the Amazon ECS agent version from versions before v1\.0\.0 on your Amazon ECS\-optimized AMI, we recommend that you terminate your current container instance and launch a new instance with the most recent AMI version\. Any container instances that use a preview version should be retired and replaced with the most recent AMI\. For more information, see [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\.
 
