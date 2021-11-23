@@ -1,4 +1,4 @@
-# Getting started with the Amazon ECS console using Amazon EC2 Windows containers<a name="ECS_Windows_getting_started"></a>
+# Getting started with Windows containers using the classic console<a name="ECS_Windows_getting_started"></a>
 
 This tutorial walks you through getting Windows containers running on either Amazon ECS with the Amazon ECS\-optimized Windows Server AMI in the AWS Management Console\. 
 

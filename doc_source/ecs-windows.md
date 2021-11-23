@@ -10,3 +10,4 @@ Tasks using the Fargate launch type are deployed onto infrastructure managed by 
 + [Launching an Amazon ECS Windows container instance](launch_window-container_instance.md)
 + [Bootstrapping Windows container instances with Amazon EC2 user data](bootstrap_windows_container_instance.md)
 + [Connect to your container Windows instance](instance-windows-connect.md)
++ [Deregister an Amazon EC2 backed container instance](deregister_container_instance.md)

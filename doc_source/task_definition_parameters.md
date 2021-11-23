@@ -70,11 +70,22 @@ The following parameter are required for Fargate launch types\.
 `operatingSystemFamily`  
 Type: string  
 Required: Conditional  
-Default: Linux  
-This parameter s required for Amazon ECS tasks hosted on Fargate  
-When you register a task definition, you specify the operating system family\. The valid values are `LINUX`, `WINDOWS_SERVER_2019_FULL`, and `WINDOWS_SERVER_2019_CORE`\.  
+Default: LINUX  
+This parameter s required for Amazon ECS tasks hosted on Fargate\.  
+When you register a task definition, you specify the operating system family\.   
+The valid values for Amazon ECS tasks hosted on Fargate are `LINUX`, `WINDOWS_SERVER_2019_FULL`, and `WINDOWS_SERVER_2019_CORE`\.  
+The valid values for Amazon ECS tasks hosted on EC2 are `LINUX`, `WINDOWS_SERVER_2022_CORE`, `WINDOWS_SERVER_2022_FULL`, `WINDOWS_SERVER_2019_FULL`, and `WINDOWS_SERVER_2019_CORE`, `WINDOWS_SERVER_2016_FULL`, `WINDOWS_SERVER_2004_CORE`, and `WINDOWS_SERVER_20H2_CORE`\.  
 All task definitions that are used in a service must have the same value for this parameter\.  
 When a task definition is part of a service, this value must match the service `platformFamily` value\.
+
+`cpuArchitecture`  
+Type: string  
+Required: Conditional  
+Default: X86\_64  
+This parameter is required for Amazon ECS tasks hosted on Fargate\.  
+When you register a task definition, you specify the CPU architecture\. The valid values are `X86_64` and `ARM64`\.  
+All task definitions that are used in a service must have the same value for this parameter\.  
+When you have Linux tasks for either the Fargate launch type, or the EC2 launch type, you can set the value to `ARM64`\. For more information, see [Working with 64\-bit ARM workloads on Amazon ECS](ecs-arm64.md)\.
 
 ## Task size<a name="task_size"></a>
 

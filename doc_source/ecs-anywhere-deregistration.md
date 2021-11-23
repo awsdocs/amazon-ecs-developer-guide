@@ -6,7 +6,27 @@ If you have tasks that are running on the container instance when you deregister
 
 To register an external instance to a new cluster, after the external instance has been deregistered from both Amazon ECS and Systems Manager, you can clean up the remaining AWS resources on the instance and register it with a new cluster\.
 
-**To deregister an external instance \(AWS Management Console\)**
+------
+#### [ New AWS Management Console ]
+
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+
+1. From the navigation bar, choose the Region where your external instance is registered\.
+
+1. In the navigation pane, choose **Clusters** and select the cluster that hosts the external instance\.
+
+1. On the **Cluster : *name*** page, choose the **Infrastructure** tab\.
+
+1. Under **Container instances**, select the external instance ID to deregister\. You're redirected to the container instance detail page\.
+
+1. On the **Container Instance : *id*** page, choose **Deregister**\.
+
+1. Review the deregistration message\. Select **Deregister from AWS Systems Manager** to also deregister the external instance as an Systems Manager managed instance\. Choose **Deregister**\.
+**Note**  
+You can deregister the external instance as an Systems Manager managed instance in the Systems Manager console\. For instructions, see [Deregistering managed instances](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managed-instances-advanced-deregister.html) in the *AWS Systems Manager User Guide*\.
+
+------
+#### [ Classic AWS Management Console ]
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -26,6 +46,8 @@ To register an external instance to a new cluster, after the external instance h
 You can deregister the external instance as an Systems Manager managed instance in the Systems Manager console\. For instructions, see [Deregistering managed instances](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managed-instances-advanced-deregister.html) in the *AWS Systems Manager User Guide*\.
 
 1. If you want to clean up the remaining AWS resources from the external instance, follow these steps\. The cleanup steps must be completed before you can register the external instance with a new cluster\.
+
+------
 
 **To clean up AWS resources on your on\-premises server or VM**
 

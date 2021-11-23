@@ -1,4 +1,4 @@
-# Deleting an Auto Scaling group capacity provider<a name="asg-capacity-providers-delete-capacity-provider"></a>
+# Deleting an Auto Scaling group capacity provider using the classic console<a name="asg-capacity-providers-delete-capacity-provider"></a>
 
 If you are finished using an Auto Scaling group capacity provider, you can delete it\. Once deleted, the Auto Scaling group capacity provider will transition to the `INACTIVE` state\. Capacity providers with an `INACTIVE` status may remain discoverable in your account for a period of time\. However, this behavior is subject to change in the future, so you should not rely on `INACTIVE` capacity providers persisting\.
 
@@ -8,9 +8,9 @@ There are other prerequisites that must be performed to delete a capacity provid
 
 Use the following steps to delete an Auto Scaling group capacity provider\.
 
-## To delete an Auto Scaling group capacity provider \(AWS Management Console\)<a name="delete-capacity-provider-console"></a>
+## To delete an Auto Scaling group capacity provider \(classic AWS Management Console\)<a name="delete-capacity-provider-console"></a>
 
-When deleting a capacity provider using the AWS Management Console, the console goes through two steps\. The capacity provider is first disassociated from the cluster completely and then it is deleted\. In rare cases, the capacity provider may be successfully disassociated from the cluster but is unable to be deleted\. In those cases, you must use either the Amazon ECS API or the AWS CLI to view the status of the capacity provider and delete it\.
+When deleting a capacity provider using theclassic AWS Management Console, the console goes through two steps\. The capacity provider is first disassociated from the cluster completely and then it is deleted\. In rare cases, the capacity provider may be successfully disassociated from the cluster but is unable to be deleted\. In those cases, you must use either the Amazon ECS API or the AWS CLI to view the status of the capacity provider and delete it\.
 
 **Note**  
 Only capacity providers that are currently associated with a cluster are visible in the AWS Management Console\. To delete a capacity provider that is not associated with a cluster, you must use the Amazon ECS API, SDK, or AWS CLI\.

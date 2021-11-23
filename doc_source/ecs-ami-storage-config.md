@@ -108,7 +108,7 @@ Remove unused data blocks within containers\. You can use the following command 
 
 1. Attach the volume to your container instance\. The default location for the Docker data volume is `/dev/xvdcz`\. For consistency, attach additional volumes in reverse alphabetical order from that device name \(for example, `/dev/xvdcy`\)\. For more information, see [Attaching an Amazon EBS Volume to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
-1. Connect to your container instance using SSH\. For more information, see [Connect to your container instance](instance-connect.md)\.
+1. Connect to your container instance using SSH\. For more information, see [Connect to your container instance using the classic console](instance-connect.md)\.
 
 1. Check the size of your `docker-pool` logical volume\. The example below shows a logical volume of 409\.19 GiB\.
 

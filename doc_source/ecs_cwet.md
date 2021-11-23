@@ -4,7 +4,7 @@ In this tutorial, you set up a simple AWS Lambda function that listens for Amazo
 
 ## Prerequisite: Set up a test cluster<a name="cwet_step_1"></a>
 
-If you do not have a running cluster to capture events from, follow the steps in [Creating a cluster](create_cluster.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Lambda function correctly\. 
+If you do not have a running cluster to capture events from, follow the steps in [Creating a cluster using the classic console](create_cluster.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Lambda function correctly\. 
 
 ## Step 1: Create the Lambda function<a name="cwet_step_2"></a>
 

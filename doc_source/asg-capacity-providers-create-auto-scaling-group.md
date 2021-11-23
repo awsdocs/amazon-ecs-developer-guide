@@ -1,4 +1,4 @@
-# Creating an Auto Scaling group<a name="asg-capacity-providers-create-auto-scaling-group"></a>
+# Creating an Auto Scaling group using the classic console<a name="asg-capacity-providers-create-auto-scaling-group"></a>
 
 When creating an Auto Scaling group, you use an Amazon EC2 launch template\. Amazon EC2 launch templates specify the Amazon EC2 instance configuration, including the AMI, the instance type, a key pair, security groups, and the other parameters that you use to launch Amazon EC2 instances\.
 

@@ -1,15 +1,15 @@
 # Updating a service using the new console<a name="update-service-console-v2"></a>
 
-You can update an Amazon ECS service using the new Amazon ECS console\. When updating a service using the AWS Management Console, the current service configuration is pre\-populated\. You are able to update the task definition, desired task count, capacity provider strategy, platform version, and deployment configuration; or any combination of these\.
+You can update an Amazon ECS service using the new console\. When updating a service using the AWS Management Console, the current service configuration is pre\-populated\. You are able to update the task definition, desired task count, capacity provider strategy, platform version, and deployment configuration; or any combination of these\.
 
 **Note**  
 Currently, only services using the **Rolling update** \(`ECS`\) deployment type should be updated using the new console\. To update a service using any other deployment type, switch to the old console\.
 
 **To create a service using the new console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. On the **Clusters** page, select the cluster to create the service in\.
+1. On the **Clusters** page, select the cluster\.
 
 1. On the **Cluster overview** page, check the box next to the service to update and choose **Edit**\.
 

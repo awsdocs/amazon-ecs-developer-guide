@@ -9,15 +9,34 @@ Each cluster has one or more Auto Scaling group capacity providers and an option
 ## Cluster auto scaling considerations<a name="cluster-auto-scaling-considerations"></a>
 
 The following should be considered when using cluster auto scaling:
+
+------
+#### [ New console ]
++ The Auto Scaling group is automatically configured for managed instance protection and managed scaling\.
++ Amazon ECS uses the `AWSServiceRoleForECS` service\-linked IAM role for the permissions it requires to call AWS Auto Scaling, on your behalf\. For more information on using and creating Amazon ECS service\-linked IAM roles, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
++ Cluster auto scaling is not available in the Asia Pacific \(Osaka\) Region\.
++ The launch template used for the Auto Scaling group can contain one instance type\.
++ The IAM user creating the capacity providers, needs the `autoscaling:CreateOrUpdateTags` permission\. This is because Amazon ECS adds a tag to the Auto Scaling group when it associates it with the capacity provider\.
+**Important**  
+Make sure any tooling you use does not remove the `AmazonECSManaged` tag from the Auto Scaling group\. If this tag is removed, Amazon ECS is not able to manage it when scaling your cluster\.
++ In order for the group to scale out, the value for **Maximum** must be greater than 0\.
++ The Amazon ECS managed scaling feature is on by default\. For more information, see [Managed scale\-out behavior](#managed-scaling-scaleout)\.
++ Managed termination is off by default\.
++ Auto Scaling instance\-scale\-in protection is off by default\. For more information, see [Using instance scale\-in protection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+
+------
+#### [ Classic console ]
 + Amazon ECS uses the `AWSServiceRoleForECS` service\-linked IAM role for the permissions it requires to call AWS Auto Scaling, on your behalf\. For more information on using and creating Amazon ECS service\-linked IAM roles, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
 + Cluster auto scaling is not available in the Asia Pacific \(Osaka\) Region\.
 + When using capacity providers with Auto Scaling groups, the IAM user creating the capacity providers, needs the `autoscaling:CreateOrUpdateTags` permission\. This is because Amazon ECS adds a tag to the Auto Scaling group when it associates it with the capacity provider\.
 **Important**  
-Ensure any tooling you use does not remove the `AmazonECSManaged` tag from the Auto Scaling group\. If this tag is removed, Amazon ECS is not able to manage it when scaling your cluster\.
+Make sure any tooling you use does not remove the `AmazonECSManaged` tag from the Auto Scaling group\. If this tag is removed, Amazon ECS is not able to manage it when scaling your cluster\.
 + Managed scaling works best if your Auto Scaling group uses the same or similar instance types\. For more information, see [Managed scale\-out behavior](#managed-scaling-scaleout)\.
-+ When using an Auto Scaling group with On\-Demand instances and multiple instance types, place the larger instance types higher in the priority list and don't specify a weight\. Specifying a weight is not supported at this time\. For more information, see [Auto Scaling groups with multiple instance types](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html) in the *AWS Auto Scaling User Guide*\.
++ When using an Auto Scaling group with On\-Demand instances and multiple instance types or Spot Instances, place the larger instance types higher in the priority list and don't specify a weight\. Specifying a weight is not supported at this time\. For more information, see [Auto Scaling groups with multiple instance types](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html) in the *AWS Auto Scaling User Guide*\.
 + When creating a service, specifying a task placement strategy that spreads across Availability Zones or a binpack strategy based on CPU or memory works best\. Don't use an instance spread strategy as scaling works slower with that strategy type\.
 + The desired capacity for the Auto Scaling group associated with a capacity provider shouldn't be changed or managed by any scaling policies other than the one Amazon ECS manages\.
+
+------
 
 ## Managed scale\-out behavior<a name="managed-scaling-scaleout"></a>
 

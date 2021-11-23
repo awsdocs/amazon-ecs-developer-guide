@@ -32,5 +32,5 @@ The following should be considered when using capacity providers:
 + In a capacity provider strategy, only one capacity provider can have a *base* value defined\. If no base value is specified, the default value of `0` is used\.
 + A cluster may contain a mix of both Auto Scaling group capacity providers and Fargate capacity providers, however a capacity provider strategy may only contain one or the other but not both\.
 + A cluster may contain a mix of services and standalone tasks using both capacity providers and launch types\. A service may be updated to use a capacity provider strategy rather than a launch type, however you must force a new deployment when doing so\.
-+ When managed termination protection is enabled, managed scaling must also be enabled otherwise managed termination protection won't work\.
++ When you use managed termination protection, you must also use managed scaling otherwise managed termination protection won't work\.
 + Using capacity providers is not supported when using Classic Load Balancers for your services\.

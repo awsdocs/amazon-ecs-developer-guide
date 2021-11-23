@@ -19,7 +19,6 @@ Amazon ECS supports the following container instance types\.
 + [External instances \(Amazon ECS Anywhere\)](ecs-anywhere.md)
 + [Monitoring your container instances](using_cloudwatch_logs.md)
 + [Container instance draining](container-instance-draining.md)
-+ [Deregister an Amazon EC2 backed container instance](deregister_container_instance.md)
 
 ## Container instance concepts<a name="container_instance_concepts"></a>
 + Your container instance must be running the Amazon ECS container agent\. The container agent is able to register the instance into one of your clusters\. If you are using an Amazon ECS\-optimized AMI, the agent is already installed\. To use a different operating system, install the agent\. For more information, see [Amazon ECS container agent](ECS_agent.md)\.

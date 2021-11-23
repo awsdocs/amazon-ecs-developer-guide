@@ -7,7 +7,7 @@ When you delete a cluster in the Amazon ECS console, the associated resources th
 If your cluster was created with the AWS Management Console then the AWS CloudFormation stack that was created for your cluster is also deleted when you delete your cluster\. If you have added or modified the underlying cluster resources you may receive an error when attempting to delete the cluster\. AWS CloudFormation refers to this as *stack drift*\. For more information on detecting drift on an existing AWS CloudFormation stack, see [Detect drift on an entire AWS CloudFormation stack](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/detect-drift-stack.html) in the *AWS CloudFormation User Guide*\.
 
 **Important**  
-The delete cluster workflow is not supported yet in the new Amazon ECS console\.
+The delete cluster workflow is not supported yet in the new console\.
 
 **To delete a cluster \(AWS Management Console\)**
 
@@ -17,7 +17,7 @@ The delete cluster workflow is not supported yet in the new Amazon ECS console\.
 
 1. In the navigation pane, choose **Clusters**\.
 **Important**  
-In the navigation pane, turn off **New ECS Experience**, or choose **use the old console**\. The delete cluster workflow is not supported yet in the new Amazon ECS console\.
+In the navigation pane, turn off **New ECS Experience**\. The delete cluster workflow is not supported yet in the new Amazon ECS console\.
 
 1. On the **Clusters** page, select the cluster to delete\.
 **Note**  

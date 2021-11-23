@@ -15,7 +15,27 @@ When deregistering a container instance, be aware of the following consideration
 + If you terminate a running container instance with a connected Amazon ECS container agent, the agent automatically deregisters the instance from your cluster\. Stopped container instances or instances with disconnected agents are not automatically deregistered when terminated\.
 + Deregistering a container instance removes the instance from a cluster, but it does not terminate the Amazon EC2 instance\. If you are finished using the instance, be sure to terminate it to stop billing\. For more information, see [Terminate your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-**To deregister a container instance \(AWS Management Console\)**
+------
+#### [ New AWS Management Console ]
+
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+
+1. From the navigation bar, choose the Region where your external instance is registered\.
+
+1. In the navigation pane, choose **Clusters** and select the cluster that hosts the instance\.
+
+1. On the **Cluster : *name*** page, choose the **Infrastructure** tab\.
+
+1. Under **Container instances**, select the instance ID to deregister\. You're redirected to the container instance detail page\.
+
+1. On the **Container Instance : *id*** page, choose **Deregister**\.
+
+1. Review the deregistration message and choose **Deregister**\.
+
+1. If you are finished with the container instance, terminate the underlying Amazon EC2 instance\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+
+------
+#### [ Classic AWS Management Console ]
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -33,3 +53,5 @@ When deregistering a container instance, be aware of the following consideration
 1. Review the deregistration message and choose **Deregister**\.
 
 1. If you are finished with the container instance, terminate the underlying Amazon EC2 instance\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+
+------

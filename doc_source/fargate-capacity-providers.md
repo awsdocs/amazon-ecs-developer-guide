@@ -1,6 +1,6 @@
 # AWS Fargate capacity providers<a name="fargate-capacity-providers"></a>
 
-Amazon ECS on AWS Fargate capacity providers enable you to use both Fargate and Fargate Spot capacity with your Amazon ECS tasks\. For more information about capacity providers, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
+Amazon ECS on AWS Fargate capacity providers allow you to use both Fargate and Fargate Spot capacity with your Amazon ECS tasks\. For more information about capacity providers, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
 
 With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discounted rate compared to the Fargate price\. Fargate Spot runs tasks on spare compute capacity\. When AWS needs the capacity back, your tasks will be interrupted with a two\-minute warning\. This is described in further detail below\.
 
@@ -11,7 +11,7 @@ The following should be considered when using Fargate capacity providers\.
 + The Fargate and Fargate Spot capacity providers don't need to be created\. They are available to all accounts and only need to be associated with a cluster to be available for use\.
 + To associate Fargate and Fargate Spot capacity providers to an existing cluster, you must use the Amazon ECS API or AWS CLI\. For more information, see [Adding Fargate capacity providers to an existing cluster](#fargate-capacity-providers-existing-cluster)\.
 + The Fargate and Fargate Spot capacity providers are reserved and cannot be deleted\. You can disassociate them from a cluster using the PutClusterCapacityProviders API\.
-+ When a new cluster is created using the Amazon ECS console along with the **Networking only** cluster template, the `FARGATE` and `FARGATE_SPOT` capacity providers are associated with the new cluster automatically\.
++ When a new cluster is created using the Amazon ECS classic console along with the **Networking only** cluster template, the `FARGATE` and `FARGATE_SPOT` capacity providers are associated with the new cluster automatically\.
 + Using Fargate Spot requires that your task use platform version 1\.3\.0 or later \(for Linux\) or 1\.0\.0 or later \(for Windows\)\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + When tasks using the Fargate and Fargate Spot capacity providers are stopped, a task state change event is sent to Amazon EventBridge\. The stopped reason describes the cause\. For more information, see [Task state change events](ecs_cwe_events.md#ecs_task_events)\.
 + A cluster may contain a mix of Fargate and Auto Scaling group capacity providers, however a capacity provider strategy may only contain either Fargate or Auto Scaling group capacity providers, but not both\. For more information, see [Auto Scaling Group Capacity Providers](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-auto-scaling.html#asg-capacity-providers) in the *Amazon Elastic Container Service Developer Guide*\.
@@ -71,7 +71,7 @@ The following is an event pattern that is used to create an EventBridge rule for
 
 When a new Amazon ECS cluster is created, you can specify one or more capacity providers to associate with the cluster\. The capacity providers are used to define a capacity provider strategy which determine the infrastructure your tasks run on\.
 
-When using the AWS Management Console, the `FARGATE` and `FARGATE_SPOT` capacity providers are associated with the cluster automatically when using the **Networking only** cluster template\. For more information, see [Creating a cluster](create_cluster.md)\.
+When using the AWS Management Console, the `FARGATE` and `FARGATE_SPOT` capacity providers are associated with the cluster automatically when using the **Networking only** cluster template\. For more information, see [Creating a cluster using the classic console](create_cluster.md)\.
 
 ### To create an Amazon ECS cluster using Fargate capacity providers \(AWS CLI\)<a name="fargate-capacity-providers-create-cluster-cli"></a>
 

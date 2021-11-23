@@ -11,7 +11,25 @@ At this time, `INACTIVE` task definition revisions remain discoverable in your a
 
 Use the following procedure to deregister a task definition revision\.
 
-**To deregister a task definition revision**
+------
+#### [ New console ]
+
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+
+1. From the navigation bar, choose the region that contains your task definition\.
+
+1. In the navigation pane, choose **Task definitions**\.
+
+1. On the **task definitions** page, choose the task definition family that contains one or more revisions that you want to deregister\.
+
+1. On the **task definition Name** page, choose the revision you want to deregister, such as "example\-task:1"\.
+
+1. In the upper\-right of the task definition revision detail page, choose **Deregister**\.
+
+1. Verify the information in the **Deregister** window, and then choose **Deregister** to finish\.
+
+------
+#### [ Classic console ]
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -25,4 +43,6 @@ Use the following procedure to deregister a task definition revision\.
 
 1. Choose **Actions**, **Deregister**\.
 
-1. Verify the information in the **Deregister task definition** window, and choose **Deregister** to finish\.
+1. Verify the information in the **Deregister task definition** window, and then choose **Deregister** to finish\.
+
+------

@@ -14,11 +14,29 @@ When you are ready for the container instance to start hosting tasks again, you 
 
 ## Draining container instances<a name="drain-instances"></a>
 
-You can use the [UpdateContainerInstancesState](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateContainerInstancesState.html) API action or the [update\-container\-instances\-state](https://docs.aws.amazon.com/cli/latest/reference/ecs/update-container-instances-state.html) command to change the status of a container instance to `DRAINING`\.
+------
+#### [ New AWS Management Console ]
 
-The following steps can be used to set a container instance to draining using the AWS Management Console\.
+**New AWS Management Console**
 
-**To set your container instance to `DRAINING` \(AWS Management Console\)**
+The following steps can be used to set a container instance to draining using the new AWS Management Console\.
+
+1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+
+1. In the navigation pane, choose **Clusters**\.
+
+1. On the **Clusters** page, choose a cluster that hosts your instances\.
+
+1. On the **Cluster : *name*** page, choose the **Infrastructure** tab\. Then, under **Container instances** select the check box for each container instance you want to drain\.
+
+1. Choose **Drain**\.
+
+------
+#### [ Classic AWS Management Console ]
+
+**Classic AWS Management Console**
+
+The following steps can be used to set a container instance to draining using the classic AWS Management Console\.
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -31,3 +49,10 @@ The following steps can be used to set a container instance to draining using th
 1. After the instances are processed, choose **Done**\.
 
 1. When you want to activate the container instances again, repeat these same steps but choose **Activate instances** from the **Actions** menu\.
+
+------
+#### [ AWS CLI ]
+
+You can use the [UpdateContainerInstancesState](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateContainerInstancesState.html) API action or the [update\-container\-instances\-state](https://docs.aws.amazon.com/cli/latest/reference/ecs/update-container-instances-state.html) command to change the status of a container instance to `DRAINING`\.
+
+------

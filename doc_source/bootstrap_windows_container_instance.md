@@ -39,7 +39,7 @@ Initialize-ECSAgent -Cluster windows -EnableTaskIAMRole -LoggingDrivers '["json-
 This example user data script installs the Amazon ECS container agent on an instance launched with a **Windows\_Server\-2016\-English\-Full\-Containers** AMI\. It has been adapted from the agent installation instructions on the [Amazon ECS Container Agent GitHub repository](https://github.com/aws/amazon-ecs-agent) README page\.
 
 **Note**  
-This script is shared for example purposes\. It is much easier to get started with Windows containers by using the Amazon ECS\-optimized Windows Server AMI\. For more information, see [Creating a cluster](create_cluster.md)\.
+This script is shared for example purposes\. It is much easier to get started with Windows containers by using the Amazon ECS\-optimized Windows Server AMI\. For more information, see [Creating a cluster using the classic console](create_cluster.md)\.
 
 You can use this script for your own container instances \(provided that they are launched with a version of the **Windows\_Server\-2016\-English\-Full\-Containers** AMI\)\. Be sure to replace the `windows` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
 

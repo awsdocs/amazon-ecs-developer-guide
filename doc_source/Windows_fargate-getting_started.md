@@ -1,4 +1,4 @@
-# Getting started with the Amazon ECS console using Windows containers on AWS Fargate<a name="Windows_fargate-getting_started"></a>
+# Getting started with the classic Amazon ECS console using Windows containers on AWS Fargate<a name="Windows_fargate-getting_started"></a>
 
 Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage your containers\. You can host your containers on a serverless infrastructure that is managed by Amazon ECS by launching your services or tasks on AWS Fargate\. For a broad overview on Amazon ECS on Fargate, see [What is Amazon Elastic Container Service?](Welcome.md)\.
 

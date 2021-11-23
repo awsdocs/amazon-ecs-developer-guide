@@ -22,4 +22,4 @@ Amazon ECS does not automatically update the security groups associated with Ela
 
 **Topics**
 + [Updating a service using the new console](update-service-console-v2.md)
-+ [Updating a service using the old console](update-service-console-v1.md)
++ [Updating a service using the classic console](update-service-console-v1.md)

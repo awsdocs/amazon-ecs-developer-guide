@@ -1,4 +1,4 @@
-# Updating a task definition<a name="update-task-definition"></a>
+# Updating a task definition using the classic console<a name="update-task-definition"></a>
 
 To update a task definition, create a task definition revision\. If the task definition is used in a service, you must update that service to use the updated task definition\.
 

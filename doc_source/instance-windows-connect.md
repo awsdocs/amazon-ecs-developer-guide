@@ -7,7 +7,27 @@ To perform basic administrative tasks on your instance, such as updating or inst
   \.
 + Ensure that the security group associated with your instance allows incoming RDP traffic \(port 3389\) from your IP address\. The default security group does not allow incoming RDP traffic by default\. For more information, see [Authorize inbound traffic for your Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/authorizing-access-to-an-instance.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
-**To connect to your container instance**
+------
+#### [ New AWS Management Console ]
+
+1. Find the public IP or DNS address for your container instance\.
+
+   1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+
+   1. In the navigation pane, choose **Clusters** and select the cluster that hosts the instance\.
+
+   1. On the **Cluster : *name*** page, choose the **Infrastructure** tab\.
+
+   1. Under **Container instances**, select the instance ID
+
+   1. On the **Instances** page, record the **Public IP** or **Public DNS** for your instance\.
+
+1. Find the default username for your container instance AMI\. 
+
+1. You can connect to your instance by using RDP\. For more information, see [Connect to your Windows instance using RDP](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+
+------
+#### [ Classic AWS Management Console ]
 
 1. Find the public IP or DNS address for your container instance\.
 
@@ -24,3 +44,5 @@ To perform basic administrative tasks on your instance, such as updating or inst
 1. Find the default username for your container instance AMI\. 
 
 1. You can connect to your instance by using RDP\. For more information, see [Connect to your Windows instance using RDP](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+
+------

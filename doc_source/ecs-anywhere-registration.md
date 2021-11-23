@@ -5,7 +5,27 @@ For each external instance you register with an Amazon ECS cluster, it must have
 **Note**  
 Before registering your external instance with the cluster, create the `/etc/ecs/ecs.config` file on your external instance and add any container agent configuration parameters that you want\. You can't do this after registering the external instance to a cluster\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
-**To register an external instance \(AWS Management Console\)**
+------
+#### [ New AWS Management Console ]
+
+1. Find the public IP or DNS address for your container instance\.
+
+   1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+
+   1. In the navigation pane, choose **Clusters** and select the cluster that hosts the instance\.
+
+   1. On the **Cluster : *name*** page, choose the **Infrastructure** tab\.
+
+   1. Under **Container instances**, select the instance ID
+
+   1. On the **Instances** page, record the **Public IP** or **Public DNS** for your instance\.
+
+1. Find the default username for your container instance AMI\. 
+
+1. You can connect to your instance by using RDP\. For more information, see [Connect to your Windows instance using RDP](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+
+------
+#### [ Classic AWS Management Console ]
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -31,9 +51,8 @@ Before registering your external instance with the cluster, create the `/etc/ecs
 **Important**  
 The bash portion of the script must be run as root\. If the command isn't run as root, an error is returned\.
 
-The AWS CLI can be used to create a Systems Manager activation before running the installation script to complete the external instance registration process\.
-
-**To register an external instance \(AWS CLI\)**
+------
+#### [ AWS CLI ]
 
 1. Create an Systems Manager activation pair\. This is used for Systems Manager managed instance activation\. The output includes an `ActivationId` and `ActivationCode`\. You use these in a later step\. Make sure that you specify the ECS Anywhere IAM role that you created\. For more information, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
 
@@ -125,3 +144,7 @@ Use the following steps to register an existing external instance with a differe
    ```
    sudo systemctl start ecs.service
    ```
+
+------
+
+The AWS CLI can be used to create a Systems Manager activation before running the installation script to complete the external instance registration process\.

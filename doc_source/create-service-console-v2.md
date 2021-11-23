@@ -1,13 +1,10 @@
-# Creating a service using the new console<a name="create-service-console-v2"></a>
+# Creating a service using the New Amazon ECS console<a name="create-service-console-v2"></a>
 
-**Important**  
-If you are creating a Windows service for the Fargate launch type, you must use the classic console\. For more information, see [Creating a service using the classic console](create-service-console-v1.md)\.
-
-You can create an Amazon ECS service using the new Amazon ECS console\. To make the service creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\.
+You can create an Amazon ECS service using the new console\. To make the service creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\.
 
 **To create a service using the new console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. On the **Clusters** page, select the cluster to create the service in\.
 
@@ -31,7 +28,7 @@ The console validates that the selected task definition family and revision is c
 
 1. The **Deployment options** section can be expanded to change the minimum healthy percent and maximum percent of running tasks allowed during a service deployment\. The console has default values for the most common use case selected\.
 **Note**  
-Currently, only the **Rolling update** \(`ECS`\) deployment type is supported\. To use any other deployment type, switch to the old console\.
+Currently, only the **Rolling update** \(`ECS`\) deployment type is supported\. To use any other deployment type, switch to the classic console\.
 
 1. \(Optional\) The **Load balancing** section can be expanded to configure a load balancer for your service\. Use the following steps to configure your service to use an Application Load Balancer\.
 

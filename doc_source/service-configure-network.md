@@ -1,7 +1,7 @@
 # Step 2: Configure a network<a name="service-configure-network"></a>
 
 **Important**  
-Amazon ECS has provided a new console experience for creating a service\. For more information, see [Creating a service using the new console](create-service-console-v2.md)\.
+Amazon ECS has provided a new console experience for creating a service\. For more information, see [Creating a service using the New Amazon ECS console](create-service-console-v2.md)\.
 
 If your service's task definition uses the `awsvpc` network mode, you must configure a VPC, subnet, and security group for your service\.
 

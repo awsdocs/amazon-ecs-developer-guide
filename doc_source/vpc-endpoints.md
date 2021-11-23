@@ -32,7 +32,7 @@ If you have existing tasks that are using the EC2 launch type, after you have cr
 
 **To restart the Amazon ECS container agent**
 
-1. Log in to your container instance via SSH\. For more information, see [Connect to your container instance](instance-connect.md)\.
+1. Log in to your container instance via SSH\. For more information, see [Connect to your container instance using the classic console](instance-connect.md)\.
 
 1. Stop the container agent\.
 

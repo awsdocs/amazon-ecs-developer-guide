@@ -1,4 +1,4 @@
-# Updating a service using the old console<a name="update-service-console-v1"></a>
+# Updating a service using the classic console<a name="update-service-console-v1"></a>
 
 **Important**  
 Amazon ECS has provided a new console experience for updating a service\. For more information, see [Updating a service using the new console](update-service-console-v2.md)\.

@@ -38,4 +38,4 @@ Here are some things you should know about Amazon EC2 Windows containers and Ama
 
 ## Getting started with Windows containers<a name="windows-getting-started"></a>
 
-Work through a tutorial that guides you through getting Windows containers running on Amazon ECS with the Amazon ECS\-optimized Windows Server AMI in the AWS Management Console at [Getting started with the Amazon ECS console using Amazon EC2 Windows containers](ECS_Windows_getting_started.md)\.
+Work through a tutorial that guides you through getting Windows containers running on Amazon ECS with the Amazon ECS\-optimized Windows Server AMI in the AWS Management Console at [Getting started with Windows containers using the classic console](ECS_Windows_getting_started.md)\.

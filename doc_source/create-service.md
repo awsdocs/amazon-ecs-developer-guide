@@ -10,5 +10,5 @@ When using a load balancer with services hosted on Amazon EC2 instances, you sho
 We provide walkthroughs for creating an Amazon ECS service using the AWS Management Console in the following pages\.
 
 **Topics**
-+ [Creating a service using the new console](create-service-console-v2.md)
-+ [Creating a service using the classic console](create-service-console-v1.md)
++ [Creating a service using the New Amazon ECS console](create-service-console-v2.md)
++ [Creating a service using the Classic Amazon ECS console](create-service-console-v1.md)

@@ -6,7 +6,27 @@ If you have trouble starting a task, your task might be stopping because of an e
 Amazon ECS also sends task state change events to EventBridge, which you can view if your stopped task has expired from view in the Amazon ECS console\. For more information, see [Task state change events](ecs_cwe_events.md#ecs_task_events)\.  
 For information about how to investigate a task that was stopped more than 1 hour, see [ECS Stopped Tasks in CloudWatch Logs](https://github.com/aws-samples/amazon-ecs-stopped-tasks-cwlogs#ecs-stopped-tasks-in-cloudwatch-logs) on the GitHub website\.
 
-**To check stopped tasks for errors \(AWS Management Console\)**
+------
+#### [ New console ]
+
+**New AWS Management Console**
+
+The following steps can be used to set a container instance to draining using the new AWS Management Console\.
+
+1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+
+1. In the navigation pane, choose **Clusters**\.
+
+1. On the **Clusters** page, choose the cluster\.
+
+1. On the **Cluster : *name*** page, choose the **Tasks** tab\. 
+
+1. Choose the stopped task to inspect\.
+
+1. In the **Status** section, inspect the **Stopped reason** field to see the reason that the task was stopped\.
+
+------
+#### [ Classic console ]
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -38,7 +58,8 @@ If a container marked as `essential` in task definitions exits or dies, that can
 
    If this inspection doesn't provide enough information, you can connect to the container instance with SSH and inspect the Docker container locally\. For more information, see [Inspect Docker Containers](docker-diags.md#docker-inspect)\.
 
-**To check stopped tasks for errors \(AWS CLI\)**
+------
+#### [ AWS CLI ]
 
 1. List the stopped tasks in a cluster\. The output contains the Amazon Resource Name \(ARN\) of the task, which you need to describe the task\.
 
@@ -57,3 +78,5 @@ If a container marked as `essential` in task definitions exits or dies, that can
         --tasks arn:aws:ecs:us-west-2:account_id:task/cluster_name/task_ID \
         --region us-west-2
    ```
+
+------

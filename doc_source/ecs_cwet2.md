@@ -4,7 +4,7 @@ In this tutorial, you configure a CloudWatch Events event rule that only capture
 
 ## Prerequisite: Set up a test cluster<a name="cwet2_step_1"></a>
 
- If you do not have a running cluster to capture events from, follow the steps in [Creating a cluster](create_cluster.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Amazon SNS topic and CloudWatch Events event rule correctly\. 
+ If you do not have a running cluster to capture events from, follow the steps in [Creating a cluster using the classic console](create_cluster.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Amazon SNS topic and CloudWatch Events event rule correctly\. 
 
 ## Step 1: Create and subscribe to an Amazon SNS topic<a name="cwet2_step_2"></a>
 

@@ -53,6 +53,14 @@ When you configure a task and container definition for Fargate, you must specify
 + Windows Server 2019 Full
 + Windows Server 2019 Core
 
+### Task CPU architecture<a name="fargate-task-cpu-architecture"></a>
+
+There are 2 architectures available for the Amazon ECS task definition, ARM and X86\_64\.
+
+When you run Windows containers on Fargate, you must have an X86\_64 CPU architecture\.
+
+When you run Linux containers om Fargate, you can use the X86\_64 CPU architecture, or the ARM64 architecture for your ARM\-based applications\. For more information, see [Working with 64\-bit ARM workloads on Amazon ECS](ecs-arm64.md)\.
+
 ### Task CPU and memory<a name="fargate-tasks-size"></a>
 
 Amazon ECS task definitions for Fargate require that you specify CPU and memory at the task level\. Although you can also specify CPU and memory at the container level for Fargate tasks, this is optional\. Most use cases are satisfied by only specifying these resources at the task level\. The table below shows the valid combinations of task\-level CPU and memory\.
@@ -339,8 +347,8 @@ The following features are not supported on Windows containers on Fargate:
 ## Getting started walkthroughs<a name="welcome-tutorials"></a>
 
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
-+ [Getting started with the Amazon ECS console using Linux containers on AWS Fargate](getting-started-fargate.md)
-+ [Getting started with the Amazon ECS console using Windows containers on AWS Fargate](Windows_fargate-getting_started.md)
++ [Getting started with the classic console using Linux containers on AWS Fargate](getting-started-fargate.md)
++ [Getting started with the classic Amazon ECS console using Windows containers on AWS Fargate](Windows_fargate-getting_started.md)
 + [Tutorial: Creating a cluster with a Fargate Linux task using the AWS CLI](ECS_AWSCLI_Fargate.md)
 + [Tutorial: Creating a cluster with a Fargate Windows task using the AWS CLI](ECS_AWSCLI_Fargate_windows.md)
 + [Tutorial: Creating a cluster with a Fargate task using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)

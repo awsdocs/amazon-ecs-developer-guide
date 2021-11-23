@@ -1,11 +1,11 @@
-# Getting started with the Amazon ECS console using Amazon EC2<a name="getting-started-ecs-ec2"></a>
+# Getting started with the classic console using Amazon EC2<a name="getting-started-ecs-ec2"></a>
 
 Amazon Elastic Container Service \(Amazon ECS\) is a fast and highly scalable container management service that makes it easy to launch and manage your containers\. For a broad overview on Amazon ECS, see [What is Amazon Elastic Container Service?](Welcome.md)\.
 
-Get started with Amazon ECS using the EC2 launch type by registering a task definition, creating a cluster, and creating a service in the Amazon ECS console\.
+Get started with Amazon ECS using the EC2 launch type by registering a task definition, creating a cluster, and creating a service in the classic console\.
 
 **Important**  
-For information about getting started with Amazon ECS using AWS Fargate, see [Getting started with the Amazon ECS console using Linux containers on AWS Fargate](getting-started-fargate.md) or [Getting started with the Amazon ECS console using Windows containers on AWS Fargate](Windows_fargate-getting_started.md)\.
+For information about getting started with Amazon ECS using AWS Fargate, see [Getting started with the classic console using Linux containers on AWS Fargate](getting-started-fargate.md) or [Getting started with the classic Amazon ECS console using Windows containers on AWS Fargate](Windows_fargate-getting_started.md)\.
 
 Complete the following steps to get started with Amazon ECS using the EC2 launch type\.
 
@@ -65,7 +65,7 @@ The following steps walk you through creating a task definition that will deploy
 
 ## Step 2: Create a cluster<a name="getting-started-ec2-cluster"></a>
 
-An Amazon ECS cluster is a logical grouping of tasks, services, and container instances\. When creating a cluster using the console, Amazon ECS creates a AWS CloudFormation stack that takes care of the Amazon EC2 instance creation, networking and IAM configuration for you\. For more information about clusters, see [Amazon ECS clusters](clusters.md)\.
+An Amazon ECS cluster is a logical grouping of tasks, services, and container instances\. When creating a cluster using the classic console, Amazon ECS creates a AWS CloudFormation stack that takes care of the Amazon EC2 instance creation, networking and IAM configuration for you\. For more information about clusters, see [Amazon ECS clusters](clusters.md)\.
 
 The following steps walk you through creating a cluster with one Amazon EC2 instance registered to it which will enable us to run a task on it\. If a specific field is not mentioned, leave the default value the console uses\.
 
@@ -99,7 +99,7 @@ The following steps walk you through creating a cluster with one Amazon EC2 inst
 
 ## Step 3: Create a Service<a name="getting-started-ec2-service"></a>
 
-An Amazon ECS service enables you to run and maintain a specified number of instances of a task definition simultaneously in an Amazon ECS cluster\. If any of your tasks should fail or stop for any reason, the Amazon ECS service scheduler launches another instance of your task definition to replace it in order to maintain the desired number of tasks in the service\. For more information on services, see [Amazon ECS services](ecs_services.md)\.
+An Amazon ECS service helps you to run and maintain a specified number of instances of a task definition simultaneously in an Amazon ECS cluster\. If any of your tasks should fail or stop for any reason, the Amazon ECS service scheduler launches another instance of your task definition to replace it in order to maintain the desired number of tasks in the service\. For more information on services, see [Amazon ECS services](ecs_services.md)\.
 
 **To create a service**
 
