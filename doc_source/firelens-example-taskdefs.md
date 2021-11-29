@@ -16,49 +16,49 @@ For more examples, see [Amazon ECS FireLens examples](https://github.com/aws-sam
 
 The following task definition example demonstrates how to specify a log configuration that forwards logs to a CloudWatch Logs log group\. For more information, see [What Is Amazon CloudWatch Logs?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch Logs User Guide*\.
 
-In the log configuration options, specify the log group name and the Region it exists in\. To have Fluent Bit create the log group on your behalf, specify `"auto_create_group":"true"`\. You can also specify the task ID as the log stream prefix, which assists in filtering\. For more information, see [Fluent Bit Plugin for CloudWatch Logs](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit/blob/master/README.md)\.
+In the log configuration options, specify the log group name and the Region it exists in\. To have Fluent Bit create the log group on your behalf, specify `"auto_create_group":"true"`, to set the fluentd\-buffer\-limit use `log-driver-buffer-limit`\. You can also specify the task ID as the log stream prefix, which assists in filtering\. For more information, see [Fluent Bit Plugin for CloudWatch Logs](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit/blob/master/README.md)\.
 
 ```
 {
-	"family": "firelens-example-cloudwatch",
-	"taskRoleArn": "arn:aws:iam::123456789012:role/ecs_task_iam_role",
-	"containerDefinitions": [
-		{
-			"essential": true,
-			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
-			"name": "log_router",
-			"firelensConfiguration": {
-				"type": "fluentbit"
-			},
-			"logConfiguration": {
-				"logDriver": "awslogs",
-				"options": {
-					"awslogs-group": "firelens-container",
-					"awslogs-region": "us-west-2",
-					"awslogs-create-group": "true",
-					"awslogs-stream-prefix": "firelens"
-				}
-			},
-			"memoryReservation": 50
-		 },
-		 {
-			 "essential": true,
-			 "image": "nginx",
-			 "name": "app",
-			 "logConfiguration": {
-				 "logDriver":"awsfirelens",
-				 "options": {
-					"Name": "cloudwatch",
-					"region": "us-west-2",
-					"log_key": "log",
-                                 "log_group_name": "/aws/ecs/containerinsights/$(ecs_cluster)/application",
-					"auto_create_group": "true",
-					"log_stream_prefix": "log_stream_name"
-				}
-			},
-			"memoryReservation": 100
-		}
-	]
+    "family": "firelens-example-cloudwatch",
+    "taskRoleArn": "arn:aws:iam::123456789012:role/ecs_task_iam_role",
+    "containerDefinitions": [
+        {
+            "essential": true,
+            "image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:latest",
+            "name": "log_router",
+            "firelensConfiguration": {
+                "type": "fluentbit"
+            },
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "firelens-container",
+                    "awslogs-region": "us-west-2",
+                    "awslogs-create-group": "true",
+                    "awslogs-stream-prefix": "firelens"
+                }
+            },
+            "memoryReservation": 50
+         },
+         {
+             "essential": true,
+             "image": "httpd",
+             "name": "app",
+             "logConfiguration": {
+                 "logDriver":"awsfirelens",
+                 "options": {
+                    "Name": "cloudwatch",
+                    "region": "us-west-2",
+                    "log_group_name": "firelens-blog",
+                    "auto_create_group": "true",
+                    "log_stream_prefix": "from-fluent-bit",
+                    "log-driver-buffer-limit": "2097152" 
+                }
+            },
+            "memoryReservation": 100        
+            }
+    ]
 }
 ```
 

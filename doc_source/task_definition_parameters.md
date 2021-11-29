@@ -572,6 +572,7 @@ This parameter requires version 1\.18 of the Docker Remote API or greater on you
 Type: string to string map  
 Required: no  
 The configuration options to send to the log driver\.  
+When you use FireLens to route logs to an AWS service or AWS Partner Network \(APN\) destination for log storage and analytics, you can can set `log-driver-buffer-limit` to the limit for the number of events buffered on the memory\. It can help to resolve potential log loss issue because high throughput could result in running out of memory for buffer inside of Docker\. For more information, see [Fluentd buffer limit](using_firelens.md#firelens-docker-buffer-limit)\.  
 This parameter requires version 1\.19 of the Docker Remote API or greater on your container instance\.  
 `secretOptions`  
 Type: object array  
@@ -1135,7 +1136,7 @@ This parameter is only supported for tasks hosted on AWS Fargate using platform 
 `ipcMode`  
 Type: String  
 Required: No  
-The IPC resource namespace to use for the containers in the task\. The valid values are `host`, `task`, or `none`\. If `host` is specified, then all containers within the tasks that specified the `host` IPC mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same IPC resources\. If `none` is specified, then IPC resources within the containers of a task are private and not shared with other containers in a task or on the container instance\. If no value is specified, then the IPC resource namespace sharing depends on the Docker daemon setting on the container instance\. For more information, see [IPC settings](https://docs.docker.com/engine/reference/run/#ipc-settings---ipc) in the *Docker run reference*\.  
+The IPC resource namespace to use for the containers in the task\. The valid values are `host`, `task`, or `none`\. If `host` is specified, then all containers within the tasks that specified the `host` IPC mode on the same container instance share the same IPC resources with the host Amazon EC2 instance\. If `task` is specified, all containers within the specified task share the same IPC resources\. If `none` is specified, then IPC resources within the containers of a task are private and not shared with other containers in a task or on the container instance\. If no value is specified, then the value for ipcMode is set to `shareable`\. For more information, see [IPC settings](https://docs.docker.com/engine/reference/run/#ipc-settings---ipc) in the *Docker run reference*\.  
 If the `host` IPC mode is used, be aware that there is a heightened risk of undesired IPC namespace exposure\. For more information, see [Docker security](https://docs.docker.com/engine/security/security/)\.  
 If you are setting namespaced kernel parameters using `systemControls` for the containers in the task, the following will apply to your IPC resource namespace\. For more information, see [System controls](#container_definition_systemcontrols)\.  
 + For tasks that use the `host` IPC mode, IPC namespace related `systemControls` are not supported\.

@@ -10,7 +10,7 @@ The `AmazonEC2ContainerServiceFullAccess` managed IAM policy was phased out as o
 ## AmazonEC2ContainerServiceRole<a name="security-iam-awsmanpol-AmazonEC2ContainerServiceRole"></a>
 
 **Important**  
-The `AmazonEC2ContainerServiceAutoscaleRole` managed IAM policy is phased out\. It's now replaced by the Amazon ECS service\-linked role\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
+The `AmazonEC2ContainerServiceRole` managed IAM policy is phased out\. It's now replaced by the Amazon ECS service\-linked role\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
 
 ## AmazonEC2ContainerServiceAutoscaleRole<a name="security-iam-awsmanpol-AmazonEC2ContainerServiceAutoscaleRole"></a>
 

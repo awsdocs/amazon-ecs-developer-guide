@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Amazon ECS support for the fluentd log\-driver\-buffer\-limit option  |  Amazon ECS supports the fluentd `log-driver-buffer-limit` option\. For more information, see [Custom log routing](using_firelens.md)\.  |  22 Nov 2021  | 
 |  The new Amazon ECS console experience updated  |  The new Amazon ECS console experience supports creating a task definition\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.  |  23 Nov 2021  | 
 |  Amazon ECS supports the 64\-bit ARM architecture for Linux\.  |  Amazon ECS supports the 64\-bit ARM CPU architecture for the Linux operating system\. For more information, see [Working with 64\-bit ARM workloads on Amazon ECS](ecs-arm64.md)\.  |  23 Nov 2021  | 
 |  Amazon ECS\-optimized Linux AMI build script  |  Amazon ECS has open\-sourced the build scripts that are used to build the Linux variants of the Amazon ECS\-optimized AMI\. For more information, see [Amazon ECS\-optimized Linux AMI build script](ecs-ami-build-scripts.md)\.  |  19 Nov 2021  | 

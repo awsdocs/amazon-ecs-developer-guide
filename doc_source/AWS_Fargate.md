@@ -57,7 +57,7 @@ When you configure a task and container definition for Fargate, you must specify
 
 There are 2 architectures available for the Amazon ECS task definition, ARM and X86\_64\.
 
-When you run Windows containers on Fargate, you must have an X86\_64 CPU architecture\.
+When you run Windows containers on Fargate, you must have the X86\_64 CPU architecture\.
 
 When you run Linux containers om Fargate, you can use the X86\_64 CPU architecture, or the ARM64 architecture for your ARM\-based applications\. For more information, see [Working with 64\-bit ARM workloads on Amazon ECS](ecs-arm64.md)\.
 

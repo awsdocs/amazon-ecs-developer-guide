@@ -70,6 +70,60 @@ Your task may also require the Amazon ECS task execution role under the followin
   }
   ```
 
+## Fluentd buffer limit<a name="firelens-docker-buffer-limit"></a>
+
+When you create a task definition, you can specify the number of events that are buffered in memory by specifying the value \(in bytes\) in the `log-driver-buffer-limit`\. For more information, see [Fluentd logging driver](https://docs.docker.com/config/containers/logging/fluentd/) in the Docker documentation\.
+
+Use this option when there is high throughput, because Docker might run out of buffer memory and discard buffer messages so it can add new messages\. The lost logs might make it difficult to troubleshoot\. Setting the buffer limit might help to prevent this issue\.
+
+The following shows the syntax for specifiying the `log-driver-buffer-limit`:
+
+```
+{
+	"containerDefinitions": [
+		{
+			"essential": true,
+			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
+			"name": "log_router",
+			"firelensConfiguration": {
+				"type": "fluentbit"
+			},
+			"logConfiguration": {
+				"logDriver": "awslogs",
+				"options": {
+					"awslogs-group": "firelens-container",
+					"awslogs-region": "us-west-2",
+					"awslogs-create-group": "true",
+					"awslogs-stream-prefix": "firelens"
+				}
+			},
+			"memoryReservation": 50
+		 },
+		 {
+			 "essential": true,
+			 "image": "httpd",
+			 "name": "app",
+			 "logConfiguration": {
+				 "logDriver":"awsfirelens",
+				 "options": {
+					"Name": "firehose",
+					"region": "us-west-2",
+					"delivery_stream": "my-stream",
+                                        "log-driver-buffer-limit":  "2097152"
+				}
+			},
+			"memoryReservation": 100		
+            }
+	]
+```
+
+The following should be considered when using FireLens for Amazon ECS with the buffer limit option:
++ This option is supported on the Amazon EC2 launch type and the Fargate launch type with platform version `1.4.0` or later\.
++ The option is only valid when `logDriver` is set to `awsfirelens`\.
++ The default buffer limit is `1` MiB\.
++ The valid values are `0` and `536870912` \(512 MiB\)\.
++ The total amount of memory allocated at the task level must be greater than the amount of memory allocated for all the containers in addition to the memory buffer limit\. The total amount of buffer memory specified must be less than `536870912` \(512MiB\) when you don't specify the container `memory` and `memoryReservertion` values\. More specifically, you can have an app container with the `awsfirelens` log driver and the `log-driver-buffer-limit` option set to 300 MiB\. However, you won’t be allowed to run tasks if you have more than two containers with the` log-driver-buffer-limit` set to 300MiB \(300 MiB \* 2 > 512 MiB\)\.
+
 ## Using Fluent logger libraries or Log4j over TCP<a name="firelens-fluent-logger"></a>
 
 When the `awsfirelens` log driver is specified in a task definition, the Amazon ECS container agent injects the following environment variables into the container:

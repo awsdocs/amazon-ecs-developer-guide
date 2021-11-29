@@ -12,7 +12,7 @@ Amazon ECS converts the log configuration and generates the Fluentd or Fluent Bi
 **Important**  
 FireLens listens on port `24224`, so to ensure that the FireLens log router isn't reachable outside of the task you should not allow ingress traffic on port `24224` in the security group your task uses\. For tasks using the `awsvpc` network mode, this is the security group associated with the task\. For tasks using the `host` network mode, this is the security group associated with the Amazon EC2 instance hosting the task\. For tasks using the `bridge` network mode, don't create any port mappings that use port `24224`\.
 
-The following task definition example defines a log router container that uses Fluent Bit to route its logs to CloudWatch Logs\. It also defines an application container that uses a log configuration to route logs to Amazon Kinesis Data Firehose\.
+The following task definition example defines a log router container that uses Fluent Bit to route its logs to CloudWatch Logs\. It also defines an application container that uses a log configuration to route logs to Amazon Kinesis Data Firehose and sets the memory used to buffer events to the 2 MiB\.
 
 ```
 {
@@ -46,7 +46,8 @@ The following task definition example defines a log router container that uses F
 				 "options": {
 					"Name": "firehose",
 					"region": "us-west-2",
-					"delivery_stream": "my-stream"
+					"delivery_stream": "my-stream",
+                                        "log-driver-buffer-limit": "2097152"
 				}
 			},
 			"memoryReservation": 100		

@@ -32,7 +32,7 @@ An AWS Outposts is an extension of an AWS Region, and you can extend an Amazon V
 
  **AWS CLI** 
 
- To create an Amazon ECS cluster on an AWS Outposts with the AWS CLI, specify a security group and a subnet that is associated with your AWS Outposts\.
+ To create an Amazon ECS cluster on an AWS Outposts with the AWS CLI, specify a security group and a subnet to associate with your AWS Outposts\.
 
 To create a subnet associated with your AWS Outposts\.
 
@@ -105,7 +105,7 @@ In order to avoid delays caused by pulling container images from Amazon ECR in t
 **Note**  
 This command is also used when adding additional instances to the cluster\. Any containers deployed in the cluster will be placed on that specific AWS Outposts\.
 
-1. Register a task definition\.
+1. Register your task definition\. Use the following command and substitute `ecs-task.json` with the name of your task definition\.
 
    ```
    aws ecs register-task-definition -~-~cli-input-json file://ecs-task.json

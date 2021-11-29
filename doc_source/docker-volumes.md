@@ -13,7 +13,7 @@ Some common use cases for Docker volumes are:
 ## Docker volume considerations<a name="docker-volume-considerations"></a>
 
 The following should be considered when using Docker volumes:
-+ Docker volumes are only supported when using the EC2 launch type\.
++ Docker volumes are only supported when using the EC2 launch type or external instances\.
 + Windows containers only support the use of the `local` driver\.
 + If a third\-party driver is used, it should be installed and active on the container instance prior to the container agent starting\. If the third\-party driver isn't active prior to the agent starting, you can restart the container agent using one of the following commands:
   + For the Amazon ECS\-optimized Amazon Linux 2 AMI:
