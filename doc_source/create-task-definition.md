@@ -26,7 +26,7 @@ Create your task definitions using the new Amazon ECS console experience\. To ma
 
 1. For **App environment**, choose **AWS Fargate \(serverless\)**, **Amazon EC2 instances**, or both\. Amazon ECS performs validation using this value to ensure the task definition parameters are valid for the infrastructure type\.
 
-1. For **Operating system/Architecture**, choose the operating system and CPU architectire for the task\. 
+1. For **Operating system/Architecture**, choose the operating system and CPU architecture for the task\. 
 
    To run your task on a 64\-bit ARM architecture, select **Linux/ARM64**\. For more information, see [Runtime platform](task_definition_parameters.md#runtime-platform)\.
 

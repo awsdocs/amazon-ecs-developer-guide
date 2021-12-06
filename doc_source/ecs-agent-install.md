@@ -70,7 +70,7 @@ To install the Amazon ECS container agent on an Amazon Linux AMI EC2 instance us
 1. Start the `ecs-init` upstart job\.
 
    ```
-   [ec2-user ~]$ sudo start ecs
+   [ec2-user ~]$ sudo service start ecs
    ```
 
    Output:

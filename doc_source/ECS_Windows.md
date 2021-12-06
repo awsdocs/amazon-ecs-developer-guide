@@ -23,7 +23,6 @@ The Amazon ECS\-optimized Windows Server 1909 Core AMI is being deprecated\. No 
 + [Windows task definitions](windows_task_definitions.md)
 + [Windows IAM roles for tasks](windows_task_IAM_roles.md)
 + [Pushing Windows images to Amazon ECR](windows_ecr.md)
-+ [Building your own Amazon ECS\-optimized Windows AMI](windows-custom-ami.md)
 + [Using gMSAs for Windows Containers](windows-gmsa.md)
 
 ## Windows container caveats<a name="windows_caveats"></a>

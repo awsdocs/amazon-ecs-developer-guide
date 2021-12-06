@@ -35,6 +35,12 @@ The following variants of the Amazon ECS\-optimized AMI are available for your A
 **Important**  
 On April 15, 2021, the Amazon ECS\-optimized Amazon Linux AMI ended its standard support phase and entered a maintenance support phase\. In the maintenance support phase, Amazon ECS will continue providing critical and important security updates for a reduced list of packages\. During this period, Amazon ECS will no longer add support for new EC2 instance types, new services and features, and new packages\. Instead, Amazon ECS will provide updates only for critical and important security fixes that apply to a reduced set of packages\. Maintenance support period will end on June 30, 2023\.
 
+## Amazon ECS\-optimized AMI changelog<a name="ecs-optimized-ami-linux-releasenotes"></a>
+
+Amazon ECS provides a changelog for the Linux variant of the Amazon ECS\-optimized AMI on GitHub\. For more information, see [Changelog](https://github.com/aws/amazon-ecs-ami/blob/main/CHANGELOG.md)\.
+
+The Linux variants of the Amazon ECS\-optimized AMI use the Amazon Linux 2 AMI as their base\. The Amazon Linux 2 source AMI name for each variant can be retrieved by querying the Systems Manager Parameter Store API\. For more information, see [Retrieving Amazon ECS\-Optimized AMI metadata](retrieve-ecs-optimized_AMI.md)\. The Amazon Linux 2 AMI release notes are available as well\. For more information, see [Amazon Linux 2 release notes](http://aws.amazon.com/amazon-linux-2/release-notes/)\.
+
 ## Linux Amazon ECS\-optimized AMI<a name="ecs-optimized-ami-linux"></a>
 
 The following are the details for retrieving the AMI IDs for each of the Linux variants of the Amazon ECS\-optimized AMI\.

@@ -7,7 +7,8 @@ With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discou
 ## Fargate capacity provider considerations<a name="fargate-capacity-providers-considerations"></a>
 
 The following should be considered when using Fargate capacity providers\.
-+ The Fargate Spot capacity provider is not support for Windows containers on Fargate\.
++ The Fargate Spot capacity provider is not supported for Windows containers on Fargate\.
++ The Fargate Spot capacity provider is not supported for Linux tasks with the ARM64 architecture, Fargate Spot only supports Linux tasks with the X86\_64 architecture\.
 + The Fargate and Fargate Spot capacity providers don't need to be created\. They are available to all accounts and only need to be associated with a cluster to be available for use\.
 + To associate Fargate and Fargate Spot capacity providers to an existing cluster, you must use the Amazon ECS API or AWS CLI\. For more information, see [Adding Fargate capacity providers to an existing cluster](#fargate-capacity-providers-existing-cluster)\.
 + The Fargate and Fargate Spot capacity providers are reserved and cannot be deleted\. You can disassociate them from a cluster using the PutClusterCapacityProviders API\.

@@ -6,7 +6,7 @@ There are two models you can use to run your containers:
 
 How you architect your application on Amazon ECS depends on several factors, with the launch type you are using being a key differentiator\. We give the following guidance, broken down by launch type, which should assist in the process\.
 
-## Using the Fargate launch type<a name="w394aac17c15b9"></a>
+## Using the Fargate launch type<a name="w395aac17c15b9"></a>
 
 The Fargate launch type is good for the following workloads:
 + Large workloads that need to be optimized for low overhead 
@@ -24,7 +24,7 @@ When the following conditions are required, we recommend that you deploy your co
 
 Otherwise, you should define your containers in separate tasks definitions so that you can scale, provision, and deprovision them separately\.
 
-## Using the EC2 launch type<a name="w394aac17c15c11"></a>
+## Using the EC2 launch type<a name="w395aac17c15c11"></a>
 
 The EC2 launch type is good for large workloads that need to be optimized for price\.
 

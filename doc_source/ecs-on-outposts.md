@@ -50,9 +50,9 @@ The following example creates an Amazon ECS cluster on an AWS Outposts\.
 
    ```
    aws iam create-role –-role-name ecsRole \
-       –assume-role-policy-document file://ecs-policy.json
-   aws iam put-role-policy –-role-name ecsRole –-policy-name ecsRolePolicy \
-       –-policy-document file://role-policy.json
+       --assume-role-policy-document file://ecs-policy.json
+   aws iam put-role-policy --role-name ecsRole --policy-name ecsRolePolicy \
+       --policy-document file://role-policy.json
    ```
 
 1. Create an IAM instance profile with rights on AWS Outposts\.
@@ -75,7 +75,7 @@ The following example creates an Amazon ECS cluster on an AWS Outposts\.
    aws ec2 create-security-group --group-name MyOutpostSG
    aws ec2 authorize-security-group-ingress --group-name MyOutpostSG --protocol tcp \
        --port 22 --cidr 10.0.3.0/24
-   aws ec2 authorize-security-group-ingress -~-~group-name MyOutpostSG -~-~protocol tcp \
+   aws ec2 authorize-security-group-ingress --group-name MyOutpostSG --protocol tcp \
        --port 80 --cidr 10.0.3.0/24
    ```
 
@@ -108,7 +108,7 @@ This command is also used when adding additional instances to the cluster\. Any 
 1. Register your task definition\. Use the following command and substitute `ecs-task.json` with the name of your task definition\.
 
    ```
-   aws ecs register-task-definition -~-~cli-input-json file://ecs-task.json
+   aws ecs register-task-definition --cli-input-json file://ecs-task.json
    ```
 
 1. Run the task or create the service\.
@@ -124,8 +124,8 @@ This command is also used when adding additional instances to the cluster\. Any 
 #### [ Create the service ]
 
    ```
-   aws ecs create-service –-cluster mycluster –-service-name outpost-service \
-       –-task-definition outpost-app:1 –-desired-count 1
+   aws ecs create-service –-cluster mycluster --service-name outpost-service \
+       --task-definition outpost-app:1 --desired-count 1
    ```
 
 ------

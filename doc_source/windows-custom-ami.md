@@ -17,8 +17,6 @@ When creating an EC2 Image Builder recipe and specifying the `ecs-optimized-ami-
 
 **To list the available `ecs-optimized-ami-windows` component versions**
 
-1. Open the EC2 Image Builder console at [https://console\.aws\.amazon\.com/imagebuilder/](https://console.aws.amazon.com/imagebuilder/)\.
-
 1. On the navigation bar, select the Region that are building your image in\.
 
 1. In the navigation pane, under the **Saved configurations** menu, choose **Components**\.
