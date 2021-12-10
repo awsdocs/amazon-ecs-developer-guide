@@ -80,41 +80,42 @@ The following shows the syntax for specifiying the `log-driver-buffer-limit`:
 
 ```
 {
-	"containerDefinitions": [
-		{
-			"essential": true,
-			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
-			"name": "log_router",
-			"firelensConfiguration": {
-				"type": "fluentbit"
-			},
-			"logConfiguration": {
-				"logDriver": "awslogs",
-				"options": {
-					"awslogs-group": "firelens-container",
-					"awslogs-region": "us-west-2",
-					"awslogs-create-group": "true",
-					"awslogs-stream-prefix": "firelens"
-				}
-			},
-			"memoryReservation": 50
-		 },
-		 {
-			 "essential": true,
-			 "image": "httpd",
-			 "name": "app",
-			 "logConfiguration": {
-				 "logDriver":"awsfirelens",
-				 "options": {
-					"Name": "firehose",
-					"region": "us-west-2",
-					"delivery_stream": "my-stream",
-                                        "log-driver-buffer-limit":  "2097152"
-				}
-			},
-			"memoryReservation": 100		
-            }
-	]
+    "containerDefinitions": [
+        {
+            "essential": true,
+            "image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
+            "name": "log_router",
+            "firelensConfiguration": {
+                "type": "fluentbit"
+            },
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "firelens-container",
+                    "awslogs-region": "us-west-2",
+                    "awslogs-create-group": "true",
+                    "awslogs-stream-prefix": "firelens"
+                }
+            },
+            "memoryReservation": 50
+        },
+        {
+            "essential": true,
+            "image": "httpd",
+            "name": "app",
+            "logConfiguration": {
+                "logDriver": "awsfirelens",
+                "options": {
+                    "Name": "firehose",
+                    "region": "us-west-2",
+                    "delivery_stream": "my-stream",
+                    "log-driver-buffer-limit": "2097152"
+                }
+            },
+            "memoryReservation": 100
+        }
+    ]
+}
 ```
 
 The following should be considered when using FireLens for Amazon ECS with the buffer limit option:

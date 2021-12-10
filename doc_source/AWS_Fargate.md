@@ -14,7 +14,7 @@ For information about the Regions that support Windows containers on Fargate, se
 
 ## Task definitions<a name="fargate-task-defs"></a>
 
-Amazon ECS tasks on Fargate do not support all of the task definition parameters that are available\. Some parameters are not supported at all, and others behave differently for Fargate tasks\.
+Amazon ECS tasks on AWS Fargate do not support all of the task definition parameters that are available\. Some parameters are not supported at all, and others behave differently for Fargate tasks\.
 
 The following task definition parameters are not valid in Fargate tasks:
 + `disableNetworking`
@@ -33,7 +33,7 @@ The following task definition parameters are not valid in Fargate tasks:
 The following task definition parameters are valid in Fargate tasks, but have limitations that should be noted:
 + `linuxParameters` – When specifying Linux\-specific options that are applied to the container, for `capabilities` the `add` parameter is not supported\. The `devices`, `sharedMemorySize`, and `tmpfs` parameters are not supported\. For more information, see [Linux parameters](task_definition_parameters.md#container_definition_linuxparameters)\.
 + `volumes` – Fargate tasks only support bind mount host volumes, so the `dockerVolumeConfiguration` parameter is not supported\. For more information, see [Volumes](task_definition_parameters.md#volumes)\.
-+ `cpu` \- For Windows containers on Fargate, the value cannot be less than 1 vCPU\.
++ `cpu` \- For Windows containers on AWS Fargate, the value cannot be less than 1 vCPU\.
 
 To ensure that your task definition validates for use with Fargate, you can specify the following when you register the task definition: 
 + In the AWS Management Console, for the **Requires Compatibilities** field, specify `FARGATE`\.
@@ -42,13 +42,13 @@ To ensure that your task definition validates for use with Fargate, you can spec
 
 ### Network mode<a name="fargate-tasks-networkmode"></a>
 
-Amazon ECS task definitions for Fargate require that the network mode is set to `awsvpc`\. The `awsvpc` network mode provides each task with its own elastic network interface\. For more information, see [Fargate task networking](https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-task-networking.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
+Amazon ECS task definitions for AWS Fargate require that the network mode is set to `awsvpc`\. The `awsvpc` network mode provides each task with its own elastic network interface\. For more information, see [AWS Fargate task networking](https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-task-networking.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
-A network configuration is also required when creating a service or manually running tasks\. For more information, see [Fargate task networking ](https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-task-networking.html)in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
+A network configuration is also required when creating a service or manually running tasks\. For more information, see [AWS Fargate task networking ](https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-task-networking.html)in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
 ### Task Operating Systems<a name="fargate-task-os"></a>
 
-When you configure a task and container definition for Fargate, you must specify the Operating System that the container runs\. The following Operating Systems are supported for Fargate:
+When you configure a task and container definition for AWS Fargate, you must specify the Operating System that the container runs\. The following Operating Systems are supported for AWS Fargate:
 + Amazon Linux 2
 + Windows Server 2019 Full
 + Windows Server 2019 Core
@@ -57,16 +57,16 @@ When you configure a task and container definition for Fargate, you must specify
 
 There are 2 architectures available for the Amazon ECS task definition, ARM and X86\_64\.
 
-When you run Windows containers on Fargate, you must have the X86\_64 CPU architecture\.
+When you run Windows containers on AWS Fargate, you must have the X86\_64 CPU architecture\.
 
-When you run Linux containers on Fargate, you can use the X86\_64 CPU architecture, or the ARM64 architecture for your ARM\-based applications\. For more information, see [Working with 64\-bit ARM workloads on Amazon ECS](ecs-arm64.md)\.
+When you run Linux containers on AWS Fargate, you can use the X86\_64 CPU architecture, or the ARM64 architecture for your ARM\-based applications\. For more information, see [Working with 64\-bit ARM workloads on Amazon ECS](ecs-arm64.md)\.
 
 ### Task CPU and memory<a name="fargate-tasks-size"></a>
 
-Amazon ECS task definitions for Fargate require that you specify CPU and memory at the task level\. Although you can also specify CPU and memory at the container level for Fargate tasks, this is optional\. Most use cases are satisfied by only specifying these resources at the task level\. The table below shows the valid combinations of task\-level CPU and memory\.
+Amazon ECS task definitions for AWS Fargate require that you specify CPU and memory at the task level\. Although you can also specify CPU and memory at the container level for Fargate tasks, this is optional\. Most use cases are satisfied by only specifying these resources at the task level\. The table below shows the valid combinations of task\-level CPU and memory\.
 
 
-| CPU value | Memory value | Operating systems supported for Fargate  | 
+| CPU value | Memory value | Operating systems supported for AWS Fargate  | 
 | --- | --- | --- | 
 | 256 \(\.25 vCPU\) | 512 MB, 1 GB, 2 GB | Linux | 
 | 512 \(\.5 vCPU\) | 1 GB, 2 GB, 3 GB, 4 GB | Linux | 
@@ -76,9 +76,9 @@ Amazon ECS task definitions for Fargate require that you specify CPU and memory 
 
 ### Task resource limits<a name="fargate-resource-limits"></a>
 
-Amazon ECS task definitions for Linux containers on Fargate support the `ulimits` parameter to define the resource limits to set for a container\.
+Amazon ECS task definitions for Linux containers on AWS Fargate support the `ulimits` parameter to define the resource limits to set for a container\.
 
-Amazon ECS task definitions for Windows on Fargate do not support the `ulimits` parameter to define the resource limits to set for a container\.
+Amazon ECS task definitions for Windows on AWS Fargate do not support the `ulimits` parameter to define the resource limits to set for a container\.
 
 Amazon ECS tasks hosted on Fargate use the default resource limit values set by the operating system with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\.
 
@@ -98,7 +98,7 @@ For more information on the other resource limits that can be adjusted, see [Res
 
 ### Logging<a name="fargate-tasks-logging"></a>
 
-Amazon ECS task definitions for Fargate support the `awslogs`, `splunk`, and `firelens` log drivers for the log configuration\.
+Amazon ECS task definitions for AWS Fargate support the `awslogs`, `splunk`, and `firelens` log drivers for the log configuration\.
 
 The `awslogs` log driver configures your Fargate tasks to send log information to Amazon CloudWatch Logs\. The following shows a snippet of a task definition where the `awslogs` log driver is configured:
 
@@ -229,11 +229,11 @@ For Amazon ECS tasks hosted on Fargate, the following storage types are supporte
 
 ## Tasks and services<a name="fargate-tasks-services"></a>
 
-After you have your Amazon ECS task definitions for Fargate prepared, there are some decisions to make when creating your service\.
+After you have your Amazon ECS task definitions for AWS Fargate prepared, there are some decisions to make when creating your service\.
 
 ### Task networking<a name="fargate-tasks-services-networking"></a>
 
-Amazon ECS tasks for Fargate require the `awsvpc` network mode, which provides each task with an elastic network interface\. When you run a task or create a service with this network mode, you must specify one or more subnets to attach the network interface and one or more security groups to apply to the network interface\. 
+Amazon ECS tasks for AWS Fargate require the `awsvpc` network mode, which provides each task with an elastic network interface\. When you run a task or create a service with this network mode, you must specify one or more subnets to attach the network interface and one or more security groups to apply to the network interface\. 
 
 If you are using public subnets, decide whether to provide a public IP address for the network interface\. For a Fargate task in a public subnet to pull container images, a public IP address needs to be assigned to the task's elastic network interface, with a route to the internet or a NAT gateway that can route requests to the internet\. For a Fargate task in a private subnet to pull container images, you need a NAT gateway in the subnet to route requests to the internet\. When you host your container images in Amazon ECR, you can configure Amazon ECR to use an interface VPC endpoint\. In this case, the task's private IPv4 address is used for the image pull\. For more information about Amazon ECR interface endpoints, see [Amazon ECR interface VPC endpoints \(AWS PrivateLink\)](https://docs.aws.amazon.com/AmazonECR/latest/userguide/vpc-endpoints.html) in the *Amazon Elastic Container Registry User Guide*\.
 
@@ -251,13 +251,13 @@ The following is an example of the networkConfiguration section for a Fargate se
 
 ### Service load balancing<a name="fargate-tasks-services-load-balancing"></a>
 
-Your Amazon ECS service on Fargate can optionally be configured to use Elastic Load Balancing to distribute traffic evenly across the tasks in your service\.
+Your Amazon ECS service on AWS Fargate can optionally be configured to use Elastic Load Balancing to distribute traffic evenly across the tasks in your service\.
 
-Amazon ECS services on Fargate support the Application Load Balancer and Network Load Balancer load balancer types\. Application Load Balancers are used to route HTTP/HTTPS \(or layer 7\) traffic\. Network Load Balancers are used to route TCP or UDP \(or layer 4\) traffic\. For more information, see [Load balancer types](load-balancer-types.md)\.
+Amazon ECS services on AWS Fargate support the Application Load Balancer and Network Load Balancer load balancer types\. Application Load Balancers are used to route HTTP/HTTPS \(or layer 7\) traffic\. Network Load Balancers are used to route TCP or UDP \(or layer 4\) traffic\. For more information, see [Load balancer types](load-balancer-types.md)\.
 
 When you create a target group for these services, you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\. For more information, see [Service load balancing](service-load-balancing.md)\.
 
-Using a Network Load Balancer to route UDP traffic to your Amazon ECS on Fargate tasks is only supported when using platform version 1\.4 or and for tasks launched in the following Regions:
+Using a Network Load Balancer to route UDP traffic to your Amazon ECS on AWS Fargate tasks is only supported when using platform version 1\.4 or and for tasks launched in the following Regions:
 + US East \(N\. Virginia\) \- `us-east-1`
 + US West \(Oregon\) \- `us-west-2`
 + EU \(Ireland\) \- `eu-west-1`
@@ -265,7 +265,7 @@ Using a Network Load Balancer to route UDP traffic to your Amazon ECS on Fargate
 
 ## Private registry authentication<a name="fargate-private-auth-reg"></a>
 
-Amazon ECS tasks for Fargate can authenticate with private image registries, including Docker Hub, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\.
+Amazon ECS tasks for AWS Fargate can authenticate with private image registries, including Docker Hub, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\.
 
 To use private registry authentication, you create a secret with AWS Secrets Manager containing the credentials for your private registry\. Then, within your container definition, you specify `repositoryCredentials` with the full ARN of the secret that you created\. The following snippet of a task definition shows the required parameters:
 
@@ -290,19 +290,19 @@ For more information about Amazon ECS clusters, including a walkthrough for crea
 
 ## Fargate Spot<a name="fargate-spot"></a>
 
-Amazon ECS capacity providers enable you to use both Fargate and Fargate Spot capacity with your Amazon ECS tasks\.
+Amazon ECS capacity providers enable you to use both AWS Fargate and Fargate Spot capacity with your Amazon ECS tasks\.
 
-Windows containers on Fargate cannot use the Fargate Spot capacity provider\.
+Windows containers on AWS Fargate cannot use the Fargate Spot capacity provider\.
 
-With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discounted rate compared to the Fargate price\. Fargate Spot runs tasks on spare compute capacity\. When AWS needs the capacity back, your tasks will be interrupted with a two\-minute warning\. For more information, see [AWS Fargate capacity providers](fargate-capacity-providers.md)\.
+With Fargate Spot you can run interruption tolerant Amazon ECS tasks at a discounted rate compared to the AWS Fargate price\. Fargate Spot runs tasks on spare compute capacity\. When AWS needs the capacity back, your tasks will be interrupted with a two\-minute warning\. For more information, see [AWS Fargate capacity providers](fargate-capacity-providers.md)\.
 
 ## Usage metrics<a name="fargate-usage-metrics"></a>
 
 You can use CloudWatch usage metrics to provide visibility into your accounts usage of resources\. Use these metrics to visualize your current service usage on CloudWatch graphs and dashboards\.
 
-AWS Fargate usage metrics correspond to AWS service quotas\. You can configure alarms that alert you when your usage approaches a service quota\. For more information about Fargate service quotas, see [AWS Fargate service quotas](service-quotas.md#service-quotas-fargate)\.
+AWS Fargate usage metrics correspond to AWS service quotas\. You can configure alarms that alert you when your usage approaches a service quota\. For more information about AWS Fargate service quotas, see [AWS Fargate service quotas](service-quotas.md#service-quotas-fargate)\.
 
-For more information about AWS Fargate usage metrics, see [Fargate usage metrics](https://docs.aws.amazon.com/AmazonECS/latest/userguide/monitoring-fargate-usage.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
+For more information about AWS Fargate usage metrics, see [AWS Fargate usage metrics](https://docs.aws.amazon.com/AmazonECS/latest/userguide/monitoring-fargate-usage.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
 ## Task maintenance<a name="fargate-task-retirement"></a>
 
@@ -316,9 +316,9 @@ The following table describes these scenarios\.
 
 Savings Plans are a pricing model that offer significant savings on AWS usage\. You commit to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years, and receive a lower price for that usage\. For more information, see the [Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)\.
 
-To create a Savings Plan for your Fargate usage, use the **Compute Savings Plans** type\. To get started, see [Getting started with Savings Plans](https://docs.aws.amazon.com/savingsplans/latest/userguide/get-started.html) in the *Savings Plans User Guide*\.
+To create a Savings Plan for your AWS Fargate usage, use the **Compute Savings Plans** type\. To get started, see [Getting started with Savings Plans](https://docs.aws.amazon.com/savingsplans/latest/userguide/get-started.html) in the *Savings Plans User Guide*\.
 
-## Windows containers on Fargate considerations<a name="windows-considerations"></a>
+## Windows containers on AWS Fargate considerations<a name="windows-considerations"></a>
 
 Windows containers on AWS Fargate supports the following operating systems:
 + Windows Server 2019 Full

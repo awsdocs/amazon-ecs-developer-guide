@@ -29,6 +29,24 @@ The `awslogs` log driver can send log streams to an existing log group in CloudW
 **Note**  
 To use the `awslogs-create-group` option to have your log group created, your IAM policy must include the `logs:CreateLogGroup` permission\.
 
+The following code shows how to set the `awslogs-create-group` option\.
+
+```
+{
+    "containerDefinitions": [
+        {
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "firelens-container",
+                    "awslogs-region": "us-west-2",
+                    "awslogs-create-group": "true",
+                    "awslogs-stream-prefix": "firelens"
+                }
+            }
+}
+```
+
 ### Using the auto\-configuration feature to create a log group<a name="create_awslogs_loggroups_auto"></a>
 
 When registering a task definition in the Amazon ECS console, you have the option to allow Amazon ECS to auto\-configure your CloudWatch logs\. This option creates a log group on your behalf using the task definition family name with `ecs` as the prefix\.

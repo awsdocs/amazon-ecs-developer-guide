@@ -233,7 +233,7 @@ You must delete all Amazon ECS clusters in all AWS Regions before you can delete
 
 1. Force deregister all container instances from all clusters in all regions\. For more information, see [Deregister an Amazon EC2 backed container instance](deregister_container_instance.md)\.
 
-1. Delete all Amazon ECS clusters in all regions\. For more information, see [Deleting a cluster](delete_cluster.md)\.
+1. Delete all Amazon ECS clusters in all regions\. For more information, see [Deleting a cluster using the classic console](delete_cluster.md)\.
 
 ### Deleting a Service\-Linked Role in IAM \(Console\)<a name="delete-service-linked-role-iam-console"></a>
 

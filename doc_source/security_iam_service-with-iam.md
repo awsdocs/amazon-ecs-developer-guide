@@ -135,6 +135,7 @@ Amazon ECS implements the following service\-specific condition keys\.
 |  ecs:ResourceTag/$\{TagKey\}  |  The context key is formatted `"ecs:ResourceTag/tag-key":"tag-value"` where *tag\-key*and *tag\-value* are a tag key and value pair\. Checks that the tag attached to the identity resource \(user or role\) matches the specified key name and value\.  | String | 
 |  ecs:cluster  |  The context key is formatted `"ecs:cluster":"cluster-arn"` where *cluster\-arn* is the ARN for the Amazon ECS cluster\.  |  ARN, Null  | 
 |  ecs:container\-instances  |  The context key is formatted `"ecs:container-instances":"container-instance-arns"` where *container\-instance\-arns* is one or more container instance ARNs\.  |  ARN, Null  | 
+| ecs:container\-name |  The context key is formatted `"ecs:container-name":"container-name"` where *container\-instance\-* is the name of an Amazon ECS container which is defined in the ECS task definition   | String | 
 |  ecs:task\-definition  |  The context key is formatted `"ecs:task-definition":"task-definition-arn"` where *task\-definition\-arn* is the ARN for the Amazon ECS task definition\.  | ARN, Null | 
 |  ecs:service  |  The context key is formatted `"ecs:service":"service-arn"` where *service\-arn* is the ARN for the Amazon ECS service\.  | ARN, Null | 
 

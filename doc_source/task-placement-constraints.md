@@ -17,6 +17,15 @@ The `memberOf` task placement constraint can be specified with the following act
 + Creating a new task definition
 + Creating a new revision of an existing task definition
 
+`ecs.os-family`  
+LINUX or WINDOWS\_SERVER\_<OS\_Release>\_<FULL or CORE>\.  
+The valid values are `LINUX` or `WINDOWS_SERVER_<OS_Release>_<FULL or CORE>`\. For example, `WINDOWS_SERVER_2022_FULL`, `WINDOWS_SERVER_2022_CORE`, `WINDOWS_SERVER_20H2_CORE`, `WINDOWS_SERVER_2019_FULL`, `WINDOWS_SERVER_2019_CORE`, and `WINDOWS_SERVER_2016_FULL`\.  
+The `ecs.os-family` task placement constraint can be specified with the following actions:  
++ Running a task
++ Creating a new service
++ Creating a new task definition
++ Creating a new revision of an existing task definition
+
 ## Attributes<a name="attributes"></a>
 
 You can add custom metadata to your container instances, known as *attributes*\. Each attribute has a name and an optional string value\. You can use the built\-in attributes provided by Amazon ECS or define custom attributes\.

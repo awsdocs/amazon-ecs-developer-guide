@@ -33,5 +33,6 @@ Your entire application stack does not need to be on a single task definition, a
 + [Specifying sensitive data](specifying-sensitive-data.md)
 + [Specifying environment variables](taskdef-envfiles.md)
 + [Example task definitions](example_task_definitions.md)
++ [Updating a task definition using the new console](update-task-definition-console-v2.md)
 + [Updating a task definition using the classic console](update-task-definition.md)
 + [Deregistering a task definition revision](deregister-task-definition.md)

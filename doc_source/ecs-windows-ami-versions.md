@@ -31,7 +31,7 @@ aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-20
 ```
 
 ------
-#### [ Windows Server 2022Core AMI versions ]
+#### [ Windows Server 2022 Core AMI versions ]
 
 The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 2022 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
 

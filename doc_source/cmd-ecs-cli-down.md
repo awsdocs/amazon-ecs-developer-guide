@@ -7,7 +7,7 @@ The Amazon ECS CLI can only manage tasks, services, and container instances that
 
 The ecs\-cli down command attempts to delete the cluster specified in `~/.ecs/config`\. However, if there are any active services \(even with a desired count of 0\) or registered container instances in your cluster that were not created by ecs\-cli up, the cluster is not deleted and the services and pre\-existing container instances remain active\. This might happen, for example, if you used an existing ECS cluster with registered container instances, such as the default cluster\.
 
-If you have remaining services or container instances in your cluster that you would like to remove, you can follow the procedures in [Deleting a cluster](delete_cluster.md) to delete your cluster\.
+If you have remaining services or container instances in your cluster that you would like to remove, you can follow the procedures in [Deleting a cluster using the classic console](delete_cluster.md) to delete your cluster\.
 
 **Important**  
 Some features described might only be available with the latest version of the Amazon ECS CLI\. For more information about obtaining the latest version, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.

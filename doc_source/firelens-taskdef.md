@@ -16,43 +16,43 @@ The following task definition example defines a log router container that uses F
 
 ```
 {
-	"family": "firelens-example-firehose",
-	"taskRoleArn": "arn:aws:iam::123456789012:role/ecs_task_iam_role",
-	"containerDefinitions": [
-		{
-			"essential": true,
-			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
-			"name": "log_router",
-			"firelensConfiguration": {
-				"type": "fluentbit"
-			},
-			"logConfiguration": {
-				"logDriver": "awslogs",
-				"options": {
-					"awslogs-group": "firelens-container",
-					"awslogs-region": "us-west-2",
-					"awslogs-create-group": "true",
-					"awslogs-stream-prefix": "firelens"
-				}
-			},
-			"memoryReservation": 50
-		 },
-		 {
-			 "essential": true,
-			 "image": "httpd",
-			 "name": "app",
-			 "logConfiguration": {
-				 "logDriver":"awsfirelens",
-				 "options": {
-					"Name": "firehose",
-					"region": "us-west-2",
-					"delivery_stream": "my-stream",
-                                        "log-driver-buffer-limit": "2097152"
-				}
-			},
-			"memoryReservation": 100
-            }
-	]
+    "family": "firelens-example-firehose",
+    "taskRoleArn": "arn:aws:iam::123456789012:role/ecs_task_iam_role",
+    "containerDefinitions": [
+        {
+            "essential": true,
+            "image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
+            "name": "log_router",
+            "firelensConfiguration": {
+                "type": "fluentbit"
+            },
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "firelens-container",
+                    "awslogs-region": "us-west-2",
+                    "awslogs-create-group": "true",
+                    "awslogs-stream-prefix": "firelens"
+                }
+            },
+            "memoryReservation": 50
+        },
+        {
+            "essential": true,
+            "image": "httpd",
+            "name": "app",
+            "logConfiguration": {
+                "logDriver": "awsfirelens",
+                "options": {
+                    "Name": "firehose",
+                    "region": "us-west-2",
+                    "delivery_stream": "my-stream",
+                    "log-driver-buffer-limit": "2097152"
+                }
+            },
+            "memoryReservation": 100
+        }
+    ]
 }
 ```
 
@@ -81,19 +81,19 @@ The following shows the syntax required when specifying an Amazon ECS log metada
 
 ```
 {
-	"containerDefinitions": [
-		{
-			"essential": true,
-			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
-			"name": "log_router",
-			"firelensConfiguration": {
-				"type": "fluentbit",
-				"options": {
-					"enable-ecs-log-metadata": "true | false"
-				}
-			}
-		}
-	]
+   "containerDefinitions":[
+      {
+         "essential":true,
+         "image":"906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
+         "name":"log_router",
+         "firelensConfiguration":{
+            "type":"fluentbit",
+            "options":{
+               "enable-ecs-log-metadata":"true | false"
+            }
+         }
+      }
+   ]
 }
 ```
 
@@ -122,20 +122,20 @@ The following shows the syntax required when specifying a custom configuration:
 
 ```
 {
-	"containerDefinitions": [
-		{
-			"essential": true,
-			"image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
-			"name": "log_router",
-			"firelensConfiguration": {
-				"type": "fluentbit",
-				"options": {
-					"config-file-type": "s3 | file",
-					"config-file-value": "arn:aws:s3:::mybucket/fluent.conf | filepath"
-				}
-			}
-		}
-	]
+   "containerDefinitions":[
+      {
+         "essential":true,
+         "image":"906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
+         "name":"log_router",
+         "firelensConfiguration":{
+            "type":"fluentbit",
+            "options":{
+               "config-file-type":"s3 | file",
+               "config-file-value":"arn:aws:s3:::mybucket/fluent.conf | filepath"
+            }
+         }
+      }
+   ]
 }
 ```
 

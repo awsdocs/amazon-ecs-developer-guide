@@ -41,6 +41,14 @@ Create your task definitions using the new Amazon ECS console experience\. To ma
 **Note**  
 Task\-level CPU and memory parameters are ignored for Windows containers\.
 
+1. Expand the **Container size** section to specify the amount \(in MiB\) of memory to present to the container and the number of cpu units the Amazon ECS container agent will reserve for the container\. 
+
+   If your container attempts to exceed the memory specified, the container is killed\. The total amount of memory reserved for all containers within a task must be lower than the **Task size Memory** value, if one is specified\.
+
+   The total amount of CPU reserved for all containers within a task must be lower than the task\-level `cpu` value\.
+**Note**  
+You can determine the number of CPU units that are available per Amazon EC2 instance type by multiplying the number of vCPUs listed for that instance type on the [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) detail page by 1,024\. For example, the value for a t3 nano instance is 2048\.
+
 1. \(Optional\) Expand the **Task roles, network mode** section to specify an IAM role to assign to the task\. A task IAM role provides permissions for the containers in a task to call AWS APIs\.
 
 1. \(Optional\) The **Storage** section is used to expand the amount of ephemeral storage for tasks hosted on Fargate as well as add a data volume configuration for the task\.
