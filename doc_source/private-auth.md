@@ -9,10 +9,10 @@ For tasks using the EC2 launch type, this feature requires version 1\.19\.0 or l
 
 For tasks using the Fargate launch type, this feature requires platform version 1\.2\.0 or later\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
 
-Within your container definition, specify `repositoryCredentials` with the full ARN of the secret that you created\. The secret you reference can be from a different Region than the task using it, but must be from within the same account\.
+Within your container definition, specify the `repositoryCredentials` object with the details of the secret that you created\. The secret you reference can be from a different Region or a different account than the task using it\.
 
 **Note**  
-When using the Amazon ECS API, AWS CLI, or AWS SDK, if the secret exists in the same Region as the task you are launching then you can use either the full ARN or name of the secret\. When using the AWS Management Console, the full ARN of the secret must be specified\.
+When using the Amazon ECS API, AWS CLI, or AWS SDK, if the secret exists in the same Region as the task you are launching then you can use either the full ARN or name of the secret\. If the secret exists in a different account, the full ARN of the secret must be specified\. When using the AWS Management Console, the full ARN of the secret must be specified always\.
 
 The following is a snippet of a task definition showing the required parameters:
 

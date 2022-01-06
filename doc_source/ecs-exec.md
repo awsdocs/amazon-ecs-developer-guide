@@ -25,7 +25,7 @@ For this topic, you should be familiar with the following aspects involved with 
   + Amazon ECS\-optimized Windows Server 2004 Core AMI
   + Amazon ECS\-optimized Windows Server 20H2 Core AMI
 + ECS Exec is not currently supported using the AWS Management Console\.
-+ If you are using interface Amazon VPC endpoints with Amazon ECS, you must create the interface Amazon VPC endpoints for Systems Manager Session Manager\. For more information, see [Create the Systems Manager endpoints](vpc-endpoints.md#ecs-vpc-endpoint-ecsexec)\.
++ If you are using interface Amazon VPC endpoints with Amazon ECS, you must create the interface Amazon VPC endpoints for Systems Manager Session Manager\. For more information, see [Create the Systems Manager Session Manager VPC endpoints when using the ECS Exec feature](vpc-endpoints.md#ecs-vpc-endpoint-ecsexec)\.
 + You can't enable ECS Exec for existing tasks\. It can only be enabled for new tasks\.
 + When a user runs commands on a container using ECS Exec, these commands are run as the `root` user\. The SSM agent and its child processes run as root even when you specify a user ID for the container\.
 + The ECS Exec session has a default idle timeout time of 20 minutes\. For more information, see see [Specify an idle session timeout value](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-preferences-timeout.html) in the *AWS Systems Manager User Guide*\.

@@ -78,7 +78,7 @@ The **AmazonEC2ContainerServiceforEC2Role** managed policy should be attached to
 
 Storing configuration information in a private bucket in Amazon S3 and granting read\-only access to your container instance IAM role is a secure and convenient way to allow container instance configuration at launch time\. You can store a copy of your `ecs.config` file in a private bucket, use Amazon EC2 user data to install the AWS CLI and then copy your configuration information to `/etc/ecs/ecs.config` when the instance launches\.
 
-For more information about creating an `ecs.config` file, storing it in Amazon S3, and launching instances with this configuration, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
+For more information about creating an `ecs.config` file, storing it in Amazon S3, and launching instances with this configuration, see [Storing container instance configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
 
 **To allow Amazon S3 read\-only access for your container instance role**
 

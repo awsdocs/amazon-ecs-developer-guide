@@ -24,7 +24,7 @@ The `RunTask` action is suitable for processes such as batch jobs that perform w
 
 **Running tasks on a `cron`\-like schedule**
 
-If you have tasks to run at set intervals in your cluster, you can use the Amazon ECS console to create a CloudWatch Events rule\. You can run tasks for a backup operation or a log scan\. The CloudWatch Events rule that you create can run one or more tasks in your cluster at specified times\. Your scheduled event rule can be set to a specific interval \(run every *N* minutes, hours, or days\)\. Otherwise, for more complicated scheduling, you can use a `cron` expression\. For more information, see [Scheduled tasks](scheduled_tasks.md)\.
+If you have tasks to run at set intervals in your cluster, you can use the Amazon ECS console to create an EventBridge event\. You can run tasks for a backup operation or a log scan\. The EventBridge event that you create can run one or more tasks in your cluster at specified times\. Your scheduled event can be set to a specific interval \(run every *N* minutes, hours, or days\)\. Otherwise, for more complicated scheduling, you can use a `cron` expression\. For more information, see [Scheduled tasks](scheduled_tasks.md)\.
 
 **Custom schedulers**
 

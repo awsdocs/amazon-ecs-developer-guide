@@ -41,6 +41,7 @@ Before you start using external instances, be aware of the following considerati
 ### Supported operating systems and system architectures<a name="ecs-anywhere-supported-os"></a>
 
 The following is the list of supported operating systems and system architectures\.
++ Amazon Linux 2
 + CentOS 7, CentOS 8
 + RHEL 7 — Neither Docker or RHEL's open package repositories support installing Docker natively on RHEL\. You must ensure that Docker is installed before you run the install script that's described in this document\.
 + Fedora 32, Fedora 33 — Fedora 32 and Fedora 33 default to using `cgroups.v2`, which isn't supported by Amazon ECS\. As a result, the server's default grub configuration must be changed and the server rebooted\. For instructions, see [Changing cgroup version](https://docs.docker.com/config/containers/runmetrics/#changing-cgroup-version) in the Docker documentation\.

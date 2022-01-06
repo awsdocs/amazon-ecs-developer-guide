@@ -46,7 +46,7 @@ Output:
 ```
 
 **Note**  
-The default expiration time for the generated IAM role credentials is 6 hours\.
+The default expiration time for the generated IAM role credentials is 6 hours\. The expiration time format is the simple date format\.
 
 If your container instance is using at least version 1\.11\.0 of the container agent and a supported version of the AWS CLI or SDKs, then the SDK client will see that the `AWS_CONTAINER_CREDENTIALS_RELATIVE_URI` variable is available, and it will use the provided credentials to make calls to the AWS APIs\. For more information, see [Enabling Task IAM Roles on your Container Instances](#enable_task_iam_roles) and [Using a Supported AWS SDK](#task-iam-roles-minimum-sdk)\.
 

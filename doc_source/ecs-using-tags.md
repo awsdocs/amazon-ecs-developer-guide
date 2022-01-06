@@ -48,6 +48,7 @@ The following table describes the Amazon ECS resources that can be tagged, and t
 |  Amazon ECS clusters  |  Yes  | No |  Yes  | 
 |  Amazon ECS container instances  |  Yes  |  Yes, from the Amazon EC2 instance\. For more information, see [Adding tags to an Amazon EC2 container instance](#instance-details-tags)\.   |  Yes  | 
 |  Amazon ECS External instances  |  Yes  |  No  |  No, you can add tags after the External instance has been registered to a cluster using the AWS Management Console or by using the Amazon ECS API, AWS CLI, or AWS SDK\. For more information, see [Adding and deleting tags on an individual resource using the classic console](#adding-or-deleting-tags)\.  | 
+| Amazon ECS capacity provider |  Yes\. Predefined FARGATE and FARGATE\_SPOT capacity providers cannot be tagged\. | No | Yes | 
 
 ## Tag restrictions<a name="tag-restrictions"></a>
 

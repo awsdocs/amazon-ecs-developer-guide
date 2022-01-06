@@ -117,7 +117,7 @@ In the log configuration options, specify the delivery stream name and the Regio
 **Note**  
 For more examples, see [Amazon ECS FireLens examples](https://github.com/aws-samples/amazon-ecs-firelens-examples) on GitHub\.
 
-The following task definition example demonstrates how to specify a log configuration that forwards logs to an Amazon OpenSearch Service; domain\. The Amazon OpenSearch Service domain must already exist\. For more information, see [What is Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html) in the *Amazon OpenSearch Service Developer Guide*\.
+The following task definition example demonstrates how to specify a log configuration that forwards logs to an Amazon OpenSearch Service; domain\. The Amazon OpenSearch Service domain must already exist\. For mo re information, see [What is Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html) in the *Amazon OpenSearch Service Developer Guide*\.
 
 In the log configuration options, specify the log options required for OpenSearch Service integration\. For more information, see [Fluent Bit for Amazon OpenSearch Service](https://docs.fluentbit.io/manual/pipeline/outputs/elasticsearch)\.
 

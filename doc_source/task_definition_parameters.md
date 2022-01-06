@@ -11,17 +11,6 @@ Type: string
 Required: yes  
 When you register a task definition, you give it a family, which is similar to a name for multiple versions of the task definition, specified with a revision number\. The first task definition that is registered into a particular family is given a revision of 1, and any task definitions registered after that are given a sequential revision number\.
 
-## Platform family<a name="os-family"></a>
-
-`platformFamily`  
-Type: string  
-Required: Conditional  
-Default: LINUX  
-The operating system of the instance that runs the Amazon ECS service;\.  
-The valid values are `LINUX`, `WINDOWS_SERVER_2019_FULL`, and `WINDOWS_SERVER_2019_CORE`\.  
-This is required for Fargate tasks\.  
- All tasks that run as part of this service must use the same `platformFamily` value as the service, for example, `LINUX`\.
-
 ## Launch types<a name="requires_compatibilities"></a>
 
 When you register a task definition, you can specify a launch type that Amazon ECS should validate the task definition against\. A client exception is returned if the task definition doesn't validate against the compatibilities specified\. For more information, see [Amazon ECS launch types](launch_types.md)\.
@@ -159,7 +148,7 @@ The image used to start a container\. This string is passed directly to the Dock
 Type: integer  
 Required: conditional  
 The amount \(in MiB\) of memory to present to the container\. If your container attempts to exceed the memory specified here, the container is killed\. The total amount of memory reserved for all containers within a task must be lower than the task `memory` value, if one is specified\. This parameter maps to `Memory` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--memory` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-If using the Fargate launch type, this parameter is required\.  
+If using the Fargate launch type, this parameter is optional\.  
 If using the EC2 launch type, you must specify either a task\-level memory value or a container\-level memory value\. If you specify both a container\-level `memory` and `memoryReservation` value, `memory` must be greater than `memoryReservation`\. If you specify `memoryReservation`, then that value is subtracted from the available memory resources for the container instance on which the container is placed\. Otherwise, the value of `memory` is used\.  
 The Docker 20\.10\.0 or later daemon reserves a minimum of 6 MiB of memory for a container, so you should not specify fewer than 6 MiB of memory for your containers\.  
 The Docker 19\.03\.13\-ce or earlier daemon reserves a minimum of 4 MiB of memory for a container, so you should not specify fewer than 4 MiB of memory for your containers\.  
@@ -273,7 +262,7 @@ When registering a task definition using the AWS Management Console JSON panel, 
 ```
 [ "CMD-SHELL", "curl -f http://localhost/ || exit 1" ]
 ```
-An exit code of 0 indicates success, and a non\-zero exit code indicates failure\. For more information, see `HealthCheck` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/)\.  
+An exit code of 0, with no `stderr` output, indicates success, and a non\-zero exit code indicates failure\. For more information, see `HealthCheck` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/)\.  
 `interval`  
 The time period in seconds between each health check execution\. You may specify between 5 and 300 seconds\. The default value is 30 seconds\.  
 `timeout`  
@@ -677,7 +666,7 @@ The Amazon ECS container agent running on a container instance must register wit
 Type: object array  
 Required: no  
 A list of `ulimit` values to define for a container\. This value would overwrite the default resource limit setting for the operating system\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-Amazon ECS tasks hosted on Fargate use the default resource limit values set by the operating system with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\. For more information, see [Task resource limits](AWS_Fargate.md#fargate-resource-limits)\.  
+Amazon ECS tasks hosted on Fargate use the default resource limit values set by the operating system with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `1048576`\. For more information, see [Task resource limits](AWS_Fargate.md#fargate-resource-limits)\.  
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 This parameter is not supported for Windows containers\.
 

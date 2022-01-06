@@ -112,6 +112,12 @@ The following shows the syntax for specifiying the `log-driver-buffer-limit`:
                     "log-driver-buffer-limit": "2097152"
                 }
             },
+            "dependsOn": [
+                {
+                    "containerName": "log-router",
+                    "condition": "START"
+                }
+            ],
             "memoryReservation": 100
         }
     ]

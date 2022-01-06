@@ -102,7 +102,7 @@ The type of the container\. Containers that are specified in your task definitio
 The network information for the container, such as the network mode and IP address\. This parameter is omitted if no network information is defined\.
 
 `ClockDrift`  
-The information about the difference between the reference time and the system time\.    
+The information about the difference between the reference time and the system time\. This applies to the Linux operating system\.    
 `ReferenceTime`  
 The basis of clock accuracy\. Amazon ECS uses the Coordinated Universal Time \(UTC\) global standard through NTP, for example `2021-09-07T16:57:44Z`\.  
 `ClockErrorBound`  

@@ -56,7 +56,7 @@ For more information about Secrets Manager VPC endpoints, see [Using Secrets Man
 
 For more information about Systems Manager VPC endpoints, see [Using Systems Manager with VPC endpoints](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html) in the *AWS Systems Manager User Guide*\.
 
-## Create the Systems Manager endpoints<a name="ecs-vpc-endpoint-ecsexec"></a>
+## Create the Systems Manager Session Manager VPC endpoints when using the ECS Exec feature<a name="ecs-vpc-endpoint-ecsexec"></a>
 
 If you use the ECS Exec feature, you need to create the interface VPC endpoints for Systems Manager Session Manager\. For more information, see [Using Amazon ECS Exec for debugging](ecs-exec.md)\.
 
@@ -72,21 +72,21 @@ You can attach an endpoint policy to your VPC endpoint that controls access to A
 For more information, see [Controlling access to services with VPC endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html) in the *Amazon VPC User Guide*\. 
 
 **Example: VPC endpoint policy for Amazon ECS actions**  
-The following is an example of an endpoint policy for Amazon ECS\. When attached to an endpoint, this policy grants access to the listed Amazon ECS actions for all principals on all resources\.
+The following is an example of an endpoint policy for Amazon ECS\. When attached to an endpoint, this policy grants access to permission to create and list clusters\. The `CreateCluster` and `ListClusters` actions do not accept any resources, so the resource definition is set to \* for all resources\. 
 
 ```
 {
    "Statement":[
-      {
-         "Principal":"*",
-         "Effect":"Allow",
-         "Action":[
-            "ecs:action-1",
-            "ecs:action-2",
-            "ecs:action-2"
-         ],
-         "Resource":"*"
-      }
-   ]
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecs:CreateCluster",
+        "ecs:ListClusters"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
 }
 ```

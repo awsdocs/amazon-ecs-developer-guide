@@ -8,7 +8,7 @@ If you are manually starting the Amazon ECS container agent \(for non Amazon ECS
 
 **Topics**
 + [Available Parameters](#ecs-agent-availparam)
-+ [Storing Container Instance Configuration in Amazon S3](#ecs-config-s3)
++ [Storing container instance configuration in Amazon S3](#ecs-config-s3)
 
 ## Available Parameters<a name="ecs-agent-availparam"></a>
 
@@ -415,7 +415,25 @@ Default value on Windows: `true`
 Whether the agent should exclude IPv6 port bindings when the `default` network mode is used\. When this vlaue is true, IPv6 port bindings are filterned and task IPv6 port bindings are not returned in the [DescribeTasks ](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html)response\. The bindings are included in the task metadata endpoint\.  
 This is available in agent version `1.55.3` and later\.
 
-## Storing Container Instance Configuration in Amazon S3<a name="ecs-config-s3"></a>
+`ECS_SKIP_LOCALHOST_TRAFFIC_FILTER`  
+Example values: `true` \| `false`  
+Default value on Linux: `false`  
+Default value on Windows: `false`  
+By default, the `ecs-init` service adds an iptable rule to drop non\-local packets to localhost if they're not part of an existing forwarded connection or DNAT, and removes the rule upon stop\. If `ECS_SKIP_LOCALHOST_TRAFFIC_FILTER` is set to true, this rule will not be added or removed\.
+
+`ECS_ALLOW_OFFHOST_INTROSPECTION_ACCESS`  
+Example values: `true` \| `false`  
+Default value on Linux: `false`  
+Default value on Windows: `false`  
+By default, the `ecs-init` service adds an iptable rule to block access to the agent introspection port from off\-host \(or containers in `awsvpc` network mode\), and removes the rule upon stop\. If `ECS_ALLOW_OFFHOST_INTROSPECTION_ACCESS` is set to true, this rule will not be added or removed\.
+
+`ECS_OFFHOST_INTROSPECTION_INTERFACE_NAME`  
+Example values: `eth0`  
+Default value on Linux: `eth0`  
+Default value on Windows: `eth0`  
+The primary network interface name to be used for blocking offhost agent introspection port access\. By default, this value is `eth0`\.
+
+## Storing container instance configuration in Amazon S3<a name="ecs-config-s3"></a>
 
 Amazon ECS container agent configuration is controlled with the environment variables described in the previous section\. Linux variants of the Amazon ECS\-optimized AMI look for these variables in `/etc/ecs/ecs.config` when the container agent starts and configure the agent accordingly\. Certain innocuous environment variables, such as `ECS_CLUSTER`, can be passed to the container instance at launch through Amazon EC2 user data and written to this file without consequence\. However, other sensitive information, such as your AWS credentials or the `ECS_ENGINE_AUTH_DATA` variable, should never be passed to an instance in user data or written to `/etc/ecs/ecs.config` in a way that would allow them to show up in a `.bash_history` file\.
 

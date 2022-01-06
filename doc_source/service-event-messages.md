@@ -176,7 +176,7 @@ You can request a quota increase for the resource that caused the error\. For mo
 
 ### service \(*service\-name*\) was unable to place a task\. Reason: Internal error\.<a name="service-event-messages-9"></a>
 
-The sevice is unable to start a task due to a subnet being in an unsupported Availability Zone\.
+The service is unable to start a task due to a subnet being in an unsupported Availability Zone\.
 
 For information about the supported Fargate Regions and Availability Zones, see [Supported Regions for Amazon ECS on AWS Fargate](AWS_Fargate-Regions.md)\.
 

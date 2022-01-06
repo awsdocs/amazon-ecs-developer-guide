@@ -84,3 +84,5 @@ CannotPullContainerError: ref pull has been retried 1 time(s): failed to copy: h
 To resolve this issue, you can:  
 + For Fargate tasks, see [How do I resolve the "cannotpullcontainererror" error for my Amazon ECS tasks on Fargate](https://aws.amazon.com/premiumsupport/knowledge-center/ecs-fargate-pull-container-error/)\.
 + For other tasks, see [How do I resolve the "cannotpullcontainererror" error for my Amazon ECS tasks](https://aws.amazon.com/premiumsupport/knowledge-center/ecs-fargate-pull-container-error/)\.
+
+For additional information about STOPPED errors, see [Stopped tasks error codes](https://docs.aws.amazon.com/AmazonECS/latest/userguide/stopped-task-error-codes.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.

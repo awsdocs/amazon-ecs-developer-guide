@@ -41,13 +41,13 @@ Create your task definitions using the new Amazon ECS console experience\. To ma
 **Note**  
 Task\-level CPU and memory parameters are ignored for Windows containers\.
 
-1. Expand the **Container size** section to specify the amount \(in MiB\) of memory to present to the container and the number of cpu units the Amazon ECS container agent will reserve for the container\. 
+1. Expand the **Container size** section to specify the amount \(in GB\) of memory to present to the container and the number of CPU units the Amazon ECS container agent will reserve for the container\. 
 
-   If your container attempts to exceed the memory specified, the container is killed\. The total amount of memory reserved for all containers within a task must be lower than the **Task size Memory** value, if one is specified\.
+   If your container attempts to exceed the memory specified, the container is killed\. The total amount of memory reserved for all containers within a task must be lower than the task **Memory** value, if one is specified\.
 
-   The total amount of CPU reserved for all containers within a task must be lower than the task\-level `cpu` value\.
-**Note**  
-You can determine the number of CPU units that are available per Amazon EC2 instance type by multiplying the number of vCPUs listed for that instance type on the [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) detail page by 1,024\. For example, the value for a t3 nano instance is 2048\.
+   The total amount of CPU reserved for all containers within a task must be lower than the task\-level **CPU** value\.
+
+   You can multiply the specified value by 1024 to determine the number of CPU units that are available per Amazon EC2 instance type\. For example, the value for a t3 nano instance is 2048\. For more information, see [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) \.
 
 1. \(Optional\) Expand the **Task roles, network mode** section to specify an IAM role to assign to the task\. A task IAM role provides permissions for the containers in a task to call AWS APIs\.
 
@@ -92,11 +92,11 @@ When enabling trace collection, your task definition requires a task IAM role wi
 **Important**  
 When exporting application metrics to Amazon CloudWatch, your task definition requires a task IAM role with the required permissions\. For more information, see [Required IAM permissions for AWS Distro for OpenTelemetry integration with Amazon CloudWatch](application-metrics-cloudwatch.md#application-metrics-cloudwatch-iam)\. 
 
-   1. When **Amazon Managed Service for Prometheus \(Prometheus libraries instrumentation)** is selected, your task\-level CPU, memory, network, and storage metrics and your custom application metrics are routed to Amazon Managed Service for Prometheus\. For **Workspace remote write endpoint**, specify the remote write endpoint URL for your Prometheus workspace\. For **Scraping target**, specify the host and port the AWS Distro for OpenTelemetry collector can use to scrape for metrics data\. For more information, see [Exporting application metrics to Amazon Managed Service for Prometheus](application-metrics-prometheus.md)\.
+   1. When **Amazon Managed Service for Prometheus \(Prometheus libraries instrumentation\)** is selected, your task\-level CPU, memory, network, and storage metrics and your custom application metrics are routed to Amazon Managed Service for Prometheus\. For **Workspace remote write endpoint**, specify the remote write endpoint URL for your Prometheus workspace\. For **Scraping target**, specify the host and port the AWS Distro for OpenTelemetry collector can use to scrape for metrics data\. For more information, see [Exporting application metrics to Amazon Managed Service for Prometheus](application-metrics-prometheus.md)\.
 **Important**  
 When exporting application metrics to Amazon Managed Service for Prometheus, your task definition requires a task IAM role with the required permissions\. For more information, see [Required IAM permissions for AWS Distro for OpenTelemetry integration with Amazon Managed Service for Prometheus](application-metrics-prometheus.md#application-metrics-prometheus-iam)\. 
 
-   1. When **Amazon Managed Service for Prometheus \(OpenTelemetry instrumentation)** is selected, your task\-level CPU, memory, network, and storage metrics and your custom application metrics are routed to Amazon Managed Service for Prometheus\. For **Workspace remote write endpoint**, specify the remote write endpoint URL for your Prometheus workspace\. For more information, see [Exporting application metrics to Amazon Managed Service for Prometheus](application-metrics-prometheus.md)\.
+   1. When **Amazon Managed Service for Prometheus \(OpenTelemetry instrumentation\)** is selected, your task\-level CPU, memory, network, and storage metrics and your custom application metrics are routed to Amazon Managed Service for Prometheus\. For **Workspace remote write endpoint**, specify the remote write endpoint URL for your Prometheus workspace\. For more information, see [Exporting application metrics to Amazon Managed Service for Prometheus](application-metrics-prometheus.md)\.
 **Important**  
 When exporting application metrics to Amazon Managed Service for Prometheus, your task definition requires a task IAM role with the required permissions\. For more information, see [Required IAM permissions for AWS Distro for OpenTelemetry integration with Amazon Managed Service for Prometheus](application-metrics-prometheus.md#application-metrics-prometheus-iam)\. 
 

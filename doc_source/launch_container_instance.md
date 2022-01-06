@@ -55,7 +55,7 @@ If you do not launch your container instance with the proper IAM permissions, yo
         ```
       + If you have an `ecs.config` file in Amazon S3 and have enabled Amazon S3 read\-only access to your container instance role, choose the **Advanced Details** list\. Then, paste the following script into the **User data** field, replacing *your\_bucket\_name* with the name of your bucket to install the AWS CLI and write your configuration file at launch time\. 
 **Note**  
-For more information about this configuration, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
+For more information about this configuration, see [Storing container instance configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
 
         ```
         #!/bin/bash

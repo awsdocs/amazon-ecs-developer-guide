@@ -7,11 +7,11 @@ The type of information that is logged by the containers in your task depends mo
 
 To send system logs from your Amazon ECS container instances to CloudWatch Logs, see [Monitoring your container instances](using_cloudwatch_logs.md)\. For more information about CloudWatch Logs, see [Monitoring Log Files](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatchLogs.html) and [CloudWatch Logs quotas](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html) in the *Amazon CloudWatch Logs User Guide*\.
 
-## Enabling the awslogs log driver for your containers<a name="enable_awslogs"></a>
+## Turning on the awslogs log driver for your containers<a name="enable_awslogs"></a>
 
-If you are using the Fargate launch type for your tasks, all you need to do to enable the `awslogs` log driver is add the required `logConfiguration` parameters to your task definition\. For more information, see [Specifying a log configuration in your task definition](#specify-log-config)\.
+If you are using the Fargate launch type for your tasks, all you need to do to turn on the `awslogs` log driver is add the required `logConfiguration` parameters to your task definition\. For more information, see [Specifying a log configuration in your task definition](#specify-log-config)\.
 
-If you are using the EC2 launch type for your tasks and want to enable the `awslogs` log driver, your Amazon ECS container instances require at least version 1\.9\.0 of the container agent\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
+If you are using the EC2 launch type for your tasks and want to turn on the `awslogs` log driver, your Amazon ECS container instances require at least version 1\.9\.0 of the container agent\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
 **Note**  
 If you are not using the Amazon ECS\-optimized AMI \(with at least version 1\.9\.0\-1 of the `ecs-init` package\) for your container instances, you also need to specify that the `awslogs` logging driver is available on the container instance when you start the agent by using the following environment variable in your docker run statement or environment variable file\. For more information, see [Installing the Amazon ECS container agent](ecs-agent-install.md)\.  
@@ -20,7 +20,7 @@ If you are not using the Amazon ECS\-optimized AMI \(with at least version 1\.9\
 ECS_AVAILABLE_LOGGING_DRIVERS='["json-file","awslogs"]'
 ```
 
-Your Amazon ECS container instances also require `logs:CreateLogStream` and `logs:PutLogEvents` permission on the IAM role with which you launch your container instances\. If you created your Amazon ECS container instance role before `awslogs` log driver support was enabled in Amazon ECS, then you might need to add this permission\. If your container instances use the managed IAM policy for container instances, then your container instances should have the correct permissions\. For information about checking your Amazon ECS container instance role and attaching the managed IAM policy for container instances, see [To check for the `ecsInstanceRole` in the IAM console](instance_IAM_role.md#procedure_check_instance_role)\.
+Your Amazon ECS container instances also require `logs:CreateLogStream` and `logs:PutLogEvents` permission on the IAM role with which you launch your container instances\. If you created your Amazon ECS container instance role before `awslogs` log driver support was enabled in Amazon ECS, then you might need to add this permission\. The `ecsTaskExecutionRole` is used when it is assigned to the task and should contain the correct permissions\. For information about checking your task execution role, see [To check for the `ecsTaskExecutionRole` in the IAM console](task_execution_IAM_role.md#procedure_check_execution_role)\. If your container instances use the managed IAM policy for container instances, then your container instances should have the correct permissions\. For information about checking your Amazon ECS container instance role and attaching the managed IAM policy for container instances, see [To check for the `ecsInstanceRole` in the IAM console](instance_IAM_role.md#procedure_check_instance_role)\.
 
 ## Creating a log group<a name="create_awslogs_loggroups"></a>
 

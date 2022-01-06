@@ -11,7 +11,7 @@ The Amazon ECS container agent looks for two environment variables when it launc
 Linux variants of the Amazon ECS\-optimized AMI scan the `/etc/ecs/ecs.config` file for these variables when the container instance launches, and each time the service is started \(with the sudo start ecs command\)\. AMIs that are not Amazon ECS\-optimized should store these environment variables in a file and pass them with the `--env-file path_to_env_file` option to the docker run command that starts the container agent\.
 
 **Important**  
-We do not recommend that you inject these authentication environment variables at instance launch with Amazon EC2 user data or pass them with the `--env` option to the docker run command\. These methods are not appropriate for sensitive data, such as authentication credentials\. For information about safely adding authentication credentials to your container instances, see [Storing Container Instance Configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
+We do not recommend that you inject these authentication environment variables at instance launch with Amazon EC2 user data or pass them with the `--env` option to the docker run command\. These methods are not appropriate for sensitive data, such as authentication credentials\. For information about safely adding authentication credentials to your container instances, see [Storing container instance configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3)\.
 
 ## Authentication formats<a name="docker-auth-formats"></a>
 

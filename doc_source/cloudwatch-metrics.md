@@ -180,9 +180,9 @@ You can use CloudWatch metrics to view the number of tasks in your services that
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. On the navigation pane, choose **Metrics**\.
+1. On the navigation pane, choose **Metrics**, **All metrics**\.
 
-1. On the **All metrics** tab, choose **ECS**\.
+1. On the **Browse** tab, choose the **ECS** namespace\.
 
 1. Choose **ClusterName**, **ServiceName** and then choose any metric \(either `CPUUtilization` or `MemoryUtilization`\) that corresponds to the service to view running tasks in\.
 

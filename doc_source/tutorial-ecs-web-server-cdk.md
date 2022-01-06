@@ -1,16 +1,19 @@
 # Getting started with Amazon ECS using the AWS CDK<a name="tutorial-ecs-web-server-cdk"></a>
 
-This tutorial shows you how to deploy a containerized Web server with Amazon Elastic Container Service and the AWS Cloud Development Kit \(CDK\) on Fargate\. The AWS CDK is an Infrastructure as Code \(IAC\) framework that lets you define AWS infrastructure using a full\-fledged programming language\. You write an app in one of the CDK's supported languages, containing one or more stacks, then synthesize it to an AWS CloudFormation template and deploy the resources to your AWS account\.
+This topic shows you how to deploy a containerized Web server with Amazon Elastic Container Service and the AWS Cloud Development Kit \(CDK\) on Fargate\. The AWS CDK is an Infrastructure as Code \(IAC\) framework that lets you define AWS infrastructure using a full\-fledged programming language\. You write an app in one of the CDK's supported languages, containing one or more stacks, then synthesize it to an AWS CloudFormation template and deploy the resources to your AWS account\.
 
-The AWS Construct Library, included with the CDK, provides APIs that model the resources provided by every AWS service\. For the most popular services, the library provides curated constructs that provide smart defaults and implement best practices with fewer required parameters\. One of these modules, `[aws\-ecs\-patterns](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-patterns-readme.html)`, provides high\-level abstractions that let you define your containerized service and all necessary supporting resources in only a few lines of code\.
+The AWS Construct Library, included with the CDK, provides APIs that model the resources provided by every AWS service\. For the most popular services, the library provides curated constructs that provide smart defaults and implement best practices with fewer required parameters\. One of these modules, `[aws\-ecs\-patterns](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs_patterns-readme.html)`, provides high\-level abstractions that let you define your containerized service and all necessary supporting resources in only a few lines of code\.
 
- The construct we'll be using in this tutorial is [https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-ecs-patterns.ApplicationLoadBalancedFargateService.html](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-ecs-patterns.ApplicationLoadBalancedFargateService.html)\. As you can likely tell from the name, this construct deploys an Amazon ECS service on Fargate behind an application load balancer\. The `aws-ecs-patterns` module also includes constructs that use a network load balancer and/or run on Amazon EC2, if you'd prefer those options\.
+ The construct we'll be using in this topic is [https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs_patterns.ApplicationLoadBalancedFargateService.html](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs_patterns.ApplicationLoadBalancedFargateService.html)\. As you can likely tell from the name, this construct deploys an Amazon ECS service on Fargate behind an application load balancer\. The `aws-ecs-patterns` module also includes constructs that use a network load balancer and/or run on Amazon EC2, if you'd prefer those options\.
 
-Before embarking on this tutorial, set up your AWS CDK development environment as described in [Getting Started With the AWS CDK \- Prerequisites](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites), then install the AWS CDK by issuing:
+Before embarking on this task, set up your AWS CDK development environment as described in [Getting Started With the AWS CDK \- Prerequisites](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_prerequisites), then install the AWS CDK by issuing:
 
 ```
 npm install -g aws-cdk
 ```
+
+**Note**  
+These instructions assume you are using AWS CDK v2\.
 
 **Topics**
 + [Step 1: Set up your AWS CDK project](#ecs-web-server-cdk-step-1)
@@ -80,78 +83,26 @@ cdk init --language csharp
 ------
 
 **Note**  
-Be sure to name the directory `hello-ecs` as shown\. The AWS CDK application template uses the name of the project directory to generate names for source files and classes\. If you use a different name, your app will not match this tutorial\.
+Be sure to name the directory `hello-ecs` as shown\. The AWS CDK application template uses the name of the project directory to generate names for source files and classes\. If you use a different name, your app will not match these instructions\.
 
-Now install the `aws-ecs-patterns` construct library module\.
+AWS CDK v2 includes stable constructs for all AWS services in a single package, dubbed `aws-cdk-lib`\. This package is installed as a dependency when you initialize the project \(or, in some languages, the first time you build it\)\. In this topic, we use an Amazon ECS Patterns construct, which provides high\-level abstractions for working with Amazon ECS\. In turn, this module relies on Amazon ECS constructs and others to provision the reseources needed by your Amazon ECS application\.
+
+The names you use to import these libraries into your CDK application differs slightly depending on which programming language you use\. For reference, here are the names used in each supported CDK programming language\.
 
 ------
 #### [ TypeScript ]
 
 ```
-npm install @aws-cdk/aws-ecs-patterns
+@aws-cdk-lib/aws-ecs
+@aws-cdk-lib/aws-ecs-patterns
 ```
 
 ------
 #### [ JavaScript ]
 
 ```
-npm install @aws-cdk/aws-ecs-patterns
-```
-
-------
-#### [ Python ]
-
-```
-python -m pip install aws-cdk.aws-ecs-patterns
-```
-
-------
-#### [ Java ]
-
-Edit the project's `pom.xml` to add the following dependencies inside the existing `<dependencies>` container\.
-
-```
-        <dependency>
-            <groupId>software.amazon.awscdk</groupId>
-            <artifactId>ecs</artifactId>
-            <version>${cdk.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>software.amazon.awscdk</groupId>
-            <artifactId>ecs-patterns</artifactId>
-            <version>${cdk.version}</version>
-        </dependency>
-```
-
-Maven automatically installs these dependencies the next time you build your app\. To build, issue `mvn compile` or use your Java IDE's **Build** command\.
-
-------
-#### [ C\# ]
-
-```
-dotnet add src\HelloEcs package Amazon.CDK.AWS.ECS.Patterns
-```
-
-You may also install the indicated packages using the Visual Studio NuGet GUI, available via **Tools** > **NuGet Package Manager** > **Manage NuGet Packages for Solution**\.
-
-------
-
-When you install the `aws-ecs-patterns` module, the `aws-ecs` module is also installed because it is a dependency of `aws-ecs-patterns`\. You can use these modules in your AWS CDK app by importing the corresponding package\. 
-
-------
-#### [ TypeScript ]
-
-```
-@aws-cdk/aws-ecs
-@aws-cdk/aws-ecs-patterns
-```
-
-------
-#### [ JavaScript ]
-
-```
-@aws-cdk/aws-ecs
-@aws-cdk/aws-ecs-patterns
+@aws-cdk-/aws-ecs
+@aws-cdk-lib/aws-ecs-patterns
 ```
 
 ------
@@ -195,13 +146,14 @@ What's a stack? The stack is the unit of deployment: all resources must be in a 
 Update `lib/hello-ecs-stack.ts` to read as follows\.
 
 ```
-import * as cdk from '@aws-cdk/core';
+import * as cdk from '@aws-cdk-lib';
+import { Construct ) from 'constructs';
 
-import * as ecs from '@aws-cdk/aws-ecs';
-import * as ecsp from '@aws-cdk/aws-ecs-patterns';
+import * as ecs from '@aws-cdk-lib/aws-ecs';
+import * as ecsp from '@aws-cdk-lib/aws-ecs-patterns';
 
 export class HelloEcsStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     new ecsp.ApplicationLoadBalancedFargateService(this, 'MyWebServer', {
@@ -220,13 +172,14 @@ export class HelloEcsStack extends cdk.Stack {
 Update `lib/hello-ecs-stack.js` to read as follows\.
 
 ```
-const cdk = require('@aws-cdk/core');
+const cdk = require('@aws-cdk-lib');
+const { Construct } = require('constructs');
 
-const ecs = require('@aws-cdk/aws-ecs');
-const ecsp = require('@aws-cdk/aws-ecs-patterns');
+const ecs = require('@aws-cdk-lib/aws-ecs');
+const ecsp = require('@aws-cdk-lib/aws-ecs-patterns');
 
 class HelloEcsStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     new ecsp.ApplicationLoadBalancedFargateService(this, 'MyWebServer', {
@@ -247,14 +200,15 @@ module.exports = { HelloEcsStack }
 Update `hello-ecs/hello_ecs_stack.py` to read as follows\.
 
 ```
-from aws_cdk import core as cdk
+import aws_cdk as cdk
+from constructs import Construct
 
 import aws_cdk.aws_ecs as ecs
 import aws_cdk.aws_ecs_patterns as ecsp
 
 class HelloEcsStack(cdk.Stack):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         ecsp.ApplicationLoadBalancedFargateService(self, "MyWebServer",
@@ -272,9 +226,9 @@ Update `src/main/java/com.myorg/HelloEcsStack.java` to read as follows\.
 ```
 package com.myorg;
 
-import software.amazon.awscdk.core.Construct;
-import software.amazon.awscdk.core.Stack;
-import software.amazon.awscdk.core.StackProps;
+import software.constructs.Construct;
+import software.amazon.awscdk.Stack;
+import software.amazon.awscdk.StackProps;
 
 import software.amazon.awscdk.services.ecs.ContainerImage;
 import software.amazon.awscdk.services.ecs.patterns.ApplicationLoadBalancedFargateService;
@@ -305,6 +259,8 @@ Update `src/HelloEcs/HelloEcsStack.cs` to read as follows\.
 
 ```
 using Amazon.CDK;
+using Constructs;
+
 using Amazon.CDK.AWS.ECS;
 using Amazon.CDK.AWS.ECS.Patterns;
 
@@ -396,41 +352,41 @@ Copy the URL from the deployment output and paste it into your Web browser\. You
 
 ## Step 4: Clean up<a name="ecs-web-server-cdk-step-4"></a>
 
-Now that you're done with the Web server \(it doesn't do anything besides display the Congratulations message\), you can tear down the service using the AWS CDK\. Issue `cdk destroy` in your app's main directory\. Doing this will prevent unintended AWS charges\.
+Now that you're done with the Web server \(it doesn't do anything besides display the Congratulations message\), you can tear down the service using the CDK\. Issue `cdk destroy` in your app's main directory\. Doing this will prevent unintended AWS charges\.
 
 ## Next steps<a name="ecs-web-server-cdk-next-steps"></a>
 
-To learn more about developing AWS infrastructure using the AWS CDK, see the [AWS CDK Developer Guide](https://docs.aws.amazon.com/cdk/latest/guide/)\.
+To learn more about developing AWS infrastructure using the AWS CDK, see the [AWS CDK Developer Guide](https://docs.aws.amazon.com/cdk/v2/guide/)\.
 
 For information about writing AWS CDK apps in your language of choice, see:
 
 ------
 #### [ TypeScript ]
 
-[Working with the AWS CDK in TypeScript](https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-typescript.html)
+[Working with the AWS CDK in TypeScript](https://docs.aws.amazon.com/cdk/v2/guide/work-with-cdk-typescript.html)
 
 ------
 #### [ JavaScript ]
 
-[Working with the AWS CDK in JavaScript](https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-javascript.html)
+[Working with the AWS CDK in JavaScript](https://docs.aws.amazon.com/cdk/v2/guide/work-with-cdk-javascript.html)
 
 ------
 #### [ Python ]
 
-[Working with the AWS CDK in Python](https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-python.html)
+[Working with the AWS CDK in Python](https://docs.aws.amazon.com/cdk/v2/guide/work-with-cdk-python.html)
 
 ------
 #### [ Java ]
 
-[Working with the AWS CDK in Java](https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-java.html)
+[Working with the AWS CDK in Java](https://docs.aws.amazon.com/cdk/v2/guide/work-with-cdk-java.html)
 
 ------
 #### [ C\# ]
 
-[Working with the AWS CDK in C\#](https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-csharp.html)
+[Working with the AWS CDK in C\#](https://docs.aws.amazon.com/cdk/v2/guide/work-with-cdk-csharp.html)
 
 ------
 
-For more information on the AWS Construct Library modules used in this tutorial, see the AWS CDK API Reference overviews below\.
-+ [https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-readme.html](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-readme.html)
-+ [https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-patterns-readme.html](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-ecs-patterns-readme.html)
+For more information on the AWS Construct Library modules used in this topic, see the AWS CDK API Reference overviews below\.
++ [https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs-readme.html](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs-readme.html)
++  [https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs_patterns-readme.html](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs_patterns-readme.html)

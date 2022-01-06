@@ -21,6 +21,6 @@ When you create a revision, you can modify the following container properties an
 
 1. On the **Create new task definition revision** page, make changes\. For example, to change the existing container definitions \(such as the container image, memory limits, or port mappings\), select the container, and then make the changes\.
 
-1. Verify the information and choose **Create**\.
+1. Verify the information, and then choose **Create**\.
 
 1. If your task definition is used in a service, update your service with the updated task definition\. For more information, see [Updating a service](update-service.md)\.
