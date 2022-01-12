@@ -84,7 +84,7 @@ The following shows the syntax for specifiying the `log-driver-buffer-limit`:
         {
             "essential": true,
             "image": "906394416424.dkr.ecr.us-west-2.amazonaws.com/aws-for-fluent-bit:stable",
-            "name": "log_router",
+            "name": "log-router",
             "firelensConfiguration": {
                 "type": "fluentbit"
             },
