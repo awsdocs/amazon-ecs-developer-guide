@@ -1,5 +1,7 @@
 # Updating a task definition using the classic console<a name="update-task-definition"></a>
 
+A *task definition revision* is a copy of the current task definition with the new parameter values replacing the existing ones\. All parameters that you do not modify are in the new revision\.
+
 To update a task definition, create a task definition revision\. If the task definition is used in a service, you must update that service to use the updated task definition\.
 
 **To create a task definition revision**

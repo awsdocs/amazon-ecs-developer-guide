@@ -2,6 +2,8 @@
 
 Amazon ECS provides container instance health monitoring\. You can quickly determine whether Amazon ECS has detected any problems that might prevent your container instances from running containers\. Amazon ECS performs automated checks on every running container instance with agent version `1.57.0` or later to identify issues\. For more information on verifying the agent version an a container instance, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
+You must be using AWS CLI version `1.22.3` or later or AWS CLI version `2.3.6` or later\. For information about how to update the AWS CLI, see [Installing or updating the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) in the *AWS Command Line Interface User Guide Version 2*\.
+
 Status checks are performed about twice per minute, returning a pass or a fail status\. If all checks pass, the overall status of the instance is `OK`\. If one or more checks fail, the overall status is `IMPAIRED`\. Status checks are built into Amazon ECS container agent, so they cannot be disabled or deleted\. You can view the results of these status checks to identify specific and detectable problems\.
 
 The container instance health status can be retrieved using the `DescribeContainerInstances` API\. The following AWS CLI command retrieves the container instance health status\.

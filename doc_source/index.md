@@ -15,8 +15,11 @@ Amazon's trademarks and trade dress may not be used in
 -----
 ## Contents
 + [What is Amazon Elastic Container Service?](Welcome.md)
-+ [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)
+   + [Amazon ECS components](welcome-features.md)
+   + [Common use cases in Amazon ECS](common_use_cases.md)
+   + [Related services](welcome-related.md)
 + [Getting started with Amazon ECS](getting-started.md)
+   + [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)
    + [Docker basics for Amazon ECS](docker-basics.md)
    + [Getting started with Amazon ECS using AWS Copilot](getting-started-aws-copilot-cli.md)
    + [Getting started with Amazon ECS using the AWS CDK](tutorial-ecs-web-server-cdk.md)
@@ -266,7 +269,6 @@ Amazon's trademarks and trade dress may not be used in
    + [Compliance Validation for Amazon Elastic Container Service](ecs-compliance.md)
    + [Infrastructure Security in Amazon Elastic Container Service](infrastructure-security.md)
       + [Amazon ECS interface VPC endpoints (AWS PrivateLink)](vpc-endpoints.md)
-+ [Common use cases in Amazon ECS](common_use_cases.md)
 + [AWS services integrated with Amazon ECS](ecs-integrations.md)
    + [Using Amazon ECR with Amazon ECS](ecr-repositories.md)
    + [Creating Amazon ECS resources with AWS CloudFormation](creating-resources-with-cloudformation.md)

@@ -46,7 +46,7 @@ Output:
 ```
 
 **Note**  
-The default expiration time for the generated IAM role credentials is 6 hours\. The expiration time format is the simple date format\.
+The default expiration time for the generated IAM role credentials is 6 hours\. The expiration time format is the simple date format\. For information about how to modify the expiration time, see [Modifying a role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_manage_modify.html) in the *IAM User Guide*\.
 
 If your container instance is using at least version 1\.11\.0 of the container agent and a supported version of the AWS CLI or SDKs, then the SDK client will see that the `AWS_CONTAINER_CREDENTIALS_RELATIVE_URI` variable is available, and it will use the provided credentials to make calls to the AWS APIs\. For more information, see [Enabling Task IAM Roles on your Container Instances](#enable_task_iam_roles) and [Using a Supported AWS SDK](#task-iam-roles-minimum-sdk)\.
 
@@ -97,6 +97,8 @@ If you have multiple task definitions or services that require IAM permissions, 
 For information about the service endpoint for your Region, see [Service endpoints](https://docs.aws.amazon.com/general/latest/gr/ecs-service.html#ecs_region) in the *Amazon Web Services General Reference Reference Guide*\.
 
 The Amazon ECS Task Role trust relationship is shown below\.
+
+`sts:AssumeRole` allows your tasks to assume an IAM role that's different from the one that your EC2 instance uses\. This way, your task doesn't inherit the role of your EC2 instance\.
 
 ```
 {

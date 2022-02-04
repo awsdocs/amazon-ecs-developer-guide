@@ -8,9 +8,6 @@ You can designate a number of GPUs in your task definition for task placement co
 
 The following Amazon EC2 GPU\-based instance types are supported\. For more information, see [Amazon EC2 P2 Instances](https://aws.amazon.com/ec2/instance-types/p2/), [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3/), [Amazon EC2 G3 Instances](https://aws.amazon.com/ec2/instance-types/g3/), and [Amazon EC2 G4 Instances](https://aws.amazon.com/ec2/instance-types/g4/)\.
 
-**Important**  
-The g4 instance type family is supported on version `20190913` and later of the Amazon ECS GPU\-optimized AMI\. For more information, see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\. It is currently not supported in the Create Cluster workflow in the Amazon ECS console\. To use these instance types, you must either use the Amazon EC2 console, AWS CLI, or API and manually register the instances to your cluster\.
-
 
 |  Instance type  |  GPUs  |  GPU memory \(GiB\)  |  vCPUs  |  Memory \(GiB\)  | 
 | --- | --- | --- | --- | --- | 

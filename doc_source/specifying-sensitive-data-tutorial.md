@@ -94,8 +94,6 @@ Use the IAM console to update your task execution role with the required permiss
 1. On the **Select launch type compatibility** page, choose **EC2** and choose **Next step**\.
 
 1. Choose **Configure via JSON** and enter the following task definition JSON text, ensuring that you specify the full ARN of the Secrets Manager secret you created in step 1 and the task execution IAM role you updated in step 2\. Choose **Save**\.
-**Important**  
-The value for the secret name in the task definition must match the name you specified for the secret name when the secret was created\.
 
    ```
    {

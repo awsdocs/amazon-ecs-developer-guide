@@ -6,4 +6,6 @@ Many resources are Region\-specific, so when using the console ensure that you s
 
 For more information about the structure of the `Failure` data type, see [Failure](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Failure.html) in the *Amazon Elastic Container Service API Reference*\.
 
+The following are examples of failure messages you might receive when running API commands\. 
+
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/api_failures_messages.html)

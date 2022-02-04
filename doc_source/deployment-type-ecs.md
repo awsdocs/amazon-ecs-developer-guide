@@ -39,4 +39,36 @@ The following should be considered when enabling the deployment circuit breaker 
 + In addition to the service deployment state change events Amazon ECS sends for deployments that have started and have completed, Amazon ECS also sends an event when a deployment with circuit breaker enabled fails\. These events provide details about why a deployment failed or if a deployment was started because of a rollback\. For more information, see [Service deployment state change events](ecs_cwe_events.md#ecs_service_deployment_events)\.
 + If a new deployment is started because a previous deployment failed and rollback was enabled, the `reason` field of the service deployment state change event will indicate the deployment was started because of a rollback\.
 
+### Failure threshold<a name="failure-threshold"></a>
+
+The deployment circuit breaker calculates the threshold value, and then uses the value to determine when to move the deployment to a `FAILED` state\.
+
+The deployment circuit breaker has a a minimum threshold of 10 and a maximum threshold of 200\. You cannot change these values\. The deployment circuit breaker uses the values in the following formula to determine the deployment failure\.
+
+```
+Minimum threshold <= 0.5 * desired service count => maximum threshold
+```
+
+When the result of the calculation is less than the minimum of 10, the failure threshold is set to 10\. When the result of the calculation is greater than the maximum of 200, the failure threshold is set to 200\.
+
+There are two stages for the deployment status check\.
+
+1. The deployment circuit breaker monitors tasks that are part of the deployment and checks for tasks that are in the `RUNNING` state\. The scheduler ignores the failure criteria when a task in the current deployment is in the `RUNNING` state and proceeds to the next stage\. When tasks fail to reach in the `RUNNING` state, the deployment circuit breaker increases the failure count by one\. When the failure count equals the threshold, the deployment is marked as `FAILED`\.
+
+1. This stage is entered when there are one of more tasks in the `RUNNING` state\. The deployment circuit breaker performs health checks on the following resources for the tasks in the current deployment:
+   + Elastic Load Balancing
+   + AWS Cloud Map
+
+   When a health check fails for the task, the deployment circuit breaker increases the failure count by one\. When the failure count equals the threshold, the deployment is marked as `FAILED`\.
+
+The following table provides some examples\.
+
+
+| Desired service count | Calculation | Threshold | 
+| --- | --- | --- | 
+|  1  |  <pre>10 <= 0.5 * 1 => 200</pre>  | 10 \(the calculated value is less than the minimum\) | 
+|  25  |  <pre>10 <= 0.5 * 25 => 200</pre>  | 13 \(the value is rounded up\) | 
+|  400  |  <pre>10 <= 0.5 * 200 => 200</pre>  | 200 | 
+|  800  |  <pre>10 <= 0.5 * 800 => 200</pre>  | 200 \(the calculated value is greater than the maximum\) | 
+
 For additional examples about using the rollback option, see [Announcing Amazon ECS deployment circuit breaker](https://aws.amazon.com/blogs/containers/announcing-amazon-ecs-deployment-circuit-breaker/)\.

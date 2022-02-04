@@ -258,7 +258,7 @@ Use Secrets Manager to create a secret for your sensitive data\.
 
 1. Review your settings, and then choose **Store secret** to save everything you entered as a new secret in Secrets Manager\.
 
-## Creating a task definition that references sensitive data<a name="secrets-create-taskdefinition"></a>
+## Creating a task definition in the classic console that references sensitive data<a name="secrets-create-taskdefinition"></a>
 
 You can use the Amazon ECS console to create a task definition that references a Secrets Manager secret\.
 

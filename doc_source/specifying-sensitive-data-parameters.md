@@ -8,7 +8,7 @@ Amazon ECS enables you to inject sensitive data into your containers by storing 
 + [Injecting sensitive data as an environment variable](#secrets-envvar-parameters)
 + [Injecting sensitive data in a log configuration](#secrets-logconfig-parameters)
 + [Creating an AWS Systems Manager Parameter Store parameter](#secrets-create-parameter)
-+ [Creating a Task Definition that References sensitive data](#secrets-create-taskdefinition-parameters)
++ [Creating a Task Definition in the classic console that references sensitive data](#secrets-create-taskdefinition-parameters)
 
 ## Considerations for specifying sensitive data using Systems Manager Parameter Store<a name="secrets--parameterstore-considerations"></a>
 
@@ -96,7 +96,7 @@ The following is a snippet of a task definition showing the format when referenc
       },
       "secretOptions": [{
         "name": "fluentd-address",
-        "valueFrom": "arn:aws:ssm:region:aws_account_id:parameter:parameter_name"
+        "valueFrom": "arn:aws:ssm:region:aws_account_id:parameter:/parameter_name"
       }]
     }]
   }]
@@ -135,7 +135,7 @@ The following is an alias name example:
 
 1. Choose **Create parameter**\.
 
-## Creating a Task Definition that References sensitive data<a name="secrets-create-taskdefinition-parameters"></a>
+## Creating a Task Definition in the classic console that references sensitive data<a name="secrets-create-taskdefinition-parameters"></a>
 
 You can use the Amazon ECS console to create a task definition that references a Systems Manager Parameter Store parameter\.
 

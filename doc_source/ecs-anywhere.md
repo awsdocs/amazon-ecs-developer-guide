@@ -16,15 +16,15 @@ The following provides a high\-level system architecture overview of Amazon ECS 
 
 ## Considerations<a name="ecs-anywhere-considerations"></a>
 
-Before you start using external instances, be aware of the following considerations:
+Before you start using external instances, be aware of the following considerations\.
 + Currently, you can't register external instances with Amazon ECS Anywhere in the China \(Beijing\) and China \(Ningxia\) Regions\.
 + You can register an external instance to one cluster at a time\. For instructions on how to register an external instance with a different cluster, see [Deregistering an external instance](ecs-anywhere-deregistration.md)\.
 + Your external instances require an IAM role that allows them to communicate with AWS APIs\. For more information, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
 + Your external instances should not have a preconfigured instance credential chain defined locally as this will interfere with the registration script\.
 + To send container logs to CloudWatch Logs, make sure that you create and specify a task execution IAM role in your task definition\. For more information, see [Conditional IAM permissions](ecs-anywhere-iam.md#ecs-anywhere-iam-conditional)\.
-+ When an external instance is registered to a cluster, the `ecs.capability.external` attribute is associated with the instance\. This attribute identifies the instance as an external instance\.
-+ You can add custom attributes to your external instances to use as a task placement constraint\. For more information, see [Custom attributes](task-placement-constraints.md#ecs-custom-attributes)\.
++ When an external instance is registered to a cluster, the `ecs.capability.external` attribute is associated with the instance\. This attribute identifies the instance as an external instance\. You can add custom attributes to your external instances to use as a task placement constraint\. For more information, see [Custom attributes](task-placement-constraints.md#ecs-custom-attributes)\.
 + You can add resource tags to your external instance\. For more information, see [Adding tags to an external container instance](ecs-using-tags.md#instance-details-tags-external)\.
++ ECS Exec is supported on external instances\. For more information, see [Using Amazon ECS Exec for debugging](ecs-exec.md)\.
 + The following are additional considerations that are specific to networking with your external instances\. For more information, see [Networking with ECS Anywhere](#ecs-anywhere-networking)\.
   + Service load balancing isn't supported\.
   + Service discovery isn't supported\.
@@ -33,7 +33,6 @@ Before you start using external instances, be aware of the following considerati
   + The SSM Agent installed on your external instance maintains IAM credentials that are rotated every 30 minutes using a hardware fingerprint\. If your external instance loses connection to AWS, the SSM Agent automatically refreshes the credentials after the connection is re\-established\. For more information, see [Validating on\-premises servers and virtual machines using a hardware fingerprint](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent-technical-details.html#fingerprint-validation) in the *AWS Systems Manager User Guide*\.
 + The `UpdateContainerAgent` API isn't supported\. For instructions on how to update the SSM Agent or the Amazon ECS agent on your external instances, see [Updating the AWS Systems Manager Agent and Amazon ECS container agent on an external instance](ecs-anywhere-updates.md)\.
 + Amazon ECS capacity providers aren't supported\. To create a service or run a standalone task on your external instances, use the `EXTERNAL` launch type\.
-+ ECS Exec isn't supported\.
 + SELinux isn't supported\.
 + Using Amazon EFS volumes or specifying an `EFSVolumeConfiguration` isn't supported\.
 + Integration with App Mesh isn't supported\.

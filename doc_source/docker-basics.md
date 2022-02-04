@@ -8,7 +8,7 @@ Docker provides a walkthrough on deploying containers on Amazon ECS\. For more i
 
 The documentation in this guide assumes that readers possess a basic understanding of what Docker is and how it works\. For more information about Docker, see [What is Docker?](http://aws.amazon.com/docker/) and the [Docker overview](https://docs.docker.com/engine/docker-overview/)\.
 
-## Installing Docker<a name="install_docker"></a>
+## Install Docker<a name="install_docker"></a>
 
 **Important**  
 If you already have Docker installed, skip to [Create a Docker image](#docker-basics-create-image)\.
@@ -47,6 +47,12 @@ If you don't need a local development environment and you prefer to use an Amazo
 
    ```
    sudo service docker start
+   ```
+
+   \(Optional\) On Amazon Linux 2, to ensure that the Docker daemon starts after each system reboot, run the following command:
+
+   ```
+   sudo systemctl enable docker
    ```
 
 1. Add the `ec2-user` to the `docker` group so you can execute Docker commands without using `sudo`\.

@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Added ECS Exec support for external instances  |  ECS Exec is now supported for external instances\. For more information, see [Using Amazon ECS Exec for debugging](ecs-exec.md)\.  |  24 Jan 2022  | 
 |  The new Amazon ECS console experience updated  |  The new Amazon ECS console experience supports creating and deleting a cluster, updating a task definition, and deregistering a task definition\. For more information, see [Creating a cluster for the Fargate launch type using the new console](create-cluster-console-v2.md), [Deleting a cluster using the new console](delete_cluster-new-console.md), [Updating a task definition using the new console](update-task-definition-console-v2.md), and [Deregistering a task definition revision](deregister-task-definition.md)\.  |  08\-Dec 2021  | 
 |  Amazon ECS support for the fluentd log\-driver\-buffer\-limit option  |  Amazon ECS supports the fluentd `log-driver-buffer-limit` option\. For more information, see [Custom log routing](using_firelens.md)\.  |  22 Nov 2021  | 
 |  The new Amazon ECS console experience updated  |  The new Amazon ECS console experience supports creating a task definition\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.  |  23 Nov 2021  | 

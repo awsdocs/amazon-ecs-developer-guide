@@ -1,6 +1,6 @@
 # Amazon ECS events<a name="ecs_cwe_events"></a>
 
-Amazon ECS sends three types of events to EventBridge: container instance state change events, task state change events, and service action events\. If these resources change, an event is triggered\. These events and their possible causes are described in greater detail in the following sections\.
+Amazon ECS sends the following types of events to EventBridge: container instance state change events, task state change events, service action, and service deployment state change events\. If these resources change, an event is triggered\. These events and their possible causes are described in greater detail in the following sections\.
 
 **Note**  
 Amazon ECS may add other event types, sources, and details in the future\. If you are programmatically deserializing event JSON data, make sure that your application is prepared to handle unknown properties to avoid issues if and when these additional properties are added\.

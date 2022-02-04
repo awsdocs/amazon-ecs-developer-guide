@@ -10,41 +10,91 @@ Follow these instructions to install the Amazon ECS CLI on your macOS, Linux, or
 ## Step 1: Download the Amazon ECS CLI<a name="ECS_CLI_install"></a>
 
 Download the Amazon ECS CLI binary\.
-+ For macOS:
 
-  ```
-  sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest
-  ```
-+ For Linux systems:
+------
+#### [ macOS ]
 
-  ```
-  sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
-  ```
-+ For Windows systems:
+```
+sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest
+```
 
-  Open Windows PowerShell and run the following commands:
+------
+#### [ Linux ]
 
-  ```
-  PS C:\> New-Item -Path 'C:\Program Files\Amazon\ECSCLI' -ItemType Directory
-  PS C:\> Invoke-WebRequest -OutFile 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe' https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe
-  ```
+```
+sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
+```
+
+------
+#### [ Windows ]
+
+Open Windows PowerShell and enter the following commands\.
+
 **Note**  
-If you encounter permissions issues, ensure that you are running PowerShell as an administrator\.
+If you encounter permission issues, ensure that you have administrator access on Windows and you are running PowerShell as an administrator\.
+
+```
+New-Item -Path 'C:\Program Files\Amazon\ECSCLI' -ItemType Directory
+Invoke-WebRequest -OutFile 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe' https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe
+```
+
+------
 
 ## Step 2: Verify the Amazon ECS CLI using PGP signatures<a name="ECS_CLI_install"></a>
 
 The Amazon ECS CLI executables are cryptographically signed using PGP signatures\. The PGP signatures can be used to verify the validity of the Amazon ECS CLI executable\. Use the following steps to verify the signatures using the GnuPG tool\.
 
 1. Download and install GnuPG\. For more information, see the [GnuPG website](https://www.gnupg.org)\.
-   + For macOS, we recommend using Homebrew\. Install Homebrew using the instructions from their website\. For more information, see [Homebrew](https://brew.sh/)\. After Homebrew is installed, use the following command from your macOS terminal\.
 
-     ```
-     brew install gnupg
-     ```
-   + For Linux systems, install `gpg` using the package manager on your flavor of Linux\.
-   + For Windows systems, download and use the Windows simple installer from the GnuPG website\. For more information, see [GnuPG Download](https://www.gnupg.org/download/index.html)\.
+------
+#### [ macOS ]
 
-1. Create a local file with the following contents of the Amazon ECS PGP public key and then import it\.
+   We recommend using Homebrew\. Install Homebrew using the instructions from their website\. For more information, see [Homebrew](https://brew.sh/)\. After Homebrew is installed, use the following command from your macOS terminal\.
+
+   ```
+   brew install gnupg
+   ```
+
+------
+#### [ Linux ]
+
+   Install `gpg` using the package manager on your flavor of Linux\.
+
+------
+#### [ Windows ]
+
+   Download the Windows simple installer from the GnuPG website and install as an Administrator\. After you install GnuPG, close and reopen the Administrator PowerShell\.
+
+    For more information, see [GnuPG Download](https://www.gnupg.org/download/index.html)\.
+
+------
+
+1. Create a local plain text file\.
+
+------
+#### [ macOS ]
+
+   On the terminal, enter:
+
+   ```
+   touch <public_key_filename.txt>
+   ```
+
+   Open the file with TextEdit\.
+
+------
+#### [ Linux ]
+
+   Create a text file in a text editor such as gedit\. Save as `public_key_filename.txt`
+
+------
+#### [ Windows ]
+
+   Create a text file in a text editor such as Notepad\. Save as `public_key_filename.txt`
+
+------
+
+1. Add the following contents of the Amazon ECS PGP public key and save the file\. 
 
    ```
    -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -190,40 +240,56 @@ The Amazon ECS CLI executables are cryptographically signed using PGP signatures
    Key fingerprint: F34C 3DDA E729 26B0 79BE AEC6 BCE9 D9A4 2D51 784F
    ```
 
-1. Import the Amazon ECS PGP public key with the following command\.
+   You may close the text editor\.
+
+1. Import the file with the Amazon ECS PGP public key with the following command in the terminal\.
 
    ```
-   gpg --import <public_key_filename>
+   gpg --import <public_key_filename.txt>
    ```
 
 1. Download the Amazon ECS CLI signatures\. The signatures are ASCII detached PGP signatures stored in files with the extension `.asc`\. The signatures file has the same name as its corresponding executable, with `.asc` appended\.
-   + For macOS systems:
 
-     ```
-     curl -Lo ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest.asc
-     ```
-   + For Linux systems:
+------
+#### [ macOS ]
 
-     ```
-     curl -Lo ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.asc
-     ```
-   + For Windows systems:
+   ```
+   curl -Lo ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest.asc
+   ```
 
-     ```
-     PS C:\> Invoke-WebRequest -OutFile ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe.asc
-     ```
+------
+#### [ Linux ]
+
+   ```
+   curl -Lo ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.asc
+   ```
+
+------
+#### [ Windows ]
+
+   ```
+   Invoke-WebRequest -OutFile ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe.asc
+   ```
+
+------
 
 1. Verify the signature\.
-   + For macOS and Linux systems:
 
-     ```
-     gpg --verify ecs-cli.asc /usr/local/bin/ecs-cli
-     ```
-   + For Windows systems:
+------
+#### [ macOS and Linux ]
 
-     ```
-     PS C:\> gpg --verify ecs-cli.asc 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe'
-     ```
+   ```
+   gpg --verify ecs-cli.asc /usr/local/bin/ecs-cli
+   ```
+
+------
+#### [ Windows ]
+
+   ```
+   gpg --verify ecs-cli.asc 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe'
+   ```
+
+------
 
    Expected output:
 
@@ -242,26 +308,33 @@ The warning in the output is expected and is not problematic\. It occurs because
 ## Step 3: Apply Execute Permissions to the Binary<a name="ECS_CLI_install_execute"></a>
 
 Apply execute permissions to the binary\.
-+ For macOS and Linux systems:
 
-  ```
-  sudo chmod +x /usr/local/bin/ecs-cli
-  ```
-+ For Windows systems:
+------
+#### [ macOS and Linux ]
 
-  Edit the environment variables and add `C:\Program Files\Amazon\ECSCLI` to the `PATH` variable field, separated from existing entries by using a semicolon\. For example:
+```
+sudo chmod +x /usr/local/bin/ecs-cli
+```
 
-  ```
-  PS C:\> setx path "%path%;C:\Program Files\Amazon\ECSCLI"
-  ```
+------
+#### [ Windows ]
 
-  Restart PowerShell \(or the command prompt\) so the changes go into effect\.
+Edit the environment variables and add `C:\Program Files\Amazon\ECSCLI` to the `PATH` variable field, separated from existing entries by using a semicolon\. For example:
+
+```
+setx path "%path%;C:\Program Files\Amazon\ECSCLI"
+```
+
+Restart PowerShell so the changes go into effect\.
+
 **Note**  
-Once the `PATH` variable is set, the Amazon ECS CLI can be used from either Windows PowerShell or the command prompt\.
+After the `PATH` variable is set, the Amazon ECS CLI can be used from either Windows PowerShell or the command prompt\.
+
+------
 
 ## Step 4: Complete the Installation<a name="ECS_CLI_install_verify"></a>
 
-Verify that the CLI is working properly\.
+Verify that the CLI is working properly\. 
 
 ```
 ecs-cli --version

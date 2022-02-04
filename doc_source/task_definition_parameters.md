@@ -336,6 +336,7 @@ The working directory in which to run commands inside the container\. This param
 Type: object array  
 Required: no  
 A list of files containing the environment variables to pass to a container\. This parameter maps to the `--env-file` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
+This is not available for Windows containers\.  
 You can specify up to ten environment files\. The file must have a `.env` file extension\. Each line in an environment file should contain an environment variable in `VARIABLE=VALUE` format\. Lines beginning with `#` are treated as comments and are ignored\. For more information on the environment variable file syntax, see [Declare default environment variables in file](https://docs.docker.com/compose/env-file/)\.  
 If there are individual environment variables specified in the container definition, they take precedence over the variables contained within an environment file\. If multiple environment files are specified that contain the same variable, they are processed from the top down\. It is recommended to use unique variable names\. For more information, see [Specifying environment variables](taskdef-envfiles.md)\.    
 `value`  
@@ -476,7 +477,8 @@ The IP address to use in the `/etc/hosts` entry\.
 Type: Boolean  
 Required: no  
 When this parameter is true, the container is given read\-only access to its root file system\. This parameter maps to `ReadonlyRootfs` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--read-only` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-This parameter is not supported for Windows containers or containers hosted on Fargate\.
+This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
+
 ```
 "readonlyRootFilesystem": true|false
 ```

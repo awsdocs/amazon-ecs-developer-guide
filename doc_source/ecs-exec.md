@@ -17,7 +17,7 @@ You can audit which user accessed the container using AWS CloudTrail and log eac
 ## Considerations for using ECS Exec<a name="ecs-exec-considerations"></a>
 
 For this topic, you should be familiar with the following aspects involved with using ECS Exec:
-+ ECS Exec is only supported for Linux containers and the following Windows Amazon ECS Optimized AMIs \(with the container agent version 1\.56 or later\):
++ ECS Exec is supported for external instances \(ECS Anywhere\), Linux containers hosted on Amazon EC2 and the following Windows Amazon ECS\-optimized AMIs \(with the container agent version `1.56` or later\):
   + Amazon ECS\-optimized Windows Server 2022 Full AMI
   + Amazon ECS\-optimized Windows Server 2022 Core AMI
   + Amazon ECS\-optimized Windows Server 2019 Full AMI
@@ -25,6 +25,7 @@ For this topic, you should be familiar with the following aspects involved with 
   + Amazon ECS\-optimized Windows Server 2004 Core AMI
   + Amazon ECS\-optimized Windows Server 20H2 Core AMI
 + ECS Exec is not currently supported using the AWS Management Console\.
++ ECS Exec is not currently supported for tasks launched using an Auto Scaling group capacity provider\.
 + If you are using interface Amazon VPC endpoints with Amazon ECS, you must create the interface Amazon VPC endpoints for Systems Manager Session Manager\. For more information, see [Create the Systems Manager Session Manager VPC endpoints when using the ECS Exec feature](vpc-endpoints.md#ecs-vpc-endpoint-ecsexec)\.
 + You can't enable ECS Exec for existing tasks\. It can only be enabled for new tasks\.
 + When a user runs commands on a container using ECS Exec, these commands are run as the `root` user\. The SSM agent and its child processes run as root even when you specify a user ID for the container\.
@@ -33,6 +34,7 @@ For this topic, you should be familiar with the following aspects involved with 
 + Users can run all of the commands that are available within the container context\. The following actions might result in orphaned and zombie processes: terminating the main process of the container, terminating the command agent, and deleting dependencies\. To cleanup zombie processes, we recommend adding the `initProcessEnabled` flag to your task definition\.
 + While starting SSM sessions outside of the `execute-command` action is possible, this results in the sessions not being logged and being counted against the session limit\. We recommend limiting this access by denying the `ssm:start-session` action using an IAM policy\. For more information, see [Limiting access to the Start Session action](#ecs-exec-limit-access-start-session)\.
 + ECS Exec will use some CPU and memory\. You'll want to accommodate for that when specifying the CPU and memory resource allocations in your task definition\.
++ You must be using AWS CLI version `1.22.3` or later or AWS CLI version `2.3.6` or later\. For information about how to update the AWS CLI, see [Installing or updating the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) in the *AWS Command Line Interface User Guide Version 2*\.
 
 ## Prerequisites for using ECS Exec<a name="ecs-exec-prerequisites"></a>
 
@@ -110,7 +112,7 @@ aws ecs create-service \
     --cluster cluster-name \
     --task-definition task-definition-name \
     --enable-execute-command \
-    --service-name service-name
+    --service-name service-name \
     --desired-count 1
 ```
 

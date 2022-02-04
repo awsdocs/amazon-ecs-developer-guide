@@ -55,7 +55,9 @@ The following is an example task definition using the Linux containers on Fargat
    "family": "fargate-task-definition",
    "memory": "512",
    "networkMode": "awsvpc",
-   "platformFamily": "LINUX",
+   "runtimePlatform": {
+        "operatingSystemFamily": "LINUX"
+    },
    "requiresCompatibilities": [ 
        "FARGATE" 
     ]
@@ -242,7 +244,9 @@ This example demonstrates the syntax for a task definition with multiple contain
 ```
 {
   "family": "appmesh-gateway",
-  "platformFamily": "LINUX",
+  "runtimePlatform": {
+        "operatingSystemFamily": "LINUX"
+  },
   "proxyConfiguration":{
       "type": "APPMESH",
       "containerName": "envoy",

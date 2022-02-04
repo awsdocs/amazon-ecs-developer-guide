@@ -80,6 +80,8 @@ The following are examples of service event messages you may see in the Amazon E
 
 The service scheduler will send a `service service-name) has reached a steady state.` service event when the service is healthy and at the desired number of tasks, thus reaching a steady state\.
 
+The service scheduler reports the status periodically, so you might receive this message multiple times\.
+
 ### service \(*service\-name*\) was unable to place a task because no container instance met all of its requirements\.<a name="service-event-messages-1"></a>
 
 The service scheduler will send this event message when it could not find the available resources to add another task\. The possible causes for this are:

@@ -48,6 +48,8 @@ The following example creates an Amazon ECS cluster on an AWS Outposts\.
 
 1. Create a role and policy with rights on AWS Outposts\.
 
+   The `role-policy.json` file is the policy document that contains the effect and actions for resources\. For information about the file format, see [PutRolePolicy](https://docs.aws.amazon.com/IAM/latest/APIReference/API_PutRolePolicy.html) in the *IAM API Reference*
+
    ```
    aws iam create-role –-role-name ecsRole \
        --assume-role-policy-document file://ecs-policy.json
@@ -81,7 +83,7 @@ The following example creates an Amazon ECS cluster on an AWS Outposts\.
 
 1. Create the Cluster\.
 
-1. Define the Amazon ECS container agent environment variables to launch the instance into the cluster created in the previous step and define any necessary tags\.
+1. Define the Amazon ECS container agent environment variables to launch the instance into the cluster created in the previous step and define any tags you want to add to help identify the cluster \(for example, `Outpost` to indicate that the cluster is for an Outpost\)\.
 
    ```
    #! /bin/bash
@@ -95,6 +97,8 @@ The following example creates an Amazon ECS cluster on an AWS Outposts\.
 In order to avoid delays caused by pulling container images from Amazon ECR in the Region, use image caches\. To do this, each time a task is run, configure the Amazon ECS agent to default to using the cached image on the instance itself by setting `ECS_IMAGE_PULL_BEHAVIOR` to `prefer-cached`\. 
 
 1. Create the container instance, specifying the VPC and subnet for the AWS Outposts where this instance should run and an instance type that is available on the AWS Outposts\. \(This step is different for AWS Outposts\.\)
+
+   The `userdata.txt` file contains the user data the instance can use to perform common automated configuration tasks and even run scripts after the instance starts\. For information about the file for API calls, see [Run commands on your Linux instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
    ```
    aws ec2 run-instances --count 1 --image-id ami-xxxxxxxx --instance-type c5.large \

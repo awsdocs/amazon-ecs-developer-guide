@@ -4,6 +4,8 @@ The Amazon ECS container agent supports a number of configuration options, most 
 
 If your container instance was launched with a Linux variant of the Amazon ECS\-optimized AMI, you can set these environment variables in the `/etc/ecs/ecs.config` file and then restart the agent\. You can also write these configuration variables to your container instances with Amazon EC2 user data at launch time\. For more information, see [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)\.
 
+If your container instance was launched with a Windows variant of the Amazon ECS\-optimized AMI, you can set these environment variables with the PowerShell SetEnvironmentVariable commandand then restart the agent\. For more information, see [Run commands on your Windows instance at launch](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html) in the *Amazon EC2 User Guide for Windows Instances* and [Bootstrapping Windows container instances with Amazon EC2 user data](bootstrap_windows_container_instance.md)\.
+
 If you are manually starting the Amazon ECS container agent \(for non Amazon ECS\-optimized AMIs\), you can use these environment variables in the docker run command that you use to start the agent\. Use these variables with the syntax `--env=VARIABLE_NAME=VARIABLE_VALUE`\. For sensitive information, such as authentication credentials for private repositories, you should store your agent environment variables in a file and pass them all at one time with the `--env-file path_to_env_file` option\.
 
 **Topics**

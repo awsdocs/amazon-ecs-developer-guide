@@ -23,6 +23,7 @@ This tutorial assumes that the following prerequisites have been completed\.
   + Use a public subnet and assign a public IP address to the task\.
 
   For more information, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-public-private-vpc.html)\.
++ Optional: AWS CloudShell is a tool that gives customers a command line without needing to create their own EC2 instance\. For more information, see [What is AWS CloudShell ](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html) in the *AWS CloudShell User Guide*\.
 
 ## Step 1: Create a Cluster<a name="ECS_AWSCLI_Fargate_create_cluster"></a>
 
@@ -61,7 +62,9 @@ Before you can run a task on your ECS cluster, you must register a task definiti
 ```
 {
     "family": "sample-fargate", 
-    "platformFamily": "LINUX",
+    "runtimePlatform": {
+        "operatingSystemFamily": "LINUX"
+    },
     "networkMode": "awsvpc", 
     "containerDefinitions": [
         {

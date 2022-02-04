@@ -70,15 +70,56 @@ PS C:\> New-Item -Path 'C:\copilot' -ItemType directory; `
 The AWS Copilot CLI executables are cryptographically signed using PGP signatures\. The PGP signatures can be used to verify the validity of the AWS Copilot CLI executable\. Use the following steps to verify the signatures using the GnuPG tool\.
 
 1. Download and install GnuPG\. For more information, see the [GnuPG website](https://www.gnupg.org)\.
-   + For macOS, we recommend using Homebrew\. Install Homebrew using the instructions from their website\. For more information, see [Homebrew](https://brew.sh/)\. After Homebrew is installed, use the following command from your macOS terminal\.
 
-     ```
-     brew install gnupg
-     ```
-   + For Linux systems, install `gpg` using the package manager on your flavor of Linux\.
-   + For Windows systems, download and use the Windows simple installer from the GnuPG website\. For more information, see [GnuPG Download](https://www.gnupg.org/download/index.html)\.
+------
+#### [ macOS ]
 
-1. Create a local file with the following contents of the Amazon ECS PGP public key and then import it\.
+   We recommend using Homebrew\. Install Homebrew using the instructions from their website\. For more information, see [Homebrew](https://brew.sh/)\. After Homebrew is installed, use the following command from your macOS terminal\.
+
+   ```
+   brew install gnupg
+   ```
+
+------
+#### [ Linux ]
+
+   Install `gpg` using the package manager on your flavor of Linux\.
+
+------
+#### [ Windows ]
+
+   Download the Windows simple installer from the GnuPG website and install as an Administrator\. After you install GnuPG, close and reopen the Administrator PowerShell\.
+
+    For more information, see [GnuPG Download](https://www.gnupg.org/download/index.html)\.
+
+------
+
+1. Create a local plain text file\.
+
+------
+#### [ macOS ]
+
+   On the terminal, enter:
+
+   ```
+   touch <public_key_filename.txt>
+   ```
+
+   Open the file with TextEdit\.
+
+------
+#### [ Linux ]
+
+   Create a text file in a text editor such as gedit\. Save as `public_key_filename.txt`
+
+------
+#### [ Windows ]
+
+   Create a text file in a text editor such as Notepad\. Save as `public_key_filename.txt`
+
+------
+
+1. Add the following contents of the Amazon ECS PGP public key and save the file\. 
 
    ```
    -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -224,10 +265,12 @@ The AWS Copilot CLI executables are cryptographically signed using PGP signature
    Key fingerprint: F34C 3DDA E729 26B0 79BE AEC6 BCE9 D9A4 2D51 784F
    ```
 
-1. Import the Amazon ECS PGP public key with the following command\.
+   You may close the text editor\.
+
+1. Import the file with the Amazon ECS PGP public key with the following command in the terminal\.
 
    ```
-   gpg --import <public_key_filename>
+   gpg --import <public_key_filename.txt>
    ```
 
 1. Download the AWS Copilot CLI signatures\. The signatures are ASCII detached PGP signatures stored in files with the extension `.asc`\. The signatures file has the same name as its corresponding executable, with `.asc` appended\.

@@ -28,6 +28,7 @@ Most of these service quotas, but not all, are listed under the Amazon Elastic C
 |  Target groups per service  |  The maximum number of target groups per service, if using an Application Load Balancer or a Network Load Balancer\.  |  5  |  No  | 
 |  Classic Load Balancers per service  |  The maximum number of Classic Load Balancers per service\.  |  1  |  No  | 
 |  Tags per resource  |  The maximum number of tags per resource\. This applies to task definitions, clusters, tasks, and services\.  |  50  |  No  | 
+| Tasks in the PROVISIONING state per cluster | The maximum number of tasks waiting in the PROVISIONING state per cluster\. This quota only applies to tasks launched using an Amazon EC2 Auto Scaling group capacity provider\. | 300 | No | 
 
 ## AWS Fargate service quotas<a name="service-quotas-fargate"></a>
 

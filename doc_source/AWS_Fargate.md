@@ -161,7 +161,9 @@ The following is an example task definition that sets up a web server using the 
    "cpu": "256",
    "executionRoleArn": "arn:aws:iam::012345678910:role/ecsTaskExecutionRole",
    "family": "fargate-task-definition",
-   "platformFamily": "LINUX",
+   "runtimePlatform": {
+        "operatingSystemFamily": "LINUX"
+    },
    "memory": "512",
    "networkMode": "awsvpc",
    "requiresCompatibilities": [ 
