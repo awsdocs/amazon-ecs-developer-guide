@@ -79,7 +79,7 @@ The following should be considered when specifying an environment variable file 
 
 The Amazon ECS task execution role is required to use this feature\. This allows the container agent to pull the environment variable file from Amazon S3\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
-To provide access to the Amazon S3 objects that you create, manually add the following permissions [as an inline policy to the task execution role](https://gist.github.com/nstanard/f7a04d4dfd0759063a153c1bf45318e4#file-iam-tf-L4)\. Use the `Resource` parameter to scope the permission to the Amazon S3 buckets that contain the environment variable files\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
+To provide access to the Amazon S3 objects that you create, manually add the following permissions as an inline policy to the task execution role\. Use the `Resource` parameter to scope the permission to the Amazon S3 buckets that contain the environment variable files\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
 + `s3:GetObject`
 + `s3:GetBucketLocation`
 
@@ -110,3 +110,6 @@ An example inline policy adding the permissions is shown\.
   ]
 }
 ```
+
+The Terraform version of this example can be found [here](https://gist.github.com/nstanard/f7a04d4dfd0759063a153c1bf45318e4#file-iam-tf-L4).
+
