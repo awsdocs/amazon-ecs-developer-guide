@@ -36,6 +36,9 @@ The following considerations are specific to Amazon ECS services using Applicati
 + If a service's task fails the load balancer health check criteria, the task is stopped and restarted\. This process continues until your service reaches the number of desired running tasks\.
 + When using Network Load Balancers configured with IP addresses as targets, requests are seen as coming from the Network Load Balancers private IP address\. This means that services behind an Network Load Balancer are effectively open to the world as soon as you allow incoming requests and health checks in the target's security group\.
 + Using a Network Load Balancer to route UDP traffic to your Amazon ECS tasks on Fargate require the task to use platform version `1.4.0` \(Linux\) or `1.0.0` \(Windows\)\.
++ Minimize errors in your client applications by setting the `StopTimeout` in the task definition longer than the target group deregistration delay, which should be longer than your client connection timeout\. See the Builders Library for more information on recommended client configuration [ here ](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter)\.
+
+  Also, the Network Load Balancer target group attribute for connection termination closes all remaining connections after the deregistration time\. This can cause clients to display undesired error messages, if the client does not handle them\.
 + If you are experiencing problems with your load balancer\-enabled services, see [Troubleshooting service load balancers](troubleshoot-service-load-balancers.md)\.
 
 ### Classic Load Balancer considerations<a name="clb-considerations"></a>

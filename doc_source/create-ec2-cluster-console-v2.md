@@ -32,7 +32,7 @@ Instances launched for the Auto Scaling group use the launch template\.
 
 **To create a cluster using the new console**
 
-Before you begin, be sure that you complete the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. 
+Before you begin, be sure that you create an IAM user, and then assign the appropriate IAM permissions\. For more information, see [Create an IAM user](get-set-up-for-amazon-ecs.md#create-an-iam-user) and [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies)\.
 
 1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 

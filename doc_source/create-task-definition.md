@@ -14,7 +14,7 @@ Create your task definitions using the new Amazon ECS console experience\. To ma
 
    1. For **Name**, specify a name for the container\.
 
-   1. For **Image URI**, specify the image to use to start a container\. Images in the Docker Hub registry are may be specified using the Docker Hub registry name only\. For example, if `amazonlinux:latest` is specified, the Amazon Linux container hosted on Docker Hub is used\. For all other repositories, specify the repository using either the `repository-url/image:tag` or `repository-url/image@digest` formats\.
+   1. For **Image URI**, specify the image to use to start a container\. Images in the Amazon ECR Public Gallery registry are may be specified using the Amazon ECR Public registry name only\. For example, if `public.ecr.aws/ecs/amazon-ecs-agent:latest` is specified, the Amazon Linux container hosted on Amazon ECR Public Gallery is used\. For all other repositories, specify the repository using either the `repository-url/image:tag` or `repository-url/image@digest` formats\.
 
    1. For **Essential container**, if your task definition has two or more containers defined, you may specify whether the container should be considered essential\. If a container is marked as *essential*, if that container stops then the task is stopped\. Each task definition must contain at least one essential container\.
 

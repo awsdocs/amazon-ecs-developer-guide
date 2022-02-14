@@ -17,7 +17,6 @@ The following provides a high\-level system architecture overview of Amazon ECS 
 ## Considerations<a name="ecs-anywhere-considerations"></a>
 
 Before you start using external instances, be aware of the following considerations\.
-+ Currently, you can't register external instances with Amazon ECS Anywhere in the China \(Beijing\) and China \(Ningxia\) Regions\.
 + You can register an external instance to one cluster at a time\. For instructions on how to register an external instance with a different cluster, see [Deregistering an external instance](ecs-anywhere-deregistration.md)\.
 + Your external instances require an IAM role that allows them to communicate with AWS APIs\. For more information, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
 + Your external instances should not have a preconfigured instance credential chain defined locally as this will interfere with the registration script\.
@@ -42,7 +41,7 @@ Before you start using external instances, be aware of the following considerati
 The following is the list of supported operating systems and system architectures\.
 + Amazon Linux 2
 + CentOS 7, CentOS 8
-+ RHEL 7 — Neither Docker or RHEL's open package repositories support installing Docker natively on RHEL\. You must ensure that Docker is installed before you run the install script that's described in this document\.
++ RHEL 7, RHEL 8 — Neither Docker or RHEL's open package repositories support installing Docker natively on RHEL\. You must ensure that Docker is installed before you run the install script that's described in this document\.
 + Fedora 32, Fedora 33 — Fedora 32 and Fedora 33 default to using `cgroups.v2`, which isn't supported by Amazon ECS\. As a result, the server's default grub configuration must be changed and the server rebooted\. For instructions, see [Changing cgroup version](https://docs.docker.com/config/containers/runmetrics/#changing-cgroup-version) in the Docker documentation\.
 + openSUSE Tumbleweed
 + Ubuntu 18, Ubuntu 20

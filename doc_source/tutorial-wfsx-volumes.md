@@ -272,45 +272,72 @@ The Fargate launch type isn't compatible with Windows containers\.
 
    ```
    {
-     "containerDefinitions": [
-       {
-         "entryPoint": [
-           "powershell",
-           "-Command"
-         ],
-         "portMappings": [],
-         "command": [
-           "New-Item -Path C:\\fsx-windows-dir\\index.html -ItemType file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>It Works!</h2> <p>You are using Amazon FSx for Windows File Server file system for persistent container storage.</p>' -Force"
-         ],
-         "cpu": 512,
-         "memory": 256,
-         "image": "mcr.microsoft.com/windows/servercore/iis",
-         "essential": false,
-         "name": "container1"
-       },
-       {
-         "entryPoint": [
-           "powershell",
-           "-Command"
-         ],
-         "portMappings": [
-             {
-               "hostPort": 8080,
-               "protocol": "tcp",
-               "containerPort": 80
-             }
-         ],
-         "command": [
-           "Remove-Item -Recurse C:\\inetpub\\wwwroot\\* -Force; Start-Sleep -Seconds 120; Move-Item -Path C:\\fsx-windows-dir\\index.html -Destination C:\\inetpub\\wwwroot\\index.html -Force; C:\\ServiceMonitor.exe w3svc"
-         ],
-         "cpu": 512,
-         "memory": 256,
-         "image": "mcr.microsoft.com/windows/servercore/iis",
-         "essential": true,
-         "name": "container2"
-       }
-     ],
-     "family": "fsx-windows"
+       "containerDefinitions": [
+           {
+               "entryPoint": [
+                   "powershell",
+                   "-Command"
+               ],
+               "portMappings": [],
+               "command": [
+                   "New-Item -Path C:\\fsx-windows-dir\\index.html -ItemType file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>It Works!</h2> <p>You are using Amazon FSx for Windows File Server file system for persistent container storage.</p>' -Force"
+               ],
+               "cpu": 512,
+               "memory": 256,
+               "image": "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019",
+               "essential": false,
+               "name": "container1",
+               "mountPoints": [
+                   {
+                       "sourceVolume": "fsx-windows-dir",
+                       "containerPath": "C:\\fsx-windows-dir",
+                       "readOnly": false
+                   }
+               ]
+           },
+           {
+               "entryPoint": [
+                   "powershell",
+                   "-Command"
+               ],
+               "portMappings": [
+                   {
+                       "hostPort": 8080,
+                       "protocol": "tcp",
+                       "containerPort": 80
+                   }
+               ],
+               "command": [
+                   "Remove-Item -Recurse C:\\inetpub\\wwwroot\\* -Force; Start-Sleep -Seconds 120; Move-Item -Path C:\\fsx-windows-dir\\index.html -Destination C:\\inetpub\\wwwroot\\index.html -Force; C:\\ServiceMonitor.exe w3svc"
+               ],
+               "mountPoints": [
+                   {
+                       "sourceVolume": "fsx-windows-dir",
+                       "containerPath": "C:\\fsx-windows-dir",
+                       "readOnly": false
+                   }
+               ],
+               "volumes": [
+                   {
+                       "name": "fsx-windows-vol",
+                       "fsxWindowsFileServerVolumeConfiguration": {
+                           "fileSystemId": "fs-0eeb5730b2EXAMPLE",
+                           "authorizationConfig": {
+                               "domain": "example.com",
+                               "credentialsParameter": "arn:arn-1234"
+                           },
+                           "rootDirectory": "share"
+                       }
+                   }
+               ],
+               "cpu": 512,
+               "memory": 256,
+               "image": "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019",
+               "essential": true,
+               "name": "container2"
+           }
+       ],
+       "family": "fsx-windows"
    }
    ```
 

@@ -30,6 +30,8 @@ The `ecs.os-family` task placement constraint can be specified with the followin
 
 You can add custom metadata to your container instances, known as *attributes*\. Each attribute has a name and an optional string value\. You can use the built\-in attributes provided by Amazon ECS or define custom attributes\.
 
+The following sections contain sample built\-in, optional, and custom attributes\.
+
 ### Built\-in attributes<a name="ecs-automatic-attributes"></a>
 
 Amazon ECS automatically applies the following attributes to your container instances\.

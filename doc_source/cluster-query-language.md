@@ -46,7 +46,7 @@ Select container instances by task group\. For more information, see [Task group
 The comparison operator\. The following operators are supported\.
 
 
-| Operator | Description | 
+|  Operator  |  Description  | 
 | --- | --- | 
 |  ==, equals  |  String equality  | 
 |  \!=, not\_equals  |  String inequality  | 

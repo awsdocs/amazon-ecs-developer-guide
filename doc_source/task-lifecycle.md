@@ -28,7 +28,8 @@ DEACTIVATING
 Amazon ECS has to perform additional steps before the task is stopped\. For example, for tasks that are part of a service that's configured to use multiple Elastic Load Balancing target groups, the target group deregistration occurs during this state\.
 
 STOPPING  
-This is a transition state where Amazon ECS is waiting on the container agent to take further action\.
+This is a transition state where Amazon ECS is waiting on the container agent to take further action\.  
+For Linux containers, the container agent will send the `SIGTERM` signal to notify the application needs to finish and shut down, and then the sends a `SIGKILL` after waiting the `StopTimeout` duration set in the task definition\. 
 
 DEPROVISIONING  
 Amazon ECS has to perform additional steps after the task has stopped but before the task transitions to the `STOPPED` state\. For example, for tasks that use the `awsvpc` network mode, the elastic network interface needs to be detached and deleted\.

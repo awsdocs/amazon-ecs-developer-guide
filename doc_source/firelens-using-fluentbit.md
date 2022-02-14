@@ -2,7 +2,7 @@
 
 AWS provides a Fluent Bit image with plugins for both CloudWatch Logs and Kinesis Data Firehose\. We recommend using Fluent Bit as your log router because it has a lower resource utilization rate than Fluentd\. For more information, see [CloudWatch Logs for Fluent Bit](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit) and [Amazon Kinesis Firehose for Fluent Bit](https://github.com/aws/amazon-kinesis-firehose-for-fluent-bit)\.
 
-The **AWS for Fluent Bit** image is available on Amazon ECR on both the Amazon ECR Public Gallery and in an Amazon ECR repository in most Regions for high availability, and on Docker Hub\.
+The **AWS for Fluent Bit** image is available on Amazon ECR on both the Amazon ECR Public Gallery and in an Amazon ECR repository in most Regions for high availability\.
 
 ## Amazon ECR Public Gallery<a name="firelens-image-ecrpublic"></a>
 
@@ -58,7 +58,3 @@ Parameters:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /aws/service/aws-for-fluent-bit/stable
 ```
-
-## Dockerhub<a name="firelens-image-dockerhub"></a>
-
-The AWS for Fluent Bit image is available on Docker Hub\. For more details, see [AWS for Fluent Bit on Docker Hub](https://hub.docker.com/r/amazon/aws-for-fluent-bit)\.

@@ -54,10 +54,10 @@ If the previous command does not return the `ECS_DATADIR` environment variable, 
 **Note**  
 You can optionally store your agent environment variables in Amazon S3 \(which can be downloaded to your container instances at launch time using Amazon EC2 user data\)\. This is recommended for sensitive information such as authentication credentials for private repositories\. For more information, see [Storing container instance configuration in Amazon S3](ecs-agent-config.md#ecs-config-s3) and [Private registry authentication for tasks](private-auth.md)\.
 
-1. Pull the latest Amazon ECS container agent image from Docker Hub\.
+1. Pull the latest Amazon ECS container agent image from Amazon Elastic Container Registry Public\.
 
    ```
-   ubuntu:~$ docker pull amazon/amazon-ecs-agent:latest
+   ubuntu:~$ docker pull public.ecr.aws/ecs/amazon-ecs-agent:latest
    ```
 
    Output:

@@ -1,6 +1,6 @@
 # Private registry authentication for container instances<a name="private-auth-container-instances"></a>
 
-The Amazon ECS container agent can authenticate with private registries, including Docker Hub, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\. This feature is only supported by tasks using the EC2 launch type\.
+The Amazon ECS container agent can authenticate with private registries, using basic authentication\. When you enable private registry authentication, you can use private Docker images in your task definitions\. This feature is only supported by tasks using the EC2 launch type\.
 
 Another method of enabling private registry authentication uses AWS Secrets Manager to store your private registry credentials securely and then reference them in your container definition\. This allows your tasks to use images from private repositories\. This method supports tasks using either the EC2 or Fargate launch types\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
 
