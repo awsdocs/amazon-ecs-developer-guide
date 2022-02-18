@@ -36,7 +36,7 @@ The cluster has been deleted\. Clusters with an `INACTIVE` status may remain dis
 + A cluster may contain a mix of tasks hosted on AWS Fargate, Amazon EC2 instances, or external instances\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 + A cluster may contain a mix of both Auto Scaling group capacity providers and Fargate capacity providers, however when specifying a capacity provider strategy they may only contain one or the other but not both\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
 + For tasks using the EC2 launch type, clusters can contain multiple different container instance types, but each container instance may only be registered to one cluster at a time\.
-+ Custom IAM policies may be created to allow or restrict user access to specific clusters\. For more information, see the [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies) section in [Amazon Elastic Container Service identity\-based policy examples](security_iam_id-based-policy-examples.md)\.
++ Custom IAM policies may be created to allow or restrict user access to specific clusters\. For more information, see the [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies) section in [Identity\-based policy examples for Amazon Elastic Container Service](security_iam_id-based-policy-examples.md)\.
 
 ## Setting the cluster default capacity provider using the new console<a name="set-cluster-default-capacity-provider-console-v2"></a>
 

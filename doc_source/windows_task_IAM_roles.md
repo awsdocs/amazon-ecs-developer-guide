@@ -1,6 +1,6 @@
-# Windows IAM roles for tasks<a name="windows_task_IAM_roles"></a>
+# Additional configuration for Windows IAM roles for tasks<a name="windows_task_IAM_roles"></a>
 
-The IAM roles for tasks with Windows features requires extra configuration, but much of this configuration is similar to enabling IAM roles for tasks on Linux container instances\. The following requirements must be met to enable IAM roles for tasks for Windows containers\.
+The IAM roles for tasks with Windows features requires additional configuration, but much of this configuration is similar to confiuring IAM roles for tasks on Linux container instances\. The following requirements must be met to configure IAM roles for tasks for Windows containers\.
 + When you launch your container instances, you must set the `-EnableTaskIAMRole` option in the container instances user data script\. The `EnableTaskIAMRole` turns on the Task IAM roles feature for the tasks\. For example:
 
   ```
@@ -13,7 +13,7 @@ The IAM roles for tasks with Windows features requires extra configuration, but 
 + You must create an IAM role and policy for your tasks\. For more information, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 + Your container must use an AWS SDK that supports IAM roles for tasks\. For more information, see [Using a Supported AWS SDK](task-iam-roles.md#task-iam-roles-minimum-sdk)\.
 + You must specify the IAM role you created for your tasks when you register the task definition, or as an override when you run the task\. For more information, see [Specifying an IAM Role for your Tasks](task-iam-roles.md#specify-task-iam-roles)\.
-+ The IAM roles for the task credential provider use port 80 on the container instance\. Therefore, if you enable IAM roles for tasks on your container instance, your containers can't use port 80 for the host port in any port mappings\. To expose your containers on port 80, we recommend configuring a service for them that uses load balancing\. You can use port 80 on the load balancer\. By doing so, traffic can be routed to another host port on your container instances\. For more information, see [Service load balancing](service-load-balancing.md)\.
++ The IAM roles for the task credential provider use port 80 on the container instance\. Therefore, if you configure IAM roles for tasks on your container instance, your containers can't use port 80 for the host port in any port mappings\. To expose your containers on port 80, we recommend configuring a service for them that uses load balancing\. You can use port 80 on the load balancer\. By doing so, traffic can be routed to another host port on your container instances\. For more information, see [Service load balancing](service-load-balancing.md)\.
 + If your Windows instance is restarted, you must delete the proxy interface and initialize the Amazon ECS container agent again to bring the credential proxy back up\.
 
 ## IAM roles for task container bootstrap script<a name="windows_task_IAM_roles_bootstrap"></a>

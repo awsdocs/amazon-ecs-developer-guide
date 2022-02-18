@@ -47,7 +47,7 @@ Before you begin, be sure that you create an IAM user, and then assign the appro
    The name can contain up to 255 letters \(uppercase and lowercase\), numbers, and hyphens\.
 
 1. \(Optional\) To change the VPC and subnets where your tasks and services launch, under **Networking**, perform any of the following operations:
-   + To remove s subnet, under **Subnets**, choose **X** for each subnet that you want to remove\.
+   + To remove a subnet, under **Subnets**, choose **X** for each subnet that you want to remove\.
    + To change to a VPC other than the **default** VPC, under **VPC**, choose an existing **VPC**, and then under **Subnets**, select each subnet\.
 
 1. \(Optional\) To add Amazon EC2 instances to your cluster, expand **Infrastructure**, and then select **Amazon EC2 instances**\. Next, configure the Auto Scaling group which acts as the capacity provider:

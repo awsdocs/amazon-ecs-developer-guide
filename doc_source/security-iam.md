@@ -1,13 +1,17 @@
-# Identity and access management for Amazon Elastic Container Service<a name="security-iam"></a>
+# Identity and Access Management for Amazon Elastic Container Service<a name="security-iam"></a>
+
+
+
+
 
 AWS Identity and Access Management \(IAM\) is an AWS service that helps an administrator securely control access to AWS resources\. IAM administrators control who can be *authenticated* \(signed in\) and *authorized* \(have permissions\) to use Amazon ECS resources\. IAM is an AWS service that you can use with no additional charge\.
 
 **Topics**
 + [Audience](#security_iam_audience)
-+ [Authenticating With Identities](#security_iam_authentication)
++ [Authenticating with identities](#security_iam_authentication)
 + [Managing access using policies](#security_iam_access-manage)
 + [How Amazon Elastic Container Service works with IAM](security_iam_service-with-iam.md)
-+ [Amazon Elastic Container Service identity\-based policy examples](security_iam_id-based-policy-examples.md)
++ [Identity\-based policy examples for Amazon Elastic Container Service](security_iam_id-based-policy-examples.md)
 + [AWS managed policies for Amazon Elastic Container Service](security-iam-awsmanpol.md)
 + [Service\-linked role for Amazon ECS](using-service-linked-roles.md)
 + [Amazon ECS task execution IAM role](task_execution_IAM_role.md)
@@ -16,6 +20,7 @@ AWS Identity and Access Management \(IAM\) is an AWS service that helps an admin
 + [IAM Roles for Tasks](task-iam-roles.md)
 + [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)
 + [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)
++ [Additional configuration for Windows IAM roles for tasks](windows_task_IAM_roles.md)
 + [Troubleshooting Amazon Elastic Container Service identity and access](security_iam_troubleshoot.md)
 
 ## Audience<a name="security_iam_audience"></a>
@@ -26,9 +31,9 @@ How you use AWS Identity and Access Management \(IAM\) differs, depending on the
 
 **Service administrator** – If you're in charge of Amazon ECS resources at your company, you probably have full access to Amazon ECS\. It's your job to determine which Amazon ECS features and resources your employees should access\. You must then submit requests to your IAM administrator to change the permissions of your service users\. Review the information on this page to understand the basic concepts of IAM\. To learn more about how your company can use IAM with Amazon ECS, see [How Amazon Elastic Container Service works with IAM](security_iam_service-with-iam.md)\.
 
-**IAM administrator** – If you're an IAM administrator, you might want to learn details about how you can write policies to manage access to Amazon ECS\. To view example Amazon ECS identity\-based policies that you can use in IAM, see [Amazon Elastic Container Service identity\-based policy examples](security_iam_id-based-policy-examples.md)\.
+**IAM administrator** – If you're an IAM administrator, you might want to learn details about how you can write policies to manage access to Amazon ECS\. To view example Amazon ECS identity\-based policies that you can use in IAM, see [Identity\-based policy examples for Amazon Elastic Container Service](security_iam_id-based-policy-examples.md)\.
 
-## Authenticating With Identities<a name="security_iam_authentication"></a>
+## Authenticating with identities<a name="security_iam_authentication"></a>
 
 Authentication is how you sign in to AWS using your identity credentials\. For more information about signing in using the AWS Management Console, see [Signing in to the AWS Management Console as an IAM user or root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/console.html) in the *IAM User Guide*\.
 
@@ -42,7 +47,7 @@ Regardless of the authentication method that you use, you might also be required
 
   When you first create an AWS account, you begin with a single sign\-in identity that has complete access to all AWS services and resources in the account\. This identity is called the AWS account *root user* and is accessed by signing in with the email address and password that you used to create the account\. We strongly recommend that you do not use the root user for your everyday tasks, even the administrative ones\. Instead, adhere to the [best practice of using the root user only to create your first IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users)\. Then securely lock away the root user credentials and use them to perform only a few account and service management tasks\. 
 
-### IAM Users and Groups<a name="security_iam_authentication-iamuser"></a>
+### IAM users and groups<a name="security_iam_authentication-iamuser"></a>
 
 An *[IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html)* is an identity within your AWS account that has specific permissions for a single person or application\. An IAM user can have long\-term credentials such as a user name and password or a set of access keys\. To learn how to generate access keys, see [Managing access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) in the *IAM User Guide*\. When you generate access keys for an IAM user, make sure you view and securely save the key pair\. You cannot recover the secret access key in the future\. Instead, you must generate a new access key pair\.
 
@@ -50,7 +55,7 @@ An [https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html](https://doc
 
 Users are different from roles\. A user is uniquely associated with one person or application, but a role is intended to be assumable by anyone who needs it\. Users have permanent long\-term credentials, but roles provide temporary credentials\. To learn more, see [When to create an IAM user \(instead of a role\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html#id_which-to-choose) in the *IAM User Guide*\.
 
-### IAM Roles<a name="security_iam_authentication-iamrole"></a>
+### IAM roles<a name="security_iam_authentication-iamrole"></a>
 
 An *[IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)* is an identity within your AWS account that has specific permissions\. It is similar to an IAM user, but is not associated with a specific person\. You can temporarily assume an IAM role in the AWS Management Console by [switching roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-console.html)\. You can assume a role by calling an AWS CLI or AWS API operation or by using a custom URL\. For more information about methods for using roles, see [Using IAM roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) in the *IAM User Guide*\.
 
@@ -59,7 +64,7 @@ IAM roles with temporary credentials are useful in the following situations:
 + **Federated user access** –  Instead of creating an IAM user, you can use existing identities from AWS Directory Service, your enterprise user directory, or a web identity provider\. These are known as *federated users*\. AWS assigns a role to a federated user when access is requested through an [identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html)\. For more information about federated users, see [Federated users and roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html#intro-access-roles) in the *IAM User Guide*\. 
 + **Cross\-account access** – You can use an IAM role to allow someone \(a trusted principal\) in a different account to access resources in your account\. Roles are the primary way to grant cross\-account access\. However, with some AWS services, you can attach a policy directly to a resource \(instead of using a role as a proxy\)\. To learn the difference between roles and resource\-based policies for cross\-account access, see [How IAM roles differ from resource\-based policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_compare-resource-policies.html) in the *IAM User Guide*\.
 + **Cross\-service access** –  Some AWS services use features in other AWS services\. For example, when you make a call in a service, it's common for that service to run applications in Amazon EC2 or store objects in Amazon S3\. A service might do this using the calling principal's permissions, using a service role, or using a service\-linked role\. 
-  + **Principal permissions** –  When you use an IAM user or role to perform actions in AWS, you are considered a principal\. Policies grant permissions to a principal\. When you use some services, you might perform an action that then triggers another action in a different service\. In this case, you must have permissions to perform both actions\. To see whether an action requires additional dependent actions in a policy, see [Actions, Resources, and Condition Keys for Amazon Elastic Container Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonelasticcontainerservice.html) in the *Service Authorization Reference*\. 
+  + **Principal permissions** –  When you use an IAM user or role to perform actions in AWS, you are considered a principal\. Policies grant permissions to a principal\. When you use some services, you might perform an action that then triggers another action in a different service\. In this case, you must have permissions to perform both actions\. To see whether an action requires additional dependent actions in a policy, see [Actions, resources, and condition keys for Amazon Elastic Container Service](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonelasticcontainerservice.html) in the *Service Authorization Reference*\. 
   + **Service role** –  A service role is an [IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) that a service assumes to perform actions on your behalf\. An IAM administrator can create, modify, and delete a service role from within IAM\. For more information, see [Creating a role to delegate permissions to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html) in the *IAM User Guide*\. 
   + **Service\-linked role** –  A service\-linked role is a type of service role that is linked to an AWS service\. The service can assume the role to perform an action on your behalf\. Service\-linked roles appear in your IAM account and are owned by the service\. An IAM administrator can view, but not edit the permissions for service\-linked roles\. 
 + **Applications running on Amazon EC2** –  You can use an IAM role to manage temporary credentials for applications that are running on an EC2 instance and making AWS CLI or AWS API requests\. This is preferable to storing access keys within the EC2 instance\. To assign an AWS role to an EC2 instance and make it available to all of its applications, you create an instance profile that is attached to the instance\. An instance profile contains the role and enables programs that are running on the EC2 instance to get temporary credentials\. For more information, see [Using an IAM role to grant permissions to applications running on Amazon EC2 instances](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html) in the *IAM User Guide*\. 
@@ -101,6 +106,11 @@ AWS supports additional, less\-common policy types\. These policy types can set 
 + **Service control policies \(SCPs\)** – SCPs are JSON policies that specify the maximum permissions for an organization or organizational unit \(OU\) in AWS Organizations\. AWS Organizations is a service for grouping and centrally managing multiple AWS accounts that your business owns\. If you enable all features in an organization, then you can apply service control policies \(SCPs\) to any or all of your accounts\. The SCP limits permissions for entities in member accounts, including each AWS account root user\. For more information about Organizations and SCPs, see [How SCPs work](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_about-scps.html) in the *AWS Organizations User Guide*\.
 + **Session policies** – Session policies are advanced policies that you pass as a parameter when you programmatically create a temporary session for a role or federated user\. The resulting session's permissions are the intersection of the user or role's identity\-based policies and the session policies\. Permissions can also come from a resource\-based policy\. An explicit deny in any of these policies overrides the allow\. For more information, see [Session policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session) in the *IAM User Guide*\. 
 
-### Multiple Policy Types<a name="security_iam_access-manage-multiple-policies"></a>
+### Multiple policy types<a name="security_iam_access-manage-multiple-policies"></a>
 
 When multiple types of policies apply to a request, the resulting permissions are more complicated to understand\. To learn how AWS determines whether to allow a request when multiple policy types are involved, see [Policy evaluation logic](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html) in the *IAM User Guide*\.
+
+
+
+
+

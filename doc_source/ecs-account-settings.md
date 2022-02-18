@@ -27,7 +27,7 @@ Only resources launched after opting in receive the the increased ENI limits\. A
 Resource name: `containerInsights`  
 CloudWatch Container Insights collects, aggregates, and summarizes metrics and logs from your containerized applications and microservices\. The metrics include utilization for resources such as CPU, memory, disk, and network\. Container Insights also provides diagnostic information, such as container restart failures, to help you isolate issues and resolve them quickly\. You can also set CloudWatch alarms on metrics that Container Insights collects\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.  
 When you opt in to the `containerInsights` account setting, all new clusters have Container Insights enabled by default\. You can disable this setting for specific clusters when you create them\. You can also change this setting by using the UpdateClusterSettings API\.  
-For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent to use Container Insights\. For more information, see [Amazon ECS container agent versions](ecs-agent-versions.md)\.
+For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent to use Container Insights\. For more information, see [Amazon ECS Linux container agent versions](ecs-agent-versions.md)\.
 
 **Dual\-stack VPC IPv6**  
 Resource name: `dualStackIPv6`  

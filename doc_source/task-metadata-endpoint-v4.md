@@ -12,7 +12,7 @@ Amazon ECS provides earlier versions of the task metadata endpoint\. To avoid th
 
 ## Enabling the task metadata endpoint<a name="task-metadata-endpoint-v4-enable"></a>
 
-The environment variable is injected by default into the containers of Amazon ECS tasks launched on Amazon EC2 Linux instances that are running at least version `1.39.0` of the Amazon ECS container agent\. For Amazon EC2 Windows instances that use `awsvpc` network mode, the Amazon ECS container agent must be at least version `1.54.0`\. For more information, see [Amazon ECS container agent versions](ecs-agent-versions.md)\.
+The environment variable is injected by default into the containers of Amazon ECS tasks launched on Amazon EC2 Linux instances that are running at least version `1.39.0` of the Amazon ECS container agent\. For Amazon EC2 Windows instances that use `awsvpc` network mode, the Amazon ECS container agent must be at least version `1.54.0`\. For more information, see [Amazon ECS Linux container agent versions](ecs-agent-versions.md)\.
 
 **Note**  
 You can add support for this feature on Amazon EC2 instances using older versions of the Amazon ECS container agent by updating the agent to the latest version\. For more information, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.

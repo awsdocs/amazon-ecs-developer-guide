@@ -9,7 +9,7 @@ Security is a shared responsibility between AWS and you\. The [shared responsibi
 This documentation helps you understand how to apply the shared responsibility model when using Amazon ECS\. The following topics show you how to configure Amazon ECS to meet your security and compliance objectives\. You also learn how to use other AWS services that help you to monitor and secure your Amazon ECS resources\. 
 
 **Topics**
-+ [Identity and access management for Amazon Elastic Container Service](security-iam.md)
++ [Identity and Access Management for Amazon Elastic Container Service](security-iam.md)
 + [Logging and Monitoring in Amazon Elastic Container Service](ecs-logging-monitoring.md)
 + [Compliance Validation for Amazon Elastic Container Service](ecs-compliance.md)
 + [Infrastructure Security in Amazon Elastic Container Service](infrastructure-security.md)

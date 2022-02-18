@@ -3,17 +3,17 @@
 Use the following information to help you diagnose and fix common issues that you might encounter when working with Amazon ECS and IAM\.
 
 **Topics**
-+ [I'm not authorized to perform an action in Amazon ECS](#security_iam_troubleshoot-no-permissions)
-+ [I'm not authorized to perform iam:PassRole](#security_iam_troubleshoot-passrole)
++ [I am not authorized to perform an action in Amazon ECS](#security_iam_troubleshoot-no-permissions)
++ [I am not authorized to perform iam:PassRole](#security_iam_troubleshoot-passrole)
 + [I want to view my access keys](#security_iam_troubleshoot-access-keys)
 + [I'm an administrator and want to allow others to access Amazon ECS](#security_iam_troubleshoot-admin-delegate)
 + [I want to allow people outside of my AWS account to access my Amazon ECS resources](#security_iam_troubleshoot-cross-account-access)
 
-## I'm not authorized to perform an action in Amazon ECS<a name="security_iam_troubleshoot-no-permissions"></a>
+## I am not authorized to perform an action in Amazon ECS<a name="security_iam_troubleshoot-no-permissions"></a>
 
 If the AWS Management Console tells you that you're not authorized to perform an action, then you must contact your administrator for assistance\. Your administrator is the person that provided you with your user name and password\.
 
-The following example error occurs when the `mateojackson` IAM user tries to use the console to view details about a *widget* but does not have `ecs:GetWidget` permissions\.
+The following example error occurs when the `mateojackson` IAM user tries to use the console to view details about a fictional `my-example-widget` resource but does not have the fictional `ecs:GetWidget` permissions\.
 
 ```
 User: arn:aws:iam::123456789012:user/mateojackson is not authorized to perform: ecs:GetWidget on resource: my-example-widget
@@ -21,7 +21,7 @@ User: arn:aws:iam::123456789012:user/mateojackson is not authorized to perform: 
 
 In this case, Mateo asks his administrator to update his policies to allow him to access the `my-example-widget` resource using the `ecs:GetWidget` action\.
 
-## I'm not authorized to perform iam:PassRole<a name="security_iam_troubleshoot-passrole"></a>
+## I am not authorized to perform iam:PassRole<a name="security_iam_troubleshoot-passrole"></a>
 
 If you receive an error that you're not authorized to perform the `iam:PassRole` action, then you must contact your administrator for assistance\. Your administrator is the person that provided you with your user name and password\. Ask that person to update your policies to allow you to pass a role to Amazon ECS\.
 

@@ -7,7 +7,7 @@ Beginning with version 1\.21\.0 of the Amazon ECS container agent, the agent inj
 
 ## Enabling Task Metadata<a name="task-metadata-endpoint-v3-enable"></a>
 
-The task metadata endpoint version 3 feature is enabled by default for tasks that use the Fargate launch type on platform version v1\.3\.0 or later and tasks that use the EC2 launch type and are launched on Amazon EC2 Linux infrastructure running at least version 1\.21\.0 of the Amazon ECS container agent or on Amazon EC2 Windows infrastructure running at least version `1.54.0` of the Amazon ECS container agent and use `awsvpc` network mode\. For more information, see [Amazon ECS container agent versions](ecs-agent-versions.md)\.
+The task metadata endpoint version 3 feature is enabled by default for tasks that use the Fargate launch type on platform version v1\.3\.0 or later and tasks that use the EC2 launch type and are launched on Amazon EC2 Linux infrastructure running at least version 1\.21\.0 of the Amazon ECS container agent or on Amazon EC2 Windows infrastructure running at least version `1.54.0` of the Amazon ECS container agent and use `awsvpc` network mode\. For more information, see [Amazon ECS Linux container agent versions](ecs-agent-versions.md)\.
 
 You can add support for this feature on older container instances by updating the agent to the latest version\. For more information, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 

@@ -9,7 +9,8 @@ For tasks using the Fargate launch type and platform version 1\.3\.0 and prior, 
 
 **Topics**
 + [Installing the Amazon ECS container agent](ecs-agent-install.md)
-+ [Amazon ECS container agent versions](ecs-agent-versions.md)
++ [Amazon ECS Linux container agent versions](ecs-agent-versions.md)
++ [Amazon EC2 Windows containers](ECS_Windows.md)
 + [Updating the Amazon ECS container agent](ecs-agent-update.md)
 + [Amazon ECS container agent configuration](ecs-agent-config.md)
 + [Private registry authentication for container instances](private-auth-container-instances.md)
@@ -18,3 +19,4 @@ For tasks using the Fargate launch type and platform version 1\.3\.0 and prior, 
 + [Amazon ECS task metadata endpoint](task-metadata-endpoint.md)
 + [Amazon ECS container agent introspection](ecs-agent-introspection.md)
 + [HTTP proxy configuration](http_proxy_config.md)
++ [Using gMSAs for Windows Containers](windows-gmsa.md)

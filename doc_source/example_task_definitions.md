@@ -14,6 +14,7 @@ For additional task definition examples, see [AWS Sample Task Definitions](https
 + [Example: Amazon ECR image and task definition IAM role](#example_task_definition-iam)
 + [Example: Entrypoint with command](#example_task_definition-ping)
 + [Example: Container dependency](#example_task_definition-containerdependency)
++ [Windows sample task definitions](#windows_sample_task_defs)
 
 ## Example: Webserver<a name="example_task_definition-webserver"></a>
 
@@ -319,5 +320,38 @@ This example demonstrates the syntax for a task definition with multiple contain
   ],
   "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc"
+}
+```
+
+## Windows sample task definitions<a name="windows_sample_task_defs"></a>
+
+The following is a sample task definition to help you get started with Windows containers on Amazon ECS\.
+
+**Example Amazon ECS Console Sample Application for Windows**  
+The following task definition is the Amazon ECS console sample application that is produced in the first\-run wizard for Amazon ECS; it has been ported to use the `microsoft/iis` Windows container image\.  
+
+```
+{
+  "family": "windows-simple-iis",
+  "containerDefinitions": [
+    {
+      "name": "windows_sample_app",
+      "image": "mcr.microsoft.com/windows/servercore/iis",
+      "cpu": 1024,
+      "entryPoint":["powershell", "-Command"],
+      "command":["New-Item -Path C:\\inetpub\\wwwroot\\index.html -Type file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p>'; C:\\ServiceMonitor.exe w3svc"],
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "memory": 1024,
+      "essential": true
+    }
+  ],
+  "networkMode": "awsvpc",
+  "memory": "1024",
+  "cpu": "1024"
 }
 ```

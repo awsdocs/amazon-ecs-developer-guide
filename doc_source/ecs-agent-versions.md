@@ -1,4 +1,4 @@
-# Amazon ECS container agent versions<a name="ecs-agent-versions"></a>
+# Amazon ECS Linux container agent versions<a name="ecs-agent-versions"></a>
 
 Each Amazon ECS container agent version supports a different feature set and provides bug fixes from previous versions\. When possible, we always recommend using the latest version of the Amazon ECS container agent\. To update your container agent to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 

@@ -16,6 +16,7 @@ You can define multiple containers in a task definition\. The parameters that yo
 Your entire application stack does not need to be on a single task definition, and in most cases it should not\. Your application can span multiple task definitions\. You can do this by combining related containers into their own task definitions, each representing a single component\. For more information, see [Application architecture](application_architecture.md)\.
 
 **Topics**
++ [Amazon EC2 Windows task definition considerations](windows_task_definitions.md)
 + [Application architecture](application_architecture.md)
 + [Creating a task definition using the new console](create-task-definition.md)
 + [Creating a task definition using the classic console](create-task-definition-classic.md)

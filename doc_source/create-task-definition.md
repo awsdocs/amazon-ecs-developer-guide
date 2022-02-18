@@ -18,7 +18,11 @@ Create your task definitions using the new Amazon ECS console experience\. To ma
 
    1. For **Essential container**, if your task definition has two or more containers defined, you may specify whether the container should be considered essential\. If a container is marked as *essential*, if that container stops then the task is stopped\. Each task definition must contain at least one essential container\.
 
-   1. For **Container port** and **Protocol**, specify the port mapping to use for the container\. A port mapping allows the container to access ports on the host to send or receive traffic\. Choose **Add more port mappings** to specify additional container port mappings\.
+   1. A port mapping allows the container to access ports on the host to send or receive traffic\. Under **Port mappings**, do one of the following: 
+      + When you use the **awsvpc** network mode, for **Container port** and **Protocol**, specify the port mapping to use for the container\.
+      + When you use the **bridge** network mode, for **Container port** and **Protocol**, specify the port mapping to use for the container\. You select the **bridge** network mode on the next page\. After you select it, choose **Previous**, and then for **Host port**, specify the port number on the container instance to reserve for your container\.
+
+      Choose **Add more port mappings** to specify additional container port mappings\.
 
    1. Expand the **Environment variables** section to specify environment variables to inject into the container\. You can specify environment variables either individually using key\-value pairs or in bulk by specifying an environment variable file hosted in an Amazon S3 bucket\. For information on how to format an environment variable file, see [Specifying environment variables](taskdef-envfiles.md)\.
 
@@ -49,7 +53,13 @@ Task\-level CPU and memory parameters are ignored for Windows containers\.
 
    You can multiply the specified value by 1024 to determine the number of CPU units that are available per Amazon EC2 instance type\. For example, the value for a t3 nano instance is 2048\. For more information, see [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) \.
 
-1. \(Optional\) Expand the **Task roles, network mode** section to specify an IAM role to assign to the task\. A task IAM role provides permissions for the containers in a task to call AWS APIs\.
+1. \(Optional\) Expand the **Task roles, network mode** section to specify the following:
+
+   1. For **Task role**, choose the an IAM role to assign to the task\. A task IAM role provides permissions for the containers in a task to call AWS APIs\.
+
+   1. For **Network mode**, choose the nework mode to use\. The default is **awsvpc** mode\. For more information, see [Amazon ECS task networking](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html)\.
+
+      If you choose **bridge** for the network mode, choose **Previous**, and then under **Port mappings**, for **Host port**, specify the port number on the container instance to reserve for your container\.
 
 1. \(Optional\) The **Storage** section is used to expand the amount of ephemeral storage for tasks hosted on Fargate as well as add a data volume configuration for the task\.
 

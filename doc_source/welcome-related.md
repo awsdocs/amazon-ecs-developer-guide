@@ -3,7 +3,7 @@
 Amazon ECS can be used along with the following AWS services:
 
 **AWS Identity and Access Management**  
-AWS Identity and Access Management \(IAM\) is an access management service that helps you securely control access to AWS resources\. You can use IAM to control who's authenticated \(signed in\) and authorized \(has permissions\) to view or perform specific actions on resources\. In Amazon ECS, you can use IAM to control access at the container instance level using IAM roles\. You can also use it to control access at the task level using IAM task roles\. For more information, see [Identity and access management for Amazon Elastic Container Service](security-iam.md)\. 
+AWS Identity and Access Management \(IAM\) is an access management service that helps you securely control access to AWS resources\. You can use IAM to control who's authenticated \(signed in\) and authorized \(has permissions\) to view or perform specific actions on resources\. In Amazon ECS, you can use IAM to control access at the container instance level using IAM roles\. You can also use it to control access at the task level using IAM task roles\. For more information, see [Identity and Access Management for Amazon Elastic Container Service](security-iam.md)\. 
 
 **Amazon EC2 Auto Scaling**  
 Auto Scaling is a service that sets up automatic scaling for your tasks\. The scaling is based on user\-defined policies, health status checks, and schedules\. You can use Auto Scaling alongside a Fargate task within a service to scale in response to a number of metrics\. Or, alternatively, you can use it with an EC2 task to scale the container instances within your cluster\. For more information, see [Service auto scaling](service-auto-scaling.md)\.
