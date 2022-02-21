@@ -80,19 +80,6 @@ To use FSx for Windows File Server file system volumes for your containers, you 
                     "readOnly": false
                 }
             ],
-            "volumes": [
-                {
-                    "name": "fsx-windows-vol",
-                    "fsxWindowsFileServerVolumeConfiguration": {
-                        "fileSystemId": "fs-0eeb5730b2EXAMPLE",
-                        "authorizationConfig": {
-                            "domain": "example.com",
-                            "credentialsParameter": "arn:arn-1234"
-                        },
-                        "rootDirectory": "share"
-                    }
-                }
-            ],
             "cpu": 512,
             "memory": 256,
             "image": "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019",
@@ -100,6 +87,19 @@ To use FSx for Windows File Server file system volumes for your containers, you 
             "name": "container2"
         }
     ],
+    "volumes": [
+        {
+            "name": "fsx-windows-vol",
+            "fsxWindowsFileServerVolumeConfiguration": {
+                "fileSystemId": "fs-0eeb5730b2EXAMPLE",
+                "authorizationConfig": {
+                    "domain": "example.com",
+                    "credentialsParameter": "arn:arn-1234"
+                },
+                "rootDirectory": "share"
+            }
+        }
+    ],    
     "family": "fsx-windows"
 }
 ```
