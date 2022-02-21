@@ -317,19 +317,6 @@ The Fargate launch type isn't compatible with Windows containers\.
                        "readOnly": false
                    }
                ],
-               "volumes": [
-                   {
-                       "name": "fsx-windows-vol",
-                       "fsxWindowsFileServerVolumeConfiguration": {
-                           "fileSystemId": "fs-0eeb5730b2EXAMPLE",
-                           "authorizationConfig": {
-                               "domain": "example.com",
-                               "credentialsParameter": "arn:arn-1234"
-                           },
-                           "rootDirectory": "share"
-                       }
-                   }
-               ],
                "cpu": 512,
                "memory": 256,
                "image": "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019",
