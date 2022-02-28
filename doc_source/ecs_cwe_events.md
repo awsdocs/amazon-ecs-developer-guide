@@ -310,7 +310,7 @@ Amazon ECS sends events with `INFO`, `WARN`, and `ERROR` event types\. The follo
 ### Service action events with `INFO` event type<a name="ecs_service_events_info_type"></a>
 
 `SERVICE_STEADY_STATE`  
-The service is healthy and at the desired number of tasks, thus reaching a steady state\.
+The service is healthy and at the desired number of tasks, thus reaching a steady state\. The service scheduler reports the status periodically, so you might receive this message multiple times\.
 
 `TASKSET_STEADY_STATE`  
 The task set is healthy and at the desired number of tasks, thus reaching a steady state\.
