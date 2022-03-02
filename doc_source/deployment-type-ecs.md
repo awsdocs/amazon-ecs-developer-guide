@@ -71,7 +71,7 @@ The following table provides some examples\.
 | --- | --- | --- | 
 |  1  |  <pre>10 <= 0.5 * 1 => 200</pre>  | 10 \(the calculated value is less than the minimum\) | 
 |  25  |  <pre>10 <= 0.5 * 25 => 200</pre>  | 13 \(the value is rounded up\) | 
-|  400  |  <pre>10 <= 0.5 * 200 => 200</pre>  | 200 | 
+|  400  |  <pre>10 <= 0.5 * 400 => 200</pre>  | 200 | 
 |  800  |  <pre>10 <= 0.5 * 800 => 200</pre>  | 200 \(the calculated value is greater than the maximum\) | 
 
 For additional examples about using the rollback option, see [Announcing Amazon ECS deployment circuit breaker](https://aws.amazon.com/blogs/containers/announcing-amazon-ecs-deployment-circuit-breaker/)\.
