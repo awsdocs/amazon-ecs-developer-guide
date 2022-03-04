@@ -43,7 +43,7 @@ Before you start using ECS Exec, make sure you that you have completed these act
 + Install Session Manager plugin for the AWS CLI\. For more information, see [Install the Session Manager plugin for the AWS CLI](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)\.
 + ECS Exec has version requirements depending on whether your tasks are hosted on Amazon EC2 or AWS Fargate:
   + If you're using Amazon EC2, you must use an Amazon ECS optimized AMI that was released after January 20th, 2021, with an agent version of 1\.50\.2 or greater\. For more information, see [Amazon ECS optimized AMIs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)\.
-  + If you're using AWS Fargate, you must use platform version 1\.4\.0 or higher\. For more information, see [AWS Fargate platform versions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html)\.
+  + If you're using AWS Fargate, you must use platform version `1.4.0` or higher \(Linux\)\. For more information, see [AWS Fargate platform versions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html)\.
 
 ## Enabling and using ECS Exec<a name="ecs-exec-enabling-and-using"></a>
 

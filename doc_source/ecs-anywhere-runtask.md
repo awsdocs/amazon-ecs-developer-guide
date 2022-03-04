@@ -11,6 +11,9 @@ If your tasks require a task execution IAM role, make sure that it's specified i
 
 The following is an example task definition\.
 
+------
+#### [ Linux ]
+
 ```
 {
 	"requiresCompatibilities": [
@@ -33,6 +36,33 @@ The following is an example task definition\.
 }
 ```
 
+------
+#### [ Windows ]
+
+```
+{
+	"requiresCompatibilities": [
+		"EXTERNAL"
+	],
+	"containerDefinitions": [{
+		"name": "windows-container",
+		"image": "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019",
+		"memory": 256,
+		"cpu": 512,
+		"essential": true,
+		"portMappings": [{
+			"containerPort": 80,
+			"hostPort": 8080,
+			"protocol": "tcp"
+		}]
+	}],
+	"networkMode": "bridge",
+	"family": "windows-container"
+}
+```
+
+------
+
 ## Running a standalone task or creating a service<a name="ecs-anywhere-running"></a>
 
 After you register your external instances to your cluster, grant the relevant IAM permissions, and register a valid task definition, you can start to run your workloads on Amazon ECS\. When running your standalone tasks or creating a service, specify the `EXTERNAL` launch type, and the Amazon ECS scheduler places the tasks on your external instances\.
@@ -40,3 +70,7 @@ After you register your external instances to your cluster, grant the relevant I
 For instructions on how to create services, see [Creating an Amazon ECS service](create-service.md)\.
 
 For more information about running standalone tasks, see [Run a standalone task](ecs_run_task.md)\.
+
+## Verifying your running tasks on an external Windows instance<a name="ecs-anywhere-windows-verifying"></a>
+
+After you launch a task, you can verify the status by checking the Amazon ECS agent log \(`ecs-agent.log`\) which is located in the `\ProgramData\Amazon\ECS\log` directory\. 

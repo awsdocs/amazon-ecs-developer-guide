@@ -374,6 +374,12 @@ Default value on Linux: `false`
 Default value on Windows: `false`  
 Whether to enable Spot Instance draining for the container instance\. When true, if the container instance receives a Spot interruption notice, then the agent sets the instance status to `DRAINING`, which gracefully shuts down and replaces all tasks running on the instance that are part of a service\. It is recommended that this be set to true when using Spot Instances\. For more information, see [Container instance draining](container-instance-draining.md)\.
 
+`ECS_ENABLED_GPU_SUPPORT`  
+Example values: `true`  
+Default value on Linux: `false`  
+Default value on Windows: `n/a`  
+Whether you GPU\-enabled container instances\. This parameter is specified for the agent\. You must also configure your task definitions for GPU\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
+
 `ECS_LOG_ROLLOVER_TYPE`  
 Example values: `size`, `hourly`  
 Default value on Linux: `hourly`  

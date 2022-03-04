@@ -3,7 +3,7 @@
 For each external instance you register with an Amazon ECS cluster, it must have the SSM Agent, the Amazon ECS container agent, and Docker installed\. To register the external instance to an Amazon ECS cluster, it must first be registered as an AWS Systems Manager managed instance\. You can create the installation script in a few clicks on the Amazon ECS console\. The installation script includes an Systems Manager activation key and commands to install each of the required agents and Docker\. The installation script must be run on your on\-premises server or VM to complete the installation and registration steps\.
 
 **Note**  
-Before registering your external instance with the cluster, create the `/etc/ecs/ecs.config` file on your external instance and add any container agent configuration parameters that you want\. You can't do this after registering the external instance to a cluster\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
+Before registering your Linux external instance with the cluster, create the `/etc/ecs/ecs.config` file on your external instance and add any container agent configuration parameters that you want\. You can't do this after registering the external instance to a cluster\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 ------
 #### [ New AWS Management Console ]
@@ -60,7 +60,7 @@ The bash portion of the script must be run as root\. If the command isn't run as
 The bash portion of the script must be run as root\. If the command isn't run as root, an error is returned\.
 
 ------
-#### [ AWS CLI ]
+#### [ AWS CLI for Linux operating systems ]
 
 1. Create an Systems Manager activation pair\. This is used for Systems Manager managed instance activation\. The output includes an `ActivationId` and `ActivationCode`\. You use these in a later step\. Make sure that you specify the ECS Anywhere IAM role that you created\. For more information, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
 
@@ -151,6 +151,88 @@ Use the following steps to register an existing external instance with a differe
 
    ```
    sudo systemctl start ecs.service
+   ```
+
+------
+#### [ AWS CLI for Windows operating systems ]
+
+1. Create an Systems Manager activation pair\. This is used for Systems Manager managed instance activation\. The output includes an `ActivationId` and `ActivationCode`\. You use these in a later step\. Make sure that you specify the ECS Anywhere IAM role that you created\. For more information, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
+
+   ```
+   aws ssm create-activation --iam-role ecsAnywhereRole | tee ssm-activation.json
+   ```
+
+1. On your on\-premises server or virtual machine \(VM\), download the installation script\.
+
+   ```
+   Invoke-RestMethod -URI "https://amazon-ecs-agent.s3.amazonaws.com/ecs-anywhere-install.ps1" -OutFile “ecs-anywhere-install.ps1”
+   ```
+
+1. \(Optional\) The Powershell script is signed by Amazon and therefore, Windows automatically performs the certificate validation on the same\. You do not need to perform any manual validation\.
+
+   To manually verify the certificate, right\-click on the file, navigate to properties and use the Digital Signatures tab to obtain more details\.
+
+   This option is only available when the host has the certificate in the certificate store\.
+
+   The verification should return information similar to the following:
+
+   ```
+   # Verification (PowerShell)
+   Get-AuthenticodeSignature -FilePath .\ecs-anywhere-install.ps1
+   
+   SignerCertificate                         Status      Path
+   -----------------                         ------      ----
+   EXAMPLECERTIFICATE                        Valid       ecs-anywhere-install.ps1
+   
+   ...
+   
+   Subject              : CN="Amazon Web Services, Inc.",...
+   
+   ----
+   ```
+
+1. On your on\-premises server or virtual machine \(VM\), run the installation script\. Specify the cluster name, Region, and the Systems Manager activation ID and activation code from the first step\.
+
+   ```
+   .\ecs-anywhere-install.ps1 -Region $Region -Cluster $Cluster -ActivationID $ActivationID -ActivationCode $ActivationCode
+   ```
+
+1. Verify the Amazon ECS container agent is running\.
+
+   ```
+   Get-Service AmazonECS
+   
+   Status   Name               DisplayName
+   ------   ----               -----------
+   Running  AmazonECS          Amazon ECS
+   ```
+
+Use the following steps to register an existing external instance with a different cluster\.
+
+**To register an existing external instance with a different cluster**
+
+1. Stop the Amazon ECS container agent\.
+
+   ```
+   Stop-Service AmazonECS
+   ```
+
+1. Modify the `ECS_CLUSTER` parameter so that the cluster name matches the name of the cluster to register the external instance with\.
+
+   ```
+   [Environment]::SetEnvironmentVariable("ECS_CLUSTER", $ECSCluster, [System.EnvironmentVariableTarget]::Machine)
+   ```
+
+1. Remove the existing Amazon ECS agent data\.
+
+   ```
+   Remove-Item -Recurse -Force $env:ProgramData\Amazon\ECS\data\*
+   ```
+
+1. Start the Amazon ECS container agent\.
+
+   ```
+   Start-Service AmazonECS
    ```
 
 ------

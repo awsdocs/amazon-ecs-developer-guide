@@ -10,7 +10,8 @@ The following steps help you set up a cluster, register a task definition, run a
 + [Step 4: Create a Service](#ECS_AWSCLI_Fargate_create_service)
 + [Step 5: List Services](#ECS_AWSCLI_Fargate_list_services)
 + [Step 6: Describe the Running Service](#ECS_AWSCLI_Fargate_describe_service)
-+ [Step 7: Clean Up](#ECS_AWSCLI_Fargate_clean_up)
++ [Step 7: Test](#ECS_AWSCLI_Fargate_test)
++ [Step 8: Clean Up](#ECS_AWSCLI_Fargate_clean_up)
 
 ## Prerequisites<a name="ECS_AWSCLI_Fargate_prereq"></a>
 
@@ -248,7 +249,66 @@ If successful, this will return a description of the service failures and servic
 }
 ```
 
-## Step 7: Clean Up<a name="ECS_AWSCLI_Fargate_clean_up"></a>
+## Step 7: Test<a name="ECS_AWSCLI_Fargate_test"></a>
+
+Describe the task in the service so that you can get the Elastic Network Interface \(ENI\) for the task\. 
+
+Describe the task and locate the ENI ID\.
+
+```
+aws ecs describe-cluster --cluster fargate-cluster --tasks fargate-tasks
+```
+
+The attachment information is listed in the output\. 
+
+```
+{
+    "tasks": [
+        {
+            "attachments": [
+                {
+                    "id": "d9e7735a-16aa-4128-bc7a-b2d5115029e9",
+                    "type": "ElasticNetworkInterface",
+                    "status": "ATTACHED",
+                    "details": [
+                        {
+                            "name": "subnetId",
+                            "value": "subnetabcd1234"
+                        },
+                        {
+                            "name": "networkInterfaceId",
+                            "value": "eni-0fa40520aeEXAMPLE"
+                        },
+                    ]
+                }
+…
+}
+```
+
+Describe the ENI to get the public IP address\.
+
+```
+aws ec2 describe-network-interfaces --network-interface-id  eni-0fa40520aeEXAMPLE
+```
+
+The public IP address is in the output\. 
+
+```
+{
+    "NetworkInterfaces": [
+        {
+            "Association": {
+                "IpOwnerId": "amazon",
+                "PublicDnsName": "ec2-34-229-42-222.compute-1.amazonaws.com",
+                "PublicIp": "198.51.100.2"
+            },
+…
+}
+```
+
+Enter the public IP address in your web browser and you should see a webpage that displays the **Amazon ECS **sample application\.
+
+## Step 8: Clean Up<a name="ECS_AWSCLI_Fargate_clean_up"></a>
 
 When you are finished with this tutorial, you should clean up the associated resources to avoid incurring charges for unused resources\.
 

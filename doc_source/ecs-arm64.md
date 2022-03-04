@@ -10,6 +10,7 @@ Before you begin deploying task definitions which use the 64\-bit ARM architectu
 + For the Fargate type, the applications must use Fargate platform version `1.4.0` or later \.
 + The applications can use Fluent Bit or CloudWatch for monitoring\.
 + For the Fargate launch type, the following Regions do not support 64\-bit ARM workloads:
+  + US East \(N\. Virginia\) , the `use1-az3` Availability Zone
   + China \(Beijing\)
   + China \(Ningxia\)
   +  Africa \(Cape Town\)

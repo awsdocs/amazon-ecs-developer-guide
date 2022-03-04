@@ -61,7 +61,7 @@ To update an existing Amazon ECS service that is using the blue/green deployment
 When you use the Amazon ECS console to create an Amazon ECS service using the blue/green deployment type, an Amazon ECS task set and the following CodeDeploy resources are created automatically with the following default settings\. 
 
 
-| Resource | Default Setting | 
+|  Resource  |  Default Setting  | 
 | --- | --- | 
 |  Application name  |  `AppECS-<cluster[:47]>-<service[:47]>`  | 
 |  Deployment group name  |  `DgpECS-<cluster[:47]>-<service[:47]>`  | 

@@ -49,7 +49,10 @@ You can deregister the external instance as an Systems Manager managed instance 
 
 ------
 
-**To clean up AWS resources on your on\-premises server or VM**
+Adter you deregister the instance, clean up AWS resources on your on\-premises server or VM \.
+
+------
+#### [ Linux operating system ]
 
 1. Make sure that the external instance is deregistered from both Amazon ECS and Systems Manager\.
 
@@ -84,3 +87,26 @@ You can deregister the external instance as an Systems Manager managed instance 
    ```
    sudo rm -rf /var/lib/ecs /etc/ecs /var/lib/amazon/ssm /var/log/ecs /var/log/amazon/ssm
    ```
+
+------
+#### [ Windows operating system ]
+
+1. Make sure that the external instance is deregistered from both Amazon ECS and Systems Manager\.
+
+1. Stop the Amazon ECS container agent and the SSM Agent services on the instance\.
+
+   ```
+   Stop-Service AmazonECS
+   ```
+
+   ```
+   Stop-Service AmazonSSMAgent
+   ```
+
+1. Remove the Amazon ECS package\.
+
+   ```
+   .\ecs-anywhere-install.ps1 -Uninstall
+   ```
+
+------

@@ -1,6 +1,6 @@
 # Deleting a cluster using the classic console<a name="delete_cluster"></a>
 
-If you are finished using a cluster, you can delete it\. After you deletethe cluster, it transitions to the `INACTIVE` state\. Clusters with an `INACTIVE` status may remain discoverable in your account for a period of time\. However, this behavior is subject to change in the future, so you should not rely on `INACTIVE` clusters persisting\.
+If you are finished using a cluster, you can delete it\. After you delete the cluster, it transitions to the `INACTIVE` state\. Clusters with an `INACTIVE` status may remain discoverable in your account for a period of time\. However, this behavior is subject to change in the future, so you should not rely on `INACTIVE` clusters persisting\.
 
 When you delete a cluster in the Amazon ECS console, the associated resources that are deleted with it vary depending on how the cluster was created\. This condition is discussed in step 5 of the following procedure\.
 

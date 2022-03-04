@@ -147,7 +147,7 @@ Update `lib/hello-ecs-stack.ts` to read as follows\.
 
 ```
 import * as cdk from '@aws-cdk-lib';
-import { Construct ) from 'constructs';
+import { Construct } from 'constructs';
 
 import * as ecs from '@aws-cdk-lib/aws-ecs';
 import * as ecsp from '@aws-cdk-lib/aws-ecs-patterns';

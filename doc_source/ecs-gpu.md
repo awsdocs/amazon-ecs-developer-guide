@@ -39,6 +39,7 @@ The following Amazon EC2 GPU\-based instance types are supported\. For more info
 Before you begin working with GPUs on Amazon ECS, be aware of the following considerations:
 + Your clusters can contain a mix of GPU and non\-GPU container instances\.
 + Running GPU workloads is supported on external instances\. When registering an external instance with your cluster, ensure the `--enable-gpu` flag is included on the installation script\. For more information, see [Registering an external instance to a cluster ](ecs-anywhere-registration.md)\.
++ You must set `ECS_ENABLED_GPU_SUPPORT` to `true` in your agent configuration file\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 + When running a task or creating a service, you can use instance type attributes when configuring task placement constraints to ensure which of your container instances the task is launched on\. By doing this, you can more effectively use your resources\. For more information, see [Amazon ECS task placement](task-placement.md)\.
 
   The following example launches a task on a `p2.xlarge` container instance in your default cluster\.

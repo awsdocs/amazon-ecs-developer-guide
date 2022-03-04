@@ -74,7 +74,9 @@ The Amazon ECS CLI requires credentials in order to make API requests on your be
    ecs-cli up --cluster-config tutorial --ecs-profile tutorial-profile
    ```
 
-   This command may take a few minutes to complete as your resources are created\. The output of this command contains the VPC and subnet IDs that are created\. Take note of these IDs as they are used later\.
+   This command may take a few minutes to complete as your resources are created\. The output of this command contains the VPC and subnet IDs that are created\. 
+**Note**  
+Make a note of these IDs as you will need them in the following steps\.
 
 1. Using the AWS CLI, retrieve the default security group ID for the VPC\. Use the VPC ID from the previous output:
 
