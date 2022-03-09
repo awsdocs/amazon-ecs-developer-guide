@@ -24,11 +24,11 @@ Allows containers to use dynamic host port mapping, which enables you to place m
 
 1. For **Production listener port**, choose the listener port and protocol of the listener that you created in [Creating an Application Load Balancer](create-application-load-balancer.md) \(if applicable\), or choose **create new** to create a new listener and then enter a port number and choose a port protocol for **Production listener protocol**\.
 
-1. \(Optional\) Select **Test listener** if you want to configure a listener port and protocol on your load balancer to test updates to your service before routing traffic to your new taskset\. Complete the following step:
+1. \(Optional\) Select **Test listener** if you want to configure a listener port and protocol on your load balancer to test updates to your service before routing traffic to your new task set\. Complete the following step:
 
    1. For **Test listener port**, choose the listener port and protocol of the listener that you want to test traffic over, or choose **create new** to create a new test listener and then enter a port number and choose a port protocol in **Test listener protocol**\.
 
-1. For blue/green deployments, two target groups are required\. Each target group binds to a separate taskset in the deployment\. Complete the following steps:
+1. For blue/green deployments, two target groups are required\. Each target group binds to a separate task set in the deployment\. Complete the following steps:
 
    1. For **Target group 1 name**, choose the target group that you created in [Creating an Application Load Balancer](create-application-load-balancer.md) \(if applicable\), or choose **create new** to create a new target group\.
 **Important**  

@@ -14,7 +14,7 @@ AWS provides two managed IAM policies that can be used when creating the ECS Any
 
 1. In the navigation pane, choose **Roles** and then choose **Create role**\.
 
-1. Choose the **AWS service** role type, and then choose **Systems Manager**\.
+1. Choose the **AWS service** role type, and then choose **Systems Manager**, ** Allows SSM to call AWS services on your behalf **\.
 
 1. Choose the **Systems Manager** use case and then **Next: Permissions**\.
 
@@ -29,10 +29,6 @@ The `AmazonEC2ContainerServiceforEC2Role` managed policy provides permissions th
 1. Review your role information and then choose **Create role**\. 
 
 1. Perform a search for the `ECSAnywhereRole` and then select it to view the role details\.
-
-1. On the **Permissions** tab, choose **Attach policies**\.
-
-1. Search for the `AmazonSSMManagedInstanceCore` policy, select it, and then choose **Attach policy**\.
 
 **To create the ECS Anywhere IAM role \(AWS CLI\)**
 

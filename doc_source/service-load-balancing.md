@@ -2,6 +2,9 @@
 
 Your Amazon ECS service can optionally be configured to use Elastic Load Balancing to distribute traffic evenly across the tasks in your service\.
 
+**Note**  
+When you use tasks sets, all the tasks in the set must all be configured to use Elastic Load Balancing or to not use Elastic Load Balancing\. 
+
 Amazon ECS services hosted on Amazon EC2 instances support the Application Load Balancer, Network Load Balancer, and Classic Load Balancer load balancer types\. Amazon ECS services hosted on AWS Fargate support Application Load Balancer and Network Load Balancer only\. Application Load Balancers are used to route HTTP/HTTPS \(or layer 7\) traffic\. Network Load Balancers are used to route TCP or UDP \(or layer 4\) traffic\. Classic Load Balancers are used to route TCP traffic\. For more information, see [Load balancer types](load-balancer-types.md)\.
 
 Application Load Balancers offer several features that make them attractive for use with Amazon ECS services:
@@ -48,3 +51,4 @@ The following considerations are specific to Amazon ECS services using Classic L
 + All of the containers that are launched in a single task definition are always placed on the same container instance\. For Classic Load Balancers, you may choose to put multiple containers \(in the same task definition\) behind the same load balancer by defining multiple host ports in the service definition and adding those listener ports to the load balancer\. For example, if a task definition consists of OpenSearch Service using port 3030 on the container instance, with Logstash and OpenSearch Dashboards using port 4040 on the container instance, the same load balancer can route traffic to OpenSearch Service and OpenSearch Dashboards through two listeners\. For more information, see [Listeners for your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html) in the *User Guide for Classic Load Balancers*\.
 **Important**  
 We do not recommend connecting multiple services to the same Classic Load Balancer\. Because entire container instances are registered and deregistered with Classic Load Balancers, and not with host and port combinations, this configuration can cause issues if a task from one service stops\. In this scenario, a task from one service stopping can cause the entire container instance to be deregistered from the Classic Load Balancer while another task from a different service on the same container instance is still using it\. If you want to connect multiple services to a single load balancer we recommend using an Application Load Balancer\.
++ Using capacity providers is not supported when using Classic Load Balancers for your services\.

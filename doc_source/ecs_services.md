@@ -41,7 +41,7 @@ If a deployment configuration is specified, the maximum percent parameter must b
 
 A change the placement constraints for the daemon service requires a service restart for the changes to take effect\. Amazon ECS dynamically updates the resources reserved on qualifying instances for the daemon task\. For existing instances, the scheduler tries to place the task on the instance\. 
 
-A change the task size or container resource reservation in the task\-defintion starts a deployment of the service\. Amazon ECS picks up the updated CPU and memory reservations for the daemon, and then blocks that capacity for the daemon task\.
+A change the task size or container resource reservation in the task\-definition starts a deployment of the service\. Amazon ECS picks up the updated CPU and memory reservations for the daemon, and then blocks that capacity for the daemon task\.
 
 If there are insufficient resources for either of the above cases, the following happens:
 + The task placement fails\.

@@ -43,7 +43,7 @@ The following should be considered when enabling the deployment circuit breaker 
 
 The deployment circuit breaker calculates the threshold value, and then uses the value to determine when to move the deployment to a `FAILED` state\.
 
-The deployment circuit breaker has a a minimum threshold of 10 and a maximum threshold of 200\. and uses the values in the following formula to determine the deployment failure\.
+The deployment circuit breaker has a minimum threshold of 10 and a maximum threshold of 200\. and uses the values in the following formula to determine the deployment failure\.
 
 ```
 Minimum threshold <= 0.5 * desired service count => maximum threshold

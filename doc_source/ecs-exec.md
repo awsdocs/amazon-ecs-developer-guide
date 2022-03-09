@@ -35,6 +35,7 @@ For this topic, you should be familiar with the following aspects involved with 
 + While starting SSM sessions outside of the `execute-command` action is possible, this results in the sessions not being logged and being counted against the session limit\. We recommend limiting this access by denying the `ssm:start-session` action using an IAM policy\. For more information, see [Limiting access to the Start Session action](#ecs-exec-limit-access-start-session)\.
 + ECS Exec will use some CPU and memory\. You'll want to accommodate for that when specifying the CPU and memory resource allocations in your task definition\.
 + You must be using AWS CLI version `1.22.3` or later or AWS CLI version `2.3.6` or later\. For information about how to update the AWS CLI, see [Installing or updating the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) in the *AWS Command Line Interface User Guide Version 2*\.
++ You cannot use ECS exec when you use `run-task` to launch a task on a cluster that uses managed scaling with asynchronous placement \(launch a task with no instance\)\.
 
 ## Prerequisites for using ECS Exec<a name="ecs-exec-prerequisites"></a>
 

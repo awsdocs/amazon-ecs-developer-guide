@@ -451,6 +451,33 @@ In the following example, the task was attempting to use the `FARGATE_SPOT` capa
     }
 }
 ```
+In the following example for the EC2 launch type\. the task was attempted to launch on the Container Instance `2dd1b186f39845a584488d2ef155c131` but the service scheduler was unable to place the task because of insufficient CPU\.  
+
+```
+{
+  "version": "0",
+  "id": "ddca6449-b258-46c0-8653-e0e3a6d0468b",
+  "detail-type": "ECS Service Action",
+  "source": "aws.ecs",
+  "account": "111122223333",
+  "time": "2019-11-19T19:55:38Z",
+  "region": "us-west-2",
+  "resources": [
+    "arn:aws:ecs:us-west-2:111122223333:service/default/servicetest"
+  ],
+  "detail": {
+    "eventType": "ERROR",
+    "eventName": "SERVICE_TASK_PLACEMENT_FAILURE",
+    "clusterArn": "arn:aws:ecs:us-west-2:111122223333:cluster/default",
+    "containerInstanceArns": [
+    "arn:aws:ecs:us-west-2:111122223333:container-instance/default/2dd1b186f39845a584488d2ef155c131"
+      "arn:aws:ecs:us-west-2:111122223333:container-instance/default/2dd1b186f39845a584488d2ef155c131"
+    ],
+    "reason": "RESOURCE:CPU",
+    "createdAt": "2019-11-06T19:09:33.087Z"
+  }
+}
+```
 
 ## Service deployment state change events<a name="ecs_service_deployment_events"></a>
 

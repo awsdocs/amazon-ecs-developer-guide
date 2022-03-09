@@ -32,7 +32,7 @@ If your cluster is configured with a default capacity provider strategy, you wil
 
    1. For **Platform version**, if you chose a Fargate capacity provider or the Fargate launch type, then select the platform version to use\.
 **Note**  
-When the **LATEST** platform version is selected, we validate the operating system that was specified for the task, and then set the appropriate platform version\. If the Operating System is set to `Windows-Server-2019-Full` or `Windows-Server-2019-Core`, the `1.0.0` platform is used\. If theoperating system is Linux, the `1.4.0` platform version is used\.
+When the **LATEST** platform version is selected, we validate the operating system that was specified for the task, and then set the appropriate platform version\. If the Operating System is set to `Windows-Server-2019-Full` or `Windows-Server-2019-Core`, the `1.0.0` platform is used\. If the operating system is Linux, the `1.4.0` platform version is used\.
 
    1. **Cluster**: Select the cluster in which to create your service\.
 

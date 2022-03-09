@@ -56,6 +56,7 @@ Type: Integer
 Required: No  
 The period of time, in seconds, that the Amazon ECS service scheduler should ignore unhealthy Elastic Load Balancing target health checks, container health checks, and Route 53 health checks after a task enters a `RUNNING` state\. This is only valid if your service is configured to use a load balancer\. If your service has a load balancer defined and you do not specify a health check grace period value, the default value of `0` is used\.  
 If your service's tasks take a while to start and respond to health checks, you can specify a health check grace period of up to 2,147,483,647 seconds during which the ECS service scheduler ignores the health check status\. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up\.  
+If you do not use an Elastic Load Balancing, we recommend that you use the `startPeriod` in the task definition health check parameters\. For more information, see [Health check](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definition_healthcheck)\.  
 `schedulingStrategy`  
 The scheduling strategy to use\. Services using an external deployment controller support only the `REPLICA` scheduling strategy\. For more information, see [Service scheduler concepts](ecs_services.md#service_scheduler)\.  
 `placementConstraints`  

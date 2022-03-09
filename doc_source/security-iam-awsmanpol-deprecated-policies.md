@@ -1,4 +1,4 @@
-# Phased out AWS managed policies for Amazon Elastic Container Service<a name="security-iam-awsmanpol-deprecated-policies"></a>
+# Phased out AWS managed IAM policies for Amazon Elastic Container Service<a name="security-iam-awsmanpol-deprecated-policies"></a>
 
 The following AWS managed IAM policies are phased out\. These policies are now replaced by the updated policies\. We recommend that you update your IAM users or roles to use the updated policies\.
 
