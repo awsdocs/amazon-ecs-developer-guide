@@ -23,7 +23,7 @@ The *weight* value designates the relative percentage of the total number of lau
 
 ## Capacity provider types<a name="capacity-providers-types"></a>
 
-Your launch type determintes the available capacity provider types\.
+Your launch type determines the available capacity provider types\.
 
 For the Fargate launch type, the following predefined capacity providers are availble:
 + Fargate
@@ -32,7 +32,7 @@ For the Fargate launch type, the following predefined capacity providers are ava
 For the EC2 launch type, the customer creates and maintains the capacity provider, which conisits of the following components:
 + A name
 + An Auto Scaling group
-+ The setttings for managed scaling and managed termination protection\.
++ The settings for managed scaling and managed termination protection\.
 
 ## Capacity provider considerations<a name="capacity-providers-considerations"></a>
 
