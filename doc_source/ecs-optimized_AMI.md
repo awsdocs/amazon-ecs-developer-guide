@@ -1,25 +1,13 @@
 # Amazon ECS\-optimized AMI<a name="ecs-optimized_AMI"></a>
 
-An Amazon ECS container instance specification consists of the following components\.
+Amazon ECS provides the Amazon ECS\-optimized AMIs that are preconfigured with the requirements and recommendations\. We recommendations to run your container workloads\. We recommend that you use the Amazon ECS\-optimized Amazon Linux 2 AMI for your Amazon EC2 instances unless your application requires a specific operating system or a Docker version that is not yet available in that AMI\.
 
-**Required**
-+ A modern Linux distribution running at least version 3\.10 of the Linux kernel\.
-+ The Amazon ECS container agent \(preferably the latest version\)\. For more information, see [Amazon ECS container agent](ECS_agent.md)\.
-+ A Docker daemon running at least version 1\.9\.0, and any Docker runtime dependencies\. For more information, see [Check runtime dependencies](https://docs.docker.com/engine/installation/binaries/#check-runtime-dependencies) in the Docker documentation\.
-**Note**  
-For the best experience, we recommend the Docker version that ships with and is tested with the corresponding Amazon ECS container agent version that you are using\.
+Although you can create your own Amazon EC2 instance AMI that meets the basic specifications needed to run your containerized workloads on Amazon ECS, the Amazon ECS\-optimized AMIs are preconfigured and tested on Amazon ECS by AWS engineers\. It is the simplest way for you to get started and to get your containers running on AWS quickly\.
 
-**Recommended**
-+ An initialization and nanny process to run and monitor the Amazon ECS container agent\. The Amazon ECS\-optimized AMIs use the `ecs-init` RPM to manage the agent\. For more information, see the [`ecs-init` project](https://github.com/aws/amazon-ecs-init) on GitHub\.
-
-The Amazon ECS\-optimized AMIs are preconfigured with these requirements and recommendations\. We recommend that you use the Amazon ECS\-optimized Amazon Linux 2 AMI for your container instances unless your application requires a specific operating system or a Docker version that is not yet available in that AMI\.
-
-Although you can create your own container instance AMI that meets the basic specifications needed to run your containerized workloads on Amazon ECS, the Amazon ECS\-optimized AMIs are preconfigured and tested on Amazon ECS by AWS engineers\. It is the simplest way for you to get started and to get your containers running on AWS quickly\.
-
-The Amazon ECS\-optimized AMI metadata, including the AMI name, Amazon ECS container agent version, and ECS runtime version which includes the Docker version, for each variant can be retrieved programmatically\. For more information, see [Retrieving Amazon ECS\-Optimized AMI metadata](retrieve-ecs-optimized_AMI.md)\.
+The Amazon ECS\-optimized AMI metadata, including the AMI name, Amazon ECS container agent version, and Amazon ECS runtime version which includes the Docker version, for each variant can be retrieved programmatically\. For more information, see [Retrieving Amazon ECS\-Optimized AMI metadata](retrieve-ecs-optimized_AMI.md)\.
 
 The following variants of the Amazon ECS\-optimized AMI are available for your Amazon EC2 instances\.
-+ **Amazon ECS\-optimized Amazon Linux 2 AMI** – Recommended for launching your Amazon ECS container instances in most cases\.
++ **Amazon ECS\-optimized Amazon Linux 2 AMI** – For most cases, recommended for launching your Amazon EC2 instances\.
 
   The Amazon ECS\-optimized Amazon Linux 2 AMI does not come with the AWS CLI preinstalled\.
 + **Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your instances, which are powered by Arm\-based AWS Graviton/Graviton 2 Processors\. For more information, see [General Purpose Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/general-purpose-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.

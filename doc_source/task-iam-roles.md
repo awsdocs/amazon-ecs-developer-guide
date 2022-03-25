@@ -8,7 +8,7 @@ To prevent containers in tasks that use the `awsvpc` network mode from accessing
 To prevent containers in tasks that use the `bridge` network mode from accessing the credential information supplied to the container instance profile \(while still allowing the permissions that are provided by the task role\) by running the following iptables command on your container instances\. Note that this command does not affect containers in tasks that use the `host` or `awsvpc` network modes\. For more information, see [Network mode](task_definition_parameters.md#network_mode)\.  
 
 ```
-sudo yum install -y iptables-services; sudo iptables --insert FORWARD 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP
+sudo yum install -y iptables-services; sudo iptables --insert DOCKER-USER 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP
 ```
 You must save this iptables rule on your container instance for it to survive a reboot\. For the Amazon ECS\-optimized AMI, use the following command\. For other operating systems, consult the documentation for that OS\.  
 For the Amazon ECS\-optimized Amazon Linux 2 AMI:  

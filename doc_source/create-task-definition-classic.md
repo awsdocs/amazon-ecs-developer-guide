@@ -270,7 +270,7 @@ An empty task definition template is shown as follows\. You can use this templat
     "family": "",
     "taskRoleArn": "",
     "executionRoleArn": "",
-    "networkMode": "bridge",
+    "networkMode": "none",
     "containerDefinitions": [
         {
             "name": "",
@@ -337,7 +337,7 @@ An empty task definition template is shown as follows\. You can use this templat
                         "hostPath": "",
                         "containerPath": "",
                         "permissions": [
-                            "read"
+                            "mknod"
                         ]
                     }
                 ],
@@ -364,7 +364,7 @@ An empty task definition template is shown as follows\. You can use this templat
             "dependsOn": [
                 {
                     "containerName": "",
-                    "condition": "START"
+                    "condition": "COMPLETE"
                 }
             ],
             "startTimeout": 0,
@@ -397,7 +397,7 @@ An empty task definition template is shown as follows\. You can use this templat
             },
             "ulimits": [
                 {
-                    "name": "memlock",
+                    "name": "nofile",
                     "softLimit": 0,
                     "hardLimit": 0
                 }
@@ -436,7 +436,7 @@ An empty task definition template is shown as follows\. You can use this templat
                 }
             ],
             "firelensConfiguration": {
-                "type": "fluentbit",
+                "type": "fluentd",
                 "options": {
                     "KeyName": ""
                 }
@@ -467,7 +467,15 @@ An empty task definition template is shown as follows\. You can use this templat
                 "transitEncryptionPort": 0,
                 "authorizationConfig": {
                     "accessPointId": "",
-                    "iam": "DISABLED"
+                    "iam": "ENABLED"
+                }
+            },
+            "fsxWindowsFileServerVolumeConfiguration": {
+                "fileSystemId": "",
+                "rootDirectory": "",
+                "authorizationConfig": {
+                    "credentialsParameter": "",
+                    "domain": ""
                 }
             }
         }
@@ -479,7 +487,7 @@ An empty task definition template is shown as follows\. You can use this templat
         }
     ],
     "requiresCompatibilities": [
-        "FARGATE"
+        "EC2"
     ],
     "cpu": "",
     "memory": "",
@@ -489,8 +497,8 @@ An empty task definition template is shown as follows\. You can use this templat
             "value": ""
         }
     ],
-    "pidMode": "host",
-    "ipcMode": "none",
+    "pidMode": "task",
+    "ipcMode": "task",
     "proxyConfiguration": {
         "type": "APPMESH",
         "containerName": "",
@@ -506,7 +514,14 @@ An empty task definition template is shown as follows\. You can use this templat
             "deviceName": "",
             "deviceType": ""
         }
-    ]
+    ],
+    "ephemeralStorage": {
+        "sizeInGiB": 0
+    },
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "WINDOWS_SERVER_20H2_CORE"
+    }
 }
 ```
 

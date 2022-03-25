@@ -1,5 +1,10 @@
 # Specifying environment variables<a name="taskdef-envfiles"></a>
 
+**Important**  
+ We recommend storing your sensitive data in either AWS Secrets Manager secrets or AWS Systems Manager Parameter Store parameters\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.  
+Environment variables specified in the task definition are readable by all IAM users and roles that are allowed the `DescribeTaskDefinition` action for the task definition\.  
+Environment variable files are objects in Amazon S3 and all Amazon S3 security considerations apply\. See the below section [Required IAM permissions](#taskdef-envfiles-iam)\.
+
 Environment variables can be passed to your containers in the following ways:
 + Individually using the `environment` container definition parameter\. This maps to the `--env` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.
 + In bulk, using the `environmentFiles` container definition parameter to list one or more files containing the environment variables\. The file must be hosted in Amazon S3\. This maps to the `--env-file` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.

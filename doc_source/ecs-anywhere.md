@@ -19,7 +19,9 @@ The following provides a high\-level system architecture overview of Amazon ECS 
 
 The following is the list of supported operating systems and system architectures\.
 + Amazon Linux 2
-+ CentOS 7, CentOS 8
++ CentOS 7
+**Important**  
+CentOS 8 has reached its End Of Life \(EOL\) on December 31, 2021 and is no longer supported by Amazon ECS Anywhere\.
 + RHEL 7 — Neither Docker or RHEL's open package repositories support installing Docker natively on RHEL\. You must ensure that Docker is installed before you run the install script that's described in this document\.
 + Fedora 32, Fedora 33 — Fedora 32 and Fedora 33 default to using `cgroups.v2`, which isn't supported by Amazon ECS\. As a result, the server's default grub configuration must be changed and the server rebooted\. For instructions, see [Changing cgroup version](https://docs.docker.com/config/containers/runmetrics/#changing-cgroup-version) in the Docker documentation\.
 + openSUSE Tumbleweed
@@ -27,7 +29,7 @@ The following is the list of supported operating systems and system architecture
 + Debian 9, Debian 10
 + SUSE Enterprise Server 15
 + The `x86_64` and `ARM64` CPU architectures are supported\.
-+ The following Windows operating system versiions are supported:
++ The following Windows operating system versions are supported:
   + Windows Server 2022 
   + Windows Server 2019 
   + Windows Server 2016 

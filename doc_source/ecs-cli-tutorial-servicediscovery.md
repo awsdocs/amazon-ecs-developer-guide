@@ -8,7 +8,7 @@ It is expected that you have completed the following prerequisites before contin
 + Set up an AWS account\.
 + Install the Amazon ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 + Create a VPC\. For more information, see [Create a virtual private cloud](get-set-up-for-amazon-ecs.md#create-a-vpc)\.
-+ Optional: AWS CloudShell is a tool that gives customers a command line without needing to create their own EC2 instance\. For more information, see [What is AWS CloudShell ](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html) in the *AWS CloudShell User Guide*\.
++ Optional: AWS CloudShell is a tool that gives customers a command line without needing to create their own EC2 instance\. For more information, see [What is AWS CloudShell](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html) in the *AWS CloudShell User Guide*\.
 
 ## Configure the Amazon ECS CLI<a name="ECS_CLI_tutorial_servicediscovery_configure"></a>
 

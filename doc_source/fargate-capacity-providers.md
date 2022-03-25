@@ -11,7 +11,7 @@ The following should be considered when using Fargate capacity providers\.
 + The Fargate Spot capacity provider is not supported for Linux tasks with the ARM64 architecture, Fargate Spot only supports Linux tasks with the X86\_64 architecture\.
 + The Fargate and Fargate Spot capacity providers don't need to be created\. They are available to all accounts and only need to be associated with a cluster to be available for use\.
 + To associate Fargate and Fargate Spot capacity providers to an existing cluster, you must use the Amazon ECS API or AWS CLI\. For more information, see [Adding Fargate capacity providers to an existing cluster](#fargate-capacity-providers-existing-cluster)\.
-+ The Fargate and Fargate Spot capacity providers are reserved and cannot be deleted\. You can disassociate them from a cluster using the PutClusterCapacityProviders API\.
++ The Fargate and Fargate Spot capacity providers are reserved and cannot be deleted\. You can disassociate them from a cluster using the `PutClusterCapacityProviders` API\.
 + When a new cluster is created using the Amazon ECS classic console along with the **Networking only** cluster template, the `FARGATE` and `FARGATE_SPOT` capacity providers are associated with the new cluster automatically\.
 + Using Fargate Spot requires that your task use platform version 1\.3\.0 or later \(for Linux\)\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + When tasks using the Fargate and Fargate Spot capacity providers are stopped, a task state change event is sent to Amazon EventBridge\. The stopped reason describes the cause\. For more information, see [Task state change events](ecs_cwe_events.md#ecs_task_events)\.
@@ -88,13 +88,13 @@ Use the following command to create a new cluster and associate both the Fargate
 
 ## Adding Fargate capacity providers to an existing cluster<a name="fargate-capacity-providers-existing-cluster"></a>
 
-You can update the pool of available capacity providers for an existing Amazon ECS cluster by using the PutClusterCapacityProviders API\.
+You can update the pool of available capacity providers for an existing Amazon ECS cluster by using the `PutClusterCapacityProviders` API\.
 
 Adding either the Fargate or Fargate Spot capacity providers to an existing cluster is not supported in the AWS Management Console\. You must either create a new Fargate cluster in the console or add the Fargate or Fargate Spot capacity providers to the existing cluster using the Amazon ECS API or AWS CLI\.
 
 ### To add the Fargate capacity providers to an existing cluster \(AWS CLI\)<a name="fargate-capacity-providers-create-cluster-cli"></a>
 
-Use the following command to add the Fargate and Fargate Spot capacity providers to an existing cluster\. If the specified cluster has existing capacity providers associated with it, you must specify all existing capacity providers in addition to any new ones you want to add\. Any existing capacity providers associated with a cluster that are omitted from a PutClusterCapacityProviders API call will be disassociated from the cluster\. You can only disassociate an existing capacity provider from a cluster if it's not being used by any existing tasks\. These same rules apply to the cluster's default capacity provider strategy\. If the cluster has an existing default capacity provider strategy defined, it must be included in the PutClusterCapacityProviders API call\. Otherwise, it will be overwritten\.
+Use the following command to add the Fargate and Fargate Spot capacity providers to an existing cluster\. If the specified cluster has existing capacity providers associated with it, you must specify all existing capacity providers in addition to any new ones you want to add\. Any existing capacity providers associated with a cluster that are omitted from a `PutClusterCapacityProviders` API call will be disassociated from the cluster\. You can only disassociate an existing capacity provider from a cluster if it's not being used by any existing tasks\. These same rules apply to the cluster's default capacity provider strategy\. If the cluster has an existing default capacity provider strategy defined, it must be included in the `PutClusterCapacityProviders` API call\. Otherwise, it will be overwritten\.
 + [put\-cluster\-capacity\-providers](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-cluster-capacity-providers.html) \(AWS CLI\)
 
   ```

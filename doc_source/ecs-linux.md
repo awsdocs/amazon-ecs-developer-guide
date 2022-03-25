@@ -19,3 +19,15 @@ The following Linux container instance operating systems are available:
 + [Container Instance Memory Management](memory-management.md)
 + [Connect to your container instance using the classic console](instance-connect.md)
 + [Manage container instances remotely using AWS Systems Manager](ec2-run-command.md)
+
+An Amazon ECS container instance specification consists of the following components:
+
+**Required**
++ A modern Linux distribution running at least version 3\.10 of the Linux kernel\.
++ The Amazon ECS container agent \(preferably the latest version\)\. For more information, see [Amazon ECS container agent](ECS_agent.md)\.
++ A Docker daemon running at least version 1\.9\.0, and any Docker runtime dependencies\. For more information, see [Check runtime dependencies](https://docs.docker.com/engine/installation/binaries/#check-runtime-dependencies) in the Docker documentation\.
+**Note**  
+For the best experience, we recommend the Docker version that ships with and is tested with the corresponding Amazon ECS container agent version that you are using\.
+
+**Recommended**
++ An initialization and nanny process to run and monitor the Amazon ECS container agent\. The Amazon ECS\-optimized AMIs use the `ecs-init` RPM to manage the agent\. For more information, see the [`ecs-init` project](https://github.com/aws/amazon-ecs-init) on GitHub\.

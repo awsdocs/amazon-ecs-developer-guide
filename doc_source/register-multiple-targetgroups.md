@@ -2,7 +2,7 @@
 
 Your Amazon ECS service can serve traffic from multiple load balancers and expose multiple load balanced ports when you specify multiple target groups in a service definition\.
 
-To create a service specifying multiple target groups, you must create the service using the Amazon ECS API, SDK, AWS CLI, or an AWS CloudFormation template\. After the service is created, you can view the service and the target groups registered to it with the AWS Management Console\. It is not possible to update the load balancing configuration of an existing service\.
+To create a service specifying multiple target groups, you must create the service using the Amazon ECS API, SDK, AWS CLI, or an AWS CloudFormation template\. After the service is created, you can view the service and the target groups registered to it with the AWS Management Console\. You must use `[UpdateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html)` to modify the load balancer configuration of an existing service\.
 
 Multiple target groups can be specified in a service definition using the following format\. For the full syntax of a service definition, see [Service definition template](service_definition_parameters.md#sd-template)\.
 

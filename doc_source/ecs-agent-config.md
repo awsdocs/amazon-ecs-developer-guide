@@ -374,11 +374,11 @@ Default value on Linux: `false`
 Default value on Windows: `false`  
 Whether to enable Spot Instance draining for the container instance\. When true, if the container instance receives a Spot interruption notice, then the agent sets the instance status to `DRAINING`, which gracefully shuts down and replaces all tasks running on the instance that are part of a service\. It is recommended that this be set to true when using Spot Instances\. For more information, see [Container instance draining](container-instance-draining.md)\.
 
-`ECS_ENABLED_GPU_SUPPORT`  
+`ECS_ENABLE_GPU_SUPPORT`  
 Example values: `true`  
 Default value on Linux: `false`  
 Default value on Windows: `n/a`  
-Whether you GPU\-enabled container instances\. This parameter is specified for the agent\. You must also configure your task definitions for GPU\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
+Whether you use container instances with GPU support\. This parameter is specified for the agent\. You must also configure your task definitions for GPU\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
 
 `ECS_LOG_ROLLOVER_TYPE`  
 Example values: `size`, `hourly`  
@@ -420,7 +420,7 @@ Whether to pull images for containers with dependencies before the `dependsOn` c
 Example values: `true` \| `false`  
 Default value on Linux: `true`  
 Default value on Windows: `true`  
-Whether the agent should exclude IPv6 port bindings when the `default` network mode is used\. When this vlaue is true, IPv6 port bindings are filterned and task IPv6 port bindings are not returned in the [DescribeTasks ](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html)response\. The bindings are included in the task metadata endpoint\.  
+Whether the agent should exclude IPv6 port bindings when the `default` network mode is used\. When this value is true, IPv6 port bindings are filtered and task IPv6 port bindings are not returned in the [DescribeTasks ](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html)response\. The bindings are included in the task metadata endpoint\.  
 This is available in agent version `1.55.3` and later\.
 
 `ECS_SKIP_LOCALHOST_TRAFFIC_FILTER`  
@@ -440,6 +440,14 @@ Example values: `eth0`
 Default value on Linux: `eth0`  
 Default value on Windows: `eth0`  
 The primary network interface name to be used for blocking offhost agent introspection port access\. By default, this value is `eth0`\.
+
+`ECS_WARM_POOLS_CHECK`  
+Example values: `true` \| `false`  
+Default value on Linux: `false`  
+Default value on Windows: `false`  
+Set this variable to `true` only if you have an Auto Scaling group and want a warm pool associated with it\.  
+When true, the Amazon ECS agent polls the instance metadata to determine if the instance is ready to be included in the Amazon ECS cluster\. When your application needs to scale out, the Auto Scaling group will quickly move the required number of pre\-initialized instances from the warm pool to the cluster\.  
+This variable is available in agent version `1.59.0` and later\.
 
 ## Storing container instance configuration in Amazon S3<a name="ecs-config-s3"></a>
 

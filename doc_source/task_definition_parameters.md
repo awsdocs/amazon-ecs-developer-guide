@@ -1121,7 +1121,7 @@ The following task definition parameters are able to be used when registering ta
 `ephemeralStorage`  
 Type: Object  
 Required: No  
-The amount of ephemeral storage in GB to allocate for the task\. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate\. For more information, see [Fargate task storage](fargate-task-storage.md)\.  
+The amount of ephemeral storage in GB to allocate for the task\. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on AWS Fargate\. For more information, see [Bind mounts](bind-mounts.md)\.  
 This parameter is only supported for tasks hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\)\. This is not supported for Windows containers on Fargate\.
 
 ### IPC mode<a name="task_definition_ipcmode"></a>

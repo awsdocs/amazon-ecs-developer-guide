@@ -1,6 +1,10 @@
 # Creating a cluster for the Amazon EC2 launch type using the new console<a name="create-ec2-cluster-console-v2"></a>
 
-You can create an Amazon ECS cluster for the Amazon EC2 launch type using the new AWS Management Console, as described in this topic\. To make the cluster creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\. 
+You can create an Amazon ECS cluster using the new AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. The new console provides a simple way to create the resources that are needed by an Amazon ECS cluster by creating a AWS CloudFormation stack\. 
+
+You can register Amazon EC2 instances during cluster creation or register additional instances with the cluster after creating it\.
+
+To make the cluster creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\. 
 
 You can modify the following default options:
 + Change the subnets where tasks and services launch into by default\.

@@ -15,12 +15,12 @@ The following should be considered when using the Bottlerocket AMI with Amazon E
   + China \(Ningxia\) \(`cn-northwest-1`\)
 + Amazon EC2 instances with x86 or arm64 processors are supported\. Amazon EC2 instances with GPUs or Inferentia chips are not supported\.
 + The `awsvpc` network mode is supported when using Bottlerocket AMI version `1.1.0` or later\.
-+ Using Amazon EFS file system volumes are not supported\.
 + The `initProcessEnabled` task definition parameter is not supported\.
 + The following features are not supported:
   + App Mesh in task definitions
   + ECS Anywhere
   + ECS Exec
+  + Amazon EFS file system volumes
   + Amazon EFS in encrypted mode and `awsvpc` network mode
   + Elastic Inference
   + FireLens in task definitions

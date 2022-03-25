@@ -331,6 +331,12 @@ The AWS Copilot CLI executables are cryptographically signed using PGP signature
 **Important**  
 The warning in the output is expected and is not problematic\. It occurs because there is not a chain of trust between your personal PGP key \(if you have one\) and the Amazon ECS PGP key\. For more information, see [Web of trust](https://en.wikipedia.org/wiki/Web_of_trust)\.
 
+1. For Windows installations, append the AWS Copilot directory to the system environment path variable\.
+
+   ```
+   $Env:PATH += ":copilot-directory
+   ```
+
 ## Next steps<a name="copilot-nextsteps"></a>
 
 After installation, learn how to deploy an Amazon ECS application using AWS Copilot\. For more information, see [Getting started with Amazon ECS using AWS Copilot](getting-started-aws-copilot-cli.md)\.

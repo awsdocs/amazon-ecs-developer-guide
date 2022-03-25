@@ -1,8 +1,8 @@
 # Amazon ECS\-optimized AMI<a name="ecs-optimized_windows_AMI"></a>
 
-The Amazon ECS\-optimized AMIs are preconfigured with the necessary compnents that you need to run ECS workloads\. Although you can create your own container instance AMI that meets the basic specifications needed to run your containerized workloads on Amazon ECS, the Amazon ECS\-optimized AMIs are preconfigured and tested on Amazon ECS by AWS engineers\. It is the simplest way for you to get started and to get your containers running on AWS quickly\.
+The Amazon ECS\-optimized AMIs are preconfigured with the necessary components that you need to run Amazon ECS workloads\. Although you can create your own container instance AMI that meets the basic specifications needed to run your containerized workloads on Amazon ECS, the Amazon ECS\-optimized AMIs are preconfigured and tested on Amazon ECS by AWS engineers\. It is the simplest way for you to get started and to get your containers running on AWS quickly\.
 
-The Amazon ECS\-optimized AMI metadata, including the AMI name, Amazon ECS container agent version, and ECS runtime version which includes the Docker version, for each variant can be retrieved programmatically\. For more information, see [Retrieving Amazon ECS\-Optimized AMI metadata](retrieve-ecs-optimized_windows_AMI.md)\.
+The Amazon ECS\-optimized AMI metadata, including the AMI name, Amazon ECS container agent version, and Amazon ECS runtime version which includes the Docker version, for each variant can be retrieved programmatically\. For more information, see [Retrieving Amazon ECS\-Optimized AMI metadata](retrieve-ecs-optimized_windows_AMI.md)\.
 
 ## Amazon ECS\-optimized AMI variants<a name="ecs-optimized-ami-variants"></a>
 

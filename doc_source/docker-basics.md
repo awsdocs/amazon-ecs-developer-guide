@@ -167,6 +167,8 @@ This section requires the following:
 
 1. Create an Amazon ECR repository to store your `hello-world` image\. Note the `repositoryUri` in the output\.
 
+   Substitute `region`, with your AWS Region, for example, `us-east-1`\.
+
    ```
    aws ecr create-repository --repository-name hello-repository --region region
    ```

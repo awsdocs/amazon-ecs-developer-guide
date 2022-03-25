@@ -13,7 +13,7 @@ You can use task placement strategies and constraints together\. For example, yo
 
 When Amazon ECS places tasks, it uses the following process to select container instances:
 
-1. Identify the instances that satisfy the CPU, memory, and port requirements in the task definition\.
+1. Identify the instances that satisfy the CPU, GPU, memory, and port requirements in the task definition\.
 
 1. Identify the instances that satisfy the task placement constraints\.
 

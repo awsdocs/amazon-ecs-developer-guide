@@ -451,7 +451,7 @@ In the following example, the task was attempting to use the `FARGATE_SPOT` capa
     }
 }
 ```
-In the following example for the EC2 launch type\. the task was attempted to launch on the Container Instance `2dd1b186f39845a584488d2ef155c131` but the service scheduler was unable to place the task because of insufficient CPU\.  
+In the following example for the EC2 launch type, the task was attempted to launch on the Container Instance `2dd1b186f39845a584488d2ef155c131` but the service scheduler was unable to place the task because of insufficient CPU\.  
 
 ```
 {
@@ -471,7 +471,6 @@ In the following example for the EC2 launch type\. the task was attempted to lau
     "clusterArn": "arn:aws:ecs:us-west-2:111122223333:cluster/default",
     "containerInstanceArns": [
     "arn:aws:ecs:us-west-2:111122223333:container-instance/default/2dd1b186f39845a584488d2ef155c131"
-      "arn:aws:ecs:us-west-2:111122223333:container-instance/default/2dd1b186f39845a584488d2ef155c131"
     ],
     "reason": "RESOURCE:CPU",
     "createdAt": "2019-11-06T19:09:33.087Z"

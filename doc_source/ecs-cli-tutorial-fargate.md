@@ -8,7 +8,7 @@ Complete the following prerequisites:
 + Set up an AWS account\.
 + Install the Amazon ECS CLI\. For more information, see [Installing the Amazon ECS CLI](ECS_CLI_installation.md)\.
 + Install and configure the AWS CLI\. For more information, see [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
-+ Optional: AWS CloudShell is a tool that gives customers a command line without needing to create their own EC2 instance\. For more information, see [What is AWS CloudShell ](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html) in the *AWS CloudShell User Guide*\.
++ Optional: AWS CloudShell is a tool that gives customers a command line without needing to create their own EC2 instance\. For more information, see [What is AWS CloudShell](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html) in the *AWS CloudShell User Guide*\.
 
 ## Step 1: Create the Task Execution IAM Role<a name="ECS_CLI_tutorial_fargate_iam_role"></a>
 

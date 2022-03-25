@@ -111,5 +111,5 @@ When registering an on\-premise server or virtual machine \(VM\) to your cluster
 
    ```
    aws iam attach-role-policy --role-name ecsAnywhereRole --policy-arn arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
-   aws iam attach-role-policy --role-name ecsAnywhereRole --policy-arn
+   aws iam attach-role-policy --role-name ecsAnywhereRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role
    ```

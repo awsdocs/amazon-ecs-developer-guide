@@ -1,6 +1,6 @@
 # Creating an Application Load Balancer<a name="create-application-load-balancer"></a>
 
-This section walks you through the process of creating an Application Load Balancer in the AWS Management Console\.
+This section walks you through the process of creating an Application Load Balancer in the AWS Management Console\. For information about how to create an Application Load Balancer using the AWS CLI, see [Tutorial: Create an Application Load Balancer using the AWS CLI](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/tutorial-application-load-balancer-cli.html) in the *User Guide for Application Load Balancers*\.
 
 ## Define your load balancer<a name="alb-define-load-balancer"></a>
 

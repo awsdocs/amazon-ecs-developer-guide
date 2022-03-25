@@ -20,7 +20,7 @@ The default filesystem for the Amazon ECS\-optimized Amazon Linux 2 AMI is `ext4
 **Important**  
 The **Amazon ECS\-optimized Amazon Linux AMI** is deprecated as of April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
 
-By default, the Amazon ECS\-optimized Amazon Linux AMI ships with 30 GiB of total storage\. You can modify this value at launch time to increase the available storage on your container instance\. This storage is used for the operating system and for Docker images and metadata\. The sections below describe the storage configuration of the Amazon ECS\-optimized Amazon Linux AMI, based on the AMI version\.
+By default, the Amazon ECS\-optimized Amazon Linux AMI ships with 30 GiB of total storage\. You can modify this value at launch time to increase the available storage on your Amazon EC2 instance\. This storage is used for the operating system and for Docker images and metadata\. The sections below describe the storage configuration of the Amazon ECS\-optimized Amazon Linux AMI, based on the AMI version\.
 
 ### Version 2015\.09\.d and later<a name="ecs-AMI-LVM"></a>
 
@@ -83,17 +83,17 @@ Because docker info displays storage values as GB \(10^9 bytes\), instead of GiB
 
 **To extend the Docker logical volume**
 
-The easiest way to add storage to your container instances is to terminate the existing instances and launch new ones with larger data storage volumes\. However, if you are unable to do this, you can add storage to the volume group that Docker uses and extend its logical volume by following these steps\.
+The easiest way to add storage to your Amazon EC2 instances is to terminate the existing instances and launch new ones with larger data storage volumes\. However, if you are unable to do this, you can add storage to the volume group that Docker uses and extend its logical volume by following these steps\.
 **Note**  
-If your container instance storage is filling up too quickly, there are a few actions that you can take to reduce this effect:  
+If your Amazon EC2 instance storage is filling up too quickly, there are a few actions that you can take to reduce this effect:  
 \(Amazon ECS container agent 1\.8\.0 and later\) Reduce the amount of time that stopped or exited containers remain on your container instances\. The `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` agent configuration variable sets the time duration to wait from when a task is stopped until the Docker container is removed \(by default, this value is 3 hours\)\. This removes the Docker container data\. If this value is set too low, you may not be able to inspect your stopped containers or view the logs before they are removed\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
-Remove non\-running containers and unused images from your container instances\. You can use the following example commands to manually remove stopped containers and unused images\. Deleted containers cannot be inspected later, and deleted images must be pulled again before starting new containers from them\.  
-To remove non\-running containers, execute the following command on your container instance:  
+Remove non\-running containers and unused images from your Amazon EC2 instances\. You can use the following example commands to manually remove stopped containers and unused images\. Deleted containers cannot be inspected later, and deleted images must be pulled again before starting new containers from them\.  
+To remove non\-running containers, execute the following command on your Amazon EC2 instance:  
 
   ```
   $ docker rm $(docker ps -aq)
   ```
-To remove unused images, execute the following command on your container instance:  
+To remove unused images, execute the following command on your Amazon EC2 instance:  
 
   ```
   $ docker rmi $(docker images -q)
@@ -104,11 +104,11 @@ Remove unused data blocks within containers\. You can use the following command 
   $ sudo sh -c "docker ps -q | xargs docker inspect --format='{{ .State.Pid }}' | xargs -IZ fstrim /proc/Z/root/"
   ```
 
-1. Create a new Amazon EBS volume in the same Availability Zone as your container instance\. For more information, see [Creating an Amazon EBS Volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. Create a new Amazon EBS volume in the same Availability Zone as your Amazon EC2 instance\. For more information, see [Creating an Amazon EBS Volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-1. Attach the volume to your container instance\. The default location for the Docker data volume is `/dev/xvdcz`\. For consistency, attach additional volumes in reverse alphabetical order from that device name \(for example, `/dev/xvdcy`\)\. For more information, see [Attaching an Amazon EBS Volume to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
+1. Attach the volume to your Amazon EC2 instance\. The default location for the Docker data volume is `/dev/xvdcz`\. For consistency, attach additional volumes in reverse alphabetical order from that device name \(for example, `/dev/xvdcy`\)\. For more information, see [Attaching an Amazon EBS Volume to an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
-1. Connect to your container instance using SSH\. For more information, see [Connect to your container instance using the classic console](instance-connect.md)\.
+1. Connect to your Amazon EC2 instance using SSH\. For more information, see [Connect to your container instance using the classic console](instance-connect.md)\.
 
 1. Check the size of your `docker-pool` logical volume\. The example below shows a logical volume of 409\.19 GiB\.
 
@@ -201,6 +201,6 @@ Because docker info displays storage values as GB \(10^9 bytes\), instead of GiB
 
 ### Version 2015\.09\.c and earlier<a name="ecs-AMI-pre-LVM"></a>
 
-Amazon ECS\-optimized Amazon Linux AMIs from version `2015.09.c` and earlier launch with a single 30\-GiB volume that is attached at `/dev/xvda` and mounted as the root of the file system\. This volume shares the operating system and all Docker images and metadata\. You can determine the available storage on your container instance with standard storage information commands \(such as df \-h\)\.
+Amazon ECS\-optimized Amazon Linux AMIs from version `2015.09.c` and earlier launch with a single 30\-GiB volume that is attached at `/dev/xvda` and mounted as the root of the file system\. This volume shares the operating system and all Docker images and metadata\. You can determine the available storage on your Amazon EC2 instance with standard storage information commands \(such as df \-h\)\.
 
-There is no practical way to add storage \(that Docker can use\) to instances launched from these AMIs without stopping them\. If you find that your container instances need more storage than the default 30 GiB, you should terminate each instance\. Then, launch another in its place with the latest Amazon ECS\-optimized Amazon Linux AMI and a large enough data storage volume\.
+There is no practical way to add storage \(that Docker can use\) to instances launched from these AMIs without stopping them\. If you find that your Amazon EC2 instances need more storage than the default 30 GiB, you should terminate each instance\. Then, launch another in its place with the latest Amazon ECS\-optimized Amazon Linux AMI and a large enough data storage volume\.

@@ -1,6 +1,8 @@
 # Creating a cluster for the Fargate launch type using the new console<a name="create-cluster-console-v2"></a>
 
-You can create an Amazon ECS cluster using the new console, as described in this topic\. To make the cluster creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\. 
+You can create an Amazon ECS cluster using the new AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\. The new console provides a simple way to create the resources that are needed by an Amazon ECS cluster by creating a AWS CloudFormation stack\. 
+
+To make the cluster creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\. 
 
 By default, we create an Amazon ECS cluster for Fargate launch type with the following properties:
 + Uses Fargate and Fargate Spot capacity providers\.

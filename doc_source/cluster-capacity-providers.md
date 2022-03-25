@@ -23,13 +23,13 @@ The *weight* value designates the relative percentage of the total number of lau
 
 ## Capacity provider types<a name="capacity-providers-types"></a>
 
-Your launch type determines the available capacity provider types\.
+The infrastructure your Amazon ECS workloads are run on determines the type of capacity provider you can use\.
 
-For the Fargate launch type, the following predefined capacity providers are availble:
+For Amazon ECS workloads hosted on Fargate, the following predefined capacity providers are available:
 + Fargate
 + Fargate Spot
 
-For the EC2 launch type, the customer creates and maintains the capacity provider, which conisits of the following components:
+For Amazon ECS workloads hosted on Amazon EC2 instances, you must create and maintain a capacity provider that consists of the following components:
 + A name
 + An Auto Scaling group
 + The settings for managed scaling and managed termination protection\.

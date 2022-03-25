@@ -39,7 +39,7 @@ Use the following steps to create your service discovery namespace and service d
 1. Using the `OperationId` from the previous output, verify that the private namespace was created successfully\. Copy the namespace ID as it is used in subsequent commands\.
 
    ```
-   aws servicediscovery get-operation --operation-id h2qe3s6dxftvvt7riu6lfy2f6c3jlhf4-je6chs2e
+   aws servicediscovery get-operation --operation-id h2qe3s6dxftvvt7riu6lfy2f6c3jlhf4-je6chs2e --region us-east-1
    ```
 
    Output:
@@ -62,7 +62,7 @@ Use the following steps to create your service discovery namespace and service d
 1. Using the `NAMESPACE` ID from the previous output, create a service discovery service named `myapplication`\. Copy the service discovery service ID as it is used in subsequent commands:
 
    ```
-   aws servicediscovery create-service --name myapplication --dns-config 'NamespaceId="ns-uejictsjen2i4eeg",DnsRecords=[{Type="A",TTL="300"}]' --health-check-custom-config FailureThreshold=1 --region us-east-1
+   aws servicediscovery create-service --name myapplication --dns-config "NamespaceId="ns-uejictsjen2i4eeg",DnsRecords=[{Type="A",TTL="300"}]" --health-check-custom-config FailureThreshold=1 --region us-east-1
    ```
 
    Output:

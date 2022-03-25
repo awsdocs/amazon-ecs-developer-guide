@@ -330,6 +330,7 @@ With the following example IAM policy, users can run commands in containers that
         {
             "Effect": "Allow",
             "Action": "ecs:ExecuteCommand",
+            "Action": "ecs:DescribeTasks",
             "Resource": "arn:aws:ecs:region:aws-account-id:task/cluster-name/*",
             "Condition": {
                 "StringEquals": {
@@ -438,10 +439,11 @@ The following are troubleshooting notes to help diagnose why you may be getting 
 
 ### Verify using the Amazon ECS Exec Checker<a name="ecs-exec-troubleshooting-checker"></a>
 
-The Amazon ECS Exec Checker script provides a way to verify and validate that your Amazon ECS cluster and task have met the prerequisites for using the ECS Exec feature\. The tool requires the latest version of the AWS CLI and that the `jq` is available\. For more information, see [Amazon ECS Exec Checker](https://github.com/aws-containers/amazon-ecs-exec-checker) on GitHub\.
+The Amazon ECS Exec Checker script provides a way to verify and validate that your Amazon ECS cluster and task have met the prerequisites for using the ECS Exec feature\. The Exec Checker script verifies both your AWS CLI environment and cluster and tasks are ready for ECS Exec, by calling various APIs on your behalf\. The tool requires the latest version of the AWS CLI and that the `jq` is available\. For more information, see [Amazon ECS Exec Checker](https://github.com/aws-containers/amazon-ecs-exec-checker) on GitHub\.
 
 ### Error when calling `execute-command`<a name="ecs-exec-troubleshooting-general"></a>
 
 If a `The execute command failed` error occurs, the following are possible causes\.
 + The task does not have the required permissions\. Verify that the task definition used to launch your task has a task IAM role defined and that the role has the required permissions\. For more information, see [IAM permissions required for ECS Exec](#ecs-exec-required-iam-permissions)\.
-+ The SSM Agent is not connected due to slowness or network latency\. Wait and try the `execute-command` action again\.
++ The SSM agent is not installed or is not running
++  There is an interface Amazon VPC endpoint for Amazon ECS, but there is not one for for Systems Manager Session Manager

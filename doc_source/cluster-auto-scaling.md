@@ -23,6 +23,7 @@ Make sure any tooling you use does not remove the `AmazonECSManaged` tag from th
 + The Amazon ECS managed scaling feature is on by default\. For more information, see [Managed scale\-out behavior](#managed-scaling-scaleout)\.
 + Managed termination is off by default\.
 + Auto Scaling instance\-scale\-in protection is off by default\. For more information, see [Using instance scale\-in protection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html) in the *Amazon EC2 Auto Scaling User Guide*\.
++ The Auto Scaling group used with your capacity provider can't have instance weighting settings\. Instance weighting isn't supported when used with an Amazon ECS capacity provider\.
 
 ------
 #### [ Classic console ]

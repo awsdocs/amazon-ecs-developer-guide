@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Support for Amazon EC2 Auto Scaling warm pools\.  |  You can now use Amazon EC2 Auto Scaling warm pools to scale out your applications faster and save costs\. For more information, see [Using a warm pool for your Auto Scaling group](asg-capacity-providers-create-auto-scaling-group.md#using-warm-pool)\.  |  23 Mar 2022  | 
 |  Support for Windows instances in ECS Anywhere\.  |  ECS Anywhere now supports Windows instances\. For more information, see [External instances \(Amazon ECS Anywhere\)](ecs-anywhere.md)\.  |  03 Mar 2022  | 
 |  Added ECS Exec support for external instances  |  ECS Exec is now supported for external instances\. For more information, see [Using Amazon ECS Exec for debugging](ecs-exec.md)\.  |  24 Jan 2022  | 
 |  The new Amazon ECS console experience updated  |  The new Amazon ECS console experience supports creating and deleting a cluster, updating a task definition, and deregistering a task definition\. For more information, see [Creating a cluster for the Fargate launch type using the new console](create-cluster-console-v2.md), [Deleting a cluster using the new console](delete_cluster-new-console.md), [Updating a task definition using the new console](update-task-definition-console-v2.md), and [Deregistering a task definition revision](deregister-task-definition.md)\.  |  08\-Dec 2021  | 
