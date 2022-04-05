@@ -1,6 +1,6 @@
 # What is Amazon Elastic Container Service?<a name="Welcome"></a>
 
-Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable and fast container management service\. You can use it to run, stop, and manage containers on a cluster\. With Amazon ECS, your containers are defined in a task definition that you use to run individual tasks or tasks within a service\. In this context, a service is a configuration that you can use to run and maintain a specified number of tasks simultaneously in a cluster\. You can run your tasks and services on a serverless infrastructure that's managed by AWS Fargate\. Alternatively, for more control over your infrastructure, you can run your tasks and services on a cluster of Amazon EC2 instances that you manage\.
+Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable and fast container management service\. You can use it to run, stop, and manage containers on a cluster\. With Amazon ECS, your containers are defined in a task definition that you use to run an individual tasks or task within a service\. In this context, a service is a configuration that you can use to run and maintain a specified number of tasks simultaneously in a cluster\. You can run your tasks and services on a serverless infrastructure that's managed by AWS Fargate\. Alternatively, for more control over your infrastructure, you can run your tasks and services on a cluster of Amazon EC2 instances that you manage\.
 
 Amazon ECS provides the following features:
 + A serverless option with AWS Fargate\. With AWS Fargate, you don't need to manage servers, handle capacity planning, or isolate container workloads for security\. Fargate handles the infrastructure management aspects of your workload for you\. You can schedule the placement of your containers across your cluster based on your resource needs, isolation policies, and availability requirements\.
@@ -31,8 +31,8 @@ The Fargate launch type is suitable for the following workloads:
 The EC2 launch type is suitable for the following workloads:
 +  Workloads that require consistently high CPU core and memory usage
 + Large workloads that need to be optimized for price
-+ Your applications need to access persistant storage
-+ You must directly manage your infrastucture
++ Your applications need to access persistent storage
++ You must directly manage your infrastructure
 
 ## Access Amazon ECS<a name="welcome-interfaces"></a>
 

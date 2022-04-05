@@ -1,12 +1,12 @@
 # Working with GPUs on Amazon ECS<a name="ecs-gpu"></a>
 
-Amazon ECS supports workloads that take advantage of GPUs by enabling you to create clusters with GPU\-enabled container instances\. Amazon EC2 GPU\-based container instances using the p2, p3, g3, and g4 instance types provide access to NVIDIA GPUs\. For more information, see [Linux Accelerated Computing Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+Amazon ECS supports workloads that take advantage of GPUs by enabling you to create clusters with GPU\-enabled container instances\. Amazon EC2 GPU\-based container instances using the p2, p3, p4d, g3, g4, and g5 instance types provide access to NVIDIA GPUs\. For more information, see [Linux Accelerated Computing Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 Amazon ECS provides a GPU\-optimized AMI that comes ready with pre\-configured NVIDIA kernel drivers and a Docker GPU runtime\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
 
 You can designate a number of GPUs in your task definition for task placement consideration at a container level\. Amazon ECS schedules to available GPU\-enabled container instances and pin physical GPUs to proper containers for optimal performance\. 
 
-The following Amazon EC2 GPU\-based instance types are supported\. For more information, see [Amazon EC2 P2 Instances](https://aws.amazon.com/ec2/instance-types/p2/), [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3/), [Amazon EC2 G3 Instances](https://aws.amazon.com/ec2/instance-types/g3/), and [Amazon EC2 G4 Instances](https://aws.amazon.com/ec2/instance-types/g4/)\.
+The following Amazon EC2 GPU\-based instance types are supported\. For more information, see [Amazon EC2 P2 Instances](https://aws.amazon.com/ec2/instance-types/p2/), [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3/), [Amazon EC2 P4d Instances](https://aws.amazon.com/ec2/instance-types/p4/), [Amazon EC2 G3 Instances](https://aws.amazon.com/ec2/instance-types/g3/), [Amazon EC2 G4 Instances](https://aws.amazon.com/ec2/instance-types/g4/), and [Amazon EC2 G5 Instances](https://aws.amazon.com/ec2/instance-types/g5/)\.
 
 
 |  Instance type  |  GPUs  |  GPU memory \(GiB\)  |  vCPUs  |  Memory \(GiB\)  | 
@@ -29,6 +29,14 @@ The following Amazon EC2 GPU\-based instance types are supported\. For more info
 |  g4dn\.8xlarge  |  1  |  16  |  32  |  128  | 
 |  g4dn\.12xlarge  |  4  |  64  |  48  |  192  | 
 |  g4dn\.16xlarge  |  1  |  16  |  64  |  256  | 
+| g5\.xlarge  | 1  | 24  | 4  | 16  | 
+| g5\.2\.xlarge  | 1  | 24  | 8  | 32  | 
+| g5\.4xlarge  | 1  | 24  | 16  | 64  | 
+| g5\.8xlarge  | 1  | 24  | 32  | 128  | 
+| g5\.16xlarge  | 1  | 24  | 64  | 256  | 
+| g5\.12xlarge  | 4  | 96  | 48  | 192  | 
+| g5\.24xlarge  | 4  | 96  | 96  | 384  | 
+| g5\.48xlarge  | 8  | 192  | 192  | 768  | 
 
 **Topics**
 + [Considerations](#gpu-considerations)

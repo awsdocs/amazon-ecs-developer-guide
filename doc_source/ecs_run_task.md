@@ -118,9 +118,9 @@ Only private subnets are supported for the `awsvpc` network mode\. Tasks don't r
 **Note**  
 If you intend to use the parameter values from your task definition, you don't need to specify overrides\. These fields are only used to override the values that are specified in the task definition\.
 
-   1. For **Task Role Override**, choose an IAM role for this task to override the task IAM role that's specified in the task definition\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
+   1. For **Task Role Override**, choose an IAM role for this task to override the task IAM role that's specified in the task definition\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
 
-      Only roles with the `ecs-tasks.amazonaws.com` trust relationship are displayed\. For instructions on how to create an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
+      Only roles with the `ecs-tasks.amazonaws.com` trust relationship are displayed\. For instructions on how to create an IAM role for your tasks, see [Creating an IAM role and policy for your tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
    1. For **Task Execution Role Override**, choose a task execution role to override the task execution role specified in the task definition\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 

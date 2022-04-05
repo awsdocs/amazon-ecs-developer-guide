@@ -158,7 +158,7 @@ The Amazon Linux AMI always includes the recommended version of Docker for use w
    ubuntu:~$ sudo sysctl -p /etc/sysctl.conf
    ```
 
-1. Run the following commands on your container instance to enable IAM roles for tasks\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
+1. Run the following commands on your container instance to enable IAM roles for tasks\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
 
    ```
    ubuntu:~$ sudo apt-get install iptables-persistent
@@ -460,6 +460,6 @@ The warning in the output is expected and is not problematic; it occurs because 
 
 When running the Amazon ECS container agent, `ecs-init` will create the container agent container with the `host` network mode\. This is the only supported network mode for the container agent container\. 
 
-This enables you to block access to the [Amazon EC2 instance metadata service endpoint](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) \(`http://169.254.169.254`\) for the containers started by the container agent\. This ensures that containers cannot access IAM role credentials from the container instance profile and enforces that tasks use only the IAM task role credentials\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
+This enables you to block access to the [Amazon EC2 instance metadata service endpoint](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) \(`http://169.254.169.254`\) for the containers started by the container agent\. This ensures that containers cannot access IAM role credentials from the container instance profile and enforces that tasks use only the IAM task role credentials\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
 
 This also makes it so the container agent doesn't contend for connections and network traffic on the `docker0` bridge\.

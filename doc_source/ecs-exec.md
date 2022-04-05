@@ -17,12 +17,11 @@ You can audit which user accessed the container using AWS CloudTrail and log eac
 ## Considerations for using ECS Exec<a name="ecs-exec-considerations"></a>
 
 For this topic, you should be familiar with the following aspects involved with using ECS Exec:
-+ ECS Exec is supported for external instances \(ECS Anywhere\), Linux containers hosted on Amazon EC2 and the following Windows Amazon ECS\-optimized AMIs \(with the container agent version `1.56` or later\):
++ ECS Exec is supported for AWS Fargate, external instances \(ECS Anywhere\), Linux containers hosted on Amazon EC2 and the following Windows Amazon ECS\-optimized AMIs \(with the container agent version `1.56` or later\):
   + Amazon ECS\-optimized Windows Server 2022 Full AMI
   + Amazon ECS\-optimized Windows Server 2022 Core AMI
   + Amazon ECS\-optimized Windows Server 2019 Full AMI
   + Amazon ECS\-optimized Windows Server 2019 Core AMI
-  + Amazon ECS\-optimized Windows Server 2004 Core AMI
   + Amazon ECS\-optimized Windows Server 20H2 Core AMI
 + ECS Exec is not currently supported using the AWS Management Console\.
 + ECS Exec is not currently supported for tasks launched using an Auto Scaling group capacity provider\.
@@ -35,7 +34,8 @@ For this topic, you should be familiar with the following aspects involved with 
 + While starting SSM sessions outside of the `execute-command` action is possible, this results in the sessions not being logged and being counted against the session limit\. We recommend limiting this access by denying the `ssm:start-session` action using an IAM policy\. For more information, see [Limiting access to the Start Session action](#ecs-exec-limit-access-start-session)\.
 + ECS Exec will use some CPU and memory\. You'll want to accommodate for that when specifying the CPU and memory resource allocations in your task definition\.
 + You must be using AWS CLI version `1.22.3` or later or AWS CLI version `2.3.6` or later\. For information about how to update the AWS CLI, see [Installing or updating the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) in the *AWS Command Line Interface User Guide Version 2*\.
-+ You cannot use ECS exec when you use `run-task` to launch a task on a cluster that uses managed scaling with asynchronous placement \(launch a task with no instance\)\.
++ You cannot use ECS Exec when you use `run-task` to launch a task on a cluster that uses managed scaling with asynchronous placement \(launch a task with no instance\)\.
++ You cannot run ECS Exec against Microsoft Nano Server containers\. For more information about Nano Server containers, see [Nano Server](https://hub.docker.com/_/microsoft-windows-nanoserver) on the Docker web site\.
 
 ## Prerequisites for using ECS Exec<a name="ecs-exec-prerequisites"></a>
 
@@ -44,7 +44,7 @@ Before you start using ECS Exec, make sure you that you have completed these act
 + Install Session Manager plugin for the AWS CLI\. For more information, see [Install the Session Manager plugin for the AWS CLI](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)\.
 + ECS Exec has version requirements depending on whether your tasks are hosted on Amazon EC2 or AWS Fargate:
   + If you're using Amazon EC2, you must use an Amazon ECS optimized AMI that was released after January 20th, 2021, with an agent version of 1\.50\.2 or greater\. For more information, see [Amazon ECS optimized AMIs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)\.
-  + If you're using AWS Fargate, you must use platform version `1.4.0` or higher \(Linux\)\. For more information, see [AWS Fargate platform versions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html)\.
+  + If you're using AWS Fargate, you must use platform version `1.4.0` or higher \(Linux\) or `1.0.0` \(Windows\)\. For more information, see [AWS Fargate platform versions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html)\.
 
 ## Enabling and using ECS Exec<a name="ecs-exec-enabling-and-using"></a>
 

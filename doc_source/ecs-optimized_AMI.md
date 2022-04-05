@@ -1,19 +1,19 @@
 # Amazon ECS\-optimized AMI<a name="ecs-optimized_AMI"></a>
 
-Amazon ECS provides the Amazon ECS\-optimized AMIs that are preconfigured with the requirements and recommendations\. We recommendations to run your container workloads\. We recommend that you use the Amazon ECS\-optimized Amazon Linux 2 AMI for your Amazon EC2 instances unless your application requires a specific operating system or a Docker version that is not yet available in that AMI\.
+Amazon ECS provides the Amazon ECS\-optimized AMIs that are preconfigured with the requirements and recommendations to run your container workloads on Amazon ECS Linux instances\. We recommend that you use the Amazon ECS\-optimized Amazon Linux 2 AMI for your Amazon EC2 instances unless your application requires a specific operating system or a Docker version that is not yet available in that AMI\.
 
 Although you can create your own Amazon EC2 instance AMI that meets the basic specifications needed to run your containerized workloads on Amazon ECS, the Amazon ECS\-optimized AMIs are preconfigured and tested on Amazon ECS by AWS engineers\. It is the simplest way for you to get started and to get your containers running on AWS quickly\.
 
 The Amazon ECS\-optimized AMI metadata, including the AMI name, Amazon ECS container agent version, and Amazon ECS runtime version which includes the Docker version, for each variant can be retrieved programmatically\. For more information, see [Retrieving Amazon ECS\-Optimized AMI metadata](retrieve-ecs-optimized_AMI.md)\.
 
 The following variants of the Amazon ECS\-optimized AMI are available for your Amazon EC2 instances\.
-+ **Amazon ECS\-optimized Amazon Linux 2 AMI** – For most cases, recommended for launching your Amazon EC2 instances\.
++ **Amazon ECS\-optimized Amazon Linux 2 AMI** – For most cases, recommended for launching your Amazon EC2 instances for your Amazon ECS workloads\.
 
   The Amazon ECS\-optimized Amazon Linux 2 AMI does not come with the AWS CLI preinstalled\.
-+ **Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your instances, which are powered by Arm\-based AWS Graviton/Graviton 2 Processors\. For more information, see [General Purpose Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/general-purpose-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
++ **Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 instances, which are powered by Arm\-based AWS Graviton/Graviton 2 Processors, for your Amazon ECS workloads\. For more information, see [General Purpose Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/general-purpose-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
   The Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI does not come with the AWS CLI preinstalled\.
-+ **Amazon ECS GPU\-optimized AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 GPU\-based instances\. It comes pre\-configured with NVIDIA kernel drivers and a Docker GPU runtime which makes running workloads that take advantage of GPUs on Amazon ECS\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
++ **Amazon ECS GPU\-optimized AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 GPU\-based instances for your Amazon ECS workloads\. It comes pre\-configured with NVIDIA kernel drivers and a Docker GPU runtime which makes running workloads that take advantage of GPUs on Amazon ECS\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
 
   The Amazon ECS GPU\-optimized AMI does not come with the AWS CLI preinstalled\.
 + **Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 Inf1 instances\. It comes pre\-configured with AWS Inferentia drivers and the AWS Neuron runtime for Docker which makes running machine learning inference workloads easier on Amazon ECS\. For more information, see [Working with inference workloads on Amazon ECS](ecs-inference.md)\.

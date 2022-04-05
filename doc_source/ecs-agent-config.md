@@ -201,14 +201,14 @@ Example values: `true` \| `false`
 Default value on Linux: `false`  
 Default value on Windows: `false`  
 If you are using `ecs init`, the default value is `true`\.
-Whether IAM roles for tasks should be enabled on the container instance for task containers with the `bridge` or `default` network modes\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
+Whether IAM roles for tasks should be enabled on the container instance for task containers with the `bridge` or `default` network modes\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
 
 `ECS_ENABLE_TASK_IAM_ROLE_NETWORK_HOST`  
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
 If you are using `ecs init`, the default value is `true`\.
-Whether IAM roles for tasks should be enabled on the container instance for task containers with the `host` network mode\. This variable is only supported on agent versions 1\.12\.0 and later\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
+Whether IAM roles for tasks should be enabled on the container instance for task containers with the `host` network mode\. This variable is only supported on agent versions 1\.12\.0 and later\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
 
 `ECS_DISABLE_IMAGE_CLEANUP`  
 Example values: `true`  

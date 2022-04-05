@@ -9,17 +9,6 @@ The following Linux container instance operating systems are available:
 + Amazon Linux: This is a general purpose operating system\.
 + Bottlerocket: This is an operating system that is optimized for container workloads and that has a focus on security\. It does not include a package manager and is immutable by default\. For information about the security features and guidance, see [Security Features](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_FEATURES.md) and [Security Guidance](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_GUIDANCE.md) on the GitHub website\.
 
-**Topics**
-+ [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)
-+ [Using Bottlerocket with Amazon ECS](ecs-bottlerocket.md)
-+ [Launching an Amazon ECS Linux container instance](launch_container_instance.md)
-+ [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)
-+ [Starting a task at container instance launch time](start_task_at_launch.md)
-+ [Elastic network interface trunking](container-instance-eni.md)
-+ [Container Instance Memory Management](memory-management.md)
-+ [Connect to your container instance using the classic console](instance-connect.md)
-+ [Manage container instances remotely using AWS Systems Manager](ec2-run-command.md)
-
 An Amazon ECS container instance specification consists of the following components:
 
 **Required**
@@ -31,3 +20,14 @@ For the best experience, we recommend the Docker version that ships with and is 
 
 **Recommended**
 + An initialization and nanny process to run and monitor the Amazon ECS container agent\. The Amazon ECS\-optimized AMIs use the `ecs-init` RPM to manage the agent\. For more information, see the [`ecs-init` project](https://github.com/aws/amazon-ecs-init) on GitHub\.
+
+**Topics**
++ [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)
++ [Using Bottlerocket with Amazon ECS](ecs-bottlerocket.md)
++ [Launching an Amazon ECS Linux container instance](launch_container_instance.md)
++ [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)
++ [Starting a task at container instance launch time](start_task_at_launch.md)
++ [Elastic network interface trunking](container-instance-eni.md)
++ [Container Instance Memory Management](memory-management.md)
++ [Connect to your container instance using the classic console](instance-connect.md)
++ [Manage container instances remotely using AWS Systems Manager](ec2-run-command.md)

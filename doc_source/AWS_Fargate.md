@@ -338,7 +338,6 @@ The following features are not supported on Windows containers on Fargate:
 + ENI trunking
 + App Mesh service and proxy integration for tasks
 + Firelens log router integration for tasks
-+ ECS Exec
 + Configurable ephemeral storage
 + EFS volumes
 + The Fargate Spot capacity provider

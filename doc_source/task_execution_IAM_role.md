@@ -47,15 +47,15 @@ An Amazon ECS task execution role can be created for you in the Amazon ECS conso
 
 1. On the **Permissions** tab, ensure that the **AmazonECSTaskExecutionRolePolicy** managed policy is attached to the role\. If the policy is attached, your Amazon ECS task execution role is properly configured\. If not, follow the substeps below to attach the policy\.
 
-   1. Choose **Attach policies**\.
+   1. Choose **Add Permissions**, **Attach policies**\.
 
    1. To narrow the available policies to attach, for **Filter**, type **AmazonECSTaskExecutionRolePolicy**\.
 
    1. Check the box to the left of the **AmazonECSTaskExecutionRolePolicy** policy and choose **Attach policy**\.
 
-1. Choose **Trust relationships**, **Edit trust relationship**\.
+1. Choose **Trust relationships**\.
 
-1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, copy the policy into the **Policy Document** window and choose **Update Trust Policy**\.
+1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, choose **Edit trust policy**, copy the policy into the **Policy Document** window and choose **Update policy**\.
 
    ```
    {
@@ -83,15 +83,25 @@ If your account does not already have a task execution role, use the following s
 
 1. In the navigation pane, choose **Roles**, **Create role**\. 
 
-1. In the **Select type of trusted entity** section, choose **AWS service**, **Elastic Container Service**\.
+1. In the **Trusted entity type** section, choose **AWS service**, **Elastic Container Service**\.
 
-1. For **Select your use case**, choose **Elastic Container Service Task**, then choose **Next: Permissions**\.
+1. For **Use case**, choose **Elastic Container Service Task**, then choose **Next**\.
 
-1. In the **Attach permissions policy** section, search for **AmazonECSTaskExecutionRolePolicy**, select the policy, and then choose **Next: Tags**\.
+1. In the **Attach permissions policy** section, do the following:
 
-1. For **Add tags \(optional\)**, specify any custom tags to associate with the policy and then choose **Next: Review**\.
+   1. Search for **AmazonECSTaskExecutionRolePolicy**, then select the policy\.
 
-1. For **Role name**, type `ecsTaskExecutionRole` and choose **Create role**\.
+   1. Under **Set permissions boundary \- optional**, choose **Create role without a permissions boundary**\.
+
+   1. Choose **Next**\.
+
+1. Under **Role details**, do the following: 
+
+   1. For **Role name**, type `ecsTaskExecutionRole`\.
+
+   1. For **Add tags \(optional\)**, specify any custom tags to associate with the policy \.
+
+1. Choose **Create role**\.
 
 **To create a task execution IAM role \(AWS CLI\)**
 

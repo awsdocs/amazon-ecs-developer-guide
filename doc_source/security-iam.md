@@ -17,7 +17,7 @@ AWS Identity and Access Management \(IAM\) is an AWS service that helps an admin
 + [Amazon ECS task execution IAM role](task_execution_IAM_role.md)
 + [Amazon ECS container instance IAM role](instance_IAM_role.md)
 + [ECS Anywhere IAM role](iam-role-ecsanywhere.md)
-+ [IAM Roles for Tasks](task-iam-roles.md)
++ [IAM roles for tasks](task-iam-roles.md)
 + [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)
 + [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)
 + [Additional configuration for Windows IAM roles for tasks](windows_task_IAM_roles.md)

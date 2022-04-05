@@ -192,7 +192,7 @@ The following example demonstrates how to use the `gelf` log driver in a task de
 
 ## Example: Amazon ECR image and task definition IAM role<a name="example_task_definition-iam"></a>
 
-The following example uses an Amazon ECR image called `aws-nodejs-sample` with the `v1` tag from the `123456789012.dkr.ecr.us-west-2.amazonaws.com` registry\. The container in this task inherits IAM permissions from the `arn:aws:iam::123456789012:role/AmazonECSTaskS3BucketRole` role\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
+The following example uses an Amazon ECR image called `aws-nodejs-sample` with the `v1` tag from the `123456789012.dkr.ecr.us-west-2.amazonaws.com` registry\. The container in this task inherits IAM permissions from the `arn:aws:iam::123456789012:role/AmazonECSTaskS3BucketRole` role\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
 
 ```
 {

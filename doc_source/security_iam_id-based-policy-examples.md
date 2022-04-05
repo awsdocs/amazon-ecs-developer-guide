@@ -428,6 +428,8 @@ The following IAM policy allows a user to list and deregister container instance
 
 Task definition IAM policies do not support resource\-level permissions, but the following IAM policy allows a user to register, list, and describe task definitions:
 
+If you use the new console, you must add `CloudFormation: CreateStack` as an `Action`\.
+
 ```
 {
   "Version": "2012-10-17",

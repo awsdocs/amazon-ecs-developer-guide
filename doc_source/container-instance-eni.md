@@ -218,7 +218,6 @@ Although other instance types are supported in the same instance family, the `c5
 |  g3\.4xlarge  |  7  |  12  | 
 |  g3\.8xlarge  |  7  |  12  | 
 |  g3\.16xlarge  |  14  |  12  | 
-|  g3s\.xlarge  |  3  |  12  | 
 
 ### m5 instance family<a name="eni-trunking-family-m5"></a>
 

@@ -34,9 +34,9 @@ If you chose **Fargate**, complete the following steps:
 
 1. For **Task Definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
-1. \(Optional\) For **Task Role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS API operations on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
+1. \(Optional\) For **Task Role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS API operations on your behalf\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
 **Note**  
-Only roles that have the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
+Only roles that have the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM role and policy for your tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
 1. For **Operating system family**, choose the container operating system\.
 
@@ -109,11 +109,11 @@ If you chose **EC2**, complete the following steps:
 
 1. For **task definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
-1. \(Optional\) For **Task Role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md)\.
+1. \(Optional\) For **Task Role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
 
    For tasks that use the EC2 launch type, these permissions are usually granted by the Amazon ECS Container Instance IAM role\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 **Note**  
-Only roles that have the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM Role and Policy for your Tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
+Only roles that have the **Amazon EC2 Container Service Task Role** trust relationship are shown here\. For more information about creating an IAM role for your tasks, see [Creating an IAM role and policy for your tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
 1. \(Optional\) For **Network Mode**, choose the Docker network mode to use for the containers in your task\. The available network modes correspond to those described in [Network settings](https://docs.docker.com/engine/reference/run/#/network-settings) in the Docker run reference\. If you select **Enable App Mesh integration** in a following step, then you must select `awsvpc`\.
 
@@ -207,7 +207,7 @@ If you chose **External**, complete the following steps:
 
 1. For **task definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
-1. \(Optional\) For **Task Role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM Roles for Tasks](task-iam-roles.md) and [IAM permissions for Amazon ECS Anywhere](ecs-anywhere-iam.md)\.
+1. \(Optional\) For **Task Role**, choose an IAM role that provides permissions for containers in your task to make calls to AWS APIs on your behalf\. For more information, see [IAM roles for tasks](task-iam-roles.md) and [IAM permissions for Amazon ECS Anywhere](ecs-anywhere-iam.md)\.
 
 1. \(Optional\) For **Network Mode**, choose the Docker network mode to use for the containers in your task\. The available network modes correspond to those described in [Network settings](https://docs.docker.com/engine/reference/run/#/network-settings) in the Docker run reference\. 
 

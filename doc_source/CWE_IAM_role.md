@@ -63,21 +63,23 @@ You can use the following procedure to check that your account already has the C
 
 1. In the navigation pane, choose **Roles**\.
 
+   
+
+1. In the navigation pane, choose **Roles**\. 
+
 1. Search the list of roles for `ecsEventsRole`\. If the role does not exist, use the next procedure to create the role\. If the role does exist, select the role to view the attached policies\.
 
-1. Choose **Permissions**\.
+1. On the **Permissions** tab, ensure that the **AmazonEC2ContainerServiceEventsRole** managed policy is attached to the role\. If the policy is attached, your Amazon ECS task execution role is properly configured\. If not, follow the substeps below to attach the policy\.
 
-1. In the **Permissions policies** section, ensure that the **AmazonEC2ContainerServiceEventsRole** managed policy is attached to the role\. If the policy is attached, your Amazon ECS service role is properly configured\. If not, follow the substeps below to attach the policy\.
+   1. Choose **Add Permissions**, **Attach policies**\.
 
-   1. Choose **Attach policies**\.
+   1. To narrow the available policies to attach, for **Filter**, type **AmazonEC2ContainerServiceEventsRole**\.
 
-   1. To narrow the available policies to attach, for **Filter**, type `AmazonEC2ContainerServiceEventsRole`\.
+   1. Check the box to the left of the **AmazonEC2ContainerServiceEventsRole** policy and choose **Attach policy**\.
 
-   1. Select the box to the left of the **AmazonEC2ContainerServiceEventsRole** policy and choose **Attach policy**\.
+1. Choose **Trust relationships**\.
 
-1. Choose **Trust relationships**, **Edit trust relationship**\.
-
-1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, copy the policy into the **Policy Document** window and choose **Update Trust Policy**\.
+1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, choose **Edit trust policy**, copy the policy into the **Policy Document** window and choose **Update policy**\.
 
    ```
    {
@@ -99,23 +101,33 @@ You can use the following procedure to check that your account already has the C
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles** and then choose **Create role**\. 
+1. In the navigation pane, choose **Roles**, **Create role**\. 
 
-1. In the **Select type of trusted entity** section, choose **Elastic Container Service**\. For **Select your use case** choose **Elastic Container Service Task**\. Choose **Next: Permissions**\.
+1. In the **Trusted entity type** section, choose **AWS service**, **Elastic Container Service**\.
 
-1. In the **Attach permissions policy** section, select the **AmazonEC2ContainerServiceEventsRole** policy and choose **Next: Tags**\.
+1. For **Use case**, choose **Elastic Container Service Task**, then choose **Next**\.
 
-1. In the **Add tags \(optional\)** section, enter any tags you would like to associate with the role and choose **Next: Review**\.
+1. In the **Attach permissions policy** section, do the following:
 
-1. For **Role name**, type `ecsEventsRole` to name the role, optionally enter a description, and then choose **Create role**\.
+   1. Search for **AmazonEC2ContainerServiceEventsRole**, then select the policy\.
 
-1. Review your role information and choose **Create Role**\.
+   1. Under **Set permissions boundary \- optional**, choose **Create role without a permissions boundary**\.
+
+   1. Choose **Next**\.
+
+1. Under **Role details**, do the following: 
+
+   1. For **Role name**, type `ecsEventsRole` \.
+
+   1. For **Add tags \(optional\)**, specify any custom tags to associate with the policy \.
+
+1. Choose **Create role**\.
 
 1. Search the list of roles for `ecsEventsRole` and select the role you just created\.
 
-1. Choose **Trust relationships**, **Edit trust relationship**\.
+1. On the **Permissions** tab, choose **Add Permissions**, **Attach policies**\.
 
-1. Replace the existing trust relationship with the following text in the **Policy Document** window and choose **Update Trust Policy**\.
+1. Replace the existing trust relationship with the following text\. Choose **Edit trust policy**, copy the policy into the **Policy Document** window and choose **Update policy**\.
 
    ```
    {

@@ -37,7 +37,7 @@ Access points can enforce a user identity, including the user's POSIX groups, fo
 **Note**  
 When creating an EFS access point, you specify a path on the file system to serve as the root directory\. When referencing the EFS file system with an access point ID in your Amazon ECS task definition, the root directory must either be omitted or set to `/` which will enforce the path set on the EFS access point\.
 
-You can use an Amazon ECS task IAM role to enforce that specific applications use a specific access point\. By combining IAM policies with access points, you can easily provide secure access to specific datasets for your applications\. For more information on using task IAM roles, see [IAM Roles for Tasks](task-iam-roles.md)\.
+You can use an Amazon ECS task IAM role to enforce that specific applications use a specific access point\. By combining IAM policies with access points, you can easily provide secure access to specific datasets for your applications\. For more information on using task IAM roles, see [IAM roles for tasks](task-iam-roles.md)\.
 
 ## Specifying an Amazon EFS file system in your task definition<a name="specify-efs-config"></a>
 

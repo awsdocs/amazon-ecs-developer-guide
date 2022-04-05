@@ -135,13 +135,23 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
 
 1. For **Choose the service that will use this role**, choose **CodeDeploy**\.
 
-1. For **Select your use case**, choose **CodeDeploy \- ECS**, **Next: Permissions**\.
+1. For **Select your use case**, choose **CodeDeploy \- ECS**, **Next**\.
 
-1. Choose **Next: Tags**\.
+1. In the **Attach permissions policy** section, do the following:
 
-1. For **Add tags \(optional\)**, you can add optional IAM tags to the role\. Choose **Next:Review** when finished\.
+   1. Search for **AWSCodeDeployRoleForECS**, then select the policy\.
 
-1. For **Role name**, type `ecsCodeDeployRole`, enter an optional description, and then choose **Create role**\.
+   1. Under **Set permissions boundary \- optional**, choose **Create role without a permissions boundary**\.
+
+   1. Choose **Next**\.
+
+1. Under **Role details**, do the following: 
+
+   1. For **Role name**, type `ecsCodeDeployRole`, and enter an optional description\.
+
+   1. For **Add tags \(optional\)**, specify any custom tags to associate with the policy \.
+
+1. Choose **Create role**\.
 
 **To add the required permissions to the Amazon ECS CodeDeploy IAM role**
 
@@ -151,15 +161,15 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
 
 1. In the **Permissions policies** section, ensure that either the **AWSCodeDeployRoleForECS** or **AWSCodeDeployRoleForECSLimited** managed policy is attached to the role\. If the policy is attached, your Amazon ECS CodeDeploy service role is properly configured\. If not, follow the substeps below to attach the policy\.
 
-   1. Choose **Attach policies**\.
+   1. Choose **Add Permissions**, **Attach policies**\.
 
    1. To narrow the available policies to attach, for **Filter**, type **AWSCodeDeployRoleForECS** or **AWSCodeDeployRoleForECSLimited**\.
 
    1. Check the box to the left of the AWS managed policy and choose **Attach policy**\.
 
-1. Choose **Trust Relationships**, **Edit trust relationship**\.
+1. Choose **Trust relationships**\.
 
-1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, copy the policy into the **Policy Document** window and choose **Update Trust Policy**\.
+1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, choose **Edit trust policy**, copy the policy into the **Policy Document** window and choose **Update policy**\.
 
    ```
    {
@@ -179,7 +189,7 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
    }
    ```
 
-1. If the tasks in your Amazon ECS service using the blue/green deployment type require the use of the task execution role or a task role override, then you must add the `iam:PassRole` permission for each task execution role or task role override to the CodeDeploy IAM role as an inline policy\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md) and [IAM Roles for Tasks](task-iam-roles.md)\.
+1. If the tasks in your Amazon ECS service using the blue/green deployment type require the use of the task execution role or a task role override, then you must add the `iam:PassRole` permission for each task execution role or task role override to the CodeDeploy IAM role as an inline policy\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md) and [IAM roles for tasks](task-iam-roles.md)\.
 
    Follow the substeps below to create an inline policy\.
 
