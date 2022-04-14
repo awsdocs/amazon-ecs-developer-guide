@@ -1,8 +1,10 @@
-# Creating a service using the New Amazon ECS console<a name="create-service-console-v2"></a>
+# Creating a service using the new console<a name="create-service-console-v2"></a>
+
+
 
 You can create an Amazon ECS service using the new console\. To make the service creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\.
 
-**To create a service using the new console**
+**To create a service \(New Amazon ECS console\)**
 
 1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 

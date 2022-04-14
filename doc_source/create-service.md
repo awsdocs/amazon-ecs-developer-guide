@@ -6,9 +6,3 @@ For services hosted on Fargate or Amazon EC2 instances, you can optionally confi
 
 **Note**  
 When using a load balancer with services hosted on Amazon EC2 instances, you should verify that your instances can receive traffic from your load balancers\. You can allow traffic to all ports on your instances from your load balancer's security group to ensure that traffic can reach any containers that use dynamically assigned ports\.
-
-We provide walkthroughs for creating an Amazon ECS service using the AWS Management Console in the following pages\.
-
-**Topics**
-+ [Creating a service using the New Amazon ECS console](create-service-console-v2.md)
-+ [Creating a service using the Classic Amazon ECS console](create-service-console-v1.md)

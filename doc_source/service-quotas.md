@@ -1,48 +1,49 @@
 # Amazon ECS service quotas<a name="service-quotas"></a>
 
-The following tables provide the default service quotas, also referred to as limits, for Amazon ECS for an AWS account\. For more information on the service quotas for other AWS services that you can use with Amazon ECS, such as Elastic Load Balancing and Auto Scaling, see [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *Amazon Web Services General Reference*\.
+The following tables provide the default service quotas, also referred to as limits, for Amazon ECS for an AWS account\. For more information on the service quotas for other AWS services that you can use with Amazon ECS, such as Elastic Load Balancing and Auto Scaling, see [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *Amazon Web Services General Reference*\. For information on API throttling in the Amazon ECS API, see [Request throttling for the Amazon ECS API](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/request-throttling.html)\.
 
 ## Amazon ECS service quotas<a name="service-quotas-ecs"></a>
 
 The following are Amazon ECS service quotas\.
 
-Most of these service quotas, but not all, are listed under the Amazon Elastic Container Service \(Amazon ECS\) namespace in the Service Quotas console\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
-
 
 ****  
 
-|  Service quota  |  Description  |  Default quota value  |  Adjustable  | 
+|  Name  |  Default  |  Adjustable  |  Description  | 
 | --- | --- | --- | --- | 
-|  Clusters  |  The maximum number of clusters in this account in the current Region\.  |  10,000  |  Yes  | 
-|  Container instances per cluster  |  The maximum number of container instances per cluster\.  |  5,000  |  Yes  | 
-|  Services per cluster  |  The maximum number of services per cluster\.  |  5,000  |  Yes  | 
-|  Tasks per service  |  The maximum number of tasks per service \(the desired count\)\.  Services configured to use Amazon ECS service discovery have a limit of 1,000 tasks per service\. This is due to the AWS Cloud Map service quota for the number of instances per service\. For more information, see [AWS Cloud Map service quotas](https://docs.aws.amazon.com/general/latest/gr/cloud_map.html) in the *Amazon Web Services General Reference*\.   |  5,000  |  Yes  | 
-|  ECS Exec sessions  |  The maximum number of ECS Exec sessions per container\.  |  10  |  Yes  | 
-|  Tasks launched \(`count`\) per run\-task  |  The maximum number of tasks that can be launched per `RunTask` API action\.  |  10  |  No  | 
-|  Container instances per start\-task  |  The maximum number of container instances specified in a `StartTask` API action\.  |  10  |  No  | 
-|  Revisions per task definition family  |  The maximum number of revisions per task definition family\. Deregistering a task definition revision does not exclude it from being included in this limit\.  |  1,000,000  |  No  | 
-|  Task definition size limit  |  The maximum size, in KiB, of a task definition\.  |  64  |  No  | 
-|  Task definition max containers  |  The maximum number of containers definitions within a task definition\.  |  10  |  No  | 
-|  Subnets specified in an `awsvpcConfiguration`  |  The maximum number of subnets specified within an `awsvpcConfiguration`\.  |  16  |  No  | 
-|  Security groups specified in an `awsvpcConfiguration`  |  The maximum number of security groups specified within an `awsvpcConfiguration`\.  |  5  |  No  | 
-|  Target groups per service  |  The maximum number of target groups per service, if using an Application Load Balancer or a Network Load Balancer\.  |  5  |  No  | 
-|  Classic Load Balancers per service  |  The maximum number of Classic Load Balancers per service\.  |  1  |  No  | 
-|  Tags per resource  |  The maximum number of tags per resource\. This applies to task definitions, clusters, tasks, and services\.  |  50  |  No  | 
-| Tasks in the PROVISIONING state per cluster | The maximum number of tasks waiting in the PROVISIONING state per cluster\. This quota only applies to tasks launched using an Amazon EC2 Auto Scaling group capacity provider\. | 300 | No | 
+|  Clusters per account  |  Each supported Region: 10,000  |  Yes  |  The maximum number of clusters in this account in the current Region\.  | 
+|  Container instances per cluster  |  Each supported Region: 5,000  |  Yes  |  The maximum number of container instances per cluster\.  | 
+|  Container instances per start\-task  |  Each supported Region: 10  |  No  |  The maximum number of container instances specified in a `StartTask` API action\.  | 
+|  ECS Exec sessions  |  Each supported Region: 20  |  Yes  |  The maximum number of ECS Exec sessions per container\.  | 
+|  Services per cluster  |  Each supported Region: 5,000  |  Yes  |  The maximum number of services per cluster\.  | 
+|  Tags per resource  |  Each supported Region: 50  |  No  |  The maximum number of tags per resource\. This applies to task definitions, clusters, tasks, and services\.  | 
+|  Tasks in the `PROVISIONING` state per cluster  |  Each supported Region: 300  |  No  |  The maximum number of tasks waiting in the `PROVISIONING` state per cluster\. This quota only applies to tasks launched using an Amazon EC2 Auto Scaling group capacity provider\.  | 
+|  Tasks launched \(`count`\) per run\-task  |  Each supported Region: 10  |  No  |  The maximum number of tasks that can be launched per `RunTask` API action\.  | 
+|  Tasks per service[1](#service-quotas-ecs-note-1)  |  Each supported Region: 5,000  |  Yes  |  The maximum number of tasks per service \(the desired count\)\.[1](#service-quotas-ecs-note-1)  | 
+|  Revisions per task definition family  |  Each supported Region: 1,000,000  |  No  |  The maximum number of revisions per task definition family\. Deregistering a task definition revision does not exclude it from being included in this limit\.  | 
+|  Task definition size  |  Each supported Region: 64  |  No  |  The maximum size, in KiB, of a task definition\.  | 
+|  Containers per task definition  |  Each supported Region: 10  |  No  |  The maximum number of containers definitions within a task definition\.  | 
+|  Subnets per `awsvpcConfiguration`  |  Each supported Region: 16  |  No  |  The maximum number of subnets specified within an `awsvpcConfiguration`\.  | 
+|  Security groups per `awsvpcConfiguration`  |  Each supported Region: 5  |  No  |  The maximum number of security groups specified within an `awsvpcConfiguration`\.  | 
+|  Target groups per service  |  Each supported Region: 5  |  No  |  The maximum number of target groups per service, if using an Application Load Balancer or a Network Load Balancer\.  | 
+|  Classic Load Balancers per service  |  Each supported Region: 1  |  No  |  The maximum number of Classic Load Balancers per service\.  | 
+|  Tasks launched by a service on an Amazon EC2 or External instance[2](#service-quotas-ecs-note-2)  |  Each supported Region: 250  |  Yes  |  The maximum number of tasks that can be provisioned per service per minute on an Amazon EC2 or External instance by the Amazon ECS service scheduler\.  | 
+|  Tasks launched by a service on AWS Fargate[2](#service-quotas-ecs-note-2)  |  Each supported Region: 500  |  Yes  |  The maximum number of tasks that can be provisioned per service per minute on Fargate by the Amazon ECS service scheduler\.  | 
+
+**Note**  
+<a name="service-quotas-ecs-note-1"></a>1Services configured to use Amazon ECS service discovery have a limit of 1,000 tasks per service\. This is due to the AWS Cloud Map service quota for the number of instances per service\. For more information, see [AWS Cloud Map service quotas](https://docs.aws.amazon.com/general/latest/gr/cloud_map.html) in the *Amazon Web Services General Reference*\.
+
+**Note**  
+<a name="service-quotas-ecs-note-2"></a>2In practice, task launch rates are also dependent on other considerations such as container images to be downloaded and unpacked, health checks and other integrations enabled, such as registering tasks with a load balancer\. You will see variations in task launch rates compared with the quotas represented above based on the features that you have enabled for your Amazon ECS services\. For more information, see [speeding up Amazon ECS deployments](https://docs.aws.amazon.com/AmazonECS/latest/bestpracticesguide/deployment.html) in the Amazon ECS Best Practices Guide\.
 
 ## AWS Fargate service quotas<a name="service-quotas-fargate"></a>
 
 The following are Amazon ECS on AWS Fargate service quotas\.
 
-These service quotas are listed under the AWS Fargate namespace in the Service Quotas console\. Quotas for the Fargate On\-Demand and Fargate Spot resource count vary\. For a new account, the quota can be lower\. The service quota for your account can be viewed in the Service Quotas console\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-quotas.html)
 
-
-****  
-
-|  Service quota  |  Description  |  Default quota value  |  Adjustable  | 
-| --- | --- | --- | --- | 
-|  Fargate On\-Demand resource count  |  The maximum number of Amazon ECS tasks and Amazon EKS pods running concurrently on Fargate in this account in the current Region\.  |  1,000  | Yes | 
-|  Fargate Spot resource count  |  The maximum number of Amazon ECS tasks running concurrently on Fargate Spot in this account in the current Region\.  |  1,000  | Yes | 
+**Note**  
+Fargate additionally enforces Amazon ECS tasks and Amazon EKS pods launch rate limits\. For more information, see [Fargate throttling limits](https://docs.aws.amazon.com/AmazonECS/latest/userguide/throttling.html)\.
 
 ## Managing your Amazon ECS and AWS Fargate service quotas in the AWS Management Console<a name="service-quotas-manage"></a>
 

@@ -21,5 +21,4 @@ To change the load balancer name, the container name, or the container port asso
 Amazon ECS does not automatically update the security groups associated with Elastic Load Balancing load balancers or Amazon ECS container instances\.
 
 **Topics**
-+ [Updating a service using the new console](update-service-console-v2.md)
 + [Updating a service using the classic console](update-service-console-v1.md)

@@ -62,7 +62,7 @@ The following parameter are required for Fargate launch types\.
 Type: string  
 Required: Conditional  
 Default: LINUX  
-This parameter s required for Amazon ECS tasks hosted on Fargate\.  
+This parameter is required for Amazon ECS tasks hosted on Fargate\.  
 When you register a task definition, you specify the operating system family\.   
 The valid values for Amazon ECS tasks hosted on Fargate are `LINUX`, `WINDOWS_SERVER_2019_FULL`, and `WINDOWS_SERVER_2019_CORE`\.  
 The valid values for Amazon ECS tasks hosted on EC2 are `LINUX`, `WINDOWS_SERVER_2022_CORE`, `WINDOWS_SERVER_2022_FULL`, `WINDOWS_SERVER_2019_FULL`, and `WINDOWS_SERVER_2019_CORE`, `WINDOWS_SERVER_2016_FULL`, `WINDOWS_SERVER_2004_CORE`, and `WINDOWS_SERVER_20H2_CORE`\.  

@@ -17,6 +17,6 @@ You may need to troubleshoot issues with your load balancers, tasks, services, o
 + [Amazon ECS logs collector](ecs-logs-collector.md)
 + [Agent introspection diagnostics](introspection-diag.md)
 + [Docker diagnostics](docker-diags.md)
-+ [AWS Fargate throttling limits](throttling.md)
++ [AWS Fargate throttling quotas](throttling.md)
 + [API failure reasons](api_failures_messages.md)
 + [Troubleshooting IAM Roles for Tasks](troubleshoot-task-iam-roles.md)

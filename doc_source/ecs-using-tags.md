@@ -95,7 +95,7 @@ The following resources enable you to specify tags when you create the resource\
 
 | Task | Console | 
 | --- | --- | 
-|  Run one or more tasks\.  |  [Run a standalone task](ecs_run_task.md)  | 
+|  Run one or more tasks\.  |  [Run a standalone taskRun a standalone task using the new console](ecs_run_task.md)  | 
 |  Create a service\.  |  [Creating an Amazon ECS service](create-service.md)  | 
 |  Create a task set\.  |  [External deployment](deployment-type-external.md)  | 
 |  Register a task definition\.  |  [Creating a task definition using the new console](create-task-definition.md)  | 

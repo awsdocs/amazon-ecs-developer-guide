@@ -10,7 +10,7 @@ Before you delete a cluster, you must perform the following operations:
 
 If you created a cluster using the classic console and you receive an error when you use the new console, you might need to delete the cluster using the classic console, For more information, see [Deleting a cluster using the classic console](delete_cluster.md)\.
 
-**To delete a cluster using the new console**
+**To delete a cluster \(New Amazon ECS console\)**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 

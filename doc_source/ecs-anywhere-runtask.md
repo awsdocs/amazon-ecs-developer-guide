@@ -69,7 +69,7 @@ After you register your external instances to your cluster, grant the relevant I
 
 For instructions on how to create services, see [Creating an Amazon ECS service](create-service.md)\.
 
-For more information about running standalone tasks, see [Run a standalone task](ecs_run_task.md)\.
+For more information about running standalone tasks, see [Run a standalone taskRun a standalone task using the new console](ecs_run_task.md)\.
 
 ## Verifying your running tasks on an external Windows instance<a name="ecs-anywhere-windows-verifying"></a>
 

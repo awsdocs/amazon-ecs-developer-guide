@@ -86,7 +86,9 @@ If you have multiple task definitions or services that require IAM permissions, 
 
 For information about the service endpoint for your Region, see [Service endpoints](https://docs.aws.amazon.com/general/latest/gr/ecs-service.html#ecs_region) in the *Amazon Web Services General Reference Reference Guide*\.
 
-The IAM task role must have the following trust relationship\. The `sts:AssumeRole` permission allows your tasks to assume an IAM role that's different from the one that the Amazon EC2 instance uses\. This way, your task doesn't inherit the role associated with the Amazon EC2 instance\. It is recommended that you use the `aws:SourceAccount` or `aws:SourceArn` condition keys to prevent the confused deputy security issue\. These condition keys can be specified in the trust relationship or in the IAM policy associated with the role\. To learn more about the confused deputy problem and how to protect your AWS account, see [The confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) in the *IAM User Guide*\.
+The IAM task role must have a trust policy that specifies the `ecs-task.amazonaws.com` service\. The `sts:AssumeRole` permission allows your tasks to assume an IAM role that's different from the one that the Amazon EC2 instance uses\. This way, your task doesn't inherit the role associated with the Amazon EC2 instance\. It is recommended that you use the `aws:SourceAccount` or `aws:SourceArn` condition keys to scope the permissions further to prevent the confused deputy security issue\. These condition keys can be specified in the trust relationship or in the IAM policy associated with the role\. To learn more about the confused deputy problem and how to protect your AWS account, see [The confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) in the *IAM User Guide*\.
+
+The following is an example trust policy\. You should replace the Region identifier and specify the AWS account number that you use when launching tasks\.
 
 ```
 {
@@ -102,10 +104,10 @@ The IAM task role must have the following trust relationship\. The `sts:AssumeRo
          "Action":"sts:AssumeRole",
          "Condition":{
             "ArnLike":{
-               "aws:SourceArn":"aws:ecs:*:accountId:*"
+               "aws:SourceArn":"aws:ecs:us-west-2:111122223333:*"
             },
             "StringEquals":{
-               "aws:SourceAccount":"aws.ecs*.accountId"
+               "aws:SourceAccount":"111122223333"
             }
          }
       }
@@ -153,7 +155,7 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
 
 1. In the policy document field, paste the policy to apply to your tasks\. The example below allows permission to the *my\-task\-secrets\-bucket* Amazon S3 bucket\. It includes a condition statement, which you can use to specify either a specific task using its Amazon Resource Name \(ARN\) or a specific account ID\. This provides a way to further scope the permission for additional security\. This is recommended to prevent the confused deputy security issue\. To learn more about the confused deputy problem and how to protect your AWS account, see [The confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) in the *IAM User Guide*\.
 
-   You can modify the policy document to suit your specific needs\.
+   The following is an example permissions policy\. You can modify the policy to suit your specific needs\. You should replace the Region identifier and specify the AWS account number that you use when launching tasks\.
 
    ```
    {
@@ -169,10 +171,10 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
             ],
             "Condition":{
                "ArnLike":{
-                  "aws:SourceArn":"aws:ecs:*:accountId:*"
+                  "aws:SourceArn":"aws:ecs:us-west-2:111122223333:*"
                },
                "StringEquals":{
-                  "aws:SourceAccount":"aws:ecs.accountId"
+                  "aws:SourceAccount":"111122223333"
                }
             }
          }
@@ -222,7 +224,7 @@ After you have created a role and attached a policy to that role, you can run ta
 + Specify an IAM role for your tasks in the task definition\. You can create a new task definition or a new revision of an existing task definition and specify the role you created previously\. If you use the classic console to create your task definition, choose your IAM role in the **Task Role** field\. If you use the AWS CLI or SDKs, specify the Amazon Resource Name \(ARN\) of your task role using the `taskRoleArn` parameter\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
 **Note**  
 This option is required if you want to use IAM task roles in an Amazon ECS service\.
-+ Specify an IAM task role override when running a task\. You can specify an IAM task role override when running a task\. If you use the classic console to run your task, choose **Advanced Options** and then choose your IAM role in the **Task Role** field\. If you use the AWS CLI or SDKs, specify your task role ARN using the `taskRoleArn` parameter in the `overrides` JSON object\. For more information, see [Run a standalone task](ecs_run_task.md)\. 
++ Specify an IAM task role override when running a task\. You can specify an IAM task role override when running a task\. If you use the classic console to run your task, choose **Advanced Options** and then choose your IAM role in the **Task Role** field\. If you use the AWS CLI or SDKs, specify your task role ARN using the `taskRoleArn` parameter in the `overrides` JSON object\. For more information, see [Run a standalone taskRun a standalone task using the new console](ecs_run_task.md)\. 
 
 **Note**  
 In addition to the standard Amazon ECS permissions required to run tasks and services, IAM users also require `iam:PassRole` permissions to use IAM roles for tasks\.

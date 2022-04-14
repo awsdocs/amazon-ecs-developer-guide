@@ -57,7 +57,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\.
 
    1. For **Task role**, choose the an IAM role to assign to the task\. A task IAM role provides permissions for the containers in a task to call AWS APIs\.
 
-   1. For **Network mode**, choose the nework mode to use\. The default is **awsvpc** mode\. For more information, see [Amazon ECS task networking](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html)\.
+   1. For **Network mode**, choose the network mode to use\. The default is **awsvpc** mode\. For more information, see [Amazon ECS task networking](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html)\.
 
       If you choose **bridge** for the network mode, choose **Previous**, and then under **Port mappings**, for **Host port**, specify the port number on the container instance to reserve for your container\.
 

@@ -2,7 +2,7 @@
 
 After the cluster creation completes, you can set the default capacity provider for the cluster\. The capacity provider determines the infrastructure that your tasks and services run on\. 
 
-**To set the cluster default capacity provider using the new console**
+**To set the default capacity provider for the cluster \(New Amazon ECS console\)**
 
 1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 

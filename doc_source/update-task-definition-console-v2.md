@@ -11,7 +11,7 @@ When you create a revision, you can modify the following container properties an
 + Task size
 + Container size
 
-**To create a task definition revision**
+**To create a task definition revision \(New Amazon ECS console\)**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 

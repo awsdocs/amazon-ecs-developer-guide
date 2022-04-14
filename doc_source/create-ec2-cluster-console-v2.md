@@ -34,7 +34,7 @@ Amazon ECS creates an Amazon EC2 Auto Scaling launch template and Auto Scaling g
 
 Instances launched for the Auto Scaling group use the launch template\.
 
-**To create a cluster using the new console**
+**To create a new cluster \(New Amazon ECS console\)**
 
 Before you begin, be sure that you create an IAM user, and then assign the appropriate IAM permissions\. For more information, see [Create an IAM user](get-set-up-for-amazon-ecs.md#create-an-iam-user) and [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies)\.
 

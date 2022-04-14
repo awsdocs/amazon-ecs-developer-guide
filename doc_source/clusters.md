@@ -6,15 +6,11 @@ When you first use Amazon ECS, a default cluster is created for you, but you can
 
 **Topics**
 + [Cluster concepts](#clusters-concepts)
-+ [Creating a cluster for the Fargate launch type using the new console](create-cluster-console-v2.md)
-+ [Creating a cluster for the Amazon EC2 launch type using the new console](create-ec2-cluster-console-v2.md)
-+ [Setting the cluster default capacity provider using the new console](set-cluster-default-capacity-provider-console-v2.md)
 + [Creating a cluster using the classic console](create_cluster.md)
 + [Amazon ECS capacity providers](cluster-capacity-providers.md)
-+ [Amazon ECS cluster auto scaling](cluster-auto-scaling.md)
++ [Amazon ECS cluster Auto Scaling](cluster-auto-scaling.md)
 + [Amazon ECS clusters in Local Zones, Wavelength Zones, and AWS Outposts](cluster-regions-zones.md)
 + [Updating cluster settings](update-cluster-settings.md)
-+ [Deleting a cluster using the new console](delete_cluster-new-console.md)
 + [Deleting a cluster using the classic console](delete_cluster.md)
 + [Stopping tasks using the new console](stop-task-console-v2.md)
 

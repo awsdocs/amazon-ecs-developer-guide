@@ -176,13 +176,13 @@ The `--follow` option tells the Amazon ECS CLI to continuously poll for logs\.
 
 ## Step 8: Scale the Tasks on the Cluster<a name="ECS_CLI_tutorial_fargate_scale"></a>
 
-You can scale up your task count to increase the number of instances of your application with ecs\-cli compose service scale\. In this example, the running count of the application is increased to two\.
+You can scale up your task count to increase the number of instances of your application with ecs\-cli compose service scale\. 
 
 ```
 ecs-cli compose --project-name tutorial service scale 2 --cluster-config tutorial --ecs-profile tutorial-profile
 ```
 
-Now you should see two more containers in your cluster:
+In this example, the running count of the application is increased to two\.
 
 ```
 ecs-cli compose --project-name tutorial service ps --cluster-config tutorial --ecs-profile tutorial-profile

@@ -18,7 +18,6 @@ Your entire application stack does not need to be on a single task definition, a
 **Topics**
 + [Amazon EC2 Windows task definition considerations](windows_task_definitions.md)
 + [Application architecture](application_architecture.md)
-+ [Creating a task definition using the new console](create-task-definition.md)
 + [Creating a task definition using the classic console](create-task-definition-classic.md)
 + [Task definition parameters](task_definition_parameters.md)
 + [Amazon ECS launch types](launch_types.md)
@@ -34,6 +33,5 @@ Your entire application stack does not need to be on a single task definition, a
 + [Specifying sensitive data](specifying-sensitive-data.md)
 + [Specifying environment variables](taskdef-envfiles.md)
 + [Example task definitions](example_task_definitions.md)
-+ [Updating a task definition using the new console](update-task-definition-console-v2.md)
 + [Updating a task definition using the classic console](update-task-definition.md)
 + [Deregistering a task definition revision](deregister-task-definition.md)

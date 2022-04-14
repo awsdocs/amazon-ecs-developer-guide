@@ -256,7 +256,7 @@ Describe the task in the service so that you can get the Elastic Network Interfa
 Describe the task and locate the ENI ID\.
 
 ```
-aws ecs describe-cluster --cluster fargate-cluster --tasks fargate-tasks
+aws ecs describe-tasks --cluster fargate-cluster --tasks fargate-tasks
 ```
 
 The attachment information is listed in the output\. 

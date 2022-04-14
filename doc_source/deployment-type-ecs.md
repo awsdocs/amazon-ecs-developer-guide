@@ -46,7 +46,7 @@ The deployment circuit breaker calculates the threshold value, and then uses the
 The deployment circuit breaker has a minimum threshold of 10 and a maximum threshold of 200\. and uses the values in the following formula to determine the deployment failure\.
 
 ```
-Minimum threshold <= 0.5 * desired service count => maximum threshold
+Minimum threshold <= 0.5 * desired task count => maximum threshold
 ```
 
 When the result of the calculation is less than the minimum of 10, the failure threshold is set to 10\. When the result of the calculation is greater than the maximum of 200, the failure threshold is set to 200\.
@@ -68,7 +68,7 @@ There are two stages for the deployment status check\.
 The following table provides some examples\.
 
 
-| Desired service count | Calculation | Threshold | 
+| Desired task count | Calculation | Threshold | 
 | --- | --- | --- | 
 |  1  |  <pre>10 <= 0.5 * 1 => 200</pre>  | 10 \(the calculated value is less than the minimum\) | 
 |  25  |  <pre>10 <= 0.5 * 25 => 200</pre>  | 13 \(the value is rounded up\) | 

@@ -17,7 +17,7 @@ You can modify the following default options:
   CloudWatch Container Insights collects, aggregates, and summarizes metrics and logs from your containerized applications and microservices\. Container Insights also provides diagnostic information, such as container restart failures, that you use to isolate issues and resolve them quickly\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
 + Add tags to help you identify your clusters\.
 
-**To create a cluster using the new console**
+**To create a new cluster \(New Amazon ECS console\)**
 
 Before you begin, be sure that you create an IAM user, and then assign the appropriate IAM permissions\. For more information, see [Create an IAM user](get-set-up-for-amazon-ecs.md#create-an-iam-user) and [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies)\.
 

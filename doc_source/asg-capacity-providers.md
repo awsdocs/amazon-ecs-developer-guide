@@ -1,6 +1,6 @@
 # Auto Scaling group capacity providers<a name="asg-capacity-providers"></a>
 
-Amazon ECS capacity providers can use Auto Scaling groups to manage the Amazon EC2 instances registered to their clusters\. You can use the managed scaling feature to have Amazon ECS manage the scale\-in and scale\-out actions of the Auto Scaling group or you can manage the scaling actions yourself\. For more information, see [Amazon ECS cluster auto scaling](cluster-auto-scaling.md)\.
+Amazon ECS capacity providers can use Auto Scaling groups to manage the Amazon EC2 instances registered to their clusters\. You can use the managed scaling feature to have Amazon ECS manage the scale\-in and scale\-out actions of the Auto Scaling group or you can manage the scaling actions yourself\. For more information, see [Amazon ECS cluster Auto Scaling](cluster-auto-scaling.md)\.
 
 **Topics**
 + [Auto Scaling group capacity providers considerations](#asg-capacity-providers-considerations)
