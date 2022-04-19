@@ -2,7 +2,7 @@
 
 With Amazon ECS Exec, you can directly interact with containers without needing to first interact with the host container operating system, open inbound ports, or manage SSH keys\. You can use ECS Exec to run commands in or get a shell to a container running on an Amazon EC2 instance or on AWS Fargate\. This makes it easier to collect diagnostic information and quickly troubleshoot errors\. For example, in a development context, you can use ECS Exec to easily interact with various process in your containers and troubleshoot your applications\. And, in production scenarios, you can use it to gain break\-glass access to your containers to debug issues\. 
 
-You can run commands in a running Linux container using ECS Exec from the Amazon ECS API, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or the AWS Copilot CLI\. For details on using ECS Exec, as well as a video walkthrough, using the AWS Copilot CLI, see the [Copilot Github documentation](https://aws.github.io/copilot-cli/docs/commands/svc-exec/)\.
+You can run commands in a running Linux or Windows container using ECS Exec from the Amazon ECS API, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or the AWS Copilot CLI\. For details on using ECS Exec, as well as a video walkthrough, using the AWS Copilot CLI, see the [Copilot Github documentation](https://aws.github.io/copilot-cli/docs/commands/svc-exec/)\.
 
 You can also use ECS Exec to maintain stricter access control policies and audit container access\. By selectively turning on this feature, you can control who can run commands and on which tasks they can run those commands\. With a log of each command and their output, you can use ECS Exec to audit which tasks were run and you can use CloudTrail to audit who accessed a container\.
 

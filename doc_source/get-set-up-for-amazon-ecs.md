@@ -151,17 +151,16 @@ If you have a default VPC, you also can skip this section and move to the next t
 **Important**  
 If your account supports Amazon EC2 Classic in a region, then you do not have a default VPC in that region\.
 
-**To create a nondefault VPC**
+For information about how to create a VPC, see [Create a VPC only](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html) in the *Amazon VPC User Guide *and use the following table to determine what options to select\.
 
-1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
 
-1. From the navigation bar, select a region for the VPC\. VPCs are specific to a region, so you should select the same region in which you created your key pair\.
-
-1. On the VPC dashboard, choose **Launch VPC Wizard**\.
-
-1. On the **Step 1: Select a VPC Configuration** page, ensure that **VPC with a Single Public Subnet** is selected, and choose **Select**\.
-
-1. On the **Step 2: VPC with a Single Public Subnet** page, enter a friendly name for your VPC in the **VPC name** field\. Leave the other default configuration settings, and choose **Create VPC**\. On the confirmation page, choose **OK**\.
+| Option | Value | 
+| --- | --- | 
+|  Resources to create  | VPC only | 
+| Name |  Optionally provide a name for your VPC\.  | 
+| IPv4 CIDR block |  IPv4 CIDR manual input The CIDR block size must have a size between /16 and /28\.  | 
+|  IPv6 CIDR block  |  No IPv6 CIDR block  | 
+|  Tenancy  |  Default  | 
 
 For more information about Amazon VPC, see [What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/) in the *Amazon VPC User Guide*\.
 
@@ -183,7 +182,7 @@ You need the public IP address of your local computer, which you can get using a
 
 1. From the navigation bar, select a Region for the security group\. Security groups are specific to a Region, so you should select the same Region in which you created your key pair\.
 
-1. In the navigation pane, choose **Security Groups**, **Create Security Group**\.
+1. In the navigation pane, choose **Create Security Group**\.
 
 1. Enter a name for the new security group and a description\. Choose a name that is easy for you to remember, such as *ecs\-instances\-default\-cluster*\.
 

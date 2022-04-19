@@ -14,6 +14,11 @@ The trunk network interface is fully managed by Amazon ECS and is deleted when y
 There are several things to consider when using the ENI trunking feature\.
 + Only Linux variants of the Amazon ECS\-optimized AMI, or other Amazon Linux variants with version `1.28.1` or later of the container agent and version `1.28.1-2` or later of the ecs\-init package, support the increased ENI limits\. If you use the latest Linux variant of the Amazon ECS\-optimized AMI, these requirements will be met\. Windows containers are not supported at this time\.
 + Only new Amazon EC2 instances launched after opting in to `awsvpcTrunking` receive the increased ENI limits and the trunk network interface\. Previously launched instances do not receive these features regardless of the actions taken\.
++ Amazon EC2 instances must have resource\-based IPv4 DNS requests disabled\. To disable this option, ensure the **Enable resource\-based IPV4 \(A record\) DNS requests** option is deselected when creating a new instance using the Amazon EC2 console\. To disable this option using the AWS CLI, use the following command\.
+
+  ```
+  aws ec2 modify-private-dns-name-options --instance-id i-xxxxxxx --no-enable-resource-name-dns-a-record --no-dry-run
+  ```
 + Amazon EC2 instances in shared subnets are not supported\. They will fail to register to a cluster if they are used\.
 + Your Amazon ECS tasks must use the `awsvpc` network mode and the EC2 launch type\. Tasks using the Fargate launch type always received a dedicated ENI regardless of how many are launched, so this feature is not needed\.
 + Your Amazon ECS tasks must be launched in the same Amazon VPC as your container instance\. Your tasks will fail to start with an attribute error if they are not within the same VPC\.
@@ -40,9 +45,16 @@ Before you launch a container instance with the increased ENI limits, the follow
 
 Once the prerequisites are met, you can launch a new container instance using one of the supported Amazon EC2 instance types, and the instance will have the increased ENI limits\. For a list of supported instance types, see [Supported Amazon EC2 instance types](#eni-trunking-supported-instance-types)\. The container instance must have version `1.28.1` or later of the container agent and version `1.28.1-2` or later of the ecs\-init package\. If you use the latest Linux variant of the Amazon ECS\-optimized AMI, these requirements will be met\. For more information, see [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\.
 
-**To opt in all IAM users or roles on your account to the increased ENI limits using the console**
+**Important**  
+Amazon EC2 instances must have resource\-based IPv4 DNS requests disabled\. To disable this option, ensure the **Enable resource\-based IPV4 \(A record\) DNS requests** option is deselected when creating a new instance using the Amazon EC2 console\. To disable this option using the AWS CLI, use the following command\.  
 
-1. As the root user of the account, open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+```
+aws ec2 modify-private-dns-name-options --instance-id i-xxxxxxx --no-enable-resource-name-dns-a-record --no-dry-run
+```
+
+**To opt in all IAM users or roles on your account to the increased ENI limits \(AWS Management Console\)**
+
+1. As the root user of the account, open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation bar at the top of the screen, select the Region for which to opt in to the increased ENI limits\.
 
