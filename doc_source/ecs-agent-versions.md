@@ -4,11 +4,11 @@ Each Amazon ECS container agent version supports a different feature set and pro
 
 Launching your container instances from the most recent Amazon ECS\-optimized Amazon Linux 2 AMI ensures that you receive the current container agent version\. To launch a container instance with the latest Amazon ECS\-optimized Amazon Linux 2 AMI, see [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\.
 
-To install the latest version of the Amazon ECS container agent on another operating system, see [Installing the Amazon ECS container agent](ecs-agent-install.md)\. The table in [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux) shows the Docker version that is tested on Amazon Linux 2 for each agent version\. The table in [Amazon ECS\-Optimized Amazon Linux AMI Container Agent Versions](#ecs-optimized-ami-agent-versions) shows the Docker version that is tested on the Amazon Linux AMI for each agent version\.
+To install the latest version of the Amazon ECS container agent on another operating system, see [Installing the Amazon ECS container agent](ecs-agent-install.md)\. The table in [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux) shows the Docker version that is tested on Amazon Linux 2 for each agent version\. The table in [Amazon ECS\-Optimized Amazon Linux AMI container agent versions](#ecs-optimized-ami-agent-versions) shows the Docker version that is tested on the Amazon Linux AMI for each agent version\.
 
 To see which features and enhancements are included with each agent release, see [https://github\.com/aws/amazon\-ecs\-agent/releases](https://github.com/aws/amazon-ecs-agent/releases)\.
 
-## Amazon ECS\-Optimized Amazon Linux 2 AMI Container Agent Versions<a name="al2-optimized-ami-agent-versions"></a>
+## Amazon ECS\-Optimized Amazon Linux 2 AMI container agent versions<a name="al2-optimized-ami-agent-versions"></a>
 
 The Amazon ECS\-optimized Amazon Linux 2 AMI comes prepackaged with the Amazon ECS container agent, Docker, and the `ecs-init` `systemd` service that controls the starting and stopping of the agent at boot and shutdown\. The following table lists the container agent version, the `ecs-init` version, and the Docker version that is tested and packaged with each Amazon ECS\-optimized Amazon Linux 2 AMI\.
 
@@ -21,7 +21,8 @@ Amazon ECS agent versions 1\.20\.0 and later have deprecated support for Docker 
 
 |  Amazon ECS\-optimized Amazon Linux 2 AMI  |  Amazon ECS container agent version  |  Docker version  |  `ecs-init` version  | 
 | --- | --- | --- | --- | 
-| 20220411 | `1.61.0` | `20.10.7` | `1.61.0-1` | 
+| 20220421 | `1.61.0` | `20.10.7` | `latest` | 
+| 20220411 | `1.61.0` | `20.10.7` | `latest` | 
 | 20220328 | `1.60.1` | `20.10.7` | `1.60.2-1` | 
 | 20220318 | `1.60.0` | `20.10.7` | `1.60.1-1` | 
 | 20220304 | `1.60.0` | `20.10.7` | `1.60.0-1` | 
@@ -106,7 +107,7 @@ Amazon ECS agent versions 1\.20\.0 and later have deprecated support for Docker 
 
 For more information about the Amazon ECS\-optimized Amazon Linux 2 AMI, including AMI IDs for the latest version in each Region, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
 
-## Amazon ECS\-Optimized Amazon Linux AMI Container Agent Versions<a name="ecs-optimized-ami-agent-versions"></a>
+## Amazon ECS\-Optimized Amazon Linux AMI container agent versions<a name="ecs-optimized-ami-agent-versions"></a>
 
 The Amazon ECS\-optimized Amazon Linux AMI comes prepackaged with the Amazon ECS container agent, Docker, and the `ecs-init` service that controls the starting and stopping of the agent at boot and shutdown\. The following table lists the container agent version, the `ecs-init` version, and the Docker version that is tested and packaged with each Amazon ECS\-optimized AMI\.
 

@@ -94,6 +94,49 @@ The AWS Copilot CLI executables are cryptographically signed using PGP signature
 
 ------
 
+1. Verify the GnuPG path is added to your environment path\.
+
+------
+#### [ macOS ]
+
+   ```
+   echo $PATH
+   ```
+
+   If you do not see the GnuPG path in the output, run the following command to add it to the path\.
+
+   ```
+   PATH=$PATH:<path to GnuPG executable files>
+   ```
+
+------
+#### [ Linux ]
+
+   ```
+   echo $PATH
+   ```
+
+   If you do not see the GnuPG path in the output, run the following command to add it to the path\.
+
+   ```
+   export PATH=$PATH:<path to GnuPG executable files>
+   ```
+
+------
+#### [ Windows ]
+
+   ```
+   Write-Output $Env:PATH
+   ```
+
+   If you do not see the GnuPG path in the output, run the following command to add it to the path\.
+
+   ```
+   e $Env:PATH += ";<path to GnuPG executable files>"
+   ```
+
+------
+
 1. Create a local plain text file\.
 
 ------

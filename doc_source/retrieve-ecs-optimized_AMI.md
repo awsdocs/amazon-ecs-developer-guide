@@ -33,6 +33,13 @@ The following is the format of the parameter name for each Amazon ECS\-optimized
   ```
   /aws/service/ecs/optimized-ami/amazon-linux-2/inf/<version>
   ```
++ Amazon Linux 2022 AMI metadata:
+**Important**  
+The Amazon ECS\-Optimized Amazon Linux 2022 AMI is in preview and subject to change\.
+
+  ```
+  /aws/service/ecs/optimized-ami/amazon-linux-2022/<version>
+  ```
 + Amazon Linux AMI metadata:
 
   ```
@@ -85,6 +92,13 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
 
   ```
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended --region us-east-1
+  ```
++ The Amazon ECS\-Optimized Amazon Linux 2022 AMI is in preview and subject to change\.
+
+  **For the Amazon ECS\-optimized Amazon Linux 2022 AMIs:**
+
+  ```
+  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2022/recommended --region us-east-1
   ```
 + **For the Amazon ECS\-optimized Amazon Linux AMIs:**
 

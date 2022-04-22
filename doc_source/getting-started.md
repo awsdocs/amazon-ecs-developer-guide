@@ -4,7 +4,7 @@ The following guides provide an introduction to the tools available to access Am
 
 **Topics**
 + [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)
-+ [Docker basics for Amazon ECS](docker-basics.md)
++ [Creating a container image for use on Amazon ECS](create-container-image.md)
 + [Getting started with Amazon ECS using AWS Copilot](getting-started-aws-copilot-cli.md)
 + [Getting started with Amazon ECS using the AWS CDK](tutorial-ecs-web-server-cdk.md)
 + [Getting started with Amazon ECS using the classic console](getting-started-console.md)

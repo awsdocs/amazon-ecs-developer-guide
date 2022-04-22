@@ -74,6 +74,35 @@ The **AmazonEC2ContainerServiceforEC2Role** managed policy should be attached to
 
 1. Review your role information and then choose **Create role** to finish\.
 
+1. Create an instance profile named `ecsInstanceRole-profile` using the [create\-instance\-profile](https://docs.aws.amazon.com/cli/latest/reference/iam/create-instance-profile.html) command\.
+
+   ```
+   aws iam create-instance-profile --instance-profile-name ecsInstanceRole-profile
+   ```
+
+   Example response
+
+   ```
+   {
+       "InstanceProfile": {
+           "InstanceProfileId": "AIPAJTLBPJLEGREXAMPLE",
+           "Roles": [],
+           "CreateDate": "2022-04-12T23:53:34.093Z",
+           "InstanceProfileName": "ecsInstanceRole-profile",
+           "Path": "/",
+           "Arn": "arn:aws:iam::123456789012:instance-profile/ecsInstanceRole-profile"
+       }
+   }
+   ```
+
+1. Add the `ecsInstanceRole` role to the `ecsInstanceRole-profile` instance profile\.
+
+   ```
+   aws iam add-role-to-instance-profile \
+       --instance-profile-name ecsInstanceRole-profile \
+       --role-name ecsInstanceRole
+   ```
+
 ## Adding Amazon S3 read\-only access to your container instance IAM role<a name="container-instance-role-s3"></a>
 
 Storing configuration information in a private bucket in Amazon S3 and granting read\-only access to your container instance IAM role is a secure and convenient way to allow container instance configuration at launch time\. You can store a copy of your `ecs.config` file in a private bucket, use Amazon EC2 user data to install the AWS CLI and then copy your configuration information to `/etc/ecs/ecs.config` when the instance launches\.

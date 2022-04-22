@@ -8,7 +8,7 @@ An Amazon ECS *cluster* is a logical grouping of tasks or services\. You can use
 
 To deploy applications on Amazon ECS, your application components must be configured to run in *containers*\. A container is a standardized unit of software development that holds everything that your software application requires to run\. This includes relevant code, runtime, system tools, and system libraries\. Containers are created from a read\-only template that's called an *image*\.
 
-Images are typically built from a Dockerfile\. A Dockerfile is a plaintext file that specifies all of the components that are included in the container\. After they're built, these images are stored in a *registry* where they can be downloaded from\. Then, after you download them, you can use them to run on your cluster\. For more information about container technology, see [Docker basics for Amazon ECS](docker-basics.md)\.
+Images are typically built from a Dockerfile\. A Dockerfile is a plaintext file that specifies all of the components that are included in the container\. After they're built, these images are stored in a *registry* where they can be downloaded from\. Then, after you download them, you can use them to run on your cluster\. For more information about container technology, see [Creating a container image for use on Amazon ECS](create-container-image.md)\.
 
 ![\[Diagram showing Docker image creation and registration within an Amazon ECS environment.\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-containers.png)
 

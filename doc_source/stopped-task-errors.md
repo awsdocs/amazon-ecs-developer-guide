@@ -80,3 +80,9 @@ If a container marked as `essential` in task definitions exits or dies, that can
    ```
 
 ------
+
+## Additional resources<a name="additional-resources"></a>
+
+The following pages provide additional information about error codes:
++ [Why is my Amazon ECS task stopped](https://aws.amazon.com/premiumsupport/knowledge-center/ecs-task-stopped/)
++  [Stopped tasks error codes](https://docs.aws.amazon.com/AmazonECS/latest/userguide/stopped-task-error-codes.html)

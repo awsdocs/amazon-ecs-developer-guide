@@ -20,7 +20,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Related services](welcome-related.md)
 + [Getting started with Amazon ECS](getting-started.md)
    + [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)
-   + [Docker basics for Amazon ECS](docker-basics.md)
+   + [Creating a container image for use on Amazon ECS](create-container-image.md)
    + [Getting started with Amazon ECS using AWS Copilot](getting-started-aws-copilot-cli.md)
    + [Getting started with Amazon ECS using the AWS CDK](tutorial-ecs-web-server-cdk.md)
    + [Getting started with Amazon ECS using the classic console](getting-started-console.md)

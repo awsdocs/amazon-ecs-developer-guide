@@ -19,6 +19,11 @@ The following variants of the Amazon ECS\-optimized AMI are available for your A
 + **Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 Inf1 instances\. It comes pre\-configured with AWS Inferentia drivers and the AWS Neuron runtime for Docker which makes running machine learning inference workloads easier on Amazon ECS\. For more information, see [Working with inference workloads on Amazon ECS](ecs-inference.md)\.
 
   The Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI does not come with the AWS CLI preinstalled\.
++ **Amazon ECS\-optimized Amazon Linux 2022 AMI** –
+**Important**  
+The Amazon ECS\-Optimized Amazon Linux 2022 AMI is in preview and subject to change\.
+
+   Amazon Linux 2022 is the next generation of Amazon Linux from AWS\. For most cases, recommended for launching your Amazon EC2 instances for your Amazon ECS workloads\. For more information, see [What is Amazon Linux 2022](https://docs.aws.amazon.com/linux/al2022/ug/what-is-amazon-linux.html) in the *Amazon Linux 2022 User Guide*\.
 + **Amazon ECS\-optimized Amazon Linux AMI**
 **Important**  
 On April 15, 2021, the Amazon ECS\-optimized Amazon Linux AMI ended its standard support phase and entered a maintenance support phase\. In the maintenance support phase, Amazon ECS will continue providing critical and important security updates for a reduced list of packages\. During this period, Amazon ECS will no longer add support for new EC2 instance types, new services and features, and new packages\. Instead, Amazon ECS will provide updates only for critical and important security fixes that apply to a reduced set of packages\. Maintenance support period will end on June 30, 2023\.
@@ -192,6 +197,42 @@ The following table provides a link to retrieve the current Amazon ECS\-optimize
 |  AWS GovCloud \(US\-West\)  | `us-gov-west-1` |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=us-gov-west-1#)  | 
 |  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=cn-north-1#)  | 
 |  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=cn-northwest-1#)  | 
+
+For a full list of current and previous versions of the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\.
+
+### Amazon Linux 2022<a name="al2022ami"></a>
+
+**Important**  
+The Amazon ECS\-Optimized Amazon Linux 2022 AMI is in preview and subject to change\.
+
+You can retrieve the current Amazon ECS\-optimized Amazon Linux 2022 AMI using the AWS CLI with the following command:
+
+```
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2022/recommended
+```
+
+The following table provides a link to retrieve the current Amazon ECS\-optimized Amazon Linux 2022 AMI IDs by Region\.
+
+
+|  Region name  |  Region  |  AMI ID  | 
+| --- | --- | --- | 
+|  US East \(N\. Virginia\)  |  `us-east-1`  |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=us-east-1#)  | 
+|  US East \(Ohio\)  |  `us-east-2`  |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=us-east-2#)  | 
+|  US West \(Oregon\)  |  `us-west-2`  |  [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=us-west-2#)  | 
+|  Asia Pacific \(Mumbai\)  |  `ap-south-1`  |  [View AMI ID](https://ap-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=ap-south-1#)  | 
+|  Asia Pacific \(Hong Kong\)  |  `ap-east-1`  |  [View AMI ID](https://ap-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=ap-east-1#)  | 
+|  Asia Pacific \(Tokyo\)  |  `ap-northeast-1`  |  [View AMI ID](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=ap-northeast-1#)  | 
+|  Asia Pacific \(Seoul\)  |  `ap-northeast-2`  |  [View AMI ID](https://ap-northeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=ap-northeast-2#)  | 
+|  Asia Pacific \(Singapore\)  |  `ap-southeast-1`  |  [View AMI ID](https://ap-southeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=ap-southeast-1#)  | 
+|  Asia Pacific \(Sydney\)  |  `ap-southeast-2`  |  [View AMI ID](https://ap-southeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=ap-southeast-2#)  | 
+|  Asia Pacific \(Jakarta\)  |  `ap-southeast-3`  |  [View AMI ID](https://ap-southeast-3.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=ap-southeast-3#)  | 
+|  Canada \(Central\)  |  `ca-central-1`  |  [View AMI ID](https://ca-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=ca-central-1#)  | 
+|  Europe \(Frankfurt\)  |  `eu-central-1`  |  [View AMI ID](https://eu-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/aamazon-linux-2022/recommended/image_id/description?region=eu-central-1#)  | 
+|  Europe \(Milan\)  |  `eu-south-1`  |  [View AMI ID](https://eu-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=eu-south-1#)  | 
+|  Europe \(Ireland\)  |  `eu-west-1`  |  [View AMI ID](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=eu-west-1#)  | 
+|  Europe \(Paris\)  |  `eu-west-3`  |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=eu-west-3#)  | 
+|  Middle East \(Bahrain\)  |  `me-south-1`  |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=me-south-1#)  | 
+|  South America \(São Paulo\)  |  `sa-east-1`  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2022/recommended/image_id/description?region=sa-east-1#)  | 
 
 For a full list of current and previous versions of the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\.
 
