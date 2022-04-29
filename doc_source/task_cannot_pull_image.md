@@ -10,7 +10,7 @@ CannotPullContainerError: API error (500): Get https://111122223333.dkr.ecr.us-e
 ```
 To resolve this issue, you can:  
 + For tasks in public subnets, specify **ENABLED** for **Auto\-assign public IP** when launching the task\. For more information, see [Run a standalone taskRun a standalone task using the new console](ecs_run_task.md)\.
-+ For tasks in private subnets, specify **DISABLED** for **Auto\-assign public IP** when launching the task, and configure a NAT gateway in your VPC to route requests to the internet\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide*\. For instructions on how to create a VPC with public and private subnets, including a NAT gateway for the private subnets, see [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)\.
++ For tasks in private subnets, specify **DISABLED** for **Auto\-assign public IP** when launching the task, and configure a NAT gateway in your VPC to route requests to the internet\. For more information, see [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) in the *Amazon VPC User Guide*\. 
 
 Context canceled  
 The common cause for this error is because the VPC your task is using doesn't have a route to pull the container image from Amazon ECR\.

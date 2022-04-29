@@ -86,7 +86,7 @@ If you have multiple task definitions or services that require IAM permissions, 
 
 For information about the service endpoint for your Region, see [Service endpoints](https://docs.aws.amazon.com/general/latest/gr/ecs-service.html#ecs_region) in the *Amazon Web Services General Reference Reference Guide*\.
 
-The IAM task role must have a trust policy that specifies the `ecs-task.amazonaws.com` service\. The `sts:AssumeRole` permission allows your tasks to assume an IAM role that's different from the one that the Amazon EC2 instance uses\. This way, your task doesn't inherit the role associated with the Amazon EC2 instance\. It is recommended that you use the `aws:SourceAccount` or `aws:SourceArn` condition keys to scope the permissions further to prevent the confused deputy security issue\. These condition keys can be specified in the trust relationship or in the IAM policy associated with the role\. To learn more about the confused deputy problem and how to protect your AWS account, see [The confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) in the *IAM User Guide*\.
+The IAM task role must have a trust policy that specifies the `ecs-tasks.amazonaws.com` service\. The `sts:AssumeRole` permission allows your tasks to assume an IAM role that's different from the one that the Amazon EC2 instance uses\. This way, your task doesn't inherit the role associated with the Amazon EC2 instance\. It is recommended that you use the `aws:SourceAccount` or `aws:SourceArn` condition keys to scope the permissions further to prevent the confused deputy security issue\. These condition keys can be specified in the trust relationship or in the IAM policy associated with the role\. To learn more about the confused deputy problem and how to protect your AWS account, see [The confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) in the *IAM User Guide*\.
 
 The following is an example trust policy\. You should replace the Region identifier and specify the AWS account number that you use when launching tasks\.
 
@@ -104,7 +104,7 @@ The following is an example trust policy\. You should replace the Region identif
          "Action":"sts:AssumeRole",
          "Condition":{
             "ArnLike":{
-               "aws:SourceArn":"aws:ecs:us-west-2:111122223333:*"
+            "aws:SourceArn":"arn:aws:ecs:us-west-2:111122223333:*"
             },
             "StringEquals":{
                "aws:SourceAccount":"111122223333"
@@ -171,7 +171,7 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
             ],
             "Condition":{
                "ArnLike":{
-                  "aws:SourceArn":"aws:ecs:us-west-2:111122223333:*"
+               "aws:SourceArn":"arn:aws:ecs:us-west-2:111122223333:*"
                },
                "StringEquals":{
                   "aws:SourceAccount":"111122223333"

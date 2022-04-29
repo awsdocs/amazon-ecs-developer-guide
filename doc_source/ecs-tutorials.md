@@ -3,7 +3,6 @@
 The following tutorials show you how to perform common tasks when using Amazon ECS\.
 
 **Topics**
-+ [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)
 + [Tutorial: Creating a cluster with a Fargate Linux task using the AWS CLI](ECS_AWSCLI_Fargate.md)
 + [Tutorial: Creating a cluster with a Fargate Windows task using the AWS CLI](ECS_AWSCLI_Fargate_windows.md)
 + [Tutorial: Creating a cluster with an EC2 task using the AWS CLI](ECS_AWSCLI_EC2.md)

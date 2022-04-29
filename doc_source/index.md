@@ -291,7 +291,6 @@ Amazon's trademarks and trade dress may not be used in
       + [Updating a service using the new console](update-service-console-v2.md)
       + [Deleting a service using the new console](delete-service-v2.md)
 + [Tutorials for Amazon ECS](ecs-tutorials.md)
-   + [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)
    + [Tutorial: Creating a cluster with a Fargate Linux task using the AWS CLI](ECS_AWSCLI_Fargate.md)
    + [Tutorial: Creating a cluster with a Fargate Windows task using the AWS CLI](ECS_AWSCLI_Fargate_windows.md)
    + [Tutorial: Creating a cluster with an EC2 task using the AWS CLI](ECS_AWSCLI_EC2.md)
