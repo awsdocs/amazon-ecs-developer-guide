@@ -1,6 +1,6 @@
 # Launching an Amazon ECS Windows container instance<a name="launch_window-container_instance"></a>
 
-Your Amazon ECS container instances are created using the Amazon EC2 console\. Before you begin, be sure that you've completed the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
+Your Amazon ECS container instances are created using the Amazon EC2 console\. Before you begin, be sure that you've completed the steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 
 **To launch a container instance**
 
@@ -78,7 +78,7 @@ If you do not launch your container instance with the proper IAM permissions, yo
 
 1. On the **Configure Security Group** page, use a security group to define firewall rules for your container instance\. These rules specify which incoming network traffic is delivered to your container instance\. All other traffic is ignored\. Select or create a security group as follows, and then choose **Review and Launch**\.
 
-1. On the **Review Instance Launch** page, under **Security Groups**, you see that the wizard created and selected a security group for you\. Instead, select the security group that you created in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) using the following steps:
+1. On the **Review Instance Launch** page, under **Security Groups**, you see that the wizard created and selected a security group for you\. Instead, select the security group that you created in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md) using the following steps:
 
    1. Choose **Edit security groups**\.
 

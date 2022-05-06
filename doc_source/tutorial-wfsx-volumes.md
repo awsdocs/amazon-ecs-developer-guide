@@ -1,6 +1,6 @@
 # Tutorial: Using FSx for Windows File Server file systems with Amazon ECS<a name="tutorial-wfsx-volumes"></a>
 
-FSx for Windows File Server provides fully managed Microsoft Windows file servers, that are backed by a fully native Windows file system\. When using FSx for Windows File Server together with ECS, you can provision your Windows tasks with persistent, distributed, shared, static file storage\. For more information, see [What Is FSx for Windows File Server?](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) in the *FSx for Windows File Server User Guide*\.
+FSx for Windows File Server provides fully managed Microsoft Windows file servers, that are backed by a fully native Windows file system\. When using FSx for Windows File Server together with Amazon ECS, you can provision your Windows tasks with persistent, distributed, shared, static file storage\. For more information, see [What Is FSx for Windows File Server?](https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html) in the *FSx for Windows File Server User Guide*\.
 
 You can use FSx for Windows File Server to deploy Windows workloads that require access to shared external storage, highly available regional storage, or high\-throughput storage\. You can mount one or more FSx for Windows File Server file system volumes to an ECS container running on an ECS Windows instance\. You can share FSx for Windows File Server file system volumes among multiple ECS containers within a single ECS task\. 
 
@@ -12,7 +12,7 @@ In this tutorial, you launch an ECS Optimized Windows instance that hosts an FSx
 It takes 20 to 45 minutes each time you launch or delete either the Active Directory or the FSx for Windows File Server file system\. Be prepared to reserve at least 90 minutes to complete the tutorial or complete the tutorial over a few sessions\.
 
 ## Prerequisites for the tutorial<a name="wfsx-prerequisites"></a>
-+ An IAM Account with administrator access\. See [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
++ An IAM Account with administrator access\. See [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 + \(Optional\) A pem key pair for connecting to your EC2 Windows instance through RDP access\. For information about how to create key pairs, see [Amazon EC2 key pairs and Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-key-pairs.html) in the *User Guide for Windows Instances*\.
 + A VPC with at least one public and one private subnet, and one security group\. You can use your default VPC\. You don't need a NAT gateway or device\. AWS Directory Service doesn't support Network Address Translation \(NAT\) with Active Directory\. For this to work, the Active Directory, FSx for Windows File Server file system, ECS Cluster, and ECS instance must be located within your VPC\. For more information regarding VPCs and Active Directories, see [Amazon VPC console wizard configurations](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_wizard.html) and [AWS Managed Microsoft AD Prerequisites](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started_prereqs.html)\.
 + The IAM ecsInstanceRole and ecsTaskExecutionRole permissions are associated with your account\. These service\-linked roles allow services to make API calls and access containers, secrets, directories and file servers on your behalf\.
@@ -268,76 +268,73 @@ The Fargate launch type isn't compatible with Windows containers\.
 
 1. On the **Create new Task Definition** page, scroll to the bottom of the page and choose **Configure via JSON**\.
 
-1. Paste the following sample task definition JSON into the text area \(replacing the pre\-populated JSON there\) and choose **Save**\.
+1. Use the following sample task definition JSON\. Replace the values for your task execution role and the details about your FSx file system and then choose **Save**\.
 
    ```
    {
-     "containerDefinitions": [
-         {
-             "entryPoint": [
-                 "powershell",
-                 "-Command"
-             ],
-             "portMappings": [],
-             "command": [
-                 "New-Item -Path C:\\fsx-windows-dir\\index.html -ItemType file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>It Works!</h2> <p>You are using Amazon FSx for Windows File Server file system for persistent container storage.</p>' -Force"
-             ],
-             "cpu": 512,
-             "memory": 256,
-             "image": "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019",
-             "essential": false,
-             "name": "container1",
-             "mountPoints": [
-                 {
-                     "sourceVolume": "fsx-windows-dir",
-                     "containerPath": "C:\\fsx-windows-dir",
-                     "readOnly": false
-                 }
-             ]
-         },
-         {
-             "entryPoint": [
-                 "powershell",
-                 "-Command"
-             ],
-             "portMappings": [
-                 {
-                     "hostPort": 8080,
-                     "protocol": "tcp",
-                     "containerPort": 80
-                 }
-             ],
-             "command": [
-                 "Remove-Item -Recurse C:\\inetpub\\wwwroot\\* -Force; Start-Sleep -Seconds 120; Move-Item -Path C:\\fsx-windows-dir\\index.html -Destination C:\\inetpub\\wwwroot\\index.html -Force; C:\\ServiceMonitor.exe w3svc"
-             ],
-             "mountPoints": [
-                 {
-                     "sourceVolume": "fsx-windows-dir",
-                     "containerPath": "C:\\fsx-windows-dir",
-                     "readOnly": false
-                 }
-             ],
-             "cpu": 512,
-             "memory": 256,
-             "image": "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019",
-             "essential": true,
-             "name": "container2"
-         }
-     ],
-     "family": "fsx-windows",
-     "volumes": [
-       {
-           "name": "fsx-windows-vol",
-           "fsxWindowsFileServerVolumeConfiguration": {
-               "fileSystemId": "fs-0eeb5730b2EXAMPLE",
-               "authorizationConfig": {
-                   "domain": "example.com",
-                   "credentialsParameter": "arn:arn-1234"
-               },
-               "rootDirectory": "share"
+       "containerDefinitions": [
+           {
+               "entryPoint": [
+                   "powershell",
+                   "-Command"
+               ],
+               "portMappings": [],
+               "command": ["New-Item -Path C:\\fsx-windows-dir\\index.html -ItemType file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>It Works!</h2> <p>You are using Amazon FSx for Windows File Server file system for persistent container storage.</p>' -Force"],
+               "cpu": 512,
+               "memory": 256,
+               "image": "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019",
+               "essential": false,
+               "name": "container1",
+               "mountPoints": [
+                   {
+                       "sourceVolume": "fsx-windows-dir",
+                       "containerPath": "C:\\fsx-windows-dir",
+                       "readOnly": false
+                   }
+               ]
+           },
+           {
+               "entryPoint": [
+                   "powershell",
+                   "-Command"
+               ],
+               "portMappings": [
+                   {
+                       "hostPort": 8080,
+                       "protocol": "tcp",
+                       "containerPort": 80
+                   }
+               ],
+               "command": ["Remove-Item -Recurse C:\\inetpub\\wwwroot\\* -Force; Start-Sleep -Seconds 120; Move-Item -Path C:\\fsx-windows-dir\\index.html -Destination C:\\inetpub\\wwwroot\\index.html -Force; C:\\ServiceMonitor.exe w3svc"],
+               "mountPoints": [
+                   {
+                       "sourceVolume": "fsx-windows-dir",
+                       "containerPath": "C:\\fsx-windows-dir",
+                       "readOnly": false
+                   }
+               ],
+               "cpu": 512,
+               "memory": 256,
+               "image": "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019",
+               "essential": true,
+               "name": "container2"
            }
-       }
-   ]
+       ],
+       "family": "fsx-windows",
+       "executionRoleArn": "arn:aws:iam::111122223333:role/ecsTaskExecutionRole",
+       "volumes": [
+           {
+               "name": "fsx-windows-vol",
+               "fsxWindowsFileServerVolumeConfiguration": {
+                   "fileSystemId": "fs-0eeb5730b2EXAMPLE",
+                   "authorizationConfig": {
+                       "domain": "example.com",
+                       "credentialsParameter": "arn:arn-1234"
+                   },
+                   "rootDirectory": "share"
+               }
+           }
+       ]
    }
    ```
 

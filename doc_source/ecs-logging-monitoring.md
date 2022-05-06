@@ -7,7 +7,7 @@ Watch a single metric over a time period that you specify, and perform one or mo
 For clusters with tasks or services using the EC2 launch type, you can use CloudWatch alarms to scale in and scale out the container instances based on CloudWatch metrics, such as cluster memory reservation\. For more information, see [Tutorial: Scaling container instances with CloudWatch alarms](cloudwatch_alarm_autoscaling.md)\.
 
 **Amazon CloudWatch Logs**  
-Monitor, store, and access the log files from the containers in your Amazon ECS tasks by specifying the `awslogs` log driver in your task definitions\. This is the only supported method for accessing logs for tasks using the Fargate launch type, but also works with tasks using the EC2 launch type\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.  
+Monitor, store, and access the log files from the containers in your Amazon ECS tasks by specifying the `awslogs` log driver in your task definitions\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.  
 You can also monitor, store, and access the operating system and Amazon ECS container agent log files from your Amazon ECS container instances\. This method for accessing logs can be used for containers using the EC2 launch type\. For more information, see [Monitoring your container instances](using_cloudwatch_logs.md)\.
 
 **Amazon CloudWatch Events**  

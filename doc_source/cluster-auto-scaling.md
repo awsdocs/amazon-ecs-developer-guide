@@ -42,7 +42,8 @@ Consider the following when using cluster Auto Scaling:
 **Important**  
 Make sure any tooling you use does not remove the `AmazonECSManaged` tag from the Auto Scaling group\. If this tag is removed, Amazon ECS is not able to manage it when scaling your cluster\.
 + Cluster Auto Scaling does not modify the **MinimumCapacity** or **MaximumCapacity** for the group\. In order for the group to scale\-out, the value for **MaximumCapacity** must be greater than 0\.
-+ Cluster Auto Scaling does not support more than one capacity provider associated with a cluster at one time\. If your capacity provider has managed scaling turned off, you can associate it with multiple clusters\.
++ A capacity provider can only be connected to one cluster at the same time when Auto Scaling \(managed scaling\) is turned on\. If your capacity provider has managed scaling turned off, you can associate it with multiple clusters\.
++ When managed scaling is turned off, the capacity provider does not perform scale\-in or scale\-out operations\. For this case, you can use a capacity provider strategy to balance your tasks between capacity providers\.
 + Amazon ECS uses placement strategy and placement constraints with the existing capacity at the current time\. A placement strategy can spread tasks across Availability Zones or Amazon ECS instances\. This eventually spreads all tasks all instances so that each running task launches on its own dedicated instance\. To prevent this behavior, do not use the `spread` strategy in conjunction with the `binpack` strategy\. For more information, see [Amazon ECS task placement strategies](task-placement-strategies.md)\.
 
 The following considerations apply when you use the new console:

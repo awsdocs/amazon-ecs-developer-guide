@@ -23,7 +23,7 @@ When the average CPU utilization of your service rises above 75% \(meaning that 
 
 ## Prerequisites<a name="tt-prereqs"></a>
 
-This tutorial assumes that you are using administrator credentials, and that you have an Amazon EC2 key pair in the current region\. If you do not have these resources, or your are not sure, you can create them by following the steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
+This tutorial assumes that you are using administrator credentials, and that you have an Amazon EC2 key pair in the current region\. If you do not have these resources, or your are not sure, you can create them by following the steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 
 ## Step 1: Create a cluster and a service<a name="tt-create-cluster-service"></a>
 

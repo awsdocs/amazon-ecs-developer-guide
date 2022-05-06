@@ -7,7 +7,7 @@ The following tutorial shows how to create an Secrets Manager secret, reference 
 ## Prerequisites<a name="specifying-sensitive-data-tutorial-prereqs"></a>
 
 This tutorial assumes that the following prerequisites have been completed:
-+ The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
++ The steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required IAM permissions to create the Secrets Manager and Amazon ECS resources described\.
 
 ## Step 1: Create an Secrets Manager secret<a name="specifying-sensitive-data-tutorial-create-secret"></a>

@@ -279,7 +279,7 @@ The Amazon ECS first\-run wizard in the classic console simplifies the process o
 ```
 
 The first run wizard also attempts to automatically create different IAM roles depending on the launch type of the tasks used\. Examples are the Amazon ECS service role, container instance IAM role, and the task execution IAM role\. To ensure that the first\-run experience is able to create these IAM roles, one of the following must be true:
-+ Your user has administrator access\. For more information, see [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md)\.
++ Your user has administrator access\. For more information, see [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 + Your user has the IAM permissions to create a service role\. For more information, see [Creating a role to delegate permissions to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html)\.
 + You have a user with administrator access manually create the required IAM role so it is available on the account to be used\. For more information, see the following:
   + [Service\-linked role for Amazon ECS](using-service-linked-roles.md)

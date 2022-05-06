@@ -13,8 +13,9 @@ Amazon ECS enables you to inject sensitive data into your containers by storing 
 ## Considerations for specifying sensitive data using Systems Manager Parameter Store<a name="secrets--parameterstore-considerations"></a>
 
 The following should be considered when specifying sensitive data for containers using Systems Manager Parameter Store parameters\.
-+ For tasks that use the Fargate launch type, this feature requires that your task use platform version 1\.3\.0 or later \(for Linux\) or 1\.0\.0 or later \(for Windows\)\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
-+ For tasks that use the EC2 launch type, this feature requires that your container instance have version 1\.22\.0 or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
++ The Systems Manager Parameter Store parameter must exist in the same account that the tasks are run in\.
++ For tasks hosted on Fargate, this feature requires that your task use platform version `1.3.0` or later \(for Linux\) or `1.0.0` or later \(for Windows\)\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
++ For tasks hosted on EC2 instances, this feature requires that your container instance have version `1.22.0` or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 + Sensitive data is injected into your container when the container is initially started\. If the secret or Parameter Store parameter is subsequently updated or rotated, the container will not receive the updated value automatically\. You must either launch a new task or if your task is part of a service you can update the service and use the **Force new deployment** option to force the service to launch a fresh task\.
 + For Windows tasks that are configured to use the `awslogs` logging driver, you must also set the `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE` environment variable on your container instance\. This can be done with User Data using the following syntax:
 
@@ -96,7 +97,7 @@ The following is a snippet of a task definition showing the format when referenc
       },
       "secretOptions": [{
         "name": "fluentd-address",
-        "valueFrom": "arn:aws:ssm:region:aws_account_id:parameter:/parameter_name"
+        "valueFrom": "arn:aws:ssm:region:aws_account_id:parameter/parameter_name"
       }]
     }]
   }]

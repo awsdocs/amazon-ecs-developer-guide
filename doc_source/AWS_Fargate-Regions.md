@@ -68,5 +68,3 @@ Amazon ECS Windows containers on AWS Fargate is supported in the following Regio
 |  Europe \(Stockholm\)  |  eu\-north\-1  | 
 |  South America \(São Paulo\)  |  sa\-east\-1  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  | 
-|  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  | 
-|  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  | 

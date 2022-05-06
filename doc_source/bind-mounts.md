@@ -361,7 +361,7 @@ You can define a data volume in a task definition and mount that volume at diffe
 
 **To mount volumes from another container using `volumesFrom`**
 
-You can define one or more volumes on a container, and then use the `volumesFrom` parameter in a different container definition \(within the same task\) to mount all of the volumes from the `sourceContainer` at their originally defined mount points\. The `volumesFrom` parameter applies to volumes defined in the task definition, and those that are built into the image with a Dockerfile\.
+For tasks hosted on Amazon EC2 instances, you can define one or more volumes on a container, and then use the `volumesFrom` parameter in a different container definition \(within the same task\) to mount all of the volumes from the `sourceContainer` at their originally defined mount points\. The `volumesFrom` parameter applies to volumes defined in the task definition, and those that are built into the image with a Dockerfile\.
 
 1. \(Optional\) To share a volume that is built into an image, you need to build the image with the volume declared in a `VOLUME` instruction\. The following example Dockerfile uses an `httpd` image and then adds a volume and mounts it at `dockerfile_volume` in the Apache document root \(which is the folder used by the `httpd` web server\):
 

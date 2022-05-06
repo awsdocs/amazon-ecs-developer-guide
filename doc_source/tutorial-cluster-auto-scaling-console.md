@@ -16,7 +16,7 @@ This tutorial walks you through creating the resources for cluster auto scaling 
 ## Prerequisites<a name="console-tutorial-prereqs"></a>
 
 This tutorial assumes that the following prerequisites have been completed:
-+ The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
++ The steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS first\-run wizard permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + The Amazon ECS container instance IAM role is created\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 + The Amazon ECS service\-linked IAM role is created\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.

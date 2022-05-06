@@ -146,6 +146,7 @@ The task definition JSON shown below has a `logConfiguration` object specified f
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
+                    "awslogs-create-group": "true",
                     "awslogs-group": "awslogs-wordpress",
                     "awslogs-region": "us-west-2",
                     "awslogs-stream-prefix": "awslogs-example"
@@ -169,6 +170,7 @@ The task definition JSON shown below has a `logConfiguration` object specified f
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
+                    "awslogs-create-group": "true",
                     "awslogs-group": "awslogs-mysql",
                     "awslogs-region": "us-west-2",
                     "awslogs-stream-prefix": "awslogs-example"
@@ -180,11 +182,7 @@ The task definition JSON shown below has a `logConfiguration` object specified f
 }
 ```
 
-In the Amazon ECS console, the log configuration for the `wordpress` container is specified as shown in the image below\. 
-
-![\[Console log configuration\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/awslogs-console-config.png)
-
-After you have registered a task definition with the `awslogs` log driver in a container definition log configuration, you can run a task or create a service with that task definition to start sending logs to CloudWatch Logs\. For more information, see [Run a standalone taskRun a standalone task using the new console](ecs_run_task.md) and [Creating an Amazon ECS service](create-service.md)\.
+After you have registered a task definition with the `awslogs` log driver in a container definition log configuration, you can run a task or create a service with that task definition to start sending logs to CloudWatch Logs\. For more information, see [Run a standalone task](ecs_run_task.md) and [Creating an Amazon ECS service](create-service.md)\.
 
 ## Viewing awslogs container logs in CloudWatch Logs<a name="viewing_awslogs"></a>
 

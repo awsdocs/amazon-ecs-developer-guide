@@ -4,10 +4,6 @@ We recommend that you deploy your application as a standalone task in some situa
 
 To deploy your application to run continually or to place it behind a load balancer, create an Amazon ECS service\. For more information, see [Amazon ECS services](ecs_services.md)\.
 
-To run a standalone task use one of the following procedures\.
-
-If you are creating a Windows service for the Fargate launch type, you must use the classic console\. 
-
 To run a standalone task using the classic console
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
@@ -45,7 +41,7 @@ Only private subnets are supported for the `awsvpc` network mode\. Tasks don't r
    + **AZ Balanced BinPack** \- Distribute tasks across Availability Zones and across container instances with the least available memory\.
    + **BinPack** \- Distribute tasks based on the least available amount of CPU or memory\.
    + **One Task Per Host** \- Place, at most, one task from the service on each container instance\.
-   + **Custom** \- Define your own task placement strategy\. For examples, see [Amazon ECS task placement](task-placement.md)\.
+   + **Custom** \- Define your own task placement strategy\. 
 
     For more information, see [Amazon ECS task placement](task-placement.md)\.
 

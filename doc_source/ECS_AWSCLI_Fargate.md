@@ -17,7 +17,7 @@ The following steps help you set up a cluster, register a task definition, run a
 
 This tutorial assumes that the following prerequisites have been completed\.
 + The latest version of the AWS CLI is installed and configured\. For more information about installing or upgrading your AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)\.
-+ The steps in [Setting up with Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
++ The steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS first\-run wizard permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + You have a VPC and security group created to use\. This tutorial uses a container image hosted on Amazon ECR Public so your task must have internet access\. To give your task a route to the internet, use one of the following options\.
   + Use a private subnet with a NAT gateway that has an elastic IP address\.

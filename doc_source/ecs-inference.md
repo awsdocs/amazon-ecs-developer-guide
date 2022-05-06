@@ -66,61 +66,25 @@ To deploy Neuron on Amazon ECS, your task definition must contain the container 
 
 Alternatively, you can build your own Neuron sidecar container image\. For more information, see [Tutorial: Neuron TensorFlow Serving](https://github.com/aws/aws-neuron-sdk/blob/master/neuron-guide/neuron-frameworks/tensorflow-neuron/tutorials/tensorflow-tutorial-setup.rst) on GitHub\.
 
-Currently, the Inferentia resource requirement can't be defined in a task definition\. However, you can configure a container to use specific Inferentia available on the host container instance using the `linuxParameters` parameter\. The following is an example Linux containers on Fargate task definition, displaying the syntax to use\.
+The following is an example Linux containers on Fargate task definition, displaying the syntax to use\.
 
 ```
 {
-    "family": "ecs-neuron",
-    "executionRoleArn": "${YOUR_EXECUTION_ROLE}",
-    "containerDefinitions": [
-        {
-            "entryPoint": [
-                "/usr/local/bin/entrypoint.sh",
-                "--port=8500",
-                "--rest_api_port=9000",
-                "--model_name=resnet50_neuron",
-                "--model_base_path=s3://your-bucket-of-models/resnet50_neuron/"
-            ],
-            "portMappings": [
-                {
-                    "hostPort": 8500,
-                    "protocol": "tcp",
-                    "containerPort": 8500
-                },
-                {
-                    "hostPort": 8501,
-                    "protocol": "tcp",
-                    "containerPort": 8501
-                },
-                {
-                    "hostPort": 0,
-                    "protocol": "tcp",
-                    "containerPort": 80
-                }
-            ],
-            "linuxParameters": {
-                "devices": [
-                    {
-                        "containerPath": "/dev/neuron0",
-                        "hostPath": "/dev/neuron0",
-                        "permissions": [
-                            "read",
-                            "write"
-                        ]
-                    }
-                ],
-                "capabilities": {
-                    "add": [
-                        "IPC_LOCK"
-                    ]
-                }
-            },
-            "cpu": 0,
-            "memoryReservation": 1000,
-            "image": "763104351884.dkr.ecr.us-east-1.amazonaws.com/tensorflow-inference-neuron:1.15.4-neuron-py37-ubuntu18.04",
-            "essential": true,
-            "name": "resnet50"
-        }
-    ]
+	"family": "example",
+	"executionRoleArn": "${YOUR_EXECUTION_ROLE}",
+	"inferenceAccelerators": [{
+		"deviceName": "device1",
+		"deviceType": "eia1.medium"
+	}],
+	"containerDefinitions": [{
+		"resourceRequirements": [{
+			"type": "InferenceAccelerator",
+			"value": "device1"
+		}],
+		"memory": 3072,
+		"image": "763104351884.dkr.ecr.us-east-1.amazonaws.com/tensorflow-inference-eia:1.14.0-cpu-py27-ubuntu16.04",
+		"essential": true,
+		"name": "example"
+	}]
 }
 ```

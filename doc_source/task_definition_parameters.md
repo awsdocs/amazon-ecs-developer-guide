@@ -297,6 +297,12 @@ The number of physical `GPUs` the Amazon ECS container agent will reserve for th
   
 This parameter is not supported for Windows containers or containers hosted on Fargate\.
 
+`Elastic Inference accelerator`  
+Type: [ResourceRequirement](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ResourceRequirement.html) object  
+Required: no  
+For the `InferenceAccelerator` type, the `value` matches the `deviceName` for an `InferenceAccelerator` specified in a task definition\. For more information, see [Elastic Inference accelerator name](#elastic-Inference-accelerator)\.  
+This parameter is not supported for Windows containers or containers hosted on Fargate\.
+
 `essential`  
 Type: Boolean  
 Required: no  
@@ -900,6 +906,22 @@ When this parameter is `true`, this allows you to deploy containerized applicati
 Type: Boolean  
 Required: no  
 When this parameter is `true`, a TTY is allocated\. This parameter maps to `Tty` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--tty` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.
+
+## Elastic Inference accelerator name<a name="elastic-Inference-accelerator"></a>
+
+The Inferentia resource requirement for your task definition\. For more information, see [Working with inference workloads on Amazon ECS](ecs-inference.md)\.
+
+The following parameters are allowed in a task definition:
+
+`deviceName`  
+Type: string  
+Required: yes  
+The Elastic Inference accelerator device name\. The `deviceName` must also be referenced in a container definition see [Elastic Inference accelerator](#ContainerDefinition-elastic-inference)\.
+
+`deviceType`  
+Type: string  
+Required: yes  
+The Elastic Inference accelerator to use\.
 
 ## Task placement constraints<a name="constraints"></a>
 
