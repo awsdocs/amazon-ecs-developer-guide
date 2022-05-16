@@ -78,7 +78,7 @@ The following are examples of service event messages you may see in the Amazon E
 
 ### service \(*service\-name*\) has reached a steady state\.<a name="service-event-messages-steady"></a>
 
-The service scheduler will send a `service service-name) has reached a steady state.` service event when the service is healthy and at the desired number of tasks, thus reaching a steady state\.
+The service scheduler will send a `service (service-name) has reached a steady state.` service event when the service is healthy and at the desired number of tasks, thus reaching a steady state\.
 
 The service scheduler reports the status periodically, so you might receive this message multiple times\.
 
@@ -167,7 +167,7 @@ The `maximumPercent` represents the upper limit on the number of tasks that shou
 
 When setting a minimum healthy percent or a maximum percent, you should ensure that the scheduler can stop or start at least one task when a deployment is triggered\.
 
-### service *service\-name*\) was unable to place a task\. Reason: You've reached the limit on the number of tasks you can run concurrently<a name="service-event-messages-8"></a>
+### service \(*service\-name*\) was unable to place a task\. Reason: You've reached the limit on the number of tasks you can run concurrently<a name="service-event-messages-8"></a>
 
 You can request a quota increase for the resource that caused the error\. For more information, see [Amazon ECS service quotas](service-quotas.md)\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
 
@@ -179,10 +179,10 @@ For information about the supported Fargate Regions and Availability Zones, see 
 
 For information about how to view the subnet Availability Zone, see [View your subnet ](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html#view-subnet)in the *Amazon VPC User Guide*\.
 
-### service *service\-name*\) was unable to place a task\. Reason: The requested CPU configuration is above your limit\.<a name="service-event-messages-10"></a>
+### service \(*service\-name*\) was unable to place a task\. Reason: The requested CPU configuration is above your limit\.<a name="service-event-messages-10"></a>
 
 You can request a quota increase for the resource that caused the error\. For more information, see [Amazon ECS service quotas](service-quotas.md)\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
 
-### service *service\-name*\) was unable to place a task\. Reason: The requested MEMORY configuration is above your limit\.<a name="service-event-messages-11"></a>
+### service \(*service\-name*\) was unable to place a task\. Reason: The requested MEMORY configuration is above your limit\.<a name="service-event-messages-11"></a>
 
 You can request a quota increase for the resource that caused the error\. For more information, see [Amazon ECS service quotas](service-quotas.md)\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.

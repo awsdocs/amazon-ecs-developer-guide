@@ -138,6 +138,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Using the AWS for Fluent Bit image](firelens-using-fluentbit.md)
       + [Creating a task definition that uses a FireLens configuration](firelens-taskdef.md)
       + [Filtering logs using regular expressions](firelens-filtering-logs.md)
+      + [Concatenate multiline or stack-trace log messages](firelens-concatanate-multiline.md)
       + [Example task definitions](firelens-example-taskdefs.md)
    + [Private registry authentication for tasks](private-auth.md)
    + [Specifying sensitive data](specifying-sensitive-data.md)

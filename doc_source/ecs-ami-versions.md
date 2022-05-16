@@ -13,6 +13,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Amazon Linux 2 AMI  |  Amazon ECS container agent version  |  Docker version  |  `ecs-init` version  | 
 | --- | --- | --- | --- | 
+| 20220509 | `1.61.1` | `20.10.13` | `latest` | 
 | 20220421 | `1.61.0` | `20.10.7` | `latest` | 
 | 20220411 | `1.61.0` | `20.10.7` | `latest` | 
 | 20220328 | `1.60.1` | `20.10.7` | `1.60.2-1` | 
@@ -110,6 +111,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20220509 | `1.61.1` | `20.10.13` | `latest` | 
 | 20220421 | `1.61.0` | `20.10.7` | `latest` | 
 | 20220411 | `1.61.0` | `20.10.7` | `latest` | 
 | 20220328 | `1.60.1` | `20.10.7` | `1.60.2-1` | 
@@ -203,6 +205,7 @@ The table below lists the current and previous versions of the Amazon ECS GPU\-o
 
 | Amazon ECS GPU\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | NVIDIA driver version | 
 | --- | --- | --- | --- | --- | 
+| 20220509 | `1.61.1` | `20.10.13` | `latest` | `470.57.02` | 
 | 20220421 | `1.61.0` | `20.10.7` | `latest` | `470.57.02` | 
 | 20220411 | `1.61.0` | `20.10.7` | `latest` | `470.57.02` | 
 | 20220328 | `1.60.1` | `20.10.7` | `1.60.2-1` | `470.57.02` | 
@@ -297,6 +300,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20220509 | `1.61.1` | `20.10.13` | `latest` | 
 | 20220421 | `1.61.0` | `20.10.7` | `latest` | 
 | 20220411 | `1.61.0` | `20.10.7` | `latest` | 
 | 20220328 | `1.60.1` | `20.10.7` | `1.60.2-1` | 
@@ -368,6 +372,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20220509 | `1.61.1` | `20.10.7` | `latest` | 
 | 20220421 | `1.61.0` | `20.10.7` | `latest` | 
 | 20220411 | `1.61.0` | `20.10.7` | `latest` | 
 
@@ -387,6 +392,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 2018\.03\.20220509 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20220318 | `1.51.0` | `20.10.7` | `1.51.0-1` | 
 | 2018\.03\.20220315 | `1.51.0` | `20.10.7` | `1.51.0-1` | 
 | 2018\.03\.20220209 | `1.51.0` | `20.10.7` | `1.51.0-1` | 

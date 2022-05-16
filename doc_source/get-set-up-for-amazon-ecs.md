@@ -92,23 +92,7 @@ If you haven't created a key pair already, you can create one using the Amazon E
 
 **To create a key pair**
 
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
-
-1. From the navigation bar, select a Region for the key pair\. You can select any Region that's available to you, regardless of your location\. However, key pairs are specific to a Region\. For example, if you plan to launch a container instance in the US East \(Ohio\) Region, you must create a key pair for the instance in the US East \(Ohio\) Region\.  
-![\[Select a region\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/EC2_select_region.png)
-
-1. In the navigation pane, under **NETWORK & SECURITY**, choose **Key Pairs**\.
-**Tip**  
-The navigation pane is on the left side of the console\. If you do not see the pane, it might be minimized; choose the arrow to expand the pane\. You may have to scroll down to see the **Key Pairs** link\.  
-![\[Open the key pairs page\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/key-pairs.png)
-
-1. Choose **Create Key Pair**\.
-
-1. Enter a name for the new key pair in the **Key pair name** field of the **Create Key Pair** dialog box, and then choose **Create**\. Use a name that is easy for you to remember, such as your IAM user name, followed by `-key-pair`, plus the region name\. For example, *me*\-key\-pair\-*useast2*\.
-
-1. The private key file is automatically downloaded by your browser\. The base file name is the name you specified as the name of your key pair, and the file name extension is `.pem`\. Save the private key file in a safe place\.
-**Important**  
-This is the only chance for you to save the private key file\. Provide the name of your key pair when you launch an instance and the corresponding private key each time you connect to the instance\.
+1. Use the Amazon EC2 console to create a key pair\. For more information about creatiting a key pair, see [Create a key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. If you use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
 

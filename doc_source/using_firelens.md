@@ -76,7 +76,7 @@ When you create a task definition, you can specify the number of events that are
 
 Use this option when there is high throughput, because Docker might run out of buffer memory and discard buffer messages so it can add new messages\. The lost logs might make it difficult to troubleshoot\. Setting the buffer limit might help to prevent this issue\.
 
-The following shows the syntax for specifiying the `log-driver-buffer-limit`:
+The following shows the syntax for specifying the `log-driver-buffer-limit`:
 
 ```
 {

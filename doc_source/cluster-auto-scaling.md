@@ -54,7 +54,7 @@ The following considerations apply when you use the new console:
 
 ## Managed termination protection<a name="managed-termination-protection"></a>
 
-Auto Scaling instance scale\-in protection controls which EC2 instances can be terminated\. Instances with the scale\-in feature turned on cannot be terminated during the scale\-in process\. Managed termination protection means that Amazon ECS only terminates EC2 instances that do not any have running any non\-daemon Amazon ECS tasks\. When you use managed termination protection, Amazon ECS first turns on the scale\-in protection option for the EC2 instances in the Auto Scaling group, and then places the tasks on the instances\. When all non\-daemon tasks are stopped on an instance, Amazon ECS initiates the scale\-in process and turns off scale\-in protection for the EC2 instance\. The Auto Scaling group can then terminate the instance\.
+Auto Scaling instance scale\-in protection controls which EC2 instances can be terminated\. Instances with the scale\-in feature turned on cannot be terminated during the scale\-in process\. Managed termination protection means that Amazon ECS only terminates EC2 instances that do not any have running non\-daemon Amazon ECS tasks\. When you use managed termination protection, Amazon ECS first turns on the scale\-in protection option for the EC2 instances in the Auto Scaling group, and then places the tasks on the instances\. When all non\-daemon tasks are stopped on an instance, Amazon ECS initiates the scale\-in process and turns off scale\-in protection for the EC2 instance\. The Auto Scaling group can then terminate the instance\.
 
 ### Managed termination protection considerations<a name="managed-termination-protection-considerations"></a>
 

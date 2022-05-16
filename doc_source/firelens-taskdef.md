@@ -99,7 +99,7 @@ The following shows the syntax required when specifying an Amazon ECS log metada
 
 ## Specifying a custom configuration file<a name="firelens-taskdef-customconfig"></a>
 
-In addition to the auto\-generated configuration file that FireLens creates on your behalf, you can also specify a custom configuration file\. The configuration file format is the native format for the log router you're using\. For more information, see [Fluentd Config File Syntax](https://docs.fluentd.org/configuration/config-file) and [Fluent Bit Configuration Schema](https://fluentbit.io/documentation/0.14/configuration/schema.html)\.
+In addition to the auto\-generated configuration file that FireLens creates on your behalf, you can also specify a custom configuration file\. The configuration file format is the native format for the log router you're using\. For more information, see [Fluentd Config File Syntax](https://docs.fluentd.org/configuration/config-file) and [Fluent Bit Configuration File](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit/yaml/configuration-file)\.
 
 In your custom configuration file, for tasks using the `bridge` or `awsvpc` network mode, you should not set a Fluentd or Fluent Bit forward input over TCP because FireLens will add it to the input configuration\.
 
