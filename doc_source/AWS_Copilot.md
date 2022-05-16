@@ -327,6 +327,12 @@ The AWS Copilot CLI executables are cryptographically signed using PGP signature
    sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/latest/download/copilot-darwin.asc
    ```
 
+   For macOS ARM systems, run the following command\.
+
+   ```
+   sudo curl -Lo copilot.asc https://github.com/aws/copilot-cli/releases/latest/download/copilot-darwin-arm64.asc
+   ```
+   
 ------
 #### [ Linux ]
 
