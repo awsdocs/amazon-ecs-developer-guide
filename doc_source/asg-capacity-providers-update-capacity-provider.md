@@ -18,7 +18,7 @@ A capacity provider can be updated to change its managed scaling and managed ter
 
 1. On the **Update Capacity Provider** page, the following parameters can be updated\.
 
-   1. For **Managed scaling**, choose your managed scaling option\. When managed scaling is enabled, Amazon ECS manages the scale\-in and scale\-out actions of the Auto Scaling group through the use of AWS Auto Scaling scaling plans\. When managed scaling is disabled, you manage your Auto Scaling groups yourself\.
+   1. For **Managed scaling**, choose your managed scaling option\. When managed scaling is enabled, Amazon ECS manages the scale\-in and scale\-out actions of the Auto Scaling group through the use of AWS Auto Scaling scaling policies\. When managed scaling is disabled, you manage your Auto Scaling groups yourself\.
 
    1. For **Target capacity %**, if managed scaling is enabled, specify an integer between `1` and `100`\. The target capacity value is used as the target value for the CloudWatch metric used in the Amazon ECS\-managed target tracking scaling policy\. This target capacity value is matched on a best effort basis\. For example, a value of `100` will result in the Amazon EC2 instances in your Auto Scaling group being completely utilized and any instances not running any tasks will be scaled in, but this behavior is not guaranteed at all times\.
 

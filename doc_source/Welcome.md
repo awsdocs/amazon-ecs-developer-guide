@@ -54,4 +54,4 @@ To view your bill, go to the **Billing and Cost Management Dashboard** in the [A
 
 If you have questions concerning AWS billing, accounts, and events, [contact AWS Support](https://aws.amazon.com/contact-us/)\.
 
-Trusted Advisor is a service that you to help optimize the costs, security, and performance of your AWS environment\. For more information about Trusted Advisor, see [AWS Trusted Advisor](https://aws.amazon.com/premiumsupport/trustedadvisor/)\.
+Trusted Advisor is a service that you can use to help optimize the costs, security, and performance of your AWS environment\. For more information about Trusted Advisor, see [AWS Trusted Advisor](https://aws.amazon.com/premiumsupport/trustedadvisor/)\.

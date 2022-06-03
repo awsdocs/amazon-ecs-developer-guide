@@ -1,8 +1,5 @@
 # Container instance draining<a name="container-instance-draining"></a>
 
-**Note**  
-You don't need to take any action related to container instance draining when using an Amazon ECS capacity provider\. The capacity provider coordinates container instance draining with the Auto Scaling group\.
-
 There might be times when you need to remove a container instance from your cluster; for example, to perform system updates, update the Docker daemon, or to scale down the cluster capacity\. Amazon ECS provides the ability to transition a container instance to a `DRAINING` status\. This is referred to as *container instance draining*\. When a container instance is set to `DRAINING`, Amazon ECS prevents new tasks from being scheduled for placement on the container instance\. 
 
 ## Draining behavior for services<a name="draining-service-behavior"></a>

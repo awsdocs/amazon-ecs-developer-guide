@@ -108,7 +108,7 @@ Amazon's trademarks and trade dress may not be used in
          + [Deleting an Auto Scaling group capacity provider using the classic console](asg-capacity-providers-delete-capacity-provider.md)
    + [Amazon ECS cluster Auto Scaling](cluster-auto-scaling.md)
       + [Turn on cluster Auto Scaling](turn-on-cluster-auto-scaling.md)
-      + [Turn off cluster Auto Scaling](turn-off-cluster-auto-scaling.md)
+      + [Turn off cluster auto scaling](turn-off-cluster-auto-scaling.md)
    + [Amazon ECS clusters in Local Zones, Wavelength Zones, and AWS Outposts](cluster-regions-zones.md)
    + [Updating cluster settings](update-cluster-settings.md)
    + [Deleting a cluster using the classic console](delete_cluster.md)

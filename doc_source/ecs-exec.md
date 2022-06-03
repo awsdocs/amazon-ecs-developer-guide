@@ -329,8 +329,10 @@ With the following example IAM policy, users can run commands in containers that
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": "ecs:ExecuteCommand",
-            "Action": "ecs:DescribeTasks",
+            "Action": [
+                "ecs:ExecuteCommand",
+                "ecs:DescribeTasks"
+            ],
             "Resource": "arn:aws:ecs:region:aws-account-id:task/cluster-name/*",
             "Condition": {
                 "StringEquals": {

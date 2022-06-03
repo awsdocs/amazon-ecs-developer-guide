@@ -153,38 +153,35 @@ For more information about Amazon VPC, see [What is Amazon VPC?](https://docs.aw
 Security groups act as a firewall for associated container instances, controlling both inbound and outbound traffic at the container instance level\. You can add rules to a security group that enable you to connect to your container instance from your IP address using SSH\. You can also add rules that allow inbound and outbound HTTP and HTTPS access from anywhere\. Add any rules to open ports that are required by your tasks\. Container instances require external network access to communicate with the Amazon ECS service endpoint\. 
 
 **Note**  
-The Amazon ECS console first run experience creates a security group for your instances and load balancer based on the task definition you use, so if you intend to use the Amazon ECS console, you can move ahead to the next section\.
+The Amazon ECS classic console first run experience creates a security group for your instances and load balancer based on the task definition you use, so if you intend to use the Amazon ECS console, you can move ahead to the next section\.
 
 If you plan to launch container instances in multiple Regions, you need to create a security group in each Region\. For more information, see [Regions and Availability Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **Tip**  
 You need the public IP address of your local computer, which you can get using a service\. For example, we provide the following service: [http://checkip\.amazonaws\.com/](http://checkip.amazonaws.com/) or [https://checkip\.amazonaws\.com/](https://checkip.amazonaws.com/)\. To locate another service that provides your IP address, use the search phrase "what is my IP address\." If you are connecting through an internet service provider \(ISP\) or from behind a firewall without a static IP address, you must find out the range of IP addresses used by client computers\.
 
-**To create a security group with least privilege**
+For information about how to create a security group, see [Create a security group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-security-groups.html#creating-security-group) in the *Amazon EC2 User Guide for Linux Instances* and use the following table to determine what options to select\.
 
-1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
-1. From the navigation bar, select a Region for the security group\. Security groups are specific to a Region, so you should select the same Region in which you created your key pair\.
+| Option | Value | 
+| --- | --- | 
+|  Region  | The same Region in which you created your key pair\. | 
+| Name | A name that is easy for you to remember, such as ecs\-instances\-default\-cluster\. | 
+| VPC | The default VPC \(marked with "\(default\)" \. If your account supports Amazon EC2 Classic, select the VPC that you created in the previous task\.   | 
 
-1. In the navigation pane, choose **Create Security Group**\.
+Amazon ECS container instances do not require any inbound ports to be open\. However, you might want to add an SSH rule so you can log into the container instance and examine the tasks with Docker commands\. You can also add rules for HTTP and HTTPS if you want your container instance to host a task that runs a web server\. Container instances do require external network access to communicate with the Amazon ECS service endpoint\. Complete the following steps to add these optional security group rules\.
 
-1. Enter a name for the new security group and a description\. Choose a name that is easy for you to remember, such as *ecs\-instances\-default\-cluster*\.
+Add the following three inbound rules to your security group\.For information about how to create a security group, see [Add rules to your security group](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-security-groups.html#adding-security-group-rule) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-1. In the **VPC** list, ensure that your default VPC is selected\. It's marked with an asterisk \(\*\)\.
-**Note**  
-If your account supports Amazon EC2 Classic, select the VPC that you created in the previous task\.
 
-1. Amazon ECS container instances do not require any inbound ports to be open\. However, you might want to add an SSH rule so you can log into the container instance and examine the tasks with Docker commands\. You can also add rules for HTTP and HTTPS if you want your container instance to host a task that runs a web server\. Container instances do require external network access to communicate with the Amazon ECS service endpoint\. Complete the following steps to add these optional security group rules\.
-
-   On the **Inbound** tab, create the following rules \(choose **Add Rule** for each new rule\), and then choose **Create**:
-   + Choose **HTTP** from the **Type** list, and make sure that **Source** is set to **Anywhere** \(`0.0.0.0/0`\)\. This option automatically adds the 0\.0\.0\.0/0 IPv4 CIDR block as the source\. This is acceptable for a short time in a test environment, but it's unsafe in production environments\. In production, authorize only a specific IP address or range of addresses to access your instance\. 
-   + Choose **HTTPS** from the **Type** list, and make sure that **Source** is set to **Anywhere** \(`0.0.0.0/0`\)\. This is acceptable for a short time in a test environment, but it's unsafe in production environments\. In production, authorize only a specific IP address or range of addresses to access your instance\. 
-   + Choose **SSH** from the **Type** list\. In the **Source** field, ensure that **Custom IP** is selected, and specify the public IP address of your computer or network in CIDR notation\. To specify an individual IP address in CIDR notation, add the routing prefix `/32`\. For example, if your IP address is `203.0.113.25`, specify `203.0.113.25/32`\. If your company allocates addresses from a range, specify the entire range, such as `203.0.113.0/24`\.
-**Important**  
-For security reasons, we don't recommend that you allow SSH access from all IP addresses \(`0.0.0.0/0`\) to your instance, except for testing purposes and only for a short time\.
+| Option | Value | 
+| --- | --- | 
+|  HTTP rule  | Type: HTTP Source: Anywhere \(`0.0.0.0/0`\) This option automatically adds the 0\.0\.0\.0/0 IPv4 CIDR block as the source\. This is acceptable for a short time in a test environment, but it's unsafe in production environments\. In production, authorize only a specific IP address or range of addresses to access your instance\.   | 
+|  HTTPS rule  | Type: HTTPS Source: Anywhere \(`0.0.0.0/0`\) This is acceptable for a short time in a test environment, but it's unsafe in production environments\. In production, authorize only a specific IP address or range of addresses to access your instance\.   | 
+|  SSH rule  | Type: SSH Source: Custom, specify the public IP address of your computer or network in CIDR notation\. To specify an individual IP address in CIDR notation, add the routing prefix `/32`\. For example, if your IP address is `203.0.113.25`, specify `203.0.113.25/32`\. If your company allocates addresses from a range, specify the entire range, such as `203.0.113.0/24`\.  For security reasons, we don't recommend that you allow SSH access from all IP addresses \(`0.0.0.0/0`\) to your instance, except for testing purposes and only for a short time\.   | 
 
 ## Install the AWS CLI<a name="install_aws_cli"></a>
 
 The AWS Management Console can be used to manage all operations manually with Amazon ECS\. However, installing the AWS CLI on your local desktop or a developer box enables you to build scripts that can automate common management tasks in Amazon ECS\.
 
-To use the AWS CLI with Amazon ECS, install the latest AWS CLI, version\. For information about installing the AWS CLI or upgrading it to the latest version, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+To use the AWS CLI with Amazon ECS, install the latest AWS CLI version\. For information about installing the AWS CLI or upgrading it to the latest version, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.

@@ -1,24 +1,33 @@
 # Amazon ECS cluster Auto Scaling<a name="cluster-auto-scaling"></a>
 
-Amazon ECS cluster auto scaling provides control over how you scale the Amazon EC2 instances within a cluster\. When you use managed scaling, Amazon ECS creates the Auto Scaling group capacity provider infrastructure, and manages the scale\-in and scale\-out actions of the Auto Scaling group based on your clusters' tasks load\.
+**Important**  
+As of May 27, 2022, Amazon ECS has made a change in how it manages the resources that facilitate cluster Auto Scaling\. To learn more, see [Update on the way Amazon ECS creates resources for cluster auto scaling](#update-ecs-resources-cas)\.
 
-Auto Scaling is for the EC2 launch type\. For information about Fargate capacity providers, see [AWS Fargate capacity providers](fargate-capacity-providers.md)\.
+Amazon ECS can manage the scaling of Amazon EC2 instances registered to your cluster\. This is referred to as Amazon ECS cluster auto scaling\. This is done by using an Amazon ECS Auto Scaling group capacity provider with managed scaling turned on\. When you use an Auto Scaling group capacity provider with managed scaling turned on, Amazon ECS creates two custom CloudWatch metrics and a target tracking scaling policy that attaches to your Auto Scaling group\. Amazon ECS then manages the scale\-in and scale\-out actions of the Auto Scaling group based on the load your tasks put on your cluster\. For more information about Auto Scaling group capacity providers, see [Auto Scaling group capacity providers](asg-capacity-providers.md)\.
 
-We recommend that you review [Auto Scaling group capacity providers](asg-capacity-providers.md)\.
+**Note**  
+Amazon ECS cluster auto scaling is only supported when using Auto Scaling group capacity providers\. For Amazon ECS workloads hosted on AWS Fargate, see [AWS Fargate capacity providers](fargate-capacity-providers.md)\.
 
 ## How cluster Auto Scaling works<a name="how-it-works"></a>
 
-There are two options you need to configure in for cluster Auto Scaling \(for more information, see [Turn on cluster Auto Scaling](turn-on-cluster-auto-scaling.md)\):
-+ Associate a capacity provider with a cluster
-+ Turn on managed scaling for the associated capacity provider
+The following is the basic workflow used to enable Amazon ECS cluster auto scaling\. For more information, see [Turn on cluster Auto Scaling](turn-on-cluster-auto-scaling.md)\.
 
-When these options are configured, Amazon ECS creates the following dedicated resources for each capacity provider associated with a cluster:
-+ An Auto Scaling plan
+1. Create an Auto Scaling group
+
+1. Create a capacity provider that uses that Auto Scaling group
+
+1. Turn on managed scaling for the capacity provider
+
+1. Associate the capacity provider with a cluster
+
+For each Auto Scaling group capacity provider that is associated with a cluster, Amazon ECS creates and manages the following resources\.
 + A low metric value CloudWatch alarm
 + A high metric value CloudWatch alarm
-+ An Auto Scaling group
++ A target tracking scaling policy
+**Note**  
+Amazon ECS creates the target tracking scaling policy and attaches it to the Auto Scaling group\. To update the target tracking scaling policy, you should the capacity provider managed scaling settings as opposed to updating the scaling policy directly\.
 
-When you turn off managed scaling, or disassociate the capacity provider from the cluster, Amazon ECS removes the resources listed above\.
+When you turn off managed scaling, or disassociate the capacity provider from a cluster, Amazon ECS removes both CloudWatch metrics as well as the target tracking scaling policy resources\.
 
 The following metrics help to determine what actions to take:
 +  `CapacityProviderReservation` \- The percent of cluster container instances in use for a specific capacity provider\. Amazon ECS generates this metric\.
@@ -34,8 +43,6 @@ Amazon ECS initiates the `CapacityProviderReservation` metric, and then publishe
 ### Cluster Auto Scaling considerations<a name="cluster-auto-scaling-considerations"></a>
 
 Consider the following when using cluster Auto Scaling:
-+ The Auto Scaling group that acts as the cluster capacity provider must not have any scaling policies\.
-+ The number of Auto Scaling plans per account is limited\. For more information, see [Quotas for your scaling plans](https://docs.aws.amazon.com/autoscaling/plans/userguide/scaling-plan-quotas.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + The desired capacity for the Auto Scaling group associated with a capacity provider shouldn't be changed or managed by any scaling policies other than the one Amazon ECS manages\.
 + Amazon ECS uses the `AWSServiceRoleForECS` service\-linked IAM role for the permissions it requires to call AWS Auto Scaling, on your behalf\. For more information on using and creating Amazon ECS service\-linked IAM roles, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
 + When using capacity providers with Auto Scaling groups, the IAM user who creates the capacity providers, needs the `autoscaling:CreateOrUpdateTags` permission because Amazon ECS adds a tag to the Auto Scaling group when it associates it with the capacity provider\.
@@ -123,12 +130,32 @@ Amazon ECS monitors container instances for each capacity provider within cluste
 + CloudWatch scale\-in alarms require 15 data points \(15 minutes\) before the scale\-in process for the Auto Scaling group starts\. After the scale\-in process starts until Amazon ECS needs to reduce the number of registered container instances, the Auto Scaling group sets the `DesireCapacity` value to be greater than one instance and less than 10% each minute\.
 + When Amazon ECS requests a scale\-out \(when `CapcityProviderReservation` is greater than 100\) while a scale\-in process is in progress, the scale\-in process is stopped and will start from the beginning if required\.
 
-## `TargetTracking`<a name="target-tracking"></a>
+## Target tracking considerations<a name="target-tracking"></a>
 
- You can set the `TargetTracking` so that future tasks can launch more quickly by not waiting for the Auto Scaling group to launch more instances\. This value will set the CapacityProviderReservation metric in a way that the Auto Scaling group is treated as a steady state so that no scaling action is required\. The values can be from 0\-100%\. To configure Amazon ECS to keep 10% free capacity on top of that used by Amazon ECS tasks, set the value to 90%\.
+When creating or updating a capacity provider with managed scaling turned on, you can set the `targetCapacity` value so that future tasks can launch more quickly by not waiting for the Auto Scaling group to launch more instances\. Amazon ECS uses the target capacity value to manage the CloudWatch metric the service creates to facilitate cluster auto scaling\. Amazon ECS manages the CloudWatch metric, so that the Auto Scaling group is treated as a steady state so that no scaling action is required\. The values can be from 0\-100%\. For example, to configure Amazon ECS to keep 10% free capacity on top of that used by Amazon ECS tasks, set the target capacity value to 90%\.
 
-### `TargetTracking` considerations<a name="target-tracking-considerations"></a>
-
- Consider the following when using `TargetTracking`:
-+ A `TargetTracking` value of less than 100% represents the amount of free capacity \(EC2 instances\) that need to be present in the cluster\. Free capacity means that there are no running tasks\.
+The following should be considered when setting the `targetCapacity` value on a capacity provider\.
++ A `targetCapacity` value of less than 100% represents the amount of free capacity \(Amazon EC2 instances\) that need to be present in the cluster\. Free capacity means that there are no running tasks\.
 + Placement constraints such as Availability Zones, without additional `binpack` forces Amazon ECS to eventually run one task per instance, which might not be the desired behavior\. To prevent this behavior, do not use the `spread` strategy in conjunction with the `binpack` strategy\.
+
+## Update on the way Amazon ECS creates resources for cluster auto scaling<a name="update-ecs-resources-cas"></a>
+
+As of May 27, 2022, Amazon ECS has made a change in how it manages the resources that facilitate cluster Auto Scaling\. To simplify the experience, Amazon ECS no longer requires an AWS Auto Scaling scaling plan when managed scaling is enabled on an Auto Scaling group capacity provider\. *This change has no functional impact on your cluster Auto Scaling workflows and no pricing or performance impact*\. 
+
+### Capacity providers created before May 27, 2022<a name="to-use-cp-created-before-May27-2022"></a>
+
+Capacity providers that were created prior to May 27, 2022 and that use AWS Auto Scaling scaling plans, will continue to function as before\. 
+
+Review the following considerations: 
++ We recommend that you do not update or delete the `ECS-managed` AWS Auto Scaling scaling plan or scaling policy resources associated with your capacity providers\. 
++ You will be able to access the scaling plan resource for clusters on the Auto Scaling console as well as by the `describe-clusters` with attachments\. For more information, see the API documentation [DescribeClusters](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeClusters.html)\. 
++ The Auto Scaling group that acts as the cluster capacity provider must not have any scaling policies\.
++ The number of Auto Scaling plans per account is limited\. For more information, see [Quotas for your scaling plans](https://docs.aws.amazon.com/autoscaling/plans/userguide/scaling-plan-quotas.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+
+### Capacity providers created on or after May 27, 2022<a name="to-use-cp-created-after-May27-2022"></a>
+
+As of May 27, 2022, Amazon ECS no longer creates an AWS Auto Scaling scaling plan for newly created capacity providers\. Instead, Amazon ECS uses the target tracking scaling policy attached to the Auto Scaling group to perform dynamic scaling based on your target capacity specification\. For more information, see [Auto Scaling group capacity providers](asg-capacity-providers.md)\.
+
+This simplified experience now enables you to leverage an existing Auto Scaling group with a scaling policy for use when creating a new capacity provider\. We recommend not modifying the ECS\-managed scaling policy \(or plan\) resources\. However, when creating new capacity provider resources, if you have customized tooling that made modifications to the AWS Auto Scaling scaling plan, do one of the following:
++ \(Recommended\) Update your capacity provider to modify the Amazon ECS managed scaling settings\. For more information, see [UpdateCapacityProvider](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateCapacityProvider.html)\. 
++ Update the scaling policy associated with your Auto Scaling group to modify the target tracking configuration used\. For more information, see [PutScalingPolicy](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutScalingPolicy.html)\.

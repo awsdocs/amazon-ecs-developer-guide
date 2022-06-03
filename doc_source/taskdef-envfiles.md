@@ -63,7 +63,7 @@ The following is a snippet of a task definition showing how to specify an enviro
 
 The following should be considered when specifying an environment variable file in a container definition\.
 + For Amazon ECS tasks on Amazon EC2, your container instances require version `1.39.0` or later of the container agent to use this feature\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
-+ For Amazon ECS tasks on AWS Fargate, your tasks must use platform version `1.4.0` or later \(Linux\) or `1.0.0` or later \(Windows\) to use this feature\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
++ For Amazon ECS tasks on AWS Fargate, your tasks must use platform version `1.4.0` or later \(Linux\) to use this feature\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 
   Verify that the variable is supported for the operating system platform\. For more information, see [Container definitions](task_definition_parameters.md#container_definitions) and [Other task definition parameters](task_definition_parameters.md#other_task_definition_params)\.
 + The file must use the `.env` file extension and UTF\-8 encoding\.

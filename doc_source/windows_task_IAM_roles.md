@@ -23,10 +23,10 @@ Before containers can access the credential proxy on the container instance to g
 **Note**  
 You do not need to run this script when you use `awsvpc` network mode on Windows\.
 
-If you do not run Microsoft Windows 2022 on your container, then use the following script:
+If you run Windows containers which include Powershell, then use the following script:
 
 ```
-# Copyright 2014-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You may
 # not use this file except in compliance with the License. A copy of the
@@ -38,31 +38,31 @@ If you do not run Microsoft Windows 2022 on your container, then use the followi
 # on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
-
+ 
 $gateway = (Get-NetRoute | Where { $_.DestinationPrefix -eq '0.0.0.0/0' } | Sort-Object RouteMetric | Select NextHop).NextHop
 $ifIndex = (Get-NetAdapter -InterfaceDescription "Hyper-V Virtual Ethernet*" | Sort-Object | Select ifIndex).ifIndex
-New-NetRoute -DestinationPrefix 169.254.170.2/32 -InterfaceIndex $ifIndex -NextHop $gateway # credentials API
-New-NetRoute -DestinationPrefix 169.254.169.254/32 -InterfaceIndex $ifIndex -NextHop $gateway # metadata API
+New-NetRoute -DestinationPrefix 169.254.170.2/32 -InterfaceIndex $ifIndex -NextHop $gateway -PolicyStore ActiveStore # credentials API
+New-NetRoute -DestinationPrefix 169.254.169.254/32 -InterfaceIndex $ifIndex -NextHop $gateway -PolicyStore ActiveStore # metadata API
 ```
 
-If you run Microsoft Windows 2022 on your container, then use the following script:
+If you run Windows containers that only have the Command shell, then use the following script:
 
 ```
-# Copyright 2014-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You may
 # not use this file except in compliance with the License. A copy of the
 # License is located at
 #
-#   http://aws.amazon.com/apache2.0/
+#	http://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is distributed
 # on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
-
-$gateway = (Get-NetRoute | Where { $_.DestinationPrefix -eq '0.0.0.0/0' } | Sort-Object RouteMetric | Select NextHop).NextHop
-$ifIndex = (Get-NetAdapter -InterfaceDescription "Hyper-V Virtual Ethernet*" | Sort-Object | Select ifIndex).ifIndex
-route add 169.254.170.2 mask 255.255.255.255 $gateway IF $ifIndex # credentials API
-route add 169.254.169.254 mask 255.255.255.255 $gateway IF $ifIndex # metadata API
+ 
+for /f "tokens=1" %i  in ('netsh interface ipv4 show interfaces ^| findstr /x /r ".*vEthernet.*"') do set interface=%i
+for /f "tokens=3" %i  in ('netsh interface ipv4 show addresses %interface% ^| findstr /x /r ".*Default.Gateway.*"') do set gateway=%i
+netsh interface ipv4 add route prefix=169.254.170.2/32 interface="%interface%" nexthop="%gateway%" store=active # credentials API
+netsh interface ipv4 add route prefix=169.254.169.254/32 interface="%interface%" nexthop="%gateway%" store=active # metadata API
 ```

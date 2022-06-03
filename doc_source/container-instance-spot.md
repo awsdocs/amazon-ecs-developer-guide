@@ -25,7 +25,7 @@ EOF
 
 For more information, see [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\.
 
-**To enable Spot Instance draining for an existing container instance**
+**To turn on Spot Instance draining for an existing container instance**
 
 1. Connect to the Spot Instance over SSH\.
 

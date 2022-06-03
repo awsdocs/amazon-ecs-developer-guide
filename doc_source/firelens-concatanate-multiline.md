@@ -30,7 +30,7 @@ Or
 
 The following tutorial walks you through the steps for each use case\. The steps show you how to concatenate multilines and send the logs to Amazon CloudWatch\. You can specify a different destination for your logs\.
 
-## Required IAM permissions<a name="w579aac17c43c21c21b1"></a>
+## Required IAM permissions<a name="w592aac17c43c21c21b1"></a>
 
 For each use case you must first make sure you have the necessary IAM permissions for the container agent to pull the container images from Amazon ECR and for the container to route logs to CloudWatch Logs\.
 
@@ -91,7 +91,7 @@ You must have a task execution role to grant the container agent permission to p
 
 1. If you do not see the `ecsTaskExecutionRole` role, you must create the role\. For information on how to create the role, see [Amazon ECS task execution IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
 
-## Example: Use a parser that you create<a name="w579aac17c43c21c21b3"></a>
+## Example: Use a parser that you create<a name="w592aac17c43c21c21b3"></a>
 
  In this example, you will complete the following steps: 
 
@@ -434,7 +434,7 @@ You can place the parser file and configuration file anywhere in the Docker imag
    }
    ```
 
-## Example: Use a Fluent Bit built\-in parser<a name="w579aac17c43c21c21b5"></a>
+## Example: Use a Fluent Bit built\-in parser<a name="w592aac17c43c21c21b5"></a>
 
  In this example, you will complete the following steps: 
 

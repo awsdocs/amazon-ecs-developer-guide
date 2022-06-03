@@ -97,7 +97,7 @@ A *listener* is a process that checks for connection requests\. It is configured
    1. For **Select policy**, choose a predefined security policy\. For details on the security policies, see [Security Policies](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies) in *Elastic Load Balancing Application Load Balancers*\.
 
    1. For **Default SSL certificate**, do one of the following:
-      + If you created or imported a certificate using AWS Certificate Manager, For, and then select the certificate\.
+      + If you created or imported a certificate using AWS Certificate Manager, select **From ACM**, and then select the certificate\.
       + If you uploaded a certificate using IAM, select **From IAM**, and then select the certificate\.
       + If you want to import a certificate to ACM or IAM , enter a certificate name\. Then, paste the PEM\-encoded private key and body\.
 

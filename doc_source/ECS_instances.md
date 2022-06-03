@@ -49,10 +49,8 @@ If you change the status of a container instance to `DRAINING`, new tasks are no
 
 If you deregister or terminate a container instance, the container instance status changes to `INACTIVE` immediately, and the container instance is no longer reported when you list your container instances\. However, you can still describe the container instance for one hour following termination\. After one hour, the instance description is no longer available\.
 
-When you use an Auto Scaling group attached to a capacity provider, and an Amazon EC2 instance is terminated by the Auto Scaling group, the capacity provider will transition the associated container instance to `DRAINING` status and wait for draining to complete before allowing the Auto Scaling group to terminate the Amazon EC2 instance\. Then the above paragraph applies\.
-
 **Important**  
-Any Auto Scaling group that is not attached to an Amazon ECS capacity provider, won't drain the container instances\. You can drain the instances manually, or build an Auto Scaling group lifecycle hook to set the instance status to `DRAINING`\. See [Amazon EC2 Auto Scaling lifecycle hooks](https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html) for more information about Auto Scaling lifecycle hooks\.
+ You can drain the instances manually, or build an Auto Scaling group lifecycle hook to set the instance status to `DRAINING`\. See [Amazon EC2 Auto Scaling lifecycle hooks](https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html) for more information about Auto Scaling lifecycle hooks\.
 
 ## Check the instance IAM role for your account<a name="check-instance-role"></a>
 

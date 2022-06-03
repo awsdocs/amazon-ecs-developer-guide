@@ -1,6 +1,6 @@
 # Amazon EC2 Windows task definition considerations<a name="windows_task_definitions"></a>
 
-The following list explains which parameters aren't supported for Amazon EC2 Windows task definitions:
+The following parameters aren't supported for Amazon EC2 Windows task definitions:
 + `containerDefinitions`
   + `disableNetworking`
   + `dnsServers`

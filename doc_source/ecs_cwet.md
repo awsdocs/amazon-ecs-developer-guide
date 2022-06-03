@@ -18,7 +18,7 @@ In this procedure, you create a simple Lambda function to serve as a target for 
 
    1. For **Name**, enter a value\. 
 
-   1. For **Runtime**, choose **Python 2\.7**\.
+   1. For **Runtime**, choose your version of Python, for example, **Python 3\.9**\.
 
    1. For **Role**, choose **Create a new role with basic Lambda permissions**\.
 
@@ -37,7 +37,7 @@ In this procedure, you create a simple Lambda function to serve as a target for 
        print(json.dumps(event))
    ```
 
-   This is a simple Python 2\.7 function that prints the event sent by Amazon ECS\. If everything is configured correctly, at the end of this tutorial, you see that the event details appear in the CloudWatch Logs log stream associated with this Lambda function\.
+   This is a simple Python 3\.9 function that prints the event sent by Amazon ECS\. If everything is configured correctly, at the end of this tutorial, you see that the event details appear in the CloudWatch Logs log stream associated with this Lambda function\.
 
 1. Choose **Save**\.
 

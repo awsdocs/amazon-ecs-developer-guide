@@ -19,6 +19,7 @@ To create an empty Auto Scaling group, set the desired count to zero\. After you
 + An Auto Scaling group must have a `MaxSize` greater than zero to scale out\.
 + If the Auto Scaling group is unable to scale out to accommodate the number of tasks run, the tasks will fail to transition beyond the `PROVISIONING` state\.
 + When you use managed termination protection, you must also use managed scaling otherwise managed termination protection won't work\.
-+ When using managed scaling, the Auto Scaling group shouldn't have any scaling policies attached to it other than the ones Amazon ECS creates, otherwise the Amazon ECS created scaling plans will receive an `ActiveWithProblems` error\. For more information, see [Avoiding the ActiveWithProblems error](https://docs.aws.amazon.com/autoscaling/plans/userguide/gs-best-practices.html#gs-activewithproblems) in the *AWS Auto Scaling User Guide*\.
++ When managed scaling is turned on, the Auto Scaling group capacity provider creates a scaling policy resource to manage scaling of your Auto Scaling group\. You can identify these resources by the `ECSManaged` prefix\. 
++ Do not modify the scaling policy resource associated with your Auto Scaling groups that are managed by capacity providers\. 
 + You can add a warm pool to your Auto Scaling group\. A warm pool is a group of pre\-initialized Amazon ECS instances that are ready to be included in the cluster whenever your application needs to scale out\. For more information about warm pools, see [Using a warm pool for your Auto Scaling group](asg-capacity-providers-create-auto-scaling-group.md#using-warm-pool) 
 + The Auto Scaling group can't have instance weighting settings\. Instance weighting isn't supported when used with an Amazon ECS capacity provider\.
