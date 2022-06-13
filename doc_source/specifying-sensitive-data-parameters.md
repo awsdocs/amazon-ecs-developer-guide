@@ -34,7 +34,7 @@ To use this feature, you must have the Amazon ECS task execution role and refere
 For tasks that use the EC2 launch type, you must use the ECS agent configuration variable `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE=true` to use this feature\. You can add it to the `./etc/ecs/ecs.config` file during container instance creation or you can add it to an existing instance and then restart the ECS agent\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 To provide access to the AWS Systems Manager Parameter Store parameters that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
-+ `ssm:GetParameters`—Required if you are referencing a Systems Manager Parameter Store parameter in a task definition\.
++ `ssm:GetParameter`—Required if you are referencing a Systems Manager Parameter Store parameter in a task definition\.
 + `secretsmanager:GetSecretValue`—Required if you are referencing a Secrets Manager secret either directly or if your Systems Manager Parameter Store parameter is referencing a Secrets Manager secret in a task definition\.
 + `kms:Decrypt`—Required only if your secret uses a custom KMS key and not the default key\. The ARN for your custom key should be added as a resource\.
 
@@ -47,7 +47,7 @@ The following example inline policy adds the required permissions:
     {
       "Effect": "Allow",
       "Action": [
-        "ssm:GetParameters",
+        "ssm:GetParameter",
         "secretsmanager:GetSecretValue",
         "kms:Decrypt"
       ],
