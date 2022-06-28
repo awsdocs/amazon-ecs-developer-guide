@@ -2,6 +2,8 @@
 
 You can monitor your Amazon ECS resources using Amazon CloudWatch, which collects and processes raw data from Amazon ECS into readable, near real\-time metrics\. These statistics are recorded for a period of two weeks so that you can access historical information and gain a better perspective on how your clusters or services are performing\. Amazon ECS metric data is automatically sent to CloudWatch in 1\-minute periods\. For more information about CloudWatch, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\.
 
+Amazon ECS collects metrics for clusters and services\. You must enable Amazon ECS CloudWatch Container Insights for per\-task metrics, including CPU and memory utilization\. For more information about Container Insights, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
+
 **Topics**
 + [Enabling CloudWatch metrics](#enable_cloudwatch)
 + [Available metrics and dimensions](#available_cloudwatch_metrics)
@@ -33,7 +35,7 @@ The following sections list the metrics and dimensions that Amazon ECS sends to 
 
 Amazon ECS provides metrics for you to monitor your resources\. You can measure the CPU and memory reservation and utilization across your cluster as a whole, and the CPU and memory utilization on the services in your clusters\. For your GPU workloads, you can measure your GPU reservation across your cluster\.
 
-The metrics made available will depend on the launch type of the tasks and services in your clusters\. If you're using the Fargate launch type for your services, CPU and memory utilization metrics are provided to assist in the monitoring of your services\. For the EC2 launch type, you will own and need to monitor the Amazon EC2 instances that make your underlying infrastructure\. Accordingly\. additional CPU, memory, and GPU reservation and CPU and memory utilization metrics are made available at the cluster, service, and task level\.
+The metrics made available will depend on the launch type of the tasks and services in your clusters\. If you're using the Fargate launch type for your services, CPU and memory utilization metrics are provided to assist in the monitoring of your services\. For the EC2 launch type, Amazon ECS provides CPU, memory, and GPU reservation and CPU and memory utilization metrics at the cluster and service level\. You need to monitor the Amazon EC2 instances that make your underlying infrastructure separately\.
 
 Amazon ECS sends the following metrics to CloudWatch every minute\. When Amazon ECS collects metrics, it collects multiple data points every minute\. It then aggregates them to one data point before sending the data to CloudWatch\. So in CloudWatch, one sample count is actually the aggregate of multiple data points during one minute\.
 
@@ -174,7 +176,17 @@ In this example, the CPU utilization will only go above 100% when the CPU units 
 
 ## Service `RUNNING` task count<a name="cw_running_task_count"></a>
 
-You can use CloudWatch metrics to view the number of tasks in your services that are in the `RUNNING` state\. For example, you can set a CloudWatch alarm for this metric to alert you if the number of running tasks in your service falls below a specified value\. 
+You can use CloudWatch metrics to view the number of tasks in your services that are in the `RUNNING` state\. For example, you can set a CloudWatch alarm for this metric to alert you if the number of running tasks in your service falls below a specified value\.
+
+### Service `RUNNING` task count in Amazon ECS CloudWatch Container Insights<a name="cw_running_task_count_cwci"></a>
+
+A "Number of Running Tasks" \(`RunningTaskCount`\) metric is available per cluster and per service when you use Amazon ECS CloudWatch Container Insights\. You can use Container Insights for all new clusters created by opting in to the `containerInsights` account setting, on individual clusters by enabling it using the cluster settings during cluster creation, or on existing clusters by using the UpdateClusterSettings API\. Metrics collected by CloudWatch Container Insights are charged as custom metrics\. For more information about CloudWatch pricing, see [CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.
+
+To view this metric, see [Amazon ECS Container Insights Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-view-metrics.html) in the *Amazon CloudWatch User Guide*\.
+
+### Service `RUNNING` task count from Amazon ECS provided metrics<a name="cw_running_task_count_provided"></a>
+
+However Amazon ECS provides monitoring metrics at no additional cost\. To use these metrics to count the running tasks, follow the steps below in the CloudWatch console\.
 
 **To view the number of running tasks in a service**
 
@@ -186,7 +198,7 @@ You can use CloudWatch metrics to view the number of tasks in your services that
 
 1. Choose **ClusterName**, **ServiceName** and then choose any metric \(either `CPUUtilization` or `MemoryUtilization`\) that corresponds to the service to view running tasks in\.
 
-1. On the **Graphed metrics** tab, change **Period** to **1 Minute** and **Statistic** to **Sample Count**\.
+1. On the q**Graphed metrics** tab, change **Period** to **1 Minute** and **Statistic** to **Sample Count**\.
 
    The value displayed in the graph indicates the number of `RUNNING` tasks in the service\.  
 ![\[Cluster metrics view\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/running-task-count.png)

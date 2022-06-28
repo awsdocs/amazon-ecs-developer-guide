@@ -1,6 +1,6 @@
 # Bind mounts<a name="bind-mounts"></a>
 
-With bind mounts, a file or directory on a host, such as an Amazon EC2 instance or AWS Fargate, is mounted into a container\. Bind mounts are supported for tasks hosted on both Fargate and Amazon EC2 instances\. By default, bind mounts are tied to the lifecycle of the container using them\. Once all containers using a bind mount are stopped, for example when a task is stopped, the data is removed\. For tasks hosted on Amazon EC2 instances, the data can be tied to the lifecycle of the host Amazon EC2 instance by specifying a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/) in the Docker documentation\.
+With bind mounts, a file or directory on a host, such as an Amazon EC2 instance or AWS Fargate, is mounted into a container\. Bind mounts are supported for tasks that are hosted on both Fargate and Amazon EC2 instances\. By default, bind mounts are tied to the lifecycle of the container that uses them\. After all of the containers that use a bind mount are stopped, such as when a task is stopped, the data is removed\. For tasks that are hosted on Amazon EC2 instances, the data can be tied to the lifecycle of the host Amazon EC2 instance by specifying a `host` and optional `sourcePath` value in your task definition\. For more information, see [Using bind mounts](https://docs.docker.com/storage/bind-mounts/) in the Docker documentation\.
 
 The following are common use cases for bind mounts\.
 + To provide an empty data volume to mount in one or more containers\.
@@ -10,9 +10,9 @@ The following are common use cases for bind mounts\.
 
 ## Considerations when using bind mounts<a name="bind-mount-considerations"></a>
 
-When using bind mounts, the following should be considered\.
-+ For tasks hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` or later \(Windows\), by default they receive a minimum of 20 GiB of ephemeral storage for bind mounts\. The total amount of ephemeral storage can be increased to a maximum of 200 GiB by specifying the `ephemeralStorage` object in your task definition\.
-+ To expose files from a Dockerfile to a data volume when a task is run, the Amazon ECS data plane looks for a `VOLUME` directive\. If the absolute path specified in the `VOLUME` directive is the same as the `containerPath` specified in the task definition, the data in the `VOLUME` directive path is copied to the data volume\. In the following Dockerfile example, a file named `examplefile` in the `/var/log/exported` directory is written to the host and then mounted inside the container\.
+When using bind mounts, consider the following\.
++ For tasks that are hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` or later \(Windows\), by default they receive a minimum of 20 GiB of ephemeral storage for bind mounts\. The total amount of ephemeral storage can be increased to a maximum of 200 GiB by specifying the `ephemeralStorage` object in your task definition\.
++ To expose files from a Dockerfile to a data volume when a task is run, the Amazon ECS data plane looks for a `VOLUME` directive\. If the absolute path that's specified in the `VOLUME` directive is the same as the `containerPath` that's specified in the task definition, the data in the `VOLUME` directive path is copied to the data volume\. In the following Dockerfile example, a file that's named `examplefile` in the `/var/log/exported` directory is written to the host and then mounted inside the container\.
 
   ```
   FROM public.ecr.aws/amazonlinux/amazonlinux:latest
@@ -21,7 +21,7 @@ When using bind mounts, the following should be considered\.
   VOLUME ["/var/log/exported"]
   ```
 
-  By default, the volume permissions are set to `0755` and the owner as `root`\. These permissions can be customized in the Dockerfile\. The following example defines the owner of the directory as `node`\.
+  By default, the volume permissions are set to `0755` and the owner as `root`\. You can customize these permissions in the Dockerfile\. The following example defines the owner of the directory as `node`\.
 
   ```
   FROM public.ecr.aws/amazonlinux/amazonlinux:latest
@@ -32,11 +32,11 @@ When using bind mounts, the following should be considered\.
   USER node
   VOLUME ["/var/log/exported"]
   ```
-+ For tasks hosted on Amazon EC2 instances, when a `host` and `sourcePath` value are not specified, the Docker daemon manages the bind mount for you\. When no containers reference this bind mount, the Amazon ECS container agent task cleanup service eventually deletes it \(by default, this happens 3 hours after the container exits, but you can configure this duration with the `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` agent variable\)\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\. If you need this data to persist beyond the lifecycle of the container, specify a `sourcePath` value for the bind mount\.
++ For tasks that are hosted on Amazon EC2 instances, when a `host` and `sourcePath` value aren't specified, the Docker daemon manages the bind mount for you\. When no containers reference this bind mount, the Amazon ECS container agent task cleanup service eventually deletes it\. By default, this happens three hours after the container exits\. However, you can configure this duration with the `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` agent variable\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\. If you need this data to persist beyond the lifecycle of the container, specify a `sourcePath` value for the bind mount\.
 
 ## Specifying a bind mount in your task definition<a name="specify-volume-config"></a>
 
-For Amazon ECS tasks hosted on either Fargate or Amazon EC2 instances, the following task definition JSON snippet shows the syntax for the `volumes`, `mountPoints`, and `ephemeralStorage` objects for a task definition\.
+For Amazon ECS tasks that are hosted on either Fargate or Amazon EC2 instances, the following task definition JSON snippet shows the syntax for the `volumes`, `mountPoints`, and `ephemeralStorage` objects for a task definition\.
 
 ```
 {
@@ -65,7 +65,7 @@ For Amazon ECS tasks hosted on either Fargate or Amazon EC2 instances, the follo
 }
 ```
 
-For Amazon ECS tasks hosted on Amazon EC2 instances, you can use the optional `host` parameter and a `sourcePath` when specifying the task volume details, which when specified ties the bind mount to the lifecycle of the task rather than the container\.
+For Amazon ECS tasks that are hosted on Amazon EC2 instances, you can use the optional `host` parameter and a `sourcePath` when specifying the task volume details\. When it's specified, it ties the bind mount to the lifecycle of the task rather than the container\.
 
 ```
 "volumes" : [
@@ -126,7 +126,7 @@ The following examples cover the most common use cases for using a bind mount fo
 
 **To allocate an increased amount of ephemeral storage space for a Fargate task**
 
-For Amazon ECS tasks hosted on Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` \(Windows\), you can allocate more than the default amount of ephemeral storage for the containers in your task to use\. This example can be incorporated into the other examples to allocate more ephemeral storage for your Fargate tasks\.
+For Amazon ECS tasks that are hosted on Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` \(Windows\), you can allocate more than the default amount of ephemeral storage for the containers in your task to use\. This example can be incorporated into the other examples to allocate more ephemeral storage for your Fargate tasks\.
 + In the task definition, define an `ephemeralStorage` object\. The `sizeInGiB` must be an integer between the values of `21` and `200` and is expressed in GiB\.
 
   ```
@@ -137,7 +137,7 @@ For Amazon ECS tasks hosted on Fargate using platform version `1.4.0` or later \
 
 **To provide an empty data volume for one or more containers**
 
-In some cases, you want to provide the containers in a task some scratch space\. For example, you may have two database containers that need to access the same scratch file storage location during a task\. This can be achieved using a bind mount\.
+In some cases, you want to provide the containers in a task some scratch space\. For example, you might have two database containers that need to access the same scratch file storage location during a task\. This can be achieved using a bind mount\.
 
 1. In the task definition `volumes` section, define a bind mount with the name `database_scratch`\.
 
@@ -149,7 +149,7 @@ In some cases, you want to provide the containers in a task some scratch space\.
      ]
    ```
 
-1. In the `containerDefinitions` section, create the database container definitions so that they mount the volume\.
+1. In the `containerDefinitions` section, create the database container definitions\. This is so that they mount the volume\.
 
    ```
    "containerDefinitions": [
@@ -184,9 +184,9 @@ In some cases, you want to provide the containers in a task some scratch space\.
 
 **To expose a path and its contents in a Dockerfile to a container**
 
-In this example, you have a Dockerfile that writes data that you want to mount inside a container\. This example works for tasks hosted on Fargate or Amazon EC2 instances\.
+In this example, you have a Dockerfile that writes data that you want to mount inside a container\. This example works for tasks that are hosted on Fargate or Amazon EC2 instances\.
 
-1. Create a Dockerfile\. The following example uses the public Amazon Linux 2 container image and creates a file named `examplefile` in the `/var/log/exported` directory that we want to mount inside the container\. The `VOLUME` directive should specify an absolute path\.
+1. Create a Dockerfile\. The following example uses the public Amazon Linux 2 container image and creates a file that's named `examplefile` in the `/var/log/exported` directory that we want to mount inside the container\. The `VOLUME` directive should specify an absolute path\.
 
    ```
    FROM public.ecr.aws/amazonlinux/amazonlinux:latest
@@ -217,7 +217,7 @@ In this example, you have a Dockerfile that writes data that you want to mount i
      ]
    ```
 
-1. In the `containerDefinitions` section, create the application container definitions so they mount the storage\. The `containerPath` value must match the absolute path specified in the `VOLUME` directive from the Dockerfile\.
+1. In the `containerDefinitions` section, create the application container definitions\. This is so they mount the storage\. The `containerPath` value must match the absolute path that's specified in the `VOLUME` directive from the Dockerfile\.
 
    ```
      "containerDefinitions": [
@@ -250,11 +250,11 @@ In this example, you have a Dockerfile that writes data that you want to mount i
      ]
    ```
 
-**To provide an empty data volume for a container that is tied to the lifecycle of the host Amazon EC2 instance**
+**To provide an empty data volume for a container that's tied to the lifecycle of the host Amazon EC2 instance**
 
-For tasks hosted on Amazon EC2 instances, you can use bind mounts and have the data tied to the lifecycle of the host Amazon EC2 instance rather than the containers referencing the volume\. This is done by using the `host` parameter and specifying a `sourcePath` value\. Any files that exist at the `sourcePath` are presented to the containers at the `containerPath` value, and any files that are written to the `containerPath` value are written to the `sourcePath` value on the host Amazon EC2 instance\.
+For tasks that are hosted on Amazon EC2 instances, you can use bind mounts and have the data tied to the lifecycle of the host Amazon EC2 instance\. You can do this by using the `host` parameter and specifying a `sourcePath` value\. Any files that exist at the `sourcePath` are presented to the containers at the `containerPath` value\. Any files that are written to the `containerPath` value are written to the `sourcePath` value on the host Amazon EC2 instance\.
 **Important**  
-Amazon ECS doesn't sync your storage across Amazon EC2 instances\. Tasks that use persistent storage can be placed on any Amazon EC2 instance in your cluster that has available capacity\. If your tasks require persistent storage after stopping and restarting, you should always specify the same Amazon EC2 instance at task launch time with the AWS CLI [start\-task](https://docs.aws.amazon.com/cli/latest/reference/ecs/start-task.html) command\. You can also use Amazon EFS volumes for persistent storage\. For more information, see [Amazon EFS volumes](efs-volumes.md)\.
+Amazon ECS doesn't sync your storage across Amazon EC2 instances\. Tasks that use persistent storage can be placed on any Amazon EC2 instance in your cluster that has available capacity\. If your tasks require persistent storage after stopping and restarting, always specify the same Amazon EC2 instance at task launch time with the AWS CLI [start\-task](https://docs.aws.amazon.com/cli/latest/reference/ecs/start-task.html) command\. You can also use Amazon EFS volumes for persistent storage\. For more information, see [Amazon EFS volumes](efs-volumes.md)\.
 
 1. In the task definition `volumes` section, define a bind mount with `name` and `sourcePath` values\. In the following example, the host Amazon EC2 instance contains data at `/ecs/webdata` that you want to mount inside the container\.
 
@@ -297,7 +297,7 @@ Amazon ECS doesn't sync your storage across Amazon EC2 instances\. Tasks that us
 
 **To mount a defined volume on multiple containers at different locations**
 
-You can define a data volume in a task definition and mount that volume at different locations on different containers\. For example, your host container has a website data folder at `/data/webroot`, and you may want to mount that data volume as read\-only on two different web servers that have different document roots\.
+You can define a data volume in a task definition and mount that volume at different locations on different containers\. For example, your host container has a website data folder at `/data/webroot`\. You might want to mount that data volume as read\-only on two different web servers that have different document roots\.
 
 1. In the task definition `volumes` section, define a data volume with the name `webroot` and the source path `/data/webroot`\.
 
@@ -361,18 +361,18 @@ You can define a data volume in a task definition and mount that volume at diffe
 
 **To mount volumes from another container using `volumesFrom`**
 
-For tasks hosted on Amazon EC2 instances, you can define one or more volumes on a container, and then use the `volumesFrom` parameter in a different container definition \(within the same task\) to mount all of the volumes from the `sourceContainer` at their originally defined mount points\. The `volumesFrom` parameter applies to volumes defined in the task definition, and those that are built into the image with a Dockerfile\.
+For tasks hosted on Amazon EC2 instances, you can define one or more volumes on a container, and then use the `volumesFrom` parameter in a different container definition within the same task to mount all of the volumes from the `sourceContainer` at their originally defined mount points\. The `volumesFrom` parameter applies to volumes defined in the task definition, and those that are built into the image with a Dockerfile\.
 
-1. \(Optional\) To share a volume that is built into an image, you need to build the image with the volume declared in a `VOLUME` instruction\. The following example Dockerfile uses an `httpd` image and then adds a volume and mounts it at `dockerfile_volume` in the Apache document root \(which is the folder used by the `httpd` web server\):
+1. \(Optional\) To share a volume that is built into an image, use the `VOLUME` instruction in the Dockerfile\. The following example Dockerfile uses an `httpd` image, and then adds a volume and mounts it at `dockerfile_volume` in the Apache document root\. It is the folder used by the `httpd` web server\.
 
    ```
    FROM httpd
    VOLUME ["/usr/local/apache2/htdocs/dockerfile_volume"]
    ```
 
-   You can build an image with this Dockerfile and push it to a repository, such as Docker Hub, and use it in your task definition\. The example `my-repo/httpd_dockerfile_volume` image used in the following steps was built with the above Dockerfile\.
+   You can build an image with this Dockerfile and push it to a repository, such as Docker Hub, and use it in your task definition\. The example `my-repo/httpd_dockerfile_volume` image that's used in the following steps was built with the above Dockerfile\.
 
-1. Create a task definition that defines your other volumes and mount points for the containers\. In this example `volumes` section, you create an empty volume called `empty`, which the Docker daemon manages\. There is also a host volume defined called `host_etc`, which exports the `/etc` folder on the host container instance\.
+1. Create a task definition that defines your other volumes and mount points for the containers\. In this example `volumes` section, you create an empty volume called `empty`, which the Docker daemon manages\. There's also a host volume defined that's called `host_etc`\. It exports the `/etc` folder on the host container instance\.
 
    ```
    {
@@ -391,7 +391,7 @@ For tasks hosted on Amazon EC2 instances, you can define one or more volumes on 
      ],
    ```
 
-   In the container definitions section, create a container that mounts the volumes defined earlier\. In this example, the `web` container \(which uses the image built with a volume in the Dockerfile\) mounts the `empty` and `host_etc` volumes\.
+   In the container definitions section, create a container that mounts the volumes defined earlier\. In this example, the `web` container mounts the `empty` and `host_etc` volumes\. This is the container that uses the image built with a volume in the Dockerfile\.
 
    ```
    "containerDefinitions": [
@@ -420,7 +420,7 @@ For tasks hosted on Amazon EC2 instances, you can define one or more volumes on 
        },
    ```
 
-   Create another container that uses `volumesFrom` to mount all of the volumes that are associated with the `web` container\. All of the volumes on the `web` container are likewise mounted on the `busybox` container \(including the volume specified in the Dockerfile that was used to build the `my-repo/httpd_dockerfile_volume` image\)\.
+   Create another container that uses `volumesFrom` to mount all of the volumes that are associated with the `web` container\. All of the volumes on the `web` container are likewise mounted on the `busybox` container\. This includes the volume that's specified in the Dockerfile that was used to build the `my-repo/httpd_dockerfile_volume` image\.
 
    ```
        {
@@ -446,6 +446,6 @@ For tasks hosted on Amazon EC2 instances, you can define one or more volumes on 
    }
    ```
 
-   When this task is run, the two containers mount the volumes, and the `command` in the `busybox` container writes the date and time to a file called `date` in each of the volume folders\. The folders are then visible at the website displayed by the `web` container\.
+   When this task is run, the two containers mount the volumes, and the `command` in the `busybox` container writes the date and time to a file\. This file is called `date` in each of the volume folders\. The folders are then visible at the website displayed by the `web` container\.
 **Note**  
 Because the `busybox` container runs a quick command and then exits, it must be set as `"essential": false` in the container definition\. Otherwise, it stops the entire task when it exits\.

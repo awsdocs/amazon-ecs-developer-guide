@@ -1,7 +1,7 @@
 # Elastic network interface trunking<a name="container-instance-eni"></a>
 
 **Note**  
-This feature is not available on Windows containers on Fargate\.
+This feature is not available on Fargate\.
 
 Each Amazon ECS task that uses the `awsvpc` network mode receives its own elastic network interface \(ENI\), which is attached to the container instance that hosts it\. There is a default limit to the number of network interfaces that can be attached to an Amazon EC2 instance, and the primary network interface counts as one\. For example, by default a `c5.large` instance may have up to three ENIs attached to it\. The primary network interface for the instance counts as one, so you can attach an additional two ENIs to the instance\. Because each task using the `awsvpc` network mode requires an ENI, you can typically only run two such tasks on this instance type\.
 

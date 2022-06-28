@@ -4,18 +4,18 @@ When using Docker volumes, the built\-in `local` driver or a third\-party volume
 
 To use Docker volumes, specify a `dockerVolumeConfiguration` in your task definition\. For more information, see [Using Volumes](https://docs.docker.com/storage/volumes/)\.
 
-Some common use cases for Docker volumes are:
+Some common use cases for Docker volumes are the following:
 + To provide persistent data volumes for use with containers
 + To share a defined data volume at different locations on different containers on the same container instance
 + To define an empty, nonpersistent data volume and mount it on multiple containers within the same task
-+ To provide a data volume to your task that is managed by a third\-party driver
++ To provide a data volume to your task that's managed by a third\-party driver
 
 ## Docker volume considerations<a name="docker-volume-considerations"></a>
 
-The following should be considered when using Docker volumes:
+Consider the following when using Docker volumes:
 + Docker volumes are only supported when using the EC2 launch type or external instances\.
 + Windows containers only support the use of the `local` driver\.
-+ If a third\-party driver is used, it should be installed and active on the container instance prior to the container agent starting\. If the third\-party driver isn't active prior to the agent starting, you can restart the container agent using one of the following commands:
++ If a third\-party driver is used, make sure it's installed and active on the container instance before the container agent is started\. If the third\-party driver isn't active before the agent is started, you can restart the container agent using one of the following commands:
   + For the Amazon ECS\-optimized Amazon Linux 2 AMI:
 
     ```
@@ -31,7 +31,7 @@ The following should be considered when using Docker volumes:
 
 Before your containers can use data volumes, you must specify the volume and mount point configurations in your task definition\. This section describes the volume configuration for a container\. For tasks that use a Docker volume, specify a `dockerVolumeConfiguration`\. For tasks that use a bind mount host volume, specify a `host` and optional `sourcePath`\.
 
-The task definition JSON shown below shows the syntax for the `volumes` and `mountPoints` objects for a container\.
+The following task definition JSON shows the syntax for the `volumes` and `mountPoints` objects for a container\.
 
 ```
 {
@@ -118,11 +118,11 @@ If this value is `true`, the container has read\-only access to the volume\. If 
 
 ## Examples<a name="docker-volume-examples"></a>
 
-The following are examples showing the use of Docker volumes\.
+The following are examples that show the use of Docker volumes\.
 
 **To provide nonpersistent storage for a container using a Docker volume**
 
-In this example, you want a container to use an empty data volume that you aren't interested in keeping after the task has finished\. For example, you may have a container that needs to access some scratch file storage location during a task\. This task can be achieved using a Docker volume\.
+In this example, a container uses an empty data volume that is disposed of after the task is finished\. One example use case is that you might have a container that needs to access some scratch file storage location during a task\. This task can be achieved using a Docker volume\.
 
 1. In the task definition `volumes` section, define a data volume with `name` and `DockerVolumeConfiguration` values\. In this example, we specify the scope as `task` so the volume is deleted after the task stops and use the built\-in `local` driver\.
 
@@ -159,9 +159,9 @@ In this example, you want a container to use an empty data volume that you aren'
 
 **To provide persistent storage for a container using a Docker volume**
 
-In this example, you want a shared volume for multiple containers to use and you want it to persist after any single task using it has stopped\. The built\-in `local` driver is being used so the volume is still tied to the lifecycle of the container instance\.
+In this example, you want a shared volume for multiple containers to use and you want it to persist after any single task that use it stopped\. The built\-in `local` driver is being used\. This is so the volume is still tied to the lifecycle of the container instance\.
 
-1. In the task definition `volumes` section, define a data volume with `name` and `DockerVolumeConfiguration` values\. In this example, specify a `shared` scope so the volume persists, set autoprovision to `true` so that the volume is created for use, and use the built\-in `local` driver\.
+1. In the task definition `volumes` section, define a data volume with `name` and `DockerVolumeConfiguration` values\. In this example, specify a `shared` scope so the volume persists, set autoprovision to `true`\. This is so that the volume is created for use\. Then, also use the built\-in `local` driver\.
 
    ```
    "volumes": [

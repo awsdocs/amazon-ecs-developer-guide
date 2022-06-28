@@ -1,15 +1,15 @@
 # Working with 64\-bit ARM workloads on Amazon ECS<a name="ecs-arm64"></a>
 
-Amazon ECS supports using 64\-bit ARM applications\. You can run your applications on the platform powered by [AWS Graviton2](http://aws.amazon.com/ec2/graviton/) processors,which is suitable for a wide variety of workloads, including application servers, micro\-services, high\-performance computing, CPU\-based machine learning inference, video encoding, electronic design automation, gaming, open\-source databases, and in\-memory caches\.
+Amazon ECS supports using 64\-bit ARM applications\. You can run your applications on the platform that's powered by [AWS Graviton2](http://aws.amazon.com/ec2/graviton/) processors,\. It's suitable for a wide variety of workloads\. This includes workloads such as application servers, micro\-services, high\-performance computing, CPU\-based machine learning inference, video encoding, electronic design automation, gaming, open\-source databases, and in\-memory caches\.
 
 ## Considerations<a name="ecs-arm64-considerations"></a>
 
-Before you begin deploying task definitions which use the 64\-bit ARM architecture, be aware of the following considerations:
+Before you begin deploying task definitions that use the 64\-bit ARM architecture, consider the following:
 + The applications can use the Fargate or EC2 launch types\.
 + The applications can only use the Linux operating system\.
 + For the Fargate type, the applications must use Fargate platform version `1.4.0` or later \.
 + The applications can use Fluent Bit or CloudWatch for monitoring\.
-+ For the Fargate launch type, the following Regions do not support 64\-bit ARM workloads:
++ For the Fargate launch type, the following AWS Regions do not support 64\-bit ARM workloads:
   + US East \(N\. Virginia\) , the `use1-az3` Availability Zone
   + China \(Beijing\)
   + China \(Ningxia\)
@@ -17,8 +17,8 @@ Before you begin deploying task definitions which use the 64\-bit ARM architectu
   + Middle East \(Bahrain\)
   + AWS GovCloud \(US\-East\)
   + AWS GovCloud \(US\-West\)
-  + In Asia Pacific \(Osaka\), the `apne3-az2` and `apne3-az3` Availability Zones
-+  For the Amazon EC2 launch type, see the following to verify that your Region supports the instance type you want to use:
+  + In Asia Pacific \(Osaka\), specifically the `apne3-az2` and `apne3-az3` Availability Zones only
++  For the Amazon EC2 launch type, see the following to verify that the Region that you're in supports the instance type you want to use:
   + [Amazon EC2 M6g Instances](https://aws.amazon.com/ec2/instance-types/m6)
   +  [Amazon EC2 T4g Instances](http://aws.amazon.com/ec2/instance-types/t4/)
   +  [Amazon EC2 C6g Instances](http://aws.amazon.com/ec2/instance-types/c6g/)
@@ -31,7 +31,7 @@ Before you begin deploying task definitions which use the 64\-bit ARM architectu
   aws ec2 describe-instance-type-offerings --filters Name=instance-type,Values=instance-type --region region
   ```
 
-  The following example checks for the M6 instance type availability in the us\-east\-1 Region\.
+  The following example checks for the M6 instance type availability in the US East \(N\. Virginia\) \(us\-east\-1\) Region\.
 
   ```
   aws ec2 describe-instance-type-offerings --filters Name=instance-type,Values=M6 --region us-east-1
@@ -41,9 +41,9 @@ Before you begin deploying task definitions which use the 64\-bit ARM architectu
 
 ## Specifying the ARM architecture in your task definition<a name="ecs-arm-specifying"></a>
 
-To take advantage of the ARM architecture, specify `ARM64` for the `cpuArchitecture` task definition parameter\. 
+To use the ARM architecture, specify `ARM64` for the `cpuArchitecture` task definition parameter\. 
 
-The following shows the JSON format for the ARM architecture in a task definition:
+In the following example, the ARM architecture is specified in a task definition\. It's in JSON format\.
 
 ```
 {
@@ -55,7 +55,7 @@ The following shows the JSON format for the ARM architecture in a task definitio
 }
 ```
 
-The following example is a task definition for the ARM architecture that displays "hello world"\.
+In the following example, a task definition for the ARM architecture displays "hello world\."
 
 ```
 {
@@ -83,9 +83,9 @@ The following example is a task definition for the ARM architecture that display
 }
 ```
 
-## Interfaces for Configuring ARM<a name="Interfaces"></a>
+## Interfaces for configuring ARM<a name="Interfaces"></a>
 
-You can configure the ARM CPU architecture for Amazon ECS task definitions using any of the following interfaces:
+You can configure the ARM CPU architecture for Amazon ECS task definitions using one of the following interfaces:
 + New Amazon ECS console 
 + AWS Command Line Interface \(AWS CLI\) 
 + AWS SDKs 

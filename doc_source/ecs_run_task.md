@@ -4,6 +4,9 @@ We recommend that you deploy your application as a standalone task in some situa
 
 To deploy your application to run continually or to place it behind a load balancer, create an Amazon ECS service\. For more information, see [Amazon ECS services](ecs_services.md)\.
 
+------
+#### [ Classic console ]
+
 To run a standalone task using the classic console
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
@@ -62,15 +65,14 @@ If you intend to use the parameter values from your task definition, you don't n
         /bin/sh,-c,echo,$DATE
         ```
 
-        If your container definition specifies an `ENTRYPOINT` \(such as sh,\-c\), the format is an unquoted string\. This string is surrounded with double quotation marks \(" "\) and passed as an argument to the `ENTRYPOINT` command\.
+        If your container definition specifies an `ENTRYPOINT` \(such as sh,\-c\), enter a string value for your environment value \(without the surrounding double quotation marks \(`" "`\)\)\. AWS surrounds the strings with double quotation marks \(" "\) and passes the string as an argument to the `ENTRYPOINT` command\.
 
         ```
         while true; do echo $DATE > /var/www/html/index.html; sleep 1; done
         ```
-      + **For environment variable overrides:** Choose **Add Environment Variable**\. For **Key**, enter the name of your environment variable\. For **Value**, enter a string value for your environment value \(without the surrounding double quotation marks \(`" "`\)\)\.  
-![\[Environment variable override\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/env_var.png)
+      + **For environment variable overrides:** Choose **Add Environment Variable**\. For **Key**, enter the name of your environment variable\. For **Value**, enter a string value for your environment value \(without the surrounding double quotation marks \(`" "`\)\)\.
 
-        This environment variable override is sent to the container in the following format:
+        AWS surrounds the strings with double quotation marks \(" "\) and passes the string to the container in the following format:
 
         ```
         MY_ENV_VAR="This variable contains a string."
@@ -91,3 +93,10 @@ If you specify a tag with the same `key` in the **Tags** section, it will overri
 1. Review your task information and choose **Run Task**\.
 **Note**  
 If your task moves from the `PENDING` to the `STOPPED` status, your task might be stopping because of an error\. This is also the case if it displays a `PENDING` status and then disappears from the listed tasks\. For more information, see [Checking stopped tasks for errors](stopped-task-errors.md) in the troubleshooting section\.
+
+------
+#### [ Command line ]
+
+Use the `run-task` command\. For more information, see [run\-task](https://docs.aws.amazon.com/cli/latest/reference/ecs/run-task.html) in the *AWS Command Line Interface Reference*\. 
+
+------

@@ -1,6 +1,6 @@
 # Specifying sensitive data using Systems Manager Parameter Store<a name="specifying-sensitive-data-parameters"></a>
 
-Amazon ECS enables you to inject sensitive data into your containers by storing your sensitive data in AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\.
+You can use Amazon ECS to inject sensitive data into your containers by storing your sensitive data in AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\.
 
 **Topics**
 + [Considerations for specifying sensitive data using Systems Manager Parameter Store](#secrets--parameterstore-considerations)
@@ -12,12 +12,12 @@ Amazon ECS enables you to inject sensitive data into your containers by storing 
 
 ## Considerations for specifying sensitive data using Systems Manager Parameter Store<a name="secrets--parameterstore-considerations"></a>
 
-The following should be considered when specifying sensitive data for containers using Systems Manager Parameter Store parameters\.
+ Consider the following when specifying sensitive data for containers using Systems Manager Parameter Store parameters\.
 + The Systems Manager Parameter Store parameter must exist in the same account that the tasks are run in\.
 + For tasks hosted on Fargate, this feature requires that your task use platform version `1.3.0` or later \(for Linux\) or `1.0.0` or later \(for Windows\)\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
-+ For tasks hosted on EC2 instances, this feature requires that your container instance have version `1.22.0` or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
-+ Sensitive data is injected into your container when the container is initially started\. If the secret or Parameter Store parameter is subsequently updated or rotated, the container will not receive the updated value automatically\. You must either launch a new task or if your task is part of a service you can update the service and use the **Force new deployment** option to force the service to launch a fresh task\.
-+ For Windows tasks that are configured to use the `awslogs` logging driver, you must also set the `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE` environment variable on your container instance\. This can be done with User Data using the following syntax:
++ For tasks hosted on EC2 instances, this feature requires that your container instance have version `1.22.0` or later of the container agent\. However, we recommend using the latest container agent version\. For information about how to check your agent version and update to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
++ Sensitive data is injected into your container when the container is initially started\. If the secret or Parameter Store parameter is subsequently updated or rotated, the container doesn't receive the updated value automatically\. You must either launch a new task or if your task is part of a service you can update the service and use the **Force new deployment** option to force the service to launch a fresh task\.
++ For Windows tasks that are configured to use the `awslogs` logging driver, you must also set the `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE` environment variable on your container instance\. You can do this with User Data using the following syntax:
 
   ```
   <powershell>
@@ -31,12 +31,12 @@ The following should be considered when specifying sensitive data for containers
 To use this feature, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary AWS Systems Manager resources\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 **Important**  
-For tasks that use the EC2 launch type, you must use the ECS agent configuration variable `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE=true` to use this feature\. You can add it to the `./etc/ecs/ecs.config` file during container instance creation or you can add it to an existing instance and then restart the ECS agent\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
+For tasks that use the EC2 launch type, you must use the ECS agent configuration variable `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE=true` to use this feature\. You can add it to the `./etc/ecs/ecs.config` file to a new or an existing container instance\. If you add it to an existing container instance, make sure to restart the ECS agent afterwards\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 To provide access to the AWS Systems Manager Parameter Store parameters that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
-+ `ssm:GetParameter`—Required if you are referencing a Systems Manager Parameter Store parameter in a task definition\.
-+ `secretsmanager:GetSecretValue`—Required if you are referencing a Secrets Manager secret either directly or if your Systems Manager Parameter Store parameter is referencing a Secrets Manager secret in a task definition\.
-+ `kms:Decrypt`—Required only if your secret uses a custom KMS key and not the default key\. The ARN for your custom key should be added as a resource\.
++ `ssm:GetParameters`—Required if you're referencing a Systems Manager Parameter Store parameter in a task definition\.
++ `secretsmanager:GetSecretValue`—Required if you're referencing a Secrets Manager secret either directly or if your Systems Manager Parameter Store parameter is referencing a Secrets Manager secret in a task definition\.
++ `kms:Decrypt`—Required only if your secret uses a custom KMS key and not the default key\. The ARN for your custom key must be added as a resource\.
 
 The following example inline policy adds the required permissions:
 
@@ -47,7 +47,7 @@ The following example inline policy adds the required permissions:
     {
       "Effect": "Allow",
       "Action": [
-        "ssm:GetParameter",
+        "ssm:GetParameters",
         "secretsmanager:GetSecretValue",
         "kms:Decrypt"
       ],
@@ -63,9 +63,9 @@ The following example inline policy adds the required permissions:
 
 ## Injecting sensitive data as an environment variable<a name="secrets-envvar-parameters"></a>
 
-Within your container definition, specify `secrets` with the name of the environment variable to set in the container and the full ARN of the Systems Manager Parameter Store parameter containing the sensitive data to present to the container\.
+Within your container definition, specify `secrets` with the name of the environment variable to set in the container and the full Amazon Resource Name \(ARN\) of the Systems Manager Parameter Store parameter that contains the sensitive data to present to the container\.
 
-The following is a snippet of a task definition showing the format when referencing a Systems Manager Parameter Store parameter\. If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the parameter\. If the parameter exists in a different Region, then the full ARN must be specified\.
+The following is a snippet of a task definition that shows the format that's used when referencing a Systems Manager Parameter Store parameter\. If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the parameter\. If the parameter exists in a different Region, then the full ARN must be specified\.
 
 ```
 {
@@ -80,10 +80,10 @@ The following is a snippet of a task definition showing the format when referenc
 
 ## Injecting sensitive data in a log configuration<a name="secrets-logconfig-parameters"></a>
 
-Within your container definition, when specifying a `logConfiguration` you can specify `secretOptions` with the name of the log driver option to set in the container and the full ARN of the Systems Manager Parameter Store parameter containing the sensitive data to present to the container\.
+Within your container definition, when specifying a `logConfiguration`, you can specify `secretOptions` with the name of the log driver option to set in the container and the full Amazon Resource Name \(ARN\) of the Systems Manager Parameter Store parameter that contains the sensitive data to present to the container\.
 
 **Important**  
-If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the parameter\. If the parameter exists in a different Region, then the full ARN must be specified\.
+If the Systems Manager Parameter Store parameter exists in the same AWS Region as the task you are launching, then you can use either the full ARN or name of the parameter\. If the parameter exists in a different Region, then the full ARN must be specified\.
 
 The following is a snippet of a task definition showing the format when referencing a Systems Manager Parameter Store parameter\.
 
@@ -112,15 +112,15 @@ You can use the AWS Systems Manager console to create a Systems Manager Paramete
 
 1. Open the AWS Systems Manager console at [https://console\.aws\.amazon\.com/systems\-manager/](https://console.aws.amazon.com/systems-manager/)\.
 
-1. In the navigation pane, choose **Parameter Store**, **Create parameter**\.
+1. In the navigation pane, choose **Parameter Store** and then **Create parameter**\.
 
-1. For **Name**, type a hierarchy and a parameter name\. For example, type `/test/database_password`\.
+1. For **Name**, enter a hierarchy and a parameter name \(for example, `/test/database_password`\)\.
 
 1. For **Description**, type an optional description\.
 
 1. For **Type**, choose **String**, **StringList**, or **SecureString**\.
 **Note**  
-If you choose **SecureString**, the **KMS key ID** field appears\. If you don't provide a KMS key ID, a KMS key ARN, an alias name, or an alias ARN, then the system uses `alias/aws/ssm`, which is the default KMS key for Systems Manager\. To avoid using this key, choose a custom key\. For more information, see [Use Secure String Parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-about.html) in the *AWS Systems Manager User Guide*\.
+If you choose **SecureString**, the **KMS key ID** field appears\. If you don't provide a KMS key ID, a KMS key ARN, an alias name, or an alias ARN, then the system uses `alias/aws/ssm`\. This is the default KMS key for Systems Manager\. To avoid using this key, choose a custom key\. For more information, see [Use Secure String Parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-about.html) in the *AWS Systems Manager User Guide*\.
 When you create a secure string parameter in the console by using the `key-id` parameter with either a custom KMS key alias name or an alias ARN, you must specify the prefix `alias/` before the alias\. The following is an ARN example:  
 
      ```
@@ -148,13 +148,13 @@ You can use the Amazon ECS console to create a task definition that references a
 
 1. On the **Select launch type compatibility** page, choose the launch type for your tasks and choose **Next step**\.
 **Note**  
-This step only applies to Regions that currently support Amazon ECS using AWS Fargate\. For more information, see [Amazon ECS on AWS Fargate](AWS_Fargate.md)\.
+This step only applies to Regions that support Amazon ECS using AWS Fargate\. For more information, see [Amazon ECS on AWS Fargate](AWS_Fargate.md)\.
 
 1. For **task definition Name**, type a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
 
-1. For **Task execution role**, either select your existing task execution role or choose **Create new role** to have one created for you\. This role authorizes Amazon ECS to pull private images for your task\. For more information, see [Required IAM permissions for private registry authentication](private-auth.md#private-auth-iam)\.
+1. For **Task execution role**, either select your existing task execution role or choose **Create new role**\. The role that's created authorizes Amazon ECS to pull private images for your task\. For more information, see [Required IAM permissions for private registry authentication](private-auth.md#private-auth-iam)\.
 **Important**  
-If the **Task execution role** field does not appear, choose **Configure via JSON** and manually add the `executionRoleArn` field to specify your task execution role\. The following code shows the syntax:  
+If the **Task execution role** field doesn't appear, choose **Configure via JSON** and add the `executionRoleArn` field to specify your task execution role\. The following code shows the syntax:  
 
    ```
    "executionRoleArn": "arn:aws:iam::aws_account_id:role/ecsTaskExecutionRole"
@@ -172,11 +172,11 @@ If the **Task execution role** field does not appear, choose **Configure via JSO
 
    1. For sensitive data to inject as environment variables, under **Environment**, for **Environment variables**, complete the following fields:
 
-      1. For **Key**, enter the name of the environment variable to set in the container\. This corresponds to the `name` field in the `secrets` section of a container definition\.
+      1. For **Key**, enter the name of the environment variable to set in the container\. This corresponds to the `name` field that's in the `secrets` section of a container definition\.
 
-      1. For **Value**, choose **ValueFrom**\. For **Add value**, enter the full ARN of the AWS Systems Manager Parameter Store parameter that contains the data to present to your container as an environment variable\.
+      1. For **Value**, choose **ValueFrom**\. For **Add value**, enter the full Amazon Resource Name \(ARN\) of the AWS Systems Manager Parameter Store parameter that contains the data to present to your container as an environment variable\.
 **Note**  
-If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
+If the Systems Manager Parameter Store parameter exists in the same AWS Region as the task you are launching, you can use either the full ARN or name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
 
    1. For secrets referenced in the log configuration for a container, under **Storage and Logging**, for **Log configuration**, complete the following fields:
 
@@ -186,7 +186,7 @@ If the Systems Manager Parameter Store parameter exists in the same Region as th
 
       1. For **Value**, choose **ValueFrom**\. For **Add value**, enter the name or full ARN of the AWS Systems Manager Parameter Store parameter that contains the data to present to your log configuration as a log option\.
 **Note**  
-If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or the name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
+If the Systems Manager Parameter Store parameter exists in the same AWS Region as the task you are launching, you can use either the full ARN or the name of the secret\. If the parameter exists in a different Region, then the full ARN must be specified\.
 
    1. Fill out the remaining required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
 

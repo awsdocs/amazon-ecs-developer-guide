@@ -1,46 +1,47 @@
 # Concatenate multiline or stack\-trace log messages<a name="firelens-concatanate-multiline"></a>
 
-Beginning with AWS for Fluent Bit version 2\.22\.0, a multiline filter is included\. The multiline filter helps concatenate log messages that originally belong to one context but were split across multiple records or log lines\. Common examples are stack traces or applications that print logs on multiple lines\.
+Beginning with AWS for Fluent Bit version 2\.22\.0, a multiline filter is included\. The multiline filter helps concatenate log messages that originally belong to one context but were split across multiple records or log lines\. For more information on the multiline filter, see the [ Fluent Bit documentation\.](https://docs.fluentbit.io/manual/pipeline/filters/multiline-stacktrace) 
 
-For more information on the multiline filter, see the [ Fluent Bit documentation\.](https://docs.fluentbit.io/manual/pipeline/filters/multiline-stacktrace) 
+Common examples of split log messages are:
++ Stack traces\. Follow the steps below to concatenate messages split by newlines\.
++ Applications that print logs on multiple lines\. Follow the steps below to concatenate messages split by newlines\.
++ Log messages that were split because they were longer than the specified runtime max buffer size\. You can concatenate log messages split by the container runtime by following the example on GitHub: [FireLens Example: Concatenate Partial/Split Container Logs](https://github.com/aws-samples/amazon-ecs-firelens-examples/tree/mainline/examples/fluent-bit/filter-multiline-partial-message-mode)\.
 
- To determine if you need the multiline filter, compare the images of the logs below: 
+Compare the images of the logs below to determine if you need the multiline filter\.
 
 ------
 #### [ Before ]
 
- The following image shows the CloudWatch Logs console with the default log setting with multiple entries for each line in a stack trace\. 
+The following image shows the CloudWatch Logs console with the default log setting with multiple entries for each line in a stack trace\. 
 
 ![\[Shows the CloudWatch Logs console with the default log setting with multiple entries for each line in a stack trace.\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ecs-multiline-filter-before.png)
 
 ------
 #### [ After ]
 
- The following image shows the CloudWatch Logs console with the multiline log setting with a single entry that includes all the lines in a stack trace in the `log` field\. 
+The following image shows the CloudWatch Logs console with the multiline log setting with a single entry that includes all the lines in a stack trace in the `log` field\. 
 
 ![\[Shows the CloudWatch Logs console with the multiline log setting with a single entry that includes all the lines in a stack trace.\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ecs-multiline-filter-after.png)
 
 ------
 
-To parse logs and concatenate lines that belong to the same message, you can either:
+To parse logs and concatenate lines that were split because of newlines, you can use either of these two options\.
 + Create your own parser file that contains the rules to parse and concatenate lines that belong to the same message\.
-
-Or
 + Use a Fluent Bit built\-in parser\. For a list of languages supported by the Fluent Bit built\-in parsers, see [ Fluent Bit documentation\.](https://docs.fluentbit.io/manual/pipeline/filters/multiline-stacktrace)
 
 The following tutorial walks you through the steps for each use case\. The steps show you how to concatenate multilines and send the logs to Amazon CloudWatch\. You can specify a different destination for your logs\.
 
-## Required IAM permissions<a name="w592aac17c43c21c21b1"></a>
+## Required IAM permissions<a name="w598aac17c52c21c19b1"></a>
 
 For each use case you must first make sure you have the necessary IAM permissions for the container agent to pull the container images from Amazon ECR and for the container to route logs to CloudWatch Logs\.
 
- For these permissions, you must have the following roles: 
-+  A task IAM role\. 
-+  An Amazon ECS task execution IAM role\. 
+For these permissions, you must have the following roles: 
++ A task IAM role\. 
++ An Amazon ECS task execution IAM role\. 
 
 **Create the task IAM role**
 
-This task role grants the Firelens log router container the permissions needed to route the logs to the destination\. In this example we are routing the logs to CloudWatch Logs\. To create this role, create a policy with the permissions to create a log stream, log group, and write log events\. Then associate the policy to the role\. 
+This task role grants the FireLens log router container the permissions needed to route the logs to the destination\. In this example we are routing the logs to CloudWatch Logs\. To create this role, create a policy with the permissions to create a log stream, log group, and write log events\. Then associate the policy to the role\. 
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -91,21 +92,21 @@ You must have a task execution role to grant the container agent permission to p
 
 1. If you do not see the `ecsTaskExecutionRole` role, you must create the role\. For information on how to create the role, see [Amazon ECS task execution IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
 
-## Example: Use a parser that you create<a name="w592aac17c43c21c21b3"></a>
+## Example: Use a parser that you create<a name="w598aac17c52c21c19b3"></a>
 
- In this example, you will complete the following steps: 
+In this example, you will complete the following steps: 
 
-1.  Build and upload the image for a Fluent Bit container\. 
+1. Build and upload the image for a Fluent Bit container\. 
 
-1.  Build and upload the image for a demo multiline application that runs, fails, and generates a multiline stack trace\.
+1. Build and upload the image for a demo multiline application that runs, fails, and generates a multiline stack trace\.
 
-1.  Create the task definition and run the task\. 
+1. Create the task definition and run the task\. 
 
-1.  View the logs to verify that messages that span multiple lines appear concatenated\. 
+1. View the logs to verify that messages that span multiple lines appear concatenated\. 
 
 **Build and upload the image for a Fluent Bit container**
 
- This image will include the parser file where you specify the regular expression and a configuration file that references the parser file\. 
+This image will include the parser file where you specify the regular expression and a configuration file that references the parser file\. 
 
 1. Create a folder with the name `FluentBitDockerImage`\. 
 
@@ -135,7 +136,7 @@ You must have a task execution role to grant the container agent permission to p
 
       As you customize your regex pattern, we recommend you use a regular expression editor to test the expression\.
 
-   1.  Save the file as `parsers_multiline.conf`\. 
+   1. Save the file as `parsers_multiline.conf`\. 
 
 1. Within the `FluentBitDockerImage` folder, create a custom configuration file that references the parser file that you created in the previous step\.
 
@@ -158,9 +159,9 @@ You must have a task execution role to grant the container agent permission to p
 **Note**  
 You must use the absolute path of the parser\. 
 
-   1.  Save the file as `extra.conf`\. 
+   1. Save the file as `extra.conf`\. 
 
-1.  Within the `FluentBitDockerImage` folder, create the Dockerfile with the Fluent Bit image and the parser and configuration files that you created\.
+1. Within the `FluentBitDockerImage` folder, create the Dockerfile with the Fluent Bit image and the parser and configuration files that you created\.
 
    1. Paste the following contents in the file:
 
@@ -191,17 +192,17 @@ You can place the parser file and configuration file anywhere in the Docker imag
 
       Where: `fluent-bit-multiline-repo` is the name for the repository and `us-east-1` is the region in this example\. 
 
-       The output gives you the details of the new repository\. 
+      The output gives you the details of the new repository\. 
 
-   1.  Tag your image with the `repositoryUri` value from the previous output: `docker tag fluent-bit-multiline-image repositoryUri` 
+   1. Tag your image with the `repositoryUri` value from the previous output: `docker tag fluent-bit-multiline-image repositoryUri` 
 
-       Example: `docker tag fluent-bit-multiline-image xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/fluent-bit-multiline-repo` 
+      Example: `docker tag fluent-bit-multiline-image xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/fluent-bit-multiline-repo` 
 
    1. Run the docker image to verify it ran correctly: `docker images —filter reference=repositoryUri`
 
       In the output, the repository name changes from fluent\-bit\-multiline\-repo to the `repositoryUri`\.
 
-   1.  Authenticate to Amazon ECR by running the `aws ecr get-login-password` command and specifying the registry ID you want to authenticate to: `aws ecr get-login-password | docker login --username AWS --password-stdin registry ID.dkr.ecr.region.amazonaws.com` 
+   1. Authenticate to Amazon ECR by running the `aws ecr get-login-password` command and specifying the registry ID you want to authenticate to: `aws ecr get-login-password | docker login --username AWS --password-stdin registry ID.dkr.ecr.region.amazonaws.com` 
 
       Example: `ecr get-login-password | docker login --username AWS --password-stdin xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com`
 
@@ -213,9 +214,9 @@ You can place the parser file and configuration file anywhere in the Docker imag
 
 **Build and upload the image for a demo multiline application**
 
- This image will include a Python script file that runs the application and a sample log file\. 
+This image will include a Python script file that runs the application and a sample log file\. 
 
- When you run the task, the application simulates runs, then fails and creates a stack trace\. 
+When you run the task, the application simulates runs, then fails and creates a stack trace\. 
 
 1. Create a folder named `multiline-app`: `mkdir multiline-app` 
 
@@ -247,7 +248,7 @@ You can place the parser file and configuration file anywhere in the Docker imag
 
    1. Save the `main.py` file\.
 
-1.  Create a sample log file\. 
+1. Create a sample log file\. 
 
    1. Within the `multiline-app` folder, create a file and name it `test.log`\.
 
@@ -299,11 +300,11 @@ You can place the parser file and configuration file anywhere in the Docker imag
 
       Where: `multiline-app-repo` is the name for the repository and `us-east-1` is the region in this example\. 
 
-       The output gives you the details of the new repository\. Note the `repositoryUri` value as you will need it in the next steps\. 
+      The output gives you the details of the new repository\. Note the `repositoryUri` value as you will need it in the next steps\. 
 
-   1.  Tag your image with the `repositoryUri` value from the previous output: `docker tag multiline-app-image repositoryUri` 
+   1. Tag your image with the `repositoryUri` value from the previous output: `docker tag multiline-app-image repositoryUri` 
 
-       Example: `docker tag multiline-app-image xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/multiline-app-repo` 
+      Example: `docker tag multiline-app-image xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/multiline-app-repo` 
 
    1. Run the docker image to verify it ran correctly: `docker images —filter reference=repositoryUri`
 
@@ -315,9 +316,9 @@ You can place the parser file and configuration file anywhere in the Docker imag
 
 **Create the task definition and run the task**
 
-1.  Create a task definition file with the file name `multiline-task-definition.json`\. 
+1. Create a task definition file with the file name `multiline-task-definition.json`\. 
 
-1.  Paste the following contents in the `multiline-task-definition.json` file: 
+1. Paste the following contents in the `multiline-task-definition.json` file: 
 
    ```
    {
@@ -384,27 +385,27 @@ You can place the parser file and configuration file anywhere in the Docker imag
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1.  In the navigation pane, choose **Task Definitions** and then choose the `firelens-example-multiline` family because we registered the task definition to this family in the first line of the task definition above\.
+1. In the navigation pane, choose **Task Definitions** and then choose the `firelens-example-multiline` family because we registered the task definition to this family in the first line of the task definition above\.
 
-1.  Choose the latest version\. 
+1. Choose the latest version\. 
 
-1.  Choose the **Actions**, **Run Task**\. 
+1. Choose the **Actions**, **Run Task**\. 
 
-1.  For **Launch type**, choose **Fargate**\. 
+1. For **Launch type**, choose **Fargate**\. 
 
-1.  For **Subnets**, choose the available subnets for your task\. 
+1. For **Subnets**, choose the available subnets for your task\. 
 
-1.  Choose **Run Task**\. 
+1. Choose **Run Task**\. 
 
 **Verify that multiline log messages in Amazon CloudWatch appear concatenated**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1.  From the navigation pane, expand **Logs** and choose **Log groups**\. 
+1. From the navigation pane, expand **Logs** and choose **Log groups**\. 
 
-1.  Choose the `multiline-test/applicatio` log group\. 
+1. Choose the `multiline-test/applicatio` log group\. 
 
-1.  Choose the log\. View messages\. Lines that matched the rules in the parser file are concatenated and appear as a single message\. 
+1. Choose the log\. View messages\. Lines that matched the rules in the parser file are concatenated and appear as a single message\. 
 
    The following log snippet shows lines concatenated in a single Java stack trace event: 
 
@@ -420,7 +421,7 @@ You can place the parser file and configuration file anywhere in the Docker imag
    }
    ```
 
-    The following log snippet shows how the same message appears with just a single line if you run an ECS container that is not configured to concatenate multiline log messages\. 
+   The following log snippet shows how the same message appears with just a single line if you run an ECS container that is not configured to concatenate multiline log messages\. 
 
    ```
    {
@@ -434,21 +435,21 @@ You can place the parser file and configuration file anywhere in the Docker imag
    }
    ```
 
-## Example: Use a Fluent Bit built\-in parser<a name="w592aac17c43c21c21b5"></a>
+## Example: Use a Fluent Bit built\-in parser<a name="w598aac17c52c21c19b5"></a>
 
- In this example, you will complete the following steps: 
+In this example, you will complete the following steps: 
 
-1.  Build and upload the image for a Fluent Bit container\. 
+1. Build and upload the image for a Fluent Bit container\. 
 
-1.  Build and upload the image for a demo multiline application that runs, fails, and generates a multiline stack trace\.
+1. Build and upload the image for a demo multiline application that runs, fails, and generates a multiline stack trace\.
 
-1.  Create the task definition and run the task\. 
+1. Create the task definition and run the task\. 
 
-1.  View the logs to verify that messages that span multiple lines appear concatenated\. 
+1. View the logs to verify that messages that span multiple lines appear concatenated\. 
 
 **Build and upload the image for a Fluent Bit container**
 
- This image will include a configuration file that references the Fluent Bit parser\. 
+This image will include a configuration file that references the Fluent Bit parser\. 
 
 1. Create a folder with the name `FluentBitDockerImage`\. 
 
@@ -466,9 +467,9 @@ You can place the parser file and configuration file anywhere in the Docker imag
           multiline.parser      go
       ```
 
-   1.  Save the file as `extra.conf`\. 
+   1. Save the file as `extra.conf`\. 
 
-1.  Within the `FluentBitDockerImage` folder, create the Dockerfile with the Fluent Bit image and the parser and configuration files that you created\.
+1. Within the `FluentBitDockerImage` folder, create the Dockerfile with the Fluent Bit image and the parser and configuration files that you created\.
 
    1. Paste the following contents in the file:
 
@@ -497,17 +498,17 @@ You can place the configuration file anywhere in the Docker image except `/fluen
 
       Where: `fluent-bit-multiline-repo` is the name for the repository and `us-east-1` is the region in this example\. 
 
-       The output gives you the details of the new repository\. 
+      The output gives you the details of the new repository\. 
 
-   1.  Tag your image with the `repositoryUri` value from the previous output: `docker tag fluent-bit-multiline-image repositoryUri` 
+   1. Tag your image with the `repositoryUri` value from the previous output: `docker tag fluent-bit-multiline-image repositoryUri` 
 
-       Example: `docker tag fluent-bit-multiline-image xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/fluent-bit-multiline-repo` 
+      Example: `docker tag fluent-bit-multiline-image xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/fluent-bit-multiline-repo` 
 
    1. Run the docker image to verify it ran correctly: `docker images —filter reference=repositoryUri`
 
       In the output, the repository name changes from fluent\-bit\-multiline\-repo to the `repositoryUri`\.
 
-   1.  Authenticate to Amazon ECR by running the `aws ecr get-login-password` command and specifying the registry ID you want to authenticate to: `aws ecr get-login-password | docker login --username AWS --password-stdin registry ID.dkr.ecr.region.amazonaws.com` 
+   1. Authenticate to Amazon ECR by running the `aws ecr get-login-password` command and specifying the registry ID you want to authenticate to: `aws ecr get-login-password | docker login --username AWS --password-stdin registry ID.dkr.ecr.region.amazonaws.com` 
 
       Example: `ecr get-login-password | docker login --username AWS --password-stdin xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com`
 
@@ -519,9 +520,9 @@ You can place the configuration file anywhere in the Docker image except `/fluen
 
 **Build and upload the image for a demo multiline application**
 
- This image will include a Python script file that runs the application and a sample log file\. 
+This image will include a Python script file that runs the application and a sample log file\. 
 
-1.  Create a folder named `multiline-app`: `mkdir multiline-app` 
+1. Create a folder named `multiline-app`: `mkdir multiline-app` 
 
 1. Create a Python script file\.
 
@@ -551,7 +552,7 @@ You can place the configuration file anywhere in the Docker image except `/fluen
 
    1. Save the `main.py` file\.
 
-1.  Create a sample log file\. 
+1. Create a sample log file\. 
 
    1. Within the `multiline-app` folder, create a file and name it `test.log`\.
 
@@ -647,11 +648,11 @@ You can place the configuration file anywhere in the Docker image except `/fluen
 
       Where: `multiline-app-repo` is the name for the repository and `us-east-1` is the region in this example\. 
 
-       The output gives you the details of the new repository\. Note the `repositoryUri` value as you will need it in the next steps\. 
+      The output gives you the details of the new repository\. Note the `repositoryUri` value as you will need it in the next steps\. 
 
-   1.  Tag your image with the `repositoryUri` value from the previous output: `docker tag multiline-app-image repositoryUri` 
+   1. Tag your image with the `repositoryUri` value from the previous output: `docker tag multiline-app-image repositoryUri` 
 
-       Example: `docker tag multiline-app-image xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/multiline-app-repo` 
+      Example: `docker tag multiline-app-image xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/multiline-app-repo` 
 
    1. Run the docker image to verify it ran correctly: `docker images —filter reference=repositoryUri`
 
@@ -663,9 +664,9 @@ You can place the configuration file anywhere in the Docker image except `/fluen
 
 **Create the task definition and run the task**
 
-1.  Create a task definition file with the file name `multiline-task-definition.json`\. 
+1. Create a task definition file with the file name `multiline-task-definition.json`\. 
 
-1.  Paste the following contents in the `multiline-task-definition.json` file: 
+1. Paste the following contents in the `multiline-task-definition.json` file: 
 
    ```
    {
@@ -732,25 +733,25 @@ You can place the configuration file anywhere in the Docker image except `/fluen
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1.  In the navigation pane, choose **Task Definitions** and then choose the `firelens-example-multiline` family because we registered the task definition to this family in the first line of the task definition above\.
+1. In the navigation pane, choose **Task Definitions** and then choose the `firelens-example-multiline` family because we registered the task definition to this family in the first line of the task definition above\.
 
-1.  Choose the latest version\. 
+1. Choose the latest version\. 
 
-1.  Choose the **Actions**, **Run Task**\. 
+1. Choose the **Actions**, **Run Task**\. 
 
-1.  For **Launch type**, choose **Fargate**\. 
+1. For **Launch type**, choose **Fargate**\. 
 
-1.  For **Subnets**, choose the available subnets for your task\. 
+1. For **Subnets**, choose the available subnets for your task\. 
 
-1.  Choose **Run Task**\. 
+1. Choose **Run Task**\. 
 
 **Verify that multiline log messages in Amazon CloudWatch appear concatenated**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1.  From the navigation pane, expand **Logs** and choose **Log groups**\. 
+1. From the navigation pane, expand **Logs** and choose **Log groups**\. 
 
-1.  Choose the `multiline-test/applicatio` log group\. 
+1. Choose the `multiline-test/applicatio` log group\. 
 
 1. Choose the log and view the messages\. Lines that matched the rules in the parser file are concatenated and appear as a single message\. 
 
@@ -768,7 +769,7 @@ You can place the configuration file anywhere in the Docker image except `/fluen
    }
    ```
 
-    The following log snippet shows how the same event appears if you run an ECS container that is not configured to concatenate multiline log messages\. The log field contains a single line\.
+   The following log snippet shows how the same event appears if you run an ECS container that is not configured to concatenate multiline log messages\. The log field contains a single line\.
 
    ```
    {

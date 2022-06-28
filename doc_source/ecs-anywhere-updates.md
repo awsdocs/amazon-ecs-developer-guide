@@ -23,7 +23,7 @@ uname -m
 
 | Operating systems \(architecture\) | ecs\-init package | 
 | --- | --- | 
-|  CentOS 7 \(x86\_64\) CentOS 8 \(x86\_64\) SUSE Enterprise Server 15 \(x86\_64\) RHEL 7 \(x86\_64\)  |  `amazon-ecs-init-latest.x86_64.rpm`  | 
+|  CentOS 7 \(x86\_64\) CentOS 8 \(x86\_64\) SUSE Enterprise Server 15 \(x86\_64\) RHEL 7 \(x86\_64\) RHEL 8 \(x86\_64\)  |  `amazon-ecs-init-latest.x86_64.rpm`  | 
 |  CentOS 7 \(aarch64\) CentOS 8 \(aarch64\) RHEL 7 \(aarch64\)  |  `amazon-ecs-init-latest.aarch64.rpm`  | 
 |  Debian 9 \(x86\_64\) Debian 10 \(x86\_64\) Ubuntu 18 \(x86\_64\) Ubuntu 20 \(x86\_64\)  |  `amazon-ecs-init-latest.amd64.deb`  | 
 |  Debian 9 \(aarch64\) Debian 10 \(aarch64\) Ubuntu 18 \(aarch64\) Ubuntu 20 \(aarch64\)  |  `amazon-ecs-init-latest.arm64.deb`  | 

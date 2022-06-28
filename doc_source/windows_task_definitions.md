@@ -27,4 +27,4 @@ The following parameters aren't supported for Amazon EC2 Windows task definition
 
 ## Additional configuration for Windows IAM roles for tasks<a name="windowsa-iam-task-role"></a>
 
-The IAM roles for tasks with Windows features requires additional configuration, but much of this configuration is similar to confiuring IAM roles for tasks on Linux container instances\. For more information see [Additional configuration for Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
+The IAM roles for tasks with Windows features requires additional configuration, but much of this configuration is similar to configuring IAM roles for tasks on Linux container instances\. For more information see [Additional configuration for Windows IAM roles for tasks](windows_task_IAM_roles.md)\.

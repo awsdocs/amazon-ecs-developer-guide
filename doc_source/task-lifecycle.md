@@ -16,7 +16,7 @@ PROVISIONING
 Amazon ECS has to perform additional steps before the task is launched\. For example, for tasks that use the `awsvpc` network mode, the elastic network interface needs to be provisioned\.
 
 PENDING  
-This is a transition state where Amazon ECS is waiting on the container agent to take further action\.
+This is a transition state where Amazon ECS is waiting on the container agent to take further action\. A task stays in the pending state until there are available resources for the task\.
 
 ACTIVATING  
 Amazon ECS has to perform additional steps after the task is launched but before the task can transition to the `RUNNING` state\. For example, for tasks that have service discovery configured, the service discovery resources must be created\. For tasks that are part of a service that's configured to use multiple Elastic Load Balancing target groups, the target group registration occurs during this state\.

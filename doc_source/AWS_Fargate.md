@@ -68,7 +68,7 @@ Amazon ECS task definitions for AWS Fargate require that you specify CPU and mem
 
 | CPU value | Memory value | Operating systems supported for AWS Fargate  | 
 | --- | --- | --- | 
-| 256 \(\.25 vCPU\) | 512 MB, 1 GB, 2 GB | Linux | 
+| 256 \(\.25 vCPU\) | 512 MiB, 1 GB, 2 GB | Linux | 
 | 512 \(\.5 vCPU\) | 1 GB, 2 GB, 3 GB, 4 GB | Linux | 
 | 1024 \(1 vCPU\) | 2 GB, 3 GB, 4 GB, 5 GB, 6 GB, 7 GB, 8 GB | Linux, Windows | 
 | 2048 \(2 vCPU\) | Between 4 GB and 16 GB in 1 GB increments | Linux, Windows | 
@@ -259,11 +259,7 @@ Amazon ECS services on AWS Fargate support the Application Load Balancer and Net
 
 When you create a target group for these services, you must choose `ip` as the target type, not `instance`\. This is because tasks that use the `awsvpc` network mode are associated with an elastic network interface, not an Amazon EC2 instance\. For more information, see [Service load balancing](service-load-balancing.md)\.
 
-Using a Network Load Balancer to route UDP traffic to your Amazon ECS on AWS Fargate tasks is only supported when using platform version 1\.4 or and for tasks launched in the following Regions:
-+ US East \(N\. Virginia\) \- `us-east-1`
-+ US West \(Oregon\) \- `us-west-2`
-+ EU \(Ireland\) \- `eu-west-1`
-+ Asia Pacific \(Tokyo\) \- `ap-northeast-1`
+Using a Network Load Balancer to route UDP traffic to your Amazon ECS on AWS Fargate tasks is only supported when using platform version 1\.4 or later\.
 
 ## Private registry authentication<a name="fargate-private-auth-reg"></a>
 

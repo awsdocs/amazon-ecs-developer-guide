@@ -1,6 +1,6 @@
 # Specifying sensitive data<a name="specifying-sensitive-data"></a>
 
-Amazon ECS enables you to inject sensitive data into your containers by storing your sensitive data in either AWS Secrets Manager secrets or AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\.
+You can use Amazon ECS to inject sensitive data into your containers by storing your sensitive data in either AWS Secrets Manager secrets or AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\.
 
 Secrets can be exposed to a container in the following ways:
 + To inject sensitive data into your containers as environment variables, use the `secrets` container definition parameter\.

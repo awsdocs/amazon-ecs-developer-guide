@@ -4,7 +4,7 @@ This section provides some JSON task definition examples that you can use to sta
 
 You can copy the examples, and then paste them when you use the **Configure via JSON** option in the classic consoles\. Make sure to customize the examples, such as using your account ID\. For more information, see [Creating a task definition using the new console](create-task-definition.md) and [Task definition parameters](task_definition_parameters.md)\.
 
-For additional task definition examples, see [AWS Sample Task Definitions](https://github.com/aws-samples/aws-containers-task-definitions) on GitHub\.
+For more task definition examples, see [AWS Sample Task Definitions](https://github.com/aws-samples/aws-containers-task-definitions) on GitHub\.
 
 **Topics**
 + [Example: Webserver](#example_task_definition-webserver)

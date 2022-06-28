@@ -252,7 +252,7 @@ Now that your Amazon EFS file system is created and there is web content for the
 
 1. Choose **Tasks**, **Run new task**\.
 
-1. For **Task Definition**, choose the `nginx-efs` task definition that you created earlier and choose **Run Task**\. For more information on the other options in the run task workflow, see [Run a standalone task](ecs_run_task.md)\.
+1. For **Task Definition**, choose the `efs-tutorial` task definition that you created earlier and choose **Run Task**\. For more information on the other options in the run task workflow, see [Run a standalone task](ecs_run_task.md)\.
 
 1. Below the **Tasks** tab, choose the task that you just ran\.
 

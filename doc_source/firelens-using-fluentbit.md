@@ -2,11 +2,11 @@
 
 AWS provides a Fluent Bit image with plugins for both CloudWatch Logs and Kinesis Data Firehose\. We recommend using Fluent Bit as your log router because it has a lower resource utilization rate than Fluentd\. For more information, see [CloudWatch Logs for Fluent Bit](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit) and [Amazon Kinesis Firehose for Fluent Bit](https://github.com/aws/amazon-kinesis-firehose-for-fluent-bit)\.
 
-The **AWS for Fluent Bit** image is available on Amazon ECR on both the Amazon ECR Public Gallery and in an Amazon ECR repository in most Regions for high availability\.
+The **AWS for Fluent Bit** image is available on Amazon ECR on both the Amazon ECR Public Gallery and in an Amazon ECR repository in most AWS Regions for high availability\.
 
 ## Amazon ECR Public Gallery<a name="firelens-image-ecrpublic"></a>
 
-The AWS for Fluent Bit image is available on the Amazon ECR Public Gallery\. This is the recommended location to download the AWS for Fluent Bit image as it is a public repository and available to be used from all AWS Regions\. For more details, see [aws\-for\-fluent\-bit](https://gallery.ecr.aws/aws-observability/aws-for-fluent-bit) on the Amazon ECR Public Gallery\.
+The AWS for Fluent Bit image is available on the Amazon ECR Public Gallery\. This is the recommended location to download the AWS for Fluent Bit image because it's a public repository and available to be used from all AWS Regions\. For more information, see [aws\-for\-fluent\-bit](https://gallery.ecr.aws/aws-observability/aws-for-fluent-bit) on the Amazon ECR Public Gallery\.
 
 You can pull the AWS for Fluent Bit image from the Amazon ECR Public Gallery by specifying the repository URL with the desired image tag\. The available image tags can be found on the **Image tags** tab on the Amazon ECR Public Gallery\.
 
@@ -16,14 +16,14 @@ The following shows the syntax to use for the Docker CLI\.
 docker pull public.ecr.aws/aws-observability/aws-for-fluent-bit:tag
 ```
 
-For example, you can pull the latest stable AWS for Fluent Bit image using this Docker CLI command:
+For example, you can pull the latest stable AWS for Fluent Bit image using this Docker CLI command\.
 
 ```
 docker pull public.ecr.aws/aws-observability/aws-for-fluent-bit:stable
 ```
 
 **Note**  
-Unauthenticated pulls are allowed, but have a lower rate limit than authenticated pulls\. To authenticate using your AWS account before pulling, use the following command:  
+Unauthenticated pulls are allowed, but have a lower rate limit than authenticated pulls\. To authenticate using your AWS account before pulling, use the following command\.  
 
 ```
 aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws

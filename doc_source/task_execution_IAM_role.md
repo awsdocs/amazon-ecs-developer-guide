@@ -157,6 +157,7 @@ An example inline policy adding the permissions is shown below\.
       "Effect": "Allow",
       "Action": [
         "kms:Decrypt",
+        "ssm:GetParameters",
         "secretsmanager:GetSecretValue"
       ],
       "Resource": [

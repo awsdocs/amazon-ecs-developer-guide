@@ -16,7 +16,7 @@ For more examples, see [Amazon ECS FireLens examples](https://github.com/aws-sam
 
 The following task definition example demonstrates how to specify a log configuration that forwards logs to a CloudWatch Logs log group\. For more information, see [What Is Amazon CloudWatch Logs?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) in the *Amazon CloudWatch Logs User Guide*\.
 
-In the log configuration options, specify the log group name and the Region it exists in\. To have Fluent Bit create the log group on your behalf, specify `"auto_create_group":"true"`, to set the fluentd\-buffer\-limit use `log-driver-buffer-limit`\. You can also specify the task ID as the log stream prefix, which assists in filtering\. For more information, see [Fluent Bit Plugin for CloudWatch Logs](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit/blob/master/README.md)\.
+In the log configuration options, specify the log group name and the AWS Region it exists in\. To have Fluent Bit create the log group on your behalf, specify `"auto_create_group":"true"`, to set the fluentd\-buffer\-limit use `log-driver-buffer-limit`\. You can also specify the task ID as the log stream prefix, which assists in filtering\. For more information, see [Fluent Bit Plugin for CloudWatch Logs](https://github.com/aws/amazon-cloudwatch-logs-for-fluent-bit/blob/master/README.md)\.
 
 ```
 {
@@ -117,7 +117,7 @@ In the log configuration options, specify the delivery stream name and the Regio
 **Note**  
 For more examples, see [Amazon ECS FireLens examples](https://github.com/aws-samples/amazon-ecs-firelens-examples) on GitHub\.
 
-The following task definition example demonstrates how to specify a log configuration that forwards logs to an Amazon OpenSearch Service; domain\. The Amazon OpenSearch Service domain must already exist\. For mo re information, see [What is Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html) in the *Amazon OpenSearch Service Developer Guide*\.
+The following task definition example demonstrates how to specify a log configuration that forwards logs to an Amazon OpenSearch Service; domain\. The Amazon OpenSearch Service domain must already exist\. For more information, see [What is Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html) in the *Amazon OpenSearch Service Developer Guide*\.
 
 In the log configuration options, specify the log options required for OpenSearch Service integration\. For more information, see [Fluent Bit for Amazon OpenSearch Service](https://docs.fluentbit.io/manual/pipeline/outputs/elasticsearch)\.
 
@@ -172,7 +172,7 @@ In the log configuration options, specify the log options required for OpenSearc
 **Note**  
 For more examples, see [Amazon ECS FireLens examples](https://github.com/aws-samples/amazon-ecs-firelens-examples) on GitHub\.
 
-Beginning with AWS for Fluent Bit version 1\.3, there is a JSON parser included in the AWS for Fluent Bit image\. The following example shows how to reference the JSON parser in the FireLens configuration of your task definition\.
+Beginning with AWS for Fluent Bit version 1\.3, there's a JSON parser that's included in the AWS for Fluent Bit image\. The following example shows how to reference the JSON parser in the FireLens configuration of your task definition\.
 
 ```
 "firelensConfiguration": {
@@ -184,7 +184,7 @@ Beginning with AWS for Fluent Bit version 1\.3, there is a JSON parser included 
 },
 ```
 
-The Fluent Bit config file will parse any logs that are in JSON\. For example, if the logs at your destination looked like the following without JSON parsing:
+The Fluent Bit config file parses any logs that are in JSON \(for example, if the logs at your destination looked like the following without JSON parsing\)\.
 
 ```
 {
@@ -199,7 +199,7 @@ The Fluent Bit config file will parse any logs that are in JSON\. For example, i
 }
 ```
 
-With the JSON parsing, the log will look like the following:
+With the JSON parsing, the log looks like the following\.
 
 ```
 {
@@ -219,7 +219,7 @@ With the JSON parsing, the log will look like the following:
 }
 ```
 
-The serialized JSON is expanded into top level fields in the final JSON output\. For more information on JSON parsing, see [Parser](https://docs.fluentbit.io/manual/pipeline/filters/parser) in the Fluent Bit documentation\.
+The serialized JSON is expanded into top level fields in the final JSON output\. For more information about JSON parsing, see [Parser](https://docs.fluentbit.io/manual/pipeline/filters/parser) in the Fluent Bit documentation\.
 
 ## Forwarding to an external Fluentd or Fluent Bit<a name="firelens-example-forward"></a>
 
