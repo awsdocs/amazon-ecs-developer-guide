@@ -2,7 +2,12 @@
 
 This section walks you through the process of creating a Classic Load Balancer in the AWS Management Console\.
 
-You can create your Classic Load Balancer for use with EC2\-Classic or a VPC\. Some of the tasks described in these procedures apply only to load balancers in a VPC\.
+You can create your Classic Load Balancer for use with EC2\-Classic or a VPC\. 
+
+
+|  | 
+| --- |
+| We are retiring EC2\-Classic on August 15, 2022\. To avoid interruptions to your workloads, we recommend that you migrate from EC2\-Classic to a VPC prior to August 15, 2022\. For more information, see the blog post [EC2\-Classic Networking is Retiring \- Here's How to Prepare](http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/)\. For information about how to migrate EC2\-Classic to a VPC, see [Migrate from EC2 Classic to a VPC](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html) in the Amazon EC2 User Guide for Linux Instances\. | 
 
 ## Define your load balancer<a name="define-load-balancer"></a>
 
@@ -26,13 +31,13 @@ A *listener* is a process that checks for connection requests\. It is configured
 
    The load balancer name you choose must be unique within your set of load balancers, must have a maximum of 32 characters, and must only contain alphanumeric characters or hyphens\.
 
-1. For **Create LB inside**, select the same network that your container instances are located in: EC2\-Classic or a specific VPC\.
+1. For **Create LB inside**, select the same network that your container instances are located in a specific VPC\.
 
 1. The default values configure an HTTP load balancer that forwards traffic from port 80 at the load balancer to port 80 of your container instances, but you can modify these values for your application\. For more information, see [Listeners for Your Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html) in the *User Guide for Classic Load Balancers*\.
 
-1. \[EC2\-VPC\] To improve the availability of your load balancer, select at least two subnets in different Availability Zones\. Your load balancer subnet configuration must include all Availability Zones that your container instances reside in\. In the **Select Subnets** section, under **Available Subnets**, select the subnets\. The subnets that you select are moved under **Selected Subnets**\.
+1. To improve the availability of your load balancer, select at least two subnets in different Availability Zones\. Your load balancer subnet configuration must include all Availability Zones that your container instances reside in\. In the **Select Subnets** section, under **Available Subnets**, select the subnets\. The subnets that you select are moved under **Selected Subnets**\.
 **Note**  
-If you selected EC2\-Classic as your network, or you have a default VPC but did not choose **Enable advanced VPC configuration**, you do not see **Select Subnets**\.  
+If you have a default VPC but did not choose **Enable advanced VPC configuration**, you do not see **Select Subnets**\.  
 ![\[Selected subnets\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/AddInstanceVPC_SelectedSubnet.png)
 
 1. Choose **Next: Assign Security Groups** to go to the next page in the wizard\.
@@ -40,9 +45,6 @@ If you selected EC2\-Classic as your network, or you have a default VPC but did 
 ## Assign a security group to your load balancer in a VPC<a name="select-vpc-security-group"></a>
 
 If you created your load balancer in a VPC, you must assign it a security group that allows inbound traffic to the ports that you specified for your load balancer and the health checks for your load balancer\. Amazon ECS does not automatically update the security groups associated with Elastic Load Balancing load balancers or Amazon ECS container instances\.
-
-**Note**  
-If you selected EC2\-Classic as your network, you do not see this page in the wizard and you can go to the next step\. Elastic Load Balancing provides a security group that is assigned to your load balancer for EC2\-Classic automatically\.
 
 **To assign a security group to your load balancer**
 

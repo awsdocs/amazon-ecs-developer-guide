@@ -25,7 +25,7 @@ For each Auto Scaling group capacity provider that is associated with a cluster,
 + A high metric value CloudWatch alarm
 + A target tracking scaling policy
 **Note**  
-Amazon ECS creates the target tracking scaling policy and attaches it to the Auto Scaling group\. To update the target tracking scaling policy, you should the capacity provider managed scaling settings as opposed to updating the scaling policy directly\.
+Amazon ECS creates the target tracking scaling policy and attaches it to the Auto Scaling group\. To update the target tracking scaling policy, you should update the capacity provider managed scaling settings as opposed to updating the scaling policy directly\.
 
 When you turn off managed scaling, or disassociate the capacity provider from a cluster, Amazon ECS removes both CloudWatch metrics as well as the target tracking scaling policy resources\.
 

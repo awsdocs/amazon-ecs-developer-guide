@@ -261,6 +261,9 @@ Task\-level CPU and memory parameters are ignored for Windows containers\. We re
 
 ------
 
+**To create a new task definition \(AWS CLI\)**
++ Use the `register-task-definition` command\. For more information, see [register\-task\-definition](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html) in the *AWS Command Line Interface Reference*\. 
+
 ## Task definition template<a name="task-definition-template"></a>
 
 An empty task definition template is shown as follows\. You can use this template to create your task definition, which can then be pasted into the console JSON input area or saved to a file and used with the AWS CLI `--cli-input-json` option\. For more information, see [Task definition parameters](task_definition_parameters.md)\.

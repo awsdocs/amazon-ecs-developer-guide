@@ -90,7 +90,7 @@ A *listener* is a process that checks for connection requests\. It is configured
 
    The default listener accepts HTTP traffic on port 80\. You can keep the default protocol and port\. For **Default action**, choose the target group that you created\. You can optionally choose **Add listener** to add another listener \(for example, an HTTPS listener\)\.
 
-   If you create an HTTPS listener, configure the required 
+   If you create an HTTPS listener, configure the required **Secure listener settings**\. Otherwise, go to the next step\.
 
    When you use HTTPS for your load balancer listener, you must deploy an SSL certificate on your load balancer\. The load balancer uses this certificate to terminate the connection and decrypt requests from clients before sending them to the targets\. Under **Secure listener settings**, do the following: 
 

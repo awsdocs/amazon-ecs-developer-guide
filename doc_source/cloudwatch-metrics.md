@@ -198,7 +198,7 @@ However Amazon ECS provides monitoring metrics at no additional cost\. To use th
 
 1. Choose **ClusterName**, **ServiceName** and then choose any metric \(either `CPUUtilization` or `MemoryUtilization`\) that corresponds to the service to view running tasks in\.
 
-1. On the q**Graphed metrics** tab, change **Period** to **1 Minute** and **Statistic** to **Sample Count**\.
+1. On the **Graphed metrics** tab, change **Period** to **1 Minute** and **Statistic** to **Sample Count**\.
 
    The value displayed in the graph indicates the number of `RUNNING` tasks in the service\.  
 ![\[Cluster metrics view\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/running-task-count.png)

@@ -29,6 +29,7 @@ CentOS 8 has reached its End Of Life \(EOL\) on December 31, 2021 and is no long
 + Ubuntu 18, Ubuntu 20
 + Debian 9, Debian 10
 + SUSE Enterprise Server 15
++ Bottlerocket
 + The `x86_64` and `ARM64` CPU architectures are supported\.
 + The following Windows operating system versions are supported:
   + Windows Server 2022 

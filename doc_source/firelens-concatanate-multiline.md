@@ -31,7 +31,7 @@ To parse logs and concatenate lines that were split because of newlines, you can
 
 The following tutorial walks you through the steps for each use case\. The steps show you how to concatenate multilines and send the logs to Amazon CloudWatch\. You can specify a different destination for your logs\.
 
-## Required IAM permissions<a name="w598aac17c52c21c19b1"></a>
+## Required IAM permissions<a name="w602aac17c52c21c19b1"></a>
 
 For each use case you must first make sure you have the necessary IAM permissions for the container agent to pull the container images from Amazon ECR and for the container to route logs to CloudWatch Logs\.
 
@@ -92,7 +92,7 @@ You must have a task execution role to grant the container agent permission to p
 
 1. If you do not see the `ecsTaskExecutionRole` role, you must create the role\. For information on how to create the role, see [Amazon ECS task execution IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
 
-## Example: Use a parser that you create<a name="w598aac17c52c21c19b3"></a>
+## Example: Use a parser that you create<a name="w602aac17c52c21c19b3"></a>
 
 In this example, you will complete the following steps: 
 
@@ -275,6 +275,8 @@ When you run the task, the application simulates runs, then fails and creates a 
       FROM public.ecr.aws/amazonlinux/amazonlinux:latest
       ADD test.log /test.log
       
+      RUN yum upgrade -y && yum install -y python3
+      
       WORKDIR /usr/local/bin
       
       COPY main.py .
@@ -435,7 +437,7 @@ When you run the task, the application simulates runs, then fails and creates a 
    }
    ```
 
-## Example: Use a Fluent Bit built\-in parser<a name="w598aac17c52c21c19b5"></a>
+## Example: Use a Fluent Bit built\-in parser<a name="w602aac17c52c21c19b5"></a>
 
 In this example, you will complete the following steps: 
 
@@ -622,6 +624,8 @@ This image will include a Python script file that runs the application and a sam
       ```
       FROM public.ecr.aws/amazonlinux/amazonlinux:latest
       ADD test.log /test.log
+      
+      RUN yum upgrade -y && yum install -y python3
       
       WORKDIR /usr/local/bin
       
