@@ -11,11 +11,11 @@ In this tutorial, you create a CloudWatch alarm and a step scaling policy using 
 
 ## Prerequisites<a name="as-cw-tutorial-prereqs"></a>
 
-This tutorial assumes that you have enabled CloudWatch metrics for your clusters and services\. Metrics are not available until the clusters and services send the metrics to CloudWatch, and you cannot create CloudWatch alarms for metrics that do not exist yet\. For more information, see [Enabling CloudWatch metrics](cloudwatch-metrics.md#enable_cloudwatch)\.
+This tutorial assumes that you have turned on CloudWatch metrics for your clusters and services\. Metrics are not available until the clusters and services send the metrics to CloudWatch, and you cannot create CloudWatch alarms for metrics that do not exist yet\. For more information, see [Using CloudWatch metrics](cloudwatch-metrics.md#enable_cloudwatch)\.
 
 ## Step 1: Create a CloudWatch alarm for a metric<a name="create-cw-alarms"></a>
 
-After you have enabled CloudWatch metrics for your clusters and services, and the metrics for your cluster are visible in the CloudWatch console, you can set alarms on the metrics\. For more information, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.
+After you have turned on CloudWatch metrics for your clusters and services, and the metrics for your cluster are visible in the CloudWatch console, you can set alarms on the metrics\. For more information, see [Creating Amazon CloudWatch Alarms](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html) in the *Amazon CloudWatch User Guide*\.
 
 For this tutorial, you create an alarm on the cluster `MemoryReservation` metric to alert when the cluster's memory reservation is above 75%\.
 
@@ -44,7 +44,7 @@ For this tutorial, you create an alarm on the cluster `MemoryReservation` metric
 
 ## Step 2: Create a launch configuration for an Auto Scaling group<a name="create-as-group"></a>
 
-Now that you have enabled CloudWatch metrics and created an alarm based on one of those metrics, you can create a launch configuration and an Auto Scaling group for your cluster\. For more information and other configuration options, see [Launch Configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+Now that you have turned on CloudWatch metrics and created an alarm based on one of those metrics, you can create a launch configuration and an Auto Scaling group for your cluster\. For more information and other configuration options, see [Launch Configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 **To create an Auto Scaling launch configuration**
 
@@ -96,7 +96,7 @@ After the launch configuration is complete, continue with the following procedur
    + **Group name:** Enter a name for your Auto Scaling group\.
    + **Group size:** Specify the number of container instances with which your Auto Scaling group should start\.
    + **Network:** Select a VPC into which to launch your container instances\.
-   + **Subnet:** Select the subnets into which to launch your container instances\. For a highly available cluster, we recommend that you enable all of the subnets in the Region\.
+   + **Subnet:** Select the subnets into which to launch your container instances\. For a highly available cluster, we recommend that you use all of the subnets in the Region to spread the instances across the Availability Zones\.
 
 1. On the **Configure scaling policies** step of the **Create Auto Scaling Group** wizard, choose **Use scaling policies to adjust the capacity of this group**\.
 

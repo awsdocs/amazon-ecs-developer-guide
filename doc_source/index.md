@@ -220,7 +220,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Amazon ECS services](ecs_services.md)
    + [Service definition parameters](service_definition_parameters.md)
    + [Creating an Amazon ECS service](create-service.md)
-      + [Creating a service using the Classic Amazon ECS console](create-service-console-v1.md)
+      + [Creating a service using the classic Amazon ECS console](create-service-console-v1.md)
          + [Step 1: Configuring basic service parameters](basic-service-params.md)
          + [Step 2: Configure a network](service-configure-network.md)
          + [Step 3: Configuring your service to use a load balancer](service-create-loadbalancer.md)

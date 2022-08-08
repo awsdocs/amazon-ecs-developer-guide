@@ -222,6 +222,21 @@ Although other instance types are supported in the same instance family, the `c5
 |  c6gd\.16xlarge  | 14 |  120  | 
 |  c6gd\.metal  |  14  |  120  | 
 
+### c7g instance family<a name="eni-trunking-family-c7g"></a>
+
+
+|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| --- | --- | --- | 
+|  c7g\.medium  | 1 |  4  | 
+|  c7g\.large  | 2 |  10  | 
+|  c7g\.xlarge  | 3 |  20  | 
+|  c7g\.2xlarge  | 3 |  40  | 
+|  c7g\.4xlarge  | 7 |  60  | 
+|  c7g\.8xlarge  | 7 |  60  | 
+|  c7g\.12xlarge  | 7 |  60  | 
+|  c7g\.16xlarge  | 14 |  120  | 
+|  c7g\.metal  |  14  |  120  | 
+
 ### g3 instance family<a name="eni-trunking-family-g3"></a>
 
 

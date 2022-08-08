@@ -2,10 +2,10 @@
 
 You can monitor your Amazon ECS resources using Amazon CloudWatch, which collects and processes raw data from Amazon ECS into readable, near real\-time metrics\. These statistics are recorded for a period of two weeks so that you can access historical information and gain a better perspective on how your clusters or services are performing\. Amazon ECS metric data is automatically sent to CloudWatch in 1\-minute periods\. For more information about CloudWatch, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\.
 
-Amazon ECS collects metrics for clusters and services\. You must enable Amazon ECS CloudWatch Container Insights for per\-task metrics, including CPU and memory utilization\. For more information about Container Insights, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
+Amazon ECS collects metrics for clusters and services\. You must turn on Amazon ECS CloudWatch Container Insights for per\-task metrics, including CPU and memory utilization\. For more information about Container Insights, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
 
 **Topics**
-+ [Enabling CloudWatch metrics](#enable_cloudwatch)
++ [Using CloudWatch metrics](#enable_cloudwatch)
 + [Available metrics and dimensions](#available_cloudwatch_metrics)
 + [Cluster reservation](#cluster_reservation)
 + [Cluster utilization](#cluster_utilization)
@@ -14,11 +14,11 @@ Amazon ECS collects metrics for clusters and services\. You must enable Amazon E
 + [Viewing Amazon ECS metrics](viewing_cloudwatch_metrics.md)
 + [Tutorial: Scaling container instances with CloudWatch alarms](cloudwatch_alarm_autoscaling.md)
 
-## Enabling CloudWatch metrics<a name="enable_cloudwatch"></a>
+## Using CloudWatch metrics<a name="enable_cloudwatch"></a>
 
-Any Amazon ECS service using the Fargate launch type is enabled for CloudWatch CPU and memory utilization metrics automatically, so you don't need to take any manual steps\.
+Any Amazon ECS service using the Fargate launch type has CloudWatch CPU and memory utilization metrics automatically, so you don't need to take any manual steps\.
 
-For any Amazon ECS task or service using the EC2 launch type, your Amazon ECS container instances require version 1\.4\.0 or later \(Linux\) or 1\.0\.0 or later \(Windows\) of the container agent to enable CloudWatch metrics\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
+For any Amazon ECS task or service using the EC2 launch type, your Amazon ECS container instances require version 1\.4\.0 or later \(Linux\) or 1\.0\.0 or later \(Windows\) of the container agent for CloudWatch metrics\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
 If you're starting your agent manually \(for example, if you're not using the Amazon ECS\-optimized AMI for your container instances\), see [Manually updating the Amazon ECS container agent \(for non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
 
@@ -73,7 +73,7 @@ Unit: Percent\.
 
 `GPUReservation`  
 The percentage of total available GPUs that are reserved by running tasks in the cluster\.  
-Cluster GPU reservation is measured as the number of GPUs reserved by Amazon ECS tasks on the cluster, divided by the total number of GPUs that was available on all of the GPU\-enabled container instances in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect GPU reservation metrics\.  
+Cluster GPU reservation is measured as the number of GPUs reserved by Amazon ECS tasks on the cluster, divided by the total number of GPUs that was available on all of the container instances with GPUs in the cluster\. Only container instances in `ACTIVE` or `DRAINING` status will affect GPU reservation metrics\.  
 Valid dimensions: `ClusterName`\.  
 Valid statistics: Average, Minimum, Maximum, Sum, Sample Count\. The most useful statistic is Average\.  
 Unit: Percent\.
@@ -180,7 +180,7 @@ You can use CloudWatch metrics to view the number of tasks in your services that
 
 ### Service `RUNNING` task count in Amazon ECS CloudWatch Container Insights<a name="cw_running_task_count_cwci"></a>
 
-A "Number of Running Tasks" \(`RunningTaskCount`\) metric is available per cluster and per service when you use Amazon ECS CloudWatch Container Insights\. You can use Container Insights for all new clusters created by opting in to the `containerInsights` account setting, on individual clusters by enabling it using the cluster settings during cluster creation, or on existing clusters by using the UpdateClusterSettings API\. Metrics collected by CloudWatch Container Insights are charged as custom metrics\. For more information about CloudWatch pricing, see [CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.
+A "Number of Running Tasks" \(`RunningTaskCount`\) metric is available per cluster and per service when you use Amazon ECS CloudWatch Container Insights\. You can use Container Insights for all new clusters created by opting in to the `containerInsights` account setting, on individual clusters by turning on the cluster settings during cluster creation, or on existing clusters by using the UpdateClusterSettings API\. Metrics collected by CloudWatch Container Insights are charged as custom metrics\. For more information about CloudWatch pricing, see [CloudWatch Pricing](https://aws.amazon.com/cloudwatch/pricing/)\.
 
 To view this metric, see [Amazon ECS Container Insights Metrics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-view-metrics.html) in the *Amazon CloudWatch User Guide*\.
 

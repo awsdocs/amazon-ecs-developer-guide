@@ -16,8 +16,9 @@ When the service scheduler replaces a task during an update, the service first r
 
 **Important**  
 If you are changing the ports used by containers in a task definition, you may need to update the security groups for the container instances to work with the updated ports\.  
-If your service uses a load balancer, the load balancer configuration defined for your service when it was created cannot be changed\. If you update the task definition for the service, the container name and container port that were specified when the service was created must remain in the task definition\.  
-To change the load balancer name, the container name, or the container port associated with a service load balancer configuration, you must create a new service\.  
+You can use the AWS CLI or SDK to modify the load balancer configuration\. For information about how to modify the configuration, see [UpdateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html) in the *Amazon Elastic Container Service API Reference*\.   
+If you update the task definition for the service, the container name and container port that were specified when the service was created must remain in the task definition\.  
+To change the container name, or the container port associated with a service load balancer configuration, you must create a new service\.  
 Amazon ECS does not automatically update the security groups associated with Elastic Load Balancing load balancers or Amazon ECS container instances\.
 
 **Topics**

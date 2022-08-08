@@ -1,6 +1,6 @@
 # Viewing Amazon ECS metrics<a name="viewing_cloudwatch_metrics"></a>
 
-After you have enabled CloudWatch metrics for Amazon ECS, you can view those metrics on the Amazon ECS and CloudWatch consoles\. The Amazon ECS console provides a 24\-hour maximum, minimum, and average view of your cluster and service metrics\. The CloudWatch console provides a fine\-grained and customizable display of your resources, as well as the number of running tasks in a service\.
+After you have turned on CloudWatch metrics for Amazon ECS, you can view those metrics on the Amazon ECS and CloudWatch consoles\. The Amazon ECS console provides a 24\-hour maximum, minimum, and average view of your cluster and service metrics\. The CloudWatch console provides a fine\-grained and customizable display of your resources, as well as the number of running tasks in a service\.
 
 **Topics**
 + [Viewing cluster metrics using the Amazon ECS console](#viewing_cluster_metrics)

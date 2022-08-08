@@ -4,23 +4,23 @@ To configure your service that uses the blue/green deployment type to use a load
 
 **To choose a load balancer type**
 
-1. If you have not done so already, follow the basic service creation procedures in [Step 1: Configuring basic service parameters](basic-service-params.md)\.
+1. If you didn't do so already, follow the procedures to create the service in [Step 1: Configuring basic service parameters](basic-service-params.md)\.
 
 1. For **Load balancer type**, choose the load balancer type to use with your service:  
 Application Load Balancer  
-Allows containers to use dynamic host port mapping, which enables you to place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing and paths\.  
+Allows containers to use dynamic host port mapping\. With host port mapping, you can place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing and paths\.  
 Network Load Balancer  
-Allows containers to use dynamic host port mapping, which enables you to place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing\.
+Allows containers to use dynamic host port mapping\. With host port mapping, you can place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing\.
 
-   We recommend that you use Application Load Balancers for your Amazon ECS services so that you can take advantage of the advanced features available to them\.
+   We recommend that you use Application Load Balancers for your Amazon ECS services\. That way, you can use all of the Application Load Balancer features\. 
 
-1. For **Load balancer name**, choose the name of the load balancer to use with your service\. Only load balancers that correspond to the load balancer type you selected earlier are visible here\.
+1. For **Load balancer name**, choose the name of the load balancer to use with your service\. Only load balancers that correspond to the load balancer type that you selected earlier are visible here\.
 
-1. The next step depends on the load balancer type for your service\. If you've chosen an Application Load Balancer, follow the steps in [To configure an Application Load Balancer](service-create-loadbalancer-rolling.md#create-service-configure-alb)\. If you've chosen a Network Load Balancer, follow the steps in [To configure a Network Load Balancer](service-create-loadbalancer-rolling.md#create-service-configure-nlb)\.<a name="create-service-configure-alb-bluegreen"></a>
+1. The next step depends on the load balancer type for your service\. If you chose an Application Load Balancer, follow the steps in [To configure an Application Load Balancer](service-create-loadbalancer-rolling.md#create-service-configure-alb)\. If you chose a Network Load Balancer, follow the steps in [To configure a Network Load Balancer](service-create-loadbalancer-rolling.md#create-service-configure-nlb)\.<a name="create-service-configure-alb-bluegreen"></a>
 
 **To configure an Application Load Balancer for the blue/green deployment type**
 
-1. For **Container to load balance**, choose the container and port combination from your task definition that your load balancer should distribute traffic to, and choose **Add to load balancer**\.
+1. For **Container to load balance**, choose the container and port combination from your task definition that your load balancer distributes traffic to, and choose **Add to load balancer**\.
 
 1. For **Production listener port**, choose the listener port and protocol of the listener that you created in [Creating an Application Load Balancer](create-application-load-balancer.md) \(if applicable\), or choose **create new** to create a new listener and then enter a port number and choose a port protocol for **Production listener protocol**\.
 

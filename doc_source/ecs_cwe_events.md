@@ -3,7 +3,7 @@
 Amazon ECS sends the following types of events to EventBridge: container instance state change events, task state change events, service action, and service deployment state change events\. If these resources change, an event is triggered\. These events and their possible causes are described in greater detail in the following sections\.
 
 **Note**  
-Amazon ECS may add other event types, sources, and details in the future\. If you are programmatically deserializing event JSON data, make sure that your application is prepared to handle unknown properties to avoid issues if and when these additional properties are added\.
+Amazon ECS may add other event types, sources, and details in the future\. If you are deserializing event JSON data in code, make sure that your application is prepared to handle unknown properties to avoid issues if and when these additional properties are added\.
 
 In some cases, multiple events are triggered for the same activity\. For example, when a task is started on a container instance, a task state change event is triggered for the new task\. A container instance state change event is triggered to account for the change in available resources, such as CPU, memory, and available ports, on the container instance\. Likewise, if a container instance is terminated, events are triggered for the container instance, the container agent connection status, and every task that was running on the container instance\.
 
@@ -201,7 +201,7 @@ When a task is using the `FARGATE_SPOT` capacity provider and is stopped due to 
 
 **Example Task state change event**  
 Task state change events are delivered in the following format\. The `detail` section below resembles the [Task](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Task.html) object that is returned from a [DescribeTasks](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) API operation in the *Amazon Elastic Container Service API Reference*\. If your containers are using an image hosted with Amazon ECR, the `imageDigest` field is returned\.  
-The values for the `createdAt`, `connectivityAt`, `pullStartedAt`, `startedAt`, `pullStoppedAt`, and `updatedAt` fields are UNIX timestamps in the response of a DescribeTasks action whereas in the task state change event they are ISO string timestamps\.
+The values for the `createdAt`, `connectivityAt`, `pullStartedAt`, `startedAt`, `pullStoppedAt`, and `updatedAt` fields are UNIX timestamps in the response of a `DescribeTasks` action whereas in the task state change event they are ISO string timestamps\.
 For more information about CloudWatch Events parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  
 
 ```
@@ -502,7 +502,7 @@ The service deployment is in progress\. This event is sent for both initial depl
 The service deployment has completed\. This event is sent once a service reaches a steady state after a deployment\.
 
 `SERVICE_DEPLOYMENT_FAILED`  
-The service deployment has failed\. This event is sent for services with deployment circuit breaker logic enabled\.
+The service deployment has failed\. This event is sent for services with deployment circuit breaker logic turned on\.
 
 **Example service deployment in progress event**  
 Service deployment in progress events are delivered when both an initial and a rollback deployment is started\. The difference between the two is in the `reason` field\. For more information about EventBridge parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  
@@ -579,7 +579,7 @@ Service deployment completed state events are delivered in the following format\
 ```
 
 **Example service deployment failed event**  
-Service deployment failed state events are delivered in the following format\. A service deployment failed state event will only be sent for services that have deployment circuit breaker logic enabled\. For more information, see [Rolling update](deployment-type-ecs.md)\.  
+Service deployment failed state events are delivered in the following format\. A service deployment failed state event will only be sent for services that have deployment circuit breaker logic turned on\. For more information, see [Rolling update](deployment-type-ecs.md)\.  
 
 ```
 {

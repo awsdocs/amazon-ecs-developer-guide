@@ -15,6 +15,8 @@ If you want to run tasks that are triggered by an event, there are AWS managed e
 
 Scheduled tasks are triggered by Amazon EventBridge rules, which you can create using the EventBridge console\. Although you can create a scheduled task in the Amazon ECS console, currently the EventBridge console provides more functionality so the following steps walk you through creating an EventBridge rule that triggers a scheduled task\.
 
+Before you can submit scheduled tasks with EventBridge rules and targets, the EventBridge service needs several permissions to run Amazon ECS tasks on your behalf\. For more information about the required service principal and IAM permissions for this role, see [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)\.
+
 **Create a scheduled task \(EventBridge console\)**
 
 1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.

@@ -3,12 +3,12 @@
 **Important**  
 Amazon ECS has provided a new console experience for creating a service\. For more information, see [Creating a service using the new console](create-service-console-v2.md)\.
 
-All services require some basic configuration parameters that define the service, such as the task definition to use, which cluster the service should run on, how many tasks should be placed for the service, and so on\. This is called the *service definition*\. For more information about the parameters defined in a service definition, see [Service definition parameters](service_definition_parameters.md)\.
+All services require some configuration parameters that define the service, such as the task definition to use, which cluster that the service runs on, how many tasks are placed for the service\. This is called the *service definition*\. For more information about the parameters defined in a service definition, see [Service definition parameters](service_definition_parameters.md)\.
 
-This procedure covers creating a service with the basic service definition parameters that are required\. After you have configured these parameters, you can create your service or move on to the procedures for optional service definition configuration, such as configuring your service to use a load balancer\.
+This procedure covers how to create a service and covers the service definition parameters that are required\. After you configured these parameters, you can create your service or move on to the procedures for optional service definition configuration\. For example, you can move on to configuring your service to use a load balancer\.
 
 **Note**  
-If your cluster is configured with a default capacity provider strategy, you will only be able to create a service using the default capacity provider strategy when using the console\. Likewise, if no default capacity provider is defined, you will only be able to use a launch type when creating a service using the console\. It is not currently possible to have a mixed strategy using both capacity providers and launch types in the console\.
+If your cluster is configured with a default capacity provider strategy, you can only create a service using the default capacity provider strategy when using the console\. Likewise, if no default capacity provider is defined, you can only use a launch type when creating a service using the console\. It's not currently possible to have a mixed strategy using both capacity providers and launch types in the console\.
 
 **To configure the basic service definition parameters**
 
@@ -16,43 +16,43 @@ If your cluster is configured with a default capacity provider strategy, you wil
 
 1. On the navigation bar, select the Region that your cluster is in\.
 
-1. In the navigation pane, choose **Task Definitions** and select the task definition from which to create your service\.
+1. In the navigation pane, choose **Task Definitions** and select the task definition to create your service from\.
 
-1. On the **Task Definition name** page, select the revision of the task definition from which to create your service\.
+1. On the **Task Definition name** page, select the revision of the task definition to create your service from\.
 
 1. Review the task definition, and choose **Actions**, **Create Service**\.
 
 1. On the **Configure service** page, complete the following steps\.
 
    1. Choose either a capacity provider strategy or a launch type\.
-      + To use a **Capacity provider strategy**, choose **Switch to capacity provider strategy** and then choose whether your service should use the default capacity provider strategy defined for the cluster or a custom capacity provider strategy\. A capacity provider must already be associated with the cluster in order to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
+      + To use a **Capacity provider strategy**, first choose **Switch to capacity provider strategy**\. Next, choose whether your service uses the default capacity provider strategy that's defined for the cluster or a custom capacity provider strategy\. A capacity provider must already be associated with the cluster to be used in a custom capacity provider strategy\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
       + To use a **Launch type**, choose **Switch to launch type** and select **FARGATE**, **EC2**, or **EXTERNAL**\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 
-   1. For **Platform operating system**, if you chose the Fargate launch type, then select the platform operating system\. for example, **LINUX**\.
+   1. For **Platform operating system**, if you chose the Fargate launch type, then select the platform operating system \(for example, **LINUX**\)\.
 
    1. For **Platform version**, if you chose a Fargate capacity provider or the Fargate launch type, then select the platform version to use\.
 **Note**  
 When the **LATEST** platform version is selected, we validate the operating system that was specified for the task, and then set the appropriate platform version\. If the Operating System is set to `Windows-Server-2019-Full` or `Windows-Server-2019-Core`, the `1.0.0` platform is used\. If the operating system is Linux, the `1.4.0` platform version is used\.
 
-   1. **Cluster**: Select the cluster in which to create your service\.
+   1. **Cluster**: Select the cluster to create your service in\.
 
-   1. **Service name**: Type a unique name for your service\.
+   1. **Service name**: Type a name for your service\. It must be unique\.
 
    1. **Service type**: Select a scheduling strategy for your service\. For more information, see [Service scheduler concepts](ecs_services.md#service_scheduler)\.
 
-   1. **Number of tasks**: If you chose the `REPLICA` service type, type the number of tasks to launch and maintain on your cluster\.
+   1. **Number of tasks**: If you chose the `REPLICA` service type, enter the number of tasks to launch and maintain on your cluster\.
 **Note**  
-If your launch type is `EC2`, and your task definition uses static host port mappings on your container instances, then you need at least one container instance with the specified port available in your cluster for each task in your service\. This restriction does not apply if your task definition uses dynamic host port mappings with the `bridge` network mode\. For more information, see [portMappings](task_definition_parameters.md#ContainerDefinition-portMappings)\.
+If your launch type is `EC2` and your task definition uses static host port mappings on your container instances, then you need at least one container instance with the specified port available in your cluster for each task in your service\. This restriction doesn't apply if your task definition uses dynamic host port mappings with the `bridge` network mode\. For more information, see [portMappings](task_definition_parameters.md#ContainerDefinition-portMappings)\.
 
-   1. If you are using the **Rolling update** deployment type, fill out the following deployment configuration parameters\. For more information on how these parameters are used, see [Deployment configuration](service_definition_parameters.md#sd-deploymentconfiguration)\.
-      + **Minimum healthy percent**: Specify a lower limit on the number of your service's tasks that must remain in the `RUNNING` state during a deployment, as a percentage of the service's desired number of tasks \(rounded up to the nearest integer\)\.
-      + **Maximum percent**: Specify an upper limit on the number of your service's tasks that are allowed in the `RUNNING` or `PENDING` state during a deployment, as a percentage of the service's desired number of tasks \(rounded down to the nearest integer\)\.
+   1. If you're using the **Rolling update** deployment type, fill out the following deployment configuration parameters\. For more information about how these parameters are used, see [Deployment configuration](service_definition_parameters.md#sd-deploymentconfiguration)\.
+      + **Minimum healthy percent**: Specify a lower limit for the number of tasks that your service must remain in the `RUNNING` state during a deployment\. Specify the number as a percentage of the desired number of tasks\. This number must be a whole number\.
+      + **Maximum percent**: Specify an upper limit for the number of tasks that your service allows in the `RUNNING` or `PENDING` state during a deployment\. Specify the number as a percentage of the desired number of tasks\. This number must be a whole number\.
 
 1. For **Deployment circuit breaker**, choose the deployment circuit breaker logic\. For more information, see [Using the deployment circuit breaker](deployment-type-ecs.md#deployment-circuit-breaker)\.
 
 1. On the **Deployments** page, complete the following steps\.
 
-   1. For **Deployment type**, choose whether your service should use a rolling update deployment or a blue/green deployment using AWS CodeDeploy\. For more information, see [Amazon ECS Deployment types](deployment-types.md)\.
+   1. For **Deployment type**, choose whether your service uses a rolling update deployment or a blue/green deployment using AWS CodeDeploy\. For more information, see [Amazon ECS Deployment types](deployment-types.md)\.
 
    1. If you selected the blue/green deployment type, complete the following steps:
 

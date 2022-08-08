@@ -47,7 +47,7 @@ The following Amazon EC2 GPU\-based instance types are supported\. For more info
 We recommend that you consider the following before you begin working with GPUs on Amazon ECS\.
 + Your clusters can contain a mix of GPU and non\-GPU container instances\.
 + You can run GPU workloads on external instances\. When registering an external instance with your cluster, ensure the `--enable-gpu` flag is included on the installation script\. For more information, see [Registering an external instance to a cluster ](ecs-anywhere-registration.md)\.
-+ You must set `ECS_ENABLED_GPU_SUPPORT` to `true` in your agent configuration file\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
++ You must set `ECS_ENABLE_GPU_SUPPORT` to `true` in your agent configuration file\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 + When running a task or creating a service, you can use instance type attributes when you configure task placement constraints to determine the container instances the task is to be launched on\. By doing this, you can more effectively use your resources\. For more information, see [Amazon ECS task placement](task-placement.md)\.
 
   The following example launches a task on a `p2.xlarge` container instance in your default cluster\.
@@ -58,7 +58,7 @@ We recommend that you consider the following before you begin working with GPUs 
   ```
 + For each container that has a GPU resource requirement that's specified in the container definition, Amazon ECS sets the container runtime to be the NVIDIA container runtime\.
 + The NVIDIA container runtime requires some environment variables to be set in the container to function properly\. For a list of these environment variables, see [nvidia\-container\-runtime](https://github.com/NVIDIA/nvidia-container-runtime)\. Amazon ECS sets the `NVIDIA_VISIBLE_DEVICES` environment variable value to be a list of the GPU device IDs that Amazon ECS assigns to the container\. For the other required environment variables, Amazon ECS doesn't set them\. So, make sure that your container image sets them or they're set in the container definition\.
-+ The g4 instance type family is supported on version `20190913` and later of the Amazon ECS GPU\-optimized AMI\. For more information, see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\. It's ot supported in the Create Cluster workflow in the Amazon ECS console\. To use these instance types, you must either use the Amazon EC2 console, AWS CLI, or API and manually register the instances to your cluster\.
++ The g4 instance type family is supported on version `20190913` and later of the Amazon ECS GPU\-optimized AMI\. For more information, see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\. It's not supported in the Create Cluster workflow in the Amazon ECS console\. To use these instance types, you must either use the Amazon EC2 console, AWS CLI, or API and manually register the instances to your cluster\.
 + The p4d\.24xlarge instance type only works with CUDA 11 or later\.
 + The Amazon ECS GPU\-optimized AMI has IPv6 enabled, which causes issues when using `yum`\. This can be resolved by configuring `yum` to use IPv4 with the following command\.
 

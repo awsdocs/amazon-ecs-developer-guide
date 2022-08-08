@@ -67,13 +67,17 @@ The following basic restrictions apply to tags
 
 When you use Amazon ECS\-managed tags, Amazon ECS automatically tags all newly launched tasks with the cluster name\. For tasks that belong to a service, they are also tagged with the service name\. These managed tags are helpful when reviewing cost allocation after enabling them in your Cost and Usage Report\. For more information, see [Amazon ECS usage reports](usage-reports.md)\.
 
+The following options are required for this feature:
++ You must opt in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\.
++ When you use the APIs to create a service or run a task, you must set `enableECSManagedTags` to `true` for `run-task` and `create-service`\. For more information, see [create\-service](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html) and [run\-task](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html) in the *AWS Command Line Interface API Reference*\.
++ When you use the console to create a service or run a task, you must use the classic console and choose the **Enable ECS managed tags** option\. For more information, see [Creating an Amazon ECS service](create-service.md)\.
+
 To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in the *AWS Billing User Guide*\.
 
-**Important**  
-To use this feature, you must opt in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\.
-
 **Note**  
-If you've enabled reporting, data for the current month is available for viewing after 24 hours\.
+If you've turned on reporting, data for the current month is available for viewing after 24 hours\.
+
+
 
 ## Working with tags using the console<a name="tag-resources-console"></a>
 
@@ -216,14 +220,23 @@ The following command tags an existing cluster\.
 aws ecs tag-resource --resource-arn resource_ARN --tags key=stack,value=dev
 ```
 
-**Example 2: Untag an existing cluster**  
+**Example 2: Add multiple tags for a cluster**  
+The following command adds multiple tags for a cluster\.
+
+```
+aws ecs tag-resource \
+--resource-arn resource_ARN \
+--tags key=key1,value=value1 key=key2,value=value2 key=key3,value=value3
+```
+
+**Example 3: Untag an existing cluster**  
 The following command deletes a tag from an existing cluster\.
 
 ```
 aws ecs untag-resource --resource-arn resource_ARN --tag-keys tag_key
 ```
 
-**Example 3: List tags for a resource**  
+**Example 4: List tags for a resource**  
 The following command lists the tags associated with an existing resource\.
 
 ```

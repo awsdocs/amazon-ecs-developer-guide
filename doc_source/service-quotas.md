@@ -6,7 +6,12 @@ The following tables provide the default service quotas, also referred to as lim
 
 The following are Amazon ECS service quotas\.
 
+New AWS accounts might have initial lower quotas that can increase over time\. Amazon ECS constantly monitors the account usage within each Region, and then automatically increases the quotas based on your usage\. You can also request a quota increase for values that are shown as adjustable, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-increase.html) in the *Service Quotas User Guide*\.
+
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-quotas.html)
+
+**Note**  
+The default values are the initial quotas set by AWS, which are separate from the actual applied quota value and maximum possible service quota\. For more information, see [Terminology in Service Quotas](https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html#intro_getting-started) in the *Service Quotas User Guide*\.
 
 **Note**  
 <a name="service-quotas-ecs-note-1"></a>Services configured to use Amazon ECS service discovery have a limit of 1,000 tasks per service\. This is due to the AWS Cloud Map service quota for the number of instances per service\. For more information, see [AWS Cloud Map service quotas](https://docs.aws.amazon.com/general/latest/gr/cloud_map.html) in the *Amazon Web Services General Reference*\.
@@ -18,7 +23,12 @@ The following are Amazon ECS service quotas\.
 
 The following are Amazon ECS on AWS Fargate service quotas\.
 
+New AWS accounts might have initial lower quotas that can increase over time\. Fargate constantly monitors the account usage within each Region, and then automatically increases the quotas based on your usage\. You can also request a quota increase for values that are shown as adjustable, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-increase.html) in the *Service Quotas User Guide*\.
+
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-quotas.html)
+
+**Note**  
+The default values are the initial quotas set by AWS, which are separate from the actual applied quota value and maximum possible service quota\. For more information, see [Terminology in Service Quotas](https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html#intro_getting-started) in the *Service Quotas User Guide*\.
 
 **Note**  
 Fargate additionally enforces Amazon ECS tasks and Amazon EKS pods launch rate limits\. For more information, see [Fargate throttling limits](https://docs.aws.amazon.com/AmazonECS/latest/userguide/throttling.html)\.

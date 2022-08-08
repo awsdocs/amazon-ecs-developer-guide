@@ -48,12 +48,12 @@ Amazon ECS Windows containers on AWS Fargate is supported in the following Regio
 |  US East \(Ohio\)  |  us\-east\-2  | 
 |  US East \(N\. Virginia\)  |  us\-east\-1 \(`use1-az1`, `use1-az2`, `use1-az4`, `use1-az5`, & `use1-az6`only\)  | 
 |  US West \(N\. California\)  |  us\-west\-1 \(`usw1-az1` & `usw1-az3` only\)  | 
-|  US West \(Oregon\)  |  us\-west\-2 us\-west\-2 \(`usw2-az1`, `usw2-az2`, & `usw2-az3` only\)  | 
+|  US West \(Oregon\)  |  us\-west\-2  | 
 |  Africa \(Cape Town\)  |  af\-south\-1  | 
 |  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  | 
 |  Asia Pacific \(Mumbai\)  |  ap\-south\-1  | 
 |  Asia Pacific \(Osaka\)  |  ap\-northeast\-3  | 
-|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2 ap\-northeast\-2 \(`apne2-az1`, & `apne2-az3` only\)  | 
+|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
 |  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
 |  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1 \(`apne1-az1`, `apne1-az2`, & `apne1-az4` only\)  | 
