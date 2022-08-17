@@ -2,7 +2,7 @@
 
 Your Amazon ECS container instances are created using the Amazon EC2 console\. Before you begin, be sure that you've completed the steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 
-You can launch an intance by various methods including the Amazon EC2 console, AWS CLI, and SDK\. The procedure on this page covers the launcch wizard in the Amazon EC2 console\. For information about the other methods for launching an instance, see [Launch your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/LaunchingAndUsingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+You can launch an intance by various methods including the Amazon EC2 console, AWS CLI, and SDK\. The procedure on this page covers the launch wizard in the Amazon EC2 console\. For information about the other methods for launching an instance, see [Launch your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/LaunchingAndUsingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 For more informtion about the launch wizard, see [Launch an instance using the new launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
