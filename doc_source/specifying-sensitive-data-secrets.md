@@ -1,4 +1,4 @@
-# Specifying sensitive data using Secrets Manager<a name="specifying-sensitive-data-secrets"></a>
+# Using Secrets Manager to secure sensitive data<a name="specifying-sensitive-data-secrets"></a>
 
 Amazon ECS enables you to inject sensitive data into your containers by storing your sensitive data in AWS Secrets Manager secrets and then referencing them in your container definition\. Sensitive data stored in Secrets Manager secrets can be exposed to a container as environment variables or as part of the log configuration\.
 
@@ -56,7 +56,9 @@ The following example inline policy adds the required permissions\.
 }
 ```
 
-## Injecting sensitive data as an environment variable<a name="secrets-envvar"></a>
+## Have your application retrieve the Secrets Manager secret programmatically<a name="secrets-application-retrieval"></a>
+
+## Referencing Secrets Manager secret in a task definition<a name="secrets-envvar"></a>
 
 Within your container definition, you can specify the following:
 + The `secrets` object containing the name of the environment variable to set in the container

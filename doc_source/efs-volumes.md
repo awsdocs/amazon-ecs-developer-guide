@@ -4,7 +4,7 @@ Amazon Elastic File System \(Amazon EFS\) provides simple, scalable file storage
 
 You can use Amazon EFS file systems with Amazon ECS to export file system data across your fleet of container instances\. That way, your tasks have access to the same persistent storage, no matter the instance on which they land\. Your task definitions must reference volume mounts on the container instance to use the file system\. The following sections describe how to get started using Amazon EFS with Amazon ECS\.
 
-For a tutorial, see [Tutorial: Using Amazon EFS file systems with Amazon ECS](tutorial-efs-volumes.md)\.
+For a tutorial, see [Tutorial: Using Amazon EFS file systems with Amazon ECS using the classic console](tutorial-efs-volumes.md)\.
 
 ## Amazon EFS volume considerations<a name="efs-volume-considerations"></a>
 
@@ -37,7 +37,7 @@ Access points can enforce a user identity, including the user's POSIX groups, fo
 **Note**  
 When creating an EFS access point, specify a path on the file system to serve as the root directory\. When referencing the EFS file system with an access point ID in your Amazon ECS task definition, the root directory must either be omitted or set to `/`, which enforces the path set on the EFS access point\.
 
-You can use an Amazon ECS task IAM role to enforce that specific applications use a specific access point\. By combining IAM policies with access points, you canprovide secure access to specific datasets for your applications\. For more information about how to use task IAM roles, see [IAM roles for tasks](task-iam-roles.md)\.
+You can use an Amazon ECS task IAM role to enforce that specific applications use a specific access point\. By combining IAM policies with access points, you can provide secure access to specific datasets for your applications\. For more information about how to use task IAM roles, see [IAM roles for tasks](task-iam-roles.md)\.
 
 ## Specifying an Amazon EFS file system in your task definition<a name="specify-efs-config"></a>
 

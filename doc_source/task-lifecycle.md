@@ -36,3 +36,6 @@ Amazon ECS has to perform additional steps after the task has stopped but before
 
 STOPPED  
 The task has been successfully stopped\.
+
+DELETED  
+This is a transition state when a task stops\. This state is not displayed in the console, but is displayed in `describe-tasks`\.

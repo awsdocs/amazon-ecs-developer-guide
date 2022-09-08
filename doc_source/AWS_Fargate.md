@@ -52,6 +52,8 @@ When you configure a task and container definition for AWS Fargate, you must spe
 + Amazon Linux 2
 + Windows Server 2019 Full
 + Windows Server 2019 Core
++ Windows Server 2022 Full
++ Windows Server 2022 Core
 
 ### Task CPU architecture<a name="fargate-task-cpu-architecture"></a>
 
@@ -321,6 +323,8 @@ To create a Savings Plan for your AWS Fargate usage, use the **Compute Savings P
 Windows containers on AWS Fargate supports the following operating systems:
 + Windows Server 2019 Full
 + Windows Server 2019 Core
++ Windows Server 2022 Full
++ Windows Server 2022 Core
 
 AWS handles the operating system license management, so you do not need any additional Microsoft licenses\.
 

@@ -10,7 +10,7 @@ Amazon ECS cluster auto scaling is only supported when using Auto Scaling group 
 
 ## How cluster Auto Scaling works<a name="how-it-works"></a>
 
-The following is the basic workflow used to enable Amazon ECS cluster auto scaling\. For more information, see [Turn on cluster Auto Scaling](turn-on-cluster-auto-scaling.md)\.
+The following is the basic workflow used for Amazon ECS cluster auto scaling\. For more information, see [Turn on cluster Auto Scaling](turn-on-cluster-auto-scaling.md)\.
 
 1. Create an Auto Scaling group
 
@@ -33,7 +33,7 @@ The following metrics help to determine what actions to take:
 +  `CapacityProviderReservation` \- The percent of cluster container instances in use for a specific capacity provider\. Amazon ECS generates this metric\.
 + `DesiredCapacity` \- The amount of capacity for the Auto Scaling group\. 
 
-Amazon ECS starts the cluster Auto Scaling process for each capacity provider associated with your cluster\. Every minute, Amazon ECS collects information which determines whether the Auto Scaling group needs to scale in or out\. When launched tasks cannot be placed on available instances, the Auto Scaling group scales\-out by launching new instances\. When there are running instances with no tasks, the Auto Scaling group scales\-in by terminating an instance with no running tasks\.
+Amazon ECS starts the cluster Auto Scaling process for each capacity provider associated with your cluster\. Every minute, Amazon ECS collects information which determines whether the Auto Scaling group needs to scale in or out\. When launched tasks cannot be placed on available instances, the Auto Scaling group scales\-out by launching new instances\. When there are running instances with no tasks, the Auto Scaling group scales\-in by terminating the instances with no running tasks\.
 
 Amazon ECS initiates the `CapacityProviderReservation` metric, and then publishes the metric to CloudWatch in the `AWS/ECS/ManagedScaling` namespace\. The `CapacityProviderReservation` metric causes one of the following actions to happen:
 + The `CapacityProviderReservation` value equals 100% \- The Auto Scaling group does not need to scale\-in or scale\-out, because all container instances are running at least one non\-daemon task\.
@@ -49,11 +49,11 @@ Consider the following when using cluster Auto Scaling:
 **Important**  
 Make sure any tooling you use does not remove the `AmazonECSManaged` tag from the Auto Scaling group\. If this tag is removed, Amazon ECS is not able to manage it when scaling your cluster\.
 + Cluster Auto Scaling does not modify the **MinimumCapacity** or **MaximumCapacity** for the group\. In order for the group to scale\-out, the value for **MaximumCapacity** must be greater than 0\.
-+ A capacity provider can only be connected to one cluster at the same time when Auto Scaling \(managed scaling\) is turned on\. If your capacity provider has managed scaling turned off, you can associate it with multiple clusters\.
++ A capacity provider can only be connected to one cluster at the same time when managed scaling is turned on\. If your capacity provider has managed scaling turned off, you can associate it with multiple clusters\.
 + When managed scaling is turned off, the capacity provider does not perform scale\-in or scale\-out operations\. For this case, you can use a capacity provider strategy to balance your tasks between capacity providers\.
-+ Amazon ECS uses placement strategy and placement constraints with the existing capacity at the current time\. A placement strategy can spread tasks across Availability Zones or Amazon ECS instances\. This eventually spreads all tasks all instances so that each running task launches on its own dedicated instance\. To prevent this behavior, do not use the `spread` strategy in conjunction with the `binpack` strategy\. For more information, see [Amazon ECS task placement strategies](task-placement-strategies.md)\.
++ Amazon ECS uses placement strategy and placement constraints with the current existing capacity\. A placement strategy can spread tasks across Availability Zones or Amazon ECS instances\. This strategy eventually spreads all tasks all instances so that each running task launches on its own dedicated instance\. To prevent this behavior, do not use the `spread` strategy in conjunction with the `binpack` strategy\. For more information, see [Amazon ECS task placement strategies](task-placement-strategies.md)\.
 
-The following considerations apply when you use the new console:
+Consider the following when you use the new console:
 + The Amazon ECS managed scaling feature is on by default\. For more information, see [Managed scale\-out behavior](#managed-scaling-scaleout)\.
 + Managed termination is off by default\.
 + Auto Scaling instance\-scale\-in protection is off by default\. For more information, see [Using instance scale\-in protection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html) in the *Amazon EC2 Auto Scaling User Guide*\.
@@ -75,7 +75,7 @@ When you have Auto Scaling group capacity providers that use managed scaling, Am
 
 1. Group all of the provisioning tasks so that each group has the same exact resource requirements\.
 
-1. When you use multiple instance types in a group, the instances in the Auto Scaling group are sorted by their parameters, such as vCPU, memory, elastic network interfaces \(ENIs\), ports, and GPUs\. The smallest and the largest instance types for each parameter are selected\.
+1. When you use multiple instance types in a group, the instances in the Auto Scaling group are sorted by their parameters, such as vCPU, memory, elastic network interfaces \(ENIs\), ports, and GPUs\. The smallest and the largest instance types for each parameter are selected\. For more information about how to choose the instance type, see [Characterizing your application](https://docs.aws.amazon.com/AmazonECS/latest/bestpracticesguide/capacity-autoscaling.html#capacity-autoscaling-app) in the *Amazon ECS Best Practices Guide*\.
 
 1. For each group of tasks, Amazon ECS calculates the number of instances required to run the unplaced tasks\. This calculation uses a `binpack` strategy which accounts for the vCPU, memory, elastic network interfaces \(ENI\), ports, and GPUs requirements of the tasks and the resource availability of the Amazon EC2 instances\. The values for the largest instance types are treated as the maximum calculated instance count\. The values for the smallest instance type are used as protection\. If the smallest instance type cannot run at least one instance of the task, the calculation considers the task as not compatible and it is excluded from scale\-out calculation\. When all tasks are not compatible with the smallest instance type, cluster Auto Scaling stops and the `CapacityProviderReservation` value remains at 100%\.
 
@@ -83,9 +83,9 @@ When you have Auto Scaling group capacity providers that use managed scaling, Am
 
 1. CloudWatch alarms consume the `CapacityProviderReservation` metric \(published by Amazon ECS\) for capacity providers and increase the `DesiredCapacity` of the Auto Scaling group only when the value is greater than the `targetCapacity` value\. The `targetCapacity` value is a capacity provider setting that is sent to the CloudWatch alarm during the cluster auto scaling activation phase\. 
 
-   You can set the `targetCapacity` when you create the Auto Scaling group, or modify it after the group is created\. The default is 100%\.
+   You can set the `targetCapacity` when you create the Auto Scaling group, or modify the value after the group is created\. The default is 100%\.
 
-1. The Auto Scaling group launches additional EC2 instances\. To prevent over\-provisioning of the scale\-out operation, Auto Scaling makes sure that recently launched EC2 instance capacity is stabilized before it launches new instances\. Auto Scaling checks if all existing instances have passed the `instanceWarmupPeriod` \(now minus the instance launch time\) If any instance is within the `instanceWarmupPeriod`, the scale\-out is blocked until that time\. 
+1. The Auto Scaling group launches additional EC2 instances\. To prevent over\-provisioning of the scale\-out operation, auto scaling stabilizes recently launched EC2 instance capacitybefore launching new instances\. Auto scaling checks if all existing instances have passed the `instanceWarmupPeriod` \(now minus the instance launch time\)\. If any instance is within the `instanceWarmupPeriod`, Amazon ECS blocks the scale\-out operation until the `instanceWarmupPeriod` expires\. 
 
    The default number of seconds for a newly launched instance to warm up is 300\.
 
@@ -95,13 +95,13 @@ For a more detailed explanation of how this logic works, see [Deep dive on Amazo
 
  Consider the following for the scale\-out process:
 
-1. Although there are multiple placement constraints, we recommend that you only use the `distinctInstance` task placement constraint\. This prevents the scale\-out process from stopping because you are using a placement constraint that is not compatible with the sampled instances\.
+1. Although there are multiple placement constraints, we recommend that you only use the `distinctInstance` task placement constraint\. This placement contraint prevents the scale\-out process from stopping because you are using a placement constraint that is not compatible with the sampled instances\.
 
 1. Managed scaling works best if your Auto Scaling group uses the same or similar instance types\. For more information, see [Managed scale\-out behavior](#managed-scaling-scaleout)\.
 
 1. When a scale\-out process is required and there are no available container instances, and then a container instance becomes available, Amazon ECS always scales\-out to 200% \(two instances\)\.
 
-1. The `instanceWarmupPeriod` might affect the overall scale limit, because second scale\-out step needs to wait until the `instanceWarmupPeriod` time expires\. \. If you need to reduce this time, make sure that the value is large enough for the EC2 instance to launch and start the Amazon ECS agent \(which prevents over\-provisioning\)\.
+1. The `instanceWarmupPeriod` might affect the overall scale limit, because the second scale\-out step waits until the `instanceWarmupPeriod` time expires\. \. If you need to reduce this time, make sure that the value is large enough for the EC2 instance to launch and start the Amazon ECS agent \(which prevents over\-provisioning\)\.
 
 1. Cluster Auto Scaling supports Launch Configuration, Launch Templates and multiple instance types in the capacity provider Auto Scaling group\. You can also use attribute\-based instance type selection without multiple instances types\.
 
@@ -156,6 +156,6 @@ Review the following considerations:
 
 As of May 27, 2022, Amazon ECS no longer creates an AWS Auto Scaling scaling plan for newly created capacity providers\. Instead, Amazon ECS uses the target tracking scaling policy attached to the Auto Scaling group to perform dynamic scaling based on your target capacity specification\. For more information, see [Auto Scaling group capacity providers](asg-capacity-providers.md)\.
 
-This simplified experience now enables you to leverage an existing Auto Scaling group with a scaling policy for use when creating a new capacity provider\. We recommend not modifying the ECS\-managed scaling policy \(or plan\) resources\. However, when creating new capacity provider resources, if you have customized tooling that made modifications to the AWS Auto Scaling scaling plan, do one of the following:
+This simplified experience now allows you to leverage an existing Auto Scaling group with a scaling policy for use when creating a new capacity provider\. We recommend that you not modify the ECS\-managed scaling policy \(or plan\) resources\. However, when creating new capacity provider resources, if you have customized tooling that made modifications to the AWS Auto Scaling scaling plan, do one of the following:
 + \(Recommended\) Update your capacity provider to modify the Amazon ECS managed scaling settings\. For more information, see [UpdateCapacityProvider](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateCapacityProvider.html)\. 
 + Update the scaling policy associated with your Auto Scaling group to modify the target tracking configuration used\. For more information, see [PutScalingPolicy](https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutScalingPolicy.html)\.

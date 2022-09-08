@@ -187,28 +187,3 @@ aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-20
 ```
 
 ------
-#### [ Windows Server 20H2 Core AMI versions ]
-
-The table below lists the current and previous versions of the Amazon ECS\-optimized Windows Server 20H2 Core AMI and their corresponding versions of the Amazon ECS container agent and Docker\.
-
-
-|  Amazon ECS\-optimized Windows Server 20H2 Core AMI  |  Amazon ECS container agent version  |  Docker version  |  Visibility  | 
-| --- | --- | --- | --- | 
-|  **Windows\_Server\-20H2\-English\-Core\-ECS\_Optimized\-2022\.06\.15**  |  `1.61.2`  |  `20.10.9`  |  Public  | 
-|  **Windows\_Server\-20H2\-English\-Core\-ECS\_Optimized\-2022\.01\.18**  |  `1.57.1`  |  `20.10.9`  |  Public  | 
-|  **Windows\_Server\-20H2\-English\-Core\-ECS\_Optimized\-2021\.12\.16**  |  `1.57.1`  |  `20.10.7`  |  Public  | 
-|  **Windows\_Server\-20H2\-English\-Core\-ECS\_Optimized\-2021\.11\.11**  |  `1.57.0`  |  `20.10.7`  |  Public  | 
-|  **Windows\_Server\-20H2\-English\-Core\-ECS\_Optimized\-2021\.08\.12**  |  `1.55.0`  |  `20.10.6`  |  Public  | 
-|  **Windows\_Server\-20H2\-English\-Core\-ECS\_Optimized\-2021\.07\.13**  |  `1.54.02`  |  `20.10.6`  |  Private  | 
-|  **Windows\_Server\-20H2\-English\-Core\-ECS\_Optimized\-2021\.07\.08**  |  `1.54.0`  |  `20.10.5`  |  Private  | 
-|  **Windows\_Server\-20H2\-English\-Core\-ECS\_Optimized\-2021\.06\.11**  |  `1.53.0`  |  `20.10.5`  |  Private  | 
-|  **Windows\_Server\-20H2\-English\-Core\-ECS\_Optimized\-2021\.05\.21**  |  `1.52.2`  |  `20.10.4`  |  Private  | 
-|  **Windows\_Server\-20H2\-English\-Core\-ECS\_Optimized\-2021\.04\.14**  |  `1.51.0`  |  `20.10.0`  |  Private  | 
-
-Use the following AWS CLI command to retrieve the current Amazon ECS\-optimized Windows Server 20H2 Core AMI\.
-
-```
-aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized
-```
-
-------

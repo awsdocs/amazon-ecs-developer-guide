@@ -253,10 +253,26 @@ If successful, this will return a description of the service failures and servic
 
 Describe the task in the service so that you can get the Elastic Network Interface \(ENI\) for the task\. 
 
-Describe the task and locate the ENI ID\.
+First, get the task ARN\.
 
 ```
-aws ecs describe-tasks --cluster fargate-cluster --tasks fargate-tasks
+aws ecs list-tasks ---cluster fargate-cluster --service fargate-service
+```
+
+The output contains the task ARN\.
+
+```
+{
+    "taskArns": [
+        "arn:aws:ecs:us-east-1:123456789012:task/service/EXAMPLE
+    ]
+}
+```
+
+Describe the task and locate the ENI ID\. Use the task ARN for the `tasks` parameter\.
+
+```
+aws ecs describe-tasks --cluster fargate-cluster --tasks aws:ecs:us-east-1:123456789012:task/service/EXAMPLE
 ```
 
 The attachment information is listed in the output\. 

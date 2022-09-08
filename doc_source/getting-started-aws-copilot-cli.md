@@ -50,10 +50,11 @@ git clone https://github.com/aws-samples/amazon-ecs-cli-sample-app.git demo-app
 
 1. From within the demo\-app directory, run the `init` command\.
 
+   For Windows users, run the `init` command from the folder that contains the downloaded `copilot.exe` file\.
+
    ```
    copilot init
    ```
-   For Windows users, run the `init` command from the folder where the copilot.exe file was downloaded.
 
    AWS Copilot walks you through the setup of your **first application and service** with a series of terminal prompts, starting with **next step**\. If you have already used AWS Copilot to deploy applications, you're prompted to choose one from a list of application names\.
 
@@ -95,8 +96,8 @@ git clone https://github.com/aws-samples/amazon-ecs-cli-sample-app.git demo-app
    ```
 
     Choose *`Dockerfile`*\. 
-    
-    For Windows users, enter the path to the Dockerfile in the demo-app folder. *`...\demo-app\Dockerfile`*\.
+
+    For Windows users, enter the path to the Dockerfile in the `demo-app folder` \(\*`\.\.\.\\demo\-app\\Dockerfile`\*\\\.\)\.
 
 1. Define port\.
 

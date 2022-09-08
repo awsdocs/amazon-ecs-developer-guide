@@ -171,7 +171,7 @@ An example inline policy adding the permissions is shown below\.
 
 ## Required IAM permissions for Amazon ECS secrets<a name="task-execution-secrets"></a>
 
-To use the Amazon ECS secrets feature, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary AWS Systems Manager or Secrets Manager resources\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.
+To use the Amazon ECS secrets feature, you must have the Amazon ECS task execution role and reference it in your task definition\. This allows the container agent to pull the necessary AWS Systems Manager or Secrets Manager resources\. For more information, see [Passing sensitive data to a container](specifying-sensitive-data.md)\.
 
 To provide access to the AWS Systems Manager Parameter Store parameters that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
 + `ssm:GetParameters`—Required if you are referencing a Systems Manager Parameter Store parameter in a task definition\.

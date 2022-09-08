@@ -13,16 +13,13 @@ Amazon ECS monitors for the Spot Instance interruption notices that have the `te
 
 When a container instance is set to `DRAINING`, Amazon ECS prevents new tasks from being scheduled for placement on the container instance\. Service tasks on the draining container instance that are in the `PENDING` state are stopped immediately\. If there are container instances in the cluster that are available, replacement service tasks are started on them\.
 
-Spot Instance draining is disabled by default and must be manually enabled\. To enable Spot Instance draining for a new container instance, when launching the container instance add the following script into the **User data** field, replacing *MyCluster* with the name of the cluster to register the container instance to\.
+You must set the `ECS_ENABLE_SPOT_INSTANCE_DRAINING` parameter before you start the container agent\. Use the following commands to manually turn on Spot Instance draining\. Substitute *my\-cluster* with the name of your cluster\.
 
 ```
-<powershell>
+[Environment]::SetEnvironmentVariable("ECS_ENABLE_SPOT_INSTANCE_DRAINING", "true", "Machine")
 
-Import-Module ECSTools
-
-Initialize-ECSAgent -Cluster your_cluster_name -ECS_ENABLE_SPOT_INSTANCE_DRAINING
-
-</powershell>
+# Initialize the agent
+Initialize-ECSAgent -Cluster my-cluster
 ```
 
 For more information, see [Launching an Amazon ECS Windows container instance](launch_window-container_instance.md)\.

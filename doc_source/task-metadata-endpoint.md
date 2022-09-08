@@ -1,6 +1,7 @@
 # Amazon ECS task metadata endpoint<a name="task-metadata-endpoint"></a>
 
 **Important**  
+  
 If you are using Amazon ECS tasks hosted on AWS Fargate, see [Amazon ECS task metadata endpoint](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-metadata-endpoint-fargate.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
 The Amazon ECS container agent provides a method to retrieve various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats)\. This is referred to as the task metadata endpoint\. The following versions are available:

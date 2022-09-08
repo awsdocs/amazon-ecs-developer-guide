@@ -150,7 +150,7 @@ After your security group is verified and updated and your Active Directory is c
 
 ## Step 5: Create an Amazon ECS cluster<a name="wfsx-create-cluster"></a>
 
-**Create a cluster using the AWS Management Console\.**
+**Create a cluster using the classic Amazon ECS console**
 
 1. Open the [Amazon ECS console](https://console.aws.amazon.com/ecs/)\.
 
@@ -172,7 +172,7 @@ After your security group is verified and updated and your Active Directory is c
 
 ## Step 6: Create an Amazon ECS instance<a name="wfsx-create-instance"></a>
 
-**Launch an ECS Optimized Windows EC2 instance into the ECS cluster you just created using the AWS Management Console\.**
+**Launch an ECS Optimized Windows EC2 instance into the ECS cluster you just created using the AWS Management Console and the classic Amazon ECS console**
 
 1. Go to [Amazon ECS\-optimized AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_windows_AMI.html) in the *Amazon ECS Developer Guide* to find the latest version of the Windows Server 2019 Full AMI in the same Region as your VPC\.
 
@@ -244,7 +244,7 @@ After your security group is verified and updated and your Active Directory is c
 
 1. Click on **View instance** to see the new instance status among your list of instances\.
 
-1. Open the [Amazon ECS console](https://console.aws.amazon.com/ecs/) and select **Clusters**\.
+1. Open the classic [Amazon ECS console](https://console.aws.amazon.com/ecs/) and select **Clusters**\.
 
 1. Select your **fsx\-windows\-cluster** cluster\.
 
@@ -254,7 +254,7 @@ After your security group is verified and updated and your Active Directory is c
 
 Before you can run Windows containers in your Amazon ECS cluster, you must register a task definition\. The following task definition example displays a simple web page on port 8080 of a container instance\. The task launches two containers that have access to the FSx file system\. The first container writes an HTML file to the file system\. The second container downloads the HTML file from the file system and serves the webpage\.
 
-**Register the sample task definition with the AWS Management Console\.**
+**Register the sample task definition with the classic Amazon ECS console**
 
 1. Open the [Amazon ECS console](https://console.aws.amazon.com/ecs/)\.
 
@@ -359,7 +359,7 @@ Before running the task, verify that the status of your FSx for Windows File Ser
 **Note**  
 You might not be able to connect to the website from within a VPN\.
 
-**Run a task and view the results\.**
+**Run a task and view the results with the classic console\.**
 
 1. Open the [Amazon ECS console](https://console.aws.amazon.com/ecs/)\.
 

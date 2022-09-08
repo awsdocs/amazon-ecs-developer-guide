@@ -89,7 +89,7 @@ If you're not using the Amazon ECS console, you can add the AWS Distro for OpenT
 			"image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.17.0",
 			"essential": true,
 			"command": [
-				"--config=/etc/ecs/ecs-xray.yaml"
+				"--config=/etc/ecs/otel-instance-metrics-config.yaml"
 			],
 			"logConfiguration": {
 				"logDriver": "awslogs",

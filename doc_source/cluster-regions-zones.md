@@ -8,7 +8,7 @@ Amazon ECS supports workloads that take advantage of Local Zones, Wavelength Zon
 **Important**  
 Amazon ECS on AWS Fargate workloads are not supported in Local Zones, Wavelength Zones, or on AWS Outposts at this time\.
 
-We describe each of these in more detail in the following section\.
+For information about the differences between Local Zones, Wavelength Zones, and AWS Outposts , see [How should I think about when to use AWS Wavelength, AWS Local Zones, or AWS Outposts for applications requiring low latency or local data processing](http://aws.amazon.com/wavelength/faqs/) in the AWS Wavelength FAQs\.
 
 ## Local Zones<a name="clusters-local-zones"></a>
 

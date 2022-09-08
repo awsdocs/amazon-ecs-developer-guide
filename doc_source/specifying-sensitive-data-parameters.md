@@ -1,4 +1,4 @@
-# Specifying sensitive data using Systems Manager Parameter Store<a name="specifying-sensitive-data-parameters"></a>
+# Using Systems Manager Parameter Store to secure sensitive data<a name="specifying-sensitive-data-parameters"></a>
 
 You can use Amazon ECS to inject sensitive data into your containers by storing your sensitive data in AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\.
 
@@ -12,7 +12,7 @@ You can use Amazon ECS to inject sensitive data into your containers by storing 
 
 ## Considerations for specifying sensitive data using Systems Manager Parameter Store<a name="secrets--parameterstore-considerations"></a>
 
- Consider the following when specifying sensitive data for containers using Systems Manager Parameter Store parameters\.
+Consider the following when specifying sensitive data for containers using Systems Manager Parameter Store parameters\.
 + The Systems Manager Parameter Store parameter must exist in the same account that the tasks are run in\.
 + For tasks hosted on Fargate, this feature requires that your task use platform version `1.3.0` or later \(for Linux\) or `1.0.0` or later \(for Windows\)\. For information, see [AWS Fargate platform versions](platform_versions.md)\.
 + For tasks hosted on EC2 instances, this feature requires that your container instance have version `1.22.0` or later of the container agent\. However, we recommend using the latest container agent version\. For information about how to check your agent version and update to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.

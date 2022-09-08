@@ -47,3 +47,12 @@ The following should be considered when using capacity providers:
 + A cluster may contain a mix of services and standalone tasks using both capacity providers and launch types\. A service may be updated to use a capacity provider strategy rather than a launch type, however you must force a new deployment when doing so\.
 + When you use managed termination protection, you must also use managed scaling otherwise managed termination protection won't work\.
 + Using capacity providers is not supported when using Classic Load Balancers for your services\.
+
+The following sections provide information about the Fargate launch type and EC2 launch type capacity providers\.
+
+**Topics**
++ [Capacity provider concepts](#capacity-providers-concepts)
++ [Capacity provider types](#capacity-providers-types)
++ [Capacity provider considerations](#capacity-providers-considerations)
++ [AWS Fargate capacity providers](fargate-capacity-providers.md)
++ [Auto Scaling group capacity providers](asg-capacity-providers.md)

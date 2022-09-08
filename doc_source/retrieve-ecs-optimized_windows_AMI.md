@@ -31,11 +31,6 @@ The following is the format of the parameter name for each Amazon ECS\-optimized
   ```
   /aws/service/ami-windows-latest/Windows_Server-2019-English-Core-ECS_Optimized
   ```
-+ Windows Server 20H2 Core AMI metadata:
-
-  ```
-  /aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized
-  ```
 + Windows Server 2016 Full AMI metadata:
 
   ```
@@ -111,11 +106,6 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
 
   ```
   aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-2019-English-Core-ECS_Optimized --region us-east-1
-  ```
-+ **For the Amazon ECS\-optimized Windows Server 20H2 Core AMI:**
-
-  ```
-  aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized --region us-east-1
   ```
 + **For the Amazon ECS\-optimized Windows Server 2016 Full AMI:**
 

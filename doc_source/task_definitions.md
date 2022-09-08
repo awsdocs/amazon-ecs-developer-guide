@@ -15,6 +15,10 @@ You can define multiple containers in a task definition\. The parameters that yo
 
 Your entire application stack doesn't need to be on a single task definition, and in most cases it isn't on a single task definition\. Your application can span multiple task definitions\. You can do this by combining related containers into their own task definitions, each representing a single component\. For more information, see [Application architecture](application_architecture.md)\.
 
+After you create a task definition, you can run the task definition as a task or a service\.
++ A *task* is the instantiation of a task definition within a cluster\. After you create a task definition for your application within Amazon ECS, you can specify the number of tasks to run on your cluster\. 
++ An Amazon ECS *service* runs and maintains your desired number of tasks simultaneously in an Amazon ECS cluster\. How it works is that, if any of your tasks fail or stop for any reason, the Amazon ECS service scheduler launches another instance based on your task definition\. It does this to replace it and thereby maintain your desired number of tasks in the service\.
+
 **Topics**
 + [Amazon EC2 Windows task definition considerations](windows_task_definitions.md)
 + [Application architecture](application_architecture.md)
@@ -31,8 +35,8 @@ Your entire application stack doesn't need to be on a single task definition, an
 + [Using the awslogs log driver](using_awslogs.md)
 + [Custom log routing](using_firelens.md)
 + [Private registry authentication for tasks](private-auth.md)
-+ [Specifying sensitive data](specifying-sensitive-data.md)
-+ [Specifying environment variables](taskdef-envfiles.md)
++ [Passing environment variables to a container](taskdef-envfiles.md)
++ [Passing sensitive data to a container](specifying-sensitive-data.md)
 + [Example task definitions](example_task_definitions.md)
 + [Updating a task definition using the classic console](update-task-definition.md)
 + [Deregistering a task definition revision](deregister-task-definition.md)

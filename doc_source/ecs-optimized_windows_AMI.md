@@ -11,11 +11,13 @@ The following Windows Server variants of the Amazon ECS\-optimized AMI are avail
 + **Amazon ECS\-optimized Windows Server 2022 Core AMI** 
 + **Amazon ECS\-optimized Windows Server 2019 Full AMI** 
 + **Amazon ECS\-optimized Windows Server 2019 Core AMI** 
++ **Amazon ECS\-optimized Windows Server 2016 Full AMI**
 + **Amazon ECS\-optimized Windows Server 2004 Core AMI**
 **Important**  
 On December 14, 2021, the Amazon ECS\-optimized Windows Server 2004 Core AMI reached its end of support date\. No new versions of this AMI will be released\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
 + **Amazon ECS\-optimized Windows Server 20H2 Core AMI**
-+ **Amazon ECS\-optimized Windows Server 2016 Full AMI**
+**Important**  
+On August 9, 2022, the Amazon ECS\-optimized Windows Server 20H2 Core AMI reached its end of support date\. No new versions of this AMI will be released\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
 
  Windows Server 2022, Windows Server 2019, and Windows Server 2016 are Long\-Term Servicing Channel \(LTSC\) releases\. Windows Server 20H2 is a Semi\-Annual Channel \(SAC\) release\. For more information, see [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info)\.
 
@@ -182,45 +184,6 @@ The following table provides a link to retrieve the current Amazon ECS\-optimize
 
 For a full list of current and previous versions of the Windows Server 2019 Core and their corresponding versions of the Amazon ECS container agent and Docker see [Windows Amazon ECS\-optimized AMIs versions](ecs-windows-ami-versions.md#ecs-ami-versions-windows)\.
 
-### Windows Server 20H2 Core<a name="windows-20H2-core-ami"></a>
-
-The current Amazon ECS\-optimized Windows Server 20H2 Core AMI can be retrieved using the AWS CLI with the following command:
-
-```
-aws ssm get-parameters --names /aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized
-```
-
-The following table provides a link to retrieve the current Amazon ECS\-optimized Windows Server 20H2 Core AMI IDs by Region\.
-
-
-|  Region name  |  Region  |  AMI ID  | 
-| --- | --- | --- | 
-|  US East \(Ohio\)  |  `us-east-2`  |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-east-2#)  | 
-|  US East \(N\. Virginia\)  |  `us-east-1`  |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-east-1#)  | 
-|  US West \(N\. California\)  |  `us-west-1`  |  [View AMI ID](https://us-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-west-1#)  | 
-|  US West \(Oregon\)  |  `us-west-2`  |  [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-west-2#)  | 
-|  Asia Pacific \(Hong Kong\)  |  `ap-east-1`  |  [View AMI ID](https://ap-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-east-1#)  | 
-|  Asia Pacific \(Tokyo\)  | `ap-northeast-1` |  [View AMI ID](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-northeast-1#)  | 
-|  Asia Pacific \(Seoul\)  | `ap-northeast-2` |  [View AMI ID](https://ap-northeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-northeast-2#)  | 
-|  Asia Pacific \(Mumbai\)  | `ap-south-1` |  [View AMI ID](https://ap-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-south-1#)  | 
-|  Asia Pacific \(Singapore\)  | `ap-southeast-1` |  [View AMI ID](https://ap-southeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-southeast-1#)  | 
-|  Asia Pacific \(Sydney\)  | `ap-southeast-2` |  [View AMI ID](https://ap-southeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-southeast-2#)  | 
-|  Asia Pacific \(Jakarta\)  | `ap-southeast-3` |  [View AMI ID](https://ap-southeast-3.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ap-southeast-3#)  | 
-|  Canada \(Central\)  | `ca-central-1` |  [View AMI ID](https://ca-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=ca-central-1#)  | 
-|  Europe \(Frankfurt\)  | `eu-central-1` |  [View AMI ID](https://eu-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=eu-central-1#)  | 
-|  Europe \(Stockholm\)  | `eu-north-1` |  [View AMI ID](https://eu-north-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=eu-north-1#)  | 
-|  Europe \(Ireland\)  | `eu-west-1` |  [View AMI ID](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=eu-west-1#)  | 
-|  Europe \(London\)  | `eu-west-2` |  [View AMI ID](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=eu-west-2#)  | 
-|  Europe \(Paris\)  | `eu-west-3` |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=eu-west-3#)  | 
-|  Middle East \(Bahrain\)  | `me-south-1` |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=me-south-1#)  | 
-|  South America \(São Paulo\)  | `sa-east-1` |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=sa-east-1#)  | 
-|  AWS GovCloud \(US\-East\)  | `us-gov-east-1` |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-gov-east-1#)  | 
-|  AWS GovCloud \(US\-West\)  | `us-gov-west-1` |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=us-gov-west-1#)  | 
-|  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=cn-north-1#)  | 
-|  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-20H2-English-Core-ECS_Optimized?region=cn-northwest-1#)  | 
-
-For a full list of current and previous versions of the Windows Server 20H2 Core and their corresponding versions of the Amazon ECS container agent and Docker see [Windows Amazon ECS\-optimized AMIs versions](ecs-windows-ami-versions.md#ecs-ami-versions-windows)\.
-
 ### Windows Server 2016 Full<a name="windows-2016-full-ami"></a>
 
 The current Amazon ECS\-optimized Windows Server 2016 Full AMI can be retrieved using the AWS CLI with the following command:
@@ -252,6 +215,7 @@ The following table provides a link to retrieve the current Amazon ECS\-optimize
 |  Europe \(London\)  | `eu-west-2` |  [View AMI ID](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-2016-English-Full-ECS_Optimized?region=eu-west-2#)  | 
 |  Europe \(Paris\)  | `eu-west-3` |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-2016-English-Full-ECS_Optimized?region=eu-west-3#)  | 
 |  Middle East \(Bahrain\)  | `me-south-1` |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-2016-English-Full-ECS_Optimized?region=me-south-1#)  | 
+|    | `me-central-1` |  [View AMI ID](https://me-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-2016-English-Full-ECS_Optimized?region=me-central-1#)  | 
 |  South America \(São Paulo\)  | `sa-east-1` |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-2016-English-Full-ECS_Optimized?region=sa-east-1#)  | 
 |  AWS GovCloud \(US\-East\)  | `us-gov-east-1` |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-2016-English-Full-ECS_Optimized?region=us-gov-east-1#)  | 
 |  AWS GovCloud \(US\-West\)  | `us-gov-west-1` |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/ami-windows-latest/Windows_Server-2016-English-Full-ECS_Optimized?region=us-gov-west-1#)  | 

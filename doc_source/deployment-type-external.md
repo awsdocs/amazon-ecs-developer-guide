@@ -11,7 +11,6 @@ The `UpdateServicePrimaryTaskSet` API action modifies which task set in a servic
 ## External deployment considerations<a name="deployment-type-external-considerations"></a>
 
 Consider the following when using the external deployment type:
-+ Service auto scaling is not supported when using an external deployment controller\.
 + If using a load balancer for the task, the supported load balancer types are either an Application Load Balancer or a Network Load Balancer\.
 + Tasks using the Fargate launch type or `EXTERNAL` deployment controller types don't support the `DAEMON` scheduling strategy\.
 
@@ -121,7 +120,7 @@ AWS Fargate platform versions are used to refer to a specific runtime environmen
 Platform versions are not specified for tasks using the EC2 launch type\.  
 `loadBalancers`  
 A load balancer object representing the load balancer to use with your service\. When using an external deployment controller, only Application Load Balancers and Network Load Balancers are supported\. If you're using an Application Load Balancer, only one Application Load Balancer target group is allowed per task set\.  
-The following snippet shows an example loadBalancer object to use\.  
+The following snippet shows an example `loadBalancer` object to use\.  
 
    ```
    "loadBalancers": [

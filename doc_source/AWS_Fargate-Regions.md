@@ -6,7 +6,7 @@
 
 ## Supported Regions for Linux containers on AWS Fargate<a name="linux-regions"></a>
 
-Amazon ECS Linux containers on AWS Fargate is supported in the following Regions\. The supported Availability Zone IDs are noted when applicable\.
+Amazon ECS Linux containers on AWS Fargate are supported in the following AWS Regions\. The supported Availability Zone IDs are noted when applicable\.
 
 
 | Region Name | Region | 
@@ -35,12 +35,13 @@ Amazon ECS Linux containers on AWS Fargate is supported in the following Regions
 |  Europe \(Stockholm\)  |  eu\-north\-1  | 
 |  South America \(São Paulo\)  |  sa\-east\-1  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  | 
+|    |  me\-central\-1  | 
 |  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  | 
 |  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  | 
 
 ## Supported Regions for Windows containers on AWS Fargate<a name="windows-regions"></a>
 
-Amazon ECS Windows containers on AWS Fargate is supported in the following Regions\. The supported Availability Zone IDs are noted when applicable\.
+Amazon ECS Windows containers on AWS Fargate are supported in the following AWS Regions\. The supported Availability Zone IDs are noted when applicable\.
 
 
 | Region Name | Region | 

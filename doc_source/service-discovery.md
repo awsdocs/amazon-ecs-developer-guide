@@ -20,7 +20,6 @@ Service discovery is available in the following AWS Regions:
 |  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
 |  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
-|  Asia Pacific \(Jakarta\)  |  ap\-southeast\-3  | 
 |  Canada \(Central\)  |  ca\-central\-1  | 
 |  China \(Beijing\)  |  cn\-north\-1  | 
 |  China \(Ningxia\)  |  cn\-northwest\-1  | 
@@ -31,6 +30,7 @@ Service discovery is available in the following AWS Regions:
 |  Europe \(Milan\)  |  eu\-south\-1  | 
 |  Europe \(Stockholm\)  |  eu\-north\-1  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  | 
+|    |  me\-central\-1  | 
 |  South America \(São Paulo\)  |  sa\-east\-1  | 
 |  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  | 
 |  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  | 

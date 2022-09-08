@@ -40,11 +40,20 @@ Specifying an instance name and additional tags is optional\.
 
 An Amazon Machine Image \(AMI\) contains the information required to create an instance\. For example, an AMI might contain the software that's required to act as a web server, such as Apache, and your website\.
 
-You can find a suitable AMI as follows\. With each option for finding an AMI, you can choose **Cancel** \(at top right\) to return to the launch instance wizard without choosing an AMI\.
+For the latest Amazon ECS\-optimized AMIs and their values, see [Windows Amazon ECS\-optimized AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_windows_AMI.html)\.
 
-**Search bar**  
-You can search for one of the Amazon ECS\-optimized AMIs, for example the **Windows\_2019\_Full\_ECS\_Optimized** AMI\. To select an AMI, choose **Select**\.  
- If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS container agent](ecs-agent-install.md)\. 
+Use the **Search** bar to find a suitable Amazon ECS\-optimized AMI published by AWS\.
+
+1. Based on your requirements, enter one of the following AMIs in the **Search** bar and press Enter\.
+   + Windows\_Server\-2022\-English\-Full\-ECS\_Optimized
+   + Windows\_Server\-2022\-English\-Core\-ECS\_Optimized
+   + Windows\_Server\-2019\-English\-Full\-ECS\_Optimized
+   + Windows\_Server\-2019\-English\-Core\-ECS\_Optimized
+   + Windows\_Server\-2016\-English\-Full\-ECS\_Optimized
+
+1. On the **Choose an Amazon Machine Image \(AMI\)** page, select the **Community AMIs** tab\.
+
+1. From the list that appears, choose a Microsoft\-verified AMI with the most recent publish date and click **Select**\.
 
 ### Instance type<a name="liw-instance-type"></a>
 

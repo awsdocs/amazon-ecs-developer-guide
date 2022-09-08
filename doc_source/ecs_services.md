@@ -33,7 +33,7 @@ Fargate tasks do not support the `DAEMON` scheduling strategy\.
 
 The *daemon* scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints specified in your cluster\. The service scheduler also evaluates the task placement constraints for running tasks, and stops tasks that don't meet the placement constraints\. When using this strategy, you don't need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies\.
 
-Amazon ECS reserves container instance compute resources including CPU, memory, and network interfaces for the daemon tasks\. When you launch a daemon service on a cluster with other replica services, Amazon ECS prioritizes the daemon task\. This means that the daemon task is the first task to launch on the instances and the last task to stop\. This stategy ensures that resources aren't used by pending replica tasks and are available for the daemon tasks\.
+Amazon ECS reserves container instance compute resources including CPU, memory, and network interfaces for the daemon tasks\. When you launch a daemon service on a cluster with other replica services, Amazon ECS prioritizes the daemon task\. This means that the daemon task is the first task to launch on the instances and the last task to stop\. This strategy ensures that resources aren't used by pending replica tasks and are available for the daemon tasks\.
 
 The daemon service scheduler doesn't place any tasks on instances that have a `DRAINING` status\. If a container instance transitions to a `DRAINING` status, the daemon tasks on it are stopped\. The service scheduler also monitors when new container instances are added to your cluster and adds the daemon tasks to them\.
 

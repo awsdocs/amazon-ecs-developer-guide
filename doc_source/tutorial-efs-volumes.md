@@ -1,4 +1,4 @@
-# Tutorial: Using Amazon EFS file systems with Amazon ECS<a name="tutorial-efs-volumes"></a>
+# Tutorial: Using Amazon EFS file systems with Amazon ECS using the classic console<a name="tutorial-efs-volumes"></a>
 
 Amazon Elastic File System \(Amazon EFS\) provides simple, scalable file storage for use with your Amazon ECS tasks\. With Amazon EFS, storage capacity is elastic, growing and shrinking automatically as you add and remove files\. Your applications can have the storage they need, when they need it\.
 
@@ -13,7 +13,7 @@ Amazon EFS may not be available in all Regions\. For more information about whic
 
 Use the following steps to create an Amazon ECS cluster\. When you use the AWS Management Console to create a non\-empty cluster, Amazon ECS creates an AWS CloudFormation stack along with Auto Scaling resources\.
 
-**To create an Amazon ECS cluster**
+**To create an Amazon ECS cluster using the classic console**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -192,7 +192,7 @@ Now, you connect to the Amazon EC2 instance and add content to the Amazon EFS fi
 
 The following task definition creates a data volume named `efs-html`\. The `nginx` container mounts the host data volume at the NGINX root, `/usr/share/nginx/html`\.
 
-**To create a new task definition**
+**To create a new task definition using the classic console**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -244,7 +244,7 @@ The following task definition creates a data volume named `efs-html`\. The `ngin
 
 Now that your Amazon EFS file system is created and there is web content for the NGINX container to serve, you can run a task using the task definition that you created\. The NGINX web server serves your simple HTML page\. If you update the content in your Amazon EFS file system, those changes are propagated to any containers that have also mounted that file system\.
 
-**To run a task and view the results**
+**To run a task and view the results using the classic console**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 

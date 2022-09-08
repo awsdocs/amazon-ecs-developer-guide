@@ -2,7 +2,7 @@
 
 ## Platform version considerations<a name="platform-windows-version-considerations"></a>
 
-The following should be considered when specifying a platform version:
+Consider the following when specifying a platform version:
 + When specifying a platform version, you can use either a specific version number, for example `1.0.0`, or `LATEST`\.
 
   When the **LATEST** platform version is selected the `1.0.0` platform is used\.
@@ -17,3 +17,5 @@ The following is the changelog for platform version `1.0.0`\.
 + Initial release for support on the following Microsoft Windows operating systems:
   + Windows Server 2019 Full
   + Windows Server 2019 Core
+  + Windows Server 2022 Full
+  + Windows Server 2022 Core

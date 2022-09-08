@@ -14,6 +14,7 @@ Before you begin deploying task definitions that use the 64\-bit ARM architectur
   + China \(Beijing\)
   + China \(Ningxia\)
   +  Africa \(Cape Town\)
+  + 
   + Middle East \(Bahrain\)
   + AWS GovCloud \(US\-East\)
   + AWS GovCloud \(US\-West\)

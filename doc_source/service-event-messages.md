@@ -186,3 +186,9 @@ You can request a quota increase for the resource that caused the error\. For mo
 ### service \(*service\-name*\) was unable to place a task\. Reason: The requested MEMORY configuration is above your limit\.<a name="service-event-messages-11"></a>
 
 You can request a quota increase for the resource that caused the error\. For more information, see [Amazon ECS service quotas](service-quotas.md)\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
+
+### service \(*service\-name*\) was unable to place a task\. Reason: You’ve reached the limit on the number of vCPUs you can run concurrently<a name="service-event-messages-12"></a>
+
+AWS Fargate is transitioning from task count\-based quotas to vCPU\-based quotas\. 
+
+You can request a quota increase for the Fargate vCPU\-based quota\. For more information, see [Amazon ECS service quotas](service-quotas.md)\. To request a Fargate quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.

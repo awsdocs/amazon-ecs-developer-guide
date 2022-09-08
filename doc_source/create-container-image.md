@@ -25,7 +25,7 @@ Docker Desktop is an easy\-to\-install application for your Mac or Windows envir
 
 1. Launch an instance with the Amazon Linux 2 AMI\. For more information, see [Launching an instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-1. Connect to your instance\. For more information, see [Connect to your Linux instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. Connect to your instance using SSH\. For more information, see [Connect to your Linux instance using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Update the installed packages and package cache on your instance\.
 
@@ -190,7 +190,7 @@ Amazon ECR is a managed AWS Docker registry service\. You can use the Docker CLI
 1. Run the aws ecr get\-login\-password command\. Specify the registry URI you want to authenticate to\. For more information, see [Registry Authentication](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth) in the *Amazon Elastic Container Registry User Guide*\.
 
    ```
-   aws ecr get-login-password | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
+   docker login -u AWS -p $(aws ecr get-login-password --region REGION) aws_account_id.dkr.ecr.REGION.amazonaws.com
    ```
 
    Output:

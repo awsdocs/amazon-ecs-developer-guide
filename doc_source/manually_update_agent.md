@@ -94,6 +94,7 @@ Append the `:Z` option to the `/log` and `/data` container volume mounts \(for e
    --volume=/var/log/ecs/:/log \
    --volume=/var/lib/ecs/data:/data \
    --volume=/etc/ecs:/etc/ecs \
+   --volume=/etc/ecs:/etc/ecs/pki \
    --net=host \
    --env-file=/etc/ecs/ecs.config \
    amazon/amazon-ecs-agent:latest

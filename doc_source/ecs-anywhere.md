@@ -78,9 +78,9 @@ The following domains are used for communication between the Amazon ECS service 
 + `ecs-a-*.region.amazonaws.com` — This endpoint is used when managing tasks\.
 + `ecs-t-*.region.amazonaws.com` — This endpoint is used to manage task and container metrics\.
 + `ecs.region.amazonaws.com` — This is the service endpoint for Amazon ECS\.
-+ `amazonaws.region.ssm` — This is the service endpoint for AWS Systems Manager\.
++ `ssm.region.amazonaws.com ` — This is the service endpoint for AWS Systems Manager\.
 + `ec2messages.region.amazonaws.com` — This is the service endpoint that AWS Systems Manager uses to communicate between the Systems Manager agent and the Systems Manager service in the cloud\.
-+ `ssmessages.region.amazonaws.com` — This is the service endpoint that is required to create and delete session channels with the Session Manager service in the cloud\.
++ `ssmmessages.region.amazonaws.com` — This is the service endpoint that is required to create and delete session channels with the Session Manager service in the cloud\.
 + If your tasks require communication with any other AWS services, make sure that those service endpoints are allowed\. Example applications include using Amazon ECR to pull container images or using CloudWatch for CloudWatch Logs\. For more information, see [Service endpoints](https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html) in the *AWS General Reference*\.
 
 ### Amazon FSx for Windows File Server with ECS Anywhere<a name="ecs-anywhere-fsx"></a>

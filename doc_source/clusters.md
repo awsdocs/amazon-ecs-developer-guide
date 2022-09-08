@@ -1,6 +1,6 @@
 # Amazon ECS clusters<a name="clusters"></a>
 
-An Amazon ECS cluster is a logical grouping of tasks or services\. Your tasks and services are run on infrastructure that is registered to a cluster\. The infrastructure capacity can be provided by AWS Fargate, which is serverless infrastructure that AWS manages, Amazon EC2 instances that you manage, or an on\-premise server or virtual machine \(VM\) that you manage remotely\. In most cases, Amazon ECS capacity providers can be used to manage the infrastructure the tasks in your clusters use\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
+An Amazon ECS cluster is a logical grouping of tasks or services\. Your tasks and services are run on infrastructure that is registered to a cluster\. The infrastructure capacity can be provided by AWS Fargate, which is serverless infrastructure that AWS manages, Amazon EC2 instances that you manage, or an on\-premise server or virtual machine \(VM\) that you manage remotely\. In most cases, Amazon ECS capacity providers can be used to manage the infrastructure that the tasks in your clusters use\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
 
 When you first use Amazon ECS, a default cluster is created for you, but you can create multiple clusters in an account to keep your resources separate\.
 
@@ -28,7 +28,7 @@ The cluster has capacity providers associated with it and the resources needed f
 FAILED  
 The cluster has capacity providers associated with it and the resources needed for the capacity provider have failed to create\.  
 INACTIVE  
-The cluster has been deleted\. Clusters with an `INACTIVE` status may remain discoverable in your account for a period of time\. However, this behavior is subject to change in the future, so you should not rely on `INACTIVE` clusters persisting\.
+The cluster has been deleted\. Clusters with an `INACTIVE` status may remain discoverable in your account for a period of time\. However, this behavior is subject to change in the future, so make sure you rely on `INACTIVE` clusters persisting\.
 + A cluster may contain a mix of tasks hosted on AWS Fargate, Amazon EC2 instances, or external instances\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 + A cluster may contain a mix of both Auto Scaling group capacity providers and Fargate capacity providers, however when specifying a capacity provider strategy they may only contain one or the other but not both\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
 + For tasks using the EC2 launch type, clusters can contain multiple different container instance types, but each container instance may only be registered to one cluster at a time\.

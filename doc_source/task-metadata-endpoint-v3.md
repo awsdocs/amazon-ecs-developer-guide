@@ -1,6 +1,7 @@
 # Task Metadata Endpoint version 3<a name="task-metadata-endpoint-v3"></a>
 
 **Important**  
+The task metadata version 3 endpoint is no longer being actively maintained\. We recommend that you update the task metadata version 4 endpoint to get the latest metadata endpoint information\. For more information, see [Task metadata endpoint version 4](task-metadata-endpoint-v4.md)\.  
 If you are using Amazon ECS tasks hosted on AWS Fargate, see [Task metadata endpoint version 3](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-metadata-endpoint-v3-fargate.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
 Beginning with version 1\.21\.0 of the Amazon ECS container agent, the agent injects an environment variable called `ECS_CONTAINER_METADATA_URI` into each container in a task\. When you query the task metadata version 3 endpoint, various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) are available to tasks\. For tasks that use the `bridge` network mode, network metrics are available when querying the `/stats` endpoints\.

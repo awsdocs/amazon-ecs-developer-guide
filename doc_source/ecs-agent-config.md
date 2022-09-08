@@ -372,7 +372,7 @@ The runtime to be used to pass NVIDIA GPU devices to containers\. This parameter
 Example values: `true`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-Whether to enable Spot Instance draining for the container instance\. When true, if the container instance receives a Spot interruption notice, then the agent sets the instance status to `DRAINING`, which gracefully shuts down and replaces all tasks running on the instance that are part of a service\. It is recommended that this be set to true when using Spot Instances\. For more information, see [Container instance draining](container-instance-draining.md)\.
+Whether to enable Spot Instance draining for the container instance\. When true, if the container instance receives a Spot interruption notice, then the agent sets the instance status to `DRAINING`, which gracefully shuts down and replaces all tasks running on the instance that are part of a service\. We recommend that you set this value to true when using Spot Instances\. This parameter must be set before the container agent starts\. For more information, see [Spot Instance Draining](windows-container-instance-spot.md#windows-spot-instance-draining)\.
 
 `ECS_ENABLE_GPU_SUPPORT`  
 Example values: `true`  

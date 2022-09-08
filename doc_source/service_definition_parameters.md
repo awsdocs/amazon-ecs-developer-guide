@@ -54,7 +54,7 @@ Required: Conditional
 Default: Linux  
 This parameter is required for Amazon ECS services hosted on Fargate\.  
 This parameter is ignored for Amazon ECS services hosted onAmazon EC2\.  
-The operating system on the containers that runs the service\. The valid values are `LINUX`, `WINDOWS_SERVER_2019_FULL`, and `WINDOWS_SERVER_2019_CORE`\.  
+The operating system on the containers that runs the service\. The valid values are `LINUX`, `WINDOWS_SERVER_2019_FULL`, `WINDOWS_SERVER_2019_CORE`, `WINDOWS_SERVER_2022_FULL`, and `WINDOWS_SERVER_2022_CORE`\.  
 The `platformFamily` value for every task that you specify for the service must match the service `platformFamily` value\. For example, if you set the `platformFamily` to `WINDOWS_SERVER_2019_FULL`, the `platformFamily` value for all the tasks must be `WINDOWS_SERVER_2019_FULL`\.
 
 ## Platform version<a name="sd-platformversion"></a>

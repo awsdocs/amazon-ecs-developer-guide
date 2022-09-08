@@ -2,9 +2,9 @@
 
 Your Amazon ECS container instances are created using the Amazon EC2 console\. Before you begin, be sure that you've completed the steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 
-You can launch an intance by various methods including the Amazon EC2 console, AWS CLI, and SDK\. The procedure on this page covers the launch wizard in the Amazon EC2 console\. For information about the other methods for launching an instance, see [Launch your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/LaunchingAndUsingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+You can launch an instance by various methods including the Amazon EC2 console, AWS CLI, and SDK\. The procedure on this page covers the launch wizard in the Amazon EC2 console\. For information about the other methods for launching an instance, see [Launch your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/LaunchingAndUsingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-For more informtion about the launch wizard, see [Launch an instance using the new launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
+For more information about the launch wizard, see [Launch an instance using the new launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-instance-wizard.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
 ## New Amazon EC2 launch instance wizard<a name="new-linux-ec2-instance-wizard"></a>
 
@@ -42,14 +42,23 @@ Specifying an instance name and additional tags is optional\.
 
 An Amazon Machine Image \(AMI\) contains the information required to create an instance\. For example, an AMI might contain the software that's required to act as a web server, such as Apache, and your website\.
 
-You can find a suitable AMI as follows\. With each option for finding an AMI, you can choose **Cancel** \(at top right\) to return to the launch instance wizard without choosing an AMI\.
+Use the **Search** bar to find a suitable Amazon ECS\-optimized AMI published by AWS\.
 
-**Search bar**  
-You can search for one of the Amazon ECS\-optimized AMIs, for example the **Amazon ECS\-Optimized Amazon Linux 2 AMI**\. To select an AMI, choose **Select**\.  
- If you do not choose an Amazon ECS\-optimized AMI, you must follow the procedures in [Installing the Amazon ECS container agent](ecs-agent-install.md)\.   
-For more information on the latest Amazon ECS\-optimized AMIs, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.  
-The **Amazon ECS\-optimized Amazon Linux AMI** is deprecated as of April 15, 2021\. After that date, Amazon ECS will continue providing critical and important security updates for the AMI but will not add support for new features\.
- 
+1. Enter one of the following terms in the **Search** bar\.
+   + **ami\-ecs**
+   + The **Value** of an Amazon ECS\-optimized AMI\.
+
+     For the latest Amazon ECS\-optimized AMIs and their values, see [Linux Amazon ECS\-optimized AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#ecs-optimized-ami-linux)\.
+
+1. Press Enter\.
+
+1. On the **Choose an Amazon Machine Image \(AMI\)** page, select the **AWS Marketplace AMIs** tab\.
+
+1. From the left **Refine results** pane, select **Amazon Web Services** as the **Publisher**\.
+
+1. Choose **Select** on the row of the AMI that you want to use\.
+
+   Alternatively, choose **Cancel** \(at top right\) to return to the launch instance wizard without choosing an AMI\. A default AMI will be selected\. Ensure that the AMI meets the requirements outlined in [Linux instances](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-linux.html)\.
 
 ### Instance type<a name="linux-liw-instance-type"></a>
 

@@ -1,5 +1,8 @@
 # Task Metadata Endpoint version 2<a name="task-metadata-endpoint-v2"></a>
 
+**Important**  
+The task metadata version 2 endpoint is no longer being actively maintained\. We recommend that you update the task metadata version 4 endpoint to get the latest metadata endpoint information\. For more information, see [Task metadata endpoint version 4](task-metadata-endpoint-v4.md)\.
+
 Beginning with version 1\.17\.0 of the Amazon ECS container agent, various task metadata and [Docker stats](https://docs.docker.com/engine/api/v1.30/#operation/ContainerStats) are available to tasks that use the `awsvpc` network mode at an HTTP endpoint that is provided by the Amazon ECS container agent\.
 
 All containers belonging to tasks that are launched with the `awsvpc` network mode receive a local IPv4 address within a predefined link\-local address range\. When a container queries the metadata endpoint, the Amazon ECS container agent can determine which task the container belongs to based on its unique IP address, and metadata and stats for that task are returned\.

@@ -64,7 +64,7 @@ Required: Conditional
 Default: LINUX  
 This parameter is required for Amazon ECS tasks that are hosted on Fargate\.  
 When you register a task definition, you specify the operating system family\.   
-The valid values for Amazon ECS tasks that are hosted on Fargate are `LINUX`, `WINDOWS_SERVER_2019_FULL`, and `WINDOWS_SERVER_2019_CORE`\.  
+The valid values for Amazon ECS tasks that are hosted on Fargate are `LINUX`, `WINDOWS_SERVER_2019_FULL`, `WINDOWS_SERVER_2019_CORE`, `WINDOWS_SERVER_2022_FULL`, and `WINDOWS_SERVER_2022_CORE`\.  
 The valid values for Amazon ECS tasks hosted on EC2 are `LINUX`, `WINDOWS_SERVER_2022_CORE`, `WINDOWS_SERVER_2022_FULL`, `WINDOWS_SERVER_2019_FULL`, and `WINDOWS_SERVER_2019_CORE`, `WINDOWS_SERVER_2016_FULL`, `WINDOWS_SERVER_2004_CORE`, and `WINDOWS_SERVER_20H2_CORE`\.  
 All task definitions that are used in a service must have the same value for this parameter\.  
 When a task definition is part of a service, this value must match the service `platformFamily` value\.
@@ -348,7 +348,7 @@ Required: no
 A list of files containing the environment variables to pass to a container\. This parameter maps to the `--env-file` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This is not available for Windows containers\.  
 You can specify up to ten environment files\. The file must have a `.env` file extension\. Each line in an environment file contains an environment variable in `VARIABLE=VALUE` format\. Lines beginning with `#` are treated as comments and are ignored\. For more information about the appropriate environment variable file syntax, see [Declare default environment variables in file](https://docs.docker.com/compose/env-file/)\.  
-If there are individual environment variables specified in the container definition, they take precedence over the variables contained within an environment file\. If multiple environment files are specified that contain the same variable, they're processed from the top down\. We recommend that you use unique variable names\. For more information, see [Specifying environment variables](taskdef-envfiles.md)\.    
+If there are individual environment variables specified in the container definition, they take precedence over the variables contained within an environment file\. If multiple environment files are specified that contain the same variable, they're processed from the top down\. We recommend that you use unique variable names\. For more information, see [Passing environment variables to a container](taskdef-envfiles.md)\.    
 `value`  
 Type: String  
 Required: Yes  
@@ -382,7 +382,7 @@ The value of the environment variable\.
 `secrets`  
 Type: Object array  
 Required: No  
-An object representing the secret to expose to your container\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.    
+An object representing the secret to expose to your container\. For more information, see [Passing sensitive data to a container](specifying-sensitive-data.md)\.    
 `name`  
 Type: String  
 Required: Yes  
@@ -577,7 +577,7 @@ This parameter requires version 1\.19 of the Docker Remote API or greater on you
 `secretOptions`  
 Type: object array  
 Required: no  
-An object that represents the secret to pass to the log configuration\. Secrets used in log configuration may include an authentication token, certificate, or encryption key, for example\.\) For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.    
+An object that represents the secret to pass to the log configuration\. Secrets used in log configuration may include an authentication token, certificate, or encryption key, for example\.\) For more information, see [Passing sensitive data to a container](specifying-sensitive-data.md)\.    
 `name`  
 Type: String  
 Required: Yes  

@@ -1,7 +1,8 @@
 # Creating a task definition using the classic console<a name="create-task-definition-classic"></a>
 
 **Important**  
-Amazon ECS has provided a new console experience for creating task definitions\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+Amazon ECS has provided a new console experience for creating task definitions\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.  
+You must use the new console to create a task definition for Windows containers on Fargate with the `WINDOWS_SERVER_2022_FULL`, or `WINDOWS_SERVER_2022_CORE` operating system\.
 
 Before running Docker containers on Amazon ECS, you must first create a task definition\. When you create a task definition, you can use it to define multiple containers and data volumes\. For more information about the available parameters for task definitions, see [Task definition parameters](task_definition_parameters.md)\.
 

@@ -116,7 +116,7 @@ The following is an example task definition using the Windows containers on Farg
 
 ## Example: `splunk` log driver<a name="example_task_definition-splunk"></a>
 
-The following example demonstrates how to use the `splunk` log driver in a task definition that sends the logs to a remote service\. The Splunk token parameter is specified as a secret option because it can be treated as sensitive data\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.
+The following example demonstrates how to use the `splunk` log driver in a task definition that sends the logs to a remote service\. The Splunk token parameter is specified as a secret option because it can be treated as sensitive data\. For more information, see [Passing sensitive data to a container](specifying-sensitive-data.md)\.
 
 ```
 "containerDefinitions": [{
@@ -134,7 +134,7 @@ The following example demonstrates how to use the `splunk` log driver in a task 
 
 ## Example: `fluentd` log driver<a name="example_task_definition-fluentd"></a>
 
-The following example demonstrates how to use the `fluentd` log driver in a task definition that sends the logs to a remote service\. The `fluentd-address` value is specified as a secret option as it may be treated as sensitive data\. For more information, see [Specifying sensitive data](specifying-sensitive-data.md)\.
+The following example demonstrates how to use the `fluentd` log driver in a task definition that sends the logs to a remote service\. The `fluentd-address` value is specified as a secret option as it may be treated as sensitive data\. For more information, see [Passing sensitive data to a container](specifying-sensitive-data.md)\.
 
 ```
 "containerDefinitions": [{

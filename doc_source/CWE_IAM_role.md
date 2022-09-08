@@ -61,10 +61,6 @@ You can use the following procedure to check that your account already has the C
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. In the navigation pane, choose **Roles**\.
-
-   
-
 1. In the navigation pane, choose **Roles**\. 
 
 1. Search the list of roles for `ecsEventsRole`\. If the role does not exist, use the next procedure to create the role\. If the role does exist, select the role to view the attached policies\.

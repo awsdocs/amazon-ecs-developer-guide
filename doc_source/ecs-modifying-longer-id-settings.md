@@ -6,11 +6,11 @@ You can use the AWS Management Console and AWS CLI tools to modify your account 
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. In the navigation bar at the top of the screen, select the Region for which to modify your account settings\.
+1. In the navigation bar at the top of the screen, select the Region to modify your account settings for\.
 
 1. From the dashboard, choose **Account Settings**\.
 
-1. On the **Amazon ECS ARN and resource ID settings**, **AWSVPC Trunking**, and **CloudWatch Container Insights** sections, you can select or deselect the check boxes for each account setting for the authenticated IAM user and role\. Choose **Save** once finished\.
+1. On the **Amazon ECS ARN and resource ID settings**, **AWSVPC Trunking**, and **CloudWatch Container Insights** sections, you can select or deselect the check boxes for each account setting for the authenticated IAM user and role\. Choose **Save** after it's finished\.
 **Important**  
 IAM users and IAM roles need the `ecs:PutAccountSetting` permission to perform this action\.
 
@@ -50,7 +50,7 @@ Use one of the following commands to modify the account settings for your IAM us
 
 **To modify the account settings for a specific IAM user or IAM role \(AWS CLI\)**
 
-Use one of the following commands and specify the ARN of an IAM user, IAM role, or root user in the request to modify the account settings for a specific IAM user or IAM role\.
+Use one of the following commands and specify the Amazon Resource Name \(ARN\) of an IAM user, IAM role, or root user in the request to modify the account settings for a specific IAM user or IAM role\.
 + [put\-account\-setting](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting.html) \(AWS CLI\)
 
   ```

@@ -24,7 +24,7 @@ Create your task definitions using the new Amazon ECS console experience\. To ma
 
       Choose **Add more port mappings** to specify additional container port mappings\.
 
-   1. Expand the **Environment variables** section to specify environment variables to inject into the container\. You can specify environment variables either individually using key\-value pairs or in bulk by specifying an environment variable file hosted in an Amazon S3 bucket\. For information on how to format an environment variable file, see [Specifying environment variables](taskdef-envfiles.md)\.
+   1. Expand the **Environment variables** section to specify environment variables to inject into the container\. You can specify environment variables either individually using key\-value pairs or in bulk by specifying an environment variable file hosted in an Amazon S3 bucket\. For information on how to format an environment variable file, see [Passing environment variables to a container](taskdef-envfiles.md)\.
 
    1. \(Optional\) Choose **Add more containers** to add additional containers to the task definition\. Choose **Next** once all containers have been defined\.
 

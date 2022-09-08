@@ -1,11 +1,9 @@
 # Connect to your container Windows instance<a name="instance-windows-connect"></a>
 
-To perform basic administrative tasks on your instance, such as updating or installing software or accessing diagnostic logs, connect to the instance using SSH\. To connect to your instance using SSH, your container instances must meet the following prerequisites:
-+ Amazon EC2 instances created from most Windows AMIs allow you to connect using Remote Desktop\. Remote Desktop uses the Remote Desktop Protocol \(RDP\) and allowss you to connect to and use your instance in the same way you use a computer sitting in front of you\. It is available on most editions of Windows and available for Mac OS\.
-+ Your container instances must have been launched with a valid Amazon EC2 key pair\. Amazon ECS container instances have no password, and you use a key pair to log in using SSH\. If you did not specify a key pair when you launched your instance, there is no way to connect to the instance\. For more information, see [Launching an Amazon ECS Windows container instance](launch_window-container_instance.md)
-
-  \.
-+ Ensure that the security group associated with your instance allows incoming RDP traffic \(port 3389\) from your IP address\. The default security group does not allow incoming RDP traffic by default\. For more information, see [Authorize inbound traffic for your Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/authorizing-access-to-an-instance.html) in the *Amazon EC2 User Guide for Windows Instances*\.
+You can connect to your Windows instances to perform basic administrative tasks, such as installing or updating software or accessing diagnostic logs\. To connect to your instance using Remote Desktop Protocol \(RDP\), your Windows instance must meet the following prerequisites\.
++ Amazon EC2 instances created from most Windows AMIs allow you to connect using Remote Desktop Protocol \(RDP\)\. RDP allows you to connect to and use your instance in the same way you use a computer sitting in front of you\. It is available on most editions of Windows and available for Mac OS\.
++ Your Windows instance must have been launched with a valid Amazon EC2 key pair\. Amazon EC2 instances have no password, you use a key pair for access over RDP\. If you did not specify a key pair when you launched your instance, there is no way to connect to the instance\. For more information, see [Launching an Amazon ECS Windows container instance](launch_window-container_instance.md)\.
++ Ensure that the security group associated with your instance allows incoming RDP traffic \(port 3389\) from your IP address\. The default security group doesn't allow incoming RDP traffic by default\. For more information, see [Authorize inbound traffic for your Windows instances](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/authorizing-access-to-an-instance.html) in the *Amazon EC2 User Guide for Windows Instances*\.
 
 ------
 #### [ New AWS Management Console ]

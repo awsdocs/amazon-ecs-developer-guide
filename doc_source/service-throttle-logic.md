@@ -2,7 +2,7 @@
 
 The Amazon ECS service scheduler includes logic that throttles how often service tasks are launched if they repeatedly fail to start\.
 
-If tasks for an ECS service repeatedly fail to enter the `RUNNING` state \(progressing directly from a `PENDING` to a `STOPPED` status\), then the time between subsequent restart attempts is incrementally increased up to a maximum of 15 minutes\. This maximum period is subject to change in the future\. This behavior reduces the effect that unstartable tasks have on your Amazon ECS cluster resources or Fargate infrastructure costs\. If your service initiates the throttle logic, you receive the following [service event message](service-event-messages.md#service-event-messages-5):
+If tasks for an ECS service repeatedly fail to enter the `RUNNING` state \(progressing directly from a `PENDING` to a `STOPPED` status\), then the time between subsequent restart attempts is incrementally increased up to a maximum of 15 minutes\. This maximum period is subject to change in the future\. This behavior reduces the effect that failing tasks have on your Amazon ECS cluster resources or Fargate infrastructure costs\. If your service initiates the throttle logic, you receive the following [service event message](service-event-messages.md#service-event-messages-5):
 
 ```
 (service service-name) is unable to consistently start tasks successfully.

@@ -2,20 +2,20 @@
 
 To help you manage your Amazon ECS resources, you can optionally assign your own metadata to each resource using *tags*\. This topic provides an overview of tags in Amazon ECS and how you can create them\.
 
-To use this feature, you must opt in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\.
+To use this feature, you must opt in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) format\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\.
 
 **Important**  
 Do not add personally identifiable information \(PII\) or other confidential or sensitive information in tags\. Tags are accessible to many AWS services, including billing\. Tags are not intended to be used for private or sensitive data\.
 
 ## Tag basics<a name="tag-basics"></a>
 
-A tag is a label that you assign to an AWS resource\. Each tag consists of a *key* and an optional *value*, both of which you define\.
+A tag is a label that you assign to an AWS resource\. Each tag consists of a *key* and an optional *value*\. You define both\.
 
-Tags enable you to categorize your AWS resources in different ways, for example, by purpose, owner, or environment\. This is useful when you have many resources of the same type\. You can quickly identify a specific resource based on the tags you've assigned to it\. For example, you can define a set of tags for your account's Amazon ECS container instances to help you track each instance's owner and stack level\.
+You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment\. This is useful when you have many resources of the same type\. You can quickly identify a specific resource based on the tags that you assigned to it\. For example, you can define a set of tags for your account's Amazon ECS container instances\. This helps you track each instance's owner and stack level\.
 
-We recommend that you devise a set of tag keys that meets your needs for each resource type\. Using a consistent set of tag keys makes it easier for you to manage your resources\. You can search and filter the resources based on the tags you add\.
+We recommend that you devise a set of tag keys that meets your needs for each resource type\. You can use a consistent set of tag keys for easier management of your resources\. You can search and filter the resources based on the tags you add\.
 
-Tags don't have any semantic meaning to Amazon ECS and are interpreted strictly as a string of characters\. Also, tags are not automatically assigned to your resources\. You can edit tag keys and values, and you can remove tags from a resource at any time\. You can set the value of a tag to an empty string, but you can't set the value of a tag to null\. If you add a tag that has the same key as an existing tag on that resource, the new value overwrites the earlier value\. If you delete a resource, any tags for the resource are also deleted\.
+Tags don't have any semantic meaning to Amazon ECS and are interpreted strictly as a string of characters\. Also, tags aren't automatically assigned to your resources\. You can edit tag keys and values, and you can remove tags from a resource at any time\. You can set the value of a tag to an empty string, but you can't set the value of a tag to null\. If you add a tag that has the same key as an existing tag on that resource, the new value overwrites the earlier value\. If you delete a resource, any tags for the resource are also deleted\.
 
 You can work with tags using the AWS Management Console, the AWS CLI, and the Amazon ECS API\.
 
@@ -28,11 +28,11 @@ You can tag new or existing Amazon ECS tasks, services, task definitions, and cl
 **Important**  
 Do not add personally identifiable information \(PII\) or other confidential or sensitive information in tags\. Tags are accessible to many AWS services, including billing\. Tags are not intended to be used for private or sensitive data\.
 
-If you're using the Amazon ECS console, you can apply tags to new or existing resources by using the **Tags** tab on the relevant resource page at any time\. When you use the Amazon ECS\-managed tags option \(the **Propagate tags from** option\), tags are copied from the task definition or service to a task\. This can be done when you're running a task or creating a service\.
+If you're using the Amazon ECS console, you can apply tags to new or existing resources\. Do this by using the **Tags** tab on the relevant resource page at any time\. When you use the Amazon ECS\-managed tags option \(the **Propagate tags from** option\), tags are copied from the task definition or service to a task\. This can be done when you're running a task or creating a service\.
 
-If you're using the Amazon ECS API, the AWS CLI, or an AWS SDK, you can apply tags to new resources using the `tags` parameter on the relevant API action\. Or, alternatively, you can use the `TagResource` API action to apply tags to existing resources\. For more information, see [TagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html)\. The **propagateTags** parameter can be used to copy tags from the task definition or service to the task\. This can be done when you're running a task or creating a service\. For more information, see [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html) and [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html)\.
+If you're using the Amazon ECS API, the AWS CLI, or an AWS SDK, you can apply tags to new resources using the `tags` parameter on the relevant API action\. Or, alternatively, you can use the `TagResource` API action to apply tags to existing resources\. For more information, see [TagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html)\. The **propagateTags** parameter can be used to copy tags from the task definition or service to the task\. This can be done when you run a task or create a service\. For more information, see [RunTask](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html) and [CreateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html)\.
 
-Additionally, some resource\-creating actions enable you to specify tags for a resource when the resource is created\. If tags can't be applied while resources are being created, we roll back the process of creating resources\. This ensures that resources are either created with tags or not created at all, and that no resources are left untagged at any time\. By tagging resources while they're being created, you can eliminate the need to run custom tagging scripts after resource creation\.
+Additionally, you can use some resource\-creating actions to specify tags for a resource when the resource is created\. If tags can't be applied while resources are being created, we roll back the process of creating resources\. This ensures that resources are either created with tags or not created at all, and that no resources are left untagged at any time\. By tagging resources while they're being created, you can eliminate the need to run custom tagging scripts after resource creation\.
 
 When you use the ECS managed tags option, Amazon ECS automatically propagates tags to your tasks from either your task definition or your service\.
 
@@ -49,19 +49,19 @@ The following table describes the Amazon ECS resources that can be tagged, and t
 |  Amazon ECS task definitions  |  Yes  | No |  Yes  | 
 |  Amazon ECS clusters  |  Yes  | No |  Yes  | 
 |  Amazon ECS container instances  |  Yes  |  Yes, from the Amazon EC2 instance\. For more information, see [Adding tags to an Amazon EC2 container instance](#instance-details-tags)\.   |  Yes  | 
-|  Amazon ECS External instances  |  Yes  |  No  |  No, you can add tags after the External instance has been registered to a cluster using the AWS Management Console or by using the Amazon ECS API, AWS CLI, or AWS SDK\. For more information, see [Adding and deleting tags on an individual resource using the classic console](#adding-or-deleting-tags)\.  | 
+|  Amazon ECS External instances  |  Yes  |  No  |  No, you can add tags after the External instance is registered to a cluster using the AWS Management Console or by using the Amazon ECS API, AWS CLI, or AWS SDK\. For more information, see [Adding and deleting tags on an individual resource using the classic console](#adding-or-deleting-tags)\.  | 
 | Amazon ECS capacity provider |  Yes\. Predefined FARGATE and FARGATE\_SPOT capacity providers cannot be tagged\. | No | Yes | 
 
 ## Tag restrictions<a name="tag-restrictions"></a>
 
-The following basic restrictions apply to tags
-+ Maximum number of tags per resource – 50
+The following basic restrictions apply to tags:
++ The maximum number of tags for each resource – 50
 + For each resource, each tag key must be unique, and each tag key can have only one value\.
-+ Maximum key length – 128 Unicode characters in UTF\-8
-+ Maximum value length – 256 Unicode characters in UTF\-8
-+ If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters\. Generally allowed characters are: letters, numbers, and spaces representable in UTF\-8, and the following characters: \+ \- = \. \_ : / @\.
-+ Tag keys and values are case\-sensitive\.
-+ Don't use `aws:`, `AWS:`, or any upper or lowercase combination of such as a prefix for either keys or values\. These are reserved only for AWS use\. You can't edit or delete tag keys or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\.
++ The maximum key length – 128 Unicode characters in UTF\-8
++ The maximum value length – 256 Unicode characters in UTF\-8
++ If your tagging schema is used across multiple services and resources, remember that other services might have restrictions on allowed characters\. Generally allowed characters are: letters, numbers, and spaces representable in UTF\-8, and the following characters: \+ \- = \. \_ : / @\.
++ Tag keys and values are case sensitive\.
++ Don't use `aws:`, `AWS:`, or any upper or lowercase combination of such as a prefix for either keys or values\. These are reserved only for AWS use\. You can't edit or delete tag keys or values with this prefix\. Tags with this prefix don't count toward your tags quota\.
 
 ## Tagging your resources for billing<a name="tag-resources-for-billing"></a>
 
@@ -81,7 +81,7 @@ If you've turned on reporting, data for the current month is available for viewi
 
 ## Working with tags using the console<a name="tag-resources-console"></a>
 
-Using the Amazon ECS console, you can manage the tags associated with new or existing tasks, services, task definitions, clusters, or container instances\.
+Using the Amazon ECS console, you can manage the tags that are associated with new or existing tasks, services, task definitions, clusters, or container instances\.
 
 When you select a resource\-specific page in the Amazon ECS console, it displays a list of those resources\. For example, if you select **Clusters** from the navigation pane, the console displays a list of Amazon ECS clusters\. When you select a resource from one of these lists \(for example, a specific cluster\) that supports tags, you can view and manage its tags on the **Tags** tab\.
 
@@ -96,7 +96,7 @@ Do not add personally identifiable information \(PII\) or other confidential or 
 
 ### Adding tags on an individual resource during launch<a name="adding-tags-creation"></a>
 
-The following resources enable you to specify tags when you create the resource\.
+You can use the following resources to specify tags when you create the resource\.
 
 
 | Task | Console | 
@@ -110,13 +110,13 @@ The following resources enable you to specify tags when you create the resource\
 
 ### Adding and deleting tags on an individual resource using the classic console<a name="adding-or-deleting-tags"></a>
 
-Amazon ECS enables you to add or delete tags associated with your clusters, services, tasks, and task definitions directly from the resource's page\. For information about tagging your container instances, see [Adding tags to an Amazon EC2 container instance](#instance-details-tags)\.
+Amazon ECS enables you to add or delete tags that are associated with your clusters, services, tasks, and task definitions directly from the resource's page\. For information about tagging your container instances, see [Adding tags to an Amazon EC2 container instance](#instance-details-tags)\.
 
 **To add a tag to an individual resource**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. From the navigation bar, select the Region to use\.
+1. From the navigation bar, select the AWS Region to use\.
 
 1. In the navigation pane, select a resource type \(for example, **Clusters**\)\.
 
@@ -143,7 +143,7 @@ You can associate tags with your container instances using one of the following 
 **Important**  
 If you launch your container instances using an Amazon EC2 Auto Scaling group, then you should use the ECS\_CONTAINER\_INSTANCE\_TAGS agent configuration parameter to add tags\. This is due to the way in which tags are added to Amazon EC2 instances that are launched using Auto Scaling groups\.
 
-  The following is an example of a user data script that would associate tags with your container instance:
+  The following is an example of a user data script that associates tags with your container instance:
 
   ```
   #!/bin/bash
@@ -152,9 +152,9 @@ If you launch your container instances using an Amazon EC2 Auto Scaling group, t
   ECS_CONTAINER_INSTANCE_TAGS={"tag_key": "tag_value"}
   EOF
   ```
-+ Method 2 – When creating your container instance using the Amazon EC2 API, CLI, or console, specify tags using the `TagSpecification.N` parameter, and then pass user data to the instance using the container agent configuration parameter `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM`\. Doing so propagates them from Amazon EC2 to Amazon ECS\.
++ Method 2 – When you create your container instance using the Amazon EC2 API, CLI, or console, first specify tags using the `TagSpecification.N` parameter\. Then, pass user data to the instance by using the container agent configuration parameter `ECS_CONTAINER_INSTANCE_PROPAGATE_TAGS_FROM`\. Doing so propagates them from Amazon EC2 to Amazon ECS\.
 
-  The following is an example of a user data script that propagates the tags associated with an Amazon EC2 instance, and registers the instance with a cluster named `MyCluster`:
+  The following is an example of a user data script that propagates the tags that are associated with an Amazon EC2 instance, and registers the instance with a cluster that's named `MyCluster`\.
 
   ```
   #!/bin/bash
@@ -167,7 +167,7 @@ If you launch your container instances using an Amazon EC2 Auto Scaling group, t
   To provide access to allow container instance tags to propagate from Amazon EC2 to Amazon ECS, manually add the following permissions as an inline policy to the Amazon ECS container instance IAM role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
   + `ec2:DescribeTags`
 
-  The following is an example inline policy used to add these permissions\.
+  The following is an example inline policy that's used to add these permissions\.
 
   ```
   {
@@ -186,22 +186,22 @@ If you launch your container instances using an Amazon EC2 Auto Scaling group, t
 
 ### Adding tags to an external container instance<a name="instance-details-tags-external"></a>
 
-You can associate tags with your external container instances using one of the following methods\.
+You can associate tags with your external container instances by using one of the following methods\.
 + Method 1 – Before running the installation script to register your external instance with your cluster, create or edit the Amazon ECS container agent configuration file at `/etc/ecs/ecs.config` and add the `ECS_CONTAINER_INSTANCE_TAGS` container agent configuration parameter\. This creates tags that are associated with the external instance\.
 
-  The following is an example for the syntax that should be used\.
+  The following is example syntax\.
 
   ```
   ECS_CONTAINER_INSTANCE_TAGS={"tag_key": "tag_value"}
   ```
-+ Method 2 – After your external instance is registered to your cluster, you can use the AWS Management Console add tags\. For more information, see [Adding and deleting tags on an individual resource using the classic console](#adding-or-deleting-tags)\.
++ Method 2 – After your external instance is registered to your cluster, you can use the AWS Management Console to add tags\. For more information, see [Adding and deleting tags on an individual resource using the classic console](#adding-or-deleting-tags)\.
 
 ## Working with tags using the CLI or API<a name="tag-resources-api-sdk"></a>
 
 Use the following to add, update, list, and delete the tags for your resources\. The corresponding documentation provides examples\.
 
 **Important**  
-Do not add personally identifiable information \(PII\) or other confidential or sensitive information in tags\. Tags are accessible to many AWS services, including billing\. Tags are not intended to be used for private or sensitive data\.
+Don't add personally identifiable information \(PII\) or other confidential or sensitive information in tags\. Tags are accessible to many AWS services, including billing\. Tags aren't intended to be used for private or sensitive data\.
 
 
 **Tagging support for Amazon ECS resources**  
@@ -243,7 +243,7 @@ The following command lists the tags associated with an existing resource\.
 aws ecs list-tags-for-resource --resource-arn resource_ARN
 ```
 
-Some resource\-creating actions enable you to specify tags when you create the resource\. The following actions support tagging on creation\.
+You can use some resource\-creating actions to specify tags when you create the resource\. The following actions support tagging on creation\.
 
 
 | Task | AWS CLI | AWS Tools for Windows PowerShell | API Action | 
@@ -265,14 +265,14 @@ aws ecs create-cluster --cluster-name devcluster --tags key=team,value=devs
 ```
 
 **Example 2: Create a service and apply a tag**  
-The following command creates a service named `application` and adds a tag with key `stack` and value `dev`\.
+The following command creates a service that's named `application` and adds a tag with key `stack` and value `dev`\.
 
 ```
 aws ecs create-service --service-name application --task-definition task-def-app --tags key=stack,value=dev
 ```
 
 **Example 3: Create a service with tags and propagate the tags**  
-The `--propagateTags` parameter can be used to copy the tags from either a task definition or a service to the tasks in a service\. The following command creates a service with tags and propagates them to the tasks in that service\.
+You can use the `--propagateTags` parameter to copy the tags from either a task definition or a service to the tasks in a service\. The following command creates a service with tags and propagates them to the tasks in that service\.
 
 ```
 aws ecs create-service --service-name application --task-definition task-def-app --tags key=stack,value=dev --propagateTags Service

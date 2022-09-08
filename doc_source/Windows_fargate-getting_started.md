@@ -66,6 +66,8 @@ Before you can run Windows containers in your Amazon ECS cluster, you must regis
    Use one of the following for `operatingSystemFamily`:
    + `WINDOWS_SERVER_2019_FULL`
    + `WINDOWS_SERVER_2019_CORE`
+   + `WINDOWS_SERVER_2022_FULL`
+   + `WINDOWS_SERVER_2022_CORE`
 
    ```
    {
@@ -140,7 +142,7 @@ After you have registered your task definition, you can place tasks in your clus
 
 1. On the **Create Service** page, enter the following information and then choose **Create service**\.
    + **Launch type:** `Fargate`
-   + **Platform operating system**: `WINDOWS_SERVER_2019_FULL` or `WINDOWS_SERVER_2019_CORE`
+   + **Platform operating system**: `WINDOWS_SERVER_2019_FULL`, `WINDOWS_SERVER_2019_CORE`, `WINDOWS_SERVER_2022_FULL`, or `WINDOWS_SERVER_2022_CORE`
    + **Cluster:** windows
    + **Service name:** windows\_fargate\_sample\_app
    + **Service type:** `REPLICA`
