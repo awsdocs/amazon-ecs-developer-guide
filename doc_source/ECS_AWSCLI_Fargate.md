@@ -24,7 +24,6 @@ This tutorial assumes that the following prerequisites have been completed\.
   + Use a public subnet and assign a public IP address to the task\.
 
   For more information, see [Create a virtual private cloud](get-set-up-for-amazon-ecs.md#create-a-vpc)\.
-+ Optional: AWS CloudShell is a tool that gives customers a command line without needing to create their own EC2 instance\. For more information, see [What is AWS CloudShell](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html) in the *AWS CloudShell User Guide*\.
 
 ## Step 1: Create a Cluster<a name="ECS_AWSCLI_Fargate_create_cluster"></a>
 
@@ -256,7 +255,7 @@ Describe the task in the service so that you can get the Elastic Network Interfa
 First, get the task ARN\.
 
 ```
-aws ecs list-tasks ---cluster fargate-cluster --service fargate-service
+aws ecs list-tasks --cluster fargate-cluster --service fargate-service
 ```
 
 The output contains the task ARN\.

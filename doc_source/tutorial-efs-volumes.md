@@ -37,7 +37,7 @@ Use the following steps to create an Amazon ECS cluster\. When you use the AWS M
 
 1. For **EBS storage \(GiB\)**, leave the default setting\.
 
-1. For **Key pair**, choose an Amazon EC2 key pair to use with your container instances for SSH access\. This is required as you will connect to the instance later\.
+1. For **Key pair**, choose an Amazon EC2 key pair to use with your container instances for SSH access\. If you need to troubleshoot this instance later, this key is required to connect to the instance\.
 
 1. In the **Networking** section, configure the VPC to launch your container instances into\. By default, the cluster creation wizard creates a new VPC with two subnets in different Availability Zones, and a security group open to the internet on port 80\. This is a basic setup that works well for an HTTP service\. However, you can modify these settings by following the steps below\.
 **Important**  

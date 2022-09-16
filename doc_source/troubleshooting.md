@@ -12,7 +12,7 @@ You may need to troubleshoot issues with your load balancers, tasks, services, o
 + [`CannotCreateContainerError: API error (500): devmapper`](CannotCreateContainerError.md)
 + [Troubleshooting service load balancers](troubleshoot-service-load-balancers.md)
 + [Troubleshooting service auto scaling](troubleshoot-service-auto-scaling.md)
-+ [Enabling Docker debug output](docker-debug-mode.md)
++ [Using Docker debug output](docker-debug-mode.md)
 + [Amazon ECS Log File Locations](logs.md)
 + [Amazon ECS logs collector](ecs-logs-collector.md)
 + [Agent introspection diagnostics](introspection-diag.md)

@@ -44,7 +44,7 @@ Amazon ECS initiates the `CapacityProviderReservation` metric, and then publishe
 
 Consider the following when using cluster Auto Scaling:
 + The desired capacity for the Auto Scaling group associated with a capacity provider shouldn't be changed or managed by any scaling policies other than the one Amazon ECS manages\.
-+ Amazon ECS uses the `AWSServiceRoleForECS` service\-linked IAM role for the permissions it requires to call AWS Auto Scaling, on your behalf\. For more information on using and creating Amazon ECS service\-linked IAM roles, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
++ Amazon ECS uses the `AWSServiceRoleForECS` service\-linked IAM role for the permissions it requires to call AWS Auto Scaling, on your behalf\. For more information on using and creating Amazon ECS service\-linked IAM roles, see [Using service\-linked roles for Amazon ECS](using-service-linked-roles.md)\.
 + When using capacity providers with Auto Scaling groups, the IAM user who creates the capacity providers, needs the `autoscaling:CreateOrUpdateTags` permission because Amazon ECS adds a tag to the Auto Scaling group when it associates it with the capacity provider\.
 **Important**  
 Make sure any tooling you use does not remove the `AmazonECSManaged` tag from the Auto Scaling group\. If this tag is removed, Amazon ECS is not able to manage it when scaling your cluster\.
@@ -127,7 +127,7 @@ Amazon ECS monitors container instances for each capacity provider within cluste
 
  Consider the following for the scale\-in process:
 + Amazon ECS container instance are considered available for scale\-in when there are no running non\-daemon tasks\.
-+ CloudWatch scale\-in alarms require 15 data points \(15 minutes\) before the scale\-in process for the Auto Scaling group starts\. After the scale\-in process starts until Amazon ECS needs to reduce the number of registered container instances, the Auto Scaling group sets the `DesireCapacity` value to be greater than one instance and less than 10% each minute\.
++ CloudWatch scale\-in alarms require 15 data points \(15 minutes\) before the scale\-in process for the Auto Scaling group starts\. After the scale\-in process starts until Amazon ECS needs to reduce the number of registered container instances, the Auto Scaling group sets the `DesireCapacity` value to be greater than one instance and less than 50% each minute\.
 + When Amazon ECS requests a scale\-out \(when `CapcityProviderReservation` is greater than 100\) while a scale\-in process is in progress, the scale\-in process is stopped and will start from the beginning if required\.
 
 ## Target tracking considerations<a name="target-tracking"></a>

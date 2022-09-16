@@ -7,7 +7,6 @@ Whether you are part of a large enterprise or a startup, Amazon ECS offers a var
 + Use the complete [AWS Copilot CLI](#developer-tools-copilot) end\-to\-end developer workflow to create, release, and operate container applications that comply with AWS best practices for infrastructure\.
 + Using your preferred programming language, define infrastructure or architecture as code with the [AWS CDK](#developer-tools-cdk)\.
 + Containerize applications that are hosted on premises or on Amazon EC2 instances or both by using the [AWS App2Container](#developer-tools-a2c) integrated portability and tooling ecosystem for containers\.
-+ Deploy a Docker Compose application to Amazon ECS or test local containers with containers running in ECS, using the [Amazon ECS CLI](#developer-tools-ecscli)\.
 + Launch containers from [Docker Desktop integration with Amazon ECS](#developer-tools-dockercli) using Amazon ECS in Docker Desktop\.
 
 ## AWS Management Console<a name="developer-tools-console"></a>
@@ -61,14 +60,6 @@ Sometimes enterprise customers might already have applications that are hosted o
 For more information, see [Getting started with AWS App2Container](https://docs.aws.amazon.com/app2container/latest/UserGuide/start-intro.html)\.
 
 Use App2Container if you have applications that are hosted on premises or on Amazon EC2 instances or both\.
-
-## Amazon ECS CLI<a name="developer-tools-ecscli"></a>
-
-The Amazon ECS CLI enables you to run your applications on Amazon ECS and AWS Fargate using the Docker Compose file format\. You can quickly provision resources, push and pull images using [Amazon ECR](https://docs.aws.amazon.com/ecr), and monitor running applications on Amazon ECS or AWS Fargate\. You can also test containers running locally along with containers in the cloud within the CLI\.
-
-For more information, see [Using the Amazon ECS command line interface](ECS_CLI.md)\.
-
-Use the ECS CLI if you have a Compose application and want to deploy it to Amazon ECS, or test local containers with containers running in Amazon ECS in the cloud\.
 
 ## Docker Desktop integration with Amazon ECS<a name="developer-tools-dockercli"></a>
 

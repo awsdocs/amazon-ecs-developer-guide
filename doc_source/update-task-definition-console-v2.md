@@ -13,7 +13,7 @@ When you create a revision, you can modify the following container properties an
 
 **To create a task definition revision \(New Amazon ECS console\)**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, choose the Region that contains your task definition\.
 

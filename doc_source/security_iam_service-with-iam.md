@@ -272,4 +272,4 @@ Changing the permissions for a service role might break Amazon ECS functionality
 
   A service\-linked role is a type of service role that is linked to an AWS service\. The service can assume the role to perform an action on your behalf\. Service\-linked roles appear in your IAM account and are owned by the service\. An IAM administrator can view, but not edit the permissions for service\-linked roles\. 
 
-For details about creating or managing Amazon ECS service\-linked roles, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
+For details about creating or managing Amazon ECS service\-linked roles, see [Using service\-linked roles for Amazon ECS](using-service-linked-roles.md)\.

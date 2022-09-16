@@ -68,13 +68,15 @@ When you run Linux containers on AWS Fargate, you can use the X86\_64 CPU archit
 Amazon ECS task definitions for AWS Fargate require that you specify CPU and memory at the task level\. Although you can also specify CPU and memory at the container level for Fargate tasks, this is optional\. Most use cases are satisfied by only specifying these resources at the task level\. The table below shows the valid combinations of task\-level CPU and memory\.
 
 
-| CPU value | Memory value | Operating systems supported for AWS Fargate  | 
+|  CPU value  |  Memory value  |  Operating systems supported for AWS Fargate  | 
 | --- | --- | --- | 
-| 256 \(\.25 vCPU\) | 512 MiB, 1 GB, 2 GB | Linux | 
-| 512 \(\.5 vCPU\) | 1 GB, 2 GB, 3 GB, 4 GB | Linux | 
-| 1024 \(1 vCPU\) | 2 GB, 3 GB, 4 GB, 5 GB, 6 GB, 7 GB, 8 GB | Linux, Windows | 
-| 2048 \(2 vCPU\) | Between 4 GB and 16 GB in 1 GB increments | Linux, Windows | 
-| 4096 \(4 vCPU\) | Between 8 GB and 30 GB in 1 GB increments | Linux, Windows | 
+|  256 \(\.25 vCPU\)  |  512 MiB, 1 GB, 2 GB  |  Linux  | 
+|  512 \(\.5 vCPU\)  |  1 GB, 2 GB, 3 GB, 4 GB  |  Linux  | 
+|  1024 \(1 vCPU\)  |  2 GB, 3 GB, 4 GB, 5 GB, 6 GB, 7 GB, 8 GB  |  Linux, Windows  | 
+|  2048 \(2 vCPU\)  |  Between 4 GB and 16 GB in 1 GB increments  |  Linux, Windows  | 
+|  4096 \(4 vCPU\)  |  Between 8 GB and 30 GB in 1 GB increments  |  Linux, Windows  | 
+|  8192 \(8 vCPU\)  This option requires Linux platform `1.4.0` or later\.   |  Between 16 GB and 60 GB in 4 GB increments  |  Linux  | 
+|  16384 \(16vCPU\)  This option requires Linux platform `1.4.0` or later\.   |  Between 32GB and 120 GB in 8 GB increments  |  Linux  | 
 
 ### Task resource limits<a name="fargate-resource-limits"></a>
 
@@ -352,4 +354,3 @@ The following walkthroughs help you get started using AWS Fargate with Amazon EC
 + [Getting started with the classic Amazon ECS console using Windows containers on AWS Fargate](Windows_fargate-getting_started.md)
 + [Tutorial: Creating a cluster with a Fargate Linux task using the AWS CLI](ECS_AWSCLI_Fargate.md)
 + [Tutorial: Creating a cluster with a Fargate Windows task using the AWS CLI](ECS_AWSCLI_Fargate_windows.md)
-+ [Tutorial: Creating a cluster with a Fargate task using the Amazon ECS CLI](ecs-cli-tutorial-fargate.md)

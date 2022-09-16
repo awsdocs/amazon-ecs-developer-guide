@@ -6,7 +6,7 @@ Amazon ECS services can register tasks with an Elastic Load Balancing load balan
 Container health checks aren't supported for tasks that are part of a service that is configured to use a Classic Load Balancer\. The Amazon ECS service scheduler ignores tasks in an `UNHEALTHY` state that are behind a Classic Load Balancer\.
 
 Amazon ECS service\-linked role doesn't exist  
-The Amazon ECS service\-linked role allows Amazon ECS services to register container instances with Elastic Load Balancing load balancers\. The service\-linked role must be created in your account\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\.
+The Amazon ECS service\-linked role allows Amazon ECS services to register container instances with Elastic Load Balancing load balancers\. The service\-linked role must be created in your account\. For more information, see [Using service\-linked roles for Amazon ECS](using-service-linked-roles.md)\.
 
 Container instance security group  
 If your container is mapped to port 80 on your container instance, your container instance security group must allow inbound traffic on port 80 for the load balancer health checks to pass\. 

@@ -15,7 +15,7 @@ There are several things to consider when using the `awsvpc` network mode\.
 ### Linux considerations<a name="linux"></a>
 
  Consider the following when using the Linux operating system\.
-+ Tasks and services that use the `awsvpc` network mode require the Amazon ECS service\-linked role to provide Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster or if you create or update a service, in the AWS Management Console\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command:
++ Tasks and services that use the `awsvpc` network mode require the Amazon ECS service\-linked role to provide Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster or if you create or update a service, in the AWS Management Console\. For more information, see [Using service\-linked roles for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command:
 
   ```
   aws iam [create\-service\-linked\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-service-linked-role.html) --aws-service-name ecs.amazonaws.com
@@ -38,7 +38,7 @@ There are several things to consider when using the `awsvpc` network mode\.
  The following are considerations when you use the Windows operating system:
 + Container instances using the Amazon ECS optimized Windows Server 2016 AMI can't host tasks that use the `awsvpc` network mode\. If you have a cluster that contains Amazon ECS optimized Windows Server 2016 AMIs and Windows AMIs that support `awsvpc` network mode, tasks that use `awsvpc` network mode aren't launched on the Windows 2016 Server instances\. Rather, they're launched on instances that support `awsvpc` network mode\.
 + Your Amazon EC2 Windows instance requires version `1.57.1` or later of the container agent to use CloudWatch metrics for Windows containers that use the `awsvpc` network mode\.
-+ Tasks and services that use the `awsvpc` network mode require the Amazon ECS service\-linked role to provide Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster, or if you create or update a service, in the AWS Management Console\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command\.
++ Tasks and services that use the `awsvpc` network mode require the Amazon ECS service\-linked role to provide Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster, or if you create or update a service, in the AWS Management Console\. For more information, see [Using service\-linked roles for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command\.
 
   ```
   aws iam [create\-service\-linked\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-service-linked-role.html) --aws-service-name ecs.amazonaws.com

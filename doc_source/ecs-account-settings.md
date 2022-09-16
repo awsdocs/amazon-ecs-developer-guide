@@ -120,10 +120,10 @@ The following are the important dates related to the new vCPU\-based quotas\.
 + September 8, 2022 – You can opt in to using the new vCPU\-based quotas before AWS begins the automatic migration to vCPU\-based quotas\. By opting in, your account is controlled by vCPU\-based quotas rather than the previous task count–based quotas\. Task count\-based quotas remain the default for accounts that don’t opt in\.
 **Note**  
 To use the vCPU\-based quotas with Amazon ECS before October 3, 2022, you must opt in\.  
-To opt in, run `put-account-setting-default` with the `fargateVCPULimit` option set to `enable`\. 
+To opt in, run `put-account-setting-default` with the `fargateVCPULimit` option set to `enabled`\. 
 + October 3, 2022 through October 21, 2022 – All new and existing accounts are automatically migrated to the vCPU\-based quotas in a phased manner\. 
 **Note**  
 To continue to use the task count\-based quotas, you must opt out\.  
-To opt out, run `put-account-setting-default` with the `fargateVCPULimit` option set to `disable`\.  
+To opt out, run `put-account-setting-default` with the `fargateVCPULimit` option set to `disabled`\.  
 + October 31, 2022 – The last day that you can remain opted out of the vCPU\-based quotas\.
 + November 1, 2022 through November 15, 2022 – The opt\-out option ends and all accounts are migrated to the vCPU\-based quotas\. The task count\-based quotas are no longer available\.

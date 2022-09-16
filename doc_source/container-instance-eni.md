@@ -31,7 +31,7 @@ Amazon ECS emits container instance state change events which you can monitor fo
 ## Working with container instances with increased ENI limits<a name="eni-trunking-launching"></a>
 
 Before you launch a container instance with the increased ENI limits, the following prerequisites must be completed\.
-+ The service\-linked role for Amazon ECS must be created\. The Amazon ECS service\-linked role provides Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster, or if you create or update a service in the AWS Management Console\. For more information, see [Service\-linked role for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command\.
++ The service\-linked role for Amazon ECS must be created\. The Amazon ECS service\-linked role provides Amazon ECS with the permissions to make calls to other AWS services on your behalf\. This role is created for you automatically when you create a cluster, or if you create or update a service in the AWS Management Console\. For more information, see [Using service\-linked roles for Amazon ECS](using-service-linked-roles.md)\. You can also create the service\-linked role with the following AWS CLI command\.
 
   ```
   aws iam [create\-service\-linked\-role](https://docs.aws.amazon.com/cli/latest/reference/iam/create-service-linked-role.html) --aws-service-name ecs.amazonaws.com
@@ -150,241 +150,403 @@ The following shows the supported Amazon EC2 instance types and how many tasks u
 Although other instance types are supported in the same instance family, the `a1.metal`, `c5.metal`, `c5a.8xlarge`, `c5ad.8xlarge`, `c5d.metal`, `m5.metal`, `p3dn.24xlarge`, `r5.metal`, `r5.8xlarge`, and `r5d.metal` instance types are not supported\.  
 The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n`, `m5zn`, `mac1`, `r5b`, `r5n`, `r5dn`, `u-12tb1`, `u-6tb1`, `u-9tb1`, and `z1d` instance families are not supported\.
 
-### a1 instance family<a name="eni-trunking-family-a1"></a>
+**Topics**
++ [General purpose](#eni-branch-gp)
++ [Compute optimized](#eni-branch-co)
++ [Memory optimized](#eni-branch-mo)
++ [Storage optimized](#eni-branch-so)
++ [Accelerated computing](#eni-branch-ac)
+
+### General purpose<a name="eni-branch-gp"></a>
 
 
-|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| Instance type | Task limit without ENI trunking | Task limit with ENI trunking | 
 | --- | --- | --- | 
-|  a1\.medium  |  1  |  10  | 
-|  a1\.large  |  2  |  10  | 
-|  a1\.xlarge  |  3  |  20  | 
-|  a1\.2xlarge  |  3  |  40  | 
-|  a1\.4xlarge  |  7  |  60  | 
+| a1\.medium | 1 | 10 | 
+| a1\.large | 2 | 10 | 
+| a1\.xlarge | 3 | 20 | 
+| a1\.2xlarge | 3 | 40 | 
+| a1\.4xlarge | 7 | 60 | 
+| m5\.large | 2 | 10 | 
+| m5\.xlarge | 3 | 20 | 
+| m5\.2xlarge | 3 | 40 | 
+| m5\.4xlarge | 7 | 60 | 
+| m5\.8xlarge | 7 | 60 | 
+| m5\.12xlarge | 7 | 60 | 
+| m5\.16xlarge | 14 | 120 | 
+| m5\.24xlarge | 14 | 120 | 
+| m5a\.large | 2 | 10 | 
+| m5a\.xlarge | 3 | 20 | 
+| m5a\.2xlarge | 3 | 40 | 
+| m5a\.4xlarge | 7 | 60 | 
+| m5a\.8xlarge | 7 | 60 | 
+| m5a\.12xlarge | 7 | 60 | 
+| m5a\.16xlarge | 14 | 120 | 
+| m5a\.24xlarge | 14 | 120 | 
+| m5ad\.large | 2 | 10 | 
+| m5ad\.xlarge | 3 | 20 | 
+| m5ad\.2xlarge | 3 | 40 | 
+| m5ad\.4xlarge | 7 | 60 | 
+| m5ad\.8xlarge | 7 | 60 | 
+| m5ad\.12xlarge | 7 | 60 | 
+| m5ad\.16xlarge | 14 | 120 | 
+| m5ad\.24xlarge | 14 | 120 | 
+| m5d\.large | 2 | 10 | 
+| m5d\.xlarge | 3 | 20 | 
+| m5d\.2xlarge | 3 | 40 | 
+| m5d\.4xlarge | 7 | 60 | 
+| m5d\.8xlarge | 7 | 60 | 
+| m5d\.12xlarge | 7 | 60 | 
+| m5d\.16xlarge | 14 | 120 | 
+| m5d\.24xlarge | 14 | 120 | 
+| m5d\.metal | 14 | 120 | 
+| m6a\.large | 2 | 10 | 
+| m6a\.xlarge | 3 | 20 | 
+| m6a\.2xlarge | 3 | 40 | 
+| m6a\.4xlarge | 7 | 60 | 
+| m6a\.8xlarge | 7 | 90 | 
+| m6a\.12xlarge | 7 | 120 | 
+| m6a\.16xlarge | 14 | 120 | 
+| m6a\.24xlarge | 14 | 120 | 
+| m6a\.32xlarge | 14 | 120 | 
+| m6a\.48xlarge | 14 | 120 | 
+| m6a\.metal | 14 | 120 | 
+| m6g\.medium | 1 | 4 | 
+| m6g\.large | 2 | 10 | 
+| m6g\.xlarge | 3 | 20 | 
+| m6g\.2xlarge | 3 | 40 | 
+| m6g\.4xlarge | 7 | 60 | 
+| m6g\.8xlarge | 7 | 60 | 
+| m6g\.12xlarge | 7 | 60 | 
+| m6g\.16xlarge | 14 | 120 | 
+| m6g\.metal | 14 | 120 | 
+| m6gd\.medium | 1 | 4 | 
+| m6gd\.large | 2 | 10 | 
+| m6gd\.xlarge | 3 | 20 | 
+| m6gd\.2xlarge | 3 | 40 | 
+| m6gd\.4xlarge | 7 | 60 | 
+| m6gd\.8xlarge | 7 | 60 | 
+| m6gd\.12xlarge | 7 | 60 | 
+| m6gd\.16xlarge | 14 | 120 | 
+| m6gd\.metal | 14 | 120 | 
+| m6i\.large | 2 | 10 | 
+| m6i\.xlarge | 3 | 20 | 
+| m6i\.2xlarge | 3 | 40 | 
+| m6i\.4xlarge | 7 | 60 | 
+| m6i\.8xlarge | 7 | 90 | 
+| m6i\.12xlarge | 7 | 120 | 
+| m6i\.16xlarge | 14 | 120 | 
+| m6i\.24xlarge | 14 | 120 | 
+| m6i\.32xlarge | 14 | 120 | 
+| m6i\.metal | 14 | 120 | 
+| m6id\.large | 2 | 10 | 
+| m6id\.xlarge | 3 | 20 | 
+| m6id\.2xlarge | 3 | 40 | 
+| m6id\.4xlarge | 7 | 60 | 
+| m6id\.8xlarge | 7 | 90 | 
+| m6id\.12xlarge | 7 | 120 | 
+| m6id\.16xlarge | 14 | 120 | 
+| m6id\.24xlarge | 14 | 120 | 
+| m6id\.32xlarge | 14 | 120 | 
+| m6id\.metal | 14 | 120 | 
 
-### c5 instance family<a name="eni-trunking-family-c5"></a>
+### Compute optimized<a name="eni-branch-co"></a>
 
 
-|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| Instance type | Task limit without ENI trunking | Task limit with ENI trunking | 
 | --- | --- | --- | 
-|  c5\.large  |  2  |  10  | 
-|  c5\.xlarge  |  3  |  20  | 
-|  c5\.2xlarge  |  3  |  40  | 
-|  c5\.4xlarge  |  7  |  60  | 
-|  c5\.9xlarge  |  7  |  60  | 
-|  c5\.12xlarge  |  7  |  60  | 
-|  c5\.18xlarge  |  14  |  120  | 
-|  c5\.24xlarge  | 14 |  120  | 
-|  c5a\.large  | 2 |  10  | 
-|  c5a\.xlarge  | 3 |  20  | 
-|  c5a\.2xlarge  | 3 |  40  | 
-|  c5a\.4xlarge  | 7 | 60 | 
-|  c5a\.12xlarge  | 7 |  60  | 
-|  c5a\.16xlarge  | 14 |  120  | 
-|  c5a\.18xlarge  | 14 |  120  | 
-|  c5a\.24xlarge  | 14 |  120  | 
-|  c5ad\.large  | 2 | 10 | 
-|  c5ad\.xlarge  | 3 | 20 | 
-|  c5ad\.2xlarge  | 3 | 40 | 
-|  c5ad\.4xlarge  | 7 | 60 | 
-|  c5ad\.12xlarge  | 7 | 60 | 
-|  c5ad\.16xlarge  | 14 | 120 | 
-|  c5ad\.18xlarge  | 14 | 120 | 
-|  c5ad\.24xlarge  | 14 | 120 | 
-|  c5d\.large  |  2  |  10  | 
-|  c5d\.xlarge  |  3  |  20  | 
-|  c5d\.2xlarge  |  3  |  40  | 
-|  c5d\.4xlarge  |  7  |  60  | 
-|  c5d\.9xlarge  |  7  |  60  | 
-|  c5d\.12xlarge  |  7  | 60 | 
-|  c5d\.18xlarge  |  14  |  120  | 
-|  c5d\.24xlarge  | 14 |  120  | 
+| c5\.large | 2 | 10 | 
+| c5\.xlarge | 3 | 20 | 
+| c5\.2xlarge | 3 | 40 | 
+| c5\.4xlarge | 7 | 60 | 
+| c5\.9xlarge | 7 | 60 | 
+| c5\.12xlarge | 7 | 60 | 
+| c5\.18xlarge | 14 | 120 | 
+| c5\.24xlarge | 14 | 120 | 
+| c5a\.large | 2 | 10 | 
+| c5a\.xlarge | 3 | 20 | 
+| c5a\.2xlarge | 3 | 40 | 
+| c5a\.4xlarge | 7 | 60 | 
+| c5a\.12xlarge | 7 | 60 | 
+| c5a\.16xlarge | 14 | 120 | 
+| c5a\.24xlarge | 14 | 120 | 
+| c5ad\.large | 2 | 10 | 
+| c5ad\.xlarge | 3 | 20 | 
+| c5ad\.2xlarge | 3 | 40 | 
+| c5ad\.4xlarge | 7 | 60 | 
+| c5ad\.12xlarge | 7 | 60 | 
+| c5ad\.16xlarge | 14 | 120 | 
+| c5ad\.24xlarge | 14 | 120 | 
+| c5d\.large | 2 | 10 | 
+| c5d\.xlarge | 3 | 20 | 
+| c5d\.2xlarge | 3 | 40 | 
+| c5d\.4xlarge | 7 | 60 | 
+| c5d\.9xlarge | 7 | 60 | 
+| c5d\.12xlarge | 7 | 60 | 
+| c5d\.18xlarge | 14 | 120 | 
+| c5d\.24xlarge | 14 | 120 | 
+| c6a\.large | 2 | 10 | 
+| c6a\.xlarge | 3 | 20 | 
+| c6a\.2xlarge | 3 | 40 | 
+| c6a\.4xlarge | 7 | 60 | 
+| c6a\.8xlarge | 7 | 90 | 
+| c6a\.12xlarge | 7 | 120 | 
+| c6a\.16xlarge | 14 | 120 | 
+| c6a\.24xlarge | 14 | 120 | 
+| c6a\.32xlarge | 14 | 120 | 
+| c6a\.48xlarge | 14 | 120 | 
+| c6a\.metal | 14 | 120 | 
+| c6g\.medium | 1 | 4 | 
+| c6g\.large | 2 | 10 | 
+| c6g\.xlarge | 3 | 20 | 
+| c6g\.2xlarge | 3 | 40 | 
+| c6g\.4xlarge | 7 | 60 | 
+| c6g\.8xlarge | 7 | 60 | 
+| c6g\.12xlarge | 7 | 60 | 
+| c6g\.16xlarge | 14 | 120 | 
+| c6g\.metal | 14 | 120 | 
+| c6gd\.medium | 1 | 4 | 
+| c6gd\.large | 2 | 10 | 
+| c6gd\.xlarge | 3 | 20 | 
+| c6gd\.2xlarge | 3 | 40 | 
+| c6gd\.4xlarge | 7 | 60 | 
+| c6gd\.8xlarge | 7 | 60 | 
+| c6gd\.12xlarge | 7 | 60 | 
+| c6gd\.16xlarge | 14 | 120 | 
+| c6gd\.metal | 14 | 120 | 
+| c6gn\.medium | 1 | 4 | 
+| c6gn\.large | 2 | 10 | 
+| c6gn\.xlarge | 3 | 20 | 
+| c6gn\.2xlarge | 3 | 40 | 
+| c6gn\.4xlarge | 7 | 60 | 
+| c6gn\.8xlarge | 7 | 60 | 
+| c6gn\.12xlarge | 7 | 60 | 
+| c6gn\.16xlarge | 14 | 120 | 
+| c6gn\.metal | 14 | 120 | 
+| c6i\.large | 2 | 10 | 
+| c6i\.xlarge | 3 | 20 | 
+| c6i\.2xlarge | 3 | 40 | 
+| c6i\.4xlarge | 7 | 60 | 
+| c6i\.8xlarge | 7 | 90 | 
+| c6i\.12xlarge | 7 | 120 | 
+| c6i\.16xlarge | 14 | 120 | 
+| c6i\.24xlarge | 14 | 120 | 
+| c6i\.32xlarge | 14 | 120 | 
+| c6i\.metal | 14 | 120 | 
+| c6id\.large | 2 | 10 | 
+| c6id\.xlarge | 3 | 20 | 
+| c6id\.2xlarge | 3 | 40 | 
+| c6id\.4xlarge | 7 | 60 | 
+| c6id\.8xlarge | 7 | 90 | 
+| c6id\.12xlarge | 7 | 120 | 
+| c6id\.16xlarge | 14 | 120 | 
+| c6id\.24xlarge | 14 | 120 | 
+| c6id\.32xlarge | 14 | 120 | 
+| c6id\.metal | 14 | 120 | 
+| c7g\.medium | 1 | 4 | 
+| c7g\.large | 2 | 10 | 
+| c7g\.xlarge | 3 | 20 | 
+| c7g\.2xlarge | 3 | 40 | 
+| c7g\.4xlarge | 7 | 60 | 
+| c7g\.8xlarge | 7 | 60 | 
+| c7g\.12xlarge | 7 | 60 | 
+| c7g\.16xlarge | 14 | 120 | 
+| hpc6a\.48xlarge | 1 | 120 | 
 
-### c6 instance family<a name="eni-trunking-family-c6"></a>
+### Memory optimized<a name="eni-branch-mo"></a>
 
 
-|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| Instance type | Task limit without ENI trunking | Task limit with ENI trunking | 
 | --- | --- | --- | 
-|  c6g\.medium  | 1 |  4  | 
-|  c6g\.large  | 2 |  10  | 
-|  c6g\.xlarge  | 3 |  20  | 
-|  c6g\.2xlarge  | 3 |  40  | 
-|  c6g\.4xlarge  | 7 |  60  | 
-|  c6g\.8xlarge  | 7 |  60  | 
-|  c6g\.12xlarge  | 7 |  60  | 
-|  c6g\.16xlarge  | 14 |  120  | 
-|  c6g\.metal  |  14  |  120  | 
-|  c6gd\.medium  | 1 |  4  | 
-|  c6gd\.large  | 2 |  10  | 
-|  c6gd\.xlarge  | 3 |  20  | 
-|  c6gd\.2xlarge  | 3 |  40  | 
-|  c6gd\.4xlarge  | 7 |  60  | 
-|  c6gd\.8xlarge  | 7 |  60  | 
-|  c6gd\.12xlarge  | 7 |  60  | 
-|  c6gd\.16xlarge  | 14 |  120  | 
-|  c6gd\.metal  |  14  |  120  | 
+| r5\.large | 2 | 10 | 
+| r5\.xlarge | 3 | 20 | 
+| r5\.2xlarge | 3 | 40 | 
+| r5\.4xlarge | 7 | 60 | 
+| r5\.12xlarge | 7 | 60 | 
+| r5\.16xlarge | 14 | 120 | 
+| r5\.24xlarge | 14 | 120 | 
+| r5a\.large | 2 | 10 | 
+| r5a\.xlarge | 3 | 20 | 
+| r5a\.2xlarge | 3 | 40 | 
+| r5a\.4xlarge | 7 | 60 | 
+| r5a\.8xlarge | 7 | 60 | 
+| r5a\.12xlarge | 7 | 60 | 
+| r5a\.16xlarge | 14 | 120 | 
+| r5a\.24xlarge | 14 | 120 | 
+| r5ad\.large | 2 | 10 | 
+| r5ad\.xlarge | 3 | 20 | 
+| r5ad\.2xlarge | 3 | 40 | 
+| r5ad\.4xlarge | 7 | 60 | 
+| r5ad\.8xlarge | 7 | 60 | 
+| r5ad\.12xlarge | 7 | 60 | 
+| r5ad\.16xlarge | 14 | 120 | 
+| r5ad\.24xlarge | 14 | 120 | 
+| r5d\.large | 2 | 10 | 
+| r5d\.xlarge | 3 | 20 | 
+| r5d\.2xlarge | 3 | 40 | 
+| r5d\.4xlarge | 7 | 60 | 
+| r5d\.8xlarge | 7 | 60 | 
+| r5d\.12xlarge | 7 | 60 | 
+| r5d\.16xlarge | 14 | 120 | 
+| r5d\.24xlarge | 14 | 120 | 
+| r5n\.large | 2 | 10 | 
+| r5n\.xlarge | 3 | 20 | 
+| r5n\.2xlarge | 3 | 40 | 
+| r5n\.4xlarge | 7 | 60 | 
+| r5n\.8xlarge | 7 | 60 | 
+| r5n\.12xlarge | 7 | 60 | 
+| r5n\.16xlarge | 14 | 120 | 
+| r5n\.24xlarge | 14 | 120 | 
+| r5n\.metal | 14 | 120 | 
+| r6a\.large | 2 | 10 | 
+| r6a\.xlarge | 3 | 20 | 
+| r6a\.2xlarge | 3 | 40 | 
+| r6a\.4xlarge | 7 | 60 | 
+| r6a\.8xlarge | 7 | 90 | 
+| r6a\.12xlarge | 7 | 120 | 
+| r6a\.16xlarge | 14 | 120 | 
+| r6a\.24xlarge | 14 | 120 | 
+| r6a\.32xlarge | 14 | 120 | 
+| r6a\.48xlarge | 14 | 120 | 
+| r6a\.metal | 14 | 120 | 
+| r6g\.medium | 1 | 4 | 
+| r6g\.large | 2 | 10 | 
+| r6g\.xlarge | 3 | 20 | 
+| r6g\.2xlarge | 3 | 40 | 
+| r6g\.4xlarge | 7 | 60 | 
+| r6g\.8xlarge | 7 | 60 | 
+| r6g\.12xlarge | 7 | 60 | 
+| r6g\.16xlarge | 14 | 120 | 
+| r6g\.metal | 14 | 120 | 
+| r6gd\.medium | 1 | 4 | 
+| r6gd\.large | 2 | 10 | 
+| r6gd\.xlarge | 3 | 20 | 
+| r6gd\.2xlarge | 3 | 40 | 
+| r6gd\.4xlarge | 7 | 60 | 
+| r6gd\.8xlarge | 7 | 60 | 
+| r6gd\.12xlarge | 7 | 60 | 
+| r6gd\.16xlarge | 14 | 120 | 
+| r6gd\.metal | 14 | 120 | 
+| r6i\.large | 2 | 10 | 
+| r6i\.xlarge | 3 | 20 | 
+| r6i\.2xlarge | 3 | 40 | 
+| r6i\.4xlarge | 7 | 60 | 
+| r6i\.8xlarge | 7 | 90 | 
+| r6i\.12xlarge | 7 | 120 | 
+| r6i\.16xlarge | 14 | 120 | 
+| r6i\.24xlarge | 14 | 120 | 
+| r6i\.32xlarge | 14 | 120 | 
+| r6i\.metal | 14 | 120 | 
+| r6id\.large | 2 | 10 | 
+| r6id\.xlarge | 3 | 20 | 
+| r6id\.2xlarge | 3 | 40 | 
+| r6id\.4xlarge | 7 | 60 | 
+| r6id\.8xlarge | 7 | 90 | 
+| r6id\.12xlarge | 7 | 120 | 
+| r6id\.16xlarge | 14 | 120 | 
+| r6id\.24xlarge | 14 | 120 | 
+| r6id\.32xlarge | 14 | 120 | 
+| r6id\.metal | 14 | 120 | 
+| u\-3tb1\.56xlarge | 7 | 12 | 
+| u\-18tb1\.metal | 14 | 12 | 
+| u\-24tb1\.metal | 14 | 12 | 
+| x2gd\.medium | 1 | 10 | 
+| x2gd\.large | 2 | 10 | 
+| x2gd\.xlarge | 3 | 20 | 
+| x2gd\.2xlarge | 3 | 40 | 
+| x2gd\.4xlarge | 7 | 60 | 
+| x2gd\.8xlarge | 7 | 60 | 
+| x2gd\.12xlarge | 7 | 60 | 
+| x2gd\.16xlarge | 14 | 120 | 
+| x2gd\.metal | 14 | 120 | 
+| x2idn\.16xlarge | 14 | 120 | 
+| x2idn\.24xlarge | 14 | 120 | 
+| x2idn\.32xlarge | 14 | 120 | 
+| x2idn\.metal | 14 | 120 | 
+| x2iedn\.xlarge | 3 | 13 | 
+| x2iedn\.2xlarge | 3 | 29 | 
+| x2iedn\.4xlarge | 7 | 60 | 
+| x2iedn\.8xlarge | 7 | 120 | 
+| x2iedn\.16xlarge | 14 | 120 | 
+| x2iedn\.24xlarge | 14 | 120 | 
+| x2iedn\.32xlarge | 14 | 120 | 
+| x2iedn\.metal | 14 | 120 | 
+| x2iezn\.2xlarge | 3 | 64 | 
+| x2iezn\.4xlarge | 7 | 120 | 
+| x2iezn\.6xlarge | 7 | 120 | 
+| x2iezn\.8xlarge | 7 | 120 | 
+| x2iezn\.12xlarge | 14 | 120 | 
+| x2iezn\.metal | 14 | 120 | 
+| z1d\.large | 2 | 14 | 
 
-### c7g instance family<a name="eni-trunking-family-c7g"></a>
+### Storage optimized<a name="eni-branch-so"></a>
 
 
-|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| Instance type | Task limit without ENI trunking | Task limit with ENI trunking | 
 | --- | --- | --- | 
-|  c7g\.medium  | 1 |  4  | 
-|  c7g\.large  | 2 |  10  | 
-|  c7g\.xlarge  | 3 |  20  | 
-|  c7g\.2xlarge  | 3 |  40  | 
-|  c7g\.4xlarge  | 7 |  60  | 
-|  c7g\.8xlarge  | 7 |  60  | 
-|  c7g\.12xlarge  | 7 |  60  | 
-|  c7g\.16xlarge  | 14 |  120  | 
-|  c7g\.metal  |  14  |  120  | 
+| i4i\.large | 2 | \-2 | 
+| i4i\.xlarge | 3 | 8 | 
+| i4i\.2xlarge | 3 | 28 | 
+| i4i\.4xlarge | 7 | 58 | 
+| i4i\.8xlarge | 7 | 118 | 
+| i4i\.16xlarge | 14 | 248 | 
+| i4i\.32xlarge | 14 | 498 | 
+| i4i\.metal | 14 | 498 | 
+| im4gn\.large | 2 | 10 | 
+| im4gn\.xlarge | 3 | 20 | 
+| im4gn\.2xlarge | 3 | 40 | 
+| im4gn\.4xlarge | 7 | 60 | 
+| im4gn\.8xlarge | 7 | 60 | 
+| im4gn\.16xlarge | 14 | 120 | 
+| im4gn\.metal | 14 | 120 | 
+| is4gen\.medium | 1 | 4 | 
+| is4gen\.large | 2 | 10 | 
+| is4gen\.xlarge | 3 | 20 | 
+| is4gen\.2xlarge | 3 | 40 | 
+| is4gen\.4xlarge | 7 | 60 | 
+| is4gen\.8xlarge | 7 | 60 | 
 
-### g3 instance family<a name="eni-trunking-family-g3"></a>
+### Accelerated computing<a name="eni-branch-ac"></a>
 
 
-|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
+| Instance type | Task limit without ENI trunking | Task limit with ENI trunking | 
 | --- | --- | --- | 
-|  g3\.4xlarge  |  7  |  12  | 
-|  g3\.8xlarge  |  7  |  12  | 
-|  g3\.16xlarge  |  14  |  12  | 
-
-### m5 instance family<a name="eni-trunking-family-m5"></a>
-
-
-|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
-| --- | --- | --- | 
-|  m5\.large  |  2  |  10  | 
-|  m5\.xlarge  |  3  |  20  | 
-|  m5\.2xlarge  |  3  |  40  | 
-|  m5\.4xlarge  |  7  |  60  | 
-|  m5\.8xlarge  |  7  |  60  | 
-|  m5\.12xlarge  |  7  |  60  | 
-|  m5\.16xlarge  |  14  |  120  | 
-|  m5\.24xlarge  |  14  |  120  | 
-|  m5a\.large  |  2  |  10  | 
-|  m5a\.xlarge  |  3  |  20  | 
-|  m5a\.2xlarge  |  3  |  40  | 
-|  m5a\.4xlarge  |  7  |  60  | 
-|  m5a\.8xlarge  |  7  |  60  | 
-|  m5a\.12xlarge  |  7  |  60  | 
-|  m5a\.16xlarge  |  14  |  120  | 
-|  m5a\.24xlarge  |  14  |  120  | 
-|  m5ad\.large  |  2  |  10  | 
-|  m5ad\.xlarge  |  3  |  20  | 
-|  m5ad\.2xlarge  |  3  |  40  | 
-|  m5ad\.4xlarge  |  7  |  60  | 
-|  m5ad\.8xlarge  |  7  |  60  | 
-|  m5ad\.12xlarge  |  7  |  60  | 
-|  m5ad\.16xlarge  |  14  |  120  | 
-|  m5ad\.24xlarge  |  14  |  120  | 
-|  m5d\.large  |  2  |  10  | 
-|  m5d\.xlarge  |  3  |  20  | 
-|  m5d\.2xlarge  |  3  |  40  | 
-|  m5d\.4xlarge  |  7  |  60  | 
-|  m5d\.8xlarge  |  7  |  60  | 
-|  m5d\.12xlarge  |  7  |  60  | 
-|  m5d\.16xlarge  |  14  |  120  | 
-|  m5d\.24xlarge  |  14  |  120  | 
-|  m5d\.metal  |  14  |  120  | 
-
-### m6 instance family<a name="eni-trunking-family-m6"></a>
-
-
-|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
-| --- | --- | --- | 
-|  m6i\.large  |  2  |  10  | 
-|  m6i\.xlarge  |  3  |  20  | 
-|  m6i\.2xlarge  |  3  |  40  | 
-|  m6i\.4xlarge  |  7  |  60  | 
-|  m6i\.8xlarge  |  7  |  90  | 
-|  m6i\.12xlarge  |  7  |  120  | 
-|  m6i\.16xlarge  |  14  |  120  | 
-|  m6i\.24xlarge  |  14  |  120  | 
-|  m6i\.32xlarge  |  14  |  120  | 
-|  m6g\.medium  |  1  |  4  | 
-|  m6g\.large  |  2  |  10  | 
-|  m6g\.xlarge  |  3  |  20  | 
-|  m6g\.2xlarge  |  3  |  40  | 
-|  m6g\.4xlarge  |  7  |  60  | 
-|  m6g\.8xlarge  |  7  |  60  | 
-|  m6g\.12xlarge  |  7  |  60  | 
-|  m6g\.16xlarge  |  14  |  120  | 
-|  m6g\.metal  |  14  |  120  | 
-|  m6gd\.medium  |  1  |  4  | 
-|  m6gd\.large  |  2  |  10  | 
-|  m6gd\.xlarge  |  3  |  20  | 
-|  m6gd\.2xlarge  |  3  |  40  | 
-|  m6gd\.4xlarge  |  7  |  60  | 
-|  m6gd\.8xlarge  |  7  |  60  | 
-|  m6gd\.12xlarge  |  7  |  60  | 
-|  m6gd\.16xlarge  |  14  |  120  | 
-|  m6gd\.metal  |  14  |  120  | 
-
-### p3 instance family<a name="eni-trunking-family-p3"></a>
-
-
-|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
-| --- | --- | --- | 
-|  p3\.2xlarge  |  3  |  40  | 
-|  p3\.8xlarge  |  7  |  60  | 
-|  p3\.16xlarge  |  7  |  120  | 
-
-### r5 instance family<a name="eni-trunking-family-r5"></a>
-
-
-|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
-| --- | --- | --- | 
-|  r5\.large  |  2  |  10  | 
-|  r5\.xlarge  |  3  |  20  | 
-|  r5\.2xlarge  |  3  |  40  | 
-|  r5\.4xlarge  |  7  |  60  | 
-|  r5\.12xlarge  |  7  |  60  | 
-|  r5\.16xlarge  |  14  |  120  | 
-|  r5\.24xlarge  |  14  |  120  | 
-|  r5a\.large  |  2  |  10  | 
-|  r5a\.xlarge  |  3  |  20  | 
-|  r5a\.2xlarge  |  3  |  40  | 
-|  r5a\.4xlarge  |  7  |  60  | 
-|  r5a\.8xlarge  |  7  |  60  | 
-|  r5a\.12xlarge  |  7  |  60  | 
-|  r5a\.16xlarge  |  14  |  120  | 
-|  r5a\.24xlarge  |  14  |  120  | 
-|  r5ad\.large  |  2  |  10  | 
-|  r5ad\.xlarge  |  3  |  20  | 
-|  r5ad\.2xlarge  |  3  |  40  | 
-|  r5ad\.4xlarge  |  7  |  60  | 
-|  r5ad\.8xlarge  |  7  |  60  | 
-|  r5ad\.12xlarge  |  7  |  60  | 
-|  r5ad\.16xlarge  |  14  |  120  | 
-|  r5ad\.24xlarge  |  14  |  120  | 
-|  r5d\.large  |  2  |  10  | 
-|  r5d\.xlarge  |  3  |  20  | 
-|  r5d\.2xlarge  |  3  |  40  | 
-|  r5d\.4xlarge  |  7  |  60  | 
-|  r5d\.8xlarge  |  7  |  60  | 
-|  r5d\.12xlarge  |  7  |  60  | 
-|  r5d\.16xlarge  |  14  |  120  | 
-|  r5d\.24xlarge  |  14  |  120  | 
-
-### r6 instance family<a name="eni-trunking-family-r6"></a>
-
-
-|  Instance type  |  Task limit without ENI trunking enabled  |  Task limit with ENI trunking enabled  | 
-| --- | --- | --- | 
-|  r6g\.medium  |  1  |  4  | 
-|  r6g\.large  |  2  |  10  | 
-|  r6g\.xlarge  |  3  |  20  | 
-|  r6g\.2xlarge  |  3  |  40  | 
-|  r6g\.4xlarge  |  7  |  60  | 
-|  r6g\.8xlarge  |  7  |   60  | 
-|  r6g\.12xlarge  |  7  |  60  | 
-|  r6g\.16xlarge  |  14  |  120  | 
-|  r6g\.metal  |  14  |  120  | 
-|  r6gd\.medium  |  1  |  4  | 
-|  r6gd\.large  |  2  |  10  | 
-|  r6gd\.xlarge  |  3  |  20  | 
-|  r6gd\.2xlarge  |  3  |  40  | 
-|  r6gd\.4xlarge  |  7  |   60  | 
-|  r6gd\.8xlarge  |  7  |  60  | 
-|  r6gd\.12xlarge  |  7  |  60  | 
-|  r6gd\.16xlarge  |  14  |  120  | 
-|  r6gd\.metal  |  14  |  120  | 
+| dl1\.24xlarge | 59 | 120 | 
+| g4ad\.xlarge | 1 | 12 | 
+| g4ad\.2xlarge | 1 | 12 | 
+| g4ad\.4xlarge | 2 | 12 | 
+| g4ad\.8xlarge | 3 | 12 | 
+| g4ad\.16xlarge | 7 | 12 | 
+| g4dn\.xlarge | 2 | 40 | 
+| g4dn\.2xlarge | 2 | 40 | 
+| g4dn\.4xlarge | 2 | 60 | 
+| g4dn\.8xlarge | 3 | 60 | 
+| g4dn\.12xlarge | 7 | 60 | 
+| g4dn\.16xlarge | 3 | 120 | 
+| g4dn\.metal | 14 | 120 | 
+| g5\.xlarge | 3 | 6 | 
+| g5\.2xlarge | 3 | 19 | 
+| g5\.4xlarge | 7 | 40 | 
+| g5\.8xlarge | 7 | 90 | 
+| g5\.12xlarge | 14 | 120 | 
+| g5\.16xlarge | 7 | 120 | 
+| g5\.24xlarge | 14 | 120 | 
+| g5\.48xlarge | 14 | 120 | 
+| g5g\.xlarge | 3 | 20 | 
+| g5g\.2xlarge | 3 | 40 | 
+| g5g\.4xlarge | 7 | 60 | 
+| g5g\.8xlarge | 7 | 60 | 
+| g5g\.16xlarge | 14 | 120 | 
+| g5g\.metal | 14 | 120 | 
+| inf1\.xlarge | 3 | 40 | 
+| inf1\.2xlarge | 3 | 40 | 
+| inf1\.6xlarge | 7 | 60 | 
+| inf1\.24xlarge | 10 | 120 | 
+| p3\.2xlarge | 3 | 40 | 
+| p3\.8xlarge | 7 | 60 | 
+| p3\.16xlarge | 7 | 120 | 
+| p4d\.24xlarge | 59 | 120 | 
+| p4de\.24xlarge | 59 | 120 | 
+| vt1\.3xlarge | 3 | 40 | 
+| vt1\.6xlarge | 7 | 60 | 
+| vt1\.24xlarge | 14 | 120 | 

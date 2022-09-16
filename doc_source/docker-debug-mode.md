@@ -1,6 +1,6 @@
-# Enabling Docker debug output<a name="docker-debug-mode"></a>
+# Using Docker debug output<a name="docker-debug-mode"></a>
 
-If you are having trouble with Docker containers or images, you can enable debug mode on your Docker daemon\. Enabling debugging provides more verbose output from the daemon and you can use this information to find out more about why your containers or images are having issues\.
+If you are having trouble with Docker containers or images, you can turn on debug mode on your Docker daemon\. Enabling debugging provides more verbose output from the daemon and you can use this information to find out more about why your containers or images are having issues\.
 
 Enabling Docker debug mode can be especially useful in retrieving error messages that are sent from container registries, such as Amazon ECR, and, in many circumstances, enabling debug mode is the only way to see these error messages\.
 

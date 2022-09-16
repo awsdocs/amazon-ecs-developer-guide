@@ -22,10 +22,12 @@ For task definitions that specify `FARGATE` for the `requiresCompatibilities` pa
 Supported task CPU and memory values for tasks that are hosted on Fargate are as follows\.
 
 
-| CPU value | Memory value \(MiB\) | 
+| CPU value | Memory value | 
 | --- | --- | 
-| 256 \(\.25 vCPU\) | 512 \(0\.5GB\), 1024 \(1GB\), 2048 \(2GB\) | 
-| 512 \(\.5 vCPU\) | 1024 \(1GB\), 2048 \(2GB\), 3072 \(3GB\), 4096 \(4GB\) | 
-| 1024 \(1 vCPU\) | 2048 \(2GB\), 3072 \(3GB\), 4096 \(4GB\), 5120 \(5GB\), 6144 \(6GB\), 7168 \(7GB\), 8192 \(8GB\) | 
-| 2048 \(2 vCPU\) | Between 4096 \(4GB\) and 16384 \(16GB\) in increments of 1024 \(1GB\) | 
-| 4096 \(4 vCPU\) | Between 8192 \(8GB\) and 30720 \(30GB\) in increments of 1024 \(1GB\) | 
+|  256 \(\.25 vCPU\)  |  512 MB, 1 GB, 2 GB  | 
+|  512 \(\.5 vCPU\)  |  1 GB, 2 GB, 3 GB, 4 GB  | 
+|  1024 \(1 vCPU\)  |  2 GB, 3 GB, 4 GB, 5 GB, 6 GB, 7 GB, 8 GB  | 
+|  2048 \(2 vCPU\)  |  Between 4 GB and 16 GB in 1 GB increments  | 
+|  4096 \(4 vCPU\)  |  Between 8 GB and 30 GB in 1 GB increments  | 
+| 8192 \(8 vCPU\)  | Between 16 GB and 60 GB in 4 GB increments | 
+| 16384 \(16vCPU\)  | Between 32 GB and 120 GB in 8 GB increments | 
