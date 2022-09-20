@@ -76,7 +76,7 @@ Amazon ECS task definitions for AWS Fargate require that you specify CPU and mem
 |  2048 \(2 vCPU\)  |  Between 4 GB and 16 GB in 1 GB increments  |  Linux, Windows  | 
 |  4096 \(4 vCPU\)  |  Between 8 GB and 30 GB in 1 GB increments  |  Linux, Windows  | 
 |  8192 \(8 vCPU\)  This option requires Linux platform `1.4.0` or later\.   |  Between 16 GB and 60 GB in 4 GB increments  |  Linux  | 
-|  16384 \(16vCPU\)  This option requires Linux platform `1.4.0` or later\.   |  Between 32GB and 120 GB in 8 GB increments  |  Linux  | 
+|  16384 \(16 vCPU\)  This option requires Linux platform `1.4.0` or later\.   |  Between 32 GB and 120 GB in 8 GB increments  |  Linux  | 
 
 ### Task resource limits<a name="fargate-resource-limits"></a>
 
