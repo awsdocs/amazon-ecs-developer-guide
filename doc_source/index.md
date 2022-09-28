@@ -4,13 +4,13 @@
 *****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
-Amazon's trademarks and trade dress may not be used in 
-     connection with any product or service that is not Amazon's, 
-     in any manner that is likely to cause confusion among customers, 
-     or in any manner that disparages or discredits Amazon. All other 
-     trademarks not owned by Amazon are the property of their respective
-     owners, who may or may not be affiliated with, connected to, or 
-     sponsored by Amazon.
+Amazon's trademarks and trade dress may not be used in
+connection with any product or service that is not Amazon's,
+in any manner that is likely to cause confusion among customers,
+or in any manner that disparages or discredits Amazon. All other
+trademarks not owned by Amazon are the property of their respective
+owners, who may or may not be affiliated with, connected to, or
+sponsored by Amazon.
 
 -----
 ## Contents
@@ -217,6 +217,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Amazon ECS events](ecs_cwe_events.md)
       + [Handling events](ecs_cwet_handling.md)
    + [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)
+      + [Use CloudWatch Container Insights to view Amazon ECS lifecycle events](lifecycle-metrics.md)
    + [Container instance health](container-instance-health.md)
    + [Collecting application trace data](trace-data.md)
    + [Collecting application metrics](metrics-data.md)

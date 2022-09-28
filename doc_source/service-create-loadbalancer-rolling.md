@@ -18,9 +18,7 @@ To configure your service to use a load balancer, you must choose the load balan
 Application Load Balancer  
 Allows containers to use dynamic host port mapping\. With host port mapping allowed, you can place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing and paths\.  
 Network Load Balancer  
-Allows containers to use dynamic host port mapping\. With host port mapping allowed, you can place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing\.  
-Classic Load Balancer  
-Requires static host port mappings \(only one task allowed per container instance\)\. Rule\-based routing and paths aren't supported\.
+Allows containers to use dynamic host port mapping\. With host port mapping allowed, you can place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing\.
 
    We recommend that you use Application Load Balancers for your Amazon ECS services\. That way, you can use the advanced features of Application Load Balancer\.
 
@@ -28,7 +26,7 @@ Requires static host port mappings \(only one task allowed per container instanc
 
 1. For **ELB Name**, choose the name of the load balancer to use with your service\. Only load balancers that correspond to the load balancer type that you selected earlier are visible here\.
 
-1. The next step depends on the load balancer type for your service\. If you've chosen an Application Load Balancer, follow the steps in [To configure an Application Load Balancer](#create-service-configure-alb)\. If you've chosen a Network Load Balancer, follow the steps in [To configure a Network Load Balancer](#create-service-configure-nlb)\. If you've chosen a Classic Load Balancer, follow the steps in [To configure a Classic Load Balancer](#create-service-configure-clb)\.<a name="create-service-configure-alb"></a>
+1. The next step depends on the load balancer type for your service\. If you've chosen an Application Load Balancer, follow the steps in [To configure an Application Load Balancer](#create-service-configure-alb)\. If you've chosen a Network Load Balancer, follow the steps in [To configure a Network Load Balancer](#create-service-configure-nlb)\. <a name="create-service-configure-alb"></a>
 
 **To configure an Application Load Balancer**
 

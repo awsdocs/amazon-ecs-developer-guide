@@ -47,7 +47,7 @@ Use the AWS Copilot complete end\-to\-end developer workflow to create, release,
 
 ## AWS CDK<a name="developer-tools-cdk"></a>
 
-The AWS Cloud Development Kit \(CDK\) is an open source software development framework that enables you to model and provision your cloud application resources using familiar programming languages\. AWS CDK provisions your resources in a safe, repeatable manner through AWS CloudFormation\. Using the CDK, customers can generate their environment with fewer lines of code using the same language they used to build their application\. Amazon ECS provides a module in the CDK that is named `ecs-patterns`, which creates common architectures\. An available pattern is `ApplicationLoadBalancedFargateService()`\. This pattern creates a cluster, task definition, and additional resources to run a load balanced Amazon ECS service on AWS Fargate\.
+The AWS Cloud Development Kit \(AWS CDK\) is an open source software development framework that enables you to model and provision your cloud application resources using familiar programming languages\. AWS CDK provisions your resources in a safe, repeatable manner through AWS CloudFormation\. Using the CDK, customers can generate their environment with fewer lines of code using the same language they used to build their application\. Amazon ECS provides a module in the CDK that is named `ecs-patterns`, which creates common architectures\. An available pattern is `ApplicationLoadBalancedFargateService()`\. This pattern creates a cluster, task definition, and additional resources to run a load balanced Amazon ECS service on AWS Fargate\.
 
 For more information, see [Getting started with Amazon ECS using the AWS CDK](tutorial-ecs-web-server-cdk.md)\.
 

@@ -93,12 +93,12 @@ AWS Fargate is transitioning from task count\-based quotas to vCPU\-based quotas
 |  Fargate On\-Demand resource count  |  Fargate On\-Demand vCPU resource count  | 
 
 Use one of the following methods to access the new vCPU\-based quotas:
-+ Run `put-account-setting-default` with the `fargateVCPULimit` option set to `enable`\. For more information, see, [put\-account\-setting\-default](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting-default.html) in the *Amazon Elastic Container Service API Reference*\.
++ The recommended method is to run `put-account-setting-default` with the `fargateVCPULimit` option set to `enable`\. For more information, see, [put\-account\-setting\-default](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting-default.html) in the *Amazon Elastic Container Service API Reference*\. You can run list\-account\-settings to 
 
-  Example
+  Example to access the vCPU\-based quotas
 
   ```
-  aws ecs put-account-setting-default --name fargateVCPULimit --value enabled
+  aws ecs put-account-setting-default --name fargateVCPULimit --value enabled --region region
   ```
 
   Output
@@ -115,6 +115,8 @@ Use one of the following methods to access the new vCPU\-based quotas:
 + Use the AWS Support Center Console to create an opt\-in request for the vCPU\-based quotas\. Create a **Service Limit increase** case and for **Limit type**, choose **Fargate**\. For information, see [Creating a support case](https://docs.aws.amazon.com/awssupport/latest/user/case-management.html#creating-a-support-case) in the *AWS Support User Guide*\.
 
 ### AWS Fargate vCPU\-based quotas timeline<a name="fargate-quota-timeline"></a>
+
+You can confirm which quota type is active by running `list-account-settings` to view the `fargateVCPULimit` value\. When the value is `enabled`, it means that the vCPU\-based quotas are being used\. For more information, see, [list\-account\-settings](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-account-settings.html) in the *Amazon Elastic Container Service API Reference*\.
 
 The following are the important dates related to the new vCPU\-based quotas\.
 + September 8, 2022 – You can opt in to using the new vCPU\-based quotas before AWS begins the automatic migration to vCPU\-based quotas\. By opting in, your account is controlled by vCPU\-based quotas rather than the previous task count–based quotas\. Task count\-based quotas remain the default for accounts that don’t opt in\.

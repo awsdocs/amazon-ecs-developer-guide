@@ -32,12 +32,12 @@ Output:
 }
 ```
 
-If your Amazon EC2 instance is using at least version `1.11.0` of the container agent and a supported version of the AWS CLI or SDKs, then the SDK client will see that the `AWS_CONTAINER_CREDENTIALS_RELATIVE_URI` variable is available, and it will use the provided credentials to make calls to the AWS APIs\. For more information, see [Enabling task IAM roles on your Amazon EC2 or external instances](#enable_task_iam_roles) and [Using a supported AWS SDK](#task-iam-roles-minimum-sdk)\.
+If your Amazon EC2 instance is using at least version `1.11.0` of the container agent and a supported version of the AWS CLI or SDKs, then the SDK client will see that the `AWS_CONTAINER_CREDENTIALS_RELATIVE_URI` variable is available, and it will use the provided credentials to make calls to the AWS APIs\. For more information, see [Using task IAM roles on your Amazon EC2 or external instances](#enable_task_iam_roles)\.
 
 Each time the credential provider is used, the request is logged locally on the host container instance at `/var/log/ecs/audit.log.YYYY-MM-DD-HH`\. For more information, see [IAM Roles for Tasks Credential Audit Log](logs.md#task_iam_roles-logs)\.
 
 **Important**  
-When creating your task IAM role, it is recommended that you use the `aws:SourceAccount` or `aws:SourceArn` condition keys in either the trust relationship or the IAM policy associated with the role to prevent the confused deputy security issue\. These condition keys can be specified in the trust relationship or in the IAM policy associated with the role\. To learn more about the confused deputy problem and how to protect your AWS account, see [The confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) in the *IAM User Guide*\.
+When creating your task IAM role, it is recommended that you use the `aws:SourceAccount` or `aws:SourceArn` condition keys in either the trust relationship or the IAM policy associated with the role to prevent the confused deputy security issue\. Using the `aws:SourceArn` condition key to specify a specific cluster is not currently supported, you should use the wildcard to specify all clusters\. To learn more about the confused deputy problem and how to protect your AWS account, see [The confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) in the *IAM User Guide*\.
 
 ## Considerations for tasks hosted on Amazon EC2 instances<a name="task-iam-role-considerations"></a>
 
@@ -57,9 +57,9 @@ The following should also be considered when using a task IAM role for tasks hos
   sudo iptables-save | sudo tee /etc/sysconfig/iptables && sudo systemctl enable --now iptables
   ```
 
-## Enabling task IAM roles on your Amazon EC2 or external instances<a name="enable_task_iam_roles"></a>
+## Using task IAM roles on your Amazon EC2 or external instances<a name="enable_task_iam_roles"></a>
 
-Your Amazon EC2 or external instances require at least version `1.11.0` of the container agent to enable task IAM roles; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized AMI, your instance needs at least `1.11.0-1` of the `ecs-init` package\. If your instances are using the latest Amazon ECS\-optimized AMI, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
+Your Amazon EC2 or external instances require at least version `1.11.0` of the container agent to use task IAM roles; however, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\. If you are using an Amazon ECS\-optimized AMI, your instance needs at least `1.11.0-1` of the `ecs-init` package\. If your instances are using the latest Amazon ECS\-optimized AMI, then they contain the required versions of the container agent and `ecs-init`\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
 
 If you are not using the Amazon ECS\-optimized AMI for your container instances, be sure to add the `--net=host` option to your docker run command that starts the agent and the following agent configuration variables for your desired configuration \(for more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\):
 
@@ -81,12 +81,12 @@ You must save these iptables rules on your container instance for them to surviv
 
 ## Creating an IAM role and policy for your tasks<a name="create_task_iam_policy_and_role"></a>
 
-When creating an IAM policy for your tasks to use, the policy should include the permissions that you would like the containers in your tasks to assume\. You can use an existing AWS managed policy that as an example or you can create a custom policy from scratch that meets your specific needs\. For more information, see [Creating IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the *IAM User Guide*\.
+When creating an IAM policy for your tasks to use, the policy should include the permissions that you would like the containers in your tasks to assume\. You can use an existing AWS managed policy or you can create a custom policy from scratch that meets your specific needs\. For more information, see [Creating IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html) in the *IAM User Guide*\.
 
 **Important**  
-When creating your task IAM role, it is recommended that you use the `aws:SourceAccount` or `aws:SourceArn` condition keys in either the trust relationship or the IAM policy associated with the role to prevent the confused deputy security issue\. These condition keys can be specified in the trust relationship or in the IAM policy associated with the role\. To learn more about the confused deputy problem and how to protect your AWS account, see [The confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) in the *IAM User Guide*\.
+For Amazon ECS tasks \(for all launch types\), we recommend that you use the IAM policy and role for your tasks\. These credentials allow your task to make AWS API requests without calling `sts:AssumeRole` to assume the same role that is already associated with the task\. If your task requires that a role assumes itself, you must create a trust policy that explicitly allows that role to assume itself\. For more information, see[ Modifying a role trust policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-managingrole-editing-console.html#roles-managingrole_edit-trust-policy) in the *IAM User Guide*\.
 
-Once the IAM policy is created, you can create an IAM role which includes that policy which you reference in your Amazon ECS task definition\. You can create the role using the **Elastic Container Service Task** use case in the IAM console\. Then you can attach your specific IAM policy to the role that gives the containers in your task the permissions you desire\. The procedures below describe how to do this\.
+After the IAM policy is created, you can create an IAM role which includes that policy which you reference in your Amazon ECS task definition\. You can create the role using the **Elastic Container Service Task** use case in the IAM console\. Then you can attach your specific IAM policy to the role that gives the containers in your task the permissions you desire\. The procedures below describe how to do this\.
 
 If you have multiple task definitions or services that require IAM permissions, you should consider creating a role for each specific task definition or service with the minimum required permissions for the tasks to operate so that you can minimize the access that you provide for each task\. 
 
@@ -120,6 +120,9 @@ The following is an example trust policy\. You should replace the Region identif
    ]
 }
 ```
+
+**Important**  
+When creating your task IAM role, it is recommended that you use the `aws:SourceAccount` or `aws:SourceArn` condition keys in either the trust relationship or the IAM policy associated with the role to prevent the confused deputy security issue\. Using the `aws:SourceArn` condition key to specify a specific cluster is not currently supported, you should use the wildcard to specify all clusters\. To learn more about the confused deputy problem and how to protect your AWS account, see [The confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html) in the *IAM User Guide*\.
 
 **To create an IAM policy for your tasks \(AWS Management Console\)**
 
@@ -217,12 +220,6 @@ In this example, we create a policy to allow read\-only access to an Amazon S3 b
    1. Review the trusted entity and permissions policy for the role\.
 
    1. For **Add tags \(Optional\)**, enter any metadata tags you want to associate with the IAM role, and then choose **Create role**\.
-
-## Using a supported AWS SDK<a name="task-iam-roles-minimum-sdk"></a>
-
-Support for IAM roles for tasks was added to the AWS SDKs on July 13th, 2016\. The containers in your tasks must use an AWS SDK version that was created on or after that date\. AWS SDKs that are included in Linux distribution package managers may not be new enough to support this feature\.
-
-To ensure that you are using a supported SDK, follow the installation instructions for your preferred SDK at [Tools for Amazon Web Services](https://aws.amazon.com/tools/) when you are building your containers to get the latest version\.
 
 ## Specifying an IAM role for your tasks<a name="specify-task-iam-roles"></a>
 

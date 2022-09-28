@@ -92,8 +92,8 @@ Type: string
 Required: conditional  
 This parameter is not supported for Windows containers\.
 The hard limit of CPU units to present for the task\. It can be expressed as an integer using CPU units \(for example, `1024`\) or as a string using vCPUs \(for example, `1 vCPU` or `1 vcpu`\) in a task definition\. When the task definition is registered, a vCPU value is converted to an integer indicating the CPU units\.  
-For tasks that are hosted on Amazon EC2 instances, this field is optional\. If your cluster doesn't have any registered container instances with the requested CPU units available, the task fails\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
-For tasks that are hosted on Fargate \(both Linux and Windows containers\), this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
+For tasks that use the EC2 launch type, this field is optional\. If your cluster doesn't have any registered container instances with the requested CPU units available, the task fails\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
+For tasks that use the Fargate launch type \(both Linux and Windows containers\), this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 
 `memory`  
@@ -629,10 +629,12 @@ The log router to use\. The valid values are `fluentd` or `fluentbit`\.
 
 #### Security<a name="container_definition_security"></a>
 
+For more information about container security, see [Task and container security](https://docs.aws.amazon.com/AmazonECS/latest/bestpracticesguide/security-tasks-containers.html) in the *Amazon ECS Best Practices Guide*\.
+
 `privileged`  
 Type: Boolean  
 Required: no  
-When this parameter is true, the container is given elevated privileges on the host container instance \(similar to the `root` user\)\.   
+When this parameter is true, the container is given elevated privileges on the host container instance \(similar to the `root` user\)\. We recommend against running containers with `privileged`\. In most cases, you can specify the exact privileges that you need by using the specific parameters instead of using `privileged`\.  
 This parameter maps to `Privileged` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--privileged` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
 This parameter is not supported for Windows containers or tasks using the Fargate launch type\.
 

@@ -39,7 +39,7 @@ You can use one of the following ways to retrieve an Amazon ECS\-optimized Bottl
 
 ### Retrieving the `aws-ecs-1` Bottlerocket AMI variant<a name="ecs-bottlerocket-aws-ecs-1-variant"></a>
 
-#### Use AWS Systems Manager parameters in a AWS CLI command<a name="w604aac22c19c25c13b7b1b3"></a>
+#### Use AWS Systems Manager parameters in a AWS CLI command<a name="w627aac21c19c25c13b7b1b3"></a>
 
 Use AWS Systems Manager parameters in the following AWS CLI command to retrieve the latest stable `aws-ecs-1` Bottlerocket AMI variant by Region and architecture\. To retrieve a version other than the latest, replace `latest` with the version number\.
 + For the 64\-bit \(`x86_64`\) architecture:
@@ -53,7 +53,7 @@ Use AWS Systems Manager parameters in the following AWS CLI command to retrieve 
   aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id" --query Parameter.Value --output text
   ```
 
-#### Click the AMI link<a name="w604aac22c19c25c13b7b1b5"></a>
+#### Click the AMI link<a name="w627aac21c19c25c13b7b1b5"></a>
 
 The following table provides a link to retrieve the latest Amazon ECS\-optimized Bottlerocket AMI variant `aws-ecs-1`, by Region and architecture\.
 
@@ -81,14 +81,14 @@ The following table provides a link to retrieve the latest Amazon ECS\-optimized
 |  Europe \(Paris\)  |  `eu-west-3`  |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=eu-west-3#)  |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=eu-west-3#)  | 
 |  Europe \(Milan\)  |  `eu-south-1`  |  [View AMI ID](https://eu-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=eu-south-1#)  |  [View AMI ID](https://eu-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=eu-south-1#)  | 
 |  Middle East \(Bahrain\)  |  `me-south-1`  |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=me-south-1#)  |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=me-south-1#)  | 
-|    |  `me-central-1`  |  [View AMI ID](https://me-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=me-central-1#)  |  [View AMI ID](https://me-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=me-central-1#)  | 
+|  Middle East \(UAE\)  |  `me-central-1`  |  [View AMI ID](https://me-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=me-central-1#)  |  [View AMI ID](https://me-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=me-central-1#)  | 
 |  South America \(São Paulo\)  |  `sa-east-1`  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=sa-east-1#)  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=sa-east-1#)  | 
 |  AWS GovCloud \(US\-East\)  |  `us-gov-east-1`  |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=us-gov-east-1#)  |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=us-gov-east-1#)  | 
 |  AWS GovCloud \(US\-West\)  |  `us-gov-west-1`  |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=us-gov-west-1#)  |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=us-gov-west-1#)  | 
 
 ### Retrieving the `aws-ecs-1-nvidia` Bottlerocket AMI variant<a name="ecs-bottlerocket-aws-ecs-1-nvidia-variants"></a>
 
-#### Use AWS Systems Manager parameters a AWS CLI command<a name="w604aac22c19c25c13b7b3b3"></a>
+#### Use AWS Systems Manager parameters a AWS CLI command<a name="w627aac21c19c25c13b7b3b3"></a>
 
 Use AWS Systems Manager parameters in the following AWS CLI command to retrieve the latest stable `aws-ecs-1-nvidia` Bottlerocket AMI variant by Region and architecture\. To retrieve a version other than the latest, replace `latest` with the version number\.
 + For the 64\-bit \(`x86_64`\) architecture:
@@ -102,7 +102,7 @@ Use AWS Systems Manager parameters in the following AWS CLI command to retrieve 
   aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id" --query Parameter.Value --output text
   ```
 
-#### Click the AMI link<a name="w604aac22c19c25c13b7b3b5"></a>
+#### Click the AMI link<a name="w627aac21c19c25c13b7b3b5"></a>
 
 The following table provides a link to retrieve the latest Amazon ECS\-optimized Bottlerocket AMI variant `aws-ecs-1-nvidia`, by Region and architecture\.
 
@@ -130,7 +130,7 @@ The following table provides a link to retrieve the latest Amazon ECS\-optimized
 |  Europe \(Paris\)  |  `eu-west-3`  |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=eu-west-3#)  |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=eu-west-3#)  | 
 |  Europe \(Milan\)  |  `eu-south-1`  |  [View AMI ID](https://eu-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=eu-south-1#)  |  [View AMI ID](https://eu-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=eu-south-1#)  | 
 |  Middle East \(Bahrain\)  |  `me-south-1`  |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=me-south-1#)  |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=me-south-1#)  | 
-|    |  `me-central-1`  |  [View AMI ID](https://me-central.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=me-central-1#)  |  [View AMI ID](https://me-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=me-central-1#)  | 
+|  Middle East \(UAE\)  |  `me-central-1`  |  [View AMI ID](https://me-central.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=me-central-1#)  |  [View AMI ID](https://me-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=me-central-1#)  | 
 |  South America \(São Paulo\)  |  `sa-east-1`  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=sa-east-1#)  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=sa-east-1#)  | 
 |  AWS GovCloud \(US\-East\)  |  `us-gov-east-1`  |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=us-gov-east-1#)  |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=us-gov-east-1#)  | 
 |  AWS GovCloud \(US\-West\)  |  `us-gov-west-1`  |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=us-gov-west-1#)  |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=us-gov-west-1#)  | 

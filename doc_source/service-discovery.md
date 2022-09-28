@@ -30,7 +30,7 @@ Service discovery is available in the following AWS Regions:
 |  Europe \(Milan\)  |  eu\-south\-1  | 
 |  Europe \(Stockholm\)  |  eu\-north\-1  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  | 
-|    |  me\-central\-1  | 
+|  Middle East \(UAE\)  |  me\-central\-1  | 
 |  South America \(São Paulo\)  |  sa\-east\-1  | 
 |  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  | 
 |  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  | 

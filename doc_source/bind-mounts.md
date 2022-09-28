@@ -11,7 +11,7 @@ The following are common use cases for bind mounts\.
 ## Considerations when using bind mounts<a name="bind-mount-considerations"></a>
 
 When using bind mounts, consider the following\.
-+ For tasks that are hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` or later \(Windows\), by default they receive a minimum of 20 GiB of ephemeral storage for bind mounts\. The total amount of ephemeral storage can be increased to a maximum of 200 GiB by specifying the `ephemeralStorage` object in your task definition\.
++ For tasks that are hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` or later \(Windows\), by default they receive a minimum of 20 GiB of ephemeral storage for bind mounts\. For Linux tasks, the total amount of ephemeral storage can be increased to a maximum of 200 GiB by specifying the `ephemeralStorage` object in your task definition\.
 + To expose files from a Dockerfile to a data volume when a task is run, the Amazon ECS data plane looks for a `VOLUME` directive\. If the absolute path that's specified in the `VOLUME` directive is the same as the `containerPath` that's specified in the task definition, the data in the `VOLUME` directive path is copied to the data volume\. In the following Dockerfile example, a file that's named `examplefile` in the `/var/log/exported` directory is written to the host and then mounted inside the container\.
 
   ```

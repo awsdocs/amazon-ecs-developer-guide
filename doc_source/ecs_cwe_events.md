@@ -13,6 +13,8 @@ Container state change and task state change events contain two `version` fields
 
 Service action events only contain the `version` field in the main body\.
 
+Examples are covered later in this topic\. For additional information about how to integrate Amazon ECS and EventBridge, see [Integrating Amazon EventBridge and Amazon ECS](http://aws.amazon.com/blogs/compute/integrating-amazon-eventbridge-and-amazon-ecs/)\.
+
 ## Container instance state change events<a name="ecs_container_instance_events"></a>
 
 The following scenarios trigger container instance state change events:

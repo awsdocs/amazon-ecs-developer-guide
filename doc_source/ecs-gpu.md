@@ -30,7 +30,7 @@ The following Amazon EC2 GPU\-based instance types are supported\. For more info
 |  g4dn\.12xlarge  |  4  |  64  |  48  |  192  | 
 |  g4dn\.16xlarge  |  1  |  16  |  64  |  256  | 
 |  g5\.xlarge  |  1  |  24  |  4  |  16  | 
-|  g5\.2\.xlarge  |  1  |  24  |  8  |  32  | 
+|  g5\.2xlarge  |  1  |  24  |  8  |  32  | 
 |  g5\.4xlarge  |  1  |  24  |  16  |  64  | 
 |  g5\.8xlarge  |  1  |  24  |  32  |  128  | 
 |  g5\.16xlarge  |  1  |  24  |  64  |  256  | 

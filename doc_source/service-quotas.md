@@ -25,9 +25,7 @@ The following are Amazon ECS on AWS Fargate service quotas and are listed under 
 
 New AWS accounts might have initial lower quotas that can increase over time\. Fargate constantly monitors the account usage within each Region, and then automatically increases the quotas based on your usage\. You can also request a quota increase for values that are shown as adjustable, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-increase.html) in the *Service Quotas User Guide*\.
 
-AWS Fargate is transitioning from task\-based quotas to vCPU\-based quotas\. The following table lists the new vCPU\-based quotas followed by the existing task\-based quotas\. 
-
-Currently, you must opt in to use the vCPU\-based quotas\. For more information, see [Fargate vCPU\-based quotas](ecs-account-settings.md#fargate-quotas)\.
+AWS Fargate is transitioning from task\-based quotas to vCPU\-based quotas\. Currently, you must opt in to use the vCPU\-based quotas\. For more information about how to opt\-in and verify which quotas are in use, see [Fargate vCPU\-based quotas](ecs-account-settings.md#fargate-quotas)\.
 
 The following table lists the new vCPU\-based quota followed by the existing task count\-based quota\. These service quotas are listed under the AWS Fargate service in the Service Quotas console\. 
 
