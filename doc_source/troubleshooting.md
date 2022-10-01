@@ -20,3 +20,4 @@ You may need to troubleshoot issues with your load balancers, tasks, services, o
 + [AWS Fargate throttling quotas](throttling.md)
 + [API failure reasons](api_failures_messages.md)
 + [Troubleshooting IAM Roles for Tasks](troubleshoot-task-iam-roles.md)
++ [Docker daemon is not responsive](docker-daemon-is-not-responsive.md)
