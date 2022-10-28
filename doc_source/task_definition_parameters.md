@@ -15,7 +15,7 @@ When you register a task definition, you give it a family, which is similar to a
 
 ## Launch types<a name="requires_compatibilities"></a>
 
-When you register a task definition, you can specify a launch type that Amazon ECS should validate the task definition against\.If the task definition doesn't validate against the compatibilities specified, a client exception is returned\. For more information, see [Amazon ECS launch types](launch_types.md)\.
+When you register a task definition, you can specify a launch type that Amazon ECS should validate the task definition against\. If the task definition doesn't validate against the compatibilities specified, a client exception is returned\. For more information, see [Amazon ECS launch types](launch_types.md)\.
 
 The following parameter is allowed in a task definition\.
 
@@ -47,10 +47,11 @@ Type: string
 Required: no  
 The Docker networking mode to use for the containers in the task\. For Amazon ECS tasks that are hosted on Amazon EC2 Linux instances, the valid values are `none`, `bridge`, `awsvpc`, and `host`\. If no network mode is specified, the default network mode is `bridge`\. For Amazon ECS tasks hosted on Amazon EC2 Windows instances, the valid values are `default`, and `awsvpc`\. If no network mode is specified, the `default` network mode is used\.   
 If the network mode is set to `none`, the task's containers don't have external connectivity and port mappings can't be specified in the container definition\.  
-If the network mode is `bridge`, the task uses Docker's built\-in virtual network, which runs inside each container instance\.  
-If the network mode is `host`, the task bypasses Docker's built\-in virtual network and maps container ports directly to the Amazon EC2 instance's network interface\. In this mode, you can't run multiple instantiations of the same task on a single container instance when port mappings are used\.  
+If the network mode is `bridge`, the task uses Docker's built\-in virtual network on Linux, which runs inside each Amazon EC2 instance that hosts the task\. The built\-in virtual network on Linux uses the `bridge` Docker network driver\.\.  
+If the network mode is `host`, the task uses the host's network which bypasses Docker's built\-in virtual network by mapping container ports directly to the ENI of the Amazon EC2 instance that hosts the task\. Dynamic port mappings can’t be used in this network mode\. A container in a task definition that uses this mode must specify a specific `hostPort` number\. A port number on a host can’t be used by multiple tasks\. As a result, you can’t run multiple tasks of the same task definition on a single Amazon EC2 instance\.  
 When running tasks that use the `host` network mode, do not run containers using the root user \(UID 0\) for better security\. As a security best practice, always use a non\-root user, instead of the root user\.
 If the network mode is `awsvpc`, the task is allocated an elastic network interface, and you must specify a `NetworkConfiguration` when you create a service or run a task with the task definition\. For more information, see [Amazon ECS task networking](task-networking.md)\. Currently, only the Amazon ECS\-optimized AMI, other Amazon Linux variants with the `ecs-init` package, or AWS Fargate infrastructure support the `awsvpc` network mode\.  
+If the network mode is `default`, the task uses Docker's built\-in virtual network on Windows, which runs inside each Amazon EC2 instance that hosts the task\. The built\-in virtual network on Windows uses the `nat` Docker network driver\.\.   
 The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack\. With the `host` and `awsvpc` network modes, exposed container ports are mapped directly to the corresponding host port \(for the `host` network mode\) or the attached elastic network interface port \(for the `awsvpc` network mode\)\. Because of this, you can't use dynamic host port mappings\.  
 If using the Fargate launch type, the `awsvpc` network mode is required\. If using the EC2 launch type, the allowable network mode depends on the underlying EC2 instance's operating system\. If Linux, any network mode can be used\. If Windows, the `default`, and `awsvpc` modes can be used\. 
 
@@ -842,7 +843,7 @@ The dependency condition of the container\. The following are the available cond
 + `START` – This condition emulates the behavior of links and volumes today\. It validates that a dependent container is started before permitting other containers to start\.
 + `COMPLETE` – This condition validates that a dependent container runs to completion \(exits\) before permitting other containers to start\. This can be useful for non\-essential containers that run a script and then exit\. This condition can't be set on an essential container\.
 + `SUCCESS` – This condition is the same as `COMPLETE`, but it also requires that the container exits with a `zero` status\. This condition can't be set on an essential container\.
-+ `HEALTHY` – This condition validates that the dependent container passes its Docker healthcheck before permitting other containers to start\. This requires that the dependent container has health checks configured\. This condition is confirmed only at task startup\.
++ `HEALTHY` – This condition validates that the dependent container passes its container health check before permitting other containers to start\. This requires that the dependent container has health checks configured in the task definition\. This condition is confirmed only at task startup\.
 
 #### Container timeouts<a name="container_definition_timeout"></a>
 
@@ -912,7 +913,7 @@ When this parameter is `true`, a TTY is allocated\. This parameter maps to `Tty`
 
 ## Elastic Inference accelerator name<a name="elastic-Inference-accelerator"></a>
 
-The Inferentia resource requirement for your task definition\. For more information, see [Using inference Inf1 instances on Amazon ECS](ecs-inference.md)\.
+The Elastic Inference accelerator resource requirement for your task definition\. For more information, see [What Is Elastic Inference?](https://docs.aws.amazon.com/elastic-inference/latest/developerguide/what-is-ei.html) in the Amazon Elastic Inference Developer Guide\.
 
 The following parameters are allowed in a task definition:
 

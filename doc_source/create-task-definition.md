@@ -1,26 +1,39 @@
 # Creating a task definition using the new console<a name="create-task-definition"></a>
 
-Create your task definitions using the new Amazon ECS console experience\. To make the task definition creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\.
+Create your task definitions using the Amazon ECS console\. To make the task definition creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\.
 
-**To create a new task definition \(New Amazon ECS console\)**
+You can create a task definition by stepping through the console, or by editing a JSON file\.
+
+## JSON validation<a name="json-validate-for-create"></a>
+
+The Amazon ECS console JON editor validates the following in the JSON file:
++ The file is a valid JSON file
++ The file does not contain any extraneous keys
++ The file contains the `familyName` parameter
++ There is at least one entry under `containderDefinitions`
+
+------
+#### [ New Amazon ECS console ]
 
 1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. In the navigation pane, choose **Task definitions**, **Create new task definition**\.
+1. In the navigation pane, choose **Task definitions**
+
+1. Choose **Create new task definition**, **Create new task definition**\.
 
 1. For **Task definition family**, specify a unique name for the task definition\.
 
 1. For each container to define in your task definition, complete the following steps\.
 
-   1. For **Name**, specify a name for the container\.
+   1. For **Name**, enter a name for the container\.
 
-   1. For **Image URI**, specify the image to use to start a container\. Images in the Amazon ECR Public Gallery registry are may be specified using the Amazon ECR Public registry name only\. For example, if `public.ecr.aws/ecs/amazon-ecs-agent:latest` is specified, the Amazon Linux container hosted on Amazon ECR Public Gallery is used\. For all other repositories, specify the repository using either the `repository-url/image:tag` or `repository-url/image@digest` formats\.
+   1. For **Image URI**, enter the image to use to start a container\. Images in the Amazon ECR Public Gallery registry are may be specified using the Amazon ECR Public registry name only\. For example, if `public.ecr.aws/ecs/amazon-ecs-agent:latest` is specified, the Amazon Linux container hosted on Amazon ECR Public Gallery is used\. For all other repositories, specify the repository using either the `repository-url/image:tag` or `repository-url/image@digest` formats\.
 
    1. For **Essential container**, if your task definition has two or more containers defined, you may specify whether the container should be considered essential\. If a container is marked as *essential*, if that container stops then the task is stopped\. Each task definition must contain at least one essential container\.
 
    1. A port mapping allows the container to access ports on the host to send or receive traffic\. Under **Port mappings**, do one of the following: 
-      + When you use the **awsvpc** network mode, for **Container port** and **Protocol**, specify the port mapping to use for the container\.
-      + When you use the **bridge** network mode, for **Container port** and **Protocol**, specify the port mapping to use for the container\. You select the **bridge** network mode on the next page\. After you select it, choose **Previous**, and then for **Host port**, specify the port number on the container instance to reserve for your container\.
+      + When you use the **awsvpc** network mode, for **Container port** and **Protocol**, choose the port mapping to use for the container\.
+      + When you use the **bridge** network mode, for **Container port** and **Protocol**, choose the port mapping to use for the container\. You select the **bridge** network mode on the next page\. After you select it, choose **Previous**, and then for **Host port**, specify the port number on the container instance to reserve for your container\.
 
       Choose **Add more port mappings** to specify additional container port mappings\.
 
@@ -28,7 +41,7 @@ Create your task definitions using the new Amazon ECS console experience\. To ma
 
    1. \(Optional\) Choose **Add more containers** to add additional containers to the task definition\. Choose **Next** once all containers have been defined\.
 
-1. For **App environment**, choose **AWS Fargate \(serverless\)**, **Amazon EC2 instances**, or both\. Amazon ECS performs validation using this value to ensure the task definition parameters are valid for the infrastructure type\.
+1. For **App environment**, choose the application environment\. The console default is **AWS Fargate \(serverless\)**\. Amazon ECS performs validation using this value to ensure the task definition parameters are valid for the infrastructure type\.
 
 1. For **Operating system/Architecture**, choose the operating system and CPU architecture for the task\. 
 
@@ -36,7 +49,7 @@ Create your task definitions using the new Amazon ECS console experience\. To ma
 
    To run your **AWS Fargate \(serverless\)** tasks on Windows containers, choose a supported Windows operating system\. For more information, see [Task Operating Systems](AWS_Fargate.md#fargate-task-os)\.
 
-1. For **Task size**, specify the CPU and memory values to reserve for the task\. The CPU value is specified as vCPUs and memory is specified as GB\.
+1. For **Task size**, choose the CPU and memory values to reserve for the task\. The CPU value is specified as vCPUs and memory is specified as GB\.
 
    For tasks hosted on Fargate, the following table shows the valid CPU and memory combinations\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-task-definition.html)
@@ -45,7 +58,7 @@ Create your task definitions using the new Amazon ECS console experience\. To ma
 **Note**  
 Task\-level CPU and memory parameters are ignored for Windows containers\.
 
-1. Expand the **Container size** section to specify the amount \(in GB\) of memory to present to the container and the number of CPU units the Amazon ECS container agent will reserve for the container\. 
+1. Expand the **Container size** section to enter the amount \(in GB\) of memory to present to the container and the number of CPU units the Amazon ECS container agent will reserve for the container\. 
 
    If your container attempts to exceed the memory specified, the container is killed\. The total amount of memory reserved for all containers within a task must be lower than the task **Memory** value, if one is specified\.
 
@@ -55,21 +68,21 @@ Task\-level CPU and memory parameters are ignored for Windows containers\.
 
 1. \(Optional\) Expand the **Task roles, network mode** section to specify the following:
 
-   1. For **Task role**, choose the an IAM role to assign to the task\. A task IAM role provides permissions for the containers in a task to call AWS APIs\.
+   1. For **Task role**, choose the IAM role to assign to the task\. A task IAM role provides permissions for the containers in a task to call AWS APIs\.
 
    1. For **Network mode**, choose the network mode to use\. The default is **awsvpc** mode\. For more information, see [Amazon ECS task networking](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html)\.
 
-      If you choose **bridge** for the network mode, choose **Previous**, and then under **Port mappings**, for **Host port**, specify the port number on the container instance to reserve for your container\.
+      If you choose **bridge** for the network mode, choose **Previous**, and then under **Port mappings**, for **Host port**, enter the port number on the container instance to reserve for your container\.
 
 1. \(Optional\) The **Storage** section is used to expand the amount of ephemeral storage for tasks hosted on Fargate as well as add a data volume configuration for the task\.
 
-   1. For **Amount**, to expand the available ephemeral storage beyond the default value of 20 GiB for your Fargate tasks, specify a value up to 200 GiB\.
+   1. To expand the available ephemeral storage beyond the default value of 20 GiB for your Fargate tasks, for **Amount**, enter a value up to 200 GiB\.
 
-1. \(Optional\) Choose **Add volume** to add a data volume configuration for the task\. For each data volume, complete the following steps\.
+1. \(Optional\) To add a data volume configuration for the task, choose **Add volume** \. For each data volume, complete the following steps\.
 
    1. For **Volume type**, choose **Bind mount**\.
 
-   1. For **Volume name**, specify a name for the data volume\. The data volume name is used when creating a container mount point in a later step\.
+   1. For **Volume name**, enter a name for the data volume\. The data volume name is used when creating a container mount point in a later step\.
 
    1. Expand the **Container mount points** section and choose **Add**\.
 
@@ -77,9 +90,9 @@ Task\-level CPU and memory parameters are ignored for Windows containers\.
 
    1. For **Source volume**, choose the data volume to mount to the container\.
 
-   1. For **Container path**, specify the path on the container to mount the volume\.
+   1. For **Container path**, enter the path on the container to mount the volume\.
 
-   1. For **Read only**, specify whether to make the volume read only\.
+   1. For **Read only**, choose whether to make the volume read only\.
 
    1. Choose **Add** to add additional mount points until each data volume defined in the task definition has a mount point defined\.
 
@@ -94,7 +107,7 @@ Task\-level CPU and memory parameters are ignored for Windows containers\.
 
 1. \(Optional\) Select the **Use trace collection** option to configure your tasks to route trace data from your application to AWS X\-Ray\. When this option is selected, Amazon ECS creates an AWS Distro for OpenTelemetry container sidecar which is preconfigured to send the trace data\. For more information, see [Collecting application trace data](trace-data.md)\.
 **Important**  
-When enabling trace collection, your task definition requires a task IAM role with the required permissions\. For more information, see [Required IAM permissions for AWS Distro for OpenTelemetry integration with AWS X\-Ray](trace-data.md#trace-data-iam)\. 
+When using trace collection, your task definition requires a task IAM role with the required permissions\. For more information, see [Required IAM permissions for AWS Distro for OpenTelemetry integration with AWS X\-Ray](trace-data.md#trace-data-iam)\. 
 
 1. \(Optional\) Select the **Use metric collection** option to collect and send metrics for your tasks to either Amazon CloudWatch or Amazon Managed Service for Prometheus\. When this option is selected, Amazon ECS creates an AWS Distro for OpenTelemetry container sidecar which is preconfigured to send the application metrics\. For more information, see [Collecting application metrics](metrics-data.md)\.
 
@@ -102,16 +115,39 @@ When enabling trace collection, your task definition requires a task IAM role wi
 **Important**  
 When exporting application metrics to Amazon CloudWatch, your task definition requires a task IAM role with the required permissions\. For more information, see [Required IAM permissions for AWS Distro for OpenTelemetry integration with Amazon CloudWatch](application-metrics-cloudwatch.md#application-metrics-cloudwatch-iam)\. 
 
-   1. When **Amazon Managed Service for Prometheus \(Prometheus libraries instrumentation\)** is selected, your task\-level CPU, memory, network, and storage metrics and your custom application metrics are routed to Amazon Managed Service for Prometheus\. For **Workspace remote write endpoint**, specify the remote write endpoint URL for your Prometheus workspace\. For **Scraping target**, specify the host and port the AWS Distro for OpenTelemetry collector can use to scrape for metrics data\. For more information, see [Exporting application metrics to Amazon Managed Service for Prometheus](application-metrics-prometheus.md)\.
+   1. When you select **Amazon Managed Service for Prometheus \(Prometheus libraries instrumentation\)**, your task\-level CPU, memory, network, and storage metrics and your custom application metrics are routed to Amazon Managed Service for Prometheus\. For **Workspace remote write endpoint**, enter the remote write endpoint URL for your Prometheus workspace\. For **Scraping target**, enter the host and port the AWS Distro for OpenTelemetry collector can use to scrape for metrics data\. For more information, see [Exporting application metrics to Amazon Managed Service for Prometheus](application-metrics-prometheus.md)\.
 **Important**  
 When exporting application metrics to Amazon Managed Service for Prometheus, your task definition requires a task IAM role with the required permissions\. For more information, see [Required IAM permissions for AWS Distro for OpenTelemetry integration with Amazon Managed Service for Prometheus](application-metrics-prometheus.md#application-metrics-prometheus-iam)\. 
 
-   1. When **Amazon Managed Service for Prometheus \(OpenTelemetry instrumentation\)** is selected, your task\-level CPU, memory, network, and storage metrics and your custom application metrics are routed to Amazon Managed Service for Prometheus\. For **Workspace remote write endpoint**, specify the remote write endpoint URL for your Prometheus workspace\. For more information, see [Exporting application metrics to Amazon Managed Service for Prometheus](application-metrics-prometheus.md)\.
+   1. When you select **Amazon Managed Service for Prometheus \(OpenTelemetry instrumentation\)** , your task\-level CPU, memory, network, and storage metrics and your custom application metrics are routed to Amazon Managed Service for Prometheus\. For **Workspace remote write endpoint**, enter the remote write endpoint URL for your Prometheus workspace\. For more information, see [Exporting application metrics to Amazon Managed Service for Prometheus](application-metrics-prometheus.md)\.
 **Important**  
 When exporting application metrics to Amazon Managed Service for Prometheus, your task definition requires a task IAM role with the required permissions\. For more information, see [Required IAM permissions for AWS Distro for OpenTelemetry integration with Amazon Managed Service for Prometheus](application-metrics-prometheus.md#application-metrics-prometheus-iam)\. 
 
 1. \(Optional\) Expand the **Tags** section to add tags, as key\-value pairs, to the task definition\.
 
+   Add or remove a tag\.
+   + \[Add a tag\] Choose **Add tag**, and then do the following:
+     + For **Key**, enter the key name\.
+     + For **Value**, enter the key value\.
+   + \[Remove a tag\] Next to the tag, choose **Remove tag**\.
+
 1. Choose **Next** to review the task definition\.
 
-1. On the **Review and create** page, review each task definition section\. Choose **Edit** to make changes\. Once the task definition is complete, choose **Create** to register the task definition\.
+1. On the **Review and create** page, review each task definition section\. Choose **Edit** to make changes\. After the task definition is complete, choose **Create** to register the task definition\.
+
+------
+#### [ New Amazon ECS console JSON editor ]
+
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+
+1. In the navigation pane, choose **Task definitions**
+
+1. Choose **Create new task definition**, **Create new task definition with JSON**\.
+
+1. In the JSON editor box, edit your JSON file,
+
+   The JSON must pass the validation checks specified in [JSON validation](#json-validate-for-create)\.
+
+1. Choose **Create**\.
+
+------

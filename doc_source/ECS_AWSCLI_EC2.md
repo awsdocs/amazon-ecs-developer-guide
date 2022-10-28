@@ -21,6 +21,7 @@ This tutorial assumes that the following prerequisites have been completed:
 + The steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS first\-run wizard permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + You have a VPC and security group created to use\. For more information, see [Create a virtual private cloud](get-set-up-for-amazon-ecs.md#create-a-vpc)\.
++ Optional: AWS CloudShell is a tool that gives customers a command line without needing to create their own EC2 instance\. For more information, see [What is AWS CloudShell](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html) in the *AWS CloudShell User Guide*\.
 
 ## Step 1: Create a Cluster<a name="AWSCLI_EC2_create_cluster"></a>
 

@@ -67,9 +67,9 @@ The following is an example task definition\.
 
 After you register your external instances to your cluster, grant the relevant IAM permissions, and register a valid task definition, you can start to run your workloads on Amazon ECS\. When running your standalone tasks or creating a service, specify the `EXTERNAL` launch type, and the Amazon ECS scheduler places the tasks on your external instances\.
 
-For instructions on how to create services, see [Creating an Amazon ECS service](create-service.md)\.
+For instructions on how to create services, see [Creating an Amazon ECS service in the classic console](create-service.md)\.
 
-For more information about running standalone tasks, see [Run a standalone task](ecs_run_task.md)\.
+For more information about running standalone tasks, see [Run a standalone task in the classic Amazon ECS console](ecs_run_task.md)\.
 
 ## Verifying your running tasks on an external Windows instance<a name="ecs-anywhere-windows-verifying"></a>
 

@@ -29,13 +29,13 @@ Applications that use other codecs might not have improved performance on VT1 in
 
 You have two options for running an AMI on Amazon EC2 for Amazon ECS container instances\. The first option is to use the Xilinx official AMI on the AWS Marketplace\. The second option is to build your own AMI from the sample repository\.
 + [Xilinx offers AMIs on the AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-phvk6d4mq3hh6)\.
-+ Amazon ECS provides a sample repository that you can use to build an AMI for video transcoding workloads\. This AMI comes with Xilinx U30 drivers\. You can find the repository that contains Packer scripts on [Github](https://github.com/aws-samples/aws-vt-baseami-pipeline)\. For more information about Packer, see the [Packer documentation](https://www.packer.io/docs)\.
++ Amazon ECS provides a sample repository that you can use to build an AMI for video transcoding workloads\. This AMI comes with Xilinx U30 drivers\. You can find the repository that contains Packer scripts on [GitHub](https://github.com/aws-samples/aws-vt-baseami-pipeline)\. For more information about Packer, see the [Packer documentation](https://www.packer.io/docs)\.
 
 ## Task definition requirements<a name="ecs-vt1-requirements"></a>
 
-To run video transcoding containers on Amazon ECS, your task definition must contain a video transcoding application that uses the accelerated H\.264/AVC and H\.265/HEVC codecs\. You can build a container image by following the steps on the [Xilinx Github](https://xilinx.github.io/video-sdk/v1.5/container_setup.html#creating-a-docker-image-for-vt1-usage)\.
+To run video transcoding containers on Amazon ECS, your task definition must contain a video transcoding application that uses the accelerated H\.264/AVC and H\.265/HEVC codecs\. You can build a container image by following the steps on the [Xilinx GitHub](https://xilinx.github.io/video-sdk/v1.5/container_setup.html#creating-a-docker-image-for-vt1-usage)\.
 
-Unique to the VT1 instance type family, the task definition must be specific to the instance type\. The instance types are 3xlarge, 6xlarge, and 24xlarge\. You must configure a container to use specific Xilinx U30 devices that are available on the host container instance\. You can do so using the `linuxParameters` parameter\. The following table details the cards and device SoCs that are specific to each instance type\.
+The task definition must be specific to the instance type\. The instance types are 3xlarge, 6xlarge, and 24xlarge\. You must configure a container to use specific Xilinx U30 devices that are available on the host container instance\. You can do so using the `linuxParameters` parameter\. The following table details the cards and device SoCs that are specific to each instance type\.
 
 
 | Instance Type | vCPUs | RAM \(GiB\) | U30 accelerator cards | Addressable XCU30 SoC devices | Device Paths | 

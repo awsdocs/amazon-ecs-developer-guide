@@ -5,17 +5,28 @@ You can use the AWS Management Console and AWS CLI tools to view your account se
 **Important**  
 The `dualStackIPv6` account setting can only be viewed or changed using the AWS CLI\.
 
-**To view your account settings \(Console\)**
+------
+#### [ New Amazon ECS console ]
+
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+
+1. In the navigation bar at the top, select the Region for which to view your account settings\. 
+
+1. From the dashboard, choose **Account Settings**\.
+
+------
+#### [ Classic Amazon ECS console ]
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
-1. In the navigation bar at the top, select the Region to view your account settings for\. 
+1. In the navigation bar at the top, select the Region for which to view your account settings\. 
 
 1. From the dashboard, choose **Account Settings**\.
 
 1. On the **Amazon ECS ARN and resource ID settings**, **AWSVPC Trunking**, and **CloudWatch Container Insights** sections, you can view your opt\-in status for each account setting for the authenticated IAM user and role\.
 
-**To view your account settings \(AWS CLI\)**
+------
+#### [ AWS CLI ]
 + [list\-account\-settings](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-account-settings.html) \(AWS CLI\)
 
   ```
@@ -38,3 +49,5 @@ The `dualStackIPv6` account setting can only be viewed or changed using the AWS 
   ```
   Get-ECSAccountSetting -PrincipalArn arn:aws:iam::aws_account_id:user/principalName -EffectiveSetting true -Region us-east-1
   ```
+
+------

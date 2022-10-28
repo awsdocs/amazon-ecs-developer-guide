@@ -35,7 +35,7 @@ A revision is the CodeDeploy application specification file \(AppSpec file\)\. I
 
 Consider the following when using the blue/green deployment type:
 + When an Amazon ECS service using the blue/green deployment type is initially created, an Amazon ECS task set is created\.
-+ You must configure the service to use either an Application Load Balancer or Network Load Balancer\. Classic Load Balancers aren't supported\. The following are the load balancer requirements:
++ You must configure the service to use either an Application Load Balancer or Network Load Balancer\. The following are the load balancer requirements:
   + You must add a production listener to the load balancer, which is used to route production traffic\.
   + An optional test listener can be added to the load balancer, which is used to route test traffic\. If you specify a test listener, CodeDeploy routes your test traffic to the replacement task set during a deployment\.
   + Both the production and test listeners must belong to the same load balancer\.
@@ -49,16 +49,15 @@ Consider the following when using the blue/green deployment type:
 + When you initially create a CodeDeploy application and deployment group, you must specify the following:
   + You must define two target groups for the load balancer\. One target group should be the initial target group defined for the load balancer when the Amazon ECS service was created\. The second target group's only requirement is that it can't be associated with a different load balancer than the one the service uses\.
 + When you create a CodeDeploy deployment for an Amazon ECS service, CodeDeploy creates a *replacement task set* \(or *green task set*\) in the deployment\. If you added a test listener to the load balancer, CodeDeploy routes your test traffic to the replacement task set\. This is when you can run any validation tests\. Then CodeDeploy reroutes the production traffic from the original task set to the replacement task set according to the traffic rerouting settings for the deployment group\.
++ Classic Load Balancers aren't supported\. 
 
 ## Amazon ECS console experience<a name="deployment-type-bluegreen-console"></a>
 
 The service create and service update workflows in the Amazon ECS console supports blue/green deployments\.
 
-To create an Amazon ECS service that uses the blue/green deployment type, see [Creating an Amazon ECS service](create-service.md)\.
+To create an Amazon ECS service that uses the blue/green deployment type, see [Creating an Amazon ECS service in the classic console](create-service.md)\.
 
-To update an existing Amazon ECS service that is using the blue/green deployment type, see [Updating a service](update-service.md)\.
-
-When you use the Amazon ECS console to create an Amazon ECS service using the blue/green deployment type, an Amazon ECS task set and the following CodeDeploy resources are created automatically with the following default settings\. 
+When you use the classic Amazon ECS console to create an Amazon ECS service using the blue/green deployment type, an Amazon ECS task set and the following CodeDeploy resources are created automatically with the following default settings\. 
 
 
 |  Resource  |  Default Setting  | 

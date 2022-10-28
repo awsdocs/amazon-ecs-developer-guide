@@ -39,7 +39,7 @@ You can use one of the following ways to retrieve an Amazon ECS\-optimized Bottl
 
 ### Retrieving the `aws-ecs-1` Bottlerocket AMI variant<a name="ecs-bottlerocket-aws-ecs-1-variant"></a>
 
-#### Use AWS Systems Manager parameters in a AWS CLI command<a name="w627aac21c19c25c13b7b1b3"></a>
+#### Use AWS Systems Manager parameters in a AWS CLI command<a name="w685aac21c19c25c13b7b1b3"></a>
 
 Use AWS Systems Manager parameters in the following AWS CLI command to retrieve the latest stable `aws-ecs-1` Bottlerocket AMI variant by Region and architecture\. To retrieve a version other than the latest, replace `latest` with the version number\.
 + For the 64\-bit \(`x86_64`\) architecture:
@@ -53,7 +53,7 @@ Use AWS Systems Manager parameters in the following AWS CLI command to retrieve 
   aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id" --query Parameter.Value --output text
   ```
 
-#### Click the AMI link<a name="w627aac21c19c25c13b7b1b5"></a>
+#### Click the AMI link<a name="w685aac21c19c25c13b7b1b5"></a>
 
 The following table provides a link to retrieve the latest Amazon ECS\-optimized Bottlerocket AMI variant `aws-ecs-1`, by Region and architecture\.
 
@@ -88,7 +88,7 @@ The following table provides a link to retrieve the latest Amazon ECS\-optimized
 
 ### Retrieving the `aws-ecs-1-nvidia` Bottlerocket AMI variant<a name="ecs-bottlerocket-aws-ecs-1-nvidia-variants"></a>
 
-#### Use AWS Systems Manager parameters a AWS CLI command<a name="w627aac21c19c25c13b7b3b3"></a>
+#### Use AWS Systems Manager parameters a AWS CLI command<a name="w685aac21c19c25c13b7b3b3"></a>
 
 Use AWS Systems Manager parameters in the following AWS CLI command to retrieve the latest stable `aws-ecs-1-nvidia` Bottlerocket AMI variant by Region and architecture\. To retrieve a version other than the latest, replace `latest` with the version number\.
 + For the 64\-bit \(`x86_64`\) architecture:
@@ -102,7 +102,7 @@ Use AWS Systems Manager parameters in the following AWS CLI command to retrieve 
   aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id" --query Parameter.Value --output text
   ```
 
-#### Click the AMI link<a name="w627aac21c19c25c13b7b3b5"></a>
+#### Click the AMI link<a name="w685aac21c19c25c13b7b3b5"></a>
 
 The following table provides a link to retrieve the latest Amazon ECS\-optimized Bottlerocket AMI variant `aws-ecs-1-nvidia`, by Region and architecture\.
 

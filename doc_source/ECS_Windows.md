@@ -1,6 +1,6 @@
 # Amazon EC2 Windows containers<a name="ECS_Windows"></a>
 
-Amazon ECS now supports Windows containers on container instances that are launched with the Amazon ECS\-optimized Windows Server AMI\. 
+Amazon ECS now supports Windows containers on container instances that are launched with the Amazon ECS\-optimized Windows Server AMI and on AWS Fargate\. For more information about Windows containers on AWS Fargate, see [Windows containers on AWS Fargate considerations](https://docs.aws.amazon.com/AmazonECS/latest/userguide/what-is-fargate.html#windows-considerations)\.
 
 Windows container instances use their own version of the Amazon ECS container agent\. On the Amazon ECS\-optimized Windows Server AMI, the Amazon ECS container agent runs as a service on the host\. Unlike the Linux platform, the agent doesn't run inside a container because it uses the host's registry and the named pipe at `\\.\pipe\docker_engine` to communicate with the Docker daemon\.
 

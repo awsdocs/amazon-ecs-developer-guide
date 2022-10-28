@@ -1,4 +1,4 @@
-# Run a standalone task<a name="ecs_run_task"></a>
+# Run a standalone task in the classic Amazon ECS console<a name="ecs_run_task"></a>
 
 We recommend that you deploy your application as a standalone task in some situations\. For example, suppose that you're developing an application but you're not ready to deploy it with the service scheduler\. If your application is a one\-time or periodic batch job, it doesn't make sense to keep running or restart when it finishes\.
 
@@ -58,25 +58,17 @@ If you intend to use the parameter values from your task definition, you don't n
 
    1. For **Task Execution Role Override**, choose a task execution role to override the task execution role specified in the task definition\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
-   1. For **Container Overrides**, choose a container to which to send a command or environment variable override\.
-      + **For a command override:** For **Command override**, enter the command override to send\. If your container definition doesn't specify an `ENTRYPOINT`, the format is a comma\-separated list of non\-quoted strings\.
+1. \(Optional\) To override the container commands and environment variables, expand **Container Overrides**, and then expand the container\.
+   +  For **Command override**, enter the Docker command that is sent to the container instead of the command specified in the task definition\.
 
-        ```
-        /bin/sh,-c,echo,$DATE
-        ```
+     For more information about the Docker run command, see [Docker Run reference](https://docs.docker.com/engine/reference/run/) in the Docker Reference Manual\.
+   + To add an environment variable, choose **Add Environment Variable**\. For **Key**, enter the name of your environment variable\. For **Value**, enter a string value for your environment value \(without the surrounding double quotation marks \(`" "`\)\)\.
 
-        If your container definition specifies an `ENTRYPOINT` \(such as sh,\-c\), enter a string value for your environment value \(without the surrounding double quotation marks \(`" "`\)\)\. AWS surrounds the strings with double quotation marks \(" "\) and passes the string as an argument to the `ENTRYPOINT` command\.
+     AWS surrounds the strings with double quotation marks \(" "\) and passes the string to the container in the following format:
 
-        ```
-        while true; do echo $DATE > /var/www/html/index.html; sleep 1; done
-        ```
-      + **For environment variable overrides:** Choose **Add Environment Variable**\. For **Key**, enter the name of your environment variable\. For **Value**, enter a string value for your environment value \(without the surrounding double quotation marks \(`" "`\)\)\.
-
-        AWS surrounds the strings with double quotation marks \(" "\) and passes the string to the container in the following format:
-
-        ```
-        MY_ENV_VAR="This variable contains a string."
-        ```
+     ```
+     MY_ENV_VAR="This variable contains a string."
+     ```
 
 1. In the **Task tagging configuration** section, complete the following steps:
 

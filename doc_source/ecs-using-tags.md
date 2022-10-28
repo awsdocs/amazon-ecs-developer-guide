@@ -70,7 +70,6 @@ When you use Amazon ECS\-managed tags, Amazon ECS automatically tags all newly l
 The following options are required for this feature:
 + You must opt in to the new Amazon Resource Name \(ARN\) and resource identifier \(ID\) formats\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\.
 + When you use the APIs to create a service or run a task, you must set `enableECSManagedTags` to `true` for `run-task` and `create-service`\. For more information, see [create\-service](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html) and [run\-task](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html) in the *AWS Command Line Interface API Reference*\.
-+ When you use the console to create a service or run a task, you must use the classic console and choose the **Enable ECS managed tags** option\. For more information, see [Creating an Amazon ECS service](create-service.md)\.
 
 To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in the *AWS Billing User Guide*\.
 
@@ -101,8 +100,8 @@ You can use the following resources to specify tags when you create the resource
 
 | Task | Console | 
 | --- | --- | 
-|  Run one or more tasks\.  |  [Run a standalone task](ecs_run_task.md)  | 
-|  Create a service\.  |  [Creating an Amazon ECS service](create-service.md)  | 
+|  Run one or more tasks\.  |  [Run a standalone task in the classic Amazon ECS console](ecs_run_task.md)  | 
+|  Create a service\.  |  [Creating an Amazon ECS service in the classic console](create-service.md)  | 
 |  Create a task set\.  |  [External deployment](deployment-type-external.md)  | 
 |  Register a task definition\.  |  [Creating a task definition using the new console](create-task-definition.md)  | 
 |  Create a cluster\.  |  [Creating a cluster using the classic console](create_cluster.md)   | 
@@ -110,7 +109,7 @@ You can use the following resources to specify tags when you create the resource
 
 ### Adding and deleting tags on an individual resource using the classic console<a name="adding-or-deleting-tags"></a>
 
-Amazon ECS enables you to add or delete tags that are associated with your clusters, services, tasks, and task definitions directly from the resource's page\. For information about tagging your container instances, see [Adding tags to an Amazon EC2 container instance](#instance-details-tags)\.
+Amazon ECS allows you to add or delete tags that are associated with your clusters, services, tasks, and task definitions directly from the resource's page\. For information about tagging your container instances, see [Adding tags to an Amazon EC2 container instance](#instance-details-tags)\.
 
 **To add a tag to an individual resource**
 

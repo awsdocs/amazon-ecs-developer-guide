@@ -12,7 +12,6 @@ When you first use Amazon ECS, a default cluster is created for you, but you can
 + [Amazon ECS clusters in Local Zones, Wavelength Zones, and AWS Outposts](cluster-regions-zones.md)
 + [Updating cluster settings](update-cluster-settings.md)
 + [Deleting a cluster using the classic console](delete_cluster.md)
-+ [Stopping tasks using the new console](stop-task-console-v2.md)
 
 ## Cluster concepts<a name="clusters-concepts"></a>
 
@@ -28,7 +27,7 @@ The cluster has capacity providers associated with it and the resources needed f
 FAILED  
 The cluster has capacity providers associated with it and the resources needed for the capacity provider have failed to create\.  
 INACTIVE  
-The cluster has been deleted\. Clusters with an `INACTIVE` status may remain discoverable in your account for a period of time\. However, this behavior is subject to change in the future, so make sure you rely on `INACTIVE` clusters persisting\.
+The cluster has been deleted\. Clusters with an `INACTIVE` status may remain discoverable in your account for a period of time\. However, this behavior is subject to change in the future, so make sure you do not rely on `INACTIVE` clusters persisting\.
 + A cluster may contain a mix of tasks hosted on AWS Fargate, Amazon EC2 instances, or external instances\. For more information about launch types, see [Amazon ECS launch types](launch_types.md)\.
 + A cluster may contain a mix of both Auto Scaling group capacity providers and Fargate capacity providers, however when specifying a capacity provider strategy they may only contain one or the other but not both\. For more information, see [Amazon ECS capacity providers](cluster-capacity-providers.md)\.
 + For tasks using the EC2 launch type, clusters can contain multiple different container instance types, but each container instance may only be registered to one cluster at a time\.

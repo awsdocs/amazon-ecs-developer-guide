@@ -18,8 +18,10 @@ Service discovery is available in the following AWS Regions:
 |  Asia Pacific \(Mumbai\)  |  ap\-south\-1  | 
 |  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1  | 
 |  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
+|  Asia Pacific \(Osaka\)  |  ap\-northeast\-3  | 
 |  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
+|  Asia Pacific \(Jakarta\)  |  ap\-southeast\-3  | 
 |  Canada \(Central\)  |  ca\-central\-1  | 
 |  China \(Beijing\)  |  cn\-north\-1  | 
 |  China \(Ningxia\)  |  cn\-northwest\-1  | 
@@ -30,7 +32,6 @@ Service discovery is available in the following AWS Regions:
 |  Europe \(Milan\)  |  eu\-south\-1  | 
 |  Europe \(Stockholm\)  |  eu\-north\-1  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  | 
-|  Middle East \(UAE\)  |  me\-central\-1  | 
 |  South America \(São Paulo\)  |  sa\-east\-1  | 
 |  AWS GovCloud \(US\-East\)  |  us\-gov\-east\-1  | 
 |  AWS GovCloud \(US\-West\)  |  us\-gov\-west\-1  | 
@@ -69,19 +70,19 @@ The following should be considered when using service discovery:
 + When doing a DNS query on the service name, `A` records return a set of IP addresses that correspond to your tasks\. SRV records return a set of IP addresses and ports for each task\.
 + If you have eight or fewer healthy records, Route 53 responds to all DNS queries with all of the healthy records\.
 + When all records are unhealthy, Route 53 responds to DNS queries with up to eight unhealthy records\.
-+ You can configure service discovery for an ECS service that's behind a load balancer, but service discovery traffic is always routed to the task and not the load balancer\.
++ You can configure service discovery for a service that's behind a load balancer, but service discovery traffic is always routed to the task and not the load balancer\.
 + Service discovery doesn't support the use of Classic Load Balancers\.
 + We recommend you use container\-level health checks managed by Amazon ECS for your service discovery service\.
   + **HealthCheckCustomConfig**—Amazon ECS manages health checks on your behalf\. Amazon ECS uses information from container and health checks, and your task state, to update the health with AWS Cloud Map\. This is specified using the `--health-check-custom-config` parameter when creating your service discovery service\. For more information, see [HealthCheckCustomConfig](https://docs.aws.amazon.com/cloud-map/latest/api/API_HealthCheckCustomConfig.html) in the *AWS Cloud Map API Reference*\.
-+ If you're using the Amazon ECS classic console, the workflow creates one service discovery service for each ECS service\. It maps all of the task IP addresses as `A` records, or task IP addresses and port as SRV records\.
-+ Service discovery can only be configured when first creating a service\. Updating existing services to configure service discovery for the first time or change the current configuration isn't supported\.
++ If you're using the Amazon ECS classic console, the workflow creates one service discovery service for each service\. It maps all of the task IP addresses as `A` records, or task IP addresses and port as SRV records\.
++ Service discovery can only be configured when creating a service\. Updating existing services to configure service discovery for the first time or change the current configuration isn't supported\.
 + The AWS Cloud Map resources created when service discovery is used must be cleaned up manually\.
 
 ## Amazon ECS classic console experience<a name="service-discovery-console"></a>
 
 The workflow to create a service in the Amazon ECS classic console supports service discovery\. Service discovery can only be configured when first creating a service\. Updating existing services to configure service discovery for the first time or change the current configuration isn't supported\.
 
-To create a new Amazon ECS service that uses service discovery, see [Creating an Amazon ECS service](create-service.md)\.
+To create a new Amazon ECS service that uses service discovery, see [Creating an Amazon ECS service in the classic console](create-service.md)\.
 
 ## Service discovery pricing<a name="service-discovery-pricing"></a>
 

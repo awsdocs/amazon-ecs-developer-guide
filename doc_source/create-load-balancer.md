@@ -15,4 +15,3 @@ Prior to using a load balancer with your Amazon ECS service, your account must a
 **Topics**
 + [Creating an Application Load Balancer](create-application-load-balancer.md)
 + [Creating a Network Load Balancer](create-network-load-balancer.md)
-+ [Creating a Classic Load Balancer](create-standard-load-balancer.md)

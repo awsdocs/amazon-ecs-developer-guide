@@ -78,13 +78,13 @@ The Amazon ECS instance role is automatically created for you when completing th
 
 1. Choose the **EC2 Role for Elastic Container Service** use case, and then choose **Next: Permissions**\.
 
-1. In the **Attached permissions policies** section, verify the **AmazonEC2ContainerServiceforEC2Role** policy is selected and then choose **Next:Tags**\.
+1. In the **Permissions policies** section, verify the **AmazonEC2ContainerServiceforEC2Role** policy is selected and then choose **Next**\.
 **Important**  
 The **AmazonEC2ContainerServiceforEC2Role** managed policy should be attached to the container instance IAM role, otherwise you will receive an error using the AWS Management Console to create clusters\.
 
-1. For **Add tags \(optional\)**, specify any custom tags to associate with the policy, and then choose **Next: Review**\.
-
 1. For **Role name**, enter **ecsInstanceRole** and optionally you can enter a description\.
+
+1. For **Add tags \(optional\)**, specify any custom tags to associate with the policy, and then choose **Next: Review**\.
 
 1. Review your role information and then choose **Create role** to finish\.
 

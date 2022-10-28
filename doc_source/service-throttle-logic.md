@@ -2,7 +2,7 @@
 
 The Amazon ECS service scheduler includes logic that throttles how often service tasks are launched if they repeatedly fail to start\.
 
-If tasks for an ECS service repeatedly fail to enter the `RUNNING` state \(progressing directly from a `PENDING` to a `STOPPED` status\), then the time between subsequent restart attempts is incrementally increased up to a maximum of 15 minutes\. This maximum period is subject to change in the future\. This behavior reduces the effect that failing tasks have on your Amazon ECS cluster resources or Fargate infrastructure costs\. If your service initiates the throttle logic, you receive the following [service event message](service-event-messages.md#service-event-messages-5):
+If tasks for a service repeatedly fail to enter the `RUNNING` state \(progressing directly from a `PENDING` to a `STOPPED` status\), then the time between subsequent restart attempts is incrementally increased up to a maximum of 15 minutes\. This maximum period is subject to change in the future\. This behavior reduces the effect that failing tasks have on your Amazon ECS cluster resources or Fargate infrastructure costs\. If your service initiates the throttle logic, you receive the following [service event message](service-event-messages.md#service-event-messages-5):
 
 ```
 (service service-name) is unable to consistently start tasks successfully.
@@ -10,9 +10,9 @@ If tasks for an ECS service repeatedly fail to enter the `RUNNING` state \(progr
 
 Amazon ECS doesn't ever stop a failing service from retrying\. It also doesn't attempt to modify it in any way other than increasing the time between restarts\. The service throttle logic doesn't provide any user\-tunable parameters\.
 
-If you update your service to use a new task definition, your service returns to a normal, non\-throttled state immediately\. For more information, see [Updating a service](update-service.md)\.
+If you update your service to use a new task definition, your service returns to a normal, non\-throttled state immediately\. For more information, see [Updating a service using the new console](update-service-console-v2.md)\.
 
-The following are some common causes that trigger this logic:
+The following are some common causes that initiate this logic:
 + A lack of resources to host your task with, such as ports, memory, or CPU units in your cluster\. In this case, you also see the [insufficient resource service event message](service-event-messages.md#service-event-messages-1)\.
 + The Amazon ECS container agent can't pull your task Docker image\. This might be because a bad container image name, image, or tag, or a lack of private registry authentication or permissions\. In this case, you also see `CannotPullContainerError` in your [stopped task errors](stopped-task-errors.md)\.
 + Insufficient disk space on your container instance to create the container\. In this case, you also see `CannotCreateContainerError` in your [stopped task errors](stopped-task-errors.md)\. For more information, see [`CannotCreateContainerError: API error (500): devmapper`](CannotCreateContainerError.md)\.

@@ -1,11 +1,11 @@
 # Amazon ECS events<a name="ecs_cwe_events"></a>
 
-Amazon ECS sends the following types of events to EventBridge: container instance state change events, task state change events, service action, and service deployment state change events\. If these resources change, an event is triggered\. These events and their possible causes are described in greater detail in the following sections\.
+Amazon ECS sends the following types of events to EventBridge: container instance state change events, task state change events, service action, and service deployment state change events\. If these resources change, an event is generated\. These events and their possible causes are described in greater detail in the following sections\.
 
 **Note**  
 Amazon ECS may add other event types, sources, and details in the future\. If you are deserializing event JSON data in code, make sure that your application is prepared to handle unknown properties to avoid issues if and when these additional properties are added\.
 
-In some cases, multiple events are triggered for the same activity\. For example, when a task is started on a container instance, a task state change event is triggered for the new task\. A container instance state change event is triggered to account for the change in available resources, such as CPU, memory, and available ports, on the container instance\. Likewise, if a container instance is terminated, events are triggered for the container instance, the container agent connection status, and every task that was running on the container instance\.
+In some cases, multiple events are generated for the same activity\. For example, when a task is started on a container instance, a task state change event is generated for the new task\. A container instance state change event is generated to account for the change in available resources, such as CPU, memory, and available ports, on the container instance\. Likewise, if a container instance is terminated, events are generated for the container instance, the container agent connection status, and every task that was running on the container instance\.
 
 Container state change and task state change events contain two `version` fields: one in the main body of the event, and one in the `detail` object of the event\. The following describes the differences between these two fields:
 + The `version` field in the main body of the event is set to `0` on all events\. For more information about EventBridge parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.
@@ -17,7 +17,7 @@ Examples are covered later in this topic\. For additional information about how 
 
 ## Container instance state change events<a name="ecs_container_instance_events"></a>
 
-The following scenarios trigger container instance state change events:
+The following scenarios cause container instance state change events:
 
 You call the `StartTask`, `RunTask`, or `StopTask` API operations, either directly or with the AWS Management Console or SDKs\.  
 Placing or stopping tasks on a container instance modifies the available resources on the container instance, such as CPU, memory, and available ports\.
@@ -42,7 +42,7 @@ When the Amazon ECS container agent connects or disconnects from the Amazon ECS 
 The Amazon ECS container agent disconnects and reconnects several times per hour as a part of its normal operation, so agent connection events should be expected\. These events are not an indication that there is an issue with the container agent or your container instance\.
 
 You upgrade the Amazon ECS container agent on an instance\.  
-The container instance detail contains an object for the container agent version\. If you upgrade the agent, this version information changes and triggers an event\.
+The container instance detail contains an object for the container agent version\. If you upgrade the agent, this version information changes and generates an event\.
 
 **Example Container instance state change event**  
 Container instance state change events are delivered in the following format\. The `detail` section below resembles the [ContainerInstance](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerInstance.html) object that is returned from a [DescribeContainerInstances](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeContainerInstances.html) API operation in the *Amazon Elastic Container Service API Reference*\. For more information about EventBridge parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  
@@ -178,7 +178,7 @@ Container instance state change events are delivered in the following format\. T
 
 ## Task state change events<a name="ecs_task_events"></a>
 
-The following scenarios trigger task state change events:
+The following scenarios cause task state change events:
 
 You call the `StartTask`, `RunTask`, or `StopTask` API operations, either directly or with the AWS Management Console, AWS CLI, or SDKs\.  
 Starting or stopping tasks creates new task resources or modifies the state of existing task resources\.
@@ -196,10 +196,10 @@ The underlying container instance is stopped or terminated\.
 When you stop or terminate a container instance, the tasks that are running on it are transitioned to the `STOPPED` status\.
 
 A container in the task changes state\.  
-The Amazon ECS container agent monitors the state of containers within tasks\. For example, if a container that is running within a task stops, this container state change triggers an event\.
+The Amazon ECS container agent monitors the state of containers within tasks\. For example, if a container that is running within a task stops, this container state change generates an event\.
 
 A task using the Fargate Spot capacity provider receives a termination notice\.  
-When a task is using the `FARGATE_SPOT` capacity provider and is stopped due to a Spot interruption, a task state change event is triggered\.
+When a task is using the `FARGATE_SPOT` capacity provider and is stopped due to a Spot interruption, a task state change event is generated\.
 
 **Example Task state change event**  
 Task state change events are delivered in the following format\. The `detail` section below resembles the [Task](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_Task.html) object that is returned from a [DescribeTasks](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) API operation in the *Amazon Elastic Container Service API Reference*\. If your containers are using an image hosted with Amazon ECR, the `imageDigest` field is returned\.  
@@ -344,11 +344,11 @@ The service scheduler has been throttled due to the AWS Cloud Map API throttle l
 
 `SERVICE_TASK_PLACEMENT_FAILURE`  
 The service scheduler is unable to place a task\. The cause will be described in the `reason` field\.  
-A common cause for this service event being triggered is because of a lack of resources in the cluster to place the task\. For example, not enough CPU or memory capacity on the available container instances or no container instances being available\. Another common cause is when the Amazon ECS container agent is disconnected on the container instance, causing the scheduler to be unable to place the task\.
+A common cause for this service event being generated is because of a lack of resources in the cluster to place the task\. For example, not enough CPU or memory capacity on the available container instances or no container instances being available\. Another common cause is when the Amazon ECS container agent is disconnected on the container instance, causing the scheduler to be unable to place the task\.
 
 `SERVICE_TASK_CONFIGURATION_FAILURE`  
 The service scheduler is unable to place a task due to a configuration error\. The cause will be described in the `reason` field\.  
-A common cause of this service event being triggered is because tags were being applied to the service but the user or role had not opted in to the new Amazon Resource Name \(ARN\) format in the Region\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\. Another common cause is that Amazon ECS was unable to assume the task IAM role provided\.
+A common cause of this service event being generated is because tags were being applied to the service but the user or role had not opted in to the new Amazon Resource Name \(ARN\) format in the Region\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](ecs-account-settings.md#ecs-resource-ids)\. Another common cause is that Amazon ECS was unable to assume the task IAM role provided\.
 
 **Example Service steady state event**  
 Service steady state events are delivered in the following format\. For more information about EventBridge parameters, see [Events and Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) in the *Amazon EventBridge User Guide*\.  

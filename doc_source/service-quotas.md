@@ -29,7 +29,7 @@ AWS Fargate is transitioning from task\-based quotas to vCPU\-based quotas\. Cur
 
 The following table lists the new vCPU\-based quota followed by the existing task count\-based quota\. These service quotas are listed under the AWS Fargate service in the Service Quotas console\. 
 
-You can confirm which quota type is active by looking at the Service Quotas console\. If the vCPU quotas are in effect, the **Fargate On\-Demand resource count** and **Fargate Spot resource count** quotas show 0 for the **Applied quota value**\. Any other value indicates that the task count\-based quotas are in effect\. You can also run `list-account-settings` to view the `fargateVCPULimit` value\. When the value is `enabled`, it means that the vCPU\-based quotas are being used\. For more information, see, [list\-account\-settings](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-account-settings.html) in the *Amazon Elastic Container Service API Reference*\.
+You can also confirm which quota type is in use by looking at the Service Quotas console\. If the vCPU quotas are in use, the **Fargate On\-Demand resource count** and **Fargate Spot resource count** quotas show 0 for the **Applied quota value**\. Any other value indicates that the task count\-based quotas are in use\. 
 
 
 |  Service quota  |  Description  |  Default quota value  |  Adjustable  | 

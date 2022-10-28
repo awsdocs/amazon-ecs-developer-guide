@@ -182,7 +182,7 @@ The task definition JSON that follows has a `logConfiguration` object specified 
 }
 ```
 
-After you have registered a task definition with the `awslogs` log driver in a container definition log configuration, you can run a task or create a service with that task definition to start sending logs to CloudWatch Logs\. For more information, see [Run a standalone task](ecs_run_task.md) and [Creating an Amazon ECS service](create-service.md)\.
+After you have registered a task definition with the `awslogs` log driver in a container definition log configuration, you can run a task or create a service with that task definition to start sending logs to CloudWatch Logs\. For more information, see [Run a standalone task in the classic Amazon ECS console](ecs_run_task.md) and [Creating an Amazon ECS service in the classic console](create-service.md)\.
 
 ## Viewing awslogs container logs in CloudWatch Logs<a name="viewing_awslogs"></a>
 

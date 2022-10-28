@@ -24,7 +24,7 @@ For more information, see [Service auto scaling](service-auto-scaling.md)\.
 
 1. The following procedures provide steps for creating either target tracking or step scaling policies for your service\. Choose your desired scaling policy type\.
 
-These steps help you create target tracking scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. 
+These steps help you create target tracking scaling policies and CloudWatch alarms that can be used to initiate scaling activities for your service\. 
 
 **To configure target tracking scaling policies for your service**
 
@@ -47,7 +47,7 @@ These steps help you create target tracking scaling policies and CloudWatch alar
 
 1. Choose **Next step**\.
 
-These steps help you create step scaling policies and CloudWatch alarms that can be used to trigger scaling activities for your service\. You can create a **Scale out** alarm to increase the desired count of your service, and a **Scale in** alarm to decrease the desired count of your service\.
+These steps help you create step scaling policies and CloudWatch alarms that can be used to initiate scaling activities for your service\. You can create a **Scale out** alarm to increase the desired count of your service, and a **Scale in** alarm to decrease the desired count of your service\.
 
 **To configure step scaling policies for your service**
 
@@ -61,7 +61,7 @@ These steps help you create step scaling policies and CloudWatch alarms that can
 
 1. \(Optional\) If you've chosen to create a new alarm, complete the following steps\.
 
-   1. For **Alarm name**, enter a descriptive name for your alarm\. For example, if your alarm should trigger when your service CPU utilization exceeds 75%, you could call the alarm `service_name-cpu-gt-75`\.
+   1. For **Alarm name**, enter a descriptive name for your alarm\. For example, if your alarm should initiate when your service CPU utilization exceeds 75%, you could call the alarm `service_name-cpu-gt-75`\.
 
    1. For **ECS service metric**, choose the service metric to use for your alarm\. For more information, see [Service auto scaling](service-auto-scaling.md)\.
 

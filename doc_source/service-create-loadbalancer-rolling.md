@@ -18,7 +18,9 @@ To configure your service to use a load balancer, you must choose the load balan
 Application Load Balancer  
 Allows containers to use dynamic host port mapping\. With host port mapping allowed, you can place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing and paths\.  
 Network Load Balancer  
-Allows containers to use dynamic host port mapping\. With host port mapping allowed, you can place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing\.
+Allows containers to use dynamic host port mapping\. With host port mapping allowed, you can place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing\.  
+Classic Load Balancer  
+Requires static host port mappings \(only one task allowed per container instance\)\. Rule\-based routing and paths aren't supported\.
 
    We recommend that you use Application Load Balancers for your Amazon ECS services\. That way, you can use the advanced features of Application Load Balancer\.
 
@@ -61,12 +63,4 @@ If your service's task definition uses the `awsvpc` network mode \(which is requ
    + For **Target group protocol**, enter the protocol to use for routing traffic to your tasks\.
    + For **Health check path**, enter the path that the load balancer sends health check pings to\.
 
-1. When you're finished configuring your Network Load Balancer, choose **Next Step**\.<a name="create-service-configure-clb"></a>
-
-**To configure a Classic Load Balancer**
-
-1. The **Health check port**, **Health check protocol**, and **Health check path** fields are all pre\-populated with the values that you configured in [Creating a Classic Load Balancer](create-standard-load-balancer.md) \(if applicable\)\. You can update these settings in the Amazon EC2 console\.
-
-1. For **Container for ELB health check**, choose the container to send health checks\.
-
-1. When you're finished configuring your Classic Load Balancer, choose **Next step**\.
+1. When you're finished configuring your Network Load Balancer, choose **Next Step**\.

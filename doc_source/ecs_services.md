@@ -8,9 +8,7 @@ You can also optionally run your service behind a load balancer\. The load balan
 + [Service scheduler concepts](#service_scheduler)
 + [Additional service concepts](#service_concepts)
 + [Service definition parameters](service_definition_parameters.md)
-+ [Creating an Amazon ECS service](create-service.md)
-+ [Updating a service](update-service.md)
-+ [Deleting a service](delete-service.md)
++ [Service management in the Amazon ECS console](manage-service.md)
 + [Amazon ECS Deployment types](deployment-types.md)
 + [Service load balancing](service-load-balancing.md)
 + [Service auto scaling](service-auto-scaling.md)
@@ -71,10 +69,10 @@ The *replica* scheduling strategy places and maintains the desired number of tas
 For a service that runs tasks on Fargate, when the service scheduler launches new tasks or stops running tasks, the service scheduler attempts to maintain a balance across Availability Zones\. You don't need to specify task placement strategies or restraints\.
 
 When you create a service that runs tasks on EC2 instances, you can optionally specify task placement strategies and constraints to customize task placement decisions\. If no task placement strategies or constraints are specified, then by default the service scheduler spreads the tasks across Availability Zones\. The service scheduler uses the following logic:
-+ Determines which of the container instances in your cluster can support your service's task definition \(for example, they have the required CPU, memory, ports, and container instance attributes\)\.
++ Determines which of the container instances in your cluster can support your service's task definition \(for example, required CPU, memory, ports, and container instance attributes\)\.
 + Determines which container instances satisfy any placement constraints that are defined for the service\.
-+ If there's a placement strategy defined, use that strategy to select an instance from the remaining candidates\.
-+ If there's no placement strategy defined, balance tasks across the Availability Zones in your cluster with the following logic:
++ When there's a defined placement strategy, use that strategy to select an instance from the remaining candidates\.
++ When there's no defined placement strategy, use the following logic to balance tasks across the Availability Zones in your cluster:
   + Sorts the valid container instances\. Gives priority to instances that have the fewest number of running tasks for this service in their respective Availability Zone\. For example, if zone A has one running service task and zones B and C each have zero, valid container instances in either zone B or C are considered optimal for placement\.
   + Places the new service task on a valid container instance in an optimal Availability Zone based on the previous steps\. Favors container instances with the fewest number of running tasks for this service\.
 
@@ -82,4 +80,4 @@ When you create a service that runs tasks on EC2 instances, you can optionally s
 + You can optionally run your service behind a load balancer\. For more information, see [Service load balancing](service-load-balancing.md)\.
 + You can optionally specify a deployment configuration for your service\. A deployment is triggered by updating the task definition or desired count of a service\. During a deployment, the service scheduler uses the *minimum healthy percent* and *maximum percent* parameters to determine the deployment strategy\. For more information, see [Service definition parameters](service_definition_parameters.md)\.
 + You can optionally configure your service to use Amazon ECS service discovery\. Service discovery uses the AWS Cloud Map autonaming APIs to manage DNS entries for your service's tasks\. This makes them discoverable from within your VPC\. For more information, see [Service Discovery](service-discovery.md)\.
-+ When you delete a service, if there are still running tasks that require cleanup, the service moves from an `ACTIVE` to a `DRAINING` status, and the service is no longer visible in the console or in the ListServices API operation\. After all tasks have transitioned to either a `STOPPING` or `STOPPED` status, the service moves from a `DRAINING` to `INACTIVE` status\. You can view services in the `DRAINING` or `INACTIVE` status by using the DescribeServices API operation\. However, in the future, `INACTIVE` services might be cleaned up and purged from Amazon ECS record keeping, and DescribeServices calls on those services return a `ServiceNotFoundException` error\.
++ When you delete a service, if there are still running tasks that require cleanup, the service moves from an `ACTIVE` to a `DRAINING` status, and the service is no longer visible in the console or in the `ListServices` API operation\. After all tasks transition to either a `STOPPING` or `STOPPED` status, the service moves from a `DRAINING` to `INACTIVE` status\. You can view services in the `DRAINING` or `INACTIVE` status by using the `DescribeServices` API operation\. However, in the future, `INACTIVE` services might be cleaned up and purged from Amazon ECS record keeping, and `DescribeServices` calls on those services return a `ServiceNotFoundException` error\.

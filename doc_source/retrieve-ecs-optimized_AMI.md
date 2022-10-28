@@ -88,7 +88,7 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   ```
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/gpu/recommended --region us-east-1
   ```
-+ **For the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMIs:**
++ **For the Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMIs:**
 
   ```
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended --region us-east-1

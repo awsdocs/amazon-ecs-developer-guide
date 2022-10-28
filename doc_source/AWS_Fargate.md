@@ -350,7 +350,7 @@ The following features are not supported on Windows containers on Fargate:
 ## Getting started walkthroughs<a name="welcome-tutorials"></a>
 
 The following walkthroughs help you get started using AWS Fargate with Amazon ECS:
-+ [Getting started with the classic console using Linux containers on AWS Fargate](getting-started-fargate.md)
-+ [Getting started with the classic Amazon ECS console using Windows containers on AWS Fargate](Windows_fargate-getting_started.md)
++ [Getting started with the new console using Linux containers on AWS Fargate](getting-started-fargate.md)
++ [Getting started with the new console using Windows containers on AWS Fargate](Windows_fargate-getting_started.md)
 + [Tutorial: Creating a cluster with a Fargate Linux task using the AWS CLI](ECS_AWSCLI_Fargate.md)
 + [Tutorial: Creating a cluster with a Fargate Windows task using the AWS CLI](ECS_AWSCLI_Fargate_windows.md)

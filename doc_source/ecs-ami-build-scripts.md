@@ -36,7 +36,7 @@ For more information, see the Amazon ECS AMI repository at [aws/amazon\-ecs\-ami
      ```
      make al2gpu
      ```
-   + Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI
+   + Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI
 
      ```
      make al2inf

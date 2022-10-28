@@ -1,39 +1,15 @@
 # Concatenate multiline or stack\-trace log messages<a name="firelens-concatanate-multiline"></a>
 
-Beginning with AWS for Fluent Bit version 2\.22\.0, a multiline filter is included\. The multiline filter helps concatenate log messages that originally belong to one context but were split across multiple records or log lines\. For more information on the multiline filter, see the [ Fluent Bit documentation\.](https://docs.fluentbit.io/manual/pipeline/filters/multiline-stacktrace) 
+Beginning with AWS for Fluent Bit version 2\.22\.0, a multiline filter is included\. The multiline filter helps concatenate log messages that originally belong to one context but were split across multiple records or log lines\. For more information about the multiline filter, see the [ Fluent Bit documentation](https://docs.fluentbit.io/manual/pipeline/filters/multiline-stacktrace)\. 
 
 Common examples of split log messages are:
-+ Stack traces\. Follow the steps below to concatenate messages split by newlines\.
-+ Applications that print logs on multiple lines\. Follow the steps below to concatenate messages split by newlines\.
++ Stack traces\. 
++ Applications that print logs on multiple lines\. 
 + Log messages that were split because they were longer than the specified runtime max buffer size\. You can concatenate log messages split by the container runtime by following the example on GitHub: [FireLens Example: Concatenate Partial/Split Container Logs](https://github.com/aws-samples/amazon-ecs-firelens-examples/tree/mainline/examples/fluent-bit/filter-multiline-partial-message-mode)\.
 
-Compare the images of the logs below to determine if you need the multiline filter\.
+## Required IAM permissions<a name="iam-permissions"></a>
 
-------
-#### [ Before ]
-
-The following image shows the CloudWatch Logs console with the default log setting with multiple entries for each line in a stack trace\. 
-
-![\[Shows the CloudWatch Logs console with the default log setting with multiple entries for each line in a stack trace.\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ecs-multiline-filter-before.png)
-
-------
-#### [ After ]
-
-The following image shows the CloudWatch Logs console with the multiline log setting with a single entry that includes all the lines in a stack trace in the `log` field\. 
-
-![\[Shows the CloudWatch Logs console with the multiline log setting with a single entry that includes all the lines in a stack trace.\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ecs-multiline-filter-after.png)
-
-------
-
-To parse logs and concatenate lines that were split because of newlines, you can use either of these two options\.
-+ Create your own parser file that contains the rules to parse and concatenate lines that belong to the same message\.
-+ Use a Fluent Bit built\-in parser\. For a list of languages supported by the Fluent Bit built\-in parsers, see [ Fluent Bit documentation\.](https://docs.fluentbit.io/manual/pipeline/filters/multiline-stacktrace)
-
-The following tutorial walks you through the steps for each use case\. The steps show you how to concatenate multilines and send the logs to Amazon CloudWatch\. You can specify a different destination for your logs\.
-
-## Required IAM permissions<a name="w627aac17c54c21c19b1"></a>
-
-For each use case you must first make sure you have the necessary IAM permissions for the container agent to pull the container images from Amazon ECR and for the container to route logs to CloudWatch Logs\.
+You have the necessary IAM permissions for the container agent to pull the container images from Amazon ECR and for the container to route logs to CloudWatch Logs\.
 
 For these permissions, you must have the following roles: 
 + A task IAM role\. 
@@ -90,9 +66,64 @@ You must have a task execution role to grant the container agent permission to p
 
 1. In the navigation pane, choose **Roles** and then search for `ecsTaskExecutionRole`\. 
 
-1. If you do not see the `ecsTaskExecutionRole` role, you must create the role\. For information on how to create the role, see [Amazon ECS task execution IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
+1. If you do not see the `ecsTaskExecutionRole` role, you must create the role\. For information about how to create the role, see [Amazon ECS task execution IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
 
-## Example: Use a parser that you create<a name="w627aac17c54c21c19b3"></a>
+## Determine when to use the the multiline log setting<a name="determine-filter"></a>
+
+The following are example log snippets that you see in the CloudWatch Logs console with the default log setting\. You can look at the line that starts with `log` to determine if you need the multiline filter\. When the context is the same, you can use the multiline log setting, In this example, the contect is "
+
+```
+2022-09-20T15:47:56:595-05-00                           {"container_id": "82ba37cada1d44d389b03e78caf74faa-EXAMPLE", "container_name": "example-app", "source=": "stdout", "log": ": "     at com.myproject.modele.(MyProject.badMethod.java:22)",
+    {
+      "container_id":  "82ba37cada1d44d389b03e78caf74faa-EXAMPLE",
+      "container_name: ": "example-app",
+      "source": "stdout",
+      "log": ": "     at com.myproject.model.MyProject.badMethod(MyProject.java:22)",
+      "ecs_cluster": "default",
+      "ecs_task_arn": "arn:aws:region:123456789012:task/default/b23c940d29ed4714971cba72cEXAMPLE",
+      "ecs_task_definition": "firelense-example-multiline:3"
+     }
+```
+
+```
+2022-09-20T15:47:56:595-05-00                           {"container_id": "82ba37cada1d44d389b03e78caf74faa-EXAMPLE", "container_name": "example-app", "stdout", "log": ": "     at com.myproject.modele.(MyProject.oneMoreMethod.java:18)",
+    {
+      "container_id":  "82ba37cada1d44d389b03e78caf74faa-EXAMPLE",
+      "container_name: ": "example-app",
+      "source": "stdout",
+      "log": ": "     at com.myproject.model.MyProject.oneMoreMethod(MyProject.java:18)",
+      "ecs_cluster": "default",
+      "ecs_task_arn": "arn:aws:region:123456789012:task/default/b23c940d29ed4714971cba72cEXAMPLE,
+      "ecs_task_definition": "firelense-example-multiline:3"
+     }
+```
+
+After you use the multiline log setting, the output will look similar to the example below\. 
+
+```
+2022-09-20T15:47:56:595-05-00                           {"container_id": "82ba37cada1d44d389b03e78caf74faa-EXAMPLE", "container_name": "example-app", "stdout",...
+    {
+      "container_id":  "82ba37cada1d44d389b03e78caf74faa-EXAMPLE",
+      "container_name: ": "example-app",
+      "source": "stdout",
+      "log:    "September 20, 2022 06:41:48 Exception in thread \"main\" java.lang.RuntimeException: Something has gone wrong, aborting!\n    
+    at com.myproject.module.MyProject.badMethod(MyProject.java:22)\n    at   
+    at com.myproject.model.MyProject.oneMoreMethod(MyProject.java:18) com.myproject.module.MyProject.main(MyProject.java:6)",
+      "ecs_cluster": "default",
+      "ecs_task_arn": "arn:aws:region:123456789012:task/default/b23c940d29ed4714971cba72cEXAMPLE",
+      "ecs_task_definition": "firelense-example-multiline:2"
+     }
+```
+
+## Parse and concatenate options<a name="parse-multiline-log"></a>
+
+To parse logs and concatenate lines that were split because of newlines, you can use either of these two options\.
++ Use your own parser file that contains the rules to parse and concatenate lines that belong to the same message\.
++ Use a Fluent Bit built\-in parser\. For a list of languages supported by the Fluent Bit built\-in parsers, see [ Fluent Bit documentation](https://docs.fluentbit.io/manual/pipeline/filters/multiline-stacktrace)\.
+
+The following tutorial walks you through the steps for each use case\. The steps show you how to concatenate multilines and send the logs to Amazon CloudWatch\. You can specify a different destination for your logs\.
+
+### Example: Use a parser that you create<a name="customer-parser"></a>
 
 In this example, you will complete the following steps: 
 
@@ -140,7 +171,7 @@ This image will include the parser file where you specify the regular expression
 
 1. Within the `FluentBitDockerImage` folder, create a custom configuration file that references the parser file that you created in the previous step\.
 
-   For more information on the custom configuration file, see [Specifying a custom configuration file](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/firelens-taskdef.html#firelens-taskdef-customconfig) in the *Amazon Elastic Container Service Developer Guide* 
+   For more information about the custom configuration file, see [Specifying a custom configuration file](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/firelens-taskdef.html#firelens-taskdef-customconfig) in the *Amazon Elastic Container Service Developer Guide* 
 
    1. Paste the following contents in the file:
 
@@ -383,7 +414,7 @@ When you run the task, the application simulates runs, then fails and creates a 
 
       Replace the region if necessary\.
 
-1. Register the task definition file: `aws ecs register-task-definition --cli-input-json file://multiline-task-definition.json --region us-east-1` 
+1. Register the task definition file: `aws ecs register-task-definition --cli-input-json file://multiline-task-definition.json --region region` 
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -423,7 +454,7 @@ When you run the task, the application simulates runs, then fails and creates a 
    }
    ```
 
-   The following log snippet shows how the same message appears with just a single line if you run an ECS container that is not configured to concatenate multiline log messages\. 
+   The following log snippet shows how the same message appears with just a single line if you run an Amazon ECS container that is not configured to concatenate multiline log messages\. 
 
    ```
    {
@@ -437,7 +468,7 @@ When you run the task, the application simulates runs, then fails and creates a 
    }
    ```
 
-## Example: Use a Fluent Bit built\-in parser<a name="w627aac17c54c21c19b5"></a>
+### Example: Use a Fluent Bit built\-in parser<a name="fluent-bit-parser"></a>
 
 In this example, you will complete the following steps: 
 
@@ -457,7 +488,7 @@ This image will include a configuration file that references the Fluent Bit pars
 
 1. Within the `FluentBitDockerImage` folder, create a custom configuration file that references the Fluent Bit built\-in parser file\.
 
-   For more information on the custom configuration file, see [Specifying a custom configuration file](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/firelens-taskdef.html#firelens-taskdef-customconfig) in the *Amazon Elastic Container Service Developer Guide* 
+   For more information about the custom configuration file, see [Specifying a custom configuration file](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/firelens-taskdef.html#firelens-taskdef-customconfig) in the *Amazon Elastic Container Service Developer Guide* 
 
    1. Paste the following contents in the file:
 

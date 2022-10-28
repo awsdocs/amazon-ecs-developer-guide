@@ -7,6 +7,7 @@ When you deregister a task definition revision, it's immediately marked as `INAC
 You can't use an `INACTIVE` task definition revision to run new tasks or create new services\. You also can't update an existing service to reference an `INACTIVE` task definition revision\. This is despite that there might be up to a 10\-minute window following deregistration where these restrictions have not already taken effect\.
 
 **Note**  
+You can’t deregister a task definition family at one time\. You can only deregister individual revisions or multiple revisions within the family\. When you deregister all revisions, the task definition family is moved to the `INACTIVE` list\. Adding a new revision of an `INACTIVE` task definition moves the task definition family back to the `ACTIVE` list\.  
 At this time, `INACTIVE` task definition revisions remain discoverable in your account indefinitely\. However, this behavior is subject to change in the future\. Therefore, don't rely on `INACTIVE` task definition revisions persisting beyond the lifecycle of any associated tasks and services\.
 
 **To deregister a new task definition \(Classic Amazon ECS console\)**
@@ -24,3 +25,5 @@ At this time, `INACTIVE` task definition revisions remain discoverable in your a
 1. Choose **Actions**, **Deregister**\.
 
 1. Verify the information in the **Deregister task definition** window, and then choose **Deregister** to finish\.
+
+1. \(Optional\) To deregister the task definition family, repeat the above steps for each `ACTIVE` revision\.

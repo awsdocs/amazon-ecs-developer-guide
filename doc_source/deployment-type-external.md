@@ -1,6 +1,6 @@
 # External deployment<a name="deployment-type-external"></a>
 
-The *external* deployment type enables you to use any third\-party deployment controller for full control over the deployment process for an Amazon ECS service\. The details for your service are managed by either the service management API actions \(`CreateService`, `UpdateService`, and `DeleteService`\) or the task set management API actions \(`CreateTaskSet`, `UpdateTaskSet`, `UpdateServicePrimaryTaskSet`, and `DeleteTaskSet`\)\. Each API action has a subset of the service definition parameters that it can manage\.
+The *external* deployment type allows you to use any third\-party deployment controller for full control over the deployment process for an Amazon ECS service\. The details for your service are managed by either the service management API actions \(`CreateService`, `UpdateService`, and `DeleteService`\) or the task set management API actions \(`CreateTaskSet`, `UpdateTaskSet`, `UpdateServicePrimaryTaskSet`, and `DeleteTaskSet`\)\. Each API action manages a subset of the service definition parameters\.
 
 The `UpdateService` API action updates the desired count and health check grace period parameters for a service\. If the launch type, platform version, load balancer details, network configuration, or task definition need to be updated, you must create a new task set\.
 
@@ -11,8 +11,8 @@ The `UpdateServicePrimaryTaskSet` API action modifies which task set in a servic
 ## External deployment considerations<a name="deployment-type-external-considerations"></a>
 
 Consider the following when using the external deployment type:
-+ If using a load balancer for the task, the supported load balancer types are either an Application Load Balancer or a Network Load Balancer\.
-+ Tasks using the Fargate launch type or `EXTERNAL` deployment controller types don't support the `DAEMON` scheduling strategy\.
++ The supported load balancer types are either an Application Load Balancer or a Network Load Balancer\.
++ The Fargate launch type or `EXTERNAL` deployment controller types don't support the `DAEMON` scheduling strategy\.
 
 ## External deployment workflow<a name="deployment-type-external-workflow"></a>
 

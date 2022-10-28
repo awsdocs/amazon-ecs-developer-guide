@@ -18,69 +18,23 @@ If you have an AWS account already, skip to the next task\. If you don't have an
 
    Part of the sign\-up procedure involves receiving a phone call and entering a verification code on the phone keypad\.
 
+   When you sign up for an AWS account, an *AWS account root user* is created\. The root user has access to all AWS services and resources in the account\. As a security best practice, [assign administrative access to an administrative user](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html), and use only the root user to perform [tasks that require root user access](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html#aws_tasks-that-require-root)\.
+
 Note your AWS account number, because you'll need it for the next task\.
 
-## Create an IAM user<a name="create-an-iam-user"></a>
+## Create an administrator<a name="create-an-iam-user"></a>
 
-Services in AWS, such as Amazon EC2 and Amazon ECS, require that you provide credentials when you access them, so that the service can determine whether you have permission to access its resources\. The console requires your password\. You can create access keys for your AWS account to access the command line interface or API\. However, we don't recommend that you access AWS using the credentials for your AWS account; we recommend that you use AWS Identity and Access Management \(IAM\) instead\. Create an IAM user, and then add the user to an IAM group with administrative permissions or and grant this user administrative permissions\. You can then access AWS using a special URL and the credentials for the IAM user\.
+Services in AWS, such as Amazon EC2 and Amazon ECS, require that you provide credentials when you access them, so that the service can determine whether you have permission to access its resources\. The console requires your password\. You can create access keys for your AWS account to access the command line interface or API\.
 
-If you signed up for AWS but have not created an IAM user for yourself, you can create one using the IAM console\.
+To create an administrator user, choose one of the following options\.
 
-**To create an administrator user for yourself and add the user to an administrators group \(console\)**
 
-1. Sign in to the [IAM console](https://console.aws.amazon.com/iam/) as the account owner by choosing **Root user** and entering your AWS account email address\. On the next page, enter your password\.
-**Note**  
-We strongly recommend that you adhere to the best practice of using the **Administrator** IAM user that follows and securely lock away the root user credentials\. Sign in as the root user only to perform a few [account and service management tasks](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
+****  
 
-1. In the navigation pane, choose **Users** and then choose **Add users**\.
-
-1. For **User name**, enter **Administrator**\.
-
-1. Select the check box next to **AWS Management Console access**\. Then select **Custom password**, and then enter your new password in the text box\.
-
-1. \(Optional\) By default, AWS requires the new user to create a new password when first signing in\. You can clear the check box next to **User must create a new password at next sign\-in** to allow the new user to reset their password after they sign in\.
-
-1. Choose **Next: Permissions**\.
-
-1. Under **Set permissions**, choose **Add user to group**\.
-
-1. Choose **Create group**\.
-
-1. In the **Create group** dialog box, for **Group name** enter **Administrators**\.
-
-1. Choose **Filter policies**, and then select **AWS managed \- job function** to filter the table contents\.
-
-1. In the policy list, select the check box for **AdministratorAccess**\. Then choose **Create group**\.
-**Note**  
-You must activate IAM user and role access to Billing before you can use the `AdministratorAccess` permissions to access the AWS Billing and Cost Management console\. To do this, follow the instructions in [step 1 of the tutorial about delegating access to the billing console](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_billing.html)\.
-
-1. Back in the list of groups, select the check box for your new group\. Choose **Refresh** if necessary to see the group in the list\.
-
-1. Choose **Next: Tags**\.
-
-1. \(Optional\) Add metadata to the user by attaching tags as key\-value pairs\. For more information about using tags in IAM, see [Tagging IAM entities](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html) in the *IAM User Guide*\.
-
-1. Choose **Next: Review** to see the list of group memberships to be added to the new user\. When you are ready to proceed, choose **Create user**\.
-
-You can use this same process to create more groups and users and to give your users access to your AWS account resources\. To learn about using policies that restrict user permissions to specific AWS resources, see [Access management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) and [Example policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_examples.html)\.
-
-To sign in as this new IAM user, sign out of the AWS console, then use the following URL, where *your\_aws\_account\_id* is your AWS account number without the hyphens \(for example, if your AWS account number is `1234-5678-9012`, your AWS account ID is `123456789012`\):
-
-```
-https://your_aws_account_id.signin.aws.amazon.com/console/
-```
-
-Enter the IAM user name and password that you just created\. When you're signed in, the navigation bar displays "*your\_user\_name* @ *your\_aws\_account\_id*"\.
-
-If you don't want the URL for your sign\-in page to contain your AWS account ID, you can create an account alias\. From the top of the IAM dashboard, to the right of your sign\-in link, choose **Customize** and enter an alias, such as your company name\. To sign in after you create an account alias, use the following URL:
-
-```
-https://your_account_alias.signin.aws.amazon.com/console/
-```
-
-To verify the sign\-in link for IAM users for your account, open the IAM console and check under **IAM users sign\-in link** on the dashboard\.
-
-For more information about IAM, see the [AWS Identity and Access Management User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
+| Choose one way to manage your administrator | To | By | You can also | 
+| --- | --- | --- | --- | 
+| In IAM Identity Center \(Recommended\) | Use short\-term credentials to access AWS\.This aligns with the security best practices\. For information about best practices, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-users-federation-idp) in the *IAM User Guide*\. | Following the instructions in [Getting started](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html) in the AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide\. | Configure programmatic access by [Configuring the AWS CLI to use AWS IAM Identity Center \(successor to AWS Single Sign\-On\)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html) in the AWS Command Line Interface User Guide\. | 
+| In IAM \(Not recommended\) | Use long\-term credentials to access AWS\. | Following the instructions in [Creating your first IAM admin user and user group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the IAM User Guide\. | Configure programmatic access by [Managing access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) in the IAM User Guide\. | 
 
 ## Create a key pair<a name="create-a-key-pair"></a>
 
@@ -91,14 +45,7 @@ AWS uses public\-key cryptography to secure the login information for your insta
 If you haven't created a key pair already, you can create one using the Amazon EC2 console\. If you plan to launch instances in multiple regions, you'll need to create a key pair in each region\. For more information about regions, see [Regions and Availability Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **To create a key pair**
-
-1. Use the Amazon EC2 console to create a key pair\. For more information about creatiting a key pair, see [Create a key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
-
-1. If you use an SSH client on a macOS or Linux computer to connect to your Linux instance, use the following command to set the permissions of your private key file so that only you can read it\.
-
-   ```
-   chmod 400 your_user_name-key-pair-region_name.pem
-   ```
++ Use the Amazon EC2 console to create a key pair\. For more information about creatiting a key pair, see [Create a key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 For more information, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 

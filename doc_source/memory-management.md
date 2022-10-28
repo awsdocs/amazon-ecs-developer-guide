@@ -4,7 +4,7 @@ When the Amazon ECS container agent registers a container instance into a cluste
 
 If you specify 8192 MiB for the task, and none of your container instances have 8192 MiB or greater of memory available to satisfy this requirement, then the task cannot be placed in your cluster\.
 
-You should also reserve some memory for the Amazon ECS container agent and other critical system processes on your container instances, so that your task's containers do not contend for the same memory and possibly trigger a system failure\. For more information, see [Reserving System Memory](#ecs-reserved-memory)\.
+You should also reserve some memory for the Amazon ECS container agent and other critical system processes on your container instances, so that your task's containers do not contend for the same memory and possibly starts a system failure\. For more information, see [Reserving System Memory](#ecs-reserved-memory)\.
 
 The Amazon ECS container agent uses the Docker `ReadMemInfo()` function to query the total memory available to the operating system\. Both Linux and Windows provide command line utilities to determine the total memory\.
 
@@ -39,7 +39,7 @@ This instance has 8589524992 bytes of total memory, which translates to 8191 MiB
 
 ## Reserving System Memory<a name="ecs-reserved-memory"></a>
 
-If you occupy all of the memory on a container instance with your tasks, then it is possible that your tasks will contend with critical system processes for memory and possibly trigger a system failure\. The Amazon ECS container agent provides a configuration variable called `ECS_RESERVED_MEMORY`, which you can use to remove a specified number of MiB of memory from the pool that is allocated to your tasks\. This effectively reserves that memory for critical system processes\.
+If you occupy all of the memory on a container instance with your tasks, then it is possible that your tasks will contend with critical system processes for memory and possibly start a system failure\. The Amazon ECS container agent provides a configuration variable called `ECS_RESERVED_MEMORY`, which you can use to remove a specified number of MiB of memory from the pool that is allocated to your tasks\. This effectively reserves that memory for critical system processes\.
 
 For example, if you specify `ECS_RESERVED_MEMORY=256` in your container agent configuration file, then the agent registers the total memory minus 256 MiB for that instance, and 256 MiB of memory could not be allocated by ECS tasks\. For more information about agent configuration variables and how to set them, see [Amazon ECS container agent configuration](ecs-agent-config.md) and [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)\.
 

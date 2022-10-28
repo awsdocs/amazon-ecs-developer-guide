@@ -1,6 +1,6 @@
 # Deleting a service using the new console<a name="delete-service-v2"></a>
 
-You can delete an Amazon ECS service using the console\. Before deletion, the service is automatically scaled down to zero\. If you have a load balancer or service discovery resources associated with the service, they are not affected by the service deletion\. To delete your Elastic Load Balancing resources, see one of the following topics, depending on your load balancer type: [Delete an Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-delete.html) or [Delete a Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-delete.html)\. To delete your service discovery resources, follow the procedure below\.
+You can delete an Amazon ECS service using the console\. The service is automatically scaled down to zero before it is deleted\. Load balancer resources or service discovery which resources associated with the service are not affected by the service deletion\. To delete your Elastic Load Balancing resources, see one of the following topics, depending on your load balancer type: [Delete an Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-delete.html) or [Delete a Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-delete.html)\. 
 
 **To delete a service \(New Amazon ECS console\)**
 
@@ -12,6 +12,8 @@ You can delete an Amazon ECS service using the console\. Before deletion, the se
 
 1. On the **Cluster : *name*** page, choose the **Services** tab\. 
 
+1. To delete a service even if it wasn't scaled down to zero tasks, select **Force delete service**\.
+
 1. Select the services, and then choose **Delete**\.
 
-1. At the confirmation prompt, enter **delete me** and then choose **Delete**\. 
+1. At the confirmation prompt, enter **delete** and then choose **Delete**\. 

@@ -18,4 +18,4 @@ To update a task definition, create a task definition revision\. If the task def
 
 1. Verify the information and choose **Create**\.
 
-1. If your task definition is used in a service, update your service with the updated task definition\. For more information, see [Updating a service](update-service.md)\.
+1. If your task definition is used in a service, update your service with the updated task definition\. For more information, see [Updating a service using the new console](update-service-console-v2.md)\.

@@ -4,16 +4,16 @@ Amazon ECS supports creating scheduled tasks\. Scheduled tasks use Amazon EventB
 
 If you want to run tasks at set intervals, such as a backup operation or a log scan, you can create a scheduled task that runs one or more tasks at specified times\. You can specify a regular interval \(run every *N* minutes, hours, or days\), or for more complicated scheduling, you can use a `cron` expression\. For more information, see [Cron expressions and rate expressions](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html) in the *Amazon EventBridge User Guide*\.
 
-If you want to run tasks that are triggered by an event, there are AWS managed events for services \(for example Amazon ECS task and container instance state change events\) or you can create a custom event pattern\. For more information, see [Event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html) in the *Amazon EventBridge User Guide*\.
+If you want to run tasks that are started by an event, there are AWS managed events for services \(for example Amazon ECS task and container instance state change events\) or you can create a custom event pattern\. For more information, see [Event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html) in the *Amazon EventBridge User Guide*\.
 
 **Topics**
 + [Create a scheduled task](#scheduled-task-create)
-+ [View your scheduled tasks](#scheduled-task-view)
++ [View your scheduled tasks in the classic console](#scheduled-task-view)
 + [Edit a scheduled task](#scheduled-task-edit)
 
 ## Create a scheduled task<a name="scheduled-task-create"></a>
 
-Scheduled tasks are triggered by Amazon EventBridge rules, which you can create using the EventBridge console\. Although you can create a scheduled task in the Amazon ECS console, currently the EventBridge console provides more functionality so the following steps walk you through creating an EventBridge rule that triggers a scheduled task\.
+Scheduled tasks are started by Amazon EventBridge rules, which you can create using the EventBridge console\. Although you can create a scheduled task in the Amazon ECS console, currently the EventBridge console provides more functionality so the following steps walk you through creating an EventBridge rule that starts a scheduled task\.
 
 Before you can submit scheduled tasks with EventBridge rules and targets, the EventBridge service needs several permissions to run Amazon ECS tasks on your behalf\. For more information about the required service principal and IAM permissions for this role, see [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 
@@ -75,7 +75,7 @@ Task placement strategies aren't supported for tasks hosted on Fargate\.
 
    1. To add tags to use when reviewing cost allocation in your Cost and Usage Report, for **Configure managed tags**, choose **Enable managed tags**\. For more information, see [Tagging your resources for billing](ecs-using-tags.md#tag-resources-for-billing)\.
 
-   1. To enable the ECS Exec functionality for the task, for **Configure execute command**, choose **Enable execute command**\. For more information, see [Using Amazon ECS Exec for debugging](ecs-exec.md)\.
+   1. To use the ECS Exec functionality for the task, for **Configure execute command**, choose **Enable execute command**\. For more information, see [Using Amazon ECS Exec for debugging](ecs-exec.md)\.
 
    1. To add the tags associated with the task definition to your task, for **Configure propagate tags**, choose **Propagate tags from task definition**\. For more information, see [Tagging your resources](ecs-using-tags.md#tag-resources)\.
 **Note**  
@@ -104,9 +104,9 @@ If you specify a tag with the same key in the **Tags** section, that tag overrid
 
 1. Review the details of the rule and choose **Create rule**\.
 
-## View your scheduled tasks<a name="scheduled-task-view"></a>
+## View your scheduled tasks in the classic console<a name="scheduled-task-view"></a>
 
-Your scheduled tasks can be viewed in the classic Amazon ECS console\. You can also view the Amazon EventBridge rules that trigger the scheduled tasks in the EventBridge console\.
+Your scheduled tasks can be viewed in the classic Amazon ECS classic console\. You can also view the Amazon EventBridge rules that start the scheduled tasks in the EventBridge console\.
 
 **To view your scheduled tasks \(Amazon ECS console\)**
 
@@ -120,7 +120,7 @@ Your scheduled tasks can be viewed in the classic Amazon ECS console\. You can a
 
 ## Edit a scheduled task<a name="scheduled-task-edit"></a>
 
-Your scheduled tasks can be edited in the classic Amazon ECS console\. You can also edit the Amazon EventBridge rules that trigger the scheduled tasks in the EventBridge console\.
+You can edit your scheduled tasks in the classic Amazon ECS console\. You can also edit the Amazon EventBridge rules that start the scheduled tasks in the EventBridge console\.
 
 **To edit a scheduled task \(Amazon ECS console\)**
 

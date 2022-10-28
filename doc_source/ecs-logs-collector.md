@@ -5,6 +5,8 @@ If you are unsure how to collect all of the various logs on your container insta
 + Red Hat Enterprise Linux 7
 + Debian 8
 + Ubuntu 14\.04
++  Ubuntu 16\.04 
++ Ubuntu 18\.04 
 + Windows Server 2016
 
 **Note**  

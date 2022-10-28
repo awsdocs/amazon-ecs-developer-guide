@@ -1,17 +1,18 @@
 # Checking stopped tasks for errors<a name="stopped-task-errors"></a>
 
-If you have trouble starting a task, your task might be stopping because of an error\. For example, you run the task and the task displays a `PENDING` status and then disappears\. You can view stopped task errors like this in the Amazon ECS console by viewing the stopped task and inspecting it for error messages\.
+If you have trouble starting a task, your task might be stopping because of an error\. For example, you run the task and the task displays a `PENDING` status and then disappears\. You can view stopped task errors like this in the Amazon ECS console by viewing the stopped task and inspecting it for error messages\. If your task definition uses the `awslogs` log driver, the application logs that are written to Amazon CloudWatch Logs are displayed on the **Logs** tab in the Amazon ECS console as long as the stopped task appears\.
 
 **Important**  
-Amazon ECS also sends task state change events to EventBridge, which you can view if your stopped task has expired from view in the Amazon ECS console\. For more information, see [Task state change events](ecs_cwe_events.md#ecs_task_events)\.  
-For information about how to investigate a task that was stopped more than 1 hour, see [ECS Stopped Tasks in CloudWatch Logs](https://github.com/aws-samples/amazon-ecs-stopped-tasks-cwlogs#ecs-stopped-tasks-in-cloudwatch-logs) on the GitHub website\.
+Stopped tasks only appear in the Amazon ECS console, AWS CLI, and AWS SDKs for at least 1 hour after the task stops\. After that, the details of the stopped task expire and aren't available in Amazon ECS\.  
+Amazon ECS also sends task state change events to Amazon EventBridge\. You can't view events in EventBridge\. Instead, you create rules to send the events to other persistent storage such as Amazon CloudWatch Logs\. You can use the storage to view your stopped task details after it has expired from view in the Amazon ECS console\. For more information, see [Task state change events](ecs_cwe_events.md#ecs_task_events)\.  
+For a sample EventBridge configuration to archive Amazon ECS events to Amazon CloudWatch Logs, see [ECS Stopped Tasks in CloudWatch Logs](https://github.com/aws-samples/amazon-ecs-stopped-tasks-cwlogs#ecs-stopped-tasks-in-cloudwatch-logs) on the GitHub website\.
 
 ------
 #### [ New console ]
 
 **New AWS Management Console**
 
-The following steps can be used to set a container instance to draining using the new AWS Management Console\.
+The following steps can be used to check stopped tasks for errors using the new AWS Management Console\.
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 

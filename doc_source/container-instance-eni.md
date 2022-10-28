@@ -389,15 +389,6 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | r5d\.12xlarge | 7 | 60 | 
 | r5d\.16xlarge | 14 | 120 | 
 | r5d\.24xlarge | 14 | 120 | 
-| r5n\.large | 2 | 10 | 
-| r5n\.xlarge | 3 | 20 | 
-| r5n\.2xlarge | 3 | 40 | 
-| r5n\.4xlarge | 7 | 60 | 
-| r5n\.8xlarge | 7 | 60 | 
-| r5n\.12xlarge | 7 | 60 | 
-| r5n\.16xlarge | 14 | 120 | 
-| r5n\.24xlarge | 14 | 120 | 
-| r5n\.metal | 14 | 120 | 
 | r6a\.large | 2 | 10 | 
 | r6a\.xlarge | 3 | 20 | 
 | r6a\.2xlarge | 3 | 40 | 

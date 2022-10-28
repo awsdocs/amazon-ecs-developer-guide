@@ -7,7 +7,7 @@ Consider the following when specifying a platform version:
 
   When the **LATEST** platform version is selected, `1.4.0` platform version is used\.
 + In the China \(Beijing\) and China \(Ningxia\) Regions, the only supported platform versions are `1.4.0` and `1.3.0`\. The AWS Management Console displays older platform versions but an error will be returned if they are chosen\. The `LATEST` platform version is supported because it uses the `1.4.0` platform version\.
-+ If you have a service with running tasks and want to update their platform version, you can update your service, specify a new platform version, and choose **Force new deployment**\. Your tasks are redeployed with the latest platform version\. For more information, see [Updating a service](update-service.md)\.
++ If you have a service with running tasks and want to update their platform version, you can update your service, specify a new platform version, and choose **Force new deployment**\. Your tasks are redeployed with the latest platform version\. 
 + If your service is scaled up without updating the platform version, those tasks receive the platform version that was specified on the service's current deployment\.
 
 The following are the available Linux platform versions\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.

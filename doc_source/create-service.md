@@ -1,4 +1,4 @@
-# Creating an Amazon ECS service<a name="create-service"></a>
+# Creating an Amazon ECS service in the classic console<a name="create-service"></a>
 
 When you create an Amazon ECS service, you specify the parameters that define what makes up your service and how your service behaves\. These parameters create a service definition\. For more information, see [Service definition parameters](service_definition_parameters.md)\.
 

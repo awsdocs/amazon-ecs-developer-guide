@@ -11,5 +11,5 @@ This documentation helps you understand how to apply the shared responsibility m
 **Topics**
 + [Identity and Access Management for Amazon Elastic Container Service](security-iam.md)
 + [Logging and Monitoring in Amazon Elastic Container Service](ecs-logging-monitoring.md)
-+ [Compliance Validation for Amazon Elastic Container Service](ecs-compliance.md)
++ [Compliance validation for Amazon Elastic Container Service](ecs-compliance.md)
 + [Infrastructure Security in Amazon Elastic Container Service](infrastructure-security.md)

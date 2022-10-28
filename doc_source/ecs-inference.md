@@ -1,13 +1,22 @@
-# Using inference Inf1 instances on Amazon ECS<a name="ecs-inference"></a>
+# Using Trn1 and Inf1 instances on Amazon Linux 2 on Amazon ECS<a name="ecs-inference"></a>
 
- You can register [Amazon EC2 Inf1](http://aws.amazon.com/ec2/instance-types/inf1/) instances to your clusters for machine learning inference workloads\. These Amazon EC2 Inf1 instances are powered by [AWS Inferentia](http://aws.amazon.com/machine-learning/inferentia/) chips, which are custom built by Amazon Web Services to provide high performance and lowest cost inference in the cloud\. Machine learning models are deployed to containers using [AWS Neuron](http://aws.amazon.com/machine-learning/neuron/), which is a specialized SDK\. It consists of a compiler, runtime, and profiling tools that optimize the machine learning inference performance of Inferentia chips\. AWS Neuron supports popular machine learning frameworks such as TensorFlow, PyTorch, and Apache MXNet \(Incubating\)\.
+You can register [Amazon EC2 Trn1](http://aws.amazon.com/ec2/instance-types/trn1/) and [Amazon EC2 Inf1](http://aws.amazon.com/ec2/instance-types/inf1/) instances to your clusters for machine learning workloads\.
+
+Amazon EC2 Trn1 instances are powered by [AWS Trainium](http://aws.amazon.com/machine-learning/trainium/) chips, which are custom built by Amazon Web Services\. These instances provide high performance and low cost training for machine learning in the cloud\. You can train a machine learning inference model using a machine learning framework with AWS Neuron on a Trn1 instance\. Then, you can run the model on a Inf1 instance to use the acceleration of the AWS Inferentia chips\.
+
+The Amazon EC2 Inf1 instances are powered by [AWS Inferentia](http://aws.amazon.com/machine-learning/inferentia/) chips, which are custom built by Amazon Web Services\. They provide high performance and lowest cost inference in the cloud\.
+
+Machine learning models are deployed to containers using [AWS Neuron](http://aws.amazon.com/machine-learning/neuron/), which is a specialized SDK\. The SDK consists of a compiler, runtime, and profiling tools that optimize the machine learning performance of AWS machine learning chips\. AWS Neuron supports popular machine learning frameworks such as TensorFlow, PyTorch, and Apache MXNet\.
 
 ## Considerations<a name="ecs-inference-considerations"></a>
 
 Before you begin deploying Neuron on Amazon ECS, consider the following:
-+ Your clusters can contain a mix of Inf1 and non\-Inf1 instances\.
-+ We recommend that you place only one task with an Inferentia resource requirement for each Inf1 instance\.
-+ When creating a service or running a standalone task, you can use instance type attributes when you configure task placement constraints\. This ensures that the task is launched on the container instance that you specify\. Doing so can help you optimize overall resource utilization and ensure that tasks for inference workloads are on your Inf1 instances\. For more information, see [Amazon ECS task placement](task-placement.md)\.
++ Your clusters can contain a mix of Trn1, Inf1, and other instances\.
++ You need a Linux application in a container that uses a machine learning framework that supports AWS Neuron\.
+**Important**  
+Applications that use other frameworks might not have improved performance on Trn1 and Inf1 instances\.
++ Only one inference or inference\-training task can run on each [AWS Trainium](http://aws.amazon.com/machine-learning/trainium/) or [AWS Inferentia](http://aws.amazon.com/machine-learning/inferentia/) chip\. Each chip has two cores that are associated with it\. You can run as many tasks as there are chips for each of your Trn1 and Inf1 instances\.
++ When creating a service or running a standalone task, you can use instance type attributes when you configure task placement constraints\. This ensures that the task is launched on the container instance that you specify\. Doing so can help you optimize overall resource utilization and ensure that tasks for inference workloads are on your Trn1 or Inf1 instances\. For more information, see [Amazon ECS task placement](task-placement.md)\.
 
   In the following example, a task is run on an `Inf1.xlarge` instance on your `default` cluster\.
 
@@ -17,19 +26,19 @@ Before you begin deploying Neuron on Amazon ECS, consider the following:
        --task-definition ecs-inference-task-def \
        --placement-constraints type=memberOf,expression="attribute:ecs.instance-type == Inf1.xlarge"
   ```
-+ Inferentia resource requirements can't be defined in a task definition\. However, you can configure a container to use specific Inferentia available on the host container nstance\. You can do so by using the `linuxParameters` parameter and specifying the device details\. For more information, see [Task definition requirements](#ecs-inference-requirements)\.
++ Neuron resource requirements can't be defined in a task definition\. Instead, you configure a container to use specific AWS Trainium or AWS Inferentia chips available on the host container instance\. Do this by using the `linuxParameters` parameter and specifying the device details\. For more information, see [Task definition requirements](#ecs-inference-requirements)\.
 
-## Using the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI<a name="ecs-inference-ami"></a>
+## Using the Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI<a name="ecs-inference-ami"></a>
 
-Amazon ECS provides an Amazon ECS optimized AMI that's based on Amazon Linux 2 for Inferentia workloads\. It is pre\-configured with AWS Inferentia drivers and the AWS Neuron runtime for Docker\. This AMI makes running machine learning inference workloads easier on Amazon ECS\.
+Amazon ECS provides an Amazon ECS optimized AMI that's based on Amazon Linux 2 for AWS Trainium and AWS Inferentia workloads\. It comes with the AWS Neuron drivers and runtime for Docker\. This AMI makes running machine learning inference workloads easier on Amazon ECS\.
 
-We recommend using the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI when launching your Amazon EC2 Inf1 instances\. You can retrieve the current Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI using the AWS CLI with the following command\.
+We recommend using the Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI when launching your Amazon EC2 Trn1 and Inf1 instances\. You can retrieve the current Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI using the AWS CLI with the following command\.
 
 ```
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended
 ```
 
-The following table provides a link to retrieve the current Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI IDs by Region\.
+The following table provides a link to retrieve the current Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI IDs by Region\.
 
 
 |  Region name  |  Region  |  AMI ID  | 
@@ -58,7 +67,7 @@ The following table provides a link to retrieve the current Amazon ECS\-optimize
 
 ## Task definition requirements<a name="ecs-inference-requirements"></a>
 
-To deploy Neuron on Amazon ECS, your task definition must contain the container definition for a pre\-built container serving the inference model for TensorFlow\. It's provided by AWS Deep Learning Containers\. This container contains the AWS Neuron runtime and the TensorFlow Serving application\. At start up, this container fetches your model from Amazon S3, launches Neuron TensorFlow Serving with the saved model, and waits for prediction requests\. In the following example, the container image has TensorFlow 1\.15 and Ubuntu 18\.04\. A complete list of pre\-built Deep Learning Containers optimized for Neuron is maintained on GitHub\. For more information, see [Neuron Inference Containers](https://github.com/aws/deep-learning-containers/blob/master/available_images.md#neuron-inference-containers)\.
+To deploy Neuron on Amazon ECS, your task definition must contain the container definition for a pre\-built container serving the inference model for TensorFlow\. It's provided by AWS Deep Learning Containers\. This container contains the AWS Neuron runtime and the TensorFlow Serving application\. At startup, this container fetches your model from Amazon S3, launches Neuron TensorFlow Serving with the saved model, and waits for prediction requests\. In the following example, the container image has TensorFlow 1\.15 and Ubuntu 18\.04\. A complete list of pre\-built Deep Learning Containers optimized for Neuron is maintained on GitHub\. For more information, see [Neuron Inference Containers](https://github.com/aws/deep-learning-containers/blob/master/available_images.md#neuron-inference-containers)\.
 
 ```
 763104351884.dkr.ecr.us-east-1.amazonaws.com/tensorflow-inference-neuron:1.15.4-neuron-py37-ubuntu18.04
@@ -66,11 +75,34 @@ To deploy Neuron on Amazon ECS, your task definition must contain the container 
 
 Alternatively, you can build your own Neuron sidecar container image\. For more information, see [Tutorial: Neuron TensorFlow Serving](https://github.com/aws/aws-neuron-sdk/blob/master/neuron-guide/neuron-frameworks/tensorflow-neuron/tutorials/tensorflow-tutorial-setup.rst) on GitHub\.
 
-The following is an example Linux containers on Fargate task definition, displaying the syntax to use\.
+The task definition must be specific to a single instance type\. You must configure a container to use specific AWS Trainium or AWS Inferentia devices that are available on the host container instance\. You can do so using the `linuxParameters` parameter\. The following table details the chips that are specific to each instance type\.
+
+
+| Instance Type | vCPUs | RAM \(GiB\) | AWS ML accelerator chips | Device Paths | 
+| --- | --- | --- | --- | --- | 
+| trn1\.2xlarge | 8 | 32 | 1 | /dev/neuron0 | 
+| trn1\.32xlarge | 128 | 512 | 16 |  /dev/neuron0, /dev/neuron1, /dev/neuron2, /dev/neuron3, /dev/neuron4, /dev/neuron5, /dev/neuron6, /dev/neuron7, /dev/neuron8, /dev/neuron9, /dev/neuron10, /dev/neuron11, /dev/neuron12, /dev/neuron13, /dev/neuron14, /dev/neuron15  | 
+| inf1\.xlarge | 4 | 8 | 1 | /dev/neuron0 | 
+| inf1\.2xlarge | 8 | 16 | 1 | /dev/neuron0 | 
+| inf1\.6xlarge | 24 | 48 | 4 | /dev/neuron0, /dev/neuron1, /dev/neuron2, /dev/neuron3 | 
+| inf1\.24xlarge | 96 | 192 | 16 |  /dev/neuron0, /dev/neuron1, /dev/neuron2, /dev/neuron3, /dev/neuron4, /dev/neuron5, /dev/neuron6, /dev/neuron7, /dev/neuron8, /dev/neuron9, /dev/neuron10, /dev/neuron11, /dev/neuron12, /dev/neuron13, /dev/neuron14, /dev/neuron15  | 
+
+The following is an example Linux task definition for `inf1.xlarge`, displaying the syntax to use\.
 
 ```
 {
     "family": "ecs-neuron",
+    "requiresCompatibilities": ["EC2"],
+    "placementConstraints": [
+        {
+            "type": "memberOf",
+            "expression": "attribute:ecs.os-type == linux"
+        },
+        {
+            "type": "memberOf",
+            "expression": "attribute:ecs.instance-type == inf1.xlarge"
+        }
+    ],
     "executionRoleArn": "${YOUR_EXECUTION_ROLE}",
     "containerDefinitions": [
         {

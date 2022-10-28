@@ -19,15 +19,20 @@ For task definitions that only specify `EC2` for the `requiresCompatibilities` p
 
 For task definitions that specify `FARGATE` for the `requiresCompatibilities` parameter \(even if `EC2` is also specified\), you must use one of the values in the following table, which determines your range of supported values for the CPU and memory parameter\.
 
-Supported task CPU and memory values for tasks that are hosted on Fargate are as follows\.
+For tasks hosted on Fargate, the following table shows the valid CPU and memory combinations\.
 
 
-| CPU value | Memory value | 
-| --- | --- | 
-|  256 \(\.25 vCPU\)  |  512 MB, 1 GB, 2 GB  | 
-|  512 \(\.5 vCPU\)  |  1 GB, 2 GB, 3 GB, 4 GB  | 
-|  1024 \(1 vCPU\)  |  2 GB, 3 GB, 4 GB, 5 GB, 6 GB, 7 GB, 8 GB  | 
-|  2048 \(2 vCPU\)  |  Between 4 GB and 16 GB in 1 GB increments  | 
-|  4096 \(4 vCPU\)  |  Between 8 GB and 30 GB in 1 GB increments  | 
-| 8192 \(8 vCPU\)  | Between 16 GB and 60 GB in 4 GB increments | 
-| 16384 \(16vCPU\)  | Between 32 GB and 120 GB in 8 GB increments | 
+|  CPU value  |  Memory value  |  Operating systems supported for AWS Fargate  | 
+| --- | --- | --- | 
+|  256 \(\.25 vCPU\)  |  512 MiB, 1 GB, 2 GB  |  Linux  | 
+|  512 \(\.5 vCPU\)  |  1 GB, 2 GB, 3 GB, 4 GB  |  Linux  | 
+|  1024 \(1 vCPU\)  |  2 GB, 3 GB, 4 GB, 5 GB, 6 GB, 7 GB, 8 GB  |  Linux, Windows  | 
+|  2048 \(2 vCPU\)  |  Between 4 GB and 16 GB in 1 GB increments  |  Linux, Windows  | 
+|  4096 \(4 vCPU\)  |  Between 8 GB and 30 GB in 1 GB increments  |  Linux, Windows  | 
+|  8192 \(8 vCPU\)  This option requires Linux platform `1.4.0` or later\.   |  Between 16 GB and 60 GB in 4 GB increments  |  Linux  | 
+|  16384 \(16vCPU\)  This option requires Linux platform `1.4.0` or later\.   |  Between 32 GB and 120 GB in 8 GB increments  |  Linux  | 
+
+For tasks hosted on Amazon EC2, supported task CPU values are between 128 CPU units \(0\.125 vCPUs\) and 10240 CPU units \(10 vCPUs\)\.
+
+**Note**  
+Task\-level CPU and memory parameters are ignored for Windows containers\.

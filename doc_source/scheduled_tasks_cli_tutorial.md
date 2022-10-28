@@ -5,14 +5,14 @@ This topic describes how to create a scheduled task using the AWS CLI\. The sche
 Complete the following prerequisites:
 + Set up an AWS account and an *ecsEventsRole* associated with your account\.
 + Install and configure the AWS CLI version 2\. For more information, see [Installing the AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) and [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html)\.
-+ A registered task definition\. If you haven't yet created and registered a task definition, see [Getting started with the classic console using Linux containers on AWS Fargate](getting-started-fargate.md)\.
-+ An Amazon EC2 Linux instance running on your default ECS cluster\. For instructions on how to create these resources, see [Getting started with the classic console using Linux containers on AWS Fargate](getting-started-fargate.md)\.
++ A registered task definition\. If you haven't yet created and registered a task definition, see [Getting started with the new console using Linux containers on AWS Fargate](getting-started-fargate.md)\.
++ An Amazon EC2 Linux instance running on your default ECS cluster\. For instructions on how to create these resources, see [Getting started with the new console using Linux containers on AWS Fargate](getting-started-fargate.md)\.
 
   Before you verify the scheduling results, make sure that the cluster isn't running a service or task\. From the ECS console, delete the cluster tasks and service before trying the example\.
 
 **To create a scheduled task \(AWS CLI\)**
 
-1. Create the CloudWatch Events rule\. This example creates a rule named `MyRule1` that's triggered every day at 12:00pm UTC\. You can change the time so that it's more convenient for verifying the schedule results\. The first time placeholder is minutes and the second placeholder is UTC hours\. For other examples of rule expressions, see [Schedule Expressions for Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) in the *Amazon CloudWatch Events User Guide*\.
+1. Create the CloudWatch Events rule\. This example creates a rule named `MyRule1` that's started every day at 12:00pm UTC\. You can change the time so that it's more convenient for verifying the schedule results\. The first time placeholder is minutes and the second placeholder is UTC hours\. For other examples of rule expressions, see [Schedule Expressions for Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) in the *Amazon CloudWatch Events User Guide*\.
 
    ```
    aws events put-rule \

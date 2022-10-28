@@ -7,7 +7,7 @@ The following procedures help you to create an Auto Scaling group for an Amazon 
 
 Depending on the Amazon EC2 instance types that you use in your clusters, and quantity of container instances that you have in a cluster, your tasks have a limited amount of resources that they can use while running\. Amazon ECS monitors the resources available in the cluster to work with the schedulers to place tasks\. If your cluster runs low on any of these resources, such as memory, you are eventually unable to launch more tasks until you add more container instances, reduce the number of desired tasks in a service, or stop some of the running tasks in your cluster to free up the constrained resource\.
 
-In this tutorial, you create a CloudWatch alarm and a step scaling policy using the `MemoryReservation` metric for your cluster\. When the memory reservation of your cluster rises above 75% \(meaning that only 25% of the memory in your cluster is available for new tasks to reserve\), the alarm triggers the Auto Scaling group to add another instance and provide more resources for your tasks and services\.
+In this tutorial, you create a CloudWatch alarm and a step scaling policy using the `MemoryReservation` metric for your cluster\. When the memory reservation of your cluster rises above 75% \(meaning that only 25% of the memory in your cluster is available for new tasks to reserve\), the alarm notifies the Auto Scaling group to add another instance and provide more resources for your tasks and services\.
 
 ## Prerequisites<a name="as-cw-tutorial-prereqs"></a>
 
@@ -36,11 +36,11 @@ For this tutorial, you create an alarm on the cluster `MemoryReservation` metric
 1. Set the threshold and time period requirement to `MemoryReservation` greater than 75% for 1 period\.  
 ![\[CloudWatch alarm threshold\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/alarm-threshold.png)
 
-1. \(Optional\) Configure a notification to send when the alarm is triggered\. You can also choose to delete the notification if you don't want to configure one now\.
+1. \(Optional\) Configure a notification to send when the alarm is generated\. You can also choose to delete the notification if you don't want to configure one now\.
 
-1. Choose **Create Alarm**\. Now you can use this alarm to trigger your Auto Scaling group to add a container instance when the memory reservation is above 75%\.
+1. Choose **Create Alarm**\. Now you can use this alarm to have your Auto Scaling group to add a container instance when the memory reservation is above 75%\.
 
-1. \(Optional\) You can also create another alarm that triggers when the memory reservation is below 25%, which you can use to remove a container instance from your Auto Scaling group\.
+1. \(Optional\) You can also create another alarm that starts when the memory reservation is below 25%, which you can use to remove a container instance from your Auto Scaling group\.
 
 ## Step 2: Create a launch configuration for an Auto Scaling group<a name="create-as-group"></a>
 
@@ -106,9 +106,9 @@ After the launch configuration is complete, continue with the following procedur
 
 1. In the **Increase Group Size** section, enter the following information:
    + **Execute policy when:** Select the `memory-above-75-pct` CloudWatch alarm that you configured earlier\.
-   + **Take the action:** Enter the number of capacity units \(instances\) to add to your cluster when the alarm is triggered\.
+   + **Take the action:** Enter the number of capacity units \(instances\) to add to your cluster when the alarm is generated\.
 
-1. If you configured an alarm to trigger a group size reduction, set that alarm in the **Decrease Group Size** section and specify how many instances to remove if that alarm is triggered\. Otherwise, collapse the **Decrease Group Size** section by choosing the **X** in the upper\-right\-hand corner of the section\.
+1. If you configured an alarm to start a group size reduction, set that alarm in the **Decrease Group Size** section and specify how many instances to remove if that alarm is generated\. Otherwise, collapse the **Decrease Group Size** section by choosing the **X** in the upper\-right\-hand corner of the section\.
 **Note**  
 If you configure your Auto Scaling group to remove container instances, any tasks running on the removed container instances are stopped\. If your tasks are running as part of a service, Amazon ECS restarts those tasks on another instance if the required resources are available \(CPU, memory, ports\)\. However, tasks that were started manually are not restarted automatically\.
 

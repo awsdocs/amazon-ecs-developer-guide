@@ -19,7 +19,7 @@ You can modify the following default options:
 
 **To create a new cluster \(New Amazon ECS console\)**
 
-Before you begin, be sure that you create an IAM user, and then assign the appropriate IAM permissions\. For more information, see [Create an IAM user](get-set-up-for-amazon-ecs.md#create-an-iam-user) and [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies)\.
+Before you begin, assign the appropriate IAM permission\. For more information, see [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies)\.
 
 1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
@@ -39,7 +39,7 @@ Before you begin, be sure that you create an IAM user, and then assign the appro
 
 1. \(Optional\) To turn on Container Insights, expand **Monitoring**, and then turn on **Use Container Insights**\.
 
-1. \(Optional\) To manage the cluster tags, expand **Tags**, and then perform one of the following operations:
+1. \(Optional\) To help identify your cluster, expand **Tags**, and then configure your tags\.
 
    \[Add a tag\] Choose **Add tag** and do the following:
    + For **Key**, enter the key name\.

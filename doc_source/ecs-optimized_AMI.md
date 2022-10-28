@@ -16,9 +16,9 @@ The following variants of the Amazon ECS\-optimized AMI are available for your A
 + **Amazon ECS GPU\-optimized AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 GPU\-based instances for your Amazon ECS workloads\. It comes pre\-configured with NVIDIA kernel drivers and a Docker GPU runtime which makes running workloads that take advantage of GPUs on Amazon ECS\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
 
   The Amazon ECS GPU\-optimized AMI does not come with the AWS CLI preinstalled\.
-+ **Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 Inf1 instances\. It comes pre\-configured with AWS Inferentia drivers and the AWS Neuron runtime for Docker which makes running machine learning inference workloads easier on Amazon ECS\. For more information, see [Using inference Inf1 instances on Amazon ECS](ecs-inference.md)\.
++ **Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI** – Based on Amazon Linux 2, this AMI is recommended for use when launching your Amazon EC2 Inf1 instances\. It comes pre\-configured with AWS Inferentia drivers and the AWS Neuron runtime for Docker which makes running machine learning inference workloads easier on Amazon ECS\. For more information, see [Using Trn1 and Inf1 instances on Amazon Linux 2 on Amazon ECS](ecs-inference.md)\.
 
-  The Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI does not come with the AWS CLI preinstalled\.
+  The Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI does not come with the AWS CLI preinstalled\.
 + **Amazon ECS\-optimized Amazon Linux 2022 AMI** – Amazon Linux 2022 is the next generation of Amazon Linux from AWS\. For most cases, recommended for launching your Amazon EC2 instances for your Amazon ECS workloads\. For more information, see [What is Amazon Linux 2022](https://docs.aws.amazon.com/linux/al2022/ug/what-is-amazon-linux.html) in the *Amazon Linux 2022 User Guide*\.
 **Important**  
 The Amazon ECS\-Optimized Amazon Linux 2022 AMI is in preview and subject to change\.
@@ -163,13 +163,13 @@ For a full list of current and previous versions of the Amazon ECS GPU\-optimize
 
 ### Amazon Linux 2 \(Inferentia\)<a name="infami"></a>
 
-You can retrieve the current Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI using the AWS CLI with the following command:
+You can retrieve the current Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI using the AWS CLI with the following command:
 
 ```
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended
 ```
 
-The following table provides a link to retrieve the current Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI IDs by Region\.
+The following table provides a link to retrieve the current Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI IDs by Region\.
 
 
 |  Region name  |  Region  |  AMI ID  | 
@@ -196,7 +196,7 @@ The following table provides a link to retrieve the current Amazon ECS\-optimize
 |  China \(Beijing\)  |  `cn-north-1`  |  [View AMI ID](https://cn-north-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=cn-north-1#)  | 
 |  China \(Ningxia\)  |  `cn-northwest-1`  |  [View AMI ID](https://cn-northwest-1.console.amazonaws.cn/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended/image_id/description?region=cn-northwest-1#)  | 
 
-For a full list of current and previous versions of the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\.
+For a full list of current and previous versions of the Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package see [Linux Amazon ECS\-optimized AMIs versions](ecs-ami-versions.md#ecs-ami-versions-linux)\.
 
 ### Amazon Linux 2022<a name="al2022ami"></a>
 

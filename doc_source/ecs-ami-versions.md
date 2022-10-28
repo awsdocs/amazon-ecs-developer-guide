@@ -13,6 +13,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Amazon Linux 2 AMI  |  Amazon ECS container agent version  |  Docker version  |  `ecs-init` version  | 
 | --- | --- | --- | --- | 
+| 20221010 | `1.64.0` | `20.10.13` | `1.64.0-1` | 
 | 20220921 | `1.63.1` | `20.10.13` | `1.63.1-1` | 
 | 20220831 | `1.62.2` | `20.10.13` | `1.62.2-1` | 
 | 20220822 | `1.62.2` | `20.10.13` | `1.62.2-1` | 
@@ -117,6 +118,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20221010 | `1.64.0` | `20.10.13` | `1.64.0-1` | 
 | 20220921 | `1.63.1` | `20.10.13` | `1.63.1-1` | 
 | 20220831 | `1.62.2` | `20.10.13` | `1.62.2-1` | 
 | 20220822 | `1.62.2` | `20.10.13` | `1.62.2-1` | 
@@ -218,6 +220,7 @@ The table below lists the current and previous versions of the Amazon ECS GPU\-o
 
 | Amazon ECS GPU\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | NVIDIA driver version | 
 | --- | --- | --- | --- | --- | 
+| 20221010 | `1.64.0` | `20.10.13` | `1.64.0-1` | `470.57.02` | 
 | 20220921 | `1.63.1` | `20.10.13` | `1.63.1-1` | `470.57.02` | 
 | 20220831 | `1.62.2` | `20.10.13` | `1.62.2-1` | `470.57.02` | 
 | 20220822 | `1.62.2` | `20.10.13` | `1.62.2-1` | `470.57.02` | 
@@ -315,11 +318,12 @@ aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/gpu
 
 ### Amazon Linux 2 \(Inferentia\) versions<a name="infami-versions"></a>
 
-The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+The table below lists the current and previous versions of the Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
 
 
-| Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20221010 | `1.64.0` | `20.10.13` | `1.64.0-1` | 
 | 20220921 | `1.63.1` | `20.10.13` | `1.63.1-1` | 
 | 20220822 | `1.62.2` | `20.10.13` | `1.62.2-1` | 
 | 20220630 | `1.61.3` | `20.10.13` | `1.61.3-1` | 
@@ -382,7 +386,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 | 20200706 | `1.41.1` | `19.03.6-ce` | `1.41.1-1` | 
 | 20200623 | `1.41.0` | `19.03.6-ce` | `1.41.0-1` | 
 
-You can retrieve the current Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI using the AWS CLI with the following command:
+You can retrieve the current Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI using the AWS CLI with the following command:
 
 ```
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended
@@ -396,7 +400,7 @@ The Amazon ECS\-Optimized Amazon Linux 2022 AMI is in preview and subject to cha
 The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2022 AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
 
 
-| Amazon ECS\-optimized Amazon Linux 2 \(Inferentia\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
 | 20220630 | `1.61.3` | `20.10.13` | `1.61.3-1` | 
 | 20220627 | `1.61.3` | `20.10.13` | `1.61.3-1 ` | 
@@ -422,6 +426,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 2018\.03\.20221010 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20220627 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20220520 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20220509 | `1.51.0` | `20.10.13` | `1.51.0-1` | 

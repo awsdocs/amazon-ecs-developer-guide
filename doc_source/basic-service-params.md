@@ -16,11 +16,11 @@ If your cluster is configured with a default capacity provider strategy, you can
 
 1. On the navigation bar, select the Region that your cluster is in\.
 
-1. In the navigation pane, choose **Task Definitions** and select the task definition to create your service from\.
+1. In the navigation pane, choose **Task Definitions** and choose the task definition to create your service from\.
 
-1. On the **Task Definition name** page, select the revision of the task definition to create your service from\.
+1. On the **Task Definition name** page, choose the revision of the task definition to create your service from\.
 
-1. Review the task definition, and choose **Actions**, **Create Service**\.
+1. Review the task definition, and then choose **Actions**, **Create Service**\.
 
 1. On the **Configure service** page, complete the following steps\.
 
@@ -36,7 +36,7 @@ When the **LATEST** platform version is selected, we validate the operating syst
 
    1. **Cluster**: Select the cluster to create your service in\.
 
-   1. **Service name**: Type a name for your service\. It must be unique\.
+   1. **Service name**: Enter a unique name for your service\. 
 
    1. **Service type**: Select a scheduling strategy for your service\. For more information, see [Service scheduler concepts](ecs_services.md#service_scheduler)\.
 
@@ -44,9 +44,9 @@ When the **LATEST** platform version is selected, we validate the operating syst
 **Note**  
 If your launch type is `EC2` and your task definition uses static host port mappings on your container instances, then you need at least one container instance with the specified port available in your cluster for each task in your service\. This restriction doesn't apply if your task definition uses dynamic host port mappings with the `bridge` network mode\. For more information, see [portMappings](task_definition_parameters.md#ContainerDefinition-portMappings)\.
 
-   1. If you're using the **Rolling update** deployment type, fill out the following deployment configuration parameters\. For more information about how these parameters are used, see [Deployment configuration](service_definition_parameters.md#sd-deploymentconfiguration)\.
-      + **Minimum healthy percent**: Specify a lower limit for the number of tasks that your service must remain in the `RUNNING` state during a deployment\. Specify the number as a percentage of the desired number of tasks\. This number must be a whole number\.
-      + **Maximum percent**: Specify an upper limit for the number of tasks that your service allows in the `RUNNING` or `PENDING` state during a deployment\. Specify the number as a percentage of the desired number of tasks\. This number must be a whole number\.
+   1. If you're using the **Rolling update** deployment type, specify the following deployment configuration parameters\. For more information about how these parameters are used, see [Deployment configuration](service_definition_parameters.md#sd-deploymentconfiguration)\.
+      + **Minimum healthy percent**: Enter a lower limit for the number of tasks that your service must remain in the `RUNNING` state during a deployment\. Specify the number as a percentage of the desired number of tasks\. This number must be a whole number\.
+      + **Maximum percent**: Enter an upper limit for the number of tasks that your service allows in the `RUNNING` or `PENDING` state during a deployment\. Specify the number as a percentage of the desired number of tasks\. This number must be a whole number\.
 
 1. For **Deployment circuit breaker**, choose the deployment circuit breaker logic\. For more information, see [Using the deployment circuit breaker](deployment-type-ecs.md#deployment-circuit-breaker)\.
 
@@ -54,13 +54,13 @@ If your launch type is `EC2` and your task definition uses static host port mapp
 
    1. For **Deployment type**, choose whether your service uses a rolling update deployment or a blue/green deployment using AWS CodeDeploy\. For more information, see [Amazon ECS Deployment types](deployment-types.md)\.
 
-   1. If you selected the blue/green deployment type, complete the following steps:
+   1. For blue/green deployments, complete the following steps:
 
-      1. For **Deployment configuration** choose the deployment configuration to use for the service\. This determines how traffic is shifted when your task set is updated\. For more information, see [Blue/Green deployment with CodeDeploy](deployment-type-bluegreen.md)
+      1. For **Deployment configuration** choose how traffic is shifted when your task set is updated\. For more information, see [Blue/Green deployment with CodeDeploy](deployment-type-bluegreen.md)
 
       1. For **Service role for CodeDeploy** choose the IAM service role for AWS CodeDeploy\. For more information, see [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)
 
-1. \(Optional\) If you selected the EC2 launch type and the `REPLICA` service type, for **Task Placement**, you can specify how tasks are placed using task placement strategies and constraints\. Choose from the following options\. For more information, see [Amazon ECS task placement](task-placement.md)\.
+1. \(Optional\) If you selected the EC2 launch type and the `REPLICA` service type, for **Task Placement**, select how tasks are placed using task placement strategies and constraints\. 
    + **AZ Balanced Spread** \- Distribute tasks across Availability Zones and across container instances in the Availability Zone\.
    + **AZ Balanced BinPack** \- Distribute tasks across Availability Zones and across container instances with the least available memory\.
    + **BinPack** \- Distribute tasks based on the least available amount of CPU or memory\.

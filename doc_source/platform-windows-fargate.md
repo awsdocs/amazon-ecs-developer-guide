@@ -6,7 +6,7 @@ Consider the following when specifying a platform version:
 + When specifying a platform version, you can use either a specific version number, for example `1.0.0`, or `LATEST`\.
 
   When the **LATEST** platform version is selected the `1.0.0` platform is used\.
-+ If you have a service with running tasks and want to update their platform version, you can update your service, specify a new platform version, and choose **Force new deployment**\. Your tasks are redeployed with the latest platform version\. For more information, see [Updating a service](update-service.md)\.
++ If you have a service with running tasks and want to update their platform version, you can update your service, specify a new platform version, and choose **Force new deployment**\. Your tasks are redeployed with the latest platform version\. 
 + If your service is scaled up without updating the platform version, those tasks receive the platform version that was specified on the service's current deployment\.
 
 The following are the available platform versions for Windows containers\.

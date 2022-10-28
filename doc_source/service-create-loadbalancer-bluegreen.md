@@ -16,7 +16,7 @@ Allows containers to use dynamic host port mapping\. With host port mapping, you
 
 1. For **Load balancer name**, choose the name of the load balancer to use with your service\. Only load balancers that correspond to the load balancer type that you selected earlier are visible here\.
 
-1. The next step depends on the load balancer type for your service\. If you chose an Application Load Balancer, follow the steps in [To configure an Application Load Balancer for the blue/green deployment type](#create-service-configure-alb-bluegreen)\. If you chose a Network Load Balancer, follow the steps in [To configure a Network Load Balancer for the blue/green deployment type](#create-service-configure-nlb-bluegreen)\.<a name="create-service-configure-alb-bluegreen"></a>
+1. The next step depends on the load balancer type for your service\. If you chose an Application Load Balancer, follow the steps in [To configure an Application Load Balancer](service-create-loadbalancer-rolling.md#create-service-configure-alb)\. If you chose a Network Load Balancer, follow the steps in [To configure a Network Load Balancer](service-create-loadbalancer-rolling.md#create-service-configure-nlb)\.<a name="create-service-configure-alb-bluegreen"></a>
 
 **To configure an Application Load Balancer for the blue/green deployment type**
 
@@ -58,7 +58,5 @@ If your service's task definition uses the `awsvpc` network mode \(which is requ
    + For **Target group name**, enter a name for your target group\.
    + For **Target group protocol**, enter the protocol to use for routing traffic to your tasks\.
    + For **Health check path**, enter the path to which the load balancer should send health check pings\.
-
-1. Repeat the steps for target group 2\.
 
 1. When you are finished configuring your Network Load Balancer, choose **Next Step**\. Navigate to [Step 4: Configuring your service to use Service Discovery](service-configure-servicediscovery.md)\.

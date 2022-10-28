@@ -7,6 +7,9 @@ The Amazon ECS\-optimized AMI metadata, including the AMI name, Amazon ECS conta
 ## Amazon ECS\-optimized AMI variants<a name="ecs-optimized-ami-variants"></a>
 
 The following Windows Server variants of the Amazon ECS\-optimized AMI are available for your Amazon EC2 instances\. For more information, see [Amazon EC2 Windows containers](ECS_Windows.md)\.
+
+**Important**  
+All ECS\-optimized AMI variants produced after August will be migrating from Docker EE \(Mirantis\) to Docker CE \(Moby project\)\.
 + **Amazon ECS\-optimized Windows Server 2022 Full AMI** 
 + **Amazon ECS\-optimized Windows Server 2022 Core AMI** 
 + **Amazon ECS\-optimized Windows Server 2019 Full AMI** 
@@ -26,6 +29,7 @@ On August 9, 2022, the Amazon ECS\-optimized Windows Server 20H2 Core AMI reache
 The following are the details for retrieving the AMI IDs for each of the Windows variants of the Amazon ECS\-optimized AMI\. You can subscribe to the Windows AMI Amazon SNS topics to be notified when a new AMI is released or an AMI version is marked private\. For more information, see [Subscribing to Amazon ECS\-optimized AMI update notifications](ECS-AMI-windows-SubscribeTopic.md)\.
 
 **Important**  
+ All ECS\-optimized AMI variants produced after August will be migrating from Docker EE \(Mirantis\) to Docker CE \(Moby project\)\.  
 To ensure that customers have the latest security updates by default, Amazon ECS maintains at least the last three Windows Amazon ECS\-optimized AMIs\. After releasing new Windows Amazon ECS\-optimized AMIs, Amazon ECS makes the Windows Amazon ECS\-optimized AMIs that are older private\. If there is a private AMI that you need access to, let us know by filing a ticket with Cloud Support\.
 
 ### Windows Server 2022 Full<a name="windows-2022-full-ami"></a>

@@ -46,6 +46,14 @@ The following information is returned from the task metadata endpoint \(`${ECS_C
 `Cluster`  
 The Amazon Resource Name \(ARN\) or short name of the Amazon ECS cluster to which the task belongs\.
 
+`ServiceName`  
+The name of the service to which the task belongs\. ServiceName will appear for Amazon EC2 and Amazon ECS Anywhere container instances if the task is associated with a service\.  
+The `ServiceName` metadata is only included when using Amazon ECS container agent version `1.63.1` or later\.
+
+`VPCID`  
+The VPC ID of the Amazon EC2 container instance\. This field only appears for Amazon EC2 instances\.  
+The `VPCID` metadata is only included when using Amazon ECS container agent version `1.63.1` or later\.
+
 `TaskARN`  
 The full Amazon Resource Name \(ARN\) of the task to which the container belongs\.
 
@@ -190,12 +198,14 @@ When querying the `${ECS_CONTAINER_METADATA_URI_V4}/task` endpoint you are retur
     "Cluster": "default",
     "TaskARN": "arn:aws:ecs:us-west-2:111122223333:task/default/158d1c8083dd49d6b527399fd6414f5c",
     "Family": "curltest",
+    "ServiceName": "MyService",
     "Revision": "26",
     "DesiredStatus": "RUNNING",
     "KnownStatus": "RUNNING",
     "PullStartedAt": "2020-10-02T00:43:06.202617438Z",
     "PullStoppedAt": "2020-10-02T00:43:06.31288465Z",
     "AvailabilityZone": "us-west-2d",
+    "VPCID": "vpc-1234567890abcdef0",
     "LaunchType": "EC2",
     "Containers": [
         {
@@ -291,12 +301,14 @@ When querying the `${ECS_CONTAINER_METADATA_URI_V4}/taskWithTags` endpoint you a
     "Cluster": "default",
     "TaskARN": "arn:aws:ecs:us-west-2:111122223333:task/default/158d1c8083dd49d6b527399fd6414f5c",
     "Family": "curltest",
+    "ServiceName": "MyService",
     "Revision": "26",
     "DesiredStatus": "RUNNING",
     "KnownStatus": "RUNNING",
     "PullStartedAt": "2020-10-02T00:43:06.202617438Z",
     "PullStoppedAt": "2020-10-02T00:43:06.31288465Z",
     "AvailabilityZone": "us-west-2d",
+    "VPCID": "vpc-1234567890abcdef0",
     "TaskTags": {
         "tag-use": "task-metadata-endpoint-test"
     },
@@ -398,12 +410,14 @@ When querying the `${ECS_CONTAINER_METADATA_URI_V4}/taskWithTags` endpoint you a
     "Cluster": "default",
     "TaskARN": "arn:aws:ecs:us-west-2:111122223333:task/default/158d1c8083dd49d6b527399fd6414f5c",
     "Family": "curltest",
+    "ServiceName": "MyService",
     "Revision": "26",
     "DesiredStatus": "RUNNING",
     "KnownStatus": "RUNNING",
     "PullStartedAt": "2020-10-02T00:43:06.202617438Z",
     "PullStoppedAt": "2020-10-02T00:43:06.31288465Z",
     "AvailabilityZone": "us-west-2d",
+    "VPCID": "vpc-1234567890abcdef0",
     "Errors": [
         {
             "ErrorField": "ContainerInstanceTags",

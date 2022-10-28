@@ -71,7 +71,7 @@ FireLens manages the `match` configuration\. This configuration isn't specified 
 
 ## Using Amazon ECS metadata<a name="firelens-taskdef-metadata"></a>
 
-When specifying a FireLens configuration in a task definition, you can optionally toggle the value for `enable-ecs-log-metadata`\. By default, Amazon ECS adds additional fields in your log entries that help identify the source of the logs\. You can disable this action by setting `enable-ecs-log-metadata` to `false`\.
+When specifying a FireLens configuration in a task definition, you can optionally toggle the value for `enable-ecs-log-metadata`\. By default, Amazon ECS adds additional fields in your log entries that help identify the source of the logs\. You can turn off this action by setting `enable-ecs-log-metadata` to `false`\.
 + `ecs_cluster` – The name of the cluster that the task is part of\.
 + `ecs_task_arn` – The full Amazon Resource Name \(ARN\) of the task that the container is part of\.
 + `ecs_task_definition` – The task definition name and revision that the task is using\.

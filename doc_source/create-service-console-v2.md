@@ -1,8 +1,32 @@
 # Creating a service using the new console<a name="create-service-console-v2"></a>
 
+You can create an Amazon ECS service using the new console\. 
 
+Consider the following when you use the new console;
++ Currently, the new console supports only the **Rolling update** \(`ECS`\) deployment type\. To use any other deployment type, switch to the classic console\.
++ Currently, the new console supports only the **Target tracking** scaling policy\. To use step scaling, switch to the classic console\.
++ There are two compute options that distribute your tasks\.
+  + A **capacity provider strategy** causes Amazon ECS to distribute your tasks in one or across multiple capacity providers\. 
+  + A **launch type** causes Amazon ECS to launch our tasks directly on either Fargate or on the Amazon EC2 instances that you have manually registered to your clusters\.
++ Task definitions that use the `awsvpc` network mode or services configured to use a load balancer must have a networking configuration\. By default, the console selects the default Amazon VPC along with all subnets and the default security group within the default Amazon VPC\. 
++ The default the task placement strategy distributes tasks evenly across Availability Zones\. 
++ When you use the **Launch Type** for your service deployment, by default the service starts in the subnets in your cluster VPC\.
++ For the **capacity provider strategy**, the console selects a compute option by default\. The following describes the order that the console uses to select a default:
+  + If your cluster has a default capacity provider strategy defined, it is selected\.
+  + If your cluster doesn't have a default capacity provider strategy defined but you do have the Fargate capacity providers added to the cluster, a custom capacity provider strategy that uses the `FARGATE` capacity provider is selected\.
+  + If your cluster doesn't have a default capacity provider strategy defined but you do have one or more Auto Scaling group capacity providers added to the cluster, the **Use custom \(Advanced\)** option is selected and you need to manually define the strategy\.
+  + If your cluster doesn't have a default capacity provider strategy defined and no capacity providers added to the cluster, the Fargate launch type is selected\.
 
-You can create an Amazon ECS service using the new console\. To make the service creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\.
+## Quickly create a service<a name="create-default-service"></a>
+
+You can use the new console to quickly create and deploy a service\. The service has the following configuration:
++ Deploys in the VPC and subnets associated with your cluster
++ Deploys one task
++ Uses the rolling deployment
++ Uses the capacity provider strategy with your default capacity provider
++ Uses the deployment circuit breaker to detect failures and sets the option to automatically roll back the deployment on failure
+
+To deploy a service using the default parameters follow these steps\.
 
 **To create a service \(New Amazon ECS console\)**
 
@@ -12,50 +36,130 @@ You can create an Amazon ECS service using the new console\. To make the service
 
 1. From the **Services** tab, choose **Deploy**\.
 
-1. The **Compute configuration** section can be expanded to change the compute option for your service to use\. By default, the console will select a compute option for you so in most cases you can go to the next step\. The following describes the order that the console uses to select a default:
-   + If your cluster has a default capacity provider strategy defined, it will be selected\.
-   + If your cluster doesn't have a default capacity provider strategy defined but you do have the Fargate capacity providers added to the cluster, a custom capacity provider strategy using the `FARGATE` capacity provider will be selected\.
-   + If your cluster doesn't have a default capacity provider strategy defined but you do have one or more Auto Scaling group capacity providers added to the cluster, the **Use custom \(Advanced\)** option is selected and you will need to manually define the strategy\.
-   + If your cluster doesn't have a default capacity provider strategy defined and no capacity providers added to the cluster, the Fargate launch type is selected\.
+1. Under **Deployment configuration**, specify how your application is deployed\.
 
-1. For **Application type**, select **Service**\.
+   1. For **Application type**, choose **Service**\.
 
-1. For **Task definition**, choose the task definition family and revision to use\.
-**Important**  
-The console validates that the selected task definition family and revision is compatible with the defined compute configuration\. If you receive a warning, verify both your task definition compatibility and the compute configuration selected\.
+   1. For **Task definition**, choose the task definition family and revision to use\.
 
-1. For **Service name**, specify a name for your service\.
+   1. For **Service name**, enter a name for your service\.
 
-1. For **Desired tasks**, specify the number of tasks to launch and maintain in the service\.
+   1. For **Desired tasks**, enter the number of tasks to launch and maintain in the service\.
 
-1. The **Deployment options** section can be expanded to change the minimum healthy percent and maximum percent of running tasks allowed during a service deployment\. The console has default values for the most common use case selected\.
-**Note**  
-Currently, only the **Rolling update** \(`ECS`\) deployment type is supported\. To use any other deployment type, switch to the classic console\.
+1. \(Optional\) To add tags in the form of key\-value pairs, to the service, expand the **Tags** section\.
 
-1. \(Optional\) The **Load balancing** section can be expanded to configure a load balancer for your service\. Use the following steps to configure your service to use an Application Load Balancer\.
+## Create a service using defined parameters<a name="create-custom-service"></a>
 
-   1. For **Load balancer type**, select **Application Load Balancer**\.
+To create a service using defined parameters, follow these steps\.
 
-   1. Choose **Create a new load balancer** to create a new Application Load Balancer or **Use an existing load balancer** to select an existing Application Load Balancer\.
+**To create a service \(New Amazon ECS console\)**
 
-   1. When creating a new load balancer, for **Load balancer name**, specify a unique name for your load balancer\. When using an existing load balancer, for **Load balancer**, select your existing load balancer\.
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-   1. For **Listener**, specify a port and protocol for the Application Load Balancer to listen for connection requests on\. By default, the load balancer will be configured to use port 80 and HTTP\.
+1. On the **Clusters** page, select the cluster to create the service in\.
 
-   1. For **Target group name**, specify a name and a protocol for the target group that the Application Load Balancer will route requests to\. By default, the target group will route requests to the first container defined in your task definition\.
+1. From the **Services** tab, choose **Deploy**\.
 
-   1. For **Health check path**, specify a path that exists within your container where the Application Load Balancer should periodically send requests to verify the connection health between the Application Load Balancer and the container\. By default, a path of `/` is used which is the root directory\.
+1. \(Optional\) Choose how your tasks are distributed across your cluster infrastructure\. Expand **Compute configuration**, and then choose your option\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service-console-v2.html)
 
-   1. For **Health check grace period**, specify the amount of time \(in seconds\) that the service scheduler should ignore unhealthy Elastic Load Balancing target health checks for\.
+1. To specify how your service is deployed, expand **Deployment configuration**, and then choose your options\.
 
-1. The **Networking** section can be expanded to define the network configuration for the service\. Task definitions that use the `awsvpc` network mode or services configured to use a load balancer must have a networking configuration\. By default, the console selects the default Amazon VPC along with all subnets and the default security group within the default Amazon VPC\. Use the following steps to specify a custom configuration\.
+   1. For **Application type**, choose **Service**\.
+
+   1. For **Task definition** and **Revision**, choose the task definition family and revision to use\.
+
+   1. For **Service name**, enter a name for your service\.
+
+   1. For **Service type**, choose the service scheduling strategy\.
+      + To have the scheduler deploy exactly one task on each active container instance that meets all of the task placement constraints, choose **Daemon**\.
+      + To have the scheduler place and maintain the desired number of tasks in your cluster, choose **Replica**\.
+
+      For more information, see [Service scheduler concepts](ecs_services.md#service_scheduler)\.
+
+   1. If you chose **Replica**, for **Desired tasks**, enter the number of tasks to launch and maintain in the service\.
+
+   1. To change the minimum healthy percent and maximum percent of running tasks allowed during a service deployment, expand **Deployment options**, and then specify the following parameters\.
+
+      1. For **Min running tasks**, enter the lower limit on the number of tasks in the service that must remain in the `RUNNING` state during a deployment, as a percentage of the desired number of tasks \(rounded up to the nearest integer\)\. For more information, see [Deployment configuration](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html#sd-deploymentconfiguration)\.
+
+      1. For **Max running tasks**, enter the upper limit on the number of tasks in the service that are allowed in the `RUNNING` or `PENDING` state during a deployment, as a percentage of the desired number of tasks \(rounded down to the nearest integer\)\.
+
+   1. To configure how Amazon ECS detects and handles deployment failures, expand **Deployment failure detection**, and then choose your options\. 
+
+      1. To use the deployment circuit breaker, select **Use the Amazon ECS deployment circuit breaker**\.
+
+      1. To have the software automatically roll back the deployment to the last completed deployment state when the deployment circuit breaker sets the deployment to a failed state, select **Rollback on failure**\.
+
+1. To configure service auto scaling, expand **Service auto scaling**, and then specify the following parameters\.
+
+   1. To use service auto scaling, select **Service auto scaling**\.
+
+   1. For **Minimum number of tasks**, enter the lower limit of the number of tasks for Service Auto Scaling to use\. The desired count will not go below this count\.
+
+   1. For **Maximum number of tasks**, enter the upper limit of the number of tasks for Service Auto Scaling to use\. The desired count will not go above this count\.
+
+   1. For **Scaling policy type**, choose **Target tracking**\.
+
+   1. For **Policy name**, enter the name of the policy\.
+
+   1. For **ECS service metric**, select one of the following metrics:
+      + **ECSServiceAverageCPUUtilization**: Average CPU utilization of the service\. 
+      + **ECSServiceAverageMemoryUtilization**: Average memory utilization of the service\. 
+      + **ALBRequestCountPerTarget**: Number of requests completed per target in an Application Load Balancer target group\. 
+
+        The metrics requires an Application Load Balancer and a target group for the Application Load Balancer\.
+
+   1. For **Target value**, enter the value the service maintains for the selected metric\.
+
+   1. For **Scale\-out cooldown period**, enter time in seconds after a scale\-out activity that no other scale outs take place\.
+
+   1. For **Scale\-in cooldown period**, enter time in seconds after a scale\-in activity that no other scale ins take place\.
+
+   1. To prevent the policy from performing a scale\-in activity, select **Turn off scale\-in**\.
+
+1. \(Optional\) To configure a load balancer for your service, expand **Load balancing**\.
+
+   Choose the load balancer\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service-console-v2.html)
+
+1. \(Optional\) To use a task placement strategy other than the default, expand **Task Placement**, and then choose from the following options\.
+
+    For more information, see [Amazon ECS task placement](task-placement.md)\.
+   + **AZ Balanced Spread** \- Distribute tasks across Availability Zones and across container instances in the Availability Zone\.
+   + **AZ Balanced BinPack** \- Distribute tasks across Availability Zones and across container instances with the least available memory\.
+   + **BinPack** \- Distribute tasks based on the least available amount of CPU or memory\.
+   + **One Task Per Host** \- Place, at most, one task from the service on each container instance\.
+   + **Custom** \- Define your own task placement strategy\. 
+
+   If you chose **Custom**, define the algorithm for placing tasks and the rules that are considered during task placement\.
+   + Under **Strategy**, for **Type** and **Field**, choose the algorithm and the entity to use for the algorithm\.
+
+     You can enter a maximum of 5 strategies\.
+   + Under **Constraint**, for **Type** and **Expression**, choose the rule and attribute to use for the constraint\.
+
+     When you enter the **Expression**, do not enter the double quotation marks \(`" "`\)\. For example, to set the constraint to place tasks on T2 instances, for the **Expression**, enter **attribute:ecs\.instance\-type =\~ t2\.\***\.
+
+     You can enter a maximum of 10 constraints\.
+
+1. If your task definition uses the `awsvpc` network mode, expand **Networking**\. Use the following steps to specify a custom configuration\.
 
    1. For **VPC**, select the VPC to use\.
 
-   1. For **Subnets**, select one or more subnets in the VPC that the task scheduler should consider when placing your tasks\.
+   1. For **Subnets**, select one or more subnets in the VPC that the task scheduler considers when placing your tasks\.
+**Important**  
+Only private subnets are supported for the `awsvpc` network mode\. Tasks don't receive public IP addresses\. Therefore, a NAT gateway is required for outbound internet access, and inbound internet traffic is routed through a load balancer\.
 
    1. For **Security group**, you can either select an existing security group or create a new one\. To use an existing security group, select the security group and move to the next step\. To create a new security group, choose **Create a new security group**\. You must specify a security group name, description, and then add one or more inbound rules for the security group\.
 
-   1. For **Public IP**, choose whether to auto\-assign a public IP address to the elastic network interface \(ENI\) of the task\. Tasks that are launched on AWS Fargate can be assigned a public IP address when run using a public subnet so they have a route to the internet\. For more information, see [Fargate task networking](https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-task-networking.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
+1. \(Optional\) To help identify your service and tasks, expand the **Tags** section, and then configure your tags\.
 
-1. \(Optional\) The **Tags** section can be expanded to add tags, in the form of key\-value pairs, to the service\.
+   To have Amazon ECS automatically tag all newly launched tasks with the cluster name and the task definition tags, select **Turn on Amazon ECS managed tags**, and then select **Task definitions**\.
+
+   To have Amazon ECS automatically tag all newly launched tasks with the cluster name and the service tags, select **Turn on Amazon ECS managed tags**, and then select **Service**\.
+
+   Add or remove a tag\.
+   + \[Add a tag\] Choose **Add tag**, and then do the following:
+     + For **Key**, enter the key name\.
+     + For **Value**, enter the key value\.
+   + \[Remove a tag\] Next to the tag, choose **Remove tag**\.

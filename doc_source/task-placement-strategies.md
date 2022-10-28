@@ -2,6 +2,8 @@
 
 A *task placement strategy* is an algorithm for selecting instances for task placement or tasks for termination\. Task placement strategies can be specified when either running a task or creating a new service\. The task placement strategies can be updated for existing services as well\. For more information, see [Amazon ECS task placement](task-placement.md)\.
 
+For tasks running as part of an Amazon ECS service, the default task placement strategy is `spread` using the `attribute:ecs.availability-zone`\. There isn't a default task placement constraint for tasks in services\.
+
 ## Strategy types<a name="strategy-types"></a>
 
 Amazon ECS supports the following task placement strategies:

@@ -3,5 +3,5 @@
 To use machine learning workloads on Amazon ECS, register Amazon EC2 instances with specialized hardware, or external computers with specialized hardware, as container instances\.
 
 **Topics**
-+ [Using inference Inf1 instances on Amazon ECS](ecs-inference.md)
++ [Using AWS Neuron on Amazon Linux 2 on Amazon ECS](ecs-inference.md)
 + [Using deep learning DL1 instances on Amazon ECS](ecs-dl1.md)
