@@ -137,7 +137,7 @@ Time to wait to poll for new CloudWatch metrics for a task\. Only used when `ECS
 Example values: 32  
 Default value on Linux: 0  
 Default value on Windows: 0  
-The amount of memory, in MiB, to remove from the pool that is allocated to your tasks\. This effectively reserves that memory for critical system processes including the Docker daemon and the Amazon ECS container agent\. For example, if you specify `ECS_RESERVED_MEMORY=256`, then the agent registers the total memory minus 256 MiB for that instance, and 256 MiB of the system memory cannot be allocated by Amazon ECS tasks\. For more information, see [Container Instance Memory Management](memory-management.md)\.
+Reduction, in MiB, of the memory capacity of the instance that is reported to Amazon ECS\. Amazon ECS uses this parameter when placing tasks on container instances\. This doesn't reserve memory usage on the instance\. For more information, see [Container Instance Memory Management](memory-management.md)\.
 
 `ECS_AVAILABLE_LOGGING_DRIVERS`  
 Example values: `["awslogs","fluentd","gelf","json-file","journald","splunk","logentries","syslog"]`  

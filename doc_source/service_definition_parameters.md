@@ -8,7 +8,7 @@ A service definition defines how to run your Amazon ECS service\. The following 
 Type: String  
 Valid values: `EC2` \| `FARGATE` \| `EXTERNAL`  
 Required: No  
-The launch type on which to run your service\. If a launch type is not specified, `EC2` is used by default\. For more information, see [Amazon ECS launch types](launch_types.md)\.  
+The launch type on which to run your service\. If a launch type is not specified, the default `capacityProviderStrategy` is used by default\. For more information, see [Amazon ECS launch types](launch_types.md)\.  
 If a `launchType` is specified, the `capacityProviderStrategy` parameter must be omitted\.
 
 ## Capacity provider strategy<a name="sd-capacityproviderstrategy"></a>

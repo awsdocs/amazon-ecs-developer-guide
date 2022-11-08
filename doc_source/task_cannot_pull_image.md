@@ -23,6 +23,14 @@ CannotPullContainerError: API error (404): repository 111122223333.dkr.ecr.us-ea
 ```
 To resolve this issue, verify the repository URI and the image name\. Also make sure that you have set up the proper access using the task execution IAM role\. For more information about the task execution role, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
+Amazon ECR endpoint connection issue  
+If you are trying to pull an Amazon ECR image and you do not have the correct permissions for the Amazon ECR endpoint, you see an error similar to the following:  
+
+```
+CannotPullContainerError: API error
+```
+To resolve this issue, Amazon ECS must communicate with the Amazon ECR endpoint\. For information about how to resolve this issues, see How can I resolve the [Amazon ECR error "CannotPullContainerError: API error" in Amazon ECS](http://aws.amazon.com/premiumsupport/knowledge-center/ecs-pull-container-api-error-ecr/) on the AWS Support website\.
+
 Insufficient disk space  
 If the root volume of your container instance has insufficient disk space when pulling the container image, you see an error similar to the following:  
 

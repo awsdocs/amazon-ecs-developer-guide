@@ -102,11 +102,11 @@ If you set the task definition parameter `initProcessEnabled` to `true`, this st
 }
 ```
 
-### Enabling ECS Exec for your tasks and services<a name="ecs-exec-enabling"></a>
+### Turning on ECS Exec for your tasks and services<a name="ecs-exec-enabling"></a>
 
-You can enable the ECS Exec feature for your services and standalone tasks by specifying the `--enable-execute-command` flag when using one of the following AWS CLI commands: [https://docs.aws.amazon.com/cli/latest/reference/ecs/create-service.html](https://docs.aws.amazon.com/cli/latest/reference/ecs/create-service.html), [https://docs.aws.amazon.com/cli/latest/reference/ecs/update-service-console-v2.html](https://docs.aws.amazon.com/cli/latest/reference/ecs/update-service-console-v2.html), [https://docs.aws.amazon.com/cli/latest/reference/ecs/start-task.html](https://docs.aws.amazon.com/cli/latest/reference/ecs/start-task.html), or [https://docs.aws.amazon.com/cli/latest/reference/ecs/run-task.html](https://docs.aws.amazon.com/cli/latest/reference/ecs/run-task.html)\.
+You can turn on the ECS Exec feature for your services and standalone tasks by specifying the `--enable-execute-command` flag when using one of the following AWS CLI commands: [https://docs.aws.amazon.com/cli/latest/reference/ecs/create-service.html](https://docs.aws.amazon.com/cli/latest/reference/ecs/create-service.html), [https://docs.aws.amazon.com/cli/latest/reference/ecs/update-service-console-v2.html](https://docs.aws.amazon.com/cli/latest/reference/ecs/update-service-console-v2.html), [https://docs.aws.amazon.com/cli/latest/reference/ecs/start-task.html](https://docs.aws.amazon.com/cli/latest/reference/ecs/start-task.html), or [https://docs.aws.amazon.com/cli/latest/reference/ecs/run-task.html](https://docs.aws.amazon.com/cli/latest/reference/ecs/run-task.html)\.
 
-For example, if you run the following command, the ECS Exec feature is enabled for a newly created service\. For more information about creating services, see [create\-service](https://docs.aws.amazon.com/cli/latest/reference/ecs/create-service.html)\.
+For example, if you run the following command, the ECS Exec feature is turned on for a newly created service\. For more information about creating services, see [create\-service](https://docs.aws.amazon.com/cli/latest/reference/ecs/create-service.html)\.
 
 ```
 aws ecs create-service \
@@ -117,7 +117,7 @@ aws ecs create-service \
     --desired-count 1
 ```
 
-After you have enabled ECS Exec for a task, you can run the following command to confirm the task is ready to be used\. If the `lastStatus` property of the `ExecuteCommandAgent` is listed as `RUNNING` and the `enableExecuteCommand` property is set to `true`, then your task is ready\.
+After you turn on ECS Exec for a task, you can run the following command to confirm the task is ready to be used\. If the `lastStatus` property of the `ExecuteCommandAgent` is listed as `RUNNING` and the `enableExecuteCommand` property is set to `true`, then your task is ready\.
 
 ```
 aws ecs describe-tasks \

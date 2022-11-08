@@ -22,7 +22,7 @@ Opting in to the `containerInsights` account setting can be done with both the A
 **Important**  
 For clusters containing tasks or services using the EC2 launch type, your container instances must be running version 1\.29\.0 or later of the Amazon ECS agent\. For more information, see [Amazon ECS Linux container agent versions](ecs-agent-versions.md)\.
 
-## To change the default for Container Insights for all users using the console<a name="w685aac31c29c15"></a>
+## To change the default for Container Insights for all users using the console<a name="w204aac31c29c15"></a>
 
 You can make all new clusters turn on Container Insights when they are created by all IAM users and roles\. These changes apply to the entire AWS account unless an IAM user or role explicitly overrides these settings for themselves\. Any user on an account can use one of the following steps to modify the default account setting for all IAM users or roles on your account\. The following steps show how to set this default using the AWS Management Console\.
 
@@ -40,7 +40,7 @@ IAM users and IAM roles need the `ecs:PutAccountSetting` permission to perform t
 
 1. On the confirmation screen, choose **Confirm** to save the selection\.
 
-## To change the default for Container Insights for all users using the command line<a name="w685aac31c29c17"></a>
+## To change the default for Container Insights for all users using the command line<a name="w204aac31c29c17"></a>
 
 You can make all new clusters turn on Container Insights when they are created by all IAM users and roles\. These changes apply to the entire AWS account unless an IAM user or role explicitly overrides these settings for themselves\. Any user on an account can use one of the following steps to modify the default account setting for all IAM users or roles on your account\. The following steps show how to set this default using the AWS Command Line Interface\.
 
@@ -56,7 +56,7 @@ You can make all new clusters turn on Container Insights when they are created b
    Write-ECSAccountSettingDefault -Name containerInsights -Value enabled -Region us-east-1 -Force
    ```
 
-## To change the default for Container Insights for a specific user using the command line<a name="w685aac31c29c19"></a>
+## To change the default for Container Insights for a specific user using the command line<a name="w204aac31c29c19"></a>
 
 You can make all new clusters turn on Container Insights when they are created by a specific IAM user or role\. This is useful when a specific role is used by AWS CloudFormation to make all changes in a production account, for example\. The root user on an account can use one of the following commands and specify the ARN of the principal IAM user or container instance IAM role in the request to modify the account settings\.
 
@@ -76,7 +76,7 @@ You can make all new clusters turn on Container Insights when they are created b
    Write-ECSAccountSetting -Name containerInsights -Value enabled -PrincipalArn arn:aws:iam::aws_account_id:user/userName -Region us-east-1 -Force
    ```
 
-## To turn on Container Insights for a specific cluster using the command line<a name="w685aac31c29c21"></a>
+## To turn on Container Insights for a specific cluster using the command line<a name="w204aac31c29c21"></a>
 
 Use one of the following commands to turn on Container Insights for a cluster\.
 + [update\-cluster\-settings](https://docs.aws.amazon.com/cli/latest/reference/ecs/update-cluster-settings.html) \(AWS CLI\)
