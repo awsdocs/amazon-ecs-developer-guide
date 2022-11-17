@@ -39,7 +39,6 @@ If you had a running task using the `awsvpc` network mode in an IPv6 enabled sub
 **Topics**
 + [Amazon Resource Names \(ARNs\) and IDs](#ecs-resource-ids)
 + [ARN and resource ID format timeline](#ecs-resource-arn-timeline)
-+ [Fargate vCPU\-based quotas](#fargate-quotas)
 + [Viewing account settings](ecs-viewing-longer-id-settings.md)
 + [Modifying account settings](ecs-modifying-longer-id-settings.md)
 
@@ -81,51 +80,3 @@ The following are the important dates related to this change\.
 + April 1, 2021 – By default, all accounts are opted in to the new format\. All new resources created receive the new format, and you can no longer opt out\.
 
 You can modify your opt\-in setting for the new Amazon Resource Name \(ARN\) and resource ID format at any time between now and April 1, 2021\. After you opted in, any new resources that you create use the new format\.
-
-## Fargate vCPU\-based quotas<a name="fargate-quotas"></a>
-
-AWS Fargate is transitioning from task count\-based quotas to vCPU\-based quotas\. The following table shows the existing task count\-based quotas and the corresponding replacement vCPU\-based quotas\.
-
-
-|  Existing service quota  |  Replacement service quota  | 
-| --- | --- | 
-|  Fargate Spot resource count  |  Fargate Spot vCPU resource count  | 
-|  Fargate On\-Demand resource count  |  Fargate On\-Demand vCPU resource count  | 
-
-Use one of the following methods to access the new vCPU\-based quotas:
-+ The recommended method is to run `put-account-setting-default` with the `fargateVCPULimit` option set to `enable`\. For more information, see, [put\-account\-setting\-default](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting-default.html) in the *Amazon Elastic Container Service API Reference*\. You can run list\-account\-settings to 
-
-  Example to access the vCPU\-based quotas
-
-  ```
-  aws ecs put-account-setting-default --name fargateVCPULimit --value enabled --region region
-  ```
-
-  Output
-
-  ```
-  {
-      "setting": {
-          "name": "fargateVCPULimit",
-          "value": "enabled",
-          "principalArn": "arn:aws:iam::123456789012:root"
-      }
-  }
-  ```
-+ Use the AWS Support Center Console to create an opt\-in request for the vCPU\-based quotas\. Create a **Service Limit increase** case and for **Limit type**, choose **Fargate**\. For information, see [Creating a support case](https://docs.aws.amazon.com/awssupport/latest/user/case-management.html#creating-a-support-case) in the *AWS Support User Guide*\.
-
-You can confirm which quota type is in use by running `list-account-settings` with the `effective-settings` flag to view the `fargateVCPULimit` value\. When the value is `enabled`, it means that the vCPU\-based quotas are in use\. For more information, see, [list\-account\-settings](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-account-settings.html) in the *Amazon Elastic Container Service API Reference*\.
-
-### AWS Fargate vCPU\-based quotas timeline<a name="fargate-quota-timeline"></a>
-
-The following are the important dates related to the new vCPU\-based quotas\.
-+ September 8, 2022 – You can opt in to using the new vCPU\-based quotas before AWS begins the automatic migration to vCPU\-based quotas\. By opting in, your account is controlled by vCPU\-based quotas rather than the previous task count–based quotas\. Task count\-based quotas remain the default for accounts that don’t opt in\.
-**Note**  
-To use the vCPU\-based quotas with Amazon ECS before October 3, 2022, you must opt in\.  
-To opt in, run `put-account-setting-default` with the `fargateVCPULimit` option set to `enabled`\. 
-+ October 10, 2022 through October 21, 2022 – All new and existing accounts are automatically migrated to the vCPU\-based quotas in a phased manner\. 
-**Note**  
-To continue to use the task count\-based quotas, you must opt out\.  
-To opt out, run `put-account-setting-default` with the `fargateVCPULimit` option set to `disabled`\.  
-+ October 31, 2022 – The last day that you can remain opted out of the vCPU\-based quotas\.
-+ November 1, 2022 through November 15, 2022 – The opt\-out option ends and all accounts are migrated to the vCPU\-based quotas\. The task count\-based quotas are no longer available\.

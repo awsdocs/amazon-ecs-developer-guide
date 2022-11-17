@@ -40,7 +40,7 @@ To update the Amazon ECS agent version from versions before v1\.0\.0 on your Ama
 
 1. On the **Clusters** page, select the cluster that hosts the container instance or instances to check\.
 
-1. On the **Cluster : *cluster\_name*** page, choose **ECS Instances**\.
+1. On the **Cluster : *cluster\_name*** page, choose **Amazon ECS Instances**\.
 
 1. Note the **Agent version** column for your container instances\. If the container instance does not contain the latest version of the container agent, the console alerts you with a message and flags the outdated agent version\.
 

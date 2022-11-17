@@ -28,10 +28,12 @@ Amazon ECS Linux containers on AWS Fargate are supported in the following AWS Re
 |  China \(Beijing\)  |  cn\-north\-1 \(`cnn1-az1` & `cnn1-az2` only\)  | 
 |  China \(Ningxia\)  |  cn\-northwest\-1  | 
 |  Europe \(Frankfurt\)  |  eu\-central\-1  | 
+|  Europe \(Zurich\)  |  eu\-central\-2  | 
 |  Europe \(Ireland\)  |  eu\-west\-1  | 
 |  Europe \(London\)  |  eu\-west\-2  | 
 |  Europe \(Paris\)  |  eu\-west\-3  | 
 |  Europe \(Milan\)  |  eu\-south\-1  | 
+|  Europe \(Spain\)  |  eu\-south\-2  | 
 |  Europe \(Stockholm\)  |  eu\-north\-1  | 
 |  South America \(São Paulo\)  |  sa\-east\-1  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  | 

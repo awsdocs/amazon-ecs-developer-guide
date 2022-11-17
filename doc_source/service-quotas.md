@@ -25,19 +25,7 @@ The following are Amazon ECS on AWS Fargate service quotas and are listed under 
 
 New AWS accounts might have initial lower quotas that can increase over time\. Fargate constantly monitors the account usage within each Region, and then automatically increases the quotas based on your usage\. You can also request a quota increase for values that are shown as adjustable, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-increase.html) in the *Service Quotas User Guide*\.
 
-AWS Fargate is transitioning from task\-based quotas to vCPU\-based quotas\. Currently, you must opt in to use the vCPU\-based quotas\. For more information about how to opt\-in and verify which quotas are in use, see [Fargate vCPU\-based quotas](ecs-account-settings.md#fargate-quotas)\.
-
-The following table lists the new vCPU\-based quota followed by the existing task count\-based quota\. These service quotas are listed under the AWS Fargate service in the Service Quotas console\. 
-
-You can also confirm which quota type is in use by looking at the Service Quotas console\. If the vCPU quotas are in use, the **Fargate On\-Demand resource count** and **Fargate Spot resource count** quotas show 0 for the **Applied quota value**\. Any other value indicates that the task count\-based quotas are in use\. 
-
-
-|  Service quota  |  Description  |  Default quota value  |  Adjustable  | 
-| --- | --- | --- | --- | 
-|  Fargate On\-Demand vCPU resource count  |  The number of Fargate vCPUs that run concurrently as Fargate On\-Demand in this account in the current Region\.  |  6  | [Yes](https://console.aws.amazon.com/servicequotas/) | 
-|  Fargate Spot vCPU resource count  |  The number of Fargate vCPUs running concurrently as Fargate Spot in this account in the current Region\.  |  6  | [Yes](https://console.aws.amazon.com/servicequotas/) | 
-|  Fargate On\-Demand resource count  |  The number of Amazon ECS tasks and Amazon EKS pods that run concurrently on Fargate in this account in the current Region\.  |  2  | [Yes](https://console.aws.amazon.com/servicequotas/) | 
-|  Fargate Spot resource count  |  The number of Amazon ECS tasks that run concurrently on Fargate Spot in this account in the current Region\.  |  2  | [Yes](https://console.aws.amazon.com/servicequotas/) | 
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-quotas.html)
 
 **Note**  
 The default values are the initial quotas set by AWS, which are separate from the actual applied quota value and maximum possible service quota\. For more information, see [Terminology in Service Quotas](https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html#intro_getting-started) in the *Service Quotas User Guide*\.

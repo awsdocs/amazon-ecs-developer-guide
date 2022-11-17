@@ -17,6 +17,7 @@ For tasks using the Fargate launch type and platform version 1\.3\.0 and prior, 
 + [Automated task and image cleanup](automated_image_cleanup.md)
 + [Amazon ECS container metadata file](container-metadata.md)
 + [Amazon ECS task metadata endpoint](task-metadata-endpoint.md)
++ [Amazon ECS container agent endpoint](ecs-container-agent-endpoint.md)
 + [Amazon ECS container agent introspection](ecs-agent-introspection.md)
 + [HTTP proxy configuration](http_proxy_config.md)
 + [Using gMSAs for Windows Containers](windows-gmsa.md)

@@ -4,13 +4,11 @@ If you've already signed up for Amazon Web Services \(AWS\) and have been using 
 
 Complete the following tasks to get set up for Amazon ECS\.
 
-## Sign up for AWS<a name="sign-up-for-aws"></a>
+## Sign up for an AWS account<a name="sign-up-for-aws"></a>
 
-When you sign up for AWS, your AWS account is automatically signed up for all services, including Amazon EC2 and Amazon ECS\. You are charged only for the services that you use\.
+If you do not have an AWS account, complete the following steps to create one\.
 
-If you have an AWS account already, skip to the next task\. If you don't have an AWS account, use the following procedure to create one\.
-
-**To create an AWS account**
+**To sign up for an AWS account**
 
 1. Open [https://portal\.aws\.amazon\.com/billing/signup](https://portal.aws.amazon.com/billing/signup)\.
 
@@ -20,23 +18,33 @@ If you have an AWS account already, skip to the next task\. If you don't have an
 
    When you sign up for an AWS account, an *AWS account root user* is created\. The root user has access to all AWS services and resources in the account\. As a security best practice, [assign administrative access to an administrative user](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html), and use only the root user to perform [tasks that require root user access](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html#aws_tasks-that-require-root)\.
 
-Note your AWS account number, because you'll need it for the next task\.
+AWS sends you a confirmation email after the sign\-up process is complete\. At any time, you can view your current account activity and manage your account by going to [https://aws\.amazon\.com/](https://aws.amazon.com/) and choosing **My Account**\.
 
-## Create an administrator<a name="create-an-iam-user"></a>
+## Create an administrative user<a name="create-an-admin"></a>
 
-Services in AWS, such as Amazon EC2 and Amazon ECS, require that you provide credentials when you access them, so that the service can determine whether you have permission to access its resources\. The console requires your password\. You can create access keys for your AWS account to access the command line interface or API\.
+After you sign up for an AWS account, create an administrative user so that you do not use the root user for everyday tasks\.
 
-To create an administrator user, choose one of the following options\.
+**Secure your AWS account root user**
 
+1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/) as the account owner by choosing **Root user** and entering your AWS account email address\. On the next page, enter your password\.
 
-****  
+   For help signing in using root user, see [Signing in as the root user](https://docs.aws.amazon.com/signin/latest/userguide/console-sign-in-tutorials.html#introduction-to-root-user-sign-in-tutorial) in the *AWS Sign\-In User Guide*\.
 
-| Choose one way to manage your administrator | To | By | You can also | 
-| --- | --- | --- | --- | 
-| In IAM Identity Center \(Recommended\) | Use short\-term credentials to access AWS\.This aligns with the security best practices\. For information about best practices, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#bp-users-federation-idp) in the *IAM User Guide*\. | Following the instructions in [Getting started](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html) in the AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide\. | Configure programmatic access by [Configuring the AWS CLI to use AWS IAM Identity Center \(successor to AWS Single Sign\-On\)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html) in the AWS Command Line Interface User Guide\. | 
-| In IAM \(Not recommended\) | Use long\-term credentials to access AWS\. | Following the instructions in [Creating your first IAM admin user and user group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the IAM User Guide\. | Configure programmatic access by [Managing access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) in the IAM User Guide\. | 
+1. Turn on multi\-factor authentication \(MFA\) for your root user\.
 
-## Create a key pair<a name="create-a-key-pair"></a>
+   For instructions, see [Enable a virtual MFA device for your AWS account root user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root) in the *IAM User Guide*\.
+
+**Create an administrative user**
++ For your daily administrative tasks, assign administrative access to an administrative user in AWS IAM Identity Center \(successor to AWS Single Sign\-On\)\.
+
+  For instructions, see [Getting started](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
+
+**Sign in as the administrative user**
++ To sign in with your IAM Identity Center user, use the sign\-in URL that was sent to your email address when you created the IAM Identity Center user\.
+
+  For help signing in using an IAM Identity Center user, see [Signing in to the AWS access portal](https://docs.aws.amazon.com/signin/latest/userguide/iam-id-center-sign-in-tutorial.html) in the *AWS Sign\-In User Guide*\.
+
+## Create the credentials to connect to your EC2 instance<a name="create-a-key-pair"></a>
 
 For Amazon ECS, a key pair is only needed if you intend on using the EC2 launch type\.
 

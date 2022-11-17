@@ -168,7 +168,7 @@ Whether AppArmor is available on the container instance\.
 Example values: `1h` \(Valid time units are "ns", "us" \(or "µs"\), "ms", "s", "m", and "h"\.\)  
 Default value on Linux: `3h`  
 Default value on Windows: `3h`  
-Time to wait from when a task is stopped until the Docker container is removed\. As this removes the Docker container data, be aware that if this value is set too low, you may not be able to inspect your stopped containers or view the logs before they are removed\. The minimum duration is `1m`; any value shorter than 1 minute is ignored\.
+Time to wait from when a task is stopped until the Docker container is removed\. As this removes the Docker container data, be aware that if this value is set too low, you may not be able to inspect your stopped containers or view the logs before they are removed\. The minimum duration is `1s`; any value shorter than 1 second is ignored\.
 
 `ECS_CONTAINER_STOP_TIMEOUT`  
 Example values: `10m` \(Valid time units are "ns", "us" \(or "µs"\), "ms", "s", "m", and "h"\.\)  
@@ -323,7 +323,7 @@ When `true`, Amazon ECS allows CPU\-unbounded \(CPU=`0`\) tasks to run along wit
 Example values: `100,150`  
 Default value on Linux: `40,60`  
 Default value on Windows: `40,60`  
-Comma\-separated integer values for steady state and burst throttle limits for the task metadata endpoint\.
+Comma\-separated integer values for steady state and burst throttle limits for the combined total traffic to the task metadata endpoint and the agent API endpoint\.
 
 `ECS_SHARED_VOLUME_MATCH_FULL_CONFIG`  
 Example values: `true` \| `false`  

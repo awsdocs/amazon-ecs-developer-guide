@@ -78,7 +78,7 @@ Agent updates do not apply to Windows container instances\. We recommend that yo
 
 1. On the **Clusters** page, select the cluster that hosts the container instance or instances to check\.
 
-1. On the **Cluster : *cluster\_name*** page, choose **ECS Instances**\.
+1. On the **Cluster : *cluster\_name*** page, choose **Amazon ECS Instances**\.
 
 1. Select the container instance to update\.
 

@@ -19,7 +19,7 @@ The Amazon ECS console JON editor validates the following in the JSON file:
 + The file is a valid JSON file
 + The file does not contain any extraneous keys
 + The file contains the `familyName` parameter
-+ There is at least one entry under `containderDefinitions`
++ There is at least one entry under `containerDefinitions`
 
 ------
 #### [ New Amazon ECS console ]
@@ -43,7 +43,7 @@ The Amazon ECS console JON editor validates the following in the JSON file:
 
 1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. In the navigation pane, choose **Task definitions**
+1. In the navigation pane, choose **Task definitions**\.
 
 1. Choose **Create new revision**, **Create new revision with JSON**\.
 

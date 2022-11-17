@@ -3,6 +3,7 @@
 The following tutorials show you how to perform common tasks when using Amazon ECS\.
 
 **Topics**
++ [Tutorial: Creating a VPC with Public and Private Subnets for Your Clusters](create-public-private-vpc.md)
 + [Tutorial: Creating a cluster with a Fargate Linux task using the AWS CLI](ECS_AWSCLI_Fargate.md)
 + [Tutorial: Creating a cluster with a Fargate Windows task using the AWS CLI](ECS_AWSCLI_Fargate_windows.md)
 + [Tutorial: Creating a cluster with an EC2 task using the AWS CLI](ECS_AWSCLI_EC2.md)
@@ -14,3 +15,4 @@ The following tutorials show you how to perform common tasks when using Amazon E
 + [Tutorial: Sending Amazon Simple Notification Service alerts for task stopped events](ecs_cwet2.md)
 + [Tutorial: Using Amazon EFS file systems with Amazon ECS using the classic console](tutorial-efs-volumes.md)
 + [Tutorial: Using FSx for Windows File Server file systems with Amazon ECS](tutorial-wfsx-volumes.md)
++ [Tutorial: Deploying Fluent Bit on Amazon ECS for Windows containers](tutorial-deploy-fluentbit-on-windows.md)

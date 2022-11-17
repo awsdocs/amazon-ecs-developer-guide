@@ -88,7 +88,7 @@ For more information about these specific API operations, see the [Amazon Elasti
 
 **To configure scaling policies for your Amazon ECS service using the AWS CLI**
 
-1. Register your ECS service as a scalable target using the [register\-scalable\-target](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/register-scalable-target.html) command\.
+1. Register your Amazon ECS service as a scalable target using the [register\-scalable\-target](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/register-scalable-target.html) command\.
 
 1. Create a scaling policy using the [put\-scaling\-policy](https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/put-scaling-policy.html) command\.
 

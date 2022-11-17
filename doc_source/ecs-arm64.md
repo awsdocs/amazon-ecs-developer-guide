@@ -13,6 +13,8 @@ Before you begin deploying task definitions that use the 64\-bit ARM architectur
   + US East \(N\. Virginia\) , the `use1-az3` Availability Zone
   + China \(Beijing\)
   + China \(Ningxia\)
+  +  Europe \(Zurich\)
+  +  Europe \(Spain\)
   +  Africa \(Cape Town\)
   + Middle East \(UAE\)
   + Middle East \(Bahrain\)

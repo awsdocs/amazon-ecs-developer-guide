@@ -192,3 +192,10 @@ You can request a quota increase for the resource that caused the error\. For mo
 AWS Fargate is transitioning from task count\-based quotas to vCPU\-based quotas\. 
 
 You can request a quota increase for the Fargate vCPU\-based quota\. For more information, see [Amazon ECS service quotas](service-quotas.md)\. To request a Fargate quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
+
+### service \(*service\-name*\) was unable to reach steady state because task set \(*taskSet\-ID*\) was unable to scale in\. Reason: The number of protected tasks are more than the desired count of tasks\.<a name="service-event-messages-13"></a>
+
+The service has more protected tasks than the desired count of tasks\. You can do one the following:
++ Wait until the protection on the current tasks expire, enabling them to be terminated\.
++ Determine which tasks can be stopped\. Then use the `UpdateTaskProtection` API with the `protectionEnabled` option set to `false` to unset protection for these tasks\.
++ Increase the desired task count of the service to more than the number of protected tasks\.

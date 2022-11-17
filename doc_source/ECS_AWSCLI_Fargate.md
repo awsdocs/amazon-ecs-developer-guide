@@ -24,6 +24,8 @@ This tutorial assumes that the following prerequisites have been completed\.
   + Use a public subnet and assign a public IP address to the task\.
 
   For more information, see [Create a virtual private cloud](get-set-up-for-amazon-ecs.md#create-a-vpc)\.
+
+  For information about security groups and rules, see, [Default security groups for your VPCs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#DefaultSecurityGroup) and [Example rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#security-group-rule-examples) in the *Amazon Virtual Private Cloud User Guide*\.
 + Optional: AWS CloudShell is a tool that gives customers a command line without needing to create their own EC2 instance\. For more information, see [What is AWS CloudShell](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html) in the *AWS CloudShell User Guide*\.
 
 ## Step 1: Create a Cluster<a name="ECS_AWSCLI_Fargate_create_cluster"></a>

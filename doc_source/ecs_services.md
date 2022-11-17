@@ -12,6 +12,7 @@ You can also optionally run your service behind a load balancer\. The load balan
 + [Amazon ECS Deployment types](deployment-types.md)
 + [Service load balancing](service-load-balancing.md)
 + [Service auto scaling](service-auto-scaling.md)
++ [Task scale\-in protection](task-scale-in-protection.md)
 + [Service Discovery](service-discovery.md)
 + [Service throttle logic](service-throttle-logic.md)
 

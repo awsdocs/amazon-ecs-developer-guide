@@ -60,12 +60,7 @@ The following is an example credential spec file:
 
 ### Referencing a Credential Spec File in a Task Definition<a name="windows-gmsa-credentialspec"></a>
 
-Amazon ECS supports the following ways to reference the credential spec file in the `dockerSecurityOptions` field of a task definition\.
-
-**Topics**
-+ [Amazon S3 Bucket](#gmsa-credspec-s3)
-+ [SSM Parameter Store parameter](#gmsa-credspec-ssm)
-+ [Local File](#gmsa-credspec-file)
+Amazon ECS supports the following ways to reference the file path in the `dockerSecurityOptions` field of the task definition\. 
 
 #### Amazon S3 Bucket<a name="gmsa-credspec-s3"></a>
 
@@ -154,7 +149,7 @@ You must also add the following permissions as an inline policy to the Amazon EC
 
 #### Local File<a name="gmsa-credspec-file"></a>
 
-With the credential spec details in a local file, reference the file path in the `dockerSecurityOptions` field of the task definition\.
+With the credential spec details in a local file, reference the file path in the `dockerSecurityOptions` field of the task definition\. The filepath referenced must be relative to the `C:\ProgramData\Docker\CredentialSpecs` directory\. 
 
 ```
 {

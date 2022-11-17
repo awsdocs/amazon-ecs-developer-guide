@@ -6,7 +6,7 @@ If your container instance was not launched using an Amazon ECS\-optimized AMI, 
 + For non\-Amazon Linux instances, you can either download the agent from one of the regional S3 buckets or from Amazon Elastic Container Registry Public\. If you download from one of the regional S3 buckets, you can optionally verify the validity of the container agent file using the PGP signature\. For more information, see [Installing the Amazon ECS container agent on a non\-Amazon Linux EC2 instance](#ecs-agent-install-nonamazonlinux)\.
 
 **Note**  
-The `systemd` units for both ECS and Docker services have a directive to wait for `cloud-init` to finish before starting both services\. The `cloud-init` process is not considered finished until your Amazon EC2 user data has finished running\. Therefore, starting ECS or Docker via Amazon EC2 user data may cause a deadlock\. To start the container agent using Amazon EC2 user data you can use `systemctl enable --now --no-block ecs.service`\.
+The `systemd` units for both Amazon ECS and Docker services have a directive to wait for `cloud-init` to finish before starting both services\. The `cloud-init` process is not considered finished until your Amazon EC2 user data has finished running\. Therefore, starting Amazon ECS or Docker via Amazon EC2 user data may cause a deadlock\. To start the container agent using Amazon EC2 user data you can use `systemctl enable --now --no-block ecs.service`\.
 
 ## Installing the Amazon ECS container agent on an Amazon Linux 2 EC2 instance<a name="ecs-agent-install-al2"></a>
 
@@ -90,7 +90,7 @@ To install the Amazon ECS container agent on an Amazon Linux AMI EC2 instance us
 To install the Amazon ECS container agent on a non\-Amazon Linux EC2 instance, you can download the agent from one of the regional S3 buckets and install it\.
 
 **Note**  
-When using a non\-Amazon Linux AMI, your Amazon EC2 instance requires `cgroupfs` support for the `cgroup` driver in order for the Amazon ECS agent to support task level resource limits\. For more information, see [ECS agent on GitHub](https://github.com/aws/amazon-ecs-agent)\.
+When using a non\-Amazon Linux AMI, your Amazon EC2 instance requires `cgroupfs` support for the `cgroup` driver in order for the Amazon ECS agent to support task level resource limits\. For more information, see [Amazon ECS agent on GitHub](https://github.com/aws/amazon-ecs-agent)\.
 
 The latest Amazon ECS container agent files, by Region, for each system architecture are listed below for reference\.
 

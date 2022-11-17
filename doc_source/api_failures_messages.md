@@ -9,3 +9,6 @@ For more information about the structure of the `Failure` data type, see [Failur
 The following are examples of failure messages you might receive when running API commands\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/api_failures_messages.html)
+
+**Note**  
+Besides the failure scenarios described here, APIs can also fail due to exceptions, resulting in error responses\. For a list of such exceptions, see [Common Errors](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/CommonErrors.html)\.
