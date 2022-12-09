@@ -157,6 +157,45 @@ In this example, a container uses an empty data volume that is disposed of after
    ]
    ```
 
+**To provide NFS persistent storage for a container using a Docker volume**
+
+In this example, a container uses an NFS data volume that is automatically mounted when the task starts and unmounted when the task stops\. This uses Dockers built-in local driver\. One example use case is that you might have a local NFS storage and needs to access it from an Amazon ECS Anywhere task\. This can be achieved using a Docker volume with NFS driver option\.
+
+1. In the task definition `volumes` section, define a data volume with `name` and `DockerVolumeConfiguration` values\. In this example, we specify the scope as `task` so the volume is unmounted after the task stops and use the built\-in `local` driver\. Additionally, we configure the `driverOpts` values with `type`, `device` and `o` parameters configured accordingly\. Replace `NFS_SERVER` with the nfs server endpoint\.
+
+   ```
+   "volumes": [
+       {
+           "name": "NFS",
+           "dockerVolumeConfiguration" : {
+               "scope": "task",
+               "driver": "local",
+               "driverOpts": {
+                   "type": "nfs",
+                   "device": "$NFS_SERVER:/mnt/nfs",
+                   "o": "addr=$NFS_SERVER"
+               }
+           }
+       }
+   ]
+   ```
+
+1. In the `containerDefinitions` section, define a container with `mountPoints` values that reference the name of the defined volume and the `containerPath` value to mount the volume at on the container\.
+
+   ```
+   "containerDefinitions": [
+       {
+           "name": "container-1",
+           "mountPoints": [
+               {
+                 "sourceVolume": "NFS",
+                 "containerPath": "/var/nfsmount"
+               }
+           ]
+       }
+   ]
+   ```
+
 **To provide persistent storage for a container using a Docker volume**
 
 In this example, you want a shared volume for multiple containers to use and you want it to persist after any single task that use it stopped\. The built\-in `local` driver is being used\. This is so the volume is still tied to the lifecycle of the container instance\.
