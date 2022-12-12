@@ -27,7 +27,7 @@ The Amazon ECS console JON editor validates the following in the JSON file:
 
    1. For **Name**, enter a name for the container\.
 
-   1. For **Image URI**, enter the image to use to start a container\. Images in the Amazon ECR Public Gallery registry are may be specified using the Amazon ECR Public registry name only\. For example, if `public.ecr.aws/ecs/amazon-ecs-agent:latest` is specified, the Amazon Linux container hosted on Amazon ECR Public Gallery is used\. For all other repositories, specify the repository using either the `repository-url/image:tag` or `repository-url/image@digest` formats\.
+   1. For **Image URI**, enter the image to use to start a container\. Images in the Amazon ECR Public Gallery registry may be specified using the Amazon ECR Public registry name only\. For example, if `public.ecr.aws/ecs/amazon-ecs-agent:latest` is specified, the Amazon Linux container hosted on Amazon ECR Public Gallery is used\. For all other repositories, specify the repository using either the `repository-url/image:tag` or `repository-url/image@digest` formats\.
 
    1. For **Essential container**, if your task definition has two or more containers defined, you may specify whether the container should be considered essential\. If a container is marked as *essential*, if that container stops then the task is stopped\. Each task definition must contain at least one essential container\.
 
