@@ -21,6 +21,7 @@ Amazon ECS Linux containers on AWS Fargate are supported in the following AWS Re
 |  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1 \(`apne1-az1`, `apne1-az2`, & `apne1-az4` only\)  | 
 |  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
 |  Asia Pacific \(Osaka\)  |  ap\-northeast\-3  | 
+|  Asia Pacific \(Hyderabad\)  |  ap\-south\-2  | 
 |  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
 |  Asia Pacific \(Jakarta\)  |  ap\-southeast\-3  | 

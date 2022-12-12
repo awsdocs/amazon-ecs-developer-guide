@@ -12,8 +12,8 @@ You can also optionally run your service behind a load balancer\. The load balan
 + [Amazon ECS Deployment types](deployment-types.md)
 + [Service load balancing](service-load-balancing.md)
 + [Service auto scaling](service-auto-scaling.md)
++ [Interconnecting services](interconnecting-services.md)
 + [Task scale\-in protection](task-scale-in-protection.md)
-+ [Service Discovery](service-discovery.md)
 + [Service throttle logic](service-throttle-logic.md)
 
 ## Service scheduler concepts<a name="service_scheduler"></a>
@@ -80,5 +80,5 @@ When you create a service that runs tasks on EC2 instances, you can optionally s
 ## Additional service concepts<a name="service_concepts"></a>
 + You can optionally run your service behind a load balancer\. For more information, see [Service load balancing](service-load-balancing.md)\.
 + You can optionally specify a deployment configuration for your service\. A deployment is triggered by updating the task definition or desired count of a service\. During a deployment, the service scheduler uses the *minimum healthy percent* and *maximum percent* parameters to determine the deployment strategy\. For more information, see [Service definition parameters](service_definition_parameters.md)\.
-+ You can optionally configure your service to use Amazon ECS service discovery\. Service discovery uses the AWS Cloud Map autonaming APIs to manage DNS entries for your service's tasks\. This makes them discoverable from within your VPC\. For more information, see [Service Discovery](service-discovery.md)\.
++ You can optionally configure your service to use Amazon ECS service discovery\. Service discovery uses the AWS Cloud Map autonaming APIs to manage DNS entries for your service's tasks\. This makes them discoverable from within your VPC\. For more information, see [Service discovery](service-discovery.md)\.
 + When you delete a service, if there are still running tasks that require cleanup, the service moves from an `ACTIVE` to a `DRAINING` status, and the service is no longer visible in the console or in the `ListServices` API operation\. After all tasks transition to either a `STOPPING` or `STOPPED` status, the service moves from a `DRAINING` to `INACTIVE` status\. You can view services in the `DRAINING` or `INACTIVE` status by using the `DescribeServices` API operation\. However, in the future, `INACTIVE` services might be cleaned up and purged from Amazon ECS record keeping, and `DescribeServices` calls on those services return a `ServiceNotFoundException` error\.

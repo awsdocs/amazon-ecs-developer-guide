@@ -1,6 +1,6 @@
 # Step 4: Configuring your service to use Service Discovery<a name="service-configure-servicediscovery"></a>
 
-Your Amazon ECS service can optionally use service discovery integration, which allows your service to be discoverable via DNS\. For more information, see [Service Discovery](service-discovery.md)\.
+Your Amazon ECS service can optionally use service discovery integration, which allows your service to be discoverable via DNS\. For more information, see [Service discovery](service-discovery.md)\.
 
 If you are not configuring your service to use a service discovery, you can move on to the next section, [Step 5: Configuring your service to use Service Auto Scaling](service-configure-auto-scaling.md)\.
 

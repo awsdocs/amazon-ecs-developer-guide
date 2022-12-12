@@ -1,8 +1,6 @@
-# Service Discovery<a name="service-discovery"></a>
+# Service discovery<a name="service-discovery"></a>
 
-Amazon ECS services can be configured to use Service Discovery\. Service discovery uses AWS Cloud Map API actions to manage HTTP and DNS namespaces for your Amazon ECS services\. For more information, see [What Is AWS Cloud Map?](https://docs.aws.amazon.com/cloud-map/latest/dg/Welcome.html) in the *AWS Cloud Map Developer Guide*\. 
-
-When you create a private namespace in AWS Cloud Map, we automatically create a Route 53 hosted zone\. The Amazon ECS service can register with a friendly and predictable DNS name in Route 53\. The hosted zones are updated automatically as your Amazon ECS services scale up or down\. Other services perform a DNS lookup to determine whether to make a connection to the service\.
+Your Amazon ECS service can optionally be configured to use Amazon ECS service discovery\. Service discovery uses AWS Cloud Map API actions to manage HTTP and DNS namespaces for your Amazon ECS services\. For more information, see [What Is AWS Cloud Map?](https://docs.aws.amazon.com/cloud-map/latest/dg/Welcome.html) in the *AWS Cloud Map Developer Guide*\.
 
 Service discovery is available in the following AWS Regions:
 
@@ -39,28 +37,28 @@ Service discovery is available in the following AWS Regions:
 ## Service Discovery concepts<a name="service-discovery-concepts"></a>
 
 Service discovery consists of the following components:
-+ **Service discovery namespace**: A logical group of service discovery services that share the same domain name, such as `example.com`\. This is the domain name where you want to route traffic to\. You can create a namespace with a call to the `aws servicediscovery create-private-dns-namespace` command or in the Amazon ECS classic console\. You can use the `aws servicediscovery list-namespaces` command to view the summary information about the namespaces that were created by the current account\. For more information about the service discovery commands, see `[create\-private\-dns\-namespace](https://docs.aws.amazon.com/cli/latest/reference/servicediscovery/create-private-dns-namespace.html)` and `[list\-namespaces](https://docs.aws.amazon.com/cli/latest/reference/servicediscovery/list-namespaces.html)` in the *AWS Cloud Map \(service discovery\) AWS CLI Reference Guide*\.
++ **Service discovery namespace**: A logical group of service discovery services that share the same domain name, such as `example.com`\. This is the domain name where you want to route traffic to\. You can create a namespace with a call to the `aws servicediscovery create-private-dns-namespace` command or in the Amazon ECS classic console\. You can use the `aws servicediscovery list-namespaces` command to view the summary information about the namespaces that were created by the current account\. Fore more information about the service discovery commands, see `[create\-private\-dns\-namespace](https://docs.aws.amazon.com/cli/latest/reference/servicediscovery/create-private-dns-namespace.html)` and `[list\-namespaces](https://docs.aws.amazon.com/cli/latest/reference/servicediscovery/list-namespaces.html)` in the *AWS Cloud Map \(service discovery\) AWS CLI Reference Guide*\.
 + **Service discovery service**: Exists within the service discovery namespace and consists of the service name and DNS configuration for the namespace\. It provides the following core component:
   + **Service registry**: Allows you to look up a service via DNS or AWS Cloud Map API actions and get back one or more available endpoints that can be used to connect to the service\.
-+ **Service discovery instance**: Exists within the service discovery service and consists of the attributes that are associated with each Amazon ECS service in the service directory\.
-  + **Instance attributes**: The following metadata is added as custom attributes for each Amazon ECS service that's configured to use service discovery:
++ **Service discovery instance**: Exists within the service discovery service and consists of the attributes associated with each Amazon ECS service in the service directory\.
+  + **Instance attributes**: The following metadata is added as custom attributes for each Amazon ECS service that is configured to use service discovery:
     + **`AWS_INSTANCE_IPV4`** – For an `A` record, the IPv4 address that Route 53 returns in response to DNS queries and AWS Cloud Map returns when discovering instance details, for example, `192.0.2.44`\.
-    + **`AWS_INSTANCE_PORT`** – The port value that's associated with the service discovery service\.
-    + **`AVAILABILITY_ZONE`** – The Availability Zone that the task was launched into\. For tasks that use the EC2 launch type, this is the Availability Zone where the container instance is in\. For tasks that use the Fargate launch type, this is the Availability Zone where the elastic network interface is in\.
-    + **`REGION`** – The Region where the task is in\.
-    + **`ECS_SERVICE_NAME`** – The name of the Amazon ECS service that the task belongs to\.
-    + **`ECS_CLUSTER_NAME`** – The name of the Amazon ECS cluster that the task belongs to\.
-    + **`EC2_INSTANCE_ID`** – The ID of the container instance the task was placed on\. This custom attribute isn't added if the task is using the Fargate launch type\.
+    + **`AWS_INSTANCE_PORT`** – The port value associated with the service discovery service\.
+    + **`AVAILABILITY_ZONE`** – The Availability Zone into which the task was launched\. For tasks using the EC2 launch type, this is the Availability Zone in which the container instance exists\. For tasks using the Fargate launch type, this is the Availability Zone in which the elastic network interface exists\.
+    + **`REGION`** – The Region in which the task exists\.
+    + **`ECS_SERVICE_NAME`** – The name of the Amazon ECS service to which the task belongs\.
+    + **`ECS_CLUSTER_NAME`** – The name of the Amazon ECS cluster to which the task belongs\.
+    + **`EC2_INSTANCE_ID`** – The ID of the container instance the task was placed on\. This custom attribute is not added if the task is using the Fargate launch type\.
     + **`ECS_TASK_DEFINITION_FAMILY`** – The task definition family that the task is using\.
-    + **`ECS_TASK_SET_EXTERNAL_ID`** – If a task set is created for an external deployment and is associated with a service discovery registry, then the `ECS_TASK_SET_EXTERNAL_ID` attribute contains the external ID of the task set\.
-+ **Amazon ECS health checks**: Amazon ECS performs periodic container\-level health checks\. If an endpoint doesn't pass the health check, it's removed from DNS routing and marked as unhealthy\.
+    + **`ECS_TASK_SET_EXTERNAL_ID`** – If a task set is created for an external deployment and is associated with a service discovery registry, then the `ECS_TASK_SET_EXTERNAL_ID` attribute will contain the external ID of the task set\.
++ **Amazon ECS health checks**: Amazon ECS performs periodic container\-level health checks\. If an endpoint does not pass the health check, it is removed from DNS routing and marked as unhealthy\.
 
 ## Service discovery considerations<a name="service-discovery-considerations"></a>
 
 The following should be considered when using service discovery:
 + Service discovery is supported for tasks on Fargate that use platform version 1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
-+ Services configured to use service discovery have a limit of 1,000 tasks for each service\. This is due to a Route 53 service quota\.
-+ The Create Service workflow in the Amazon ECS classic console only supports registering services into private DNS namespaces\. When an AWS Cloud Map private DNS namespace is created, a Route 53 private hosted zone will be created automatically\.
++ Services configured to use service discovery have a limit of 1,000 tasks per service\. This is due to a Route 53 service quota\.
++ The Create Service workflow in the Amazon ECS console only supports registering services into private DNS namespaces\. When an AWS Cloud Map private DNS namespace is created, a Route 53 private hosted zone will be created automatically\.
 + The VPC DNS attributes must be configured for successful DNS resolution\. For information about how to configure the attributes, see [DNS support in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support) in the *Amazon VPC User Guide*\.
 + The DNS records created for a service discovery service always register with the private IP address for the task, rather than the public IP address, even when public namespaces are used\.
 + Service discovery requires that tasks specify either the `awsvpc`, `bridge`, or `host` network mode \(`none` is not supported\)\.

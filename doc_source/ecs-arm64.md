@@ -11,10 +11,10 @@ Before you begin deploying task definitions that use the 64\-bit ARM architectur
 + The applications can use Fluent Bit or CloudWatch for monitoring\.
 + For the Fargate launch type, the following AWS Regions do not support 64\-bit ARM workloads:
   + US East \(N\. Virginia\) , the `use1-az3` Availability Zone
+  + Asia Pacific \(Hyderabad\)
   + China \(Beijing\)
   + China \(Ningxia\)
   +  Europe \(Zurich\)
-  +  Europe \(Spain\)
   +  Africa \(Cape Town\)
   + Middle East \(UAE\)
   + Middle East \(Bahrain\)

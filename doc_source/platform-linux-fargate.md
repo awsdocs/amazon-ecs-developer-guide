@@ -62,7 +62,7 @@ The following is the changelog for platform version `1.1.0`\.
 Platform version `1.1.0` is deprecated\. We recommend migrating to the latest platform version\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
 + Added support for the Amazon ECS task metadata endpoint\. For more information, see [Amazon ECS task metadata endpoint](task-metadata-endpoint.md)\.
 + Added support for Docker health checks in container definitions\. For more information, see [Health check](task_definition_parameters.md#container_definition_healthcheck)\.
-+ Added support for Amazon ECS service discovery\. For more information, see [Service Discovery](service-discovery.md)\.
++ Added support for Amazon ECS service discovery\. For more information, see [Service discovery](service-discovery.md)\.
 
 ## 1\.0\.0<a name="platform-version-1-0"></a>
 

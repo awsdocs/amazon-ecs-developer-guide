@@ -45,7 +45,7 @@ Amazon ECS initiates the `CapacityProviderReservation` metric, and then publishe
 Consider the following when using cluster Auto Scaling:
 + The desired capacity for the Auto Scaling group associated with a capacity provider shouldn't be changed or managed by any scaling policies other than the one Amazon ECS manages\.
 + Amazon ECS uses the `AWSServiceRoleForECS` service\-linked IAM role for the permissions it requires to call AWS Auto Scaling, on your behalf\. For more information on using and creating Amazon ECS service\-linked IAM roles, see [Using service\-linked roles for Amazon ECS](using-service-linked-roles.md)\.
-+ When using capacity providers with Auto Scaling groups, the IAM user who creates the capacity providers, needs the `autoscaling:CreateOrUpdateTags` permission because Amazon ECS adds a tag to the Auto Scaling group when it associates it with the capacity provider\.
++ When using capacity providers with Auto Scaling groups, the who creates the capacity providers, needs the `autoscaling:CreateOrUpdateTags` permission because Amazon ECS adds a tag to the Auto Scaling group when it associates it with the capacity provider\.
 **Important**  
 Make sure any tooling you use does not remove the `AmazonECSManaged` tag from the Auto Scaling group\. If this tag is removed, Amazon ECS is not able to manage it when scaling your cluster\.
 + Cluster Auto Scaling does not modify the **MinimumCapacity** or **MaximumCapacity** for the group\. In order for the group to scale\-out, the value for **MaximumCapacity** must be greater than 0\.

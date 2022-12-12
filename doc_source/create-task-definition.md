@@ -39,6 +39,13 @@ The Amazon ECS console JON editor validates the following in the JSON file:
 
    1. Expand the **Environment variables** section to specify environment variables to inject into the container\. You can specify environment variables either individually using key\-value pairs or in bulk by specifying an environment variable file hosted in an Amazon S3 bucket\. For information on how to format an environment variable file, see [Passing environment variables to a container](taskdef-envfiles.md)\.
 
+   1. \(Optional\) To configure the commands that determine if a conatiner is healthy, exapnd **HealthCheck**, and then configure the following items:
+      + For **Command**, enter a comma\-separated lis of commands\. You can start the commands with `CMD` to run the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. If neither is specified, `CMD` is used\. 
+      + For** Interval**, enter the number of seconds between each health check\. The valid values are between 5 and 30\.
+      + For **Timeout**, enter the period of time \(in seconds\) to wait for a health check to succeed before it's considered a failure\. The valid values are between 2 and 60\.
+      + For **Start period**, enter the period of time \(in seconds\) to wait for a container to bootstrap before the health check commands run\. The valid values are between 0 and 300\.
+      + For **Retries**, enter the number of times to rety the health check commands when there is a failure\. The valie values are between 1 and 10\.
+
    1. \(Optional\) Choose **Add more containers** to add additional containers to the task definition\. Choose **Next** once all containers have been defined\.
 
 1. For **App environment**, choose the application environment\. The console default is **AWS Fargate \(serverless\)**\. Amazon ECS performs validation using this value to ensure the task definition parameters are valid for the infrastructure type\.

@@ -194,8 +194,10 @@ Amazon ECS supports the following service\-specific condition keys that you can 
 |  ecs:container\-instances  |  The context key is formatted `"ecs:container-instances":"container-instance-arns"` where *container\-instance\-arns* is one or more container instance ARNs\.  |  ARN, Null  | 
 | ecs:container\-name |  The context key is formatted `"ecs:container-name":"container-name"` where *container\-instance\-* is the name of an Amazon ECS container which is defined in the ECS task definition\.   | String | 
 | ecs:enable\-execute\-command | The context key is formatted "ecs:enable\-execute\-command":"value" where value\- is "true" or "false"\. | String | 
-|  ecs:task\-definition  |  The context key is formatted `"ecs:task-definition":"task-definition-arn"` where *task\-definition\-arn* is the ARN for the Amazon ECS task definition\.  | ARN, Null | 
+|  ecs:enable\-service\-connect  |  The context key is formatted `"ecs:ecs:enable-service-connect":"value"` where *value* is `"true"` or `"false"`\.  | String | 
+|  ecs:namespace  |  The context key is formatted `"ecs:ecs:namespace":"namespace-arn"` where *namespace\-arn* is the ARN for the AWS Cloud Map namespace\.  | ARN, Null | 
 |  ecs:service  |  The context key is formatted `"ecs:service":"service-arn"` where *service\-arn* is the ARN for the Amazon ECS service\.  | ARN, Null | 
+|  ecs:task\-definition  |  The context key is formatted `"ecs:task-definition":"task-definition-arn"` where *task\-definition\-arn* is the ARN for the Amazon ECS task definition\.  | ARN, Null | 
 
 To see a list of Amazon ECS condition keys, see [Condition keys for Amazon Elastic Container Service](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonelasticcontainerservice.html#amazonelasticcontainerservice-policy-keys) in the *Service Authorization Reference*\. To learn with which actions and resources you can use a condition key, see [Actions defined by Amazon Elastic Container Service](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonelasticcontainerservice.html#amazonelasticcontainerservice-actions-as-permissions)\.
 

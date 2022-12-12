@@ -13,16 +13,16 @@ You can use the AWS Management Console and AWS CLI tools to modify your account 
 
 1. On the **Amazon ECS ARN and resource ID settings**, **AWSVPC Trunking**, and **CloudWatch Container Insights** sections, you can select or deselect the check boxes for each account setting for the authenticated IAM user and role\. Choose **Save** once finished\.
 **Important**  
-IAM users and IAM roles need the `ecs:PutAccountSetting` permission to perform this action\.
+ and IAM roles need the `ecs:PutAccountSetting` permission to perform this action\.
 
 1. On the confirmation screen, choose **Confirm** to save the selection\.
 
 ------
 #### [ AWS CLI ]
 
-**To modify the default account settings for all IAM users or roles on your account \(AWS CLI\)**
+**To modify the default account settings for all or roles on your account \(AWS CLI\)**
 
-Use one of the following commands to modify the default account setting for all IAM users or roles on your account\. These changes apply to the entire AWS account unless an IAM user or role explicitly overrides these settings for themselves\.
+Use one of the following commands to modify the default account setting for all or roles on your account\. These changes apply to the entire AWS account unless an or role explicitly overrides these settings for themselves\.
 + [put\-account\-setting\-default](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting-default.html) \(AWS CLI\)
 
   ```
@@ -36,9 +36,9 @@ Use one of the following commands to modify the default account setting for all 
   Write-ECSAccountSettingDefault -Name serviceLongArnFormat -Value enabled -Region us-east-1 -Force
   ```
 
-**To modify the account settings for your IAM user account \(AWS CLI\)**
+**To modify the account settings for your account \(AWS CLI\)**
 
-Use one of the following commands to modify the account settings for your IAM user\. If you’re using these commands as the root user, changes apply to the entire AWS account unless an IAM user or role explicitly overrides these settings for themselves\.
+Use one of the following commands to modify the account settings for your IAM user\. If you’re using these commands as the root user, changes apply to the entire AWS account unless an or role explicitly overrides these settings for themselves\.
 + [put\-account\-setting](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting.html) \(AWS CLI\)
 
   ```
@@ -52,9 +52,9 @@ Use one of the following commands to modify the account settings for your IAM us
   Write-ECSAccountSetting -Name serviceLongArnFormat -Value enabled -Force
   ```
 
-**To modify the account settings for a specific IAM user or IAM role \(AWS CLI\)**
+**To modify the account settings for a specific or IAM role \(AWS CLI\)**
 
-Use one of the following commands and specify the ARN of an IAM user, IAM role, or root user in the request to modify the account settings for a specific IAM user or IAM role\.
+Use one of the following commands and specify the ARN of an , IAM role, or root user in the request to modify the account settings for a specific or IAM role\.
 + [put\-account\-setting](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting.html) \(AWS CLI\)
 
   ```

@@ -23,7 +23,7 @@ The `dualStackIPv6` account setting can only be viewed or changed using the AWS 
 
 1. From the dashboard, choose **Account Settings**\.
 
-1. On the **Amazon ECS ARN and resource ID settings**, **AWSVPC Trunking**, and **CloudWatch Container Insights** sections, you can view your opt\-in status for each account setting for the authenticated IAM user and role\.
+1. On the **Amazon ECS ARN and resource ID settings**, **AWSVPC Trunking**, and **CloudWatch Container Insights** sections, you can view your opt\-in status for each account setting for the authenticated and role\.
 
 ------
 #### [ AWS CLI ]
@@ -38,7 +38,7 @@ The `dualStackIPv6` account setting can only be viewed or changed using the AWS 
   Get-ECSAccountSetting -EffectiveSetting true -Region us-east-1
   ```
 
-**To view the account settings for a specific IAM user or IAM role \(AWS CLI\)**
+**To view the account settings for a specific or IAM role \(AWS CLI\)**
 + [list\-account\-settings](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-account-settings.html) \(AWS CLI\)
 
   ```

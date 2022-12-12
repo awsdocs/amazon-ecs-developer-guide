@@ -4,7 +4,7 @@ Monitoring is an important part of maintaining the reliability, availability, an
 
 **Amazon CloudWatch Alarms**  
 Watch a single metric over a time period that you specify, and perform one or more actions based on the value of the metric relative to a given threshold over a number of time periods\. The action is a notification sent to an Amazon Simple Notification Service \(Amazon SNS\) topic or Amazon EC2 Auto Scaling policy\. CloudWatch alarms do not invoke actions simply because they are in a particular state; the state must have changed and been maintained for a specified number of periods\. For more information, see [Amazon ECS CloudWatch metrics](cloudwatch-metrics.md)\.  
-For clusters with tasks or services using the EC2 launch type, you can use CloudWatch alarms to scale in and scale out the container instances based on CloudWatch metrics, such as cluster memory reservation\. For more information, see [Tutorial: Scaling container instances with CloudWatch alarms](cloudwatch_alarm_autoscaling.md)\.
+For clusters with tasks or services using the EC2 launch type, you can use CloudWatch alarms to scale in and scale out the container instances based on CloudWatch metrics, such as cluster memory reservation\.
 
 **Amazon CloudWatch Logs**  
 Monitor, store, and access the log files from the containers in your Amazon ECS tasks by specifying the `awslogs` log driver in your task definitions\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.  

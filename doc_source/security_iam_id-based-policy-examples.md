@@ -19,6 +19,7 @@ For details about actions and resource types defined by Amazon ECS, including th
 + [Create service example](#IAM_create_service_policies)
 + [Update service example](#IAM_update_service_policies)
 + [Describing Amazon ECS services based on tags](#security_iam_id-based-policy-examples-view-cluster-tags)
++ [Deny Service Connect Namespace Override Example](#IAM_disable_namespace_override_policies)
 
 ## Policy best practices<a name="security_iam_service-with-iam-policy-best-practices"></a>
 
@@ -669,4 +670,30 @@ You can use conditions in your identity\-based policy to control access to Amazo
 }
 ```
 
-You can attach this policy to the IAM users in your account\. If a user named `richard-roe` attempts to describe an Amazon ECS service, the service must be tagged `Owner=richard-roe` or `owner=richard-roe`\. Otherwise he is denied access\. The condition tag key `Owner` matches both `Owner` and `owner` because condition key names are not case\-sensitive\. For more information, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
+You can attach this policy to the in your account\. If a user named `richard-roe` attempts to describe an Amazon ECS service, the service must be tagged `Owner=richard-roe` or `owner=richard-roe`\. Otherwise he is denied access\. The condition tag key `Owner` matches both `Owner` and `owner` because condition key names are not case\-sensitive\. For more information, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
+
+## Deny Service Connect Namespace Override Example<a name="IAM_disable_namespace_override_policies"></a>
+
+The following IAM policy denies a user from overriding the default Service Connect namespace in a service configuration\. The default namespace is set in the cluster\. However, you can override it in a service configuration\. For consistency, consider setting all your new services to use the same namespace\. Use the following context keys to require services to use a specific namespace\. Replace the `<region>`, `<aws_account_id>`, `<cluster_name>` and `<namespace_id>` with your own in the following example\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecs:CreateService",
+                "ecs:UpdateService"
+            ],
+            "Condition": {
+                "ARNEquals": {
+                    "ecs:cluster": "arn:aws:ecs:<region>:<aws_account_id>:cluster/<cluster_name>",
+                    "ecs:namespace": "arn:aws:servicediscovery:<region>:<aws_account_id>:namespace/<namespace_id>"
+                }
+            },
+            "Resource": "*"
+        }
+    ]
+}
+```

@@ -73,19 +73,7 @@ For more information, see [Download and configure the CloudWatch agent using the
 
 ## Viewing CloudWatch Logs<a name="viewing_cwlogs"></a>
 
-After you have given your container instance role the proper permissions to send logs to CloudWatch Logs, and you have configured and started the agent, your container instance should be sending its log data to CloudWatch Logs\. You can view and search these logs in the AWS Management Console\.
+After you have given your container instance role the proper permissions to send logs to CloudWatch Logs, and you have configured and started the agent, your container instance should be sending its log data to CloudWatch Logs\. For information about how to view the logs, see [View log data sent to CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#ViewingLogData) in the *Amazon CloudWatch Logs User Guide*\.
 
 **Note**  
 New instance launches may take a few minutes to send data to CloudWatch Logs\.
-
-**To view your CloudWatch Logs data**
-
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
-
-1. In the left navigation pane, choose **Logs**, **Log groups**\.  
-![\[CloudWatch console metrics view\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/cwl-log-groups.png)
-
-1. Choose a log group to view\.
-
-1. Choose a log stream to view\. The streams are identified by the cluster name and container instance ID that sent the logs\.  
-![\[CloudWatch console metrics view\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/cw_log_stream.png)

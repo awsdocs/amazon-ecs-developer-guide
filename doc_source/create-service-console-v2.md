@@ -118,6 +118,23 @@ To create a service using defined parameters, follow these steps\.
 
    1. To prevent the policy from performing a scale\-in activity, select **Turn off scale\-in**\.
 
+1. \(Optional\) To use Service Connect, select **Turn on Service Connect**, and then specify the following:
+
+   1. Under** Service Connect configuration**, specify the client mode\.
+      + If your service runs s network client application that only needs to connect to other services in the namespace, choose **Client side only**\.
+      + If your service runs a network or web service application and needs to provide endpoints for this service, and connects to other services in the namespace, choose **Client and server**\.
+
+   1. To use a namespace that is not the default cluster namespace, for **Namespace**, choose the service namespace\.
+
+   1. \(Optional\) Select the **Use log collection** option to specify a log configuration\. For each available log driver, there are log driver options to specify\. The default option sends container logs to CloudWatch Logs\. The other log driver options are configured using AWS FireLens\. For more information, see [Custom log routing](using_firelens.md)\.
+
+      The following describes each container log destination in more detail\.
+      + **Amazon CloudWatch** — Configure the task to send container logs to CloudWatch Logs\. The default log driver options are provided which creates a CloudWatch log group on your behalf\. To specify a different log group name, change the driver option values\.
+      + **Amazon Kinesis Data Firehose** — Configure the task to send container logs to Kinesis Data Firehose\. The default log driver options are provided which sends logs to an Kinesis Data Firehose delivery stream\. To specify a different delivery stream name, change the driver option values\.
+      + **Amazon Kinesis Data Streams** — Configure the task to send container logs to Kinesis Data Streams\. The default log driver options are provided which sends logs to an Kinesis Data Streams stream\. To specify a different stream name, change the driver option values\.
+      + **Amazon OpenSearch Service** — Configure the task to send container logs to an OpenSearch Service domain\. The log driver options must be provided\. For more information, see [Forwarding logs to an Amazon OpenSearch Service domain](firelens-example-taskdefs.md#firelens-example-opensearch)\.
+      + **Amazon S3** — Configure the task to send container logs to an Amazon S3 bucket\. The default log driver options are provided but you must specify a valid Amazon S3 bucket name\.
+
 1. \(Optional\) To configure a load balancer for your service, expand **Load balancing**\.
 
    Choose the load balancer\.    

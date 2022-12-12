@@ -135,7 +135,7 @@ When specifying a `loadBalancer` object, you must specify a `targetGroupArn` and
 `networkConfiguration`  
 The network configuration for the service\. This parameter is required for task definitions that use the `awsvpc` network mode to receive their own elastic network interface, and it's not supported for other network modes\. For more information, see [Amazon ECS task networking](task-networking.md)\.\.  
 `serviceRegistries`  
-The details of the service discovery registries to assign to this service\. For more information, see [Service Discovery](service-discovery.md)\.  
+The details of the service discovery registries to assign to this service\. For more information, see [Service discovery](service-discovery.md)\.  
 `scale`  
 A floating\-point percentage of the desired number of tasks to place and keep running in the task set\. The value is specified as a percent total of a service's `desiredCount`\. Accepted values are numbers between 0 and 100\.
 

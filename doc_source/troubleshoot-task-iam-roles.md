@@ -47,6 +47,7 @@ The following procedure helps you to:
 
    1. Paste the sample task definition JSON below into the text area \(replacing the pre\-populated JSON there\) and choose **Save**\.
 **Note**  
+Replace the `cluster-name` value with the name of your cluster\. Replace the `region` value withh the Region where you created your cluster\.  
 Replace the `awslogs-region` value with the Region where you created your CloudWatch Logs log group\.
 
       ```
@@ -63,7 +64,7 @@ Replace the `awslogs-region` value with the Region where you created your CloudW
                       "-c"
                   ],
                   "command": [
-                      "yum install -y aws-cli; aws ecs list-tasks --region us-west-2"
+                      "yum install -y aws-cli; aws ecs list-tasks --cluster cluster-name --region us-west-2"
                   ],
                   "logConfiguration": {
                       "logDriver": "awslogs",

@@ -46,7 +46,7 @@ You can create, access, and manage your Amazon ECS resources using any of the fo
 
 ## Pricing<a name="welcome-pricing"></a>
 
-Amazon ECS pricing is dependent on whether you use AWS Fargate or Amazon EC2 infrastructure to host your containerized workloads\. When using Amazon ECS on AWS Outposts, the pricing follows the same model that's used when you use Amazon EC2 directly\. For more information, see [Amazon ECS Pricing](https://aws.amazon.com/ecs/pricing)\.
+Amazon ECS pricing depends on whether you use AWS Fargate or Amazon EC2 infrastructure to host your containerized workloads\. When using Amazon ECS on AWS Outposts, the pricing follows the same model that's used when you use Amazon EC2 directly\. For more information, see [Amazon ECS Pricing](https://aws.amazon.com/ecs/pricing)\.
 
 Amazon ECS and Fargate also offer Savings Plans that provide significant savings based on your AWS usage\. For more information, see the *[Savings Plans User Guide](https://docs.aws.amazon.com/savingsplans/latest/userguide/)*\.
 

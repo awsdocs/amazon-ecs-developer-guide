@@ -19,6 +19,9 @@ The default values are the initial quotas set by AWS, which are separate from th
 **Note**  
 <a name="service-quotas-ecs-note-2"></a>In practice, task launch rates are also dependent on other considerations such as container images to be downloaded and unpacked, health checks and other integrations enabled, such as registering tasks with a load balancer\. You might see variations in task launch rates compared with the quotas that are represented here\. These variations are causes by the features that you have enabled for your Amazon ECS services\. For more information, see [speeding up Amazon ECS deployments](https://docs.aws.amazon.com/AmazonECS/latest/bestpracticesguide/deployment.html) in the Amazon ECS Best Practices Guide\.
 
+**Note**  
+Services configured to use Amazon ECS Service Connect have a limit of 1,000 tasks per service\. This is due to the AWS Cloud Map service quota for the number of instances per service\. For more information, see [AWS Cloud Map service quotas](https://docs.aws.amazon.com/general/latest/gr/cloud_map.html) in the *Amazon Web Services General Reference*\.
+
 ## AWS Fargate service quotas<a name="service-quotas-fargate"></a>
 
 The following are Amazon ECS on AWS Fargate service quotas and are listed under the **AWS Fargate** service in the Service Quotas console\.

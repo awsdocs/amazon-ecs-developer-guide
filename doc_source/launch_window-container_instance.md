@@ -2,7 +2,7 @@
 
 Your Amazon ECS container instances are created using the Amazon EC2 console\. Before you begin, be sure that you've completed the steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md)\.
 
-For more informtion about the launch wizard, see [Launch an instance using the new launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-launch-instance-wizard.html) in the *Amazon EC2 User Guide for Windows Instances*\. 
+For more information about the launch wizard, see [Launch an instance using the new launch instance wizard](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-launch-instance-wizard.html) in the *Amazon EC2 User Guide for Windows Instances*\. 
 
 ## New Amazon EC2 launch instance wizard<a name="new-win-ec2-instance-wizard"></a>
 
@@ -44,7 +44,7 @@ For the latest Amazon ECS\-optimized AMIs and their values, see [Windows Amazon 
 
 Use the **Search** bar to find a suitable Amazon ECS\-optimized AMI published by AWS\.
 
-1. Based on your requirements, enter one of the following AMIs in the **Search** bar and press Enter\.
+1. Based on your requirements, enter one of the following AMIs in the **Search** bar and press **Enter**\.
    + Windows\_Server\-2022\-English\-Full\-ECS\_Optimized
    + Windows\_Server\-2022\-English\-Core\-ECS\_Optimized
    + Windows\_Server\-2019\-English\-Full\-ECS\_Optimized

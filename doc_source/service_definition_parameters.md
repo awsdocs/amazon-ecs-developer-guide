@@ -269,10 +269,68 @@ The short name or full ARN of the IAM role that allows Amazon ECS to make calls 
 If your specified role has a path other than `/`, then you must either specify the full role ARN \(this is recommended\) or prefix the role name with the path\. For example, if a role with the name `bar` has a path of `/foo/` then you would specify `/foo/bar` as the role name\. For more information, see [Friendly Names and Paths](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-friendly-names) in the *IAM User Guide*\.  
 If your account has already created the Amazon ECS service\-linked role, that role is used by default for your service unless you specify a role here\. The service\-linked role is required if your task definition uses the awsvpc network mode, in which case you should not specify a role here\. For more information, see [Using service\-linked roles for Amazon ECS](using-service-linked-roles.md)\.
 
+`serviceConnectConfiguration`  
+Type: Object  
+Required: No  
+The configuration for this service to discover and connect to services, and be discovered by, and connected from, other services within a namespace\.  
+For more information, see [Service Connect ](service-connect.md)\.    
+`enabled`  
+Type: Boolean  
+Required: Yes  
+Specifies whether to use Service Connect with this service\.   
+`namespace`  
+Type: String  
+Required: No  
+The short name or full Amazon Resource Name \(ARN\) of the AWS Cloud Map namespace for use with Service Connect\. The namespace must be in the same AWS Region as the Amazon ECS service and cluster\. The type of namespace doesn't affect Service Connect\. For more information about AWS Cloud Map, see [Working with Services](https://docs.aws.amazon.com/cloud-map/latest/dg/working-with-services.html) in the *AWS Cloud Map Developer Guide*\.  
+`services`  
+Type: Array of objects  
+Required: No  
+An array of Service Connect service objects\. These are names and aliases \(also known as endpoints\) that are used by other Amazon ECS services to connect to this service\.  
+This field isn't required for a "client" Amazon ECS service that's a member of a namespace only to connect to other services within the namespace\. An example is frontend application that accepts incoming requests from either a load balancer that's attached to the service or by other means\.  
+An object selects a port from the task definition, assigns a name for the AWS Cloud Map service, and an array of aliases \(also known as endpoints\) and ports for client applications to refer to this service\.    
+`portName`  
+Type: String  
+Required: Yes  
+The `portName` must match the `name` of one of the `portMappings` from all of the containers in the task definition of this Amazon ECS service\.  
+`discoveryName`  
+Type: String  
+Required: No  
+The `discoveryName` is the name of the new AWS Cloud Map service that Amazon ECS creates for this Amazon ECS service\. This must be unique within the AWS Cloud Map namespace\.  
+If this field isn't specified, `portName` is used\.  
+`clientAliases`  
+Type: Array of objects  
+Required: No  
+The list of client aliases for this service connect service\. You use these to assign names that can be used by client applications\. The maximum number of client aliases that you can have in this list is 1\.  
+Each alias \("endpoint"\) is a DNS name and port number that other Amazon ECS services \("clients"\) can use to connect to this service\.  
+Each name and port combination must be unique within the namespace\.  
+These names are configured within each task of the client service, not in AWS Cloud Map\. DNS requests to resolve these names don't leave the task, and don't count toward the quota of DNS requests per second per elastic network interface\.    
+`port`  
+Type: Integer  
+Required: Yes  
+The listening port number for the service connect proxy\. This port is available inside of all of the tasks within the same namespace\.  
+To avoid changing your applications in client Amazon ECS services, set this to the same port that the client application uses by default\.  
+`dnsName`  
+Type: String  
+Required: No  
+The `dnsName` is the name that you use in the applications of client tasks to connect to this service\. The name must be a valid DNS label\.  
+The default value is the `discoveryName.namespace` if this field is not specified\. If the `discoveryName` isn't specified, the `portName` from the task definition is used\.  
+To avoid changing your applications in client Amazon ECS services, set this to the same name that the client application uses by default\. For example, a few common names are `database`, `db`, or the lowercase name of a database, such as `mysql` or `redis`\.  
+`ingressPortOverride`  
+Type: Integer  
+Required: No  
+\(Optional\) The port number for the Service Connect proxy to listen on\.  
+Use the value of this field to bypass the proxy for traffic on the port number that's specified in the named `portMapping` in the task definition of this application, and then use it in your Amazon VPC security groups to allow traffic into the proxy for this Amazon ECS service\.  
+In `awsvpc` mode, the default value is the container port number that's specified in the named `portMapping` in the task definition of this application\. In `bridge` mode, the default value is the dynamic ephemeral port of the Service Connect proxy\.  
+`logConfiguration`  
+Type: [LogConfiguration](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_LogConfiguration.html) Object  
+Required: No  
+This defines where the Service Connect proxy logs are published\. Use the logs for debugging during unexpected events\. This configuration sets the `logConfiguration` parameter in the Service Connect proxy container in each task in this Amazon ECS service\. The proxy container isn't specified in the task definition\.  
+We recommend that you use the same log configuration as the application containers of the task definition for this Amazon ECS service\. For FireLens, this is the log configuration of the application container\. It's not the FireLens log router container that uses the `fluent-bit` or `fluentd ` container image\.
+
 `serviceRegistries`  
 Type: Array of objects  
 Required: No  
-The details of the service discovery configuration for your service\. For more information, see [Service Discovery](service-discovery.md)\.    
+The details of the service discovery configuration for your service\. For more information, see [Service discovery](service-discovery.md)\.    
 `registryArn`  
 Type: String  
 Required: No  

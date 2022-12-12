@@ -19,7 +19,7 @@ For an ongoing record of events in your AWS account, including events for Amazon
 All Amazon ECS actions are logged by CloudTrail and are documented in the [Amazon Elastic Container Service API Reference](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/)\. For example, calls to the `CreateService`, `RunTask` and `DeleteCluster` sections generate entries in the CloudTrail log files\.
 
 Every event or log entry contains information about who generated the request\. The identity information helps you determine the following:
-+ Whether the request was made with root or IAM user credentials\.
++ Whether the request was made with root or credentials\.
 + Whether the request was made with temporary security credentials for a role or federated user\.
 + Whether the request was made by another AWS service\.
 

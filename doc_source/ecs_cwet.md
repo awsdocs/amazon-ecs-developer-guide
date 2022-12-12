@@ -4,7 +4,7 @@ In this tutorial, you set up a simple AWS Lambda function that listens for Amazo
 
 ## Prerequisite: Set up a test cluster<a name="cwet_step_1"></a>
 
-If you do not have a running cluster to capture events from, follow the steps in [Creating a cluster using the classic console](create_cluster.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Lambda function correctly\. 
+If you do not have a running cluster to capture events from, follow the steps in [Creating a cluster for the Fargate launch type using the new console](create-cluster-console-v2.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Lambda function correctly\. 
 
 ## Step 1: Create the Lambda function<a name="cwet_step_2"></a>
 
@@ -62,19 +62,61 @@ When you use the AWS Management Console to create an event rule, the console aut
 
 1. For **Rule definition**, type a name and description for your rule and choose **Create rule**\.
 
-## Step 3: Test your rule<a name="cwet_step_4"></a>
+## Step 3: Create a task definition<a name="cwet_step_task-def"></a>
+
+Create a task definition\.
+
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+
+1. In the navigation pane, choose **Task Definitions**\.
+
+1. Choose **Create new Task Definition**, **Create new revision with JSON**\.
+
+1. Copy and paste the following example task definition into the box and then choose **Save**\.
+
+   ```
+   {
+       "containerDefinitions": [
+           {
+               "entryPoint": [
+                   "sh",
+                   "-c"
+               ],
+               "portMappings": [
+                   {
+                       "hostPort": 80,
+                       "protocol": "tcp",
+                       "containerPort": 80
+                   }
+               ],
+               "command": [
+                   "/bin/sh -c \"echo '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p> </div></body></html>' >  /usr/local/apache2/htdocs/index.html && httpd-foreground\""
+               ],
+               "cpu": 10,
+               "memory": 300,
+               "image": "httpd:2.4",
+               "name": "simple-app"
+           }
+       ],
+       "family": "console-sample-app-static"
+   }
+   ```
+
+1. Choose **Create**\.
+
+## Step 4: Test your rule<a name="cwet_step_4"></a>
 
  Finally, you create a CloudWatch Events event rule that captures task events coming from your Amazon ECS clusters\. This rule captures all events coming from all clusters within the account where it is defined\. The task messages themselves contain information about the event source, including the cluster on which it resides, that you can use to filter and sort events programmatically\. 
 
 **To test your rule**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. Choose **Clusters**, **default**\.
+1. Choose **Task definitions**\.
 
-1. On the **Cluster : default** screen, choose **Tasks**, **Run new Task**\.
+1. Choose **console\-sample\-app\-static**, and then choose **Deploy**, **Run new task**\.
 
-1. For **Task Definition**, select the latest version of **console\-sample\-app\-static** and choose **Run Task**\.
+1. For **Cluster**, choose default, and then choose **Deploy**\.
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 

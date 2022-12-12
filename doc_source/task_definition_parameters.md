@@ -93,8 +93,8 @@ Type: string
 Required: conditional  
 This parameter is not supported for Windows containers\.
 The hard limit of CPU units to present for the task\. It can be expressed as an integer using CPU units \(for example, `1024`\) or as a string using vCPUs \(for example, `1 vCPU` or `1 vcpu`\) in a task definition\. When the task definition is registered, a vCPU value is converted to an integer indicating the CPU units\.  
-For tasks that use the EC2 launch type, this field is optional\. If your cluster doesn't have any registered container instances with the requested CPU units available, the task fails\. Supported values are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
-For tasks that use the Fargate launch type \(both Linux and Windows containers\), this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
+For tasks that run on EC2 or external instances, this field is optional\. If your cluster doesn't have any registered container instances with the requested CPU units available, the task fails\. Supported values for tasks that run on EC2 or external instances are between `128` CPU units \(`0.125` vCPUs\) and `10240` CPU units \(`10` vCPUs\)\.  
+For tasks that run on Fargate \(both Linux and Windows containers\), this field is required and you must use one of the following values, which determines your range of supported values for the `memory` parameter:      
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)
 
 `memory`  
@@ -176,11 +176,18 @@ Required: no
 Port mappings allow containers to access ports on the host container instance to send or receive traffic\.  
 For task definitions that use the `awsvpc` network mode, only specify the `containerPort`\. The `hostPort` can be left blank or it must be the same value as the `containerPort`\.  
 Port mappings on Windows use the `NetNAT` gateway address rather than `localhost`\. There is no loopback for port mappings on Windows, so you cannot access a container's mapped port from the host itself\.   
-This parameter maps to `PortBindings` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--publish` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. If the network mode of a task definition is set to `host`, host ports must either be undefined or match the container port in the port mapping\.  
+Most fields of this parameter \(`containerPort`, `hostPort`, `protocol`\) maps to `PortBindings` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--publish` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\. If the network mode of a task definition is set to `host`, host ports must either be undefined or match the container port in the port mapping\.  
 After a task reaches the `RUNNING` status, manual and automatic host and container port assignments are visible in the following locations:  
 + Console: The **Network Bindings** section of a container description for a selected task\.
 + AWS CLI: The `networkBindings` section of the describe\-tasks command output\.
 + API: The `DescribeTasks` response\.  
+`appProtocol`  
+Type: string  
+Required: no  
+The application protocol that's used for the port mapping\. This parameter only applies to Service Connect\. We recommend that you set this parameter to be consistent with the protocol that your application uses\. If you set this parameter, Amazon ECS adds protocol\-specific connection handling to the service connect proxy\.If you set this parameter, Amazon ECS adds protocol\-specific telemetry in the Amazon ECS console and CloudWatch\.  
+If you don't set a value for this parameter, then TCP is used\. However, Amazon ECS doesn't add protocol\-specific telemetry for TCP\.  
+For more information, see [Service Connect ](service-connect.md)\.  
+Valid protocol values: `"HTTP" | "HTTP2" | "GRPC" `  
 `containerPort`  
 Type: integer  
 Required: yes, when `portMappings` are used  
@@ -196,10 +203,26 @@ If using containers in a task with the Fargate launch type, the `hostPort` can e
 If using containers in a task with the EC2 launch type, you can specify a non\-reserved host port for your container port mapping \(this is referred to as *static* host port mapping\), or you can omit the `hostPort` \(or set it to `0`\) while specifying a `containerPort` and your container automatically receives a port \(this is referred to as *dynamic* host port mapping\) in the ephemeral port range for your container instance operating system and Docker version\.  
 The default ephemeral port range Docker version 1\.6\.0 and later is listed on the instance under `/proc/sys/net/ipv4/ip_local_port_range`\. If this kernel parameter is unavailable, the default ephemeral port range from `49153–65535` is used\. Don't attempt to specify a host port in the ephemeral port range\. This is because these are reserved for automatic assignment\. In general, ports below `32768` are outside of the ephemeral port range\.   
 The default reserved ports are `22` for SSH, the Docker ports `2375` and `2376`, and the Amazon ECS container agent ports `51678-51680`\. Any host port that was previously user\-specified for a running task is also reserved while the task is running \(after a task stops, the host port is released\)\. The current reserved ports are displayed in the `remainingResources` of describe\-container\-instances output, and a container instance might have up to 100 reserved ports at a time, including the default reserved ports\. Automatically assigned ports do not count toward the 100 reserved ports limit\.  
+`name`  
+Type: string  
+Required: no, required for Service Connect to be configured in a service  
+The name that's used for the port mapping\. This parameter only applies to service connect\. This parameter is the name that you use in the Service Connect configuration of a service\.  
+For more information, see [Service Connect ](service-connect.md)\.  
+In the following example, both of the required fields for Service Connect are shown\.  
+
+```
+"portMappings": [
+    {
+        "name": string,
+        "containerPort": integer
+    }
+]
+```  
 `protocol`  
 Type: string  
 Required: no  
 The protocol that's used for the port mapping\. Valid values are `tcp` and `udp`\. The default is `tcp`\.  
+Only `tcp` is supported for Service Connect\. Remember that `tcp` is implied if this field isn't set\. 
 UDP support is only available on container instances that were launched with version 1\.2\.0 of the Amazon ECS container agent \(such as the `amzn-ami-2015.03.c-amazon-ecs-optimized` AMI\) or later, or with container agents that have been updated to version 1\.3\.0 or later\. To update your container agent to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 If you're specifying a host port, use the following syntax\.  
 

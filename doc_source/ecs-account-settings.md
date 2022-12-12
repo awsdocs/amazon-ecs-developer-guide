@@ -1,11 +1,11 @@
 # Account settings<a name="ecs-account-settings"></a>
 
-You can go into Amazon ECS account settings to opt in or out of specific features\. For each AWS Region, you can opt in to, or opt out of, each account setting at the account\-level or for a specific IAM user or role\.
+You can go into Amazon ECS account settings to opt in or out of specific features\. For each AWS Region, you can opt in to, or opt out of, each account setting at the account\-level or for a specific or role\.
 
 You might want to opt in or out of specific features if any of the following is relevant to you:
-+ An IAM user or role can opt in or opt out specific account settings for their individual user account\.
-+ An IAM user or role can set the default opt\-in or opt\-out setting for all users on the account\.
-+ The root user can opt in to, or opt out of, any specific IAM role or user on the account\. If the account setting for the root user is changed, it sets the default for all the IAM users and roles that no individual account setting was selected for\.
++ An or role can opt in or opt out specific account settings for their individual user account\.
++ An or role can set the default opt\-in or opt\-out setting for all users on the account\.
++ The root user can opt in to, or opt out of, any specific IAM role or user on the account\. If the account setting for the root user is changed, it sets the default for all the and roles that no individual account setting was selected for\.
 
 **Note**  
 Federated users assume the account setting of the root user and can't have explicit account settings set for them separately\.
@@ -16,7 +16,7 @@ The following account settings are available\. The opt\-in and opt\-out option m
 Resource names: `serviceLongArnFormat`, `taskLongArnFormat`, and `containerInstanceLongArnFormat`  
 Amazon ECS is introducing a new format for Amazon Resource Names \(ARNs\) and resource IDs for Amazon ECS services, tasks, and container instances\. The opt\-in status for each resource type determines the Amazon Resource Name \(ARN\) format the resource uses\. You must opt in to the new ARN format to use features such as resource tagging for that resource type\. For more information, see [Amazon Resource Names \(ARNs\) and IDs](#ecs-resource-ids)\.  
 Only resources launched after opting in receive the new ARN and resource ID format\. All existing resources aren't affected\. For Amazon ECS services and tasks to transition to the new ARN and resource ID formats, you must recreate the service or task\. To transition a container instance to the new ARN and resource ID format, the container instance must be drained and a new container instance that's registered to the cluster\.  
-Tasks launched by an Amazon ECS service can only receive the new ARN and resource ID format if the service was created on or after November 16, 2018, and the IAM user who created the service has opted in to the new format for tasks\.
+Tasks launched by an Amazon ECS service can only receive the new ARN and resource ID format if the service was created on or after November 16, 2018, and the who created the service has opted in to the new format for tasks\.
 
 **AWSVPC trunking**  
 Resource name: `awsvpcTrunking`  

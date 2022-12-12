@@ -16,6 +16,10 @@ The pulled, compressed, and the uncompressed container image for the task is sto
 
 For tasks that use platform version `1.4.0` or later that are launched on May 28, 2020 or later, the ephemeral storage is encrypted with an AES\-256 encryption algorithm\. The algorithm uses an AWS owned encryption key\.
 
+For tasks that use platform version `1.4.0` or later that are launched on November 18, 2022 or later, the ephemeral storage usage is reported through the task metadata endpoint\. Your applications in your tasks can query the task metadata endpoint version 4 to get their ephemeral storage reserved size and the amount used\. Each task can only query the usage of that task\.
+
+ Additionally, the ephemeral storage reserved size and the amount used are sent to Amazon CloudWatchContainer Insights if you turn on Container Insights\.
+
 ## Fargate tasks using Linux platform version 1\.3\.0 or earlier<a name="fargate-task-storage-pv13"></a>
 
 For Amazon ECS on Fargate tasks using platform version `1.3.0` or earlier, each task receives the following ephemeral storage\.

@@ -4,7 +4,7 @@ With target tracking scaling policies, you select a metric and set a target valu
 
 ## Considerations<a name="targettracking-considerations"></a>
 
-Consider the following when using targt tracking policies\.\.
+Consider the following when using target tracking policies:
 + A target tracking scaling policy assumes that it should perform scale out when the specified metric is above the target value\. You cannot use a target tracking scaling policy to scale out when the specified metric is below the target value\.
 + A target tracking scaling policy does not perform scaling when the specified metric has insufficient data\. It does not perform scale in because it does not interpret insufficient data as low utilization\.
 + You may see gaps between the target value and the actual metric data points\. This is because Service Auto Scaling always acts conservatively by rounding up or down when it determines how much capacity to add or remove\. This prevents it from adding insufficient capacity or removing too much capacity\. 

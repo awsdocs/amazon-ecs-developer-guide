@@ -13,6 +13,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Amazon Linux 2 AMI  |  Amazon ECS container agent version  |  Docker version  |  `ecs-init` version  | 
 | --- | --- | --- | --- | 
+| 20221118 | `1.66.2` | `20.10.17` | `1.66.2-1` | 
 | 20221115 | `1.66.2` | `20.10.17` | `1.66.2-1` | 
 | 20221102 | `1.65.1` | `20.10.17` | `1.65.1-1` | 
 | 20221010 | `1.64.0` | `20.10.13` | `1.64.0-1` | 
@@ -120,6 +121,7 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20221118 | `1.66.2` | `20.10.17` | `1.66.2-1` | 
 | 20221115 | `1.66.2` | `20.10.17` | `1.66.2-1` | 
 | 20221102 | `1.65.1` | `20.10.17` | `1.65.1-1` | 
 | 20221010 | `1.64.0` | `20.10.13` | `1.64.0-1` | 
@@ -224,6 +226,7 @@ The table below lists the current and previous versions of the Amazon ECS GPU\-o
 
 | Amazon ECS GPU\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | NVIDIA driver version | 
 | --- | --- | --- | --- | --- | 
+| 20221118 | `1.66.2` | `20.10.17` | `1.66.2-1` | `470.57.02` | 
 | 20221115 | `1.66.2` | `20.10.17` | `1.66.2-1` | `470.57.02` | 
 | 20221102 | `1.65.1` | `20.10.17` | `1.65.1-1` | `470.57.02` | 
 | 20221010 | `1.64.0` | `20.10.13` | `1.64.0-1` | `470.57.02` | 
@@ -329,6 +332,9 @@ The table below lists the current and previous versions of the Amazon ECS optimi
 
 | Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20221010 | `1.64.0` | `20.10.13` | `1.64.0-1` | 
+| 20220921 | `1.63.1` | `20.10.13` | `1.63.1-1` | 
+| 20221118 | `1.66.2` | `20.10.17` | `1.66.2-1` | 
 | 20221115 | `1.66.2` | `20.10.17` | `1.66.2-1` | 
 | 20221102 | `1.65.1` | `20.10.17` | `1.65.1-1` | 
 | 20221010 | `1.64.0` | `20.10.13` | `1.64.0-1` | 

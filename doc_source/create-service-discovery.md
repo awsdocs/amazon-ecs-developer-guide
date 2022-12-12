@@ -4,7 +4,7 @@ Service discovery is now integrated into the Create Service wizard in the Amazon
 
 The following tutorial shows how to create an ECS service containing a Fargate task that uses service discovery with the AWS CLI\.
 
-For a list of AWS Regions that support service discovery, see [Service Discovery](service-discovery.md)\.
+For a list of AWS Regions that support service discovery, see [Service discovery](service-discovery.md)\.
 
 For information about the Regions that support Fargate, see [Supported Regions for Amazon ECS on AWS Fargate](AWS_Fargate-Regions.md)\.
 

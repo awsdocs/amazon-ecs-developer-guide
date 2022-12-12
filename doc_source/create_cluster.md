@@ -8,7 +8,7 @@ If you add or modify the underlying cluster resources directly after they are cr
 
 **To create a cluster \(AWS Management Console\)**
 
-Before you begin, be sure that you create an IAM user, and then assign the appropriate IAM permissions\.
+Before you begin, be sure that you create an , and then assign the appropriate IAM permissions\.
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 

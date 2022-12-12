@@ -8,6 +8,9 @@ To make the cluster creation process as easy as possible, the console has defaul
 
 You can modify the following default options:
 + Change the subnets where tasks and services launch into by default\.
++ Change the default namespace associated with the cluster\. A namespace allows services that you create in the cluster can connect to the other services in the namespace without additional configuration\. The default namespace is the same as the cluster name\. 
+
+  For more information, see [Interconnecting services](interconnecting-services.md)\.
 + Turn on Container Insights\.
 
   CloudWatch Container Insights collects, aggregates, and summarizes metrics and logs from your containerized applications and microservices\. Container Insights also provides diagnostic information, such as container restart failures, that you use to isolate issues and resolve them quickly\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
@@ -49,6 +52,8 @@ Before you begin, assign the appropriate IAM permission\. For more information, 
 1. Under **Cluster configuration**, for **Cluster name**, enter a unique name\.
 
    The name can contain up to 255 letters \(uppercase and lowercase\), numbers, and hyphens\.
+
+1. \(Optional\) To change the name of the default namespace\. for **Namespace**, enter a unique name\.
 
 1. \(Optional\) To change the VPC and subnets where your tasks and services launch, under **Networking**, perform any of the following operations:
    + To remove a subnet, under **Subnets**, choose **X** for each subnet that you want to remove\.
