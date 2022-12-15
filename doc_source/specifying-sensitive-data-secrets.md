@@ -84,7 +84,7 @@ Staging labels are used to keep track of different versions of a secret when the
 Specifies the unique identifier of the version of a secret that you want to use\. If a version ID is specified, you can't specify a version staging label\. If no version ID is specified, the default behavior is to retrieve the secret with the `AWSCURRENT` staging label\.  
 Version IDs are used to keep track of different versions of a secret when they're either updated or rotated\. Each version of a secret has an ID\. For more information, see [Key Terms and Concepts for AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/terms-concepts.html#term_secret) in the *AWS Secrets Manager User Guide*\.
 
-For a full tutorial on ho to create a Secrets Manager secret and inject it into a container as an environment variable, see [Tutorial: Specifying sensitive data using Secrets Manager secrets](specifying-sensitive-data-tutorial.md)\.
+For a full tutorial on how to create a Secrets Manager secret and inject it into a container as an environment variable, see [Tutorial: Specifying sensitive data using Secrets Manager secrets](specifying-sensitive-data-tutorial.md)\.
 
 ### Example container definitions<a name="secrets-examples"></a>
 
