@@ -23,6 +23,6 @@ If you created a cluster using the classic console and you receive an error when
 
 1. In the upper\-right of the page, choose **Delete Cluster**\. 
 
-   A message is displayed when you did not delete all the resource associated with the cluster\.
+   A message is displayed when you did not delete all the resources associated with the cluster\.
 
 1. In the confirmation box, enter **delete *cluster name***\.

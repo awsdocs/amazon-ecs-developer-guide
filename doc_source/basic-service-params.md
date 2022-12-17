@@ -48,7 +48,7 @@ If your launch type is `EC2` and your task definition uses static host port mapp
       + **Minimum healthy percent**: Enter a lower limit for the number of tasks that your service must remain in the `RUNNING` state during a deployment\. Specify the number as a percentage of the desired number of tasks\. This number must be a whole number\.
       + **Maximum percent**: Enter an upper limit for the number of tasks that your service allows in the `RUNNING` or `PENDING` state during a deployment\. Specify the number as a percentage of the desired number of tasks\. This number must be a whole number\.
 
-1. For **Deployment circuit breaker**, choose the deployment circuit breaker logic\. For more information, see [Using the deployment circuit breaker](deployment-type-ecs.md#deployment-circuit-breaker)\.
+1. For **Deployment circuit breaker**, choose the deployment circuit breaker logic\. For more information, see [Deployment circuit breaker](deployment-circuit-breaker.md)\.
 
 1. On the **Deployments** page, complete the following steps\.
 

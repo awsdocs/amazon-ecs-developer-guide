@@ -46,3 +46,13 @@ cat <<EOF >/etc/docker/daemon.json
 EOF
 systemctl restart docker --no-block
 ```
+
+In the example below, the custom options are added to the Docker daemon configuration file, `/etc/docker/daemon.json` which is then specified in the user data when the instance is launched\. This example shows how to turn off to turn off the docker\-proxy in the Docker daemon config file\.
+
+```
+#!/bin/bash
+cat <<EOF >/etc/docker/daemon.json
+{"userland-proxy": false}
+EOF
+systemctl restart docker --no-block
+```

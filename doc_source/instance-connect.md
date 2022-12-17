@@ -11,15 +11,15 @@ The Amazon ECS console first\-run experience creates a security group for your c
 
 1. Find the public IP or DNS address for your container instance\.
 
-   1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+   1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
    1. Select the cluster that hosts your container instance\.
 
-   1. On the **Cluster** page, choose **ECS Instances**\.
+   1. On the **Cluster** page, choose **Infrastructure**\.
 
-   1. On the **Container Instance** column, select the container instance to connect to\.
+   1. Under **Container Instance** column, choose the container instance to connect to\.
 
-   1. On the **Container Instance** page, record the **Public IP** or **Public DNS** for your instance\.
+   1. On the **Container Instance** page, under **Networking**, record the **Public IP** or **Public DNS** for your instance\.
 
 1. Find the default username for your container instance AMI\. The user name for instances launched with an Amazon ECS\-optimized AMI is `ec2-user`\. For Ubuntu AMIs, the default user name is `ubuntu`\.
 

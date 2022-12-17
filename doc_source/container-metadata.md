@@ -5,13 +5,13 @@ Beginning with version 1\.15\.0 of the Amazon ECS container agent, various conta
 The container metadata file is cleaned up on the host instance when the container is cleaned up\. You can adjust when this happens with the `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` container agent variable\. For more information, see [Automated task and image cleanup](automated_image_cleanup.md)\.
 
 **Topics**
-+ [Enabling container metadata](#enable-metadata)
++ [Turning on container metadata](#enable-metadata)
 + [Container metadata file locations](#metadata-file-locations)
 + [Container metadata file format](#metadata-file-format)
 
-## Enabling container metadata<a name="enable-metadata"></a>
+## Turning on container metadata<a name="enable-metadata"></a>
 
-This feature is disabled by default\. You can enable container metadata at the container instance level by setting the `ECS_ENABLE_CONTAINER_METADATA` container agent variable to `true`\. You can set this variable in the `/etc/ecs/ecs.config` configuration file and restart the agent\. You can also set it as a Docker environment variable at runtime when the agent container is started\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
+This feature is turned on by default\. You can turn on container metadata at the container instance level by setting the `ECS_ENABLE_CONTAINER_METADATA` container agent variable to `true`\. You can set this variable in the `/etc/ecs/ecs.config` configuration file and restart the agent\. You can also set it as a Docker environment variable at runtime when the agent container is started\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 If the `ECS_ENABLE_CONTAINER_METADATA` is set to `true` when the agent starts, metadata files are created for any containers created from that point forward\. The Amazon ECS container agent cannot create metadata files for containers that were created before the `ECS_ENABLE_CONTAINER_METADATA` container agent variable was set to `true`\. To ensure that all containers receive metadata files, you should set this agent variable at container instance launch\. The following is an example user data script that will set this variable as well as register your container instance with your cluster\.
 

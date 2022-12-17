@@ -17,6 +17,7 @@ Follow these steps to configure Service Connect for a group of related services\
 
 1. Monitor traffic through the Service Connect proxy in Amazon CloudWatch\.
 
+**Regions with Service Connect**  
 Amazon ECS Service Connect is available in the following AWS Regions:
 
 
@@ -36,6 +37,8 @@ Amazon ECS Service Connect is available in the following AWS Regions:
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
 |  Asia Pacific \(Jakarta\)  |  ap\-southeast\-3  | 
 |  Canada \(Central\)  |  ca\-central\-1  | 
+|  China \(Beijing\)  |  cn\-north\-1  | 
+|  China \(Ningxia\)  |  cn\-northwest\-1  | 
 |  Europe \(Frankfurt\)  |  eu\-central\-1  | 
 |  Europe \(Ireland\)  |  eu\-west\-1  | 
 |  Europe \(London\)  |  eu\-west\-2  | 
@@ -107,30 +110,42 @@ Service Connect is designed to require the minimum configuration\. You need to s
 The following example shows each kind of Service Connect configuration being used together in the same Amazon ECS service\. Shell comments are provided, however note that the JSON configuration used to Amazon ECS services doesn't support comments\.
 
 ```
-  {
-  ...
-  serviceConnectConfiguration: {
-   enabled: true,
-   namespace: "internal", #config for client services can end here, only these two parameters are required.
-   services: [
-  { portName: "http" }, #minimal client-server service config can end here. portName must match the "name" parameter of a port mapping in the task definition.
-  {
-    discoveryName: "http-second" #name the discoveryName to avoid a Task def port name collision with the minimal config in the same Cloud Map namespace
-    portName: "http"
-  },
-  {
-    clientAliases: [{dnsName: "db", port: 81}] #use when the port in Task def is not the port that client apps use. Client apps can use http://db:81 to connect
-    discoveryName: "http-three"
-    portName: "http"
-  },
-  {
-    clientAliases: [{dnsName: "db.app", port: 81}] #use when the port in Task def is not the port that client apps use. duplicates are fine as long as the discoveryName is different.
-    discoveryName: "http-four"
-    portName: "http",
-    ingressPortOverride: 99 #If App should also accept traffic directly on Task def port.
-  }
-  ]
-  }
+{
+    ...
+    serviceConnectConfiguration: {
+        enabled: true,
+        namespace: "internal",
+        #config
+        for client services can end here,
+        only these two parameters are required.
+        services: [{
+                portName: "http"
+            }, #minimal client - server service config can end here.portName must match the "name"
+            parameter of a port mapping in the task definition. {
+                discoveryName: "http-second"
+                #name the discoveryName to avoid a Task def port name collision with the minimal config in the same Cloud Map namespace
+                portName: "http"
+            },
+            {
+                clientAliases: [{
+                        dnsName: "db",
+                        port: 81
+                    }] #use when the port in Task def is not the port that client apps use.Client apps can use http: //db:81 to connect
+                    discoveryName: "http-three"
+                portName: "http"
+            },
+            {
+                clientAliases: [{
+                    dnsName: "db.app",
+                    port: 81
+                }] #use when the port in Task def is not the port that client apps use.duplicates are fine as long as the discoveryName is different.
+                discoveryName: "http-four"
+                portName: "http",
+                ingressPortOverride: 99 #If App should also accept traffic directly on Task def port.
+            }
+        ]
+    }
+}
 ```
 
 ### Deployment order<a name="service-connect-concepts-deploy"></a>

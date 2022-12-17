@@ -55,7 +55,7 @@ Make sure any tooling you use does not remove the `AmazonECSManaged` tag from th
 
 Consider the following when you use the new console:
 + The Amazon ECS managed scaling feature is on by default\. For more information, see [Managed scale\-out behavior](#managed-scaling-scaleout)\.
-+ Managed termination is off by default\.
++ Managed termination protection is off by default\.
 + Auto Scaling instance\-scale\-in protection is off by default\. For more information, see [Using instance scale\-in protection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 + The Auto Scaling group used with your capacity provider can't have instance weighting settings\. Instance weighting isn't supported when used with an Amazon ECS capacity provider\.
 
@@ -85,7 +85,7 @@ When you have Auto Scaling group capacity providers that use managed scaling, Am
 
    You can set the `targetCapacity` when you create the Auto Scaling group, or modify the value after the group is created\. The default is 100%\.
 
-1. The Auto Scaling group launches additional EC2 instances\. To prevent over\-provisioning of the scale\-out operation, auto scaling stabilizes recently launched EC2 instance capacitybefore launching new instances\. Auto scaling checks if all existing instances have passed the `instanceWarmupPeriod` \(now minus the instance launch time\)\. If any instance is within the `instanceWarmupPeriod`, Amazon ECS blocks the scale\-out operation until the `instanceWarmupPeriod` expires\. 
+1. The Auto Scaling group launches additional EC2 instances\. To prevent over\-provisioning of the scale\-out operation, auto scaling stabilizes recently launched EC2 instance capacity before launching new instances\. Auto scaling checks if all existing instances have passed the `instanceWarmupPeriod` \(now minus the instance launch time\)\. If any instance is within the `instanceWarmupPeriod`, Amazon ECS blocks the scale\-out operation until the `instanceWarmupPeriod` expires\. 
 
    The default number of seconds for a newly launched instance to warm up is 300\.
 
@@ -120,7 +120,7 @@ Amazon ECS monitors container instances for each capacity provider within cluste
 1. Amazon ECS sets the `CapacityProviderReservation` value to `100 - the number of empty container instances`\. For example, if the number of empty container instances is 2, the value is set to 98%\. Then, Amazon ECS publishes the metric to CloudWatch\.
 
 1. The `CapacityProviderReservation` metric generates a CloudWatch alarm\. This alarm updates the `DesiredCapacity` value for the Auto Scaling group\. One of the following actions happens:
-   + If you do not use capacity provider managed termination, the Auto Scaling group terminates the number of EC2 instances to reach `DesiredCapacity`\. The container instances are then deregistered from the cluster\.
+   + If you do not use capacity provider managed termination protection, the Auto Scaling group terminates the number of EC2 instances to reach `DesiredCapacity`\. The container instances are then deregistered from the cluster\.
    + If all the container instances use capacity provider managed termination protection, Amazon ECS removes the scale\-in protection on the container instances that do not have non\-daemon tasks running\. The Auto Scaling group will then be able to terminate the EC2 instances\. The container instances are then deregistered from the cluster\.
 
 ### Scale\-in considerations<a name="scale-in-considerations"></a>

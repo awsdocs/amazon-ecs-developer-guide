@@ -261,7 +261,7 @@ Example values: `{"custom_attribute": "custom_attribute_value"}`
 Default value on Linux: Null  
 Default value on Windows: Null  
 A list of custom attributes, in JSON format, to apply to your container instances\. Using this attribute at instance registration adds the custom attributes, allowing you to skip the manual method of adding custom attributes through the AWS Management Console\.  
-Attributes added do not apply to container instances that are already registered\. To add custom attributes to already\-registered container instances, see [Adding an attribute](task-placement-constraints.md#add-attribute)\.
+Attributes added do not apply to container instances that are already registered\. To add custom attributes to already\-registered container instances, see [Adding an attribute using the classic console](task-placement-constraints.md#add-attribute)\.
 For information about custom attributes to use, see [Attributes](task-placement-constraints.md#attributes)\.  
 An invalid JSON value for this variable causes the agent to exit with a code of `5`\. A message appears in the agent logs\. The JSON value may be valid but there is an issue detected when validating the attribute, such as when the value is too long or contains invalid characters\. In that case, the container instance registration happens, but the agent exits with a code of `5` and a message is written to the agent logs\. For information about how to locate the agent logs, see [Amazon ECS Container Agent Log](logs.md#agent-logs)\.
 

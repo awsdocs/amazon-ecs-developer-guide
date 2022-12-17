@@ -49,7 +49,7 @@ The following table describes the Amazon ECS resources that can be tagged, and t
 |  Amazon ECS task definitions  |  Yes  | No |  Yes  | 
 |  Amazon ECS clusters  |  Yes  | No |  Yes  | 
 |  Amazon ECS container instances  |  Yes  |  Yes, from the Amazon EC2 instance\. For more information, see [Adding tags to an Amazon EC2 container instance](#instance-details-tags)\.   |  Yes  | 
-|  Amazon ECS External instances  |  Yes  |  No  |  No, you can add tags after the External instance is registered to a cluster using the AWS Management Console or by using the Amazon ECS API, AWS CLI, or AWS SDK\. For more information, see [Adding and deleting tags on an individual resource using the classic console](#adding-or-deleting-tags)\.  | 
+|  Amazon ECS External instances  |  Yes  |  No  |  No, you can add tags after the External instance is registered to a cluster using the AWS Management Console or by using the Amazon ECS API, AWS CLI, or AWS SDK\. For more information, see [Managing individual resource tags using the console](#adding-or-deleting-tags)\.  | 
 | Amazon ECS capacity provider |  Yes\. Predefined FARGATE and FARGATE\_SPOT capacity providers cannot be tagged\. | No | Yes | 
 
 ## Tag restrictions<a name="tag-restrictions"></a>
@@ -89,7 +89,7 @@ Do not add personally identifiable information \(PII\) or other confidential or 
 
 **Topics**
 + [Adding tags on an individual resource during launch](#adding-tags-creation)
-+ [Adding and deleting tags on an individual resource using the classic console](#adding-or-deleting-tags)
++ [Managing individual resource tags using the console](#adding-or-deleting-tags)
 + [Adding tags to an Amazon EC2 container instance](#instance-details-tags)
 + [Adding tags to an external container instance](#instance-details-tags-external)
 
@@ -100,40 +100,36 @@ You can use the following resources to specify tags when you create the resource
 
 | Task | Console | 
 | --- | --- | 
-|  Run one or more tasks\.  |  [Run a standalone task in the classic Amazon ECS console](ecs_run_task.md)  | 
-|  Create a service\.  |  [Creating an Amazon ECS service in the classic console](create-service.md)  | 
+|  Run one or more tasks\.  |  [Running a standalone task using the new Amazon ECS console](ecs_run_task-v2.md)  | 
+|  Create a service\.  |  [Creating a service using the new console](create-service-console-v2.md)  | 
 |  Create a task set\.  |  [External deployment](deployment-type-external.md)  | 
 |  Register a task definition\.  |  [Creating a task definition using the new console](create-task-definition.md)  | 
-|  Create a cluster\.  |  [Creating a cluster using the classic console](create_cluster.md)   | 
+|  Create a cluster\.  |  [Creating a cluster for the Fargate launch type using the new console](create-cluster-console-v2.md)   | 
 |  Run one or more container instances\.  |  [Launching an Amazon ECS Linux container instance](launch_container_instance.md)  | 
 
-### Adding and deleting tags on an individual resource using the classic console<a name="adding-or-deleting-tags"></a>
+### Managing individual resource tags using the console<a name="adding-or-deleting-tags"></a>
 
 Amazon ECS allows you to add or delete tags that are associated with your clusters, services, tasks, and task definitions directly from the resource's page\. For information about tagging your container instances, see [Adding tags to an Amazon EC2 container instance](#instance-details-tags)\.
 
-**To add a tag to an individual resource**
+**To modify a tag for an individual resource**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, select the AWS Region to use\.
 
 1. In the navigation pane, select a resource type \(for example, **Clusters**\)\.
 
-1. Select the resource from the resource list and choose **Tags**, **Edit**\.
+1. Select the resource from the resource list, choose the **Tags** tab, and then choose **Manage tags**\.
 
-1. In the **Edit Tags** dialog box, specify the key and value for each tag, and then choose **Save**\.
+1. Configure your tags\.
 
-**To delete a tag from an individual resource**
+   \[Add a tag\] Choose **Add tag** and do the following:
+   + For **Key**, enter the key name\.
+   + For **Value**, enter the key value\.
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+   \[Remove a tag\] Choose **Remove** to the right of the tag’s Key and Value\.
 
-1. From the navigation bar, select the Region to use\.
-
-1. In the navigation pane, choose a resource type \(for example, **Clusters**\)\.
-
-1. Select the resource from the resource list and choose **Tags**, **Edit**\.
-
-1. On the **Edit Tags** page, select the **Delete** icon for each tag you want to delete, and choose **Save**\.
+1. Choose **Save**\.
 
 ### Adding tags to an Amazon EC2 container instance<a name="instance-details-tags"></a>
 
@@ -193,7 +189,7 @@ You can associate tags with your external container instances by using one of th
   ```
   ECS_CONTAINER_INSTANCE_TAGS={"tag_key": "tag_value"}
   ```
-+ Method 2 – After your external instance is registered to your cluster, you can use the AWS Management Console to add tags\. For more information, see [Adding and deleting tags on an individual resource using the classic console](#adding-or-deleting-tags)\.
++ Method 2 – After your external instance is registered to your cluster, you can use the AWS Management Console to add tags\. For more information, see [Managing individual resource tags using the console](#adding-or-deleting-tags)\.
 
 ## Working with tags using the CLI or API<a name="tag-resources-api-sdk"></a>
 

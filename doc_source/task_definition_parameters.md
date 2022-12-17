@@ -180,7 +180,8 @@ Most fields of this parameter \(`containerPort`, `hostPort`, `protocol`\) maps t
 After a task reaches the `RUNNING` status, manual and automatic host and container port assignments are visible in the following locations:  
 + Console: The **Network Bindings** section of a container description for a selected task\.
 + AWS CLI: The `networkBindings` section of the describe\-tasks command output\.
-+ API: The `DescribeTasks` response\.  
++ API: The `DescribeTasks` response\.
++ Metadata: The task metadata endpoint\.  
 `appProtocol`  
 Type: string  
 Required: no  
@@ -195,6 +196,35 @@ The port number on the container that's bound to the user\-specified or automati
 If using containers in a task with the Fargate launch type, exposed ports must be specified using `containerPort`\.  
 For Windows containers on Fargate, you can't use port 3150 for the `containerPort`\. This is because it's reserved\.  
 If using containers in a task with the EC2 launch type and you specify a container port and not a host port, your container automatically receives a host port in the ephemeral port range\. For more information, see `hostPort`\. Port mappings that are automatically assigned in this way don't count toward the 100 reserved ports limit of a container instance\.  
+`containerPortRange`  
+Type: string  
+Required: no  
+The port number range on the container that's bound to the dynamically mapped host port range\.  
+You can only set this parameter by using the `register-task-definition` API\. The option is available in the `portMappings` parameter\. For more information, see [register\-task\-definition](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html) in the *AWS Command Line Interface Reference*\.  
+The following rules apply when you specify a `containerPortRange`:  
++ You must use either the `bridge` network mode or the `awsvpc` network mode\.
++ This parameter is available for both the EC2 and AWS Fargate launch types\.
++ This parameter is available for both the Linux and Windows operating systems\.
++ The container instance must have at least version 1\.67\.0 of the container agent and at least version 1\.67\.0\-1 of the `ecs-init` package 
++ You can specify a maximum of 100 port ranges per container\.
++ You do not specify a `hostPortRange`\. The value of the `hostPortRange` is set as follows:
+  + For containers in a task with the `awsvpc` network mode, the `hostPort` is set to the same value as the `containerPort`\. This is a static mapping strategy\.
+  + For containers in a task with the `bridge` network mode, the Amazon ECS agent finds open host ports from the default ephemeral range and passes it to docker to bind them to the container ports\.
++ The `containerPortRange` valid values are between 1 and 65535\.
++ A port can only be included in one port mapping per container\.
++ You cannot specify overlapping port ranges\.
++ The first port in the range must be less than last port in the range\.
++ Docker recommends that you turn off the docker\-proxy in the Docker daemon config file when you have a large number of ports\.
+
+  For more information, see [ Issue \#11185](https://github.com/moby/moby/issues/11185) on the Github website\.
+
+  For information about how to turn off the docker\-proxy in the Docker daemon config file, see [Docker daemon](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/bootstrap_container_instance.html#bootstrap_docker_daemon) in the *Amazon ECS Developer Guide*\.
+You can call [https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html) to view the `hostPortRange` which are the host ports that are bound to the container ports\.  
+The port ranges are not included in the Amazon ECS task events which are sent to EventBridge\. For more information, see [Amazon ECS events and EventBridge](cloudwatch_event_stream.md)\.  
+`hostPortRange`  
+Type: string  
+Required: no  
+The port number range on the host that's used with the network binding\. This is assigned is assigned by Docker and delivered by the Amazon ECS agent\.  
 `hostPort`  
 Type: integer  
 Required: no  
@@ -206,7 +236,7 @@ The default reserved ports are `22` for SSH, the Docker ports `2375` and `2376`,
 `name`  
 Type: string  
 Required: no, required for Service Connect to be configured in a service  
-The name that's used for the port mapping\. This parameter only applies to service connect\. This parameter is the name that you use in the Service Connect configuration of a service\.  
+The name that's used for the port mapping\. This parameter only applies to Service Connect\. This parameter is the name that you use in the Service Connect configuration of a service\.  
 For more information, see [Service Connect ](service-connect.md)\.  
 In the following example, both of the required fields for Service Connect are shown\.  
 

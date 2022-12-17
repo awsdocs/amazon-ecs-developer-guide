@@ -78,11 +78,11 @@ When specifying custom attributes, you must consider the following\.
 + The `name` must contain between 1 and 128 characters and name may contain letters \(uppercase and lowercase\), numbers, hyphens, underscores, forward slashes, back slashes, or periods\.
 + The `value` must contain between 1 and 128 characters and may contain letters \(uppercase and lowercase\), numbers, hyphens, underscores, periods, at signs \(@\), forward slashes, back slashes, colons, or spaces\. The value can't contain any leading or trailing whitespace\.
 
-## Adding an attribute<a name="add-attribute"></a>
+## Adding an attribute using the classic console<a name="add-attribute"></a>
 
 You can add custom attributes at instance registration time using the container agent or manually, using the AWS Management Console\. For more information about using the container agent, see [Amazon ECS container agent configuration parameters](ecs-agent-config.md#ecs-instance-attributes)\.
 
-**To add custom attributes using the console**
+**To add custom attributes using the classic console**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
@@ -117,11 +117,11 @@ The following example adds the custom attributes "stack=prod" and "project=a" to
 aws ecs put-attributes --attributes name=stack,value=prod,targetId=arn name=project,value=a,targetId=arn
 ```
 
-## Filtering by attribute<a name="filter-attribute"></a>
+## Filtering by attribute using the classic console<a name="filter-attribute"></a>
 
 You can apply a filter for your container instances, allowing you to see custom attributes\.
 
-**Filter container instances by attribute using the console**
+**Filter container instances by attribute using the classic console**
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 

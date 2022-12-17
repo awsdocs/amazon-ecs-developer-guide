@@ -49,13 +49,12 @@ You can view how much memory a container instance registers with in the Amazon E
 
 **To view container instance memory**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. Choose the cluster that hosts your container instances to view\.
+1. In the navigation pane, choose **Clusters**, and then choose the cluster that hosts your container instance\.
 
-1. Choose **ECS Instances**, and select a container instance from the **Container Instance** column to view\.
+1. Choose **Infrastructure**, and then under Container instances, choose a container instance\.
 
-1. The **Resources** section shows the registered and available memory for the container instance\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/instance-memory.png)
+1. The **Resources** section shows the registered and available memory for the container instance\.
 
    The **Registered** memory value is what the container instance registered with Amazon ECS when it was first launched, and the **Available** memory value is what has not already been allocated to tasks\.

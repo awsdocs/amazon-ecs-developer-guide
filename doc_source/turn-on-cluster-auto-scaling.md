@@ -2,7 +2,7 @@
 
 You can use the AWS CLI to turn on cluster Auto Scaling\. 
 
-Before you begin, create an Auto Scaling group and a capacity provider\. For more information, see [Creating an Auto Scaling group](asg-capacity-providers-create-auto-scaling-group.md)\.
+Before you begin, create an Auto Scaling group and a capacity provider\. For more information, see [Auto Scaling group capacity providers](asg-capacity-providers.md)\.
 
 ## Associate the capacity provider with the cluster<a name="associate-capacity-provider"></a>
 

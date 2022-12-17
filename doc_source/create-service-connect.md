@@ -2,7 +2,7 @@
 
 The following tutorial shows how to create an Amazon ECS service containing a Fargate task that uses Service Connect with the AWS CLI\.
 
-Amazon ECS supports the Service Connect feature in the AWS Regions listed in [](service-connect.md)\.
+Amazon ECS supports the Service Connect feature in the AWS Regions listed in [Regions with Service Connect](service-connect.md#service-connect-regions)\.
 
 ## Prerequisites<a name="create-service-connect-prereqs"></a>
 

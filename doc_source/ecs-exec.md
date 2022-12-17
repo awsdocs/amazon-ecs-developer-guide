@@ -168,7 +168,7 @@ aws ecs execute-command --cluster cluster-name \
 
 ## Logging and Auditing using ECS Exec<a name="ecs-exec-logging"></a>
 
-### TUrning on logging and auditing in your tasks and services<a name="ecs-exec-enabling-logging"></a>
+### Turning on logging and auditing in your tasks and services<a name="ecs-exec-enabling-logging"></a>
 
 Amazon ECS provides a default configuration for logging commands run using ECS Exec by sending logs to CloudWatch Logs using the `awslogs` log driver that's configured in your task definition\. If you want to provide a custom configuration, the AWS CLI supports a `--configuration` flag for both the `create-cluster` and `update-cluster` commands\. It’s also important to know that the container image requires `script` and `cat` to be installed in order to have command logs uploaded correctly to Amazon S3 or CloudWatch Logs\. For more information about creating clusters, see [create\-cluster](https://docs.aws.amazon.com/cli/latest/reference/ecs/create-cluster.html)\.
 

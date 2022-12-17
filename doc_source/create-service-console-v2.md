@@ -34,7 +34,7 @@ To deploy a service using the default parameters follow these steps\.
 
 1. On the **Clusters** page, select the cluster to create the service in\.
 
-1. From the **Services** tab, choose **Deploy**\.
+1. From the **Services** tab, choose **Create**\.
 
 1. Under **Deployment configuration**, specify how your application is deployed\.
 
@@ -56,9 +56,8 @@ To create a service using defined parameters, follow these steps\.
 
 1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. On the **Clusters** page, select the cluster to create the service in\.
-
-1. From the **Services** tab, choose **Deploy**\.
+1. Determine the resource from where you launch the service\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service-console-v2.html)
 
 1. \(Optional\) Choose how your tasks are distributed across your cluster infrastructure\. Expand **Compute configuration**, and then choose your option\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service-console-v2.html)
@@ -87,9 +86,13 @@ To create a service using defined parameters, follow these steps\.
 
    1. To configure how Amazon ECS detects and handles deployment failures, expand **Deployment failure detection**, and then choose your options\. 
 
-      1. To use the deployment circuit breaker, select **Use the Amazon ECS deployment circuit breaker**\.
+      1. To stop a deployment when the tasks cannot start, select **Use the Amazon ECS deployment circuit breaker**\.
 
-      1. To have the software automatically roll back the deployment to the last completed deployment state when the deployment circuit breaker sets the deployment to a failed state, select **Rollback on failure**\.
+         To have the software automatically roll back the deployment to the last completed deployment state when the deployment circuit breaker sets the deployment to a failed state, select **Rollback on failure**\.
+
+      1. To stop a deployment based on application metrics\., select **Use CloudWatch alarms**\. Then, from **CloudWatch alarm names**, choose the alarms\. To create a new alarm, choose **Create new alarm**\.
+
+         To have the software automatically roll back the deployment to the last completed deployment state when a CloudWatch alarm sets the deployment to a failed state, select **Rollback on failure**\.
 
 1. To configure service auto scaling, expand **Service auto scaling**, and then specify the following parameters\.
 
@@ -108,13 +111,13 @@ To create a service using defined parameters, follow these steps\.
       + **ECSServiceAverageMemoryUtilization**: Average memory utilization of the service\. 
       + **ALBRequestCountPerTarget**: Number of requests completed per target in an Application Load Balancer target group\. 
 
-        The metrics requires an Application Load Balancer and a target group for the Application Load Balancer\.
+        The metrics require an Application Load Balancer and a target group for the Application Load Balancer\.
 
-   1. For **Target value**, enter the value the service maintains for the selected metric\.
+   1. For **Target value**, enter the value in percent that the service maintains for the selected metric\.
 
-   1. For **Scale\-out cooldown period**, enter time in seconds after a scale\-out activity that no other scale outs take place\.
+   1. For **Scale\-out cooldown period**, enter the time in seconds after a scale\-out activity that no other scale outs can happen\.
 
-   1. For **Scale\-in cooldown period**, enter time in seconds after a scale\-in activity that no other scale ins take place\.
+   1. For **Scale\-in cooldown period**, enter the time in seconds after a scale\-in activity that no other scale ins can happen\.
 
    1. To prevent the policy from performing a scale\-in activity, select **Turn off scale\-in**\.
 

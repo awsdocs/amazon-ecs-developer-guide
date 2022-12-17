@@ -12,7 +12,7 @@ The `dualStackIPv6` account setting can only be viewed or changed using the AWS 
 
 1. In the navigation bar at the top, select the Region for which to view your account settings\. 
 
-1. From the dashboard, choose **Account Settings**\.
+1. In the navigation page, choose **Account Settings**\.
 
 ------
 #### [ Classic Amazon ECS console ]

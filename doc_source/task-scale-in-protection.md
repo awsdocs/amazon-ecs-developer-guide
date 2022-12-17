@@ -15,7 +15,7 @@ After a task finishes its requisite work, you can set the `protectionEnabled` at
 
 You can set and get task scale\-in protection using either the Amazon ECS container agent endpoint or the Amazon ECS API\.
 
-### Set task scale\-in protection<a name="w203aac28c26c13b5"></a>
+### Set task scale\-in protection<a name="set-task-scale-in-protection"></a>
 
 You can set task scale\-in protection in the following ways:
 + **Amazon ECS container agent endpoint**
@@ -35,7 +35,7 @@ You can set task scale\-in protection in the following ways:
 
 You can combine both approaches\. For example, use the Amazon ECS agent endpoint to set task protection from within a container and use the Amazon ECS API to unset task protection from your external controller service\.
 
-### Get task protection status<a name="w203aac28c26c13b7"></a>
+### Get task protection status<a name="get-task-scale-in-protection"></a>
 
 To get the protection status of tasks in an Amazon ECS service, you can do one of the following:
 + **Amazon ECS container agent endpoint**

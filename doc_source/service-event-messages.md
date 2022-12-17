@@ -11,7 +11,7 @@ Use the following steps to view your current service event messages\.
 ------
 #### [ New console ]
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Clusters**\.
 
@@ -34,8 +34,7 @@ Use the following steps to view your current service event messages\.
 
 1. In the **Desired task status** table header, choose **Stopped**, and then select the stopped task to inspect\. The most recent stopped tasks are listed first\.
 
-1. In the **Details** section, inspect the **Stopped reason** field to see the reason that the task was stopped\.  
-![\[Stopped task reason\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/stopped_task_reason.png)
+1. In the **Details** section, inspect the **Stopped reason** field to see the reason that the task was stopped\.
 
    Some possible reasons and their explanations are listed below:  
 Task failed ELB health checks in \(elb elb\-name\)  
@@ -49,8 +48,7 @@ If you force the deregistration of a container instance with running tasks, then
 Essential container in task exited  
 If a container marked as `essential` in task definitions exits or dies, that can cause a task to stop\. When an essential container exiting is the cause of a stopped task, the [Step 6](stopped-task-errors.md#status-reason-step) can provide more diagnostic information about why the container stopped\.
 
-1. If you have a container that has stopped, expand the container and inspect the **Status reason** row to see what caused the task state to change\.  
-![\[Stopped container error\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/stopped_container_status_reason.png)
+1. If you have a container that has stopped, expand the container and inspect the **Status reason** row to see what caused the task state to change\.
 
    In the previous example, the container image name can't be found\. This can happen if you misspell the image name\.
 

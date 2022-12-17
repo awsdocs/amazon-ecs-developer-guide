@@ -85,23 +85,8 @@ Task\-level CPU and memory parameters are ignored for Windows containers\.
 
    1. To expand the available ephemeral storage beyond the default value of 20 GiB for your Fargate tasks, for **Amount**, enter a value up to 200 GiB\.
 
-1. \(Optional\) To add a data volume configuration for the task, choose **Add volume** \. For each data volume, complete the following steps\.
-
-   1. For **Volume type**, choose **Bind mount**\.
-
-   1. For **Volume name**, enter a name for the data volume\. The data volume name is used when creating a container mount point in a later step\.
-
-   1. Expand the **Container mount points** section and choose **Add**\.
-
-   1. For **Container**, choose the container for the mount point\.
-
-   1. For **Source volume**, choose the data volume to mount to the container\.
-
-   1. For **Container path**, enter the path on the container to mount the volume\.
-
-   1. For **Read only**, choose whether to make the volume read only\.
-
-   1. Choose **Add** to add additional mount points until each data volume defined in the task definition has a mount point defined\.
+1. \(Optional\) To add a data volume configuration for the task definition, choose **Add volume**\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-task-definition.html)
 
 1. \(Optional\) Select the **Use log collection** option to specify a log configuration\. For each available log driver, there are log driver options to specify\. The default option sends container logs to CloudWatch Logs\. The other log driver options are configured using AWS FireLens\. For more information, see [Custom log routing](using_firelens.md)\.
 
