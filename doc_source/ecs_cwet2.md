@@ -20,6 +20,21 @@ For information about how to create and subscribe to an Amazon SNS topic , see [
 | Protocol | Email | 
 | Endpoint |  An email address to which you currently have access  | 
 
+## Step 1a: Update Access Policy<a name="cwet2_step_2a"></a>
+As described in https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-resource-based.html#eb-sns-permissions
+Following policy is required to allow EventBridge service to publish messages to your SNS topic:
+
+{
+\"Sid\": \"PublishEventsToMyTopic\",
+\"Effect\": \"Allow\",
+\"Principal\": {
+\"Service\": \"events.amazonaws.com\"
+},
+\"Action\": \"sns:Publish\",
+\"Resource\": \"arn:aws:sns:<region>:<account-id>:TaskStoppedAlert\"
+}
+
+
 ## Step 2: Register an event rule<a name="cwet2_step_3"></a>
 
  Next, you register an event rule that captures only task\-stopped events for tasks with stopped containers\. 
