@@ -15,12 +15,12 @@ AWS Identity and Access Management \(IAM\) is an AWS service that helps an admin
 + [AWS managed policies for Amazon Elastic Container Service](security-iam-awsmanpol.md)
 + [Using service\-linked roles for Amazon ECS](using-service-linked-roles.md)
 + [Amazon ECS task execution IAM role](task_execution_IAM_role.md)
++ [Task IAM role](task-iam-roles.md)
++ [Additional configuration for Windows IAM roles for tasks](windows_task_IAM_roles.md)
 + [Amazon ECS container instance IAM role](instance_IAM_role.md)
 + [ECS Anywhere IAM role](iam-role-ecsanywhere.md)
-+ [IAM roles for tasks](task-iam-roles.md)
 + [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)
 + [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)
-+ [Additional configuration for Windows IAM roles for tasks](windows_task_IAM_roles.md)
 + [Troubleshooting Amazon Elastic Container Service identity and access](security_iam_troubleshoot.md)
 
 ## Audience<a name="security_iam_audience"></a>
@@ -47,7 +47,7 @@ Regardless of the authentication method that you use, you might be required to p
 
 ### AWS account root user<a name="security_iam_authentication-rootuser"></a>
 
-  When you create an AWS account, you begin with one sign\-in identity that has complete access to all AWS services and resources in the account\. This identity is called the AWS account *root user* and is accessed by signing in with the email address and password that you used to create the account\. We strongly recommend that you do not use the root user for your everyday tasks\. Safeguard your root user credentials and use them to perform the tasks that only the root user can perform\. For the complete list of tasks that require you to sign in as the root user, see [Tasks that require root user credentials](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html#aws_tasks-that-require-root) in the *AWS General Reference*\. 
+  When you create an AWS account, you begin with one sign\-in identity that has complete access to all AWS services and resources in the account\. This identity is called the AWS account *root user* and is accessed by signing in with the email address and password that you used to create the account\. We strongly recommend that you don't use the root user for your everyday tasks\. Safeguard your root user credentials and use them to perform the tasks that only the root user can perform\. For the complete list of tasks that require you to sign in as the root user, see [Tasks that require root user credentials](https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html) in the *AWS Account Management Reference Guide*\. 
 
 ### Federated identity<a name="security_iam_authentication-federated"></a>
 

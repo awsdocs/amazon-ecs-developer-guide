@@ -1,8 +1,5 @@
 # Exporting application metrics to Amazon Managed Service for Prometheus<a name="application-metrics-prometheus"></a>
 
-****  
-The AWS Distro for OpenTelemetry \(ADOT\) metrics collection feature is in preview\. The preview is open to all AWS accounts\. Features may be added or changed before announcing General Availability\.
-
 Amazon ECS supports exporting your task\-level CPU, memory, network, and storage metrics and your custom application metrics to Amazon Managed Service for Prometheus\. This is done by adding the AWS Distro for OpenTelemetry sidecar container to your task definition\. The new Amazon ECS console experience simplifies this process by adding the **Use metric collection** option when creating a new task definition\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
 
 The metrics are exported to Amazon Managed Service for Prometheus and can be viewed using the Amazon Managed Grafana dashboard\. Your application must be instrumented with either Prometheus libraries or with the OpenTelemetry SDK\. For more information about instrumenting your application with the OpenTelemetry SDK, see [Introduction to AWS Distro for OpenTelemetry](https://aws-otel.github.io/docs/introduction) in the AWS Distro for OpenTelemetry documentation\.
@@ -11,9 +8,8 @@ When using the Prometheus libraries, your application must expose a `/metrics` e
 
 ## Considerations<a name="application-metrics-prometheus-considerations"></a>
 
-The following should be considered when using the Amazon ECS on Fargate integration with AWS Distro for OpenTelemetry to send application metrics to Amazon CloudWatch\.
-+ The AWS Distro for OpenTelemetry integration is only supported for Amazon ECS workloads hosted on Fargate\. Amazon ECS workloads hosted on Amazon EC2 instances or external instances aren't supported currently\.
-+ Amazon ECS doesn't send any task\-level metrics to CloudWatch Container Insights\. You can enable Container Insights at the Amazon ECS cluster level to receive those metrics\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
+The following should be considered when using the Amazon ECS on Fargate integration with AWS Distro for OpenTelemetry to send application metrics to Amazon Managed Service for Prometheus\.
++ The AWS Distro for OpenTelemetry integration is supported for Amazon ECS workloads hosted on Fargate and Amazon ECS workloads hosted on Amazon EC2 instances\. External instances aren't supported currently\.
 + By default, AWS Distro for OpenTelemetry includes all available task\-level dimensions for your application metrics when exporting to Amazon Managed Service for Prometheus\. You can also instrument your application to add additional dimensions\. For more information, see [Getting Started with Prometheus Remote Write Exporter for Amazon Managed Service for Prometheus](https://aws-otel.github.io/docs/getting-started/prometheus-remote-write-exporter) in the AWS Distro for OpenTelemetry documentation\. 
 
 ## Required IAM permissions for AWS Distro for OpenTelemetry integration with Amazon Managed Service for Prometheus<a name="application-metrics-prometheus-iam"></a>
@@ -60,7 +56,7 @@ If you're not using the Amazon ECS console, you can add the AWS Distro for OpenT
 				"options": {
 					"awslogs-create-group": "true",
 					"awslogs-group": "/ecs/aws-otel-emitter",
-					"awslogs-region": "us-east-1",
+					"awslogs-region": "aws-region",
 					"awslogs-stream-prefix": "ecs"
 				}
 			},
@@ -71,17 +67,21 @@ If you're not using the Amazon ECS console, you can add the AWS Distro for OpenT
 		},
 		{
 			"name": "aws-otel-collector",
-			"image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.17.0",
+			"image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.25.0",
 			"essential": true,
 			"command": [
-				"--config=/etc/ecs/ecs-cloudwatch.yaml"
+				"--config=/etc/ecs/ecs-amp.yaml"
 			],
+			"environment": [{
+				"name": "AWS_PROMETHEUS_ENDPOINT",
+				"value": "https://aps-workspaces.aws-region.amazonaws.com/workspaces/ws-a1b2c3d4-5678-90ab-cdef-EXAMPLE11111/api/v1/remote_write"
+			}],
 			"logConfiguration": {
 				"logDriver": "awslogs",
 				"options": {
 					"awslogs-create-group": "True",
 					"awslogs-group": "/ecs/ecs-aws-otel-sidecar-collector",
-					"awslogs-region": "us-east-1",
+					"awslogs-region": "aws-region",
 					"awslogs-stream-prefix": "ecs"
 				}
 			}

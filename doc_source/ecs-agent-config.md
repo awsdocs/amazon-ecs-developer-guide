@@ -201,14 +201,14 @@ Example values: `true` \| `false`
 Default value on Linux: `false`  
 Default value on Windows: `false`  
 If you are using `ecs init`, the default value is `true`\.
-Whether IAM roles for tasks should be enabled on the container instance for task containers with the `bridge` or `default` network modes\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
+Whether IAM roles for tasks should be enabled on the container instance for task containers with the `bridge` or `default` network modes\. For more information, see [Task IAM role](task-iam-roles.md)\.
 
 `ECS_ENABLE_TASK_IAM_ROLE_NETWORK_HOST`  
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
 If you are using `ecs init`, the default value is `true`\.
-Whether IAM roles for tasks should be enabled on the container instance for task containers with the `host` network mode\. This variable is only supported on agent versions 1\.12\.0 and later\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
+Whether IAM roles for tasks should be enabled on the container instance for task containers with the `host` network mode\. This variable is only supported on agent versions 1\.12\.0 and later\. For more information, see [Task IAM role](task-iam-roles.md)\.
 
 `ECS_DISABLE_IMAGE_CLEANUP`  
 Example values: `true`  
@@ -448,6 +448,13 @@ Default value on Windows: `false`
 Set this variable to `true` only if you have an Auto Scaling group and want a warm pool associated with it\.  
 When true, the Amazon ECS agent polls the instance metadata to determine if the instance is ready to be included in the Amazon ECS cluster\. When your application needs to scale out, the Auto Scaling group will quickly move the required number of pre\-initialized instances from the warm pool to the cluster\.  
 This variable is available in agent version `1.59.0` and later\.
+
+`ECS_DYNAMIC_HOST_PORT_RANGE`  
+Example values: `100-200`  
+Default value on Linux: Defined by `/proc/sys/net/ipv4/ip_local_port_range`  
+Default value on Windows: `49152-65535`  
+This specifies the dynamic host port range that the agent uses to assign host ports from, for a container port range mapping\.  
+This variable is available in agent version `1.68.0` and later\.
 
 ## Storing container instance configuration in Amazon S3<a name="ecs-config-s3"></a>
 

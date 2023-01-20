@@ -38,7 +38,7 @@ Before you launch a container instance with the increased ENI limits, the follow
   ```
 + Your account or container instance IAM role must opt\-in to the `awsvpcTrunking` account setting\. This can be done in the following ways:
   + Any user can use the PutAccountSettingDefault API to opt\-in all IAM users and roles on an account
-  + A root user can use the PutAccountSetting API to opt\-in the or container instance role that will register the instance with the cluster
+  + A root user can use the PutAccountSetting API to opt\-in the user or container instance role that will register the instance with the cluster
   + A container instance role can opt itself in when the PutAccountSetting API is run on an instance prior to it being registered with a cluster
 
   For more information, see [Account settings](ecs-account-settings.md)\.
@@ -52,25 +52,25 @@ Amazon EC2 instances must have resource\-based IPv4 DNS requests disabled\. To d
 aws ec2 modify-private-dns-name-options --instance-id i-xxxxxxx --no-enable-resource-name-dns-a-record --no-dry-run
 ```
 
-**To opt in all or roles on your account to the increased ENI limits \(AWS Management Console\)**
+**To opt in all IAM users or roles on your account to the increased ENI limits \(AWS Management Console\)**
 
-1. As the root user of the account, open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. As the account owner, open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation bar at the top of the screen, select the Region for which to opt in to the increased ENI limits\.
 
 1. From the dashboard, choose **Account Settings**\.
 
-1. For ** or role**, ensure your root user or container instance IAM role is selected\.
+1. For **IAM user or role**, ensure your root user or container instance IAM role is selected\.
 
 1. For **AWSVPC Trunking**, select the check box\. Choose **Save** once finished\.
 **Important**  
- and IAM roles need the `ecs:PutAccountSetting` permission to perform this action\.
+IAM users and IAM roles need the `ecs:PutAccountSetting` permission to perform this action\.
 
 1. On the confirmation screen, choose **Confirm** to save the selection\.
 
-**To opt in all or roles on your account to the increased ENI limits using the command line**
+**To opt in all user or roles on your account to the increased ENI limits using the command line**
 
-Any user on an account can use one of the following commands to modify the default account setting for all or roles on your account\. These changes apply to the entire AWS account unless an or role explicitly overrides these settings for themselves\.
+Any user on an account can use one of the following commands to modify the default account setting for all IAM users or roles on your account\. These changes apply to the entire AWS account unless a user or role explicitly overrides these settings for themselves\.
 + [put\-account\-setting\-default](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting-default.html) \(AWS CLI\)
 
   ```
@@ -86,12 +86,12 @@ Any user on an account can use one of the following commands to modify the defau
   Write-ECSAccountSettingDefault -Name awsvpcTrunking -Value enabled -Region us-east-1 -Force
   ```
 
-**To opt in an or container instance IAM role to the increased ENI limits as the root user using the command line**
+**To opt in a user or container instance IAM role to the increased ENI limits as the account owner using the command line**
 
-The root user on an account can use one of the following commands and specify the ARN of the principal or container instance IAM role in the request to modify the account settings\.
+The account owner can use one of the following commands and specify the ARN of the principal user or container instance IAM role in the request to modify the account settings\.
 + [put\-account\-setting](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting.html) \(AWS CLI\)
 
-  The following example is for modifying the account setting of a specific IAM user:
+  The following example is for modifying the account setting of a specific user:
 
   ```
   aws ecs put-account-setting \
@@ -112,7 +112,7 @@ The root user on an account can use one of the following commands and specify th
   ```
 + [Write\-ECSAccountSetting](https://docs.aws.amazon.com/powershell/latest/reference/items/Write-ECSAccountSetting.html) \(AWS Tools for Windows PowerShell\)
 
-  The following example is for modifying the account setting of a specific IAM user:
+  The following example is for modifying the account setting of a specific user:
 
   ```
   Write-ECSAccountSetting -Name awsvpcTrunking -Value enabled -PrincipalArn arn:aws:iam::aws_account_id:user/userName -Region us-east-1 -Force

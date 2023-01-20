@@ -1,4 +1,4 @@
-# Updating a task definition using the new console<a name="update-task-definition-console-v2"></a>
+# Updating a task definition using the console<a name="update-task-definition-console-v2"></a>
 
 A *task definition revision* is a copy of the current task definition with the new parameter values replacing the existing ones\. All parameters that you do not modify are in the new revision\.
 
@@ -22,9 +22,9 @@ The Amazon ECS console JON editor validates the following in the JSON file:
 + There is at least one entry under `containerDefinitions`
 
 ------
-#### [ New Amazon ECS console ]
+#### [ Amazon ECS console ]
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, choose the Region that contains your task definition\.
 
@@ -36,12 +36,12 @@ The Amazon ECS console JON editor validates the following in the JSON file:
 
 1. Verify the information, and then choose **Create**\.
 
-1. If your task definition is used in a service, update your service with the updated task definition\. For more information, see [Updating a service using the new console](update-service-console-v2.md)\.
+1. If your task definition is used in a service, update your service with the updated task definition\. For more information, see [Updating a service using the console](update-service-console-v2.md)\.
 
 ------
-#### [ New Amazon ECS console JSON editor ]
+#### [ Amazon ECS console JSON editor ]
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Task definitions**\.
 

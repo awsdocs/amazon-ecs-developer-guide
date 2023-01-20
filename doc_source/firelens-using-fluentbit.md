@@ -48,13 +48,13 @@ You can pull the AWS for Fluent Bit image from the Amazon ECR Public Gallery by 
 The following shows the syntax to use for the Docker CLI\.
 
 ```
-docker pull public.ecr.aws/aws-observability/aws-for-fluent-bit/windowsservercore:tag
+docker pull public.ecr.aws/aws-observability/aws-for-fluent-bit:tag
 ```
 
-For example, you can pull the latest stable AWS for Fluent Bit image using this Docker CLI command\.
+For example, you can pull the newest stable AWS for Fluent Bit image using this Docker CLI command\.
 
 ```
-docker pull public.ecr.aws/aws-observability/aws-for-fluent-bit:/windowsservercore:latest
+docker pull public.ecr.aws/aws-observability/aws-for-fluent-bit:windowsservercore-stable
 ```
 
 **Note**  
@@ -86,7 +86,7 @@ aws ssm get-parameters-by-path \
       --region us-east-1
 ```
 
-The latest stable AWS for Fluent Bit image can be referenced in an AWS CloudFormation template by referencing the Systems Manager parameter store name\. The following is an example:
+The newest stable AWS for Fluent Bit image can be referenced in an AWS CloudFormation template by referencing the Systems Manager parameter store name\. The following is an example:
 
 ```
 Parameters:

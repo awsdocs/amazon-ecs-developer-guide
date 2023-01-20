@@ -110,7 +110,7 @@ Optional deployment parameters that control how many tasks run during the deploy
 `maximumPercent`  <a name="maximumPercent"></a>
 Type: Integer  
 Required: No  
-If a service is using the rolling update \(`ECS`\) deployment type, the `maximumPercent` parameter represents an upper limit on the number of your service's tasks that are allowed in the `RUNNING` or `PENDING` state during a deployment\. It is expressed as a percentage of the `desiredCount` that is rounded down to the nearest integer\. You can use this parameter to define the deployment batch size\. For example, if your service is using the `REPLICA` service scheduler and has a `desiredCount` of four tasks and a `maximumPercent` value of 200%, the scheduler might start four new tasks before stopping the four older tasks\. This is provided that the cluster resources required to do this are available\. The default `maximumPercent` value for a service using the `REPLICA` service scheduler is 200%\.  
+If a service is using the rolling update \(`ECS`\) deployment type, the `maximumPercent` parameter represents an upper limit on the number of your service's tasks that are allowed in the `RUNNING`, `STOPPING`, or `PENDING` state during a deployment\. It is expressed as a percentage of the `desiredCount` that is rounded down to the nearest integer\. You can use this parameter to define the deployment batch size\. For example, if your service is using the `REPLICA` service scheduler and has a `desiredCount` of four tasks and a `maximumPercent` value of 200%, the scheduler might start four new tasks before stopping the four older tasks\. This is provided that the cluster resources required to do this are available\. The default `maximumPercent` value for a service using the `REPLICA` service scheduler is 200%\.  
 If your service is using the `DAEMON` service scheduler type, the `maximumPercent` should remain at 100%\. This is the default value\.  
 The maximum number of tasks during a deployment is the `desiredCount` multiplied by the `maximumPercent`/100, rounded down to the nearest integer value\.  
 If a service is using either the blue/green \(`CODE_DEPLOY`\) or `EXTERNAL` deployment types and tasks that use the EC2 launch type, the **maximum percent** value is set to the default value and is used to define the upper limit on the number of the tasks in the service that remain in the `RUNNING` state while the container instances are in the `DRAINING` state\. If the tasks in the service use the Fargate launch type, the maximum percent value isn't used, although it's returned when describing your service\.  
@@ -241,18 +241,17 @@ Type: Array of objects
 Required: No  
 A load balancer object representing the load balancers to use with your service\. For services that use an Application Load Balancer or Network Load Balancer, there's a limit of five target groups that you can attach to a service\.  
 After you create a service, the load balancer configuration can't be changed from the AWS Management Console\. You can use the AWS Copilot, AWS CloudFormation, AWS CLI or SDK to modify the load balancer configuration for the `ECS` rolling deployment controller only, not AWS CodeDeploy blue/green or external\. When you add, update, or remove a load balancer configuration, Amazon ECS starts a new deployment with the updated Elastic Load Balancing configuration\. This causes tasks to register to and deregister from load balancers\. We recommend that you verify this on a test environment before you update the Elastic Load Balancing configuration\. For information about how to modify the configuration, see [UpdateService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html) in the *Amazon Elastic Container Service API Reference*\.  
-For Classic Load Balancers, this object must contain the load balancer name, the container name \(as it appears in a container definition\), and the container port to access from the load balancer\. When a task from this service is placed on a container instance, the container instance is registered with the load balancer specified\.  
 For Application Load Balancers and Network Load Balancers, this object must contain the load balancer target group ARN, the container name \(as it appears in a container definition\), and the container port to access from the load balancer\. When a task from this service is placed on a container instance, the container instance and port combination is registered as a target in the target group specified\.    
 `targetGroupArn`  
 Type: String  
 Required: No  
 The full Amazon Resource Name \(ARN\) of the Elastic Load Balancing target group that's associated with a service\.  
-A target group ARN is only specified when using an Application Load Balancer or Network Load Balancer\. If you're using a Classic Load Balancer, omit the target group ARN\.  
+A target group ARN is only specified when using an Application Load Balancer or Network Load Balancer\.  
 `loadBalancerName`  
 Type: String  
 Required: No  
 The name of the load balancer to associate with the service\.  
-A load balancer name is only specified when using a Classic Load Balancer\. If you're using an Application Load Balancer or a Network Load Balancer, omit the load balancer name parameter\.  
+If you're using an Application Load Balancer or a Network Load Balancer, omit the load balancer name parameter\.  
 `containerName`  
 Type: String  
 Required: No  

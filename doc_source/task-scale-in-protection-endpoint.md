@@ -20,7 +20,7 @@ A PUT request to this URI from within a container will set task scale\-in protec
 
 You can set task scale\-in protection using the `(${ECS_AGENT_URI/task-protection/v1/state})` endpoint with the following request parameters\.
 
-### Protect<a name="w83aac24c30c11c13b5"></a>
+### Protect<a name="w184aac22c30c11c13b5"></a>
 
 `ProtectionEnabled`  
 Specify `true` to mark a task for protection and `false` to unset protection, making it eligible for termination\.  
@@ -35,7 +35,7 @@ Required: No
 
 The following examples show how to set task protection with different durations\.
 
-#### Example 1<a name="w83aac24c30c11c13b5b7"></a>
+#### Example 1<a name="w184aac22c30c11c13b5b7"></a>
 
 This example shows how to protect a task with the default time period of 2 hours\.
 
@@ -44,7 +44,7 @@ PUT $ECS_AGENT_URI/task-protection/v1/state -d
 '{"ProtectionEnabled":true}'
 ```
 
-#### Example 2<a name="w83aac24c30c11c13b5b9"></a>
+#### Example 2<a name="w184aac22c30c11c13b5b9"></a>
 
 This example shows how to protect a task for 60 minutes using the `expiresInMinutes` parameter\.
 
@@ -53,7 +53,7 @@ PUT $ECS_AGENT_URI/task-protection/v1/state -d
 '{"ProtectionEnabled":true,"ExpiresInMinutes":60}'
 ```
 
-#### Example 3<a name="w83aac24c30c11c13b5c11"></a>
+#### Example 3<a name="w184aac22c30c11c13b5c11"></a>
 
 This example shows how to protect a task for 24 hours using the `expiresInMinutes` parameter\.
 
@@ -66,7 +66,7 @@ PUT $ECS_AGENT_URI/task-protection/v1/state -d
 
 The following information is returned from the task scale\-in protection endpoint \(`${ECS_AGENT_URI/task-protection/v1/state}`\) JSON response\.
 
-### Protect<a name="w83aac24c30c11c15b5"></a>
+### Protect<a name="w184aac22c30c11c15b5"></a>
 
 `ExpirationDate`  
 The epoch time when protection for the task will expire\. If the task is not protected, this value will be null\.
@@ -93,7 +93,7 @@ GET $ECS_AGENT_URI/task-protection/v1/state
 }
 ```
 
-### Failure<a name="w83aac24c30c11c15b7"></a>
+### Failure<a name="w184aac22c30c11c15b7"></a>
 
 The following information is returned when a failure occurs\.
 
@@ -118,7 +118,7 @@ The following example shows the details returned for a task that is not protecte
 }
 ```
 
-### Error<a name="w83aac24c30c11c15b9"></a>
+### Error<a name="w184aac22c30c11c15b9"></a>
 
 The following information is returned when an exception occurs\.
 

@@ -1,10 +1,10 @@
 # Working with GPUs on Amazon ECS<a name="ecs-gpu"></a>
 
-Amazon ECS supports workloads that use GPUs, when you create clusters with GPU\-enabled container instances\. Amazon EC2 GPU\-based container instances that use the p2, p3, g3, g4, and g5 instance types provide access to NVIDIA GPUs\. For more information, see [Linux Accelerated Computing Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+Amazon ECS supports workloads that use GPUs, when you create clusters with container instances that support GPUs\. Amazon EC2 GPU\-based container instances that use the p2, p3, g3, g4, and g5 instance types provide access to NVIDIA GPUs\. For more information, see [Linux Accelerated Computing Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/accelerated-computing-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 Amazon ECS provides a GPU\-optimized AMI that comes with pre\-configured NVIDIA kernel drivers and a Docker GPU runtime\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.
 
-You can designate a number of GPUs in your task definition for task placement consideration at a container level\. Amazon ECS schedules to available GPU\-enabled container instances and pin physical GPUs to proper containers for optimal performance\. 
+You can designate a number of GPUs in your task definition for task placement consideration at a container level\. Amazon ECS schedules to available container instances that support GPUs and pin physical GPUs to proper containers for optimal performance\. 
 
 The following Amazon EC2 GPU\-based instance types are supported\. For more information, see [Amazon EC2 P2 Instances](https://aws.amazon.com/ec2/instance-types/p2/), [Amazon EC2 P3 Instances](https://aws.amazon.com/ec2/instance-types/p3/), [Amazon EC2 P4d Instances](https://aws.amazon.com/ec2/instance-types/p4/), [Amazon EC2 G3 Instances](https://aws.amazon.com/ec2/instance-types/g3/), [Amazon EC2 G4 Instances](https://aws.amazon.com/ec2/instance-types/g4/), and [Amazon EC2 G5 Instances](https://aws.amazon.com/ec2/instance-types/g5/)\.
 
@@ -70,10 +70,11 @@ We recommend that you consider the following before you begin working with GPUs 
   + `all`
 
   For information about how to set the variable, see [Controlling the NVIDIA Container Runtime](https://sarus.readthedocs.io/en/stable/user/custom-cuda-images.html#controlling-the-nvidia-container-runtime) on the NVIDIA website\.
++ GPUs are not supported on Windows containers\.
 
 ## Specifying GPUs in your task definition<a name="ecs-gpu-specifying"></a>
 
-To use the GPUs on a container instance and the Docker GPU runtime, make sure that you designate the number of GPUs your container requires in the task definition\. As GPU\-enabled containers are placed, the Amazon ECS container agent pins the desired number of physical GPUs to the appropriate container\. The number of GPUs reserved for all containers in a task cannot exceed the number of available GPUs on the container instance the task is launched on\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+To use the GPUs on a container instance and the Docker GPU runtime, make sure that you designate the number of GPUs your container requires in the task definition\. As containers that support GPUs are placed, the Amazon ECS container agent pins the desired number of physical GPUs to the appropriate container\. The number of GPUs reserved for all containers in a task cannot exceed the number of available GPUs on the container instance the task is launched on\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
 
 **Important**  
 If your GPU requirements aren't specified in the task definition, the task uses the default Docker runtime\.

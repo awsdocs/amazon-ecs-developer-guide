@@ -50,7 +50,7 @@ Use the **Search** bar to find a suitable Amazon ECS\-optimized AMI published by
 
      For the latest Amazon ECS\-optimized AMIs and their values, see [Linux Amazon ECS\-optimized AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#ecs-optimized-ami-linux)\.
 
-1. Press Enter\.
+1. Press **Enter**\.
 
 1. On the **Choose an Amazon Machine Image \(AMI\)** page, select the **AWS Marketplace AMIs** tab\.
 

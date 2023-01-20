@@ -29,5 +29,4 @@ For the best experience, we recommend the Docker version that ships with and is 
 + [Starting a task at container instance launch time](start_task_at_launch.md)
 + [Elastic network interface trunking](container-instance-eni.md)
 + [Container Instance Memory Management](memory-management.md)
-+ [Connect to your container instance using the classic console](instance-connect.md)
 + [Manage container instances remotely using AWS Systems Manager](ec2-run-command.md)

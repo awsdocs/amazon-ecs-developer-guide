@@ -18,7 +18,10 @@ For tasks that use platform version `1.4.0` or later that are launched on May 28
 
 For tasks that use platform version `1.4.0` or later that are launched on November 18, 2022 or later, the ephemeral storage usage is reported through the task metadata endpoint\. Your applications in your tasks can query the task metadata endpoint version 4 to get their ephemeral storage reserved size and the amount used\. Each task can only query the usage of that task\.
 
- Additionally, the ephemeral storage reserved size and the amount used are sent to Amazon CloudWatchContainer Insights if you turn on Container Insights\.
+ Additionally, the ephemeral storage reserved size and the amount used are sent to Amazon CloudWatch Container Insights if you turn on Container Insights\.
+
+**Note**  
+Fargate reserves space on disk\. It is only used by Fargate\. You aren't billed for it\. It isn't shown in these metrics\. However, you can see this additional storage in other tools such as `df`\.
 
 ## Fargate tasks using Linux platform version 1\.3\.0 or earlier<a name="fargate-task-storage-pv13"></a>
 

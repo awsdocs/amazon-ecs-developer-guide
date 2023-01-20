@@ -1,4 +1,4 @@
-# Deregistering a task definition revision using the new console<a name="deregister-task-definition-v2"></a>
+# Deregistering a task definition revision using the console<a name="deregister-task-definition-v2"></a>
 
 If you decide that you no longer need a specific task definition revision in Amazon ECS, you can deregister the task definition revision so that it no longer displays in your `ListTaskDefinition` API calls or in the console when you want to run a task or update a service\.
 
@@ -10,9 +10,17 @@ You can't use an `INACTIVE` task definition revision to run new tasks or create 
 When you deregister all revisions in a task family, the task definition family is moved to the `INACTIVE` list\. Adding a new revision of an `INACTIVE` task definition moves the task definition family back to the `ACTIVE` list\.  
 At this time, `INACTIVE` task definition revisions remain discoverable in your account indefinitely\. However, this behavior is subject to change in the future\. Therefore, you should not rely on `INACTIVE` task definition revisions persisting beyond the lifecycle of any associated tasks and services\.
 
-**To deregister task definitions \(New Amazon ECS console\)**
+## AWS CloudFormation stacks<a name="cloudformation-stack"></a>
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+The following behavior applies to task definitions created in the new console before January 12, 2023\.
+
+When you create a task definition, the Amazon ECS console automatically creates a CloudFormation stack that has a name that begins with "ECS\-Console\-V2\-TaskDefinition\-"\. If you used the AWS CLI or SDK to deregister the task definition, then you must manually delete the task definition stack\. For more information, see [Deleting a Stack](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html) in the *AWS CloudFormation User Guide*\.
+
+Task definitions created after January 12, 2023 will not have a CloudFormation stack automatically created\.
+
+**To deregister a new task definition \(Amazon ECS console\)**
+
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, choose the region that contains your task definition\.
 

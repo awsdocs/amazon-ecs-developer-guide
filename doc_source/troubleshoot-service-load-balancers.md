@@ -2,9 +2,6 @@
 
 Amazon ECS services can register tasks with an Elastic Load Balancing load balancer\. Load balancer configuration errors are common causes for stopped tasks\. If your stopped tasks were started by services that use a load balancer, consider the following possible causes\.
 
-**Important**  
-Container health checks aren't supported for tasks that are part of a service that is configured to use a Classic Load Balancer\. The Amazon ECS service scheduler ignores tasks in an `UNHEALTHY` state that are behind a Classic Load Balancer\.
-
 Amazon ECS service\-linked role doesn't exist  
 The Amazon ECS service\-linked role allows Amazon ECS services to register container instances with Elastic Load Balancing load balancers\. The service\-linked role must be created in your account\. For more information, see [Using service\-linked roles for Amazon ECS](using-service-linked-roles.md)\.
 

@@ -1,7 +1,7 @@
 # Updating a service using the classic console<a name="update-service"></a>
 
 **Important**  
-Amazon ECS has provided a new console experience for updating a service\. For more information, see [Updating a service using the new console](update-service-console-v2.md)\.
+Amazon ECS has provided a new console experience for updating a service\. For more information, see [Updating a service using the console](update-service-console-v2.md)\.
 
 You can update an existing service to change some of the service configuration parameters, such as the number of tasks that are maintained by a service, which task definition is used by the tasks, or if your tasks are using the Fargate launch type, you can change the platform version your service uses\. A service using a Linux platform version cannot be updated to use a Windows platform version and vice versa\. If you have an application that needs more capacity, you can scale up your service\. If you have unused capacity to scale down, you can reduce the number of desired tasks in your service and free up resources\.
 

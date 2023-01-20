@@ -11,7 +11,7 @@ The following are common use cases for bind mounts\.
 ## Considerations when using bind mounts<a name="bind-mount-considerations"></a>
 
 When using bind mounts, consider the following\.
-+ For tasks that are hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` or later \(Windows\), by default they receive a minimum of 20 GiB of ephemeral storage for bind mounts\. For Linux tasks, the total amount of ephemeral storage can be increased to a maximum of 200 GiB by specifying the `ephemeralStorage` object in your task definition\.
++ For tasks that are hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` or later \(Windows\), by default they receive a minimum of 20 GiB of ephemeral storage for bind mounts\. For Linux tasks, the total amount of ephemeral storage can be increased to a maximum of 200 GiB by specifying the `ephemeralStorage` object in your task definition\. You cannot increase the ephemeral storage for Windows containers\.
 + To expose files from a Dockerfile to a data volume when a task is run, the Amazon ECS data plane looks for a `VOLUME` directive\. If the absolute path that's specified in the `VOLUME` directive is the same as the `containerPath` that's specified in the task definition, the data in the `VOLUME` directive path is copied to the data volume\. In the following Dockerfile example, a file that's named `examplefile` in the `/var/log/exported` directory is written to the host and then mounted inside the container\.
 
   ```
@@ -93,7 +93,7 @@ Windows containers can mount whole directories on the same drive as `$env:Progra
 `sourcePath`  
 Type: String  
 Required: No  
-When the `host` parameter is used, specify a `sourcePath` to declare the path on the host container instance that is presented to the container\. If this parameter is empty, then the Docker daemon has assigned a host path for you\. If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host container instance until you delete it manually\. If the `sourcePath` value does not exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\.
+When the `host` parameter is used, specify a `sourcePath` to declare the path on the host container instance that is presented to the container\. If this parameter is empty, then the Docker daemon has assigned a host path for you\. If the `host` parameter contains a `sourcePath` file location, then the data volume persists at the specified location on the host container instance until you delete it manually\. If the `sourcePath` value does not exist on the host container instance, the Docker daemon creates it\. If the location does exist, the contents of the source path folder are exported\. This behavior is not supported for Windows containers For information about the behavior on Windows containers, see [ docker bind mount on Windows does not create a new directory on host, if same was missing \#44799 ](https://github.com/moby/moby/issues/44799) on the moby Github website\. 
 
 `mountPoints`  
 Type: Object Array  

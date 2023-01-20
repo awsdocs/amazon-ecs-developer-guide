@@ -21,7 +21,7 @@ Use the following steps to create a new capacity provider for an existing Amazon
 
 1. For **Capacity provider name**, enter a capacity provider name\.
 
-1. For **Auto Scaling group**, select the Auto Scaling group to associate with the capacity provider\. The Auto Scaling group must already be created\. For more information, see [Auto Scaling group capacity providers](asg-capacity-providers.md)\.
+1. For **Auto Scaling group**, select the Auto Scaling group to associate with the capacity provider\. The Auto Scaling group must already be created\.
 
 1. For **Managed scaling**, choose your managed scaling option\. When managed scaling is enabled, Amazon ECS manages the scale\-in and scale\-out actions of the Auto Scaling group through the use of AWS Auto Scaling scaling policies\. When managed scaling is disabled, you manage your Auto Scaling groups yourself\.
 

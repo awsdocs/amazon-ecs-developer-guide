@@ -11,7 +11,7 @@ For more information, see the Amazon ECS AMI repository at [aws/amazon\-ecs\-ami
 1. Clone the `aws/amazon-ecs-ami` GitHub repo\.
 
    ```
-   git clone git@github.com:aws/amazon-ecs-ami.git
+   git clone https://github.com/aws/amazon-ecs-ami.git
    ```
 
 1. Add an environment variable for the AWS Region to use when creating the AMI\. Replace the `us-west-2` value with the Region to use\.

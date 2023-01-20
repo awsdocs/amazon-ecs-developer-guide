@@ -11,17 +11,15 @@ Use the following steps to view your current service event messages\.
 ------
 #### [ New console ]
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Clusters**\.
 
 1. On the **Clusters** page, choose the cluster\.
 
-1. On the **Cluster : *name*** page, choose the **Services** tab\. 
-
 1. Choose the service to inspect\.
 
-1. In the **Notifications** section, view the messages\.
+1. Choose **Deployments and events**, under **Events**, view the messages\.
 
 ------
 #### [ Classic console ]
@@ -46,7 +44,7 @@ If you stop or terminate a container instance with running tasks, then the tasks
 Container instance deregistration forced by user  
 If you force the deregistration of a container instance with running tasks, then the tasks are given this stopped reason\.  
 Essential container in task exited  
-If a container marked as `essential` in task definitions exits or dies, that can cause a task to stop\. When an essential container exiting is the cause of a stopped task, the [Step 6](stopped-task-errors.md#status-reason-step) can provide more diagnostic information about why the container stopped\.
+If a container marked as `essential` in task definitions exits or dies, that can cause a task to stop\. When an essential container exiting is the cause of a stopped task, the [Step 6](stopped-task-errors-classic-console.md#status-reason-step) can provide more diagnostic information about why the container stopped\.
 
 1. If you have a container that has stopped, expand the container and inspect the **Status reason** row to see what caused the task state to change\.
 

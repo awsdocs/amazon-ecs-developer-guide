@@ -49,7 +49,6 @@ Consider the following when using the blue/green deployment type:
 + When you initially create a CodeDeploy application and deployment group, you must specify the following:
   + You must define two target groups for the load balancer\. One target group should be the initial target group defined for the load balancer when the Amazon ECS service was created\. The second target group's only requirement is that it can't be associated with a different load balancer than the one the service uses\.
 + When you create a CodeDeploy deployment for an Amazon ECS service, CodeDeploy creates a *replacement task set* \(or *green task set*\) in the deployment\. If you added a test listener to the load balancer, CodeDeploy routes your test traffic to the replacement task set\. This is when you can run any validation tests\. Then CodeDeploy reroutes the production traffic from the original task set to the replacement task set according to the traffic rerouting settings for the deployment group\.
-+ Classic Load Balancers aren't supported\. 
 
 ## Amazon ECS console experience<a name="deployment-type-bluegreen-console"></a>
 
@@ -80,7 +79,7 @@ Support for performing a blue/green deployment has been added for AWS CloudForma
 
 ## Blue/green deployment required IAM permissions<a name="deployment-type-bluegreen-IAM"></a>
 
-Amazon ECS blue/green deployments are made possible by a combination of the Amazon ECS and CodeDeploy APIs\. must have the appropriate permissions for these services before they can use Amazon ECS blue/green deployments in the AWS Management Console or with the AWS CLI or SDKs\. 
+Amazon ECS blue/green deployments are made possible by a combination of the Amazon ECS and CodeDeploy APIs\. Users must have the appropriate permissions for these services before they can use Amazon ECS blue/green deployments in the AWS Management Console or with the AWS CLI or SDKs\. 
 
 In addition to the standard IAM permissions for creating and updating services, Amazon ECS requires the following permissions\. These permissions have been added to the `AmazonECS_FullAccess` IAM policy\. For more information, see [AmazonECS\_FullAccess](security-iam-awsmanpol.md#security-iam-awsmanpol-AmazonECS_FullAccess)\.
 
@@ -126,8 +125,8 @@ In addition to the standard IAM permissions for creating and updating services, 
 ```
 
 **Note**  
-In addition to the standard Amazon ECS permissions required to run tasks and services, also require `iam:PassRole` permissions to use IAM roles for tasks\.
+In addition to the standard Amazon ECS permissions required to run tasks and services, users also require `iam:PassRole` permissions to use IAM roles for tasks\.
 
 CodeDeploy needs permissions to call Amazon ECS APIs, modify your Elastic Load Balancing, invoke Lambda functions, and describe CloudWatch alarms, as well as permissions to modify your service's desired count on your behalf\. Before creating an Amazon ECS service that uses the blue/green deployment type, you must create an IAM role \(`ecsCodeDeployRole`\)\. For more information, see [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)\.
 
-The [Create service example](security_iam_id-based-policy-examples.md#IAM_create_service_policies) and [Update service exampleDeny Service Connect Namespace Override Example](security_iam_id-based-policy-examples.md#IAM_update_service_policies) IAM policy examples show the permissions that are required for to use Amazon ECS blue/green deployments on the AWS Management Console\.
+The [Create service example](security_iam_id-based-policy-examples.md#IAM_create_service_policies) and [Update service exampleDeny Service Connect Namespace Override Example](security_iam_id-based-policy-examples.md#IAM_update_service_policies) IAM policy examples show the permissions that are required for users to use Amazon ECS blue/green deployments on the AWS Management Console\.

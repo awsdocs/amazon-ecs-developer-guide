@@ -22,7 +22,8 @@ After you create a task definition, you can run the task definition as a task or
 **Topics**
 + [Amazon EC2 Windows task definition considerations](windows_task_definitions.md)
 + [Application architecture](application_architecture.md)
-+ [Creating a task definition using the classic console](create-task-definition-classic.md)
++ [Task definition management in the Amazon ECS console](available-task-definition-actions.md)
++ [Task definition template](task-definition-template.md)
 + [Task definition parameters](task_definition_parameters.md)
 + [Amazon ECS launch types](launch_types.md)
 + [Working with GPUs on Amazon ECS](ecs-gpu.md)
@@ -38,5 +39,4 @@ After you create a task definition, you can run the task definition as a task or
 + [Passing environment variables to a container](taskdef-envfiles.md)
 + [Passing sensitive data to a container](specifying-sensitive-data.md)
 + [Example task definitions](example_task_definitions.md)
-+ [Updating a task definition using the classic console](update-task-definition.md)
-+ [Deregistering a task definition revision](deregister-task-definition.md)
++ [Task definition management using the AWS CLI](task-def-management-cli.md)

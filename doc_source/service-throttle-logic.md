@@ -10,7 +10,7 @@ If tasks for a service repeatedly fail to enter the `RUNNING` state \(progressin
 
 Amazon ECS doesn't ever stop a failing service from retrying\. It also doesn't attempt to modify it in any way other than increasing the time between restarts\. The service throttle logic doesn't provide any user\-tunable parameters\.
 
-If you update your service to use a new task definition, your service returns to a normal, non\-throttled state immediately\. For more information, see [Updating a service using the new console](update-service-console-v2.md)\.
+If you update your service to use a new task definition, your service returns to a normal, non\-throttled state immediately\. For more information, see [Updating a service using the console](update-service-console-v2.md)\.
 
 The following are some common causes that initiate this logic:
 + A lack of resources to host your task with, such as ports, memory, or CPU units in your cluster\. In this case, you also see the [insufficient resource service event message](service-event-messages.md#service-event-messages-1)\.

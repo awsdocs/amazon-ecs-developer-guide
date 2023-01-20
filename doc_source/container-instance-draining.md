@@ -6,7 +6,7 @@ There might be times when you need to remove a container instance from your clus
 
 Any tasks that are part of a service that are in a `PENDING` state are stopped immediately\. If there is available container instance capacity in the cluster, the service scheduler will start replacement tasks\. If there isn't enough container instance capacity, a service event message will be sent indicating the issue\.
 
-Tasks that are part of a service on the container instance that are in a `RUNNING` state are transitioned to a `STOPPED` state\. The service scheduler attempts to replace the tasks according to the service's deployment configuration parameters, `minimumHealthyPercent` and `maximumPercent`\. For more information, see [Service definition parameters](service_definition_parameters.md)\.
+Tasks that are part of a service on the container instance that are in a `RUNNING` state are transitioned to a `STOPPED` state\. The service scheduler attempts to replace the tasks according to the service's deployment type and deployment configuration parameters, `minimumHealthyPercent` and `maximumPercent`\. For more information, see [Amazon ECS Deployment types](deployment-types.md) and [Service definition parameters](service_definition_parameters.md)\.
 + If `minimumHealthyPercent` is below 100%, the scheduler can ignore `desiredCount` temporarily during task replacement\. For example, `desiredCount` is four tasks, a minimum of 50% allows the scheduler to stop two existing tasks before starting two new tasks\. If the minimum is 100%, the service scheduler can't remove existing tasks until the replacement tasks are considered healthy\. If tasks for services that do not use a load balancer are in the `RUNNING` state, they are considered healthy\. Tasks for services that use a load balancer are considered healthy if they are in the `RUNNING` state and the container instance they are hosted on is reported as healthy by the load balancer\.
 **Important**  
 If you use Spot Instances and `minimumHealthyPercent` is greater than or equal to 100%, then the service will not have enough time to replace the task before the Spot Instance terminates\.
@@ -24,14 +24,13 @@ When you are ready for the container instance to start hosting tasks again, you 
 
 ## Draining container instances<a name="drain-instances"></a>
 
-------
-#### [ New AWS Management Console ]
+The following steps can be used to set a container instance to draining using the new AWS Management Console\.
+
+You can also use the [UpdateContainerInstancesState](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateContainerInstancesState.html) API action or the [update\-container\-instances\-state](https://docs.aws.amazon.com/cli/latest/reference/ecs/update-container-instances-state.html) command to change the status of a container instance to `DRAINING`\.
 
 **New AWS Management Console**
 
-The following steps can be used to set a container instance to draining using the new AWS Management Console\.
-
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Clusters**\.
 
@@ -39,30 +38,4 @@ The following steps can be used to set a container instance to draining using th
 
 1. On the **Cluster : *name*** page, choose the **Infrastructure** tab\. Then, under **Container instances** select the check box for each container instance you want to drain\.
 
-1. Choose **Drain**\.
-
-------
-#### [ Classic AWS Management Console ]
-
-**Classic AWS Management Console**
-
-The following steps can be used to set a container instance to draining using the classic AWS Management Console\.
-
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
-
-1. In the navigation pane, choose **Clusters** and select the cluster\.
-
-1. Choose the **ECS Instances** tab and select the check box for each container instance you want to drain\.
-
-1. Choose **Actions**, **Drain instances**\.
-
-1. After the instances are processed, choose **Done**\.
-
-1. When you want to activate the container instances again, repeat these same steps but choose **Activate instances** from the **Actions** menu\.
-
-------
-#### [ AWS CLI ]
-
-You can use the [UpdateContainerInstancesState](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateContainerInstancesState.html) API action or the [update\-container\-instances\-state](https://docs.aws.amazon.com/cli/latest/reference/ecs/update-container-instances-state.html) command to change the status of a container instance to `DRAINING`\.
-
-------
+1. Choose **Actions**, **Drain**\.

@@ -1,7 +1,7 @@
 # Step 3: Configuring your service to use a load balancer<a name="service-create-loadbalancer"></a>
 
 **Important**  
-Amazon ECS has a new console experience for creating a service\. For more information, see [Creating a service using the new console](create-service-console-v2.md)\.
+Amazon ECS has a new console experience for creating a service\. For more information, see [Creating a service using the console](create-service-console-v2.md)\.
 
 Services can be configured to use a load balancer to distribute incoming traffic to the tasks in your service\. If your service is using the rolling update deployment type, this is optional\. If your service is using the blue/green deployment type, then it is required to use either an Application Load Balancer or Network Load Balancer\.
 

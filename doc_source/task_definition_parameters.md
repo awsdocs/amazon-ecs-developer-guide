@@ -30,7 +30,7 @@ The launch type to validate the task definition against\. This enables a check t
 `taskRoleArn`  
 Type: string  
 Required: no  
-When you register a task definition, you can provide a task role for an IAM role that allows the containers in the task permission to call the AWS APIs that are specified in its associated policies on your behalf\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.  
+When you register a task definition, you can provide a task role for an IAM role that allows the containers in the task permission to call the AWS APIs that are specified in its associated policies on your behalf\. For more information, see [Task IAM role](task-iam-roles.md)\.  
 When you launch the Amazon ECS\-optimized Windows Server AMI, IAM roles for tasks on Windows require that the `-EnableTaskIAMRole` option is set\. Your containers must also run some configuration code to use the feature\. For more information, see [Additional configuration for Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
 
 ## Task execution role<a name="execution_role_arn"></a>
@@ -49,7 +49,7 @@ The Docker networking mode to use for the containers in the task\. For Amazon EC
 If the network mode is set to `none`, the task's containers don't have external connectivity and port mappings can't be specified in the container definition\.  
 If the network mode is `bridge`, the task uses Docker's built\-in virtual network on Linux, which runs inside each Amazon EC2 instance that hosts the task\. The built\-in virtual network on Linux uses the `bridge` Docker network driver\.\.  
 If the network mode is `host`, the task uses the host's network which bypasses Docker's built\-in virtual network by mapping container ports directly to the ENI of the Amazon EC2 instance that hosts the task\. Dynamic port mappings can’t be used in this network mode\. A container in a task definition that uses this mode must specify a specific `hostPort` number\. A port number on a host can’t be used by multiple tasks\. As a result, you can’t run multiple tasks of the same task definition on a single Amazon EC2 instance\.  
-When running tasks that use the `host` network mode, do not run containers using the root user \(UID 0\) for better security\. As a security best practice, always use a non\-root user, instead of the root user\.
+When running tasks that use the `host` network mode, do not run containers using the root user \(UID 0\) for better security\. As a security best practice, always use a non\-root user\.
 If the network mode is `awsvpc`, the task is allocated an elastic network interface, and you must specify a `NetworkConfiguration` when you create a service or run a task with the task definition\. For more information, see [Amazon ECS task networking](task-networking.md)\. Currently, only the Amazon ECS\-optimized AMI, other Amazon Linux variants with the `ecs-init` package, or AWS Fargate infrastructure support the `awsvpc` network mode\.  
 If the network mode is `default`, the task uses Docker's built\-in virtual network on Windows, which runs inside each Amazon EC2 instance that hosts the task\. The built\-in virtual network on Windows uses the `nat` Docker network driver\.\.   
 The `host` and `awsvpc` network modes offer the highest networking performance for containers because they use the Amazon EC2 network stack\. With the `host` and `awsvpc` network modes, exposed container ports are mapped directly to the corresponding host port \(for the `host` network mode\) or the attached elastic network interface port \(for the `awsvpc` network mode\)\. Because of this, you can't use dynamic host port mappings\.  
@@ -306,8 +306,7 @@ The following describes the possible `healthStatus` values for a task\. The cont
 If a task is run manually and not as part of a service, it continues its lifecycle regardless of its health status\. For tasks that are part of a service, if the task reports as unhealthy, then the task is stopped and the service scheduler replaces it\.  
 The following are notes about container health check support:  
 + Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
-+ Container health checks are supported for Fargate tasks if you're using Linux platform version 1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
-+ Container health checks aren't supported for tasks that are part of a service that is configured to use a Classic Load Balancer\.  
++ Container health checks are supported for Fargate tasks if you're using Linux platform version 1\.1\.0 or later\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.  
 `command`  
 A string array representing the command that the container runs to determine if it's healthy\. The string array can start with `CMD` to run the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. If neither is specified, `CMD` is used\.  
 When registering a task definition in the AWS Management Console, use a comma separated list of commands, which are converted to a string after the task definition is created\. An example input for a health check is the following\.  
@@ -322,7 +321,7 @@ When registering a task definition using the AWS Management Console JSON panel, 
 ```
 An exit code of 0, with no `stderr` output, indicates success, and a non\-zero exit code indicates failure\. For more information, see `HealthCheck` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/)\.  
 `interval`  
-The period of time \(in seconds\) between each health check execution\. You may specify between 5 and 300 seconds\. The default value is 30 seconds\.  
+The period of time \(in seconds\) between each health check\. You may specify between 5 and 300 seconds\. The default value is 30 seconds\.  
 `timeout`  
 The period of time \(in seconds\) to wait for a health check to succeed before it's considered a failure\. You may specify between 2 and 60 seconds\. The default value is 5 seconds\.  
 `retries`  
@@ -700,7 +699,7 @@ This parameter is not supported for Windows containers or tasks using the Fargat
 Type: string  
 Required: no  
 The user to use inside the container\. This parameter maps to `User` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--user` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-When running tasks that use the `host` network mode, do not run containers using the root user \(UID 0\)\. As a security best practice, always use a non\-root user, instead of the root user\.
+When running tasks that use the `host` network mode, do not run containers using the root user \(UID 0\)\. As a security best practice, always use a non\-root user\.
 You can specify the `user` using the following formats\. If specifying a UID or GID, you must specify it as a positive integer\.  
 + `user`
 + `user:group`
@@ -1086,7 +1085,7 @@ This parameter is specified when using Docker volumes\. Docker volumes are only 
 Type: String  
 Valid Values: `task` \| `shared`  
 Required: No  
-The scope for the Docker volume, which determines its lifecycle\. Docker volumes that are scoped to a `task` are automatically provisioned when the task starts destroyed when the task is cleaned up\. Docker volumes that are scoped as `shared` persist after the task stops\.  
+The scope for the Docker volume, which determines its lifecycle\. Docker volumes that are scoped to a `task` are automatically provisioned when the task starts and destroyed when the task stops\. Docker volumes that are scoped as `shared` persist after the task stops\.  
 `autoprovision`  
 Type: Boolean  
 Default value: `false`  

@@ -65,7 +65,7 @@ For these applications to resolve the IP addresses of ECS tasks, you need to use
 
 ### Service Connect terminology<a name="service-connect-concepts-terms"></a>
 
-The following are terms that are used with Service Connect \.
+The following terms are used with Service Connect\.
 
 **port name**  
 The Amazon ECS task definition configuration that assigns a name to a particular port mapping\. This configuration is only used by Amazon ECS Service Connect\.
@@ -91,17 +91,17 @@ Service Connect uses the AWS Cloud Map namespace as a logical grouping of Amazon
 
 **client service**  
 An Amazon ECS service that runs a network client application\. This service must have a namespace configured\. Each task in the service can discover and connect to all of the endpoints in the namespace through a Service Connect proxy container\.  
-If any of your containers in the task need to connect to an endpoint from a service in a namespace, choose a client service\.
+If any of your containers in the task need to connect to an endpoint from a service in a namespace, choose a client service\. If a frontend, reverse proxy, or load balancer application receives external traffic through other methods such as from Elastic Load Balancing, it could use this type of Service Connect configuration\.
 
 **client\-server service**  
 An Amazon ECS service that runs a network or web service application\. This service must have a namespace and at least one endpoint configured\. Each task in the service is reachable by using the endpoints\. The Service Connect proxy container listens on the endpoint name and port to direct traffic to the app containers in the task\.  
-If any of the containers expose and listen on a port for network traffic, choose a client\-server service\.
+If any of the containers expose and listen on a port for network traffic, choose a client\-server service\. These applications don't need to connect to other client\-server services in the same namespace, but the client configuration is is configured\. A backend, middleware, business tier, or most microservices would use this type of Service Connect configuration\. If you want a frontend, reverse proxy, or load balancer application to receive traffic from other services configured with Service Connect in the same namespace, these services should use this type of Service Connect configuration\.
 
 ### Cluster configuration<a name="service-connect-concepts-cluster-defaults"></a>
 
 You can set a default namespace for Service Connect when you create the cluster or by updating the cluster\. If you specify a namespace name that doesn't exist in the same AWS Region and account, a new HTTP namespace is created\.
 
-Service Connect adds an attachment to Amazon ECS clusters\. The creation of a cluster now waits in the `PROVISIONING` status for the attachment to complete\.
+If you create a cluster and specify a default Service Connect namespace, the cluster waits in the `PROVISIONING` status while Amazon ECS creates the namespace\. You can see an `attachment` in the status of the cluster that shows the status of the namespace\. Attachments aren't displayed by default in the AWS CLI, you must add `--include ATTACHMENTS` to see them\.
 
 ### Service Connect service configuration<a name="service-connect-concepts-config"></a>
 
@@ -115,9 +115,7 @@ The following example shows each kind of Service Connect configuration being use
     serviceConnectConfiguration: {
         enabled: true,
         namespace: "internal",
-        #config
-        for client services can end here,
-        only these two parameters are required.
+        #config for client services can end here, only these two parameters are required.
         services: [{
                 portName: "http"
             }, #minimal client - server service config can end here.portName must match the "name"
@@ -154,11 +152,17 @@ When you use Amazon ECS Service Connect, you configure each Amazon ECS service e
 
 When you prepare to start using Service Connect, start with a client\-server service\. You can add a Service Connect configuration to a new service or an existing service\. After you edit and update an Amazon ECS service to add a Service Connect configuration, Amazon ECS creates a Service Connect endpoint in the namespace\. Additionally, Amazon ECS creates a new deployment in the service to replace the tasks that are currently running\.
 
-Existing tasks and other applications can continue to connect 
+Existing tasks and other applications can continue to connect to existing endpoints, and external applications\. If a client\-server service adds tasks by scaling out, new connections from clients will be balanced between all of the tasks immediately\. If a client\-server service is updated, new connections from clients will be balanced between the tasks of the new version immediately\.
 
 Existing tasks can't resolve and connect to the new endpoint\. Only new Amazon ECS tasks that have a Service Connect configuration in the same namespace and that start running after this deployment can resolve and connect to this endpoint\. For example, an Amazon ECS service that runs a client application must start new tasks after the deployment completes of the server that it connects to\.
 
 This means that the operator of the client application determines when the configuration of their app changes, even though the operator of the server application can change their configuration at any time\. The list of endpoints in the namespace can change every time that any Amazon ECS service in the namespace is deployed\.
+
+Consider the following examples\.
+
+First, assume that you are creating an application that is available to the public internet in a single AWS CloudFormation template and single AWS CloudFormation stack\. The public discovery and reachability should be created last by AWS CloudFormation, including the frontend client service\. The service need to be created in this order to prevent an time period when the frontend client service is running and available the public, but a backend isn't\. This eliminates error messages from being sent to the public during that time period\. In AWS CloudFormation, you must use the `dependsOn` to indicate to AWS CloudFormation that multiple Amazon ECS services can't be made in parallel or simultaneously\. You should add the `dependsOn` to the frontend client service for each backend client\-server service that the client tasks connect to\.
+
+Second, assume that a frontend service exists without Service Connect configuration\. The tasks are connecting to an existing backend service\. Add a client\-server Service Connect configuration to the backend service first, using the same name in the **DNS** or `clientAlias` that the frontend uses\. This creates a new deployment, so all the deployment rollback detection or AWS Management Console, AWS CLI, AWS SDKs and other methods to roll back and revert the backend service to the previous deployment and configuration\. If you are satisfied with the performance and behavior of the backend service, add a client or client\-server Service Connect configuration to the frontend service\. Only the tasks in the new deployment use the Service Connect proxy that is added to those new tasks\. If you have issues with this configuration, you can roll back and revert to your previous configuration by using the deployment rollback detection or AWS Management Console, AWS CLI, AWS SDKs and other methods to roll back and revert the backend service to the previous deployment and configuration\. If you use another service discovery system that is based on DNS instead of Service Connect, any frontend or client applications begin using new endpoints and changed endpoint configuration after the local DNS cache expires, commonly taking multiple hours\.
 
 ### Networking<a name="service-connect-concepts-network"></a>
 
@@ -168,7 +172,7 @@ Even if you set a port number in the Service Connect service configuration, this
 
 If you want to change the port that the Service Connect proxy listens on, change the `ingressPortOverride` in the Service Connect configuration of the client\-server service\. If you change this port number, you must allow inbound traffic on this port in the Amazon VPC security group that is used by traffic to this service\.
 
-Traffic that your applications send to Amazon ECS services configured for Service Connect require that the Amazon VPC and subnets have route table rules and network ACL rules that allow the `containerPort` and `ingressOverridePort` port numbers you are using\.
+Traffic that your applications send to Amazon ECS services configured for Service Connect require that the Amazon VPC and subnets have route table rules and network ACL rules that allow the `containerPort` and `ingressOverridePort` port numbers that you are using\.
 
  You can send traffic between VPCs with Service Connect\. You must consider the same requirements for the route table rules, network ACLs, and security groups as they apply to both VPCs\.
 
@@ -176,7 +180,7 @@ For example, two clusters create tasks in different VPCs\. A service in each clu
 
 ### Service Connect proxy<a name="service-connect-concepts-proxy"></a>
 
-If an Amazon ECS service is created with or updated with Service Connect configuration, Amazon ECS adds a new container to each new task as they are started\. This container isn't present in the task definition and you can't configure it\. Amazon ECS manages the configuration of this container in the Amazon ECS service\. Because of this, you can reuse the same task definitions between multiple Amazon ECS services, namespaces, and you can run tasks without Service Connect also\.
+If an Amazon ECS service is created with or updated with Service Connect configuration, Amazon ECS adds a new container to each new task as it is started\. This container isn't present in the task definition and you can't configure it\. Amazon ECS manages the configuration of this container in the Amazon ECS service\. Because of this, you can reuse the same task definitions between multiple Amazon ECS services, namespaces, and you can run tasks without Service Connect also\.
 
 The only configuration for this container in the task definition is the task CPU and memory limits\. The only container configuration for this container in the ECS service is the log configuration inside the Service Connect configuration\.
 
@@ -207,10 +211,13 @@ The following parameters have extra fields when using Service Connect\.
 
 ## Service Connect considerations<a name="service-connect-considerations"></a>
 + Windows containers aren't supported with Service Connect\.
-+ Container instances must run the Amazon ECS\-optimized Amazon Linux 2 AMI, use the version `2.0.20221115` or later to use Service Connect\. 
++ Tasks that run in Fargate must use the Fargate Linux platform version 1\.4\.0 or higher to use Service Connect\.
++ Container instances must run the Amazon ECS\-optimized Amazon Linux 2 AMI version `2.0.20221115` or later to use Service Connect\. You can't use Service Connect on other AMIs or operating systems\. Additional software is required, which is only in this AMI\. 
++ Container instances must have the `ecs:Poll` permission for the resource `arn:aws:ecs:region:0123456789012:task-set/cluster/*`\. If you are using the `ecsInstanceRole`, you don't need to add additional permissions\. The `AmazonEC2ContainerServiceforEC2Role` managed policy has the necessary permissions\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
++ You can't use capacity provider strategies to run services with Service Connect on Amazon EC2 instances\. Use the EC2 launch type for services with Service Connect\.
 + `External` container instance for Amazon ECS Anywhere aren't supported with Service Connect\.
 + Only services that use rolling deployments are supported with Service Connect\. Services that use the *blue/green* and *external* deployment types aren’t supported\.
-+ Tasks that run in Fargate must run the Fargate Linux platform version 1\.4\.0 or higher to use Service Connect\.
++ You can't use ECS deployment circuit breakers with Service Connect\. Before deleting a service with circuit breakers, you must update your services to remove the circuit breakers\. If you delete a service with both Service Connect and circuit breakers, you might have issues when you create services with the same configuration\.
 + Task definitions must set the task memory limit to use Service Connect\. For more information, see [Service Connect proxy](#service-connect-concepts-proxy)\.
 + Task definitions that set container memory limits for all containers instead of setting the task memory limit aren't supported\.
 
@@ -221,15 +228,13 @@ The following parameters have extra fields when using Service Connect\.
 + All endpoints must be unique within a namespace\.
 + All discovery names must be unique within a namespace\.
 + Tasks that run in a namespace can only resolve endpoints that already existed before the task started\. New endpoints that are added to the namespace after the task starts won't be added to the task configuration\. For more information, see [Deployment order](#service-connect-concepts-deploy)\.
-
-**Important**  
-If the first service in a new or empty namespace is client\-only, the deployment doesn't complete\. You must make a client\-server service as the first service in a new or empty namespace\.
++ You can create a namespace when creating a new cluster\. Amazon ECS Service Connect doesn't delete namespaces when clusters are deleted\. You must delete namespaces directly in AWS Cloud Map if you are done using them\.
 
 ## Service Connect console experience<a name="service-connect-console"></a>
 
 Service Connect management is available only in the new Amazon ECS console\. 
 
-To create a new namespace, either create a new Amazon ECS cluster using the Amazon ECS console and specify a namespace name to create, or use the AWS Cloud Map console\. Amazon ECS Service Connect can use any *instance discovery* type of AWS Cloud Map namespace\. We recommend the *API calls* type to make the minimum amount of additional resources\. To create a new Amazon ECS cluster and namespace in the Amazon ECS console, see [Creating a cluster for the Fargate launch type using the new console](create-cluster-console-v2.md)\.
+To create a new namespace, either create a new Amazon ECS cluster using the Amazon ECS console and specify a namespace name to create, or use the AWS Cloud Map console\. Amazon ECS Service Connect can use any *instance discovery* type of AWS Cloud Map namespace\. We recommend the *API calls* type to make the minimum amount of additional resources\. To create a new Amazon ECS cluster and namespace in the Amazon ECS console, see [Creating a cluster for the Fargate launch type using the console](create-cluster-console-v2.md)\.
 
 Every AWS Cloud Map namespace in this AWS account in the selected AWS Region is displayed in the **Namespaces** in the Amazon ECS console\.
 
@@ -237,7 +242,7 @@ To delete a namespace, use the AWS Cloud Map console\. A namespace must be empty
 
 To create a new Amazon ECS task definition, or register a new revision to an existing task definition and use Service Connect, see [Creating a task definition using the new console](create-task-definition.md)\.
 
-To create a new Amazon ECS service that uses Service Connect, see [Creating a service using the new console](create-service-console-v2.md)\.
+To create a new Amazon ECS service that uses Service Connect, see [Creating a service using the console](create-service-console-v2.md)\.
 
 ## Service Connect pricing<a name="service-connect-pricing"></a>
 

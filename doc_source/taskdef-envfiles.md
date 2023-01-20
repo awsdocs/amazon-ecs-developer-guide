@@ -2,7 +2,7 @@
 
 **Important**  
 We recommend storing your sensitive data in either AWS Secrets Manager secrets or AWS Systems Manager Parameter Store parameters\. For more information, see [Passing sensitive data to a container](specifying-sensitive-data.md)\.  
-Environment variables specified in the task definition are readable by all IAM users and roles that are allowed the `DescribeTaskDefinition` action for the task definition\.  
+Environment variables specified in the task definition are readable by all users and roles that are allowed the `DescribeTaskDefinition` action for the task definition\.  
 Environment variable files are objects in Amazon S3 and all Amazon S3 security considerations apply\. See the below section [Required IAM permissions](#taskdef-envfiles-iam)\.
 
 You can pass environment variables to your containers in the following ways:

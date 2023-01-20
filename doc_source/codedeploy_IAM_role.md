@@ -3,7 +3,7 @@
 Before you can use the CodeDeploy blue/green deployment type with Amazon ECS, the CodeDeploy service needs permissions to update your Amazon ECS service on your behalf\. These permissions are provided by the CodeDeploy IAM role \(`ecsCodeDeployRole`\)\.
 
 **Note**  
- also require permissions to use CodeDeploy; these permissions are described in [Blue/green deployment required IAM permissions](deployment-type-bluegreen.md#deployment-type-bluegreen-IAM)\. 
+Users also require permissions to use CodeDeploy; these permissions are described in [Blue/green deployment required IAM permissions](deployment-type-bluegreen.md#deployment-type-bluegreen-IAM)\. 
 
 There are two managed policies provided\. The `AWSCodeDeployRoleForECS` policy, shown below, gives CodeDeploy permission to update any resource using the associated action\.
 
@@ -189,7 +189,7 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
    }
    ```
 
-1. If the tasks in your Amazon ECS service using the blue/green deployment type require the use of the task execution role or a task role override, then you must add the `iam:PassRole` permission for each task execution role or task role override to the CodeDeploy IAM role as an inline policy\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md) and [IAM roles for tasks](task-iam-roles.md)\.
+1. If the tasks in your Amazon ECS service using the blue/green deployment type require the use of the task execution role or a task role override, then you must add the `iam:PassRole` permission for each task execution role or task role override to the CodeDeploy IAM role as an inline policy\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md) and [Task IAM role](task-iam-roles.md)\.
 
    Follow the substeps below to create an inline policy\.
 

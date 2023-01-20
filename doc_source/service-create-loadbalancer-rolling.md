@@ -18,9 +18,7 @@ To configure your service to use a load balancer, you must choose the load balan
 Application Load Balancer  
 Allows containers to use dynamic host port mapping\. With host port mapping allowed, you can place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing and paths\.  
 Network Load Balancer  
-Allows containers to use dynamic host port mapping\. With host port mapping allowed, you can place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing\.  
-Classic Load Balancer  
-Requires static host port mappings \(only one task allowed per container instance\)\. Rule\-based routing and paths aren't supported\.
+Allows containers to use dynamic host port mapping\. With host port mapping allowed, you can place multiple tasks using the same port on a single container instance\. Multiple services can use the same listener port on a single load balancer with rule\-based routing\.
 
    We recommend that you use Application Load Balancers for your Amazon ECS services\. That way, you can use the advanced features of Application Load Balancer\.
 

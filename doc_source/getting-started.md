@@ -7,4 +7,6 @@ The following guides provide an introduction to the tools available to access Am
 + [Creating a container image for use on Amazon ECS](create-container-image.md)
 + [Getting started with Amazon ECS using AWS Copilot](getting-started-aws-copilot-cli.md)
 + [Getting started with Amazon ECS using the AWS CDK](tutorial-ecs-web-server-cdk.md)
-+ [Getting started with Amazon ECS using the classic console](getting-started-console.md)
++ [Getting started with the console using Linux containers on AWS Fargate](getting-started-fargate.md)
++ [Getting started with the console using Windows containers on AWS Fargate](Windows_fargate-getting_started.md)
++ [Getting started with the console using Amazon EC2](getting-started-ecs-ec2-v2.md)

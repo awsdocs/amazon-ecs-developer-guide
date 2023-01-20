@@ -38,9 +38,8 @@ Custom schedulers are only compatible with tasks hosted on EC2 instances\. If yo
 Use `RunTask` and `CreateService` actions to specify task placement constraints and task placement strategies\. These customize how Amazon ECS places and runs your tasks\. For more information, see [Amazon ECS task placement](task-placement.md)\.
 
 **Topics**
-+ [Running a standalone task using the new Amazon ECS console](ecs_run_task-v2.md)
++ [Running a standalone task using the Amazon ECS console](ecs_run_task-v2.md)
 + [Stopping tasks using the new console](stop-task-console-v2.md)
-+ [Run a standalone task in the classic Amazon ECS console](ecs_run_task.md)
 + [Amazon ECS task placement](task-placement.md)
 + [Scheduled tasks](scheduled_tasks.md)
 + [Task lifecycle](task-lifecycle.md)

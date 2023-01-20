@@ -1,71 +1,19 @@
 # Modifying account settings<a name="ecs-modifying-longer-id-settings"></a>
 
-You can use the classic AWS Management Console, and AWS CLI tools to modify your account settings\.
+You can use the AWS Management Console to modify your account settings\.
 
-------
-#### [ Classic Amazon ECS console ]
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. In the navigation bar at the top, select the Region for which to view your account settings\. 
 
-1. In the navigation bar at the top of the screen, select the Region for which to modify your account settings\.
+1. In the navigation page, choose **Account Settings**\.
 
-1. From the dashboard, choose **Account Settings**\.
+1. Choose **Update**\.
 
-1. On the **Amazon ECS ARN and resource ID settings**, **AWSVPC Trunking**, and **CloudWatch Container Insights** sections, you can select or clear the check boxes for each account setting for the authenticated IAM user and role\. Choose **Save** once finished\.
-**Important**  
- and IAM roles need the `ecs:PutAccountSetting` permission to perform this action\.
+1.  To increase or descrease the number of tasks that you can run in the awsvpc network mode for each EC2 instance, under **AWSVPC Trunking**, select **AWSVPC Trunking**\.
+
+1.  To use or stop using CloudWatch Container Insights by default for clusters, under **CloudWatch Container Insights**, select or clear **CloudWatch Container Insights**\.
+
+1. Choose **Save changes**\.
 
 1. On the confirmation screen, choose **Confirm** to save the selection\.
-
-------
-#### [ AWS CLI ]
-
-**To modify the default account settings for all or roles on your account \(AWS CLI\)**
-
-Use one of the following commands to modify the default account setting for all or roles on your account\. These changes apply to the entire AWS account unless an or role explicitly overrides these settings for themselves\.
-+ [put\-account\-setting\-default](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting-default.html) \(AWS CLI\)
-
-  ```
-  aws ecs put-account-setting-default --name serviceLongArnFormat --value enabled --region us-east-2
-  ```
-
-  You can also use this command to modify other account settings\. To do this, replace the `name` parameter with the corresponding account setting\.
-+ [Write\-ECSAccountSetting](https://docs.aws.amazon.com/powershell/latest/reference/items/Write-ECSAccountSetting.html) \(AWS Tools for Windows PowerShell\)
-
-  ```
-  Write-ECSAccountSettingDefault -Name serviceLongArnFormat -Value enabled -Region us-east-1 -Force
-  ```
-
-**To modify the account settings for your account \(AWS CLI\)**
-
-Use one of the following commands to modify the account settings for your IAM user\. If you’re using these commands as the root user, changes apply to the entire AWS account unless an or role explicitly overrides these settings for themselves\.
-+ [put\-account\-setting](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting.html) \(AWS CLI\)
-
-  ```
-  aws ecs put-account-setting --name serviceLongArnFormat --value enabled --region us-east-1
-  ```
-
-  You can also use this command to modify other account settings\. To do this, replace the `name` parameter with the corresponding account setting\.
-+ [Write\-ECSAccountSetting](https://docs.aws.amazon.com/powershell/latest/reference/items/Write-ECSAccountSetting.html) \(AWS Tools for Windows PowerShell\)
-
-  ```
-  Write-ECSAccountSetting -Name serviceLongArnFormat -Value enabled -Force
-  ```
-
-**To modify the account settings for a specific or IAM role \(AWS CLI\)**
-
-Use one of the following commands and specify the ARN of an , IAM role, or root user in the request to modify the account settings for a specific or IAM role\.
-+ [put\-account\-setting](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting.html) \(AWS CLI\)
-
-  ```
-  aws ecs put-account-setting --name serviceLongArnFormat --value enabled --principal-arn arn:aws:iam::aws_account_id:user/principalName --region us-east-1
-  ```
-
-  You can also use this command to modify other account settings\. To do this, replace the `name` parameter with the corresponding account setting\.
-+ [Write\-ECSAccountSetting](https://docs.aws.amazon.com/powershell/latest/reference/items/Write-ECSAccountSetting.html) \(AWS Tools for Windows PowerShell\)
-
-  ```
-  Write-ECSAccountSetting -Name serviceLongArnFormat -Value enabled -PrincipalArn arn:aws:iam::aws_account_id:user/principalName -Region us-east-1 -Force
-  ```
-
-------

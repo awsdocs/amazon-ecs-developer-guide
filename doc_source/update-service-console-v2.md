@@ -1,9 +1,11 @@
-# Updating a service using the new console<a name="update-service-console-v2"></a>
+# Updating a service using the console<a name="update-service-console-v2"></a>
 
-You can update an Amazon ECS service using the new console\. When updating a service using the AWS Management Console, the current service configuration is pre\-populated\. You are able to update the task definition, desired task count, capacity provider strategy, platform version, and deployment configuration; or any combination of these\.
+You can update an Amazon ECS service using the new Amazon ECS experience\. The current service configuration is pre\-populated\. You are able to update the task definition, desired task count, capacity provider strategy, platform version, and deployment configuration; or any combination of these\.
 
 Consider the following when you use the new console:
-+ Only services using the **Rolling update** \(`ECS`\) deployment type can be updated using the new console\.
++ Only services using the **Rolling update** \(`ECS`\) deployment type can be updated using the new Amazon ECS experience\.
++ Currently, the console supports only the **Target tracking** scaling policy\. To use step scaling, switch to the classic console\.
++ Currently, the console supports only the **Replica** service type\. To use the Daemon service type, switch to the classic console\.
 + If you are changing the ports used by containers in a task definition, you might need to update the security groups for the container instances to work with the updated ports\.
 + Amazon ECS does not automatically update the security groups associated with Elastic Load Balancing load balancers or Amazon ECS container instances\.
 + If your service uses a load balancer, the load balancer configuration defined for your service when it was created cannot be changed\. If you update the task definition for the service, the container name and container port that were specified when the service was created must remain in the task definition\.
@@ -27,9 +29,9 @@ If you update the task definition for the service, the container name and contai
 To change the container name, or the container port associated with a service load balancer configuration, you must create a new service\.  
 Amazon ECS does not automatically update the security groups associated with Elastic Load Balancing load balancers or Amazon ECS container instances\.
 
-**To update a service \(New Amazon ECS console\)**
+**To update a service \(Amazon ECS console\)**
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. On the **Clusters** page, select the cluster\.
 

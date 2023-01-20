@@ -1,4 +1,4 @@
-# Running a standalone task using the new Amazon ECS console<a name="ecs_run_task-v2"></a>
+# Running a standalone task using the Amazon ECS console<a name="ecs_run_task-v2"></a>
 
 We recommend that you deploy your application as a standalone task in some situations\. For example, suppose that you're developing an application but you're not ready to deploy it with the service scheduler\. If your application is a one\-time or periodic batch job, it doesn't make sense to keep running or restart when it finishes\.
 
@@ -15,9 +15,9 @@ Consider the following when you use the new console;
   + If your cluster doesn't have a default capacity provider strategy defined but you do have one or more Auto Scaling group capacity providers added to the cluster, the **Use custom \(Advanced\)** option is selected and you need to manually define the strategy\.
   + If your cluster doesn't have a default capacity provider strategy defined and no capacity providers added to the cluster, the Fargate launch type is selected\.
 
-**To run a task from the new console**
+**To run a task from the console**
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. On the **Clusters** page, select the cluster to run the standalone task in\.
 
@@ -68,7 +68,7 @@ Only private subnets are supported for the `awsvpc` network mode\. Tasks do not 
 
 1. \(Optional\) To override the task IAM role, or task execution role that is defined in your task definition, expand **Task overrides**, and then complete the following steps:
 
-   1. For **Task role**, choose an IAM role for this task to override the task IAM roles in the task definition\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
+   1. For **Task role**, choose an IAM role for this task to override the task IAM roles in the task definition\. For more information, see [Task IAM role](task-iam-roles.md)\.
 
       Only roles with the `ecs-tasks.amazonaws.com` trust relationship are displayed\. For instructions on how to create an IAM role for your tasks, see [Creating an IAM role and policy for your tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 

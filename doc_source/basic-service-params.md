@@ -1,7 +1,7 @@
 # Step 1: Configuring basic service parameters<a name="basic-service-params"></a>
 
 **Important**  
-Amazon ECS has provided a new console experience for creating a service\. For more information, see [Creating a service using the new console](create-service-console-v2.md)\.
+Amazon ECS has provided a new console experience for creating a service\. For more information, see [Creating a service using the console](create-service-console-v2.md)\.
 
 All services require some configuration parameters that define the service, such as the task definition to use, which cluster that the service runs on, how many tasks are placed for the service\. This is called the *service definition*\. For more information about the parameters defined in a service definition, see [Service definition parameters](service_definition_parameters.md)\.
 

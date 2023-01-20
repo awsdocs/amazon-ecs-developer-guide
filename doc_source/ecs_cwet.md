@@ -4,7 +4,7 @@ In this tutorial, you set up a simple AWS Lambda function that listens for Amazo
 
 ## Prerequisite: Set up a test cluster<a name="cwet_step_1"></a>
 
-If you do not have a running cluster to capture events from, follow the steps in [Creating a cluster for the Fargate launch type using the new console](create-cluster-console-v2.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Lambda function correctly\. 
+If you do not have a running cluster to capture events from, follow the steps in [Creating a cluster for the Fargate launch type using the console](create-cluster-console-v2.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Lambda function correctly\. 
 
 ## Step 1: Create the Lambda function<a name="cwet_step_2"></a>
 
@@ -66,7 +66,7 @@ When you use the AWS Management Console to create an event rule, the console aut
 
 Create a task definition\.
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Task Definitions**\.
 
@@ -110,7 +110,7 @@ Create a task definition\.
 
 **To test your rule**
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. Choose **Task definitions**\.
 

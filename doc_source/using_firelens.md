@@ -7,7 +7,9 @@ Creating Amazon ECS task definitions with a FireLens configuration is supported 
 ## Considerations<a name="firelens-considerations"></a>
 
 Consider the following when using FireLens for Amazon ECS:
-+ FireLens for Amazon ECS is supported for tasks that are hosted on both AWS Fargate on Linux and Amazon EC2\. Windows containers that are on AWS Fargate don't support FireLens\.
++ FireLens for Amazon ECS is supported for tasks that are hosted on both AWS Fargate on Linux and Amazon EC2 on Linux\. Windows containers don't support FireLens\.
+
+  For information about how to configure centralized logging for Windows containers, see [Centralized logging for Windows containers on Amazon ECS using Fluent Bit](http://aws.amazon.com/blogs/containers/centralized-logging-for-windows-containers-on-amazon-ecs-using-fluent-bit/)\.
 + FireLens for Amazon ECS is supported in AWS CloudFormation templates\. For more information, see [AWS::ECS::TaskDefinition FirelensConfiguration](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-firelensconfiguration.html) in the *AWS CloudFormation User Guide*
 + FireLens listens on port `24224`, so to ensure that the FireLens log router isn't reachable outside of the task, you must not allow inbound traffic on port `24224` in the security group your task uses\. For tasks that use the `awsvpc` network mode, this is the security group associated with the task\. For tasks using the `host` network mode, this is the security group that's associated with the Amazon EC2 instance hosting the task\. For tasks that use the `bridge` network mode, don't create any port mappings that use port `24224`\.
 + For tasks that use the `bridge` network mode, the container with the FireLens configuration must start before any application containers that rely on it start\. To control the start order of your containers, use dependency conditions in your task definition\. For more information, see [Container dependency](task_definition_parameters.md#container_definition_dependson)\.

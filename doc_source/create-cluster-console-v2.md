@@ -1,10 +1,10 @@
-# Creating a cluster for the Fargate launch type using the new console<a name="create-cluster-console-v2"></a>
+# Creating a cluster for the Fargate launch type using the console<a name="create-cluster-console-v2"></a>
 
-You can create an Amazon ECS cluster using the new AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md)\. The new console provides a simple way to create the resources that are needed by an Amazon ECS cluster by creating a AWS CloudFormation stack\. 
+You can create an Amazon ECS cluster using the new Amazon ECS experience\. Before you begin, be sure that you've completed the steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md) and assign the appropriate IAM permission\. For more information, see [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies)\. The new Amazon ECS experience provides a simple way to create the resources that are needed by an Amazon ECS cluster by creating a AWS CloudFormation stack\. 
 
 To make the cluster creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\. 
 
-By default, we create an Amazon ECS cluster for Fargate launch type with the following properties:
+By default, we create an Amazon ECS cluster for the Fargate launch type with the following properties:
 + Uses Fargate and Fargate Spot capacity providers\.
 + Launches tasks and services in all the default subnets in the default VPC for your selected Region\.
 + Does not use Container Insights\.
@@ -21,11 +21,9 @@ You can modify the following default options:
   CloudWatch Container Insights collects, aggregates, and summarizes metrics and logs from your containerized applications and microservices\. Container Insights also provides diagnostic information, such as container restart failures, that you use to isolate issues and resolve them quickly\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
 + Add tags to help you identify your clusters\.
 
-**To create a new cluster \(New Amazon ECS console\)**
+**To create a new cluster \(Amazon ECS console\)**
 
-Before you begin, assign the appropriate IAM permission\. For more information, see [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies)\.
-
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, select the Region to use\.
 

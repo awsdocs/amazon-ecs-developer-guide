@@ -13,8 +13,8 @@ You can pass this user data when using the Amazon EC2 launch wizard\. For more i
 
 ## Default Windows user data<a name="windows-default-userdata"></a>
 
-This example user data script shows the default user data that your Windows container instances receive if you use the [cluster creation wizard](create_cluster.md)\. The below script does the following:
-+ Sets the cluster name to `windows`\.
+This example user data script shows the default user data that your Windows container instances receive if you use the [console](create_cluster.md)\. The script below does the following:
++ Sets the cluster name to the name you entered\.
 + Sets the IAM roles for tasks\.
 + Sets `json-file` and `awslogs` as the available logging drivers\.
 

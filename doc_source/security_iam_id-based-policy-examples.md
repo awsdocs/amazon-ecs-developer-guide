@@ -89,47 +89,47 @@ The Amazon ECS first\-run wizard in the classic console simplifies the process o
                 "application-autoscaling:DescribeScalingPolicies",
                 "application-autoscaling:PutScalingPolicy",
                 "application-autoscaling:RegisterScalableTarget",
-                "appmesh:ListMeshes",
-                "appmesh:ListVirtualNodes",
+                "appmesh:DescribeVirtualGateway",
                 "appmesh:DescribeVirtualNode",
-                "autoscaling:UpdateAutoScalingGroup",
+                "appmesh:ListMeshes",
+                "appmesh:ListVirtualGateways",
+                "appmesh:ListVirtualNodes",
                 "autoscaling:CreateAutoScalingGroup",
                 "autoscaling:CreateLaunchConfiguration",
                 "autoscaling:DeleteAutoScalingGroup",
                 "autoscaling:DeleteLaunchConfiguration",
                 "autoscaling:Describe*",
+                "autoscaling:UpdateAutoScalingGroup",
                 "cloudformation:CreateStack",
                 "cloudformation:DeleteStack",
                 "cloudformation:DescribeStack*",
                 "cloudformation:UpdateStack",
-                "cloudwatch:DescribeAlarms",
                 "cloudwatch:DeleteAlarms",
+                "cloudwatch:DescribeAlarms",
                 "cloudwatch:GetMetricStatistics",
                 "cloudwatch:PutMetricAlarm",
+                "codedeploy:BatchGetApplicationRevisions",
+                "codedeploy:BatchGetApplications",
+                "codedeploy:BatchGetDeploymentGroups",
+                "codedeploy:BatchGetDeployments",
+                "codedeploy:ContinueDeployment",
                 "codedeploy:CreateApplication",
                 "codedeploy:CreateDeployment",
                 "codedeploy:CreateDeploymentGroup",
                 "codedeploy:GetApplication",
+                "codedeploy:GetApplicationRevision",
                 "codedeploy:GetDeployment",
+                "codedeploy:GetDeploymentConfig",
                 "codedeploy:GetDeploymentGroup",
+                "codedeploy:GetDeploymentTarget",
+                "codedeploy:ListApplicationRevisions",
                 "codedeploy:ListApplications",
+                "codedeploy:ListDeploymentConfigs",
                 "codedeploy:ListDeploymentGroups",
                 "codedeploy:ListDeployments",
-                "codedeploy:StopDeployment",
-                "codedeploy:GetDeploymentTarget",
                 "codedeploy:ListDeploymentTargets",
-                "codedeploy:GetDeploymentConfig",
-                "codedeploy:GetApplicationRevision",
                 "codedeploy:RegisterApplicationRevision",
-                "codedeploy:BatchGetApplicationRevisions",
-                "codedeploy:BatchGetDeploymentGroups",
-                "codedeploy:BatchGetDeployments",
-                "codedeploy:BatchGetApplications",
-                "codedeploy:ListApplicationRevisions",
-                "codedeploy:ListDeploymentConfigs",
-                "codedeploy:ContinueDeployment",
-                "sns:ListTopics",
-                "lambda:ListFunctions",
+                "codedeploy:StopDeployment",
                 "ec2:AssociateRouteTable",
                 "ec2:AttachInternetGateway",
                 "ec2:AuthorizeSecurityGroupIngress",
@@ -149,8 +149,11 @@ The Amazon ECS first\-run wizard in the classic console simplifies the process o
                 "ec2:DisassociateRouteTable",
                 "ec2:ModifySubnetAttribute",
                 "ec2:ModifyVpcAttribute",
-                "ec2:RunInstances",
                 "ec2:RequestSpotFleet",
+                "ec2:RunInstances",
+                "ecs:*",
+                "elasticfilesystem:DescribeAccessPoints",
+                "elasticfilesystem:DescribeFileSystems",
                 "elasticloadbalancing:CreateListener",
                 "elasticloadbalancing:CreateLoadBalancer",
                 "elasticloadbalancing:CreateRule",
@@ -163,34 +166,36 @@ The Amazon ECS first\-run wizard in the classic console simplifies the process o
                 "elasticloadbalancing:DescribeLoadBalancers",
                 "elasticloadbalancing:DescribeRules",
                 "elasticloadbalancing:DescribeTargetGroups",
-                "ecs:*",
-                "events:DescribeRule",
                 "events:DeleteRule",
+                "events:DescribeRule",
                 "events:ListRuleNamesByTarget",
                 "events:ListTargetsByRule",
                 "events:PutRule",
                 "events:PutTargets",
                 "events:RemoveTargets",
+                "fsx:DescribeFileSystems",
                 "iam:ListAttachedRolePolicies",
                 "iam:ListInstanceProfiles",
                 "iam:ListRoles",
+                "lambda:ListFunctions",
                 "logs:CreateLogGroup",
                 "logs:DescribeLogGroups",
                 "logs:FilterLogEvents",
-                "route53:GetHostedZone",
-                "route53:ListHostedZonesByName",
                 "route53:CreateHostedZone",
                 "route53:DeleteHostedZone",
                 "route53:GetHealthCheck",
+                "route53:GetHostedZone",
+                "route53:ListHostedZonesByName",
                 "servicediscovery:CreatePrivateDnsNamespace",
                 "servicediscovery:CreateService",
+                "servicediscovery:DeleteService",
                 "servicediscovery:GetNamespace",
                 "servicediscovery:GetOperation",
                 "servicediscovery:GetService",
                 "servicediscovery:ListNamespaces",
                 "servicediscovery:ListServices",
                 "servicediscovery:UpdateService",
-                "servicediscovery:DeleteService"
+                "sns:ListTopics"
             ],
             "Resource": [
                 "*"
@@ -199,9 +204,9 @@ The Amazon ECS first\-run wizard in the classic console simplifies the process o
         {
             "Effect": "Allow",
             "Action": [
-                "ssm:GetParametersByPath",
+                "ssm:GetParameter",
                 "ssm:GetParameters",
-                "ssm:GetParameter"
+                "ssm:GetParametersByPath"
             ],
             "Resource": "arn:aws:ssm:*:*:parameter/aws/service/ecs*"
         },
@@ -271,11 +276,28 @@ The Amazon ECS first\-run wizard in the classic console simplifies the process o
             "Condition": {
                 "StringLike": {
                     "iam:AWSServiceName": [
+                        "autoscaling.amazonaws.com",
                         "ecs.amazonaws.com",
-                        "spot.amazonaws.com",
-                        "spotfleet.amazonaws.com",
                         "ecs.application-autoscaling.amazonaws.com",
-                        "autoscaling.amazonaws.com"
+                        "spot.amazonaws.com",
+                        "spotfleet.amazonaws.com"
+                    ]
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "elasticloadbalancing:AddTags"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "elasticloadbalancing:CreateAction": [
+                        "CreateTargetGroup",
+                        "CreateRule",
+                        "CreateListener",
+                        "CreateLoadBalancer"
                     ]
                 }
             }
@@ -670,7 +692,7 @@ You can use conditions in your identity\-based policy to control access to Amazo
 }
 ```
 
-You can attach this policy to the in your account\. If a user named `richard-roe` attempts to describe an Amazon ECS service, the service must be tagged `Owner=richard-roe` or `owner=richard-roe`\. Otherwise he is denied access\. The condition tag key `Owner` matches both `Owner` and `owner` because condition key names are not case\-sensitive\. For more information, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
+You can attach this policy to the IAM users in your account\. If a user named `richard-roe` attempts to describe an Amazon ECS service, the service must be tagged `Owner=richard-roe` or `owner=richard-roe`\. Otherwise he is denied access\. The condition tag key `Owner` matches both `Owner` and `owner` because condition key names are not case\-sensitive\. For more information, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
 
 ## Deny Service Connect Namespace Override Example<a name="IAM_disable_namespace_override_policies"></a>
 

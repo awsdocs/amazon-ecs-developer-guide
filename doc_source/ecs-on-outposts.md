@@ -13,7 +13,7 @@ AWS Outposts enables native AWS services, infrastructure, and operating models i
 ## Limitations<a name="ecs-outposts-limit"></a>
 
 The following are the limitations of using Amazon ECS on AWS Outposts:
-+ Amazon Elastic Container Registry, AWS Identity and Access Management, Network Load Balancer, Classic Load Balancer, and Amazon Route 53 run in the AWS Region, not on AWS Outposts\. This will increase latencies between these services and the containers\.
++ Amazon Elastic Container Registry, AWS Identity and Access Management, Network Load Balancer, and Amazon Route 53 run in the AWS Region, not on AWS Outposts\. This will increase latencies between these services and the containers\.
 + AWS Fargate is not available on AWS Outposts\.
 
 ## Network Connectivity Considerations<a name="ecs-outposts-considerations"></a>

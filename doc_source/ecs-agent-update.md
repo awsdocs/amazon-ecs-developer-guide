@@ -15,9 +15,9 @@ Agent updates do not apply to Windows container instances\. We recommend that yo
 You can check the version of the container agent that is running on your container instances to see if you need to update it\. The container instance view in the Amazon ECS console provides the agent version\. Use the following procedure to check your agent version\.
 
 ------
-#### [ New AWS Management Console ]
+#### [ Amazon ECS console; ]
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, choose the Region where your external instance is registered\.
 
@@ -26,23 +26,6 @@ You can check the version of the container agent that is running on your contain
 1. On the **Cluster : *name*** page, choose the **Infrastructure** tab\.
 
 1. Under **Container instances**, note the **Agent version** column for your container instances\. If the container instance does not contain the latest version of the container agent, the console alerts you with a message and flags the outdated agent version\.
-
-   If your agent version is outdated, you can update your container agent with the following procedures:
-   + If your container instance is running an Amazon ECS\-optimized AMI, see [Updating the Amazon ECS container agent on an Amazon ECS\-optimized AMI](agent-update-ecs-ami.md)\.
-   + If your container instance is not running an Amazon ECS\-optimized AMI, see [Manually updating the Amazon ECS container agent \(for non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
-**Important**  
-To update the Amazon ECS agent version from versions before v1\.0\.0 on your Amazon ECS\-optimized AMI, we recommend that you terminate your current container instance and launch a new instance with the most recent AMI version\. Any container instances that use a preview version should be retired and replaced with the most recent AMI\. For more information, see [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\.
-
-------
-#### [ Classic AWS Management Console ]
-
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
-
-1. On the **Clusters** page, select the cluster that hosts the container instance or instances to check\.
-
-1. On the **Cluster : *cluster\_name*** page, choose **Amazon ECS Instances**\.
-
-1. Note the **Agent version** column for your container instances\. If the container instance does not contain the latest version of the container agent, the console alerts you with a message and flags the outdated agent version\.
 
    If your agent version is outdated, you can update your container agent with the following procedures:
    + If your container instance is running an Amazon ECS\-optimized AMI, see [Updating the Amazon ECS container agent on an Amazon ECS\-optimized AMI](agent-update-ecs-ami.md)\.

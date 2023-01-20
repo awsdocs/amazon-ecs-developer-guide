@@ -70,7 +70,7 @@ Create the Amazon ECS IAM roles\.
 
 1.  Create the Amazon ECS container instance role\. For more information, see [Amazon ECS container instance IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html)\.
 
-1. Create an IAM role for the Fluent Bit task named `fluentTaskRole`\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
+1. Create an IAM role for the Fluent Bit task named `fluentTaskRole`\. For more information, see [Task IAM role](task-iam-roles.md)\.
 
     The IAM permissions granted in this IAM role are assumed by the task containers\. In order to allow Fluent Bit to send logs to CloudWatch, you need to attach the following permissions to the task IAM role\.
 

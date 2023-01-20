@@ -8,13 +8,14 @@ You can also optionally run your service behind a load balancer\. The load balan
 + [Service scheduler concepts](#service_scheduler)
 + [Additional service concepts](#service_concepts)
 + [Service definition parameters](service_definition_parameters.md)
-+ [Service management in the Amazon ECS console](manage-service.md)
++ [Service management in the Amazon ECS console](v2-service-actions.md)
 + [Amazon ECS Deployment types](deployment-types.md)
 + [Service load balancing](service-load-balancing.md)
 + [Service auto scaling](service-auto-scaling.md)
 + [Interconnecting services](interconnecting-services.md)
 + [Task scale\-in protection](task-scale-in-protection.md)
 + [Service throttle logic](service-throttle-logic.md)
++ [Service management using the AWS CLI](service-management-cli.md)
 
 ## Service scheduler concepts<a name="service_scheduler"></a>
 
@@ -53,9 +54,6 @@ The daemon scheduling strategy can be used in the following cases:
 + Running support containers for logging, monitoring and tracing tasks
 
 Tasks using the Fargate launch type or the `CODE_DEPLOY` or `EXTERNAL` deployment controller types don't support the daemon scheduling strategy\.
-
-**Note**  
-The daemon service scheduler doesn't support the use of Classic Load Balancers\.
 
 When the service scheduler stops running tasks, it attempts to maintain balance across the Availability Zones in your cluster\. The scheduler uses the following logic: 
 + If a placement strategy is defined, use that strategy to select which tasks to terminate\. For example, if a service has an Availability Zone spread strategy defined, a task is selected that leaves the remaining tasks with the best spread\.

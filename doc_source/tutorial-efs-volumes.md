@@ -11,57 +11,38 @@ Amazon EFS may not be available in all Regions\. For more information about whic
 
 ## Step 1: Create an Amazon ECS cluster<a name="efs-create-cluster"></a>
 
-Use the following steps to create an Amazon ECS cluster\. When you use the AWS Management Console to create a non\-empty cluster, Amazon ECS creates an AWS CloudFormation stack along with Auto Scaling resources\.
+Use the following steps to create an Amazon ECS cluster\. 
 
-**To create an Amazon ECS cluster using the classic console**
+**To create a new cluster \(Amazon ECS console\)**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+Before you begin, assign the appropriate IAM permission\. For more information, see [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies)\.
 
-1. On the navigation bar at the top of the screen, select the **US West \(Oregon\)** Region\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+
+1. From the navigation bar, select the Region to use\.
 
 1. In the navigation pane, choose **Clusters**\.
 
-1. On the **Clusters** page, choose **Create Cluster**\.
+1. On the **Clusters** page, choose **Create cluster**\.
 
-1. For **Select cluster compatibility**, choose **EC2 Linux \+ Networking** and then choose **Next step**\.
+1. Under **Cluster configuration**, for **Cluster name**, enter `EFS-tutorial` for the cluster name\.
 
-1. For **Cluster name**, enter `EFS-tutorial` for the cluster name\.
+1. \(Optional\) To change the VPC and subnets where your tasks and services launch, under **Networking**, perform any of the following operations:
+   + To remove a subnet, under **Subnets**, choose **X** for each subnet that you want to remove\.
+   + To change to a VPC other than the **default** VPC, under **VPC**, choose an existing **VPC**, and then under **Subnets**, select each subnet\.
 
-1. For **Provisioning model**, choose **On\-Demand Instance**\.
+1. \(Optional\) To add Amazon EC2 instances to your cluster, expand **Infrastructure**, and then select **Amazon EC2 instances**\. Next, configure the Auto Scaling group which acts as the capacity provider:
 
-1. For **EC2 instance type**, choose `t2.micro`\.
+   1. To create a Auto Scaling group, from **Auto Scaling group \(ASG\)**, select **Create new group**, and then provide the following details about the group:
+     + For **Operating system/Architecture**, choose Amazon Linux 2\.
+     + For **EC2 instance type**, choose `t2.micro`\.
 
-1. For **Number of instances**, enter `1`\.
+        For **SSH key pair**, choose the pair that proves your identity when you connect to the instance\.
+     + For **Capacity**, enter `1`\.
 
-1. For **EC2 AMI Id**, choose the Amazon Linux 2 Amazon ECS\-optimized AMI\.
+       \. 
 
-1. For **EBS storage \(GiB\)**, leave the default setting\.
-
-1. For **Key pair**, choose an Amazon EC2 key pair to use with your container instances for SSH access\. If you need to troubleshoot this instance later, this key is required to connect to the instance\.
-
-1. In the **Networking** section, configure the VPC to launch your container instances into\. By default, the cluster creation wizard creates a new VPC with two subnets in different Availability Zones, and a security group open to the internet on port 80\. This is a basic setup that works well for an HTTP service\. However, you can modify these settings by following the steps below\.
-**Important**  
-Record the VPC and security group IDs you use for your cluster as you will need to create the Amazon EFS file system in the same VPC\.
-
-   1. For **VPC**, create a new VPC, or select an existing VPC\.
-
-   1. \(Optional\) If you choose to create a new VPC, for **CIDR Block**, select a CIDR block for your VPC\. For more information, see [Your VPC and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) in the *Amazon VPC User Guide*\.
-
-   1. For **Subnets**, select the subnets to use for your VPC\. If you choose to create a new VPC, you can keep the default settings or you can modify them to meet your needs\. If you choose to use an existing VPC, select one or more subnets in that VPC to use for your cluster\.
-
-   1. For **Security group**, select the security group to attach to the container instances in your cluster\. If you choose to create a new security group, you can specify a CIDR block to allow inbound traffic from\. The default port 0\.0\.0\.0/0 is open to the internet\. You can also select a single port or a range of contiguous ports to open on the container instance\. For more complicated security group rules, you can choose an existing security group that you have already created\.
-
-      You will also use this security group when you create a security group for the Amazon EFS file system, so note the ID\.
-**Note**  
-You can also choose to create a new security group and then modify the rules after the cluster is created\. For more information, see [Amazon EC2 Security Groups for Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\.
-
-   1. In the **Container instance IAM role** section, select the IAM role to use with your container instances\. If your account has the **ecsInstanceRole** that is created for you in the console first\-run wizard, it is selected by default\. If you do not have this role in your account, you can choose to create the role, or you can choose another IAM role to use with your container instances\.
-**Important**  
-The IAM role you use must have the `AmazonEC2ContainerServiceforEC2Role` managed policy attached to it, otherwise you will receive an error during cluster creation\. If you do not launch your container instance with the proper IAM permissions, your Amazon ECS agent does not connect to your cluster\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
-
-   1. For **CloudWatch Container Insights**, deselect **Enable Container Insights** as this feature won't be needed for this tutorial\.
-
-   1. Choose **Create**\.
+1. Choose **Create**\.
 
 ## Step 2: Create a security group for the Amazon EFS file system<a name="efs-security-group"></a>
 
@@ -194,13 +175,13 @@ The following task definition creates a data volume named `efs-html`\. The `ngin
 
 **To create a new task definition using the classic console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. In the navigation pane, choose **Task Definitions**, **Create new Task Definition**\.
+1. In the navigation pane, choose **Task definitions**\.
 
-1. On the **Select compatibilities** page, choose **EC2**, **Next step**\.
+1. Choose **Create new task definition**, **Create new task definition with JSON**\.
 
-1. Choose **Configure via JSON**, copy and paste the following JSON text, replacing the `fileSystemId` with the ID of your Amazon EFS file system\.
+1. In the JSON editor box, copy and paste the following JSON text, replacing the `fileSystemId` with the ID of your Amazon EFS file system\.
 
    ```
    {
@@ -244,19 +225,39 @@ The following task definition creates a data volume named `efs-html`\. The `ngin
 
 Now that your Amazon EFS file system is created and there is web content for the NGINX container to serve, you can run a task using the task definition that you created\. The NGINX web server serves your simple HTML page\. If you update the content in your Amazon EFS file system, those changes are propagated to any containers that have also mounted that file system\.
 
-**To run a task and view the results using the classic console**
+**To run a task and view the results using the console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. Choose the cluster that you created in step 1 earlier\.
+1. On the **Clusters** page, select the cluster to run the standalone task in\.
 
-1. Choose **Tasks**, **Run new task**\.
+   Determine the resource from where you launch the service\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/tutorial-efs-volumes.html)
 
-1. For **Task Definition**, choose the `efs-tutorial` task definition that you created earlier and choose **Run Task**\. For more information on the other options in the run task workflow, see [Run a standalone task in the classic Amazon ECS console](ecs_run_task.md)\.
+1. \(Optional\) Choose how your scheduled task is distributed across your cluster infrastructure\. Expand **Compute configuration**, and then do the following:    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/tutorial-efs-volumes.html)
 
-1. Below the **Tasks** tab, choose the task that you just ran\.
+1. For **Application type**, choose **Task**\.
 
-1. Expand the container name at the bottom of the page, and choose the IP address that is associated with the container\. Your browser should open a new tab with the following message:  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/it_works.png)
+1. For **Task definition**, choose the `efs-tutorial` task definition that you created earlier \.
+**Important**  
+The console validates the selection to ensure that the selected task definition family and revision is compatible with the defined compute configuration\.
+
+1. For **Desired tasks**, enter `1`\.
+
+1. Choose **Create**\.
+
+1. On the **Cluster** page, choose **Infrastructure**\.
+
+1. Under **Container Instances**, choose the container instance to connect to\.
+
+1. On the **Container Instance** page, under **Networking**, record the **Public IP** for your instance\.
+
+1. Open a browser and enter the public IP address browser, You should see the following message:
+
+   ```
+   It works!
+   You are using an Amazon EFS file system for persistent container storage.
+   ```
 **Note**  
 If you do not see the message, make sure that the security group for your container instance allows inbound network traffic on port 80\.

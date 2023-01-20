@@ -6,7 +6,7 @@ AWS services maintain and update AWS managed policies\. You can't change the per
 
 Additionally, AWS supports managed policies for job functions that span multiple services\. For example, the **ReadOnlyAccess** AWS managed policy provides read\-only access to all AWS services and resources\. When a service launches a new feature, AWS adds read\-only permissions for new operations and resources\. For a list and descriptions of job function policies, see [AWS managed policies for job functions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html) in the *IAM User Guide*\.
 
-Amazon ECS and Amazon ECR provide several managed policies and trust relationships that you can attach to AWS Identity and Access Management \(IAM\) users, Amazon EC2 instances, and Amazon ECS tasks that allow differing levels of control over resources and API operations\. You can apply these policies directly, or you can use them as starting points for creating your own policies\. For more information about the Amazon ECR managed policies, see [Amazon ECR managed policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html)\.
+Amazon ECS and Amazon ECR provide several managed policies and trust relationships that you can attach to users, groups, roles, Amazon EC2 instances, and Amazon ECS tasks that allow differing levels of control over resources and API operations\. You can apply these policies directly, or you can use them as starting points for creating your own policies\. For more information about the Amazon ECR managed policies, see [Amazon ECR managed policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html)\.
 
 ## AmazonECS\_FullAccess<a name="security-iam-awsmanpol-AmazonECS_FullAccess"></a>
 
@@ -27,7 +27,7 @@ The `AmazonECS_FullAccess` managed IAM policy includes the following permissions
 + `sns` – Allows principals to view a list of Amazon SNS topics\.
 + `lambda` – Allows principals to view a list of AWS Lambda functions and their version specific configurations\.
 + `ec2` – Allows principals run Amazon EC2 instances as well as create and manage routes, route tables, internet gateways, launch groups, security groups, virtual private clouds, spot fleets, and subnets\.
-+ `elasticloadbalancing` – Allows principals to create, describe, and delete Elastic Load Balancing load balancers\. Principals will also be able to fully manage the target groups, listeners, and listener rules for load balancers\.
++ `elasticloadbalancing` – Allows principals to create, describe, and delete Elastic Load Balancing load balancers\. Principals will also be able to add tags to newly created target groups, listeners, and listener rules for load balancers\.
 + `events` – Allows principals to create, manage, and delete Amazon EventBridge rules and their targets\.
 + `iam`– Allows principals to list IAM roles and their attached policies\. Principals can also list instance profiles available to your Amazon EC2 instances\.
 + `logs` – Allows principals to create and describe Amazon CloudWatch Logs log groups\. Principals can also list log events for these log groups\.
@@ -50,47 +50,47 @@ The following is an example `AmazonECS_FullAccess` policy\.
                 "application-autoscaling:DescribeScalingPolicies",
                 "application-autoscaling:PutScalingPolicy",
                 "application-autoscaling:RegisterScalableTarget",
-                "appmesh:ListMeshes",
-                "appmesh:ListVirtualNodes",
+                "appmesh:DescribeVirtualGateway",
                 "appmesh:DescribeVirtualNode",
-                "autoscaling:UpdateAutoScalingGroup",
+                "appmesh:ListMeshes",
+                "appmesh:ListVirtualGateways",
+                "appmesh:ListVirtualNodes",
                 "autoscaling:CreateAutoScalingGroup",
                 "autoscaling:CreateLaunchConfiguration",
                 "autoscaling:DeleteAutoScalingGroup",
                 "autoscaling:DeleteLaunchConfiguration",
                 "autoscaling:Describe*",
+                "autoscaling:UpdateAutoScalingGroup",
                 "cloudformation:CreateStack",
                 "cloudformation:DeleteStack",
                 "cloudformation:DescribeStack*",
                 "cloudformation:UpdateStack",
-                "cloudwatch:DescribeAlarms",
                 "cloudwatch:DeleteAlarms",
+                "cloudwatch:DescribeAlarms",
                 "cloudwatch:GetMetricStatistics",
                 "cloudwatch:PutMetricAlarm",
+                "codedeploy:BatchGetApplicationRevisions",
+                "codedeploy:BatchGetApplications",
+                "codedeploy:BatchGetDeploymentGroups",
+                "codedeploy:BatchGetDeployments",
+                "codedeploy:ContinueDeployment",
                 "codedeploy:CreateApplication",
                 "codedeploy:CreateDeployment",
                 "codedeploy:CreateDeploymentGroup",
                 "codedeploy:GetApplication",
+                "codedeploy:GetApplicationRevision",
                 "codedeploy:GetDeployment",
+                "codedeploy:GetDeploymentConfig",
                 "codedeploy:GetDeploymentGroup",
+                "codedeploy:GetDeploymentTarget",
+                "codedeploy:ListApplicationRevisions",
                 "codedeploy:ListApplications",
+                "codedeploy:ListDeploymentConfigs",
                 "codedeploy:ListDeploymentGroups",
                 "codedeploy:ListDeployments",
-                "codedeploy:StopDeployment",
-                "codedeploy:GetDeploymentTarget",
                 "codedeploy:ListDeploymentTargets",
-                "codedeploy:GetDeploymentConfig",
-                "codedeploy:GetApplicationRevision",
                 "codedeploy:RegisterApplicationRevision",
-                "codedeploy:BatchGetApplicationRevisions",
-                "codedeploy:BatchGetDeploymentGroups",
-                "codedeploy:BatchGetDeployments",
-                "codedeploy:BatchGetApplications",
-                "codedeploy:ListApplicationRevisions",
-                "codedeploy:ListDeploymentConfigs",
-                "codedeploy:ContinueDeployment",
-                "sns:ListTopics",
-                "lambda:ListFunctions",
+                "codedeploy:StopDeployment",
                 "ec2:AssociateRouteTable",
                 "ec2:AttachInternetGateway",
                 "ec2:AuthorizeSecurityGroupIngress",
@@ -110,8 +110,11 @@ The following is an example `AmazonECS_FullAccess` policy\.
                 "ec2:DisassociateRouteTable",
                 "ec2:ModifySubnetAttribute",
                 "ec2:ModifyVpcAttribute",
-                "ec2:RunInstances",
                 "ec2:RequestSpotFleet",
+                "ec2:RunInstances",
+                "ecs:*",
+                "elasticfilesystem:DescribeAccessPoints",
+                "elasticfilesystem:DescribeFileSystems",
                 "elasticloadbalancing:CreateListener",
                 "elasticloadbalancing:CreateLoadBalancer",
                 "elasticloadbalancing:CreateRule",
@@ -124,34 +127,36 @@ The following is an example `AmazonECS_FullAccess` policy\.
                 "elasticloadbalancing:DescribeLoadBalancers",
                 "elasticloadbalancing:DescribeRules",
                 "elasticloadbalancing:DescribeTargetGroups",
-                "ecs:*",
-                "events:DescribeRule",
                 "events:DeleteRule",
+                "events:DescribeRule",
                 "events:ListRuleNamesByTarget",
                 "events:ListTargetsByRule",
                 "events:PutRule",
                 "events:PutTargets",
                 "events:RemoveTargets",
+                "fsx:DescribeFileSystems",
                 "iam:ListAttachedRolePolicies",
                 "iam:ListInstanceProfiles",
                 "iam:ListRoles",
+                "lambda:ListFunctions",
                 "logs:CreateLogGroup",
                 "logs:DescribeLogGroups",
                 "logs:FilterLogEvents",
-                "route53:GetHostedZone",
-                "route53:ListHostedZonesByName",
                 "route53:CreateHostedZone",
                 "route53:DeleteHostedZone",
                 "route53:GetHealthCheck",
+                "route53:GetHostedZone",
+                "route53:ListHostedZonesByName",
                 "servicediscovery:CreatePrivateDnsNamespace",
                 "servicediscovery:CreateService",
+                "servicediscovery:DeleteService",
                 "servicediscovery:GetNamespace",
                 "servicediscovery:GetOperation",
                 "servicediscovery:GetService",
                 "servicediscovery:ListNamespaces",
                 "servicediscovery:ListServices",
                 "servicediscovery:UpdateService",
-                "servicediscovery:DeleteService"
+                "sns:ListTopics"
             ],
             "Resource": [
                 "*"
@@ -160,9 +165,9 @@ The following is an example `AmazonECS_FullAccess` policy\.
         {
             "Effect": "Allow",
             "Action": [
-                "ssm:GetParametersByPath",
+                "ssm:GetParameter",
                 "ssm:GetParameters",
-                "ssm:GetParameter"
+                "ssm:GetParametersByPath"
             ],
             "Resource": "arn:aws:ssm:*:*:parameter/aws/service/ecs*"
         },
@@ -232,11 +237,28 @@ The following is an example `AmazonECS_FullAccess` policy\.
             "Condition": {
                 "StringLike": {
                     "iam:AWSServiceName": [
+                        "autoscaling.amazonaws.com",
                         "ecs.amazonaws.com",
-                        "spot.amazonaws.com",
-                        "spotfleet.amazonaws.com",
                         "ecs.application-autoscaling.amazonaws.com",
-                        "autoscaling.amazonaws.com"
+                        "spot.amazonaws.com",
+                        "spotfleet.amazonaws.com"
+                    ]
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "elasticloadbalancing:AddTags"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "elasticloadbalancing:CreateAction": [
+                        "CreateTargetGroup",
+                        "CreateRule",
+                        "CreateListener",
+                        "CreateLoadBalancer"
                     ]
                 }
             }
@@ -255,9 +277,9 @@ This policy grants administrative permissions that allow Amazon ECS container in
 
 You should consider the following recommendations and considerations when using the `AmazonEC2ContainerServiceforEC2Role` managed IAM policy\.
 + Following the standard security advice of granting least privilege, you can modify the `AmazonEC2ContainerServiceforEC2Role` managed policy to fit your specific needs\. If any of the permissions granted in the managed policy aren't needed for your use case, create a custom policy and add only the permissions that you require\. For example, the `UpdateContainerInstancesState` permission is provided for Spot Instance draining\. If that permission isn't needed for your use case, exclude it using a custom policy\. For more information, see [Permissions details](#instance-iam-role-permissions)\.
-+ Containers that are running on your container instances have access to all of the permissions that are supplied to the container instance role through [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)\. We recommend that you limit the permissions in your container instance role to the minimal list of permissions that are provided in the managed `AmazonEC2ContainerServiceforEC2Role` policy\. If the containers in your tasks need extra permissions that aren't listed, we recommend providing those tasks with their own IAM roles\. For more information, see [IAM roles for tasks](task-iam-roles.md)\.
++ Containers that are running on your container instances have access to all of the permissions that are supplied to the container instance role through [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)\. We recommend that you limit the permissions in your container instance role to the minimal list of permissions that are provided in the managed `AmazonEC2ContainerServiceforEC2Role` policy\. If the containers in your tasks need extra permissions that aren't listed, we recommend providing those tasks with their own IAM roles\. For more information, see [Task IAM role](task-iam-roles.md)\.
 
-  You can prevent containers on the `docker0` bridge from accessing the permissions supplied to the container instance role\. You can do this while still allowing the permissions that are provided by [IAM roles for tasks](task-iam-roles.md) by running the following iptables command on your container instances\. Containers can't query instance metadata with this rule in effect\. This command assumes the default Docker bridge configuration and it doesn't work with containers that use the `host` network mode\. For more information, see [Network mode](task_definition_parameters.md#network_mode)\.
+  You can prevent containers on the `docker0` bridge from accessing the permissions supplied to the container instance role\. You can do this while still allowing the permissions that are provided by [Task IAM role](task-iam-roles.md) by running the following iptables command on your container instances\. Containers can't query instance metadata with this rule in effect\. This command assumes the default Docker bridge configuration and it doesn't work with containers that use the `host` network mode\. For more information, see [Network mode](task_definition_parameters.md#network_mode)\.
 
   ```
   sudo yum install -y iptables-services; sudo iptables --insert FORWARD 1 --in-interface docker+ --destination 169.254.169.254/32 --jump DROP
@@ -423,4 +445,5 @@ View details about updates to AWS managed policies for Amazon ECS since this ser
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  Add permissions to [AmazonECS\_FullAccess](#security-iam-awsmanpol-AmazonECS_FullAccess)  | The AmazonECS\_FullAccess policy was modified to add the elasticloadbalancing:AddTags permission which includes a condition which limits the permission only to newly created load balancers, target groups, rules, and listeners created\. This permission doesn't allow tags to be added to any already created Elastic Load Balancing resources\. | January 4, 2023 | 
 |  Amazon ECS started tracking changes  |  Amazon ECS started tracking changes for its AWS managed policies\.  | June 8, 2021 | 

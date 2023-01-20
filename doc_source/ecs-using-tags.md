@@ -100,11 +100,11 @@ You can use the following resources to specify tags when you create the resource
 
 | Task | Console | 
 | --- | --- | 
-|  Run one or more tasks\.  |  [Running a standalone task using the new Amazon ECS console](ecs_run_task-v2.md)  | 
-|  Create a service\.  |  [Creating a service using the new console](create-service-console-v2.md)  | 
+|  Run one or more tasks\.  |  [Running a standalone task using the Amazon ECS console](ecs_run_task-v2.md)  | 
+|  Create a service\.  |  [Creating a service using the console](create-service-console-v2.md)  | 
 |  Create a task set\.  |  [External deployment](deployment-type-external.md)  | 
-|  Register a task definition\.  |  [Creating a task definition using the new console](create-task-definition.md)  | 
-|  Create a cluster\.  |  [Creating a cluster for the Fargate launch type using the new console](create-cluster-console-v2.md)   | 
+|  Register a task definition\.  | [Creating a task definition using the new console](create-task-definition.md) | 
+|  Create a cluster\.  |  [Creating a cluster for the Fargate launch type using the console](create-cluster-console-v2.md)   | 
 |  Run one or more container instances\.  |  [Launching an Amazon ECS Linux container instance](launch_container_instance.md)  | 
 
 ### Managing individual resource tags using the console<a name="adding-or-deleting-tags"></a>
@@ -113,7 +113,7 @@ Amazon ECS allows you to add or delete tags that are associated with your cluste
 
 **To modify a tag for an individual resource**
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, select the AWS Region to use\.
 
@@ -206,38 +206,6 @@ Don't add personally identifiable information \(PII\) or other confidential or s
 |  Add or overwrite one or more tags\.  |  [tag\-resource](https://docs.aws.amazon.com/cli/latest/reference/tag-resource.html)  |  [TagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html)  | 
 |  Delete one or more tags\.  |  [untag\-resource](https://docs.aws.amazon.com/cli/latest/reference/untag-resource.html)  |  [UntagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UntagResource.html)  | 
 
-The following examples show how to tag or untag resources using the AWS CLI\.
-
-**Example 1: Tag an existing cluster**  
-The following command tags an existing cluster\.
-
-```
-aws ecs tag-resource --resource-arn resource_ARN --tags key=stack,value=dev
-```
-
-**Example 2: Add multiple tags for a cluster**  
-The following command adds multiple tags for a cluster\.
-
-```
-aws ecs tag-resource \
---resource-arn resource_ARN \
---tags key=key1,value=value1 key=key2,value=value2 key=key3,value=value3
-```
-
-**Example 3: Untag an existing cluster**  
-The following command deletes a tag from an existing cluster\.
-
-```
-aws ecs untag-resource --resource-arn resource_ARN --tag-keys tag_key
-```
-
-**Example 4: List tags for a resource**  
-The following command lists the tags associated with an existing resource\.
-
-```
-aws ecs list-tags-for-resource --resource-arn resource_ARN
-```
-
 You can use some resource\-creating actions to specify tags when you create the resource\. The following actions support tagging on creation\.
 
 
@@ -249,26 +217,3 @@ You can use some resource\-creating actions to specify tags when you create the 
 |  Register a task definition\.  |  [register\-task\-definition](https://docs.aws.amazon.com/cli/latest/reference/register-task-definition.html)  |  [Register\-ECSTaskDefinition](https://docs.aws.amazon.com/powershell/latest/reference/items/Register-ECSTaskDefinition.html)  |  [RegisterTaskDefinition](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html)  | 
 |  Create a cluster\.  |  [create\-cluster](https://docs.aws.amazon.com/cli/latest/reference/create-cluster.html)  |  [New\-ECSCluster](https://docs.aws.amazon.com/powershell/latest/reference/items/New-ECSCluster.html)  |  [CreateCluster](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateCluster.html)  | 
 |  Run one or more container instances\.  |  [run\-instances](https://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/run-instances.html)  |  [New\-EC2Instance](https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html)  |  [RunInstances](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)  | 
-
-The following examples demonstrate how to apply tags when you create resources\.
-
-**Example 1: Create a cluster and apply a tag**  
-The following command creates a cluster named `devcluster` and adds a tag with key `team` and value `devs`\.
-
-```
-aws ecs create-cluster --cluster-name devcluster --tags key=team,value=devs
-```
-
-**Example 2: Create a service and apply a tag**  
-The following command creates a service that's named `application` and adds a tag with key `stack` and value `dev`\.
-
-```
-aws ecs create-service --service-name application --task-definition task-def-app --tags key=stack,value=dev
-```
-
-**Example 3: Create a service with tags and propagate the tags**  
-You can use the `--propagateTags` parameter to copy the tags from either a task definition or a service to the tasks in a service\. The following command creates a service with tags and propagates them to the tasks in that service\.
-
-```
-aws ecs create-service --service-name application --task-definition task-def-app --tags key=stack,value=dev --propagateTags Service
-```

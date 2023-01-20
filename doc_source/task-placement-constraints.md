@@ -117,7 +117,7 @@ The following example adds the custom attributes "stack=prod" and "project=a" to
 aws ecs put-attributes --attributes name=stack,value=prod,targetId=arn name=project,value=a,targetId=arn
 ```
 
-## Filtering by attribute using the classic console<a name="filter-attribute"></a>
+## Filtering by attribute using the console<a name="filter-attribute"></a>
 
 You can apply a filter for your container instances, allowing you to see custom attributes\.
 

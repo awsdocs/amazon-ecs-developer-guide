@@ -21,3 +21,5 @@ For tasks using the Fargate launch type and platform version 1\.3\.0 and prior, 
 + [Amazon ECS container agent introspection](ecs-agent-introspection.md)
 + [HTTP proxy configuration](http_proxy_config.md)
 + [Using gMSAs for Windows Containers](windows-gmsa.md)
++ [Updating the Amazon ECS container agent with the console](agent-update-console.md)
++ [Container agent management using the AWS CLI](agent-management-cli.md)

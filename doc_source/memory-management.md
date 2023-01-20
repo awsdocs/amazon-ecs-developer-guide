@@ -49,7 +49,7 @@ You can view how much memory a container instance registers with in the Amazon E
 
 **To view container instance memory**
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Clusters**, and then choose the cluster that hosts your container instance\.
 

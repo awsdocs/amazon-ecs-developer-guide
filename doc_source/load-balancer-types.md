@@ -1,11 +1,10 @@
 # Load balancer types<a name="load-balancer-types"></a>
 
-Elastic Load Balancing supports the following types of load balancers: Application Load Balancers, Network Load Balancers, and Classic Load Balancers\. Amazon ECS services can use these types of load balancer\. Application Load Balancers are used to route HTTP/HTTPS \(or Layer 7\) traffic\. Network Load Balancers and Classic Load Balancers are used to route TCP \(or Layer 4\) traffic\.
+Elastic Load Balancing supports the following types of load balancers: Application Load Balancers, and Network Load Balancers\. Amazon ECS services can use these types of load balancer\. Application Load Balancers are used to route HTTP/HTTPS \(or Layer 7\) traffic\. Network Load Balancers and Classic Load Balancers are used to route TCP \(or Layer 4\) traffic\.
 
 **Topics**
 + [Application Load Balancer](#alb)
 + [Network Load Balancer](#nlb)
-+ [Classic Load Balancer](#clb)
 + [Application Load Balancer and Network Load Balancer considerations](#alb-considerations)
 
 ## Application Load Balancer<a name="alb"></a>
@@ -19,13 +18,6 @@ An Application Load Balancer makes routing decisions at the application layer \(
 A Network Load Balancer makes routing decisions at the transport layer \(TCP/SSL\)\. It can handle millions of requests per second\. After the load balancer receives a connection, it selects a target from the target group for the default rule using a flow hash routing algorithm\. It attempts to open a TCP connection to the selected target on the port specified in the listener configuration\. It forwards the request without modifying the headers\. Network Load Balancers support dynamic host port mapping\. For example, if your task's container definition specifies port 80 for an NGINX container port, and port 0 for the host port, then the host port is dynamically chosen from the ephemeral port range of the container instance \(such as 32768 to 61000 on the latest Amazon ECS\-optimized AMI\)\. When the task is launched, the NGINX container is registered with the Network Load Balancer as an instance ID and port combination, and traffic is distributed to the instance ID and port corresponding to that container\. This dynamic mapping allows you to have multiple tasks from a single service on the same container instance\. For more information, see the [User Guide for Network Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/)\.
 
 ![\[Network Load Balancer\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/alb.png)
-
-## Classic Load Balancer<a name="clb"></a>
-
-
-|  | 
-| --- |
-| We retired EC2\-Classic on August 15, 2022\. To avoid interruptions to your workloads, we recommend that you migrate from EC2\-Classic to a VPC prior to August 15, 2022\. For more information, see the blog post [EC2\-Classic Networking is Retiring \- Here's How to Prepare](http://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/)\. For information about how to migrate EC2\-Classic to a VPC, see [Migrate from EC2 Classic to a VPC](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html) in the Amazon EC2 User Guide for Linux Instances\. | 
 
 ## Application Load Balancer and Network Load Balancer considerations<a name="alb-considerations"></a>
 

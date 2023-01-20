@@ -11,6 +11,7 @@ This tutorial assumes that the following prerequisites have been completed:
 + The steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md) have been completed\.
 + Your AWS user has the required permissions specified in the [Amazon ECS first\-run wizard permissions](security_iam_id-based-policy-examples.md#first-run-permissions) IAM policy example\.
 + You have a VPC, subnet, route table, and security group created to use\. For more information, see [Create a virtual private cloud](get-set-up-for-amazon-ecs.md#create-a-vpc)\.
++ You have a task execution role with the name `ecsTaskExecutionRole` and the `AmazonECSTaskExecutionRolePolicy` managed policy is attached to the role\. This role allows Fargate to write the NGINX application logs and Service Connect proxy logs to Amazon CloudWatch Logs\. For more information, see [Creating the task execution IAM role](task_execution_IAM_role.md#create-task-execution-role)\.
 
 ## Step 1: Create the Amazon ECS cluster<a name="create-service-connect-cluster"></a>
 
@@ -149,8 +150,7 @@ This task definition uses a `logConfiguration` to send the nginx output from `st
       ```
       {
           "family": "service-connect-nginx",
-          "taskRoleArn": "arn:aws:iam::123456789012:role/ECSSCTaskRole",
-          "executionRoleArn": "arn:aws:iam::123456789012:role/ECSSCTaskRole",
+          "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
           "networkMode": "awsvpc",
           "containerDefinitions": [
               {

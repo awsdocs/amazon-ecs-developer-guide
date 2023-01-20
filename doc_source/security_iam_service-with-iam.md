@@ -184,20 +184,20 @@ AWS supports global condition keys and service\-specific condition keys\. To see
 Amazon ECS supports the following service\-specific condition keys that you can use to provide fine\-grained filtering for your IAM policies:
 
 
-| Condition Key | Description | Evaluation Types | 
+|  Condition Key  |  Description  |  Evaluation Types  | 
 | --- | --- | --- | 
-|  aws:RequestTag/$\{TagKey\}  | The context key is formatted `"aws:RequestTag/tag-key":"tag-value"` where *tag\-key*and *tag\-value* are a tag key and value pair\. Checks that the tag key–value pair is present in an AWS request\. For example, you could check to see that the request includes the tag key `"Dept"` and that it has the value `"Accounting"`\.  |  String  | 
-|  aws:ResourceTag/$\{TagKey\}  |  The context key is formatted `"aws:ResourceTag/tag-key":"tag-value"` where *tag\-key*and *tag\-value* are a tag key and value pair\. Checks that the tag attached to the identity resource \(user or role\) matches the specified key name and value\.  | String | 
-|  aws:TagKeys  |  This context key is formatted `"aws:TagKeys":"tag-key"` where *tag\-key* is a list of tag keys without values \(for example, `["Dept","Cost-Center"]`\)\. Checks the tag keys that are present in an AWS request\.  | String | 
-|  ecs:ResourceTag/$\{TagKey\}  |  The context key is formatted `"ecs:ResourceTag/tag-key":"tag-value"` where *tag\-key*and *tag\-value* are a tag key and value pair\. Checks that the tag attached to the identity resource \(user or role\) matches the specified key name and value\.  | String | 
+|  aws:RequestTag/$\{TagKey\}  |  The context key is formatted `"aws:RequestTag/tag-key":"tag-value"` where *tag\-key*and *tag\-value* are a tag key and value pair\. Checks that the tag key–value pair is present in an AWS request\. For example, you could check to see that the request includes the tag key `"Dept"` and that it has the value `"Accounting"`\.  |  String  | 
+|  aws:ResourceTag/$\{TagKey\}  |  The context key is formatted `"aws:ResourceTag/tag-key":"tag-value"` where *tag\-key*and *tag\-value* are a tag key and value pair\. Checks that the tag attached to the identity resource \(user or role\) matches the specified key name and value\.  |  String  | 
+|  aws:TagKeys  |  This context key is formatted `"aws:TagKeys":"tag-key"` where *tag\-key* is a list of tag keys without values \(for example, `["Dept","Cost-Center"]`\)\. Checks the tag keys that are present in an AWS request\.  |  String  | 
+|  ecs:ResourceTag/$\{TagKey\}  |  The context key is formatted `"ecs:ResourceTag/tag-key":"tag-value"` where *tag\-key*and *tag\-value* are a tag key and value pair\. Checks that the tag attached to the identity resource \(user or role\) matches the specified key name and value\.  |  String  | 
 |  ecs:cluster  |  The context key is formatted `"ecs:cluster":"cluster-arn"` where *cluster\-arn* is the ARN for the Amazon ECS cluster\.  |  ARN, Null  | 
 |  ecs:container\-instances  |  The context key is formatted `"ecs:container-instances":"container-instance-arns"` where *container\-instance\-arns* is one or more container instance ARNs\.  |  ARN, Null  | 
 | ecs:container\-name |  The context key is formatted `"ecs:container-name":"container-name"` where *container\-instance\-* is the name of an Amazon ECS container which is defined in the ECS task definition\.   | String | 
 | ecs:enable\-execute\-command | The context key is formatted "ecs:enable\-execute\-command":"value" where value\- is "true" or "false"\. | String | 
-|  ecs:enable\-service\-connect  |  The context key is formatted `"ecs:ecs:enable-service-connect":"value"` where *value* is `"true"` or `"false"`\.  | String | 
-|  ecs:namespace  |  The context key is formatted `"ecs:ecs:namespace":"namespace-arn"` where *namespace\-arn* is the ARN for the AWS Cloud Map namespace\.  | ARN, Null | 
-|  ecs:service  |  The context key is formatted `"ecs:service":"service-arn"` where *service\-arn* is the ARN for the Amazon ECS service\.  | ARN, Null | 
-|  ecs:task\-definition  |  The context key is formatted `"ecs:task-definition":"task-definition-arn"` where *task\-definition\-arn* is the ARN for the Amazon ECS task definition\.  | ARN, Null | 
+|  ecs:enable\-service\-connect  |  The context key is formatted `"ecs:ecs:enable-service-connect":"value"` where *value* is `"true"` or `"false"`\.  |  String  | 
+|  ecs:namespace  |  The context key is formatted `"ecs:ecs:namespace":"namespace-arn"` where *namespace\-arn* is the ARN for the AWS Cloud Map namespace\.  |  ARN, Null  | 
+|  ecs:service  |  The context key is formatted `"ecs:service":"service-arn"` where *service\-arn* is the ARN for the Amazon ECS service\.  |  ARN, Null  | 
+|  ecs:task\-definition  |  The context key is formatted `"ecs:task-definition":"task-definition-arn"` where *task\-definition\-arn* is the ARN for the Amazon ECS task definition\.  |  ARN, Null  | 
 
 To see a list of Amazon ECS condition keys, see [Condition keys for Amazon Elastic Container Service](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonelasticcontainerservice.html#amazonelasticcontainerservice-policy-keys) in the *Service Authorization Reference*\. To learn with which actions and resources you can use a condition key, see [Actions defined by Amazon Elastic Container Service](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonelasticcontainerservice.html#amazonelasticcontainerservice-actions-as-permissions)\.
 

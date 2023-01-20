@@ -8,7 +8,7 @@ Before registering your Linux external instance with the cluster, create the `/e
 ------
 #### [ New AWS Management Console ]
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, select the Region to use\.
 
@@ -31,33 +31,6 @@ Before registering your Linux external instance with the cluster, create the `/e
 The bash portion of the script must be run as root\. If the command isn't run as root, an error is returned\.
 
    1. Choose **Close**\.
-
-------
-#### [ Classic AWS Management Console ]
-
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
-
-1. From the navigation bar, select the Region to use\.
-
-1. In the navigation pane, choose **Clusters**\.
-
-1. On the **Clusters** page, choose a cluster to register your external instance to\.
-
-1. Choose the **ECS Instances** tab, then choose **Register external instances**\.
-
-1. On the **Step 1: External instances activation details** page, complete the following steps\.
-
-   1. For **Activation key duration \(in days\)**, enter the number of days that the activation key remains active for\. After the number of days you entered pass, the key no longer works when registering an external instance\.
-
-   1. For **Number of instances**, enter the number of external instances that you want to register to your cluster with the activation key\.
-
-   1. For **Instance role**, choose the IAM role to associate with your external instances\. If a role wasn't already created, choose **Create new role** to have Amazon ECS create a role on your behalf\. For more information about what IAM permissions are required for your external instances, see [Required IAM permissions for external instances](ecs-anywhere-iam.md#ecs-anywhere-iam-required)\.
-
-   1. Choose **Next step**\.
-
-1. On the **Step 2: Register external instances** page, copy the registration command\. This command should be run on each external instance you want to register to the cluster\.
-**Important**  
-The bash portion of the script must be run as root\. If the command isn't run as root, an error is returned\.
 
 ------
 #### [ AWS CLI for Linux operating systems ]

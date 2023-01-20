@@ -14,7 +14,7 @@ The source code for the Amazon ECS logs collector is available on GitHub for bot
 
 **To download and run the Amazon ECS logs collector for Linux**
 
-1. Connect to your container instance\. For more information, see [Connect to your container instance using the classic console](instance-connect.md)\.
+1. Connect to your container instance\. 
 
 1. Download the Amazon ECS logs collector script\.
 

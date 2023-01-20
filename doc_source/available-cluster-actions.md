@@ -1,7 +1,24 @@
-# Cluster management in the new Amazon ECS console<a name="available-cluster-actions"></a>
+# Cluster management in the Amazon ECS console<a name="available-cluster-actions"></a>
 
-The following cluster actions are available:
-+ [Create a task for the Fargate launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-cluster-console-v2.html)
-+ [Create a task for the EC2 launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-ec2-cluster-console-v2.html)
-+ [Manage individual resource tags using the console](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-using-tags.html#adding-or-deleting-tags)
-+ [Delete a cluster](https://docs.aws.amazon.com/https://docs.aws.amazon.com/AmazonECS/latest/developerguide/delete_cluster-new-console.html)
+## About cluster management in the new Amazon ECS experience<a name="about-clsuter-management"></a>
+
+Welcome to the new Amazon ECS experience\.
+
+We're in the process of rolling out the new Amazon ECS experience\.
+
+**Work in progress**
+
+We’re working continuously to improve the experience\. Here’s what we’re currently working on:
++ **Updating clusters**
++ **Spot Instances** \- For the EC2 launch type, using Spot Instances for your cluster Auto Scaling group
+
+There will be many more improvements to the new Amazon ECS experience in the months ahead\.
+
+**Please send feedback**  
+We’d appreciate your feedback on the new Amazon ECS experience\. We’ll use your feedback to continue improving the experience over the next few months\. You can send us feedback directly from the Amazon ECS console, or use the **Provide feedback** link at the bottom of this page\.
+
+**Topics**
++ [About cluster management in the new Amazon ECS experience](#about-clsuter-management)
++ [Creating a cluster for the Fargate launch type using the console](create-cluster-console-v2.md)
++ [Creating a cluster for the Amazon EC2 launch type using the console](create-ec2-cluster-console-v2.md)
++ [Deleting a cluster using the console](delete_cluster-new-console.md)

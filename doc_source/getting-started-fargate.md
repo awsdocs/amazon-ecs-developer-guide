@@ -1,4 +1,4 @@
-# Getting started with the new console using Linux containers on AWS Fargate<a name="getting-started-fargate"></a>
+# Getting started with the console using Linux containers on AWS Fargate<a name="getting-started-fargate"></a>
 
 Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage your containers\. You can host your containers on a serverless infrastructure that is managed by Amazon ECS by launching your services or tasks on AWS Fargate\. For a broad overview on Amazon ECS on Fargate, see [What is Amazon Elastic Container Service?](Welcome.md)\.
 
@@ -19,7 +19,7 @@ Create a cluster that uses the default VPC\.
 
 Before you begin, assign the appropriate IAM permission\. For more information, see [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies)\.
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, select the Region to use\.
 
@@ -94,7 +94,7 @@ Create a service using the task definition\.
 
 1. In the navigation pane, choose **Clusters**, and then select the cluster you created in [Step 1: Create the cluster](#get-started-windows-fargate-cluster)\.
 
-1. From the **Services** tab, choose **Deploy**\.
+1. From the **Services** tab, choose **Create**\.
 
 1. Under **Deployment configuration**, specify how your application is deployed\.
 

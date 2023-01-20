@@ -1,20 +1,28 @@
 # Checking stopped tasks for errors<a name="stopped-task-errors"></a>
 
-If you have trouble starting a task, your task might be stopping because of an error\. For example, you run the task and the task displays a `PENDING` status and then disappears\. You can view stopped task errors like this in the Amazon ECS console by viewing the stopped task and inspecting it for error messages\. If your task definition uses the `awslogs` log driver, the application logs that are written to Amazon CloudWatch Logs are displayed on the **Logs** tab in the Amazon ECS console as long as the stopped task appears\.
+If you have trouble starting a task, your task might be stopping because of application or configuration errors\. For example, you run the task and the task displays a `PENDING` status and then disappears\. You can view stopped task errors like this in the Amazon ECS console by viewing the stopped task and inspecting it for error messages\.
+
+If your task definition uses the `awslogs` log driver, the application logs that are written to Amazon CloudWatch Logs are displayed on the **Logs** tab in the Amazon ECS console as long as the stopped task appears\.
+
+If your task was created by an Amazon ECS service, the actions that Amazon ECS takes to maintain the service are published in the service events\. You can view the events in the AWS Management Console, AWS CLI, AWS SDKs, the Amazon ECS API, or tools that use the SDKs and API\. These events include Amazon ECS stopping and replaces a task because the containers in the task have stopped running, or have failed too many health checks from Elastic Load Balancing\. For more information, see [Service event messages](service-event-messages.md)\.
+
+If your task ran on a container instance on Amazon EC2 or external computers, you can also look at the logs of the container runtime and the ECS Agent\. These logs are on the host EC2 instance or external computer\. For more information, see [Amazon ECS Log File Locations](logs.md)\.
 
 **Important**  
 Stopped tasks only appear in the Amazon ECS console, AWS CLI, and AWS SDKs for at least 1 hour after the task stops\. After that, the details of the stopped task expire and aren't available in Amazon ECS\.  
 Amazon ECS also sends task state change events to Amazon EventBridge\. You can't view events in EventBridge\. Instead, you create rules to send the events to other persistent storage such as Amazon CloudWatch Logs\. You can use the storage to view your stopped task details after it has expired from view in the Amazon ECS console\. For more information, see [Task state change events](ecs_cwe_events.md#ecs_task_events)\.  
 For a sample EventBridge configuration to archive Amazon ECS events to Amazon CloudWatch Logs, see [ECS Stopped Tasks in CloudWatch Logs](https://github.com/aws-samples/amazon-ecs-stopped-tasks-cwlogs#ecs-stopped-tasks-in-cloudwatch-logs) on the GitHub website\.
 
-------
-#### [ New console ]
+Follow these steps to check stopped tasks for errors\.
 
-**New AWS Management Console**
+------
+#### [ Console ]
+
+**AWS Management Console**
 
 The following steps can be used to check stopped tasks for errors using the new AWS Management Console\.
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Clusters**\.
 
@@ -25,35 +33,6 @@ The following steps can be used to check stopped tasks for errors using the new 
 1. Choose the stopped task to inspect\.
 
 1. In the **Status** section, inspect the **Stopped reason** field to see the reason that the task was stopped\.
-
-------
-#### [ Classic console ]
-
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
-
-1. On the **Clusters** page, select the cluster where your stopped task resides\.
-
-1. On the **Cluster : *clustername*** page, choose **Tasks**\.
-
-1. In the **Desired task status** table header, choose **Stopped**, and then select the stopped task to inspect\. The most recent stopped tasks are listed first\.
-
-1. In the **Details** section, inspect the **Stopped reason** field to see the reason that the task was stopped\.
-
-   Some possible reasons and their explanations are listed below:  
-Task failed ELB health checks in \(elb elb\-name\)  
-The current task failed the Elastic Load Balancing health check for the load balancer that's associated with the task's service\. For more information, see [Troubleshooting service load balancers](troubleshoot-service-load-balancers.md)\.  
-Scaling activity initiated by \(deployment deployment\-id\)  
-When you reduce the desired count of a stable service, some tasks must be stopped to reach the desired number\. Tasks that are stopped by downscaling services have this stopped reason\.   
-Host EC2 \(instance *id*\) stopped/terminated  
-If you stop or terminate a container instance with running tasks, then the tasks are given this stopped reason\.  
-Container instance deregistration forced by user  
-If you force the deregistration of a container instance with running tasks, then the tasks are given this stopped reason\.  
-Essential container in task exited  
-If a container marked as `essential` in task definitions exits or dies, that can cause a task to stop\. When an essential container exiting is the cause of a stopped task, the [Step 6](#status-reason-step) can provide more diagnostic information about why the container stopped\.
-
-1. <a name="status-reason-step"></a>If you have a container that has stopped, expand the container and inspect the **Status reason** row to see what caused the task state to change\.
-
-   If this inspection doesn't provide enough information, you can connect to the container instance with SSH and inspect the Docker container locally\. For more information, see [Inspect Docker Containers](docker-diags.md#docker-inspect)\.
 
 ------
 #### [ AWS CLI ]

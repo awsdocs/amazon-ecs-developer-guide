@@ -14,7 +14,7 @@ The Fargate launch type is suitable for the following workloads:
 + Tiny workloads
 + Batch workloads
 
-When architecting your application to run on Amazon ECS using AWS Fargate, you must decide between deploying multiple containers into the same task definition and deploying containers separately in multiple task definitions\.
+When you architect your application to run on Amazon ECS using AWS Fargate, you must decide between deploying multiple containers into the same task definition and deploying containers separately in multiple task definitions\.
 
 If the following conditions are required, we recommend deploying multiple containers into the same task definition:
 + Your containers share a common lifecycle \(that is, they're launched and terminated together\)\.
@@ -39,6 +39,6 @@ For this example, create task definitions that group the containers that are use
 
 You can group related containers in a task definition, such as linked containers that must be run together\. For example, add a log streaming container to your front\-end service and include it in the same task definition\.
 
-After you have your task definitions, you can create services from them to maintain the availability of your desired tasks\. For more information, see [Creating an Amazon ECS service in the classic console](create-service.md)\. In your services, you can associate containers with Elastic Load Balancing load balancers\. For more information, see [Service load balancing](service-load-balancing.md)\. When your application requirements change, you can update your services to scale the number of desired tasks up or down\. Or, you can update your services to deploy newer versions of the containers in your tasks\. For more information, see [Updating a service using the new console](update-service-console-v2.md)\.
+After you have your task definitions, you can create services from them to maintain the availability of your desired tasks\. For more information, see [Creating an Amazon ECS service in the classic console](create-service.md)\. In your services, you can associate containers with Elastic Load Balancing load balancers\. For more information, see [Service load balancing](service-load-balancing.md)\. When your application requirements change, you can update your services to scale the number of desired tasks up or down\. Or, you can update your services to deploy newer versions of the containers in your tasks\. For more information, see [Updating a service using the console](update-service-console-v2.md)\.
 
 ![\[Application architecture example\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/application.png)

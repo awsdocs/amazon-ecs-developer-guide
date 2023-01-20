@@ -1,8 +1,5 @@
 # Exporting application metrics to Amazon CloudWatch<a name="application-metrics-cloudwatch"></a>
 
-****  
-The AWS Distro for OpenTelemetry \(ADOT\) metrics collection feature is in preview\. The preview is open to all AWS accounts\. Features may be added or changed before announcing General Availability\.
-
 Amazon ECS on Fargate supports exporting your custom application metrics to Amazon CloudWatch as custom metrics\. This is done by adding the AWS Distro for OpenTelemetry sidecar container to your task definition\. The new Amazon ECS console experience simplifies this process by adding the **Use metric collection** option when creating a new task definition\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
 
 The application metrics are exported to CloudWatch Logs with log group name `/aws/ecs/application/metrics` and the metrics can be viewed in the `ECS/AWSOTel/Application` namespace\. Your application must be instrumented with the OpenTelemetry SDK\. For more information, see [Introduction to AWS Distro for OpenTelemetry](https://aws-otel.github.io/docs/introduction) in the AWS Distro for OpenTelemetry documentation\.
@@ -10,7 +7,8 @@ The application metrics are exported to CloudWatch Logs with log group name `/aw
 ## Considerations<a name="application-metrics-cloudwatch-considerations"></a>
 
 The following should be considered when using the Amazon ECS on Fargate integration with AWS Distro for OpenTelemetry to send application metrics to Amazon CloudWatch\.
-+ When this integration is used, Amazon ECS doesn't send any task\-level metrics to CloudWatch Container Insights\. You can enable Container Insights at the Amazon ECS cluster level to receive those metrics\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
++ This integration only sends your custom application metrics to CloudWatch\. If you want task\-level metrics, you can turn on Container Insights in the Amazon ECS cluster configuration\. For more information, see [Amazon ECS CloudWatch Container Insights](cloudwatch-container-insights.md)\.
++ The AWS Distro for OpenTelemetry integration is supported for Amazon ECS workloads hosted on Fargate and Amazon ECS workloads hosted on Amazon EC2 instances\. External instances aren't currently supported\.
 + CloudWatch supports a maximum of 30 dimensions per metric\. By default, Amazon ECS defaults to including the `TaskARN`, `ClusterARN`, `LaunchType`, `TaskDefinitionFamily`, and `TaskDefinitionRevision` dimensions to the metrics\. The remaining 25 dimensions can be defined by your application\. If more than 30 dimensions are configured, CloudWatch can't display them\. When this occurs, the application metrics will appear in the `ECS/AWSOTel/Application` CloudWatch metric namespace but without any dimensions\. You can instrument your application to add additional dimensions\. For more information, see [Using CloudWatch metrics with AWS Distro for OpenTelemetry](https://aws-otel.github.io/docs/getting-started/cloudwatch-metrics#cloudwatch-emf-exporter-awsemf) in the AWS Distro for OpenTelemetry documentation\. 
 
 ## Required IAM permissions for AWS Distro for OpenTelemetry integration with Amazon CloudWatch<a name="application-metrics-cloudwatch-iam"></a>
@@ -98,7 +96,7 @@ If you're not using the Amazon ECS console, you can add the AWS Distro for OpenT
 		},
 		{
 			"name": "aws-otel-collector",
-			"image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.17.0",
+			"image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.25.0",
 			"essential": true,
 			"command": [
 				"--config=/etc/ecs/ecs-cloudwatch.yaml"

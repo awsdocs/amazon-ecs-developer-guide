@@ -1,4 +1,4 @@
-# Getting started with the new console using Windows containers on AWS Fargate<a name="Windows_fargate-getting_started"></a>
+# Getting started with the console using Windows containers on AWS Fargate<a name="Windows_fargate-getting_started"></a>
 
 Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage your containers\. You can host your containers on a serverless infrastructure that is managed by Amazon ECS by launching your services or tasks on AWS Fargate\. For a broad overview on Amazon ECS on Fargate, see [What is Amazon Elastic Container Service?](Welcome.md)\.
 
@@ -21,7 +21,7 @@ You can create a new cluster called `windows` that uses the default VPC\.
 
 **To create a cluster with the AWS Management Console**
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, select the Region to use\.
 
@@ -112,7 +112,7 @@ After you have registered your task definition, you can place tasks in your clus
 
 1. In the navigation pane, choose **Clusters**, and then select the cluster you created in [Step 1: Create a cluster](#create_fargate_windows_cluster-v2)\.
 
-1. From the **Services** tab, choose **Deploy**\.
+1. From the **Services** tab, choose **Create**\.
 
 1. Under **Deployment configuration**, specify how your application is deployed\.
 
@@ -122,7 +122,7 @@ After you have registered your task definition, you can place tasks in your clus
 
    1. For **Desired tasks**, enter **1**\.
 
-1. Choose **Deploy**\.
+1. Choose **Create**\.
 
 ## Step 4: View your service<a name="view_windows_fargate_service"></a>
 

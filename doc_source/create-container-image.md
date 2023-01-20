@@ -218,5 +218,6 @@ aws ecr delete-repository --repository-name hello-repository --region region --f
 ## Next steps<a name="create-container-image-next-steps"></a>
 
 After you have created and pushed your container image to Amazon ECR, you should consider the following next steps\.
-+ [Getting started with Amazon ECS using the classic console](getting-started-console.md)
++ [Getting started with the console using Linux containers on AWS Fargate](getting-started-fargate.md)
++ [Getting started with the console using Windows containers on AWS Fargate](Windows_fargate-getting_started.md)
 + [Tutorial: Creating a cluster with a Fargate Linux task using the AWS CLI](ECS_AWSCLI_Fargate.md)

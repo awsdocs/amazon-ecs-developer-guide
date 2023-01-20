@@ -98,14 +98,14 @@ The MIME multi\-part content below uses a shell script to set configuration valu
 
 1. Verify that your container instances launch into the correct cluster and that your tasks have started\.
 
-   1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+   1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
    1. From the navigation bar, choose the Region that your cluster is in\.
 
    1. In the navigation pane, choose **Clusters** and select the cluster that hosts your container instances\.
 
-   1. On the **Cluster** page, choose **Tasks**\.
+   1. On the **Cluster** page, choose **Tasks**, and then choose yor tasks\.
 
-      Each container instance you launched should have your task running on it, and the container instance ARN should be in the **Started By** column\.
+      Each container instance you launched should have your task running on it\.
 
       If you do not see your tasks, you can log in to your container instances with SSH and check the `/var/log/ecs/ecs-start-task.log` file for debugging information\.

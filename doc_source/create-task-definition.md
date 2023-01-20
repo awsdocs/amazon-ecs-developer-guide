@@ -12,10 +12,18 @@ The Amazon ECS console JON editor validates the following in the JSON file:
 + The file contains the `familyName` parameter
 + There is at least one entry under `containerDefinitions`
 
-------
-#### [ New Amazon ECS console ]
+## AWS CloudFormation stacks<a name="cloudformation-stack"></a>
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+The following behavior applies to task definitions created in the new console before January 12, 2023\.
+
+When you create a task definition, the Amazon ECS console automatically creates a CloudFormation stack that has a name that begins with "ECS\-Console\-V2\-TaskDefinition\-"\. If you used the AWS CLI or SDK to deregister the task definition, then you must manually delete the task definition stack\. For more information, see [Deleting a Stack](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html) in the *AWS CloudFormation User Guide*\.
+
+Task definitions created after January 12, 2023 will not have a CloudFormation stack automatically created\.
+
+------
+#### [ Amazon ECS console ]
+
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Task definitions**
 
@@ -39,12 +47,12 @@ The Amazon ECS console JON editor validates the following in the JSON file:
 
    1. Expand the **Environment variables** section to specify environment variables to inject into the container\. You can specify environment variables either individually using key\-value pairs or in bulk by specifying an environment variable file hosted in an Amazon S3 bucket\. For information on how to format an environment variable file, see [Passing environment variables to a container](taskdef-envfiles.md)\.
 
-   1. \(Optional\) To configure the commands that determine if a conatiner is healthy, exapnd **HealthCheck**, and then configure the following items:
-      + For **Command**, enter a comma\-separated lis of commands\. You can start the commands with `CMD` to run the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. If neither is specified, `CMD` is used\. 
+   1. \(Optional\) To configure the commands that determine if a container is healthy, expand **HealthCheck**, and then configure the following items:
+      + For **Command**, enter a comma\-separated list of commands\. You can start the commands with `CMD` to run the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. If neither is specified, `CMD` is used\. 
       + For** Interval**, enter the number of seconds between each health check\. The valid values are between 5 and 30\.
       + For **Timeout**, enter the period of time \(in seconds\) to wait for a health check to succeed before it's considered a failure\. The valid values are between 2 and 60\.
       + For **Start period**, enter the period of time \(in seconds\) to wait for a container to bootstrap before the health check commands run\. The valid values are between 0 and 300\.
-      + For **Retries**, enter the number of times to rety the health check commands when there is a failure\. The valie values are between 1 and 10\.
+      + For **Retries**, enter the number of times to retry the health check commands when there is a failure\. The value values are between 1 and 10\.
 
    1. \(Optional\) Choose **Add more containers** to add additional containers to the task definition\. Choose **Next** once all containers have been defined\.
 
@@ -67,11 +75,21 @@ Task\-level CPU and memory parameters are ignored for Windows containers\.
 
 1. Expand the **Container size** section to enter the amount \(in GB\) of memory to present to the container and the number of CPU units the Amazon ECS container agent will reserve for the container\. 
 
-   If your container attempts to exceed the memory specified, the container is killed\. The total amount of memory reserved for all containers within a task must be lower than the task **Memory** value, if one is specified\.
+   For each container, choose **Add**, and then complete the following steps:
 
-   The total amount of CPU reserved for all containers within a task must be lower than the task\-level **CPU** value\.
+   1. For **Container**, choose the container\.
 
-   You can multiply the specified value by 1024 to determine the number of CPU units that are available per Amazon EC2 instance type\. For example, the value for a t3 nano instance is 2048\. For more information, see [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) \.
+   1. For **CPU**, enter the number of CPU units the Amazon ECS container agent reserves for the container\.
+
+      The total amount of CPU reserved for all containers within a task must be lower than the task\-level **CPU** value\.
+
+      You can multiply the specified value by 1024 to determine the number of CPU units that are available per Amazon EC2 instance type\. For example, the value for a t3 nano instance is 2048\. For more information, see [Amazon EC2 Instances](http://aws.amazon.com/ec2/instance-types/) \.
+
+   1. For **Memory**, enter the amount of memory, in GB to present to the container\.
+
+      If your container attempts to exceed the memory specified, the container is killed\. The total amount of memory reserved for all containers within a task must be lower than the task **Memory** value, if one is specified\.
+
+   1. For **GPU**, enter the number of GPU units for the container instance\. An Amazon EC2 instance with GPU support has 1 GPU unit for every GPU\. For more information, see [Working with GPUs on Amazon ECS](ecs-gpu.md)\.
 
 1. \(Optional\) Expand the **Task roles, network mode** section to specify the following:
 
@@ -128,9 +146,9 @@ When exporting application metrics to Amazon Managed Service for Prometheus, you
 1. On the **Review and create** page, review each task definition section\. Choose **Edit** to make changes\. After the task definition is complete, choose **Create** to register the task definition\.
 
 ------
-#### [ New Amazon ECS console JSON editor ]
+#### [ Amazon ECS console JSON editor ]
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Task definitions**\.
 

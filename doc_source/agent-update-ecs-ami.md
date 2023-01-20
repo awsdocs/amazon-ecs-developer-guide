@@ -10,7 +10,7 @@ Agent updates do not apply to Windows container instances\. We recommend that yo
 
 **To update the `ecs-init` package on an Amazon ECS\-optimized AMI**
 
-1. Log in to your container instance via SSH\. For more information, see [Connect to your container instance using the classic console](instance-connect.md)\.
+1. Log in to your container instance via SSH\.
 
 1. Update the `ecs-init` package with the following command\.
 
@@ -56,12 +56,9 @@ The `ecs-init` service is restarted and it picks up the new agent version\. If t
 **Note**  
 Agent updates do not apply to Windows container instances\. We recommend that you launch new container instances to update the agent version in your Windows clusters\.
 
-------
-#### [ New AWS Management Console ]<a name="procedure-ecs-ami-update"></a>
-
 **To update the Amazon ECS container agent on an Amazon ECS\-optimized AMI in the console**
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, choose the Region where your external instance is registered\.
 
@@ -70,30 +67,3 @@ Agent updates do not apply to Windows container instances\. We recommend that yo
 1. On the **Cluster : *name*** page, choose the **Infrastructure** tab\.
 
 1. Under **Container instances**, select the instances to update, and then choose **Update agent**\.
-
-------
-#### [ Classic AWS Management Console ]
-
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
-
-1. On the **Clusters** page, select the cluster that hosts the container instance or instances to check\.
-
-1. On the **Cluster : *cluster\_name*** page, choose **Amazon ECS Instances**\.
-
-1. Select the container instance to update\.
-
-1. On the **Container Instance** page, choose **Update agent**\.
-
-------
-#### [ AWS CLI ]<a name="procedure-ecs-ami-update-cli"></a>
-
-**To update the Amazon ECS container agent on an Amazon ECS\-optimized AMI with the AWS CLI**
-**Note**  
-Agent updates with the `UpdateContainerAgent` API operation do not apply to Windows container instances\. We recommend that you launch new container instances to update the agent version in your Windows clusters\.
-+ Use the following command to update the Amazon ECS container agent on your container instance:
-
-  ```
-  aws ecs update-container-agent --cluster cluster_name --container-instance container_instance_id
-  ```
-
-------

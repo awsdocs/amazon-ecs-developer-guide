@@ -15,8 +15,6 @@ For these permissions, you must have the following roles:
 + A task IAM role\. 
 + An Amazon ECS task execution IAM role\. 
 
-**Create the task IAM role**
-
 This task role grants the FireLens log router container the permissions needed to route the logs to the destination\. In this example we are routing the logs to CloudWatch Logs\. To create this role, create a policy with the permissions to create a log stream, log group, and write log events\. Then associate the policy to the role\. 
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
@@ -68,9 +66,9 @@ You must have a task execution role to grant the container agent permission to p
 
 1. If you do not see the `ecsTaskExecutionRole` role, you must create the role\. For information about how to create the role, see [Amazon ECS task execution IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
 
-## Determine when to use the the multiline log setting<a name="determine-filter"></a>
+## Determine when to use the multiline log setting<a name="determine-filter"></a>
 
-The following are example log snippets that you see in the CloudWatch Logs console with the default log setting\. You can look at the line that starts with `log` to determine if you need the multiline filter\. When the context is the same, you can use the multiline log setting, In this example, the contect is "
+The following are example log snippets that you see in the CloudWatch Logs console with the default log setting\. You can look at the line that starts with `log` to determine if you need the multiline filter\. When the context is the same, you can use the multiline log setting, In this example, the context is "
 
 ```
 2022-09-20T15:47:56:595-05-00                           {"container_id": "82ba37cada1d44d389b03e78caf74faa-EXAMPLE", "container_name": "example-app", "source=": "stdout", "log": ": "     at com.myproject.modele.(MyProject.badMethod.java:22)",

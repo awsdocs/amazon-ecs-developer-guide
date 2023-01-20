@@ -1,10 +1,11 @@
-# Creating a service using the new console<a name="create-service-console-v2"></a>
+# Creating a service using the console<a name="create-service-console-v2"></a>
 
-You can create an Amazon ECS service using the new console\. 
+You can create a service using the console\.
 
-Consider the following when you use the new console;
-+ Currently, the new console supports only the **Rolling update** \(`ECS`\) deployment type\. To use any other deployment type, switch to the classic console\.
-+ Currently, the new console supports only the **Target tracking** scaling policy\. To use step scaling, switch to the classic console\.
+Consider the following when you use the console:
++ Currently, the console supports only the **Rolling update** \(`ECS`\) deployment type\. To use any other deployment type, switch to the classic console\.
++ Currently, the console supports only the **Target tracking** scaling policy\. To use step scaling, switch to the classic console\.
++ Currently, the console supports only the **Replica** service type\. To use the Daemon service type, switch to the classic console\.
 + There are two compute options that distribute your tasks\.
   + A **capacity provider strategy** causes Amazon ECS to distribute your tasks in one or across multiple capacity providers\. 
   + A **launch type** causes Amazon ECS to launch our tasks directly on either Fargate or on the Amazon EC2 instances that you have manually registered to your clusters\.
@@ -28,9 +29,11 @@ You can use the new console to quickly create and deploy a service\. The service
 
 To deploy a service using the default parameters follow these steps\.
 
-**To create a service \(New Amazon ECS console\)**
+**To create a service \(Amazon ECS console\)**
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+
+1. In the navigation page, choose **Clusters**\.
 
 1. On the **Clusters** page, select the cluster to create the service in\.
 
@@ -46,15 +49,25 @@ To deploy a service using the default parameters follow these steps\.
 
    1. For **Desired tasks**, enter the number of tasks to launch and maintain in the service\.
 
-1. \(Optional\) To add tags in the form of key\-value pairs, to the service, expand the **Tags** section\.
+1. \(Optional\) To help identify your service and tasks, expand the **Tags** section, and then configure your tags\.
+
+   To have Amazon ECS automatically tag all newly launched tasks with the cluster name and the task definition tags, select **Turn on Amazon ECS managed tags**, and then select **Task definitions**\.
+
+   To have Amazon ECS automatically tag all newly launched tasks with the cluster name and the service tags, select **Turn on Amazon ECS managed tags**, and then select **Service**\.
+
+   Add or remove a tag\.
+   + \[Add a tag\] Choose **Add tag**, and then do the following:
+     + For **Key**, enter the key name\.
+     + For **Value**, enter the key value\.
+   + \[Remove a tag\] Next to the tag, choose **Remove tag**\.
 
 ## Create a service using defined parameters<a name="create-custom-service"></a>
 
 To create a service using defined parameters, follow these steps\.
 
-**To create a service \(New Amazon ECS console\)**
+**To create a service \(Amazon ECS console\)**
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. Determine the resource from where you launch the service\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-service-console-v2.html)
@@ -64,14 +77,13 @@ To create a service using defined parameters, follow these steps\.
 
 1. To specify how your service is deployed, expand **Deployment configuration**, and then choose your options\.
 
-   1. For **Application type**, choose **Service**\.
+   1. For **Application type**, leave the choice as **Service**\.
 
    1. For **Task definition** and **Revision**, choose the task definition family and revision to use\.
 
    1. For **Service name**, enter a name for your service\.
 
    1. For **Service type**, choose the service scheduling strategy\.
-      + To have the scheduler deploy exactly one task on each active container instance that meets all of the task placement constraints, choose **Daemon**\.
       + To have the scheduler place and maintain the desired number of tasks in your cluster, choose **Replica**\.
 
       For more information, see [Service scheduler concepts](ecs_services.md#service_scheduler)\.

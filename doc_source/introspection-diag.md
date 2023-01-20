@@ -1,6 +1,6 @@
 # Agent introspection diagnostics<a name="introspection-diag"></a>
 
-The Amazon ECS agent introspection API can provide helpful diagnostic information\. For example, you can use the agent introspection API to get the Docker ID for a container in your task\. You can use the agent introspection API by connecting to a container instance using SSH\. For more information, see [Connect to your container instance using the classic console](instance-connect.md)\.
+The Amazon ECS agent introspection API can provide helpful diagnostic information\. For example, you can use the agent introspection API to get the Docker ID for a container in your task\. You can use the agent introspection API by connecting to a container instance using SSH\.
 
 **Important**  
 Your container instance must have an IAM role that allows access to Amazon ECS in order to reach the introspection API\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.

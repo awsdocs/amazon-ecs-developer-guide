@@ -1,9 +1,9 @@
 # Creating a service using the classic Amazon ECS console<a name="create-service-console-v1"></a>
 
 **Important**  
-Amazon ECS has provided a new console experience for creating a service\. For more information, see [Creating a service using the new console](create-service-console-v2.md)\.  
+Amazon ECS has provided a new console experience for creating a service\. For more information, see [Creating a service using the console](create-service-console-v2.md)\.  
 If you're creating a Windows service for the Fargate launch type, you must use the classic console\.  
-If you want to use the Amazon CloudWatch alarms method to detect deployment failures, you must use the new console\. For more information, see [Creating a service using the new console](create-service-console-v2.md)\.
+If you want to use the Amazon CloudWatch alarms method to detect deployment failures, you must use the new console\. For more information, see [Creating a service using the console](create-service-console-v2.md)\.
 
 The Amazon ECS console provides a create service wizard that guides you through each step to create a service\. 
 

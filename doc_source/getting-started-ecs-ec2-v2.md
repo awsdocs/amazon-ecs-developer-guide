@@ -1,4 +1,4 @@
-# Getting started with the new console using Amazon EC2<a name="getting-started-ecs-ec2-v2"></a>
+# Getting started with the console using Amazon EC2<a name="getting-started-ecs-ec2-v2"></a>
 
 Amazon Elastic Container Service \(Amazon ECS\) is a fast and highly scalable container management service that makes it easy to launch and manage your containers\. For a broad overview on Amazon ECS, see [What is Amazon Elastic Container Service?](Welcome.md)\.
 
@@ -20,7 +20,7 @@ The following steps walk you through creating a cluster with one Amazon EC2 inst
 
 Before you begin, assign the appropriate IAM permission\. For more information, see [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies)\.
 
-1. Open the new console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. From the navigation bar, select the Region to use\.
 
@@ -131,7 +131,7 @@ An Amazon ECS service helps you to run and maintain a specified number of instan
 
 1. Select the cluster you created in [Step 1: Create a cluster](#getting-started-ec2-cluster-v2)\.
 
-1. On the **Services** tab, choose **Deploy**\.
+1. On the **Services** tab, choose **Create**\.
 
 1. In the **Environment** section, do the following:
 
@@ -147,7 +147,7 @@ An Amazon ECS service helps you to run and maintain a specified number of instan
 
    1. For **Desired tasks**, enter **1**\.
 
-1. Review the options and choose **Deploy**\.
+1. Review the options and choose **Create**\.
 
 1. Choose **View service** to review your service\.
 
