@@ -53,7 +53,7 @@ The following task options require the classic console:
 The following service options require the classic console:
 + **Service Discovery** \- You can only view your Service Discovery configuration\. 
 + **Step scaling policies for service auto scaling**
-+ **Update Service** \- You cannot update the `awsvpc` network configuration\.
++ **Update Service** \- You cannot update the `awsvpc` network configuration and health check grace period\.
 
 ### Container instances<a name="classic-console-instances"></a>
 
