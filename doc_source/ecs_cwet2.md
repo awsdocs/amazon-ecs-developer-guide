@@ -6,11 +6,31 @@ In this tutorial, you configure an Amazon EventBridge event rule that only captu
 
  If you do not have a running cluster to capture events from, follow the steps in [Creating a cluster using the classic console](create_cluster.md) to create one\. At the end of this tutorial, you run a task on this cluster to test that you have configured your Amazon SNS topic and EventBridge rule correctly\. 
 
+## Prerequisite: Configure permissions for Amazon SNS<a name="cwet2_step_1a"></a>
+
+To allow EventBridge to publish to an Amazon SNS topic, use the aws sns get\-topic\-attributes and the aws sns set\-topic\-attributes commands\. 
+
+For information about how to add the permission, see [Amazon SNS permissions](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-resource-based.html#eb-sns-permissions) in the *Amazon Simple Notification Service Developer Guide *
+
+Add the following permissions:
+
+```
+{
+  "Sid": "PublishEventsToMyTopic",
+  "Effect": "Allow",
+  "Principal": {
+     "Service": "events.amazonaws.com"
+  },
+  "Action": "sns: Publish",
+  "Resource": "arn:aws:sns:region:account-id:TaskStoppedAlert",
+}
+```
+
 ## Step 1: Create and subscribe to an Amazon SNS topic<a name="cwet2_step_2"></a>
 
  For this tutorial, you configure an Amazon SNS topic to serve as an event target for your new event rule\. 
 
-For information about how to create and subscribe to an Amazon SNS topic , see [Getting started with Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html#step-create-queue) in the *Amazon Simple Notification Service Developer Guide *and use the following table to determine what options to select\.
+For information about how to create and subscribe to an Amazon SNS topic , see [Getting started with Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html#step-create-queue) in the *Amazon Simple Notification Service Developer Guide * and use the following table to determine what options to select\.
 
 
 | Option | Value | 
@@ -19,21 +39,6 @@ For information about how to create and subscribe to an Amazon SNS topic , see [
 | Name |  TaskStoppedAlert  | 
 | Protocol | Email | 
 | Endpoint |  An email address to which you currently have access  | 
-
-## Step 1a: Update Access Policy<a name="cwet2_step_2a"></a>
-As described in https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-resource-based.html#eb-sns-permissions
-Following policy is required to allow EventBridge service to publish messages to your SNS topic:
-
-{
-\"Sid\": \"PublishEventsToMyTopic\",
-\"Effect\": \"Allow\",
-\"Principal\": {
-\"Service\": \"events.amazonaws.com\"
-},
-\"Action\": \"sns:Publish\",
-\"Resource\": \"arn:aws:sns:<region>:<account-id>:TaskStoppedAlert\"
-}
-
 
 ## Step 2: Register an event rule<a name="cwet2_step_3"></a>
 
@@ -56,15 +61,15 @@ For information about how to create and subscribe to an Amazon SNS topic , see [
 
 Verify that the rule is working by running a task that exits shortly after it starts\. If your event rule is configured correctly, you receive an email message within a few minutes with the event text\. If you have an existing task definition that can satisfy the rule requirements, run a task using it\. If you do not, the following steps will walk you through registering a Fargate task definition and running it that will\.
 
-**To test the rule**
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. In the navigation pane, choose **Task definitions**\.
 
-1. Choose **Task Definitions**, **Create new Task Definition**\.
+1. Choose **Create new task definition**, **Create new task definition with JSON**\.
 
-1. For Select launch type compatibility, choose **FARGATE**, **Next step**\.
+1. In the JSON editor box, edit your JSON file,
 
-1. Choose **Configure via JSON**, copy and paste the following task definition JSON into the field and choose **Save**\.
+   Copy the following into the editor\.
 
    ```
    {
@@ -91,14 +96,20 @@ Verify that the rule is working by running a task that exits shortly after it st
    }
    ```
 
-1. Choose **Create**, **View task definition**\.
+1. Choose **Create**\.
 
-1. For **Actions**, choose **Run Task**\.
+**To run a task from the console**
 
-1. For Launch type, choose **FARGATE**\. For **VPC and security groups**, choose a VPC and Subnets for the task to use and then choose **Run Task**\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1.  For **Container name**, type **Wordpress**, for **Image**, type **wordpress**, and for **Maximum memory \(MB\)**, type **128**\.
+1. On the **Clusters** page, select the cluster you created in the prerequisites\.
 
-1. On the **Tasks** tab for your cluster, periodically choose the refresh icon until you no longer see your task running\. To verify that your task has stopped, for **Desired task status**, choose **Stopped**\.
+1. From the **Tasks** tab, choose **Run new task**\.
 
-1. Check your email to confirm that you have received an email alert for the stopped notification\.
+1. For **Application type**, choose **Task**\.
+
+1. For **Task definition**, choose **fargate\-task\-definition**\.
+
+1. For **Desired tasks**, enter the number of tasks to launch\.
+
+1. Choose **Create**\.

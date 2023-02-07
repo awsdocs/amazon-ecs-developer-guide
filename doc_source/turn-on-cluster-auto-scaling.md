@@ -32,7 +32,6 @@ Use the following steps to turn on managed scaling for the capacity provider\.
 
   ```
   aws ecs update-capacity-provider \
-    --cluster ClusterName \
     --capacity-providers CapacityProviderName \
     --auto-scaling-group-provider managedScaling=ENABLED
   ```

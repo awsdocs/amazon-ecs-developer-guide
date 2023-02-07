@@ -1,5 +1,10 @@
 # Deregistering an external instance using the classic console<a name="ecs-anywhere-deregistration-classic-console"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Deregistering an external instance](ecs-anywhere-deregistration.md)\. | 
+
 We recommend that, after you finish using an external instance, you deregister the instance from both Amazon ECS and AWS Systems Manager\. Following deregistration, the external instance is no longer able to accept new tasks\.
 
 If you have tasks that are running on the container instance when you deregister it, the tasks remain running until they stop through some other means\. However, these tasks are no longer monitored or accounted for by Amazon ECS\. If these tasks on your external instance are part of an Amazon ECS service, then the service scheduler starts another copy of that task, on a different instance, if possible\.

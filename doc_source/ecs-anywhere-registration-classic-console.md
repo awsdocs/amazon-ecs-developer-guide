@@ -1,5 +1,10 @@
 # Registering an external instance to a cluster using the classic console<a name="ecs-anywhere-registration-classic-console"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Registering an external instance to a cluster](ecs-anywhere-registration.md)\. | 
+
 For each external instance you register with an Amazon ECS cluster, it must have the SSM Agent, the Amazon ECS container agent, and Docker installed\. To register the external instance to an Amazon ECS cluster, it must first be registered as an AWS Systems Manager managed instance\. You can create the installation script in a few clicks on the Amazon ECS console\. The installation script includes an Systems Manager activation key and commands to install each of the required agents and Docker\. The installation script must be run on your on\-premises server or VM to complete the installation and registration steps\.
 
 **Note**  

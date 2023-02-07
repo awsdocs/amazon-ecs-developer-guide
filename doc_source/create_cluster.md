@@ -1,5 +1,10 @@
 # Creating a cluster using the classic console<a name="create_cluster"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Creating a cluster for the Fargate launch type using the console](create-cluster-console-v2.md)\. | 
+
 You can create an Amazon ECS cluster using the classic AWS Management Console, as described in this topic\. Before you begin, be sure that you've completed the steps in [Set up to use Amazon ECS](get-set-up-for-amazon-ecs.md)\. You can register Amazon EC2 instances during cluster creation or register additional instances with the cluster after creating it\.
 
 The console cluster creation wizard provides a simple way to create the resources that are needed by an Amazon ECS cluster by creating a AWS CloudFormation stack\. It also lets you customize several common cluster configuration options\. However, the wizard does not allow you to customize every resource option\. For example, you can't use the wizard to customize the container instance AMI ID\. If your requirements extend beyond what is supported in this wizard, consider using our reference architecture at [https://github\.com/awslabs/ecs\-refarch\-cloudformation](https://github.com/awslabs/ecs-refarch-cloudformation)\.

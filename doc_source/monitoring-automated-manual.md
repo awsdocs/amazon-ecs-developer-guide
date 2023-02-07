@@ -28,3 +28,6 @@ Another important part of monitoring Amazon ECS involves manually monitoring tho
   + Search and browse all your AWS resource metrics\.
   + Create and edit alarms to be notified of problems\.
 + AWS Trusted Advisor can help you monitor your AWS resources to improve performance, reliability, security, and cost effectiveness\. Four Trusted Advisor checks are available to all users; more than 50 checks are available to users with a Business or Enterprise support plan\. For more information, see [AWS Trusted Advisor](https://aws.amazon.com/premiumsupport/trustedadvisor/)\.
++ AWS Compute Optimizer is a service that analyzes the configuration and utilization metrics of your AWS resources\. It reports whether your resources are optimal, and generates optimization recommendations to reduce the cost and improve the performance of your workloads\.
+
+  For more information, see [AWS Compute Optimizer recommendations](ecs-recommendations.md)\.

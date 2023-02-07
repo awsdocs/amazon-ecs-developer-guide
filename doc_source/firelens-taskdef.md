@@ -5,7 +5,7 @@ To use custom log routing with FireLens, you must specify the following in your 
 + One or more application containers that contain a log configuration specifying the `awsfirelens` log driver\.
 + A task IAM role Amazon Resource Name \(ARN\) that contains the permissions needed for the task to route the logs\.
 
-When creating a new task definition using the AWS Management Console, there is a FireLens integration section that makes it easy to add a log router container\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+When creating a new task definition using the AWS Management Console, there is a FireLens integration section that makes it easy to add a log router container\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
 
 Amazon ECS converts the log configuration and generates the Fluentd or Fluent Bit output configuration\. The output configuration is mounted in the log routing container at `/fluent-bit/etc/fluent-bit.conf` for Fluent Bit and `/fluentd/etc/fluent.conf` for Fluentd\.
 

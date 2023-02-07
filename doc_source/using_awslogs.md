@@ -100,7 +100,7 @@ Required: No
 This option defines a multiline start pattern in Python `strftime` format\. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern\. The matched line is the delimiter between log messages\.  
 One example of a use case for using this format is for parsing output such as a stack dump, which might otherwise be logged in multiple entries\. The correct pattern allows it to be captured in a single entry\.  
 For more information, see [awslogs\-datetime\-format](https://docs.docker.com/config/containers/logging/awslogs/#awslogs-datetime-format)\.  
-This option always takes precedence if both `awslogs-datetime-format` and `awslogs-multiline-pattern` are configured\.  
+You cannot configure both the `awslogs-datetime-format` and `awslogs-multiline-pattern` options\.  
 Multiline logging performs regular expression parsing and matching of all log messages\. This might have a negative impact on logging performance\.
 
 `awslogs-multiline-pattern`  
@@ -108,6 +108,7 @@ Required: No
 This option defines a multiline start pattern that uses a regular expression\. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern\. The matched line is the delimiter between log messages\.  
 For more information, see [awslogs\-multiline\-pattern](https://docs.docker.com/config/containers/logging/awslogs/#awslogs-multiline-pattern)\.  
 This option is ignored if `awslogs-datetime-format` is also configured\.  
+You cannot configure both the `awslogs-datetime-format` and `awslogs-multiline-pattern` options\.  
 Multiline logging performs regular expression parsing and matching of all log messages\. This might have a negative impact on logging performance\.
 
 `mode`  
@@ -123,7 +124,7 @@ When `non-blocking` mode is used, the `max-buffer-size` log option controls the 
 
 ## Specifying a log configuration in your task definition<a name="specify-log-config"></a>
 
-Before your containers can send logs to CloudWatch, you must specify the `awslogs` log driver for containers in your task definition\. This section describes the log configuration for a container to use the `awslogs` log driver\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+Before your containers can send logs to CloudWatch, you must specify the `awslogs` log driver for containers in your task definition\. This section describes the log configuration for a container to use the `awslogs` log driver\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
 
 The task definition JSON that follows has a `logConfiguration` object specified for each container\. One is for the WordPress container that sends logs to a log group called `awslogs-wordpress`\. The other is for a MySQL container that sends logs to a log group that's called `awslogs-mysql`\. Both containers use the `awslogs-example` log stream prefix\.
 

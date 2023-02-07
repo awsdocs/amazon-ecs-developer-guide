@@ -1,5 +1,10 @@
 # Creating an Auto Scaling group capacity provider using the classic console<a name="asg-capacity-providers-create-capacity-provider"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Creating a capacity provider using the console](create-capacity-provider-console-v2.md)\. | 
+
 A *capacity provider* is used in association with a cluster to determine the infrastructure that a task runs on\. When creating a capacity provider, you specify the following details:
 + An Auto Scaling group Amazon Resource Name \(ARN\)
 + Whether or not to turn on managed scaling\. When managed scaling is enabled, Amazon ECS manages the scale\-in and scale\-out actions of the Auto Scaling group through the use of AWS Auto Scaling scaling policies\. When managed scaling is disabled, you manage your Auto Scaling groups yourself\.

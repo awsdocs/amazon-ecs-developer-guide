@@ -19,9 +19,7 @@ Consider the following when you use the new console;
 
 1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. On the **Clusters** page, select the cluster to run the standalone task in\.
-
-   Determine the resource from where you launch the service\.    
+1. Determine the resource from where you launch the service\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task-v2.html)
 
 1. \(Optional\) Choose how your scheduled task is distributed across your cluster infrastructure\. Expand **Compute configuration**, and then do the following:    

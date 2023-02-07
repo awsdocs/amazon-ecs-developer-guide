@@ -1,5 +1,10 @@
 # Updating the Amazon ECS container agent with the classic console<a name="agent-update-classic-console"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Updating the Amazon ECS container agent with the console](agent-update-console.md)\. | 
+
 Use the classic console to update your container agent\.
 
 **Note**  

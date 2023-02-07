@@ -15,7 +15,7 @@ The metrics made available depend on the launch type of the tasks and services i
 The next step is to establish a baseline for normal Amazon ECS performance in your environment, by measuring performance at various times and under different load conditions\. As you monitor Amazon ECS, store historical monitoring data so that you can compare it with current performance data, identify normal performance patterns and performance anomalies, and devise methods to address issues\.
 
 To establish a baseline you should, at a minimum, monitor the following items:
-+ The CPU and memory and reservation utilization metrics for your Amazon ECS clusters
++ The CPU and memory reservation and utilization metrics for your Amazon ECS clusters
 + The CPU and memory utilization metrics for your Amazon ECS services
 
 **Topics**
@@ -27,3 +27,4 @@ To establish a baseline you should, at a minimum, monitor the following items:
 + [Collecting application trace data](trace-data.md)
 + [Collecting application metrics](metrics-data.md)
 + [Logging Amazon ECS API calls with AWS CloudTrail](logging-using-cloudtrail.md)
++ [AWS Compute Optimizer recommendations](ecs-recommendations.md)

@@ -1,5 +1,10 @@
 # Checking stopped tasks for errors in the Amazon ECS classic console<a name="stopped-task-errors-classic-console"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Checking stopped tasks for errors](stopped-task-errors.md)\. | 
+
 If you have trouble starting a task, your task might be stopping because of an error\. For example, you run the task and the task displays a `PENDING` status and then disappears\. You can view stopped task errors like this in the Amazon ECS console by viewing the stopped task and inspecting it for error messages\. If your task definition uses the `awslogs` log driver, the application logs that are written to Amazon CloudWatch Logs are displayed on the **Logs** tab in the Amazon ECS console as long as the stopped task appears\.
 
 **Important**  

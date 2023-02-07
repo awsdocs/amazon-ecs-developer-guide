@@ -58,7 +58,7 @@ If you're also collecting application metrics using the AWS Distro for OpenTelem
 
 ## Specifying the AWS Distro for OpenTelemetry sidecar for AWS X\-Ray integration in your task definition<a name="trace-data-containerdefinitions"></a>
 
-The new Amazon ECS console experience simplifies the experience of creating the AWS Distro for OpenTelemetry sidecar container by using the **Use trace collection** option\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+The new Amazon ECS console experience simplifies the experience of creating the AWS Distro for OpenTelemetry sidecar container by using the **Use trace collection** option\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
 
 If you're not using the Amazon ECS console, you can add the AWS Distro for OpenTelemetry sidecar container to your task definition\. The following task definition snippet shows the container definition for adding the AWS Distro for OpenTelemetry sidecar for AWS X\-Ray integration\.
 

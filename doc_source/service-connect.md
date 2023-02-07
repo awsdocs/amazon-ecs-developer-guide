@@ -83,7 +83,7 @@ Service Connect creates endpoints that connect to Amazon ECS services and config
 
 **Service Connect service**  
 The configuration of a single endpoint in an Amazon ECS service\. This is a part of the Service Connect configuration, consisting of a single row in the **Service Connect and discovery name configuration** in the console, or one object in the `services` list in the JSON configuration of an Amazon ECS service\. This configuration is only used by Amazon ECS Service Connect\.  
-For more information, see [ServiceConnectService](http://amazonaws.com/AmazonECS/latest/APIReference/API_ServiceConnectService.html) in the Amazon Elastic Container Service API Reference\.
+For more information, see [ServiceConnectService](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ServiceConnectService.html) in the Amazon Elastic Container Service API Reference\.
 
 **namespace**  
 The short name or full Amazon Resource Name \(ARN\) of the AWS Cloud Map namespace for use with Service Connect\. The namespace must be in the same AWS Region as the Amazon ECS service and cluster\. The type of namespace in AWS Cloud Map doesn't affect Service Connect\.  
@@ -95,7 +95,7 @@ If any of your containers in the task need to connect to an endpoint from a serv
 
 **client\-server service**  
 An Amazon ECS service that runs a network or web service application\. This service must have a namespace and at least one endpoint configured\. Each task in the service is reachable by using the endpoints\. The Service Connect proxy container listens on the endpoint name and port to direct traffic to the app containers in the task\.  
-If any of the containers expose and listen on a port for network traffic, choose a client\-server service\. These applications don't need to connect to other client\-server services in the same namespace, but the client configuration is is configured\. A backend, middleware, business tier, or most microservices would use this type of Service Connect configuration\. If you want a frontend, reverse proxy, or load balancer application to receive traffic from other services configured with Service Connect in the same namespace, these services should use this type of Service Connect configuration\.
+If any of the containers expose and listen on a port for network traffic, choose a client\-server service\. These applications don't need to connect to other client\-server services in the same namespace, but the client configuration is configured\. A backend, middleware, business tier, or most microservices would use this type of Service Connect configuration\. If you want a frontend, reverse proxy, or load balancer application to receive traffic from other services configured with Service Connect in the same namespace, these services should use this type of Service Connect configuration\.
 
 ### Cluster configuration<a name="service-connect-concepts-cluster-defaults"></a>
 
@@ -240,7 +240,7 @@ Every AWS Cloud Map namespace in this AWS account in the selected AWS Region is 
 
 To delete a namespace, use the AWS Cloud Map console\. A namespace must be empty before it can be deleted\.
 
-To create a new Amazon ECS task definition, or register a new revision to an existing task definition and use Service Connect, see [Creating a task definition using the new console](create-task-definition.md)\.
+To create a new Amazon ECS task definition, or register a new revision to an existing task definition and use Service Connect, see [Creating a task definition using the console](create-task-definition.md)\.
 
 To create a new Amazon ECS service that uses Service Connect, see [Creating a service using the console](create-service-console-v2.md)\.
 

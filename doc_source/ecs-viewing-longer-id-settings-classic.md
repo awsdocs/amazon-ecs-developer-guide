@@ -1,5 +1,10 @@
 # Viewing account settings using the classic console<a name="ecs-viewing-longer-id-settings-classic"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Viewing account settings using the console](ecs-viewing-longer-id-settings.md)\. | 
+
 You can use theclassic AWS Management Console to view your account settings\.
 
 **Important**  

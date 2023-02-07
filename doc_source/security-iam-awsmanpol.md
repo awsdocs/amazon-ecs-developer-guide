@@ -300,7 +300,7 @@ You should consider the following recommendations and considerations when using 
 ### Permissions details<a name="instance-iam-role-permissions"></a>
 
 The `AmazonEC2ContainerServiceforEC2Role` managed IAM policy includes the following permissions\. Following the standard security advice of granting least privilege, the `AmazonEC2ContainerServiceforEC2Role` managed policy can be used as a guide\. If you don't need any of the permissions that are granted in the managed policy for your use case, create a custom policy and add only the permissions that you need\.
-+ `ec2:DescribeTags` – Allows a principal to describe the tags that are associated with an Amazon EC2 instance\. This permission is used by the Amazon ECS container agent to support resource tag propagation\. For more information, see [Tagging your resources](ecs-using-tags.md#tag-resources)\.
++ `ec2:DescribeTags` – Allows a principal to describe the tags that are associated with an Amazon EC2 instance\. This permission is used by the Amazon ECS container agent to support resource tag propagation\. For more information, see [How resources are tagged](ecs-using-tags.md#tag-resources)\.
 + `ecs:CreateCluster` – Allows a principal to create an Amazon ECS cluster\. This permission is used by the Amazon ECS container agent to create a `default` cluster, if one doesn't already exist\.
 + `ecs:DeregisterContainerInstance` – Allows a principal to deregister an Amazon ECS container instance from a cluster\. The Amazon ECS container agent doesn't call this API, but this permission remains to ensure backwards compatibility\.
 + `ecs:DiscoverPollEndpoint` – This action returns endpoints that the Amazon ECS container agent uses to poll for updates\.

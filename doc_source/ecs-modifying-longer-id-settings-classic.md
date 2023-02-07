@@ -1,5 +1,10 @@
 # Modifying account settings using the classic console<a name="ecs-modifying-longer-id-settings-classic"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Viewing account settings using the console](ecs-viewing-longer-id-settings.md)\. | 
+
 You can manage your account settings using the classic console\. 
 
 1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.

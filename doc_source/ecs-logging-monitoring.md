@@ -20,4 +20,8 @@ CloudTrail provides a record of actions taken by a user, role, or an AWS service
 Trusted Advisor draws upon best practices learned from serving hundreds of thousands of AWS customers\. Trusted Advisor inspects your AWS environment and then makes recommendations when opportunities exist to save money, improve system availability and performance, or help close security gaps\. All AWS customers have access to five Trusted Advisor checks\. Customers with a Business or Enterprise support plan can view all Trusted Advisor checks\.   
 For more information, see [AWS Trusted Advisor](https://docs.aws.amazon.com/awssupport/latest/user/getting-started.html#trusted-advisor) in the *AWS Support User Guide*\.
 
+**AWS Compute Optimizer**  
+AWS Compute Optimizer is a service that analyzes the configuration and utilization metrics of your AWS resources\. It reports whether your resources are optimal, and generates optimization recommendations to reduce the cost and improve the performance of your workloads\.  
+For more information, see [AWS Compute Optimizer recommendations](ecs-recommendations.md)\.
+
 Another important part of monitoring Amazon ECS involves manually monitoring those items that the CloudWatch alarms don't cover\. The CloudWatch, Trusted Advisor, and other AWS console dashboards provide an at\-a\-glance view of the state of your AWS environment\. We recommend that you also check the log files on your container instances and the containers in your tasks\.

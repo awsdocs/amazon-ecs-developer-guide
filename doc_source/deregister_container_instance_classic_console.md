@@ -1,5 +1,10 @@
 # Deregister an Amazon EC2 backed container instance using the classic console<a name="deregister_container_instance_classic_console"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\.  | 
+
 **Important**  
 This topic is for container instances created in Amazon EC2 only\.
 

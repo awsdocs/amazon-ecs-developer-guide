@@ -12,6 +12,7 @@ Before you begin deploying task definitions that use the 64\-bit ARM architectur
 + For the Fargate launch type, the following AWS Regions do not support 64\-bit ARM workloads:
   + US East \(N\. Virginia\) , the `use1-az3` Availability Zone
   + Asia Pacific \(Hyderabad\)
+  + Asia Pacific \(Melbourne\)
   + China \(Beijing\)
   + China \(Ningxia\)
   +  Europe \(Zurich\)

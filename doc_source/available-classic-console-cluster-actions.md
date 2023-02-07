@@ -1,5 +1,10 @@
 # Cluster management in the classic Amazon ECS console<a name="available-classic-console-cluster-actions"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. | 
+
 You can use the classic console to configure run your Amazon ECS cluster resources\.
 
 **Topics**

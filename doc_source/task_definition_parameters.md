@@ -37,8 +37,9 @@ When you launch the Amazon ECS\-optimized Windows Server AMI, IAM roles for task
 
 `executionRoleArn`  
 Type: string  
-Required: no  
-The Amazon Resource Name \(ARN\) of the task execution role that grants the Amazon ECS container agent permission to make AWS API calls on your behalf\. The task execution IAM role is required depending on the requirements of your task\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
+Required: conditional  
+The Amazon Resource Name \(ARN\) of the task execution role that grants the Amazon ECS container agent permission to make AWS API calls on your behalf\.   
+The task execution IAM role is required depending on the requirements of your task\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 ## Network mode<a name="network_mode"></a>
 
@@ -199,7 +200,7 @@ If using containers in a task with the EC2 launch type and you specify a contain
 `containerPortRange`  
 Type: string  
 Required: no  
-The port number range on the container that's bound to the dynamically mapped host port range\.  
+The port number range on the container that's bound to the dynamically mapped host port range\.    
 You can only set this parameter by using the `register-task-definition` API\. The option is available in the `portMappings` parameter\. For more information, see [register\-task\-definition](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html) in the *AWS Command Line Interface Reference*\.  
 The following rules apply when you specify a `containerPortRange`:  
 + You must use either the `bridge` network mode or the `awsvpc` network mode\.
@@ -775,7 +776,7 @@ This parameter requires version 1\.18 of the Docker Remote API or greater on you
 
 ### Other container definition parameters<a name="other_container_definition_params"></a>
 
-The following container definition parameters can be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+The following container definition parameters can be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
 
 **Topics**
 + [Linux parameters](#container_definition_linuxparameters)
@@ -1187,7 +1188,7 @@ The optional part of a key\-value pair that make up a tag\. A value acts as a de
 
 ## Other task definition parameters<a name="other_task_definition_params"></a>
 
-The following task definition parameters can be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+The following task definition parameters can be used when registering task definitions in the Amazon ECS console by using the **Configure via JSON** option\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
 
 **Topics**
 + [Ephemeral storage](#task_definition_ephemeralStorage)

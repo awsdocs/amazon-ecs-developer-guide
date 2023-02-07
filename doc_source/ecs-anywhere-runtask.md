@@ -4,7 +4,7 @@ After an external instance is registered to your cluster, you can run your conta
 
 ## Creating a task definition that is compatible with your external instances<a name="ecs-anywhere-taskdef"></a>
 
-When registering an Amazon ECS task definition, use the `requiresCompatibilities` parameter and specify `EXTERNAL` which validates that the task definition is compatible to use when running Amazon ECS workloads on your external instances\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+When registering an Amazon ECS task definition, use the `requiresCompatibilities` parameter and specify `EXTERNAL` which validates that the task definition is compatible to use when running Amazon ECS workloads on your external instances\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
 
 **Important**  
 If your tasks require a task execution IAM role, make sure that it's specified in the task definition\. For more information, see [Conditional IAM permissions](ecs-anywhere-iam.md#ecs-anywhere-iam-conditional)\.

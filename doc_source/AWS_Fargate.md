@@ -29,6 +29,8 @@ The following task definition parameters are not valid in Fargate tasks:
 + `placementConstraints`
 + `privileged`
 + `systemControls`
++ `maxSwap`
++ `swappiness`
 
 The following task definition parameters are valid in Fargate tasks, but have limitations that should be noted:
 + `linuxParameters` – When specifying Linux\-specific options that are applied to the container, for `capabilities` the `add` parameter is not supported\. The `devices`, `sharedMemorySize`, and `tmpfs` parameters are not supported\. For more information, see [Linux parameters](task_definition_parameters.md#container_definition_linuxparameters)\.
@@ -342,6 +344,9 @@ The following features are not supported on Windows containers on Fargate:
 + Firelens log router integration for tasks
 + Configurable ephemeral storage
 + EFS volumes
++ The following task definition parameters:
+  + `maxSwap`
+  + `swappiness`
 + The Fargate Spot capacity provider
 + Image volumes
 

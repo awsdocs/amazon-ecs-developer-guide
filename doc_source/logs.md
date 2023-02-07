@@ -35,6 +35,12 @@ Default value on Linux: `none`, if `ECS_LOG_DRIVER` is explicitly set to a non\-
 Default value on Windows: `none`, if `ECS_LOG_DRIVER` is explicitly set to a non\-empty value; otherwise the same value as `ECS_LOGLEVEL`  
 Can be used to override `ECS_LOGLEVEL` and set a level of detail that should be logged in the on\-instance log file, separate from the level that is logged in the logging driver\. If a logging driver is explicitly set, on\-instance logs are turned off by default, but can be turned back on with this variable\.
 
+`ECS_LOG_DRIVER`  
+Example values: `awslogs`, `fluentd`, `gelf`, `json-file`, `journald`, `logentries` `syslog`, `splunk`  
+Default value on Linux: `json-file`  
+Default value on Windows: Not applicable  
+Determines the logging driver to be used by the agent container\.
+
 `ECS_LOG_ROLLOVER_TYPE`  
 Example values: `size`, `hourly`  
 Default value on Linux: `hourly`  

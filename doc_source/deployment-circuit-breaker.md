@@ -2,7 +2,7 @@
 
 A deployment transitions to the failed state when the deployment circuit breaker logic determines that the tasks cannot reach a steady state\. 
 
-The deployment circuit breaker logic has an option that will automatically roll back a failed deployment to the last working state
+The deployment circuit breaker logic has an option that will automatically roll back a failed deployment to the last working state\.
 
 Consider the following when you use the deployment circuit breaker method on a service\.
 + If a service deployment has at least one successfully running task at the time the service is updated, the circuit breaker logic will not start regardless of the deployment having any previous or future failed tasks\.

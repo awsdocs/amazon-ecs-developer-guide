@@ -33,7 +33,6 @@ The following task definition options require the classic console:
   + **default**
   + **host**
   + **none**
-+ **FSx for volumes**
 + **Container parameters** The following container parameters are not supported:
   + **Command and entry point overrides**
   + **Startup and dependency ordering**
@@ -53,7 +52,7 @@ The following task options require the classic console:
 The following service options require the classic console:
 + **Service Discovery** \- You can only view your Service Discovery configuration\. 
 + **Step scaling policies for service auto scaling**
-+ **Update Service** \- You cannot update the `awsvpc` network configuration and health check grace period\.
++ **Update Service** \- You cannot update the `awsvpc` network configuration and the health check grace period\.
 
 ### Container instances<a name="classic-console-instances"></a>
 
@@ -62,3 +61,17 @@ The following container instance options require the classic console:
 
 **Please send feedback**  
 We’d appreciate your feedback on the new console\. We’ll use your feedback to continue improving the experience\. You can send us feedback directly from the Amazon ECS console, or use the **Provide feedback** link at the bottom of this page\.
+
+## List view enhancements<a name="display-enhancements"></a>
+
+The console provides list views for your resources such as cluster, services, and task definitions\. There are also detail views for items such as networking, container instances, and deployments\.
+
+The information is provided in a table view which allows you to adjust the width of each column\. The console tracks the width you set, so there is no need to adjust the width when you leave and return to the page\.
+
+You can use the gear icon that is in the top\-right to control the page or table layout, including:
++ The number of items per page\.
++ The fields that are visible\.
++ Where applicable, the line wrap option\.
++ Where applicable, the timestamp format\. The default is the absolute time in the local format\. The following options are also available:
+  + Absolute time in the ISO format
+  + Relative time

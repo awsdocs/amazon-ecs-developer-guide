@@ -77,7 +77,7 @@ Task placement strategies aren't supported for tasks hosted on Fargate\.
 
    1. To use the ECS Exec functionality for the task, for **Configure execute command**, choose **Enable execute command**\. For more information, see [Using Amazon ECS Exec for debugging](ecs-exec.md)\.
 
-   1. To add the tags associated with the task definition to your task, for **Configure propagate tags**, choose **Propagate tags from task definition**\. For more information, see [Tagging your resources](ecs-using-tags.md#tag-resources)\.
+   1. To add the tags associated with the task definition to your task, for **Configure propagate tags**, choose **Propagate tags from task definition**\. For more information, see [How resources are tagged](ecs-using-tags.md#tag-resources)\.
 **Note**  
 If you specify a tag with the same key in the **Tags** section, that tag overrides the tag that is propagated from the task definition\.
 

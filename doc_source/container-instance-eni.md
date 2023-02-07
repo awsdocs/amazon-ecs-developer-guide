@@ -249,6 +249,25 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | m6id\.24xlarge | 14 | 120 | 
 | m6id\.32xlarge | 14 | 120 | 
 | m6id\.metal | 14 | 120 | 
+| m6idn\.large | 2 | 10 | 
+| m6idn\.xlarge | 3 | 20 | 
+| m6idn\.2xlarge | 3 | 40 | 
+| m6idn\.4xlarge | 7 | 60 | 
+| m6idn\.8xlarge | 7 | 90 | 
+| m6idn\.12xlarge | 7 | 120 | 
+| m6idn\.16xlarge | 14 | 120 | 
+| m6idn\.24xlarge | 14 | 120 | 
+| m6idn\.32xlarge | 13 | 120 | 
+| m6in\.large | 2 | 10 | 
+| m6in\.xlarge | 3 | 20 | 
+| m6in\.2xlarge | 3 | 40 | 
+| m6in\.4xlarge | 7 | 60 | 
+| m6in\.8xlarge | 7 | 90 | 
+| m6in\.12xlarge | 7 | 120 | 
+| m6in\.16xlarge | 14 | 120 | 
+| m6in\.24xlarge | 14 | 120 | 
+| m6in\.32xlarge | 13 | 120 | 
+| mac2\.metal | 7 | 12 | 
 
 ### Compute optimized<a name="eni-branch-co"></a>
 
@@ -322,7 +341,6 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | c6gn\.8xlarge | 7 | 60 | 
 | c6gn\.12xlarge | 7 | 60 | 
 | c6gn\.16xlarge | 14 | 120 | 
-| c6gn\.metal | 14 | 120 | 
 | c6i\.large | 2 | 10 | 
 | c6i\.xlarge | 3 | 20 | 
 | c6i\.2xlarge | 3 | 40 | 
@@ -343,6 +361,15 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | c6id\.24xlarge | 14 | 120 | 
 | c6id\.32xlarge | 14 | 120 | 
 | c6id\.metal | 14 | 120 | 
+| c6in\.large | 2 | 10 | 
+| c6in\.xlarge | 3 | 20 | 
+| c6in\.2xlarge | 3 | 40 | 
+| c6in\.4xlarge | 7 | 60 | 
+| c6in\.8xlarge | 7 | 90 | 
+| c6in\.12xlarge | 7 | 120 | 
+| c6in\.16xlarge | 14 | 120 | 
+| c6in\.24xlarge | 14 | 120 | 
+| c6in\.32xlarge | 13 | 120 | 
 | c7g\.medium | 1 | 4 | 
 | c7g\.large | 2 | 10 | 
 | c7g\.xlarge | 3 | 20 | 
@@ -358,6 +385,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 
 | Instance type | Task limit without ENI trunking | Task limit with ENI trunking | 
 | --- | --- | --- | 
+| hpc6id\.32xlarge | 1 | 120 | 
 | r5\.large | 2 | 10 | 
 | r5\.xlarge | 3 | 20 | 
 | r5\.2xlarge | 3 | 40 | 
@@ -428,6 +456,24 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | r6i\.24xlarge | 14 | 120 | 
 | r6i\.32xlarge | 14 | 120 | 
 | r6i\.metal | 14 | 120 | 
+| r6idn\.large | 2 | 10 | 
+| r6idn\.xlarge | 3 | 20 | 
+| r6idn\.2xlarge | 3 | 40 | 
+| r6idn\.4xlarge | 7 | 60 | 
+| r6idn\.8xlarge | 7 | 90 | 
+| r6idn\.12xlarge | 7 | 120 | 
+| r6idn\.16xlarge | 14 | 120 | 
+| r6idn\.24xlarge | 14 | 120 | 
+| r6idn\.32xlarge | 13 | 120 | 
+| r6in\.large | 2 | 10 | 
+| r6in\.xlarge | 3 | 20 | 
+| r6in\.2xlarge | 3 | 40 | 
+| r6in\.4xlarge | 7 | 60 | 
+| r6in\.8xlarge | 7 | 90 | 
+| r6in\.12xlarge | 7 | 120 | 
+| r6in\.16xlarge | 14 | 120 | 
+| r6in\.24xlarge | 14 | 120 | 
+| r6in\.32xlarge | 13 | 120 | 
 | r6id\.large | 2 | 10 | 
 | r6id\.xlarge | 3 | 20 | 
 | r6id\.2xlarge | 3 | 40 | 
@@ -468,7 +514,6 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | x2iezn\.8xlarge | 7 | 120 | 
 | x2iezn\.12xlarge | 14 | 120 | 
 | x2iezn\.metal | 14 | 120 | 
-| z1d\.large | 2 | 14 | 
 
 ### Storage optimized<a name="eni-branch-so"></a>
 
@@ -489,7 +534,6 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | im4gn\.4xlarge | 7 | 60 | 
 | im4gn\.8xlarge | 7 | 60 | 
 | im4gn\.16xlarge | 14 | 120 | 
-| im4gn\.metal | 14 | 120 | 
 | is4gen\.medium | 1 | 4 | 
 | is4gen\.large | 2 | 10 | 
 | is4gen\.xlarge | 3 | 20 | 
@@ -508,13 +552,6 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | g4ad\.4xlarge | 2 | 12 | 
 | g4ad\.8xlarge | 3 | 12 | 
 | g4ad\.16xlarge | 7 | 12 | 
-| g4dn\.xlarge | 2 | 40 | 
-| g4dn\.2xlarge | 2 | 40 | 
-| g4dn\.4xlarge | 2 | 60 | 
-| g4dn\.8xlarge | 3 | 60 | 
-| g4dn\.12xlarge | 7 | 60 | 
-| g4dn\.16xlarge | 3 | 120 | 
-| g4dn\.metal | 14 | 120 | 
 | g5\.xlarge | 3 | 6 | 
 | g5\.2xlarge | 3 | 19 | 
 | g5\.4xlarge | 7 | 40 | 
@@ -522,22 +559,20 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | g5\.12xlarge | 14 | 120 | 
 | g5\.16xlarge | 7 | 120 | 
 | g5\.24xlarge | 14 | 120 | 
-| g5\.48xlarge | 14 | 120 | 
+| g5\.48xlarge | 6 | 120 | 
 | g5g\.xlarge | 3 | 20 | 
 | g5g\.2xlarge | 3 | 40 | 
 | g5g\.4xlarge | 7 | 60 | 
 | g5g\.8xlarge | 7 | 60 | 
 | g5g\.16xlarge | 14 | 120 | 
 | g5g\.metal | 14 | 120 | 
-| inf1\.xlarge | 3 | 40 | 
-| inf1\.2xlarge | 3 | 40 | 
-| inf1\.6xlarge | 7 | 60 | 
-| inf1\.24xlarge | 10 | 120 | 
 | p3\.2xlarge | 3 | 40 | 
 | p3\.8xlarge | 7 | 60 | 
 | p3\.16xlarge | 7 | 120 | 
 | p4d\.24xlarge | 59 | 120 | 
 | p4de\.24xlarge | 59 | 120 | 
+| trn1\.2xlarge | 3 | 19 | 
+| trn1\.32xlarge | 39 | 120 | 
 | vt1\.3xlarge | 3 | 40 | 
 | vt1\.6xlarge | 7 | 60 | 
 | vt1\.24xlarge | 14 | 120 | 

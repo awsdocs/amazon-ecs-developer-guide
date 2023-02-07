@@ -1,8 +1,8 @@
 # Managing container swap space<a name="container-swap"></a>
 
-With Amazon ECS, you can control the usage of swap memory space on your Linux container instances at the container level\. Using a per\-container swap configuration, each container within a task definition can have swap enabled or disabled\. For those that have it enabled, the maximum amount of swap space that's used can be limited\. For example, latency\-critical containers can have swap disabled\. In contrast, containers with high transient memory demands can have swap turned on to reduce the chances of out\-of\-memory errors when the container is under load\.
+With Amazon ECS, you can control the usage of swap memory space on your Linux\-based Amazon EC2 instances at the container level\. Using a per\-container swap configuration, each container within a task definition can have swap enabled or disabled\. For those that have it enabled, the maximum amount of swap space that's used can be limited\. For example, latency\-critical containers can have swap disabled\. In contrast, containers with high transient memory demands can have swap turned on to reduce the chances of out\-of\-memory errors when the container is under load\.
 
-The swap configuration for a container is managed by the following container definition parameters:
+The swap configuration for a container is managed by the following container definition parameters\.
 
 `maxSwap`  
 The total amount of swap memory \(in MiB\) a container can use\. This parameter is translated to the `--memory-swap` option to [docker run](https://docs.docker.com/engine/reference/run/) where the value is the sum of the container memory plus the `maxSwap` value\.  
@@ -27,9 +27,7 @@ In the following example, the JSON syntax is provided\.
 ## Container swap considerations<a name="container-swap-considerations"></a>
 
 Consider the following when you use a per\-container swap configuration\.
-+ Swap space must be enabled and allocated on the container instance for the containers to use\.
-**Note**  
-By default, the Amazon ECS optimized AMIs do not have swap enabled\. You must enable swap on the instance to use this feature\. For more information, see [Instance Store Swap Volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-store-swap-volumes.html) in the *Amazon EC2 User Guide for Linux Instances* or [How do I allocate memory to work as swap space in an Amazon EC2 instance by using a swap file?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/)\.
-+ The swap space container definition parameters are only supported for task definitions that use the EC2 launch type\.
-+ This feature is only supported for Linux containers\.
++ Swap space must be enabled and allocated on the Amazon EC2 instance hosting your tasks for the containers to use\. By default, the Amazon ECS optimized AMIs do not have swap enabled\. You must enable swap on the instance to use this feature\. For more information, see [Instance Store Swap Volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-store-swap-volumes.html) in the *Amazon EC2 User Guide for Linux Instances* or [How do I allocate memory to work as swap space in an Amazon EC2 instance by using a swap file?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/)\.
++ The swap space container definition parameters are only supported for task definitions that specify the EC2 launch type\. These parameters are not supported for task definitions intended only for Amazon ECS on Fargate use\.
++ This feature is only supported for Linux containers\. Windows containers are not supported currently\.
 + If the `maxSwap` and `swappiness` container definition parameters are omitted from a task definition, each container has a default `swappiness` value of `60`\. Moreover, the total swap usage is limited to two times the memory reservation of the container\.

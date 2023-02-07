@@ -1,5 +1,10 @@
 # Getting started with the classic console using Amazon EC2<a name="getting-started-ecs-ec2"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Getting started with the console using Amazon EC2](getting-started-ecs-ec2-v2.md)\. | 
+
 Amazon Elastic Container Service \(Amazon ECS\) is a fast and highly scalable container management service that makes it easy to launch and manage your containers\. For a broad overview on Amazon ECS, see [What is Amazon Elastic Container Service?](Welcome.md)\.
 
 Get started with Amazon ECS using the EC2 launch type by registering a task definition, creating a cluster, and creating a service in the classic console\.

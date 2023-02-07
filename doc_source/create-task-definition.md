@@ -1,4 +1,4 @@
-# Creating a task definition using the new console<a name="create-task-definition"></a>
+# Creating a task definition using the console<a name="create-task-definition"></a>
 
 Create your task definitions using the Amazon ECS console\. To make the task definition creation process as easy as possible, the console has default selections for many choices which we describe below\. There are also help panels available for most of the sections in the console which provide further context\.
 

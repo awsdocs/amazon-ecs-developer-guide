@@ -25,6 +25,7 @@ Amazon ECS Linux containers on AWS Fargate are supported in the following AWS Re
 |  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
 |  Asia Pacific \(Jakarta\)  |  ap\-southeast\-3  | 
+|  Asia Pacific \(Melbourne\)  |  ap\-southeast\-4  | 
 |  Canada \(Central\)  |  ca\-central\-1 \(`cac1-az1` & `cac1-az2` only\)  | 
 |  China \(Beijing\)  |  cn\-north\-1 \(`cnn1-az1` & `cnn1-az2` only\)  | 
 |  China \(Ningxia\)  |  cn\-northwest\-1  | 
@@ -68,4 +69,5 @@ Amazon ECS Windows containers on AWS Fargate are supported in the following AWS 
 |  Europe \(Milan\)  |  eu\-south\-1  | 
 |  Europe \(Stockholm\)  |  eu\-north\-1  | 
 |  South America \(São Paulo\)  |  sa\-east\-1  | 
+|  Middle East \(UAE\)  |  me\-central\-1  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  | 

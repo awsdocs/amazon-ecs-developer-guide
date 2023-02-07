@@ -18,10 +18,20 @@ The following is the format of the parameter name for each Amazon ECS\-optimized
   ```
   /aws/service/ecs/optimized-ami/amazon-linux-2/<version>
   ```
++ Amazon Linux 2 kernel 5\.10 AMI metadata:
+
+  ```
+  /aws/service/ecs/optimized-ami/amazon-linux-2/kernel-5.10/<version>
+  ```
 + Amazon Linux 2 \(arm64\) AMI metadata:
 
   ```
   /aws/service/ecs/optimized-ami/amazon-linux-2/arm64/<version>
+  ```
++ Amazon Linux 2 kernel 5\.10 \(arm64\) AMI metadata:
+
+  ```
+  /aws/service/ecs/optimized-ami/amazon-linux-2/kernel-5.10/arm64/<version>
   ```
 + Amazon Linux 2 \(GPU\) AMI metadata:
 
@@ -78,10 +88,20 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   ```
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended --region us-east-1
   ```
++ **For the Amazon ECS\-optimized Amazon Linux 2 kernel 5\.10 AMIs:**
+
+  ```
+  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/kernel-5.10/recommended --region us-east-1
+  ```
 + **For the Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMIs:**
 
   ```
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended --region us-east-1
+  ```
++ **For the Amazon ECS\-optimized Amazon Linux 2 kernel 5\.10 \(arm64\) AMIs:**
+
+  ```
+  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/kernel-5.10/arm64/recommended --region us-east-1
   ```
 + **For the Amazon ECS GPU\-optimized AMIs:**
 

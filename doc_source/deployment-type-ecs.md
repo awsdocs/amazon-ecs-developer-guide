@@ -24,3 +24,5 @@ You can use either method, or both methods together\. When you use both methods 
 Use the following guidelines to help determine which method to use:
 + Circuit breaker \- Use this method when you want to stop a deployment when the tasks can't start\.
 + CloudWatch alarms \- Use this method when you want to stop a deployment based on application metrics\.
+
+For information about how Amazon ECS deployment process, see [Task deployment](https://docs.aws.amazon.com/AmazonECS/latest/bestpracticesguide/service-options.html) in the Amazon ECS *Best Practices Guide*\.

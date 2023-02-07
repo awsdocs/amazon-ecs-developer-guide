@@ -6,7 +6,7 @@ For each external instance you register with an Amazon ECS cluster, it must have
 Before registering your Linux external instance with the cluster, create the `/etc/ecs/ecs.config` file on your external instance and add any container agent configuration parameters that you want\. You can't do this after registering the external instance to a cluster\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 ------
-#### [ New AWS Management Console ]
+#### [ AWS Management Console ]
 
 1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 

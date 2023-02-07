@@ -1,5 +1,10 @@
 # Getting started with Amazon ECS using the classic console<a name="getting-started-console"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. | 
+
 The following guides provide an introduction to the classic AWS Management Console to complete the common tasks to run your containers on Amazon ECS and AWS Fargate\.
 
 **Topics**

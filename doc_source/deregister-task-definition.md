@@ -1,5 +1,10 @@
 # Deregistering a task definition revision<a name="deregister-task-definition"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Deregistering a task definition revision using the console](deregister-task-definition-v2.md)\. | 
+
 If you decide that you no longer need a specific task definition revision in Amazon ECS, you can deregister the task definition revision so that it no longer displays in your `ListTaskDefinition` API calls or in the console when you want to run a task or update a service\.
 
 When you deregister a task definition revision, it's immediately marked as `INACTIVE`\. Existing tasks and services that reference an `INACTIVE` task definition revision continue to run without disruption\. Existing services that reference an `INACTIVE` task definition revision can still scale up or down by modifying the service's desired count\.

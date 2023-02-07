@@ -1,6 +1,6 @@
 # Exporting application metrics to Amazon CloudWatch<a name="application-metrics-cloudwatch"></a>
 
-Amazon ECS on Fargate supports exporting your custom application metrics to Amazon CloudWatch as custom metrics\. This is done by adding the AWS Distro for OpenTelemetry sidecar container to your task definition\. The new Amazon ECS console experience simplifies this process by adding the **Use metric collection** option when creating a new task definition\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+Amazon ECS on Fargate supports exporting your custom application metrics to Amazon CloudWatch as custom metrics\. This is done by adding the AWS Distro for OpenTelemetry sidecar container to your task definition\. The new Amazon ECS console experience simplifies this process by adding the **Use metric collection** option when creating a new task definition\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
 
 The application metrics are exported to CloudWatch Logs with log group name `/aws/ecs/application/metrics` and the metrics can be viewed in the `ECS/AWSOTel/Application` namespace\. Your application must be instrumented with the OpenTelemetry SDK\. For more information, see [Introduction to AWS Distro for OpenTelemetry](https://aws-otel.github.io/docs/introduction) in the AWS Distro for OpenTelemetry documentation\.
 
@@ -68,7 +68,7 @@ If your application requires any additional permissions, you should add them to 
 
 ## Specifying the AWS Distro for OpenTelemetry sidecar in your task definition<a name="application-metrics-cloudwatch-containerdefinitions"></a>
 
-The new Amazon ECS console experience simplifies the experience of creating the AWS Distro for OpenTelemetry sidecar container by using the **Use metric collection** option\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+The new Amazon ECS console experience simplifies the experience of creating the AWS Distro for OpenTelemetry sidecar container by using the **Use metric collection** option\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
 
 If you're not using the Amazon ECS console, you can add the AWS Distro for OpenTelemetry sidecar container to your task definition manually\. The following task definition example shows the container definition for adding the AWS Distro for OpenTelemetry sidecar for Amazon CloudWatch integration\.
 

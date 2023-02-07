@@ -55,50 +55,6 @@ Before you begin, assign the appropriate IAM permission\. For more information, 
 
    The name can contain up to 255 letters \(uppercase and lowercase\), numbers, and hyphens\.
 
-1. \(Optional\) To change the VPC and subnets where your tasks and services launch, under **Networking**, perform any of the following operations:
-   + To remove a subnet, under **Subnets**, choose **X** for each subnet that you want to remove\.
-   + To change to a VPC other than the **default** VPC, under **VPC**, choose an existing **VPC**, and then under **Subnets**, select each subnet\.
-
-1. \(Optional\) To add Amazon EC2 instances to your cluster, expand **Infrastructure**, and then select **Amazon EC2 instances**\. Next, configure the Auto Scaling group which acts as the capacity provider:
-
-   1. To using an existing Auto Scaling group, from **Auto Scaling group \(ASG\)**, select the group\.
-
-   1. To create a Auto Scaling group, from **Auto Scaling group \(ASG\)**, select **Create new group**, and then provide the following details about the group:
-      + For **Operating system/Architecture**, choose the Amazon ECS\-optimized AMI for the Auto Scaling group instances\.
-      + For **EC2 instance type**, choose the instance type for your workloads\.
-
-         Managed scaling works best if your Auto Scaling group uses the same or similar instance types\. 
-      + For **SSH key pair**, choose the pair that proves your identity when you connect to the instance\.
-      + For **Capacity**, enter the minimum number and the maximum number of instances to launch in the Auto Scaling group\. 
-
-1. \(Optional\) To turn on Container Insights, expand **Monitoring**, and then turn on **Use Container Insights**\.
-
-1. \(Optional\) To manage the cluster tags, expand **Tags**, and then perform one of the following operations:
-
-   \[Add a tag\] Choose **Add tag** and do the following:
-   + For **Key**, enter the key name\.
-   + For **Value**, enter the key value\.
-
-   \[Remove a tag\] Choose **Remove** to the right of the tag’s Key and Value\.
-
-1. Choose **Create**\.
-
-**To create a new cluster \(Amazon ECS console\)**
-
-Before you begin, assign the appropriate IAM permission\. For more information, see [Cluster examples](security_iam_id-based-policy-examples.md#IAM_cluster_policies)\.
-
-1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
-
-1. From the navigation bar, select the Region to use\.
-
-1. In the navigation pane, choose **Clusters**\.
-
-1. On the **Clusters** page, choose **Create cluster**\.
-
-1. Under **Cluster configuration**, for **Cluster name**, enter a unique name\.
-
-   The name can contain up to 255 letters \(uppercase and lowercase\), numbers, and hyphens\.
-
 1. \(Optional\) To change the name of the default namespace\. for **Namespace**, enter a unique name\.
 
 1. \(Optional\) To change the VPC and subnets where your tasks and services launch, under **Networking**, perform any of the following operations:

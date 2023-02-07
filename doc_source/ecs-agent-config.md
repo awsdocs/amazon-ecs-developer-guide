@@ -95,6 +95,12 @@ Default value on Linux: `none`, if `ECS_LOG_DRIVER` is explicitly set to a non\-
 Default value on Windows: `none`, if `ECS_LOG_DRIVER` is explicitly set to a non\-empty value; otherwise the same value as `ECS_LOGLEVEL`  
 Can be used to override `ECS_LOGLEVEL` and set a level of detail that should be logged in the on\-instance log file, separate from the level that is logged in the logging driver\. If a logging driver is explicitly set, on\-instance logs are turned off by default, but can be turned back on with this variable\.
 
+`ECS_LOG_DRIVER`  
+Example values: `awslogs`, `fluentd`, `gelf`, `json-file`, `journald`, `logentries` `syslog`, `splunk`  
+Default value on Linux: `json-file`  
+Default value on Windows: Not applicable  
+Determines the logging driver to be used by the agent container\.
+
 `ECS_CHECKPOINT`  
 Example values: `true` \| `false`  
 Default value on Linux: If `ECS_DATADIR` is explicitly set to a non\-empty value, then `ECS_CHECKPOINT` is set to `true`; otherwise, it is set to `false`\.  
@@ -170,6 +176,12 @@ Default value on Linux: `3h`
 Default value on Windows: `3h`  
 Time to wait from when a task is stopped until the Docker container is removed\. As this removes the Docker container data, be aware that if this value is set too low, you may not be able to inspect your stopped containers or view the logs before they are removed\. The minimum duration is `1s`; any value shorter than 1 second is ignored\.
 
+`ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION_JITTER`  
+Example values: `1h` \(Valid time units are "ns", "us" \(or "µs"\), "ms", "s", "m", and "h"\.\)  
+Default value on Linux: Blank  
+Default value on Windows: `3h`  
+The Jitter time to wait for the task engine cleanup\. When specified, the actual cleanup wait duration time for each task will be the duration specified in `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` plus a random duration between 0 and the jitter duration\.
+
 `ECS_CONTAINER_STOP_TIMEOUT`  
 Example values: `10m` \(Valid time units are "ns", "us" \(or "µs"\), "ms", "s", "m", and "h"\.\)  
 Default value on Linux: `30s`  
@@ -181,6 +193,12 @@ Example values: `10m` \(Valid time units are "ns", "us" \(or "µs"\), "ms", "s",
 Default value on Linux: `3m`  
 Default value on Windows: `8m`  
 Time to wait before giving up on starting a container\.
+
+`ECS_CONTAINER_CREATE_TIMEOUT`  
+Example values: `10m` \(Valid time units are "ns", "us" \(or "µs"\), "ms", "s", "m", and "h"\.\)  
+Default value on Linux: `4m`  
+Default value on Windows: `4m`  
+Time to wait before giving up on creating a container\.
 
 `HTTP_PROXY`  
 Example values: `10.0.0.131:3128`  
@@ -269,7 +287,13 @@ An invalid JSON value for this variable causes the agent to exit with a code of 
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-Whether to enable task networking for tasks to be launched with their own network interface\.
+Whether to turn on task networking for tasks to be launched with their own network interface\.
+
+`ECS_ENABLE_HIGH_DENSITY_ENI`  
+Example values: `true` \| `false`  
+Default value on Linux: `false`  
+Default value on Windows: Not applicable  
+Whether to turn on high density when using task networking\.
 
 `ECS_CNI_PLUGINS_PATH`  
 Example values: `/ecs/cni`  
@@ -295,11 +319,23 @@ Default value on Linux: `false`
 Default value on Windows: `false`  
 When `true`, the agent creates a file describing the container's metadata\. The file can be located and consumed by using the container environment variable `$ECS_CONTAINER_METADATA_FILE`\.
 
+`ECS_FSX_WINDOWS_FILE_SERVER_SUPPORTED`  
+Example values: `true` \| `false`  
+Default value on Linux: `false`  
+Default value on Windows: `true`  
+Whether FSx for Windows File Server volume type is supported on the container instance\. This variable is only supported on agent versions 1\.47\.0 and later\.
+
 `ECS_HOST_DATA_DIR`  
 Example values: `/var/lib/ecs`  
 Default value on Linux: `/var/lib/ecs`  
 Default value on Windows: Not applicable  
 The source directory on the host from which `ECS_DATADIR` is mounted\. We use this to determine the source mount path for container metadata files when the Amazon ECS agent is running as a container\. We do not use this value in Windows because the Amazon ECS agent does not run as a container\.
+
+`ECS_ENABLE_RUNTIME_STATS`  
+Example values: `true` \| `false`  
+Default value on Linux: `false`  
+Default value on Windows: `false`  
+Determines if pprof is turned on for the agent\. If it is on, the different profiles can be accessed through the agent's introspection port \(for example, `curl http://localhost:51678/debug/pprof/heap > heap.pprof`\)\. In addition, agent's runtime stats are logged to the `/var/log/ecs/runtime-stats.log` file\.
 
 `ECS_ENABLE_TASK_CPU_MEM_LIMIT`  
 Example values: `true` \| `false`  
@@ -448,6 +484,20 @@ Default value on Windows: `false`
 Set this variable to `true` only if you have an Auto Scaling group and want a warm pool associated with it\.  
 When true, the Amazon ECS agent polls the instance metadata to determine if the instance is ready to be included in the Amazon ECS cluster\. When your application needs to scale out, the Auto Scaling group will quickly move the required number of pre\-initialized instances from the warm pool to the cluster\.  
 This variable is available in agent version `1.59.0` and later\.
+
+`CREDENTIALS_FETCHER_HOST`  
+Example values: `unix:///var/credentials-fetcher/socket/credentials_fetcher.sock`  
+Default value on Linux: `unix:///var/credentials-fetcher/socket/credentials_fetcher.sock`  
+Default value on Windows: Not Applicable  
+Set this variable to `true` only if you have an Auto Scaling group and want a warm pool associated with it\.  
+Used to create a connection to the `[credentials\-fetcher](https://github.com/aws/credentials-fetcher)` daemon to support gMSA on Linux\. The default is fine for most users\. You only need to modify this value when you use a custom credentials\-fetcher socket path, for example, [https://github.com/aws/credentials-fetcher#default-environment-variables](https://github.com/aws/credentials-fetcher#default-environment-variables)\.
+
+`CREDENTIALS_FETCHER_SECRET_NAME_FOR_DOMAINLESS_GMSA`  
+Example values: `secretmanager-secretname`  
+Default value on Linux: `secretmanager-secretname`  
+Default value on Windows: Not Applicable  
+Set this variable to `true` only if you have an Auto Scaling group and want a warm pool associated with it\.  
+Used to support the scaling option for the gMSA on Linux `[credentials\-fetcher](https://github.com/aws/credentials-fetcher)` daemon\. If you configure gMSA on a non\-domain joined instance, you need to create an Active Directory user with access to retrieve principals for the gMSA account and store it in secrets manager
 
 `ECS_DYNAMIC_HOST_PORT_RANGE`  
 Example values: `100-200`  

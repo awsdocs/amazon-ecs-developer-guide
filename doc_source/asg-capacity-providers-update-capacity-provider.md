@@ -1,5 +1,10 @@
 # Updating an Auto Scaling group capacity provider using the classic console<a name="asg-capacity-providers-update-capacity-provider"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Updating a capacity provider using the console](update-capacity-provider-console-v2.md)\. | 
+
 A capacity provider can be updated to change its managed scaling and managed termination protection settings\. Use the following steps to update an existing capacity provider\.
 
 **To update an Auto Scaling group capacity provider \(classic AWS Management Console\)**

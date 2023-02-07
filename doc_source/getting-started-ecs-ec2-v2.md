@@ -76,46 +76,27 @@ Before you can run Windows containers in your Amazon ECS cluster, you must regis
    {
        "containerDefinitions": [
            {
-               "command": [
-                   "New-Item -Path C:\\inetpub\\wwwroot\\index.html -Type file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p>'; C:\\ServiceMonitor.exe w3svc"
-               ],
                "entryPoint": [
-                   "powershell",
-                   "-Command"
+                   "sh",
+                   "-c"
                ],
-               "essential": true,
-               "cpu": 2048,
-               "memory": 4096,      
-               "image": "mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019",
-               "logConfiguration": {
-                   "logDriver": "awslogs",
-                   "options": {
-                       "awslogs-group": "/ecs/fargate-windows-task-definition",
-                       "awslogs-region": "us-east-1",
-                       "awslogs-stream-prefix": "ecs"
-                   }
-               },
-               "name": "sample_windows_app",
                "portMappings": [
                    {
                        "hostPort": 80,
-                       "containerPort": 80,
-                       "protocol": "tcp"
+                       "protocol": "tcp",
+                       "containerPort": 80
                    }
-               ]
+               ],
+               "command": [
+                   "/bin/sh -c \"echo '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p> </div></body></html>' >  /usr/local/apache2/htdocs/index.html && httpd-foreground\""
+               ],
+               "cpu": 10,
+               "memory": 300,
+               "image": "httpd:2.4",
+               "name": "simple-app"
            }
        ],
-       "memory": "4096",
-       "cpu": "2048",
-       "networkMode": "awsvpc",
-       "family": "windows-simple-iis-2019-core",
-       "executionRoleArn": "arn:aws:iam::012345678910:role/ecsTaskExecutionRole",
-       "runtimePlatform": {
-           "operatingSystemFamily": "WINDOWS_SERVER_2019_CORE"
-       },
-       "requiresCompatibilities": [
-           "FARGATE"
-       ]
+       "family": "console-sample-app-static"
    }
    ```
 

@@ -1,5 +1,10 @@
 # Connect to your container Windows instance using the classic console<a name="instance-windows-connect-classic-console"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Connect to your container Windows instance](instance-windows-connect.md)\. | 
+
 You can connect to your Windows instances to perform basic administrative tasks, such as installing or updating software or accessing diagnostic logs\. To connect to your instance using Remote Desktop Protocol \(RDP\), your Windows instance must meet the following prerequisites\.
 + Amazon EC2 instances created from most Windows AMIs allow you to connect using Remote Desktop Protocol \(RDP\)\. RDP allows you to connect to and use your instance in the same way you use a computer sitting in front of you\. It is available on most editions of Windows and available for Mac OS\.
 + Your Windows instance must have been launched with a valid Amazon EC2 key pair\. Amazon EC2 instances have no password, you use a key pair for access over RDP\. If you did not specify a key pair when you launched your instance, there is no way to connect to the instance\.

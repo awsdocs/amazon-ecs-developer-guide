@@ -1,6 +1,9 @@
 # Additional configuration for Windows IAM roles for tasks<a name="windows_task_IAM_roles"></a>
 
-The IAM roles for tasks with Windows features requires additional configuration, but much of this configuration is similar to configuring IAM roles for tasks on Linux container instances\. The following requirements must be met to configure IAM roles for tasks for Windows containers\.
+**Important**  
+For Windows containers on Fargate that use task roles, no further action is necessary\. For Windows containers on EC2 that use task roles, follow these steps\.
+
+The IAM roles for tasks with Windows features requires additional configuration on EC2, but much of this configuration is similar to configuring IAM roles for tasks on Linux container instances\. The following requirements must be met to configure IAM roles for tasks for Windows containers\.
 + When you launch your container instances, you must set the `-EnableTaskIAMRole` option in the container instances user data script\. The `EnableTaskIAMRole` turns on the Task IAM roles feature for the tasks\. For example:
 
   ```

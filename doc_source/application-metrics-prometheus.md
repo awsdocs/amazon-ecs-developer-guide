@@ -1,6 +1,6 @@
 # Exporting application metrics to Amazon Managed Service for Prometheus<a name="application-metrics-prometheus"></a>
 
-Amazon ECS supports exporting your task\-level CPU, memory, network, and storage metrics and your custom application metrics to Amazon Managed Service for Prometheus\. This is done by adding the AWS Distro for OpenTelemetry sidecar container to your task definition\. The new Amazon ECS console experience simplifies this process by adding the **Use metric collection** option when creating a new task definition\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+Amazon ECS supports exporting your task\-level CPU, memory, network, and storage metrics and your custom application metrics to Amazon Managed Service for Prometheus\. This is done by adding the AWS Distro for OpenTelemetry sidecar container to your task definition\. The new Amazon ECS console experience simplifies this process by adding the **Use metric collection** option when creating a new task definition\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
 
 The metrics are exported to Amazon Managed Service for Prometheus and can be viewed using the Amazon Managed Grafana dashboard\. Your application must be instrumented with either Prometheus libraries or with the OpenTelemetry SDK\. For more information about instrumenting your application with the OpenTelemetry SDK, see [Introduction to AWS Distro for OpenTelemetry](https://aws-otel.github.io/docs/introduction) in the AWS Distro for OpenTelemetry documentation\.
 
@@ -39,7 +39,7 @@ If you're also collecting application trace data using the AWS Distro for OpenTe
 
 ## Specifying the AWS Distro for OpenTelemetry sidecar in your task definition<a name="application-metrics-prometheus-containerdefinitions"></a>
 
-The new Amazon ECS console experience simplifies the experience of creating the AWS Distro for OpenTelemetry sidecar container by using the **Use metric collection** option\. For more information, see [Creating a task definition using the new console](create-task-definition.md)\.
+The new Amazon ECS console experience simplifies the experience of creating the AWS Distro for OpenTelemetry sidecar container by using the **Use metric collection** option\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
 
 If you're not using the Amazon ECS console, you can add the AWS Distro for OpenTelemetry sidecar container to your task definition manually\. The following task definition example shows the container definition for adding the AWS Distro for OpenTelemetry sidecar for Amazon Managed Service for Prometheus integration\.
 

@@ -1,5 +1,10 @@
 # Run a standalone task in the classic Amazon ECS console<a name="ecs_run_task"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Running a standalone task using the Amazon ECS console](ecs_run_task-v2.md)\. | 
+
 We recommend that you deploy your application as a standalone task in some situations\. For example, suppose that you're developing an application but you're not ready to deploy it with the service scheduler\. If your application is a one\-time or periodic batch job, it doesn't make sense to keep running or restart when it finishes\.
 
 To deploy your application to run continually or to place it behind a load balancer, create an Amazon ECS service\. For more information, see [Amazon ECS services](ecs_services.md)\.

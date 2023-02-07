@@ -1,5 +1,10 @@
 # Getting started with Windows containers using the classic console<a name="ECS_Windows_getting_started"></a>
 
+
+|  | 
+| --- |
+| The new experience is now the default in the Amazon ECS console\. For more information, see [Getting started with the console using Amazon EC2](getting-started-ecs-ec2-v2.md)\. | 
+
 This tutorial walks you through getting Windows containers running on either Amazon ECS with the Amazon ECS\-optimized Windows Server AMI in the AWS Management Console\. 
 
 You create a cluster for your Windows container instances, launch one or more container instances into your cluster, register a task definition that uses a Windows container image, create a service that uses that task definition, and then view the sample webpage that the container runs\. For more information, see [Amazon EC2 Windows containers](ECS_Windows.md)\.
