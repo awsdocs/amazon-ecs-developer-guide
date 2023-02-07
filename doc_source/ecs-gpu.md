@@ -106,7 +106,7 @@ The following example demonstrates the syntax for a Docker container that specif
       "memory": 80,
       "essential": true,
       "name": "gpu",
-      "image": "nvidia/cuda:11.0-base",
+      "image": "nvidia/cuda:11.0.3-base",
       "resourceRequirements": [
          {
            "type":"GPU",
