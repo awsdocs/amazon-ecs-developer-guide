@@ -18,7 +18,6 @@ When you use the Amazon ECS console **Create Cluster** with the **Amazon EC2 ins
 + The Auto Scaling group can't have instance weighting settings\. Instance weighting isn't supported when used with an Amazon ECS capacity provider\.
 + If managed termination protection is turned on when you create a capacity provider, the Auto Scaling group and each Amazon EC2 instance in the Auto Scaling group must have instance protection from scale in turned on\. For more information, see [Instance Protection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection) in the *AWS Auto Scaling User Guide*\.
 + If managed scaling is turned on when you create a capacity provider, the Auto Scaling group desired count can be set to `0`\. When managed scaling is turned on, Amazon ECS manages the scale\-in and scale\-out actions of the Auto Scaling group\.
-+ The Auto Scaling group can't have instance weighting settings\. Instance weighting isn't supported when used with an Amazon ECS capacity provider\.
 
 For more information about creating an Amazon EC2 Auto Scaling launch template, see [Launch Templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchTemplates.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
