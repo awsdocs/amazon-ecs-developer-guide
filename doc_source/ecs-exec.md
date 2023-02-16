@@ -24,9 +24,8 @@ For this topic, you should be familiar with the following aspects involved with 
   + Amazon ECS\-optimized Windows Server 2019 Core AMI
   + Amazon ECS\-optimized Windows Server 20H2 Core AMI
 + ECS Exec is not currently supported using the AWS Management Console\.
-+ ECS Exec is not currently supported for tasks launched using an Auto Scaling group capacity provider\.
 + If you are using interface Amazon VPC endpoints with Amazon ECS, you must create the interface Amazon VPC endpoints for Systems Manager Session Manager\. For more information, see [Create the Systems Manager Session Manager VPC endpoints when using the ECS Exec feature](vpc-endpoints.md#ecs-vpc-endpoint-ecsexec)\.
-+ If you are using interface Amazon VPC endpoints with Amazon ECS, and you are using AWS KMS key for encryption, then you must create the interface Amazon VPC endpoint for must create the interface Amazon VPC endpoints for AWS KMS key\. For more information, see [Connecting to AWS KMS key through a VPC endpoint](https://docs.aws.amazon.com/kms/latest/developerguide/kms-vpc-endpoint.html) in the *AWS Key Management Service Developer Guide*\.
++ If you are using interface Amazon VPC endpoints with Amazon ECS, and you are using AWS KMS key for encryption, then you must create the interface Amazon VPC endpoint for AWS KMS key\. For more information, see [Connecting to AWS KMS key through a VPC endpoint](https://docs.aws.amazon.com/kms/latest/developerguide/kms-vpc-endpoint.html) in the *AWS Key Management Service Developer Guide*\.
 + You can't turn on ECS Exec for existing tasks\. It can only be turned on for new tasks\.
 + When a user runs commands on a container using ECS Exec, these commands are run as the `root` user\. The SSM agent and its child processes run as root even when you specify a user ID for the container\.
 + The ECS Exec session has an idle timeout time of 20 minutes\. This value cannot be changed\.
