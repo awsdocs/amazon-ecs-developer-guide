@@ -21,6 +21,7 @@ Consider the following when using a Bottlerocket AMI with Amazon ECS\.
 + Amazon EC2 instances with x86 or arm64 processors are supported\.
 + Amazon EC2 instances with Inferentia chips are not supported\.
 + The `awsvpc` network mode is supported when using Bottlerocket AMI version `1.1.0` or later\.
++ FireLens is supported when using Bottlerocket AMI version `1.13.0` or later\.
 + The `initProcessEnabled` task definition parameter is not supported\.
 + The following features are not supported:
   + App Mesh in task definitions
@@ -29,7 +30,6 @@ Consider the following when using a Bottlerocket AMI with Amazon ECS\.
   + Amazon EFS file system volumes
   + Amazon EFS in encrypted mode and `awsvpc` network mode
   + Elastic Inference
-  + FireLens in task definitions
 
 ## Retrieving an Amazon ECS\-optimized Bottlerocket AMI<a name="ecs-bottlerocket-retrieve-ami"></a>
 
