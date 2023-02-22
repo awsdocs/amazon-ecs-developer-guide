@@ -61,6 +61,8 @@ ECS_ENGINE_AUTH_TYPE=dockercfg
 ECS_ENGINE_AUTH_DATA={"https://index.docker.io/v1/":{"auth":"zq212MzEXAMPLE7o6T25Dk0i","email":"email@example.com"}}
 ```
 
+If you are having trouble authenticating to Dockerhub with an `/etc/ecs/ecs.config` like the above example, the problem may be in your `auth` string.  Dockerhub may require `<username:auth_token>` in a Base64 encoded format.
+
 You can configure multiple private registries with the following syntax:
 
 ```
