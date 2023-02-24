@@ -6,7 +6,7 @@ When task status changes are requested, such as stopping a task or updating the 
 
 The flow chart below shows the task lifecycle flow\.
 
-![\[Task Lifecycle\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/task-lifecycle.png)
+![\[Diagram of the task lifecycle states. The states are PROVISIONING, PENDING, ACTIVATING, RUNNING, DEACTOVATING, STOPPING.\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/task-lifecycle.png)
 
 ## Lifecycle states<a name="lifecycle-states"></a>
 

@@ -6,9 +6,9 @@ Consider the following when specifying a platform version:
 + When specifying a platform version, you can use either a specific version number, for example `1.4.0`, or `LATEST`\.
 
   When the **LATEST** platform version is selected, `1.4.0` platform version is used\.
-+ In the China \(Beijing\) and China \(Ningxia\) Regions, the only supported platform versions are `1.4.0` and `1.3.0`\. The AWS Management Console displays older platform versions but an error will be returned if they are chosen\. The `LATEST` platform version is supported because it uses the `1.4.0` platform version\.
-+ If you have a service with running tasks and want to update their platform version, you can update your service, specify a new platform version, and choose **Force new deployment**\. Your tasks are redeployed with the latest platform version\. 
-+ If your service is scaled up without updating the platform version, those tasks receive the platform version that was specified on the service's current deployment\.
++ If you want to update the platform version for a service, create a deployment\. For example, assume that you have a service that runs tasks on the Linux platform version `1.3.0`\. To change the service to run tasks on the Linux platform version `1.4.0`, you can update your service and specify a new platform version\. Your tasks are redeployed with the latest platform version and the latest platform version revision\. For more information about deployments, see [Amazon ECS Deployment types](deployment-types.md)\.
++ If your service is scaled up without updating the platform version, those tasks receive the platform version that was specified on the service's current deployment\. For example, assume that you have a service that runs tasks on the Linux platform version `1.3.0`\. If you increase the desired count of the service, the service scheduler starts the new tasks using the latest platform version revision of platform version `1.3.0`\.
++ New tasks always run on the latest revision of a platform version, ensuring that tasks are always started on secured and patched infrastructure\.
 
 The following are the available Linux platform versions\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
 
@@ -36,7 +36,7 @@ The following is the changelog for platform version `1.4.0`\.
 ## 1\.3\.0<a name="platform-version-1-3"></a>
 
 The following is the changelog for platform version `1.3.0`\.
-+ Beginning on Sept 30, 2019, any new Fargate task that is launched supports the `awsfirelens` log driver\. FireLens for Amazon ECS enables you to use task definition parameters to route logs to an AWS service or AWS Partner Network \(APN\) destination for log storage and analytics\. For more information, see [Custom log routing](using_firelens.md)\.
++ Beginning on Sept 30, 2019, any new Fargate task that is launched supports the `awsfirelens` log driver\. Configure the FireLens for Amazon ECS to use task definition parameters to route logs to an AWS service or AWS Partner Network \(APN\) destination for log storage and analytics\. For more information, see [Custom log routing](using_firelens.md)\.
 + Added task recycling for Fargate tasks, which is the process of refreshing tasks that are a part of an Amazon ECS service\. For more information, [Task maintenance](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-maintenance.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 + Beginning on March 27, 2019, any new Fargate task that is launched can use additional task definition parameters that you use to define a proxy configuration, dependencies for container startup and shutdown as well as a per\-container start and stop timeout value\. For more information, see [Proxy configuration](task_definition_parameters.md#proxyConfiguration), [Container dependency](task_definition_parameters.md#container_definition_dependson), and [Container timeouts](task_definition_parameters.md#container_definition_timeout)\.
 + Beginning on April 2, 2019, any new Fargate task that is launched supports injecting sensitive data into your containers by storing your sensitive data in either AWS Secrets Manager secrets or AWS Systems Manager Parameter Store parameters and then referencing them in your container definition\. For more information, see [Passing sensitive data to a container](specifying-sensitive-data.md)\.
@@ -51,7 +51,7 @@ The following is the changelog for platform version `1.3.0`\.
 The following is the changelog for platform version `1.2.0`\.
 
 **Note**  
-Platform version `1.2.0` is deprecated\. We recommend migrating to the latest platform version\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
+Platform version `1.2.0` is no longer available\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
 + Added support for private registry authentication using AWS Secrets Manager\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
 
 ## 1\.1\.0<a name="platform-version-1-1"></a>
@@ -59,7 +59,7 @@ Platform version `1.2.0` is deprecated\. We recommend migrating to the latest pl
 The following is the changelog for platform version `1.1.0`\.
 
 **Note**  
-Platform version `1.1.0` is deprecated\. We recommend migrating to the latest platform version\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
+Platform version `1.1.0` is no longer available\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
 + Added support for the Amazon ECS task metadata endpoint\. For more information, see [Amazon ECS task metadata endpoint](task-metadata-endpoint.md)\.
 + Added support for Docker health checks in container definitions\. For more information, see [Health check](task_definition_parameters.md#container_definition_healthcheck)\.
 + Added support for Amazon ECS service discovery\. For more information, see [Service discovery](service-discovery.md)\.
@@ -69,7 +69,7 @@ Platform version `1.1.0` is deprecated\. We recommend migrating to the latest pl
 The following is the changelog for platform version `1.0.0`\.
 
 **Note**  
-Platform version `1.0.0` is deprecated\. We recommend migrating to the latest platform version\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
+Platform version `1.0.0` is no longer available\. For information about platform version deprecation, see [AWS Fargate platform version deprecation](platform-versions-retired.md)\.
 + Based on Amazon Linux 2017\.09\.
 + Initial release\.
 

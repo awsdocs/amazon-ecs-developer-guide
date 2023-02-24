@@ -34,7 +34,6 @@ The following task definition options require the classic console:
   + **host**
   + **none**
 + **Container parameters** The following container parameters are not supported:
-  + **Command and entry point overrides**
   + **Startup and dependency ordering**
   + **Individual container log configuration** Monitoring and logging has replaced this option
   + **Timeouts, ulimits, and network settings**

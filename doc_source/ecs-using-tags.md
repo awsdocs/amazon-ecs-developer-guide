@@ -165,7 +165,7 @@ If you launch your container instances using an Amazon EC2 Auto Scaling group, t
   To provide access to allow container instance tags to propagate from Amazon EC2 to Amazon ECS, manually add the following permissions as an inline policy to the Amazon ECS container instance IAM role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
   + `ec2:DescribeTags`
 
-  The following is an example inline policy that's used to add these permissions\.
+  The following is an example policy that's used to add these permissions\.
 
   ```
   {

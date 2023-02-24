@@ -129,7 +129,7 @@ You can apply a filter for your container instances, allowing you to see custom 
 
 1. Choose **ECS Instances**\.
 
-1. Set column visibility preferences by choosing the gear icon \(![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/cog.png)\) and selecting the attributes to display\. This setting persists across all container clusters associated with your account\.
+1. Set column visibility preferences by choosing the gear icon and selecting the attributes to display\. This setting persists across all container clusters associated with your account\.
 
 1. Using the **Filter by attributes** text field, enter or select the attributes you want to filter by\. The format must be *AttributeName:AttributeValue*\.
 

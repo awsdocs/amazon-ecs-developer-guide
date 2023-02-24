@@ -66,11 +66,9 @@ To connect to your Linux instance from a computer running macOS or Linux, specif
 
 1. Start PuTTYgen \(for example, from the **Start** menu, choose **All Programs > PuTTY > PuTTYgen**\)\.
 
-1. Under **Type of key to generate**, choose **RSA**\.  
-![\[SSH-2 RSA key in PuTTYgen\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/puttygen-key-type.png)
+1. Under **Type of key to generate**, choose **RSA**\.
 
-1. Choose **Load**\. By default, PuTTYgen displays only files with the extension `.ppk`\. To locate your `.pem` file, select the option to display files of all types\.  
-![\[Select all file types\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/puttygen-load-key.png)
+1. Choose **Load**\. By default, PuTTYgen displays only files with the extension `.ppk`\. To locate your `.pem` file, select the option to display files of all types\.
 
 1. Select the private key file that you created in the previous procedure and choose **Open**\. Choose **OK** to dismiss the confirmation dialog box\.
 
@@ -80,7 +78,7 @@ To connect to your Linux instance from a computer running macOS or Linux, specif
 
 ## Create a virtual private cloud<a name="create-a-vpc"></a>
 
-Amazon Virtual Private Cloud \(Amazon VPC\) enables you to launch AWS resources into a virtual network that you've defined\. We strongly suggest that you launch your container instances in a VPC\. 
+Amazon Virtual Private Cloud \(Amazon VPC\) you can use Amazon VPC to launch AWS resources into a virtual network that you've defined\. We strongly suggest that you launch your container instances in a VPC\. 
 
 **Note**  
 The Amazon ECS console first\-run experience creates a VPC for your cluster, so if you intend to use the Amazon ECS console, you can skip to the next section\.
@@ -139,6 +137,6 @@ Add the following three inbound rules to your security group\.For information ab
 
 ## Install the AWS CLI<a name="install_aws_cli"></a>
 
-The AWS Management Console can be used to manage all operations manually with Amazon ECS\. However, installing the AWS CLI on your local desktop or a developer box enables you to build scripts that can automate common management tasks in Amazon ECS\.
+The AWS Management Console can be used to manage all operations manually with Amazon ECS\. However, you can install the AWS CLI on your local desktop or a developer box so that you can build scripts that can automate common management tasks in Amazon ECS\.
 
 To use the AWS CLI with Amazon ECS, install the latest AWS CLI version\. For information about installing the AWS CLI or upgrading it to the latest version, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.

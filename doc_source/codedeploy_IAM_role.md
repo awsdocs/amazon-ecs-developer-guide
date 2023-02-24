@@ -125,6 +125,8 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
 }
 ```
 
+## Creating the CodeDeploy `AWSCodeDeployRoleForECS` role<a name="cd-iam-role-create"></a>
+
 **To create an IAM role for CodeDeploy**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
@@ -147,9 +149,9 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
 
 1. Under **Role details**, do the following: 
 
-   1. For **Role name**, type `ecsCodeDeployRole`, and enter an optional description\.
+   1. For **Role name**, enter `ecsCodeDeployRole`, and enter an optional description\.
 
-   1. For **Add tags \(optional\)**, specify any custom tags to associate with the policy \.
+   1. For **Add tags \(optional\)**, enter any custom tags to associate with the policy \.
 
 1. Choose **Create role**\.
 
@@ -159,17 +161,17 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
 
 1. Search the list of roles for `ecsCodeDeployRole`\. If the role does not exist, use the procedure above to create the role\. If the role does exist, select the role to view the attached policies\.
 
-1. In the **Permissions policies** section, ensure that either the **AWSCodeDeployRoleForECS** or **AWSCodeDeployRoleForECSLimited** managed policy is attached to the role\. If the policy is attached, your Amazon ECS CodeDeploy service role is properly configured\. If not, follow the substeps below to attach the policy\.
+1. In the **Permissions policies** section, verify that either the **AWSCodeDeployRoleForECS** or **AWSCodeDeployRoleForECSLimited** managed policy is attached to the role\. If the policy is attached, your Amazon ECS CodeDeploy service role is properly configured\. If not, follow the substeps below to attach the policy\.
 
    1. Choose **Add Permissions**, **Attach policies**\.
 
    1. To narrow the available policies to attach, for **Filter**, type **AWSCodeDeployRoleForECS** or **AWSCodeDeployRoleForECSLimited**\.
 
-   1. Check the box to the left of the AWS managed policy and choose **Attach policy**\.
+   1. Check the box to the left of the AWS managed policy, and then choose **Attach policy**\.
 
 1. Choose **Trust relationships**\.
 
-1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, choose **Edit trust policy**, copy the policy into the **Policy Document** window and choose **Update policy**\.
+1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, choose **Edit trust policy**, copy the policy into the **Policy Document** window, and then choose **Update policy**\.
 
    ```
    {
@@ -189,35 +191,45 @@ The `AWSCodeDeployRoleForECSLimited` policy, shown below, gives CodeDeploy more 
    }
    ```
 
-1. If the tasks in your Amazon ECS service using the blue/green deployment type require the use of the task execution role or a task role override, then you must add the `iam:PassRole` permission for each task execution role or task role override to the CodeDeploy IAM role as an inline policy\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md) and [Task IAM role](task-iam-roles.md)\.
+### Adding permissions for blue/green deployments<a name="cd-iam-role-attach-policy"></a>
 
-   Follow the substeps below to create an inline policy\.
+If the tasks in your Amazon ECS service using the blue/green deployment type require the use of the task execution role or a task role override, then you must add the `iam:PassRole` permission for each task execution role or task role override to the CodeDeploy IAM role as a policy\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md) and [Task IAM role](task-iam-roles.md)\.
 
-   1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+Use the following procedure to create the policy
 
-   1. Search the list of roles for `ecsCodeDeployRole`\. If the role does not exist, use the procedure above to create the role\. If the role does exist, select the role to view the attached policies\.
+**To use the JSON policy editor to create a policy**
 
-   1. In the **Permissions policies** section, choose **Add inline policy**\.
+1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-   1. Choose the **JSON** tab and add the following policy text\.
+1. In the navigation column on the left, choose **Policies**\. 
 
-      ```
-      {
-          "Version": "2012-10-17",
-          "Statement": [
-              {
-                  "Effect": "Allow",
-                  "Action": "iam:PassRole",
-                  "Resource": [
-                      "arn:aws:iam::<aws_account_id>:role/<ecsTaskExecutionRole_or_TaskRole_name>"
-                  ]
-              }
-          ]
-      }
-      ```
+   If this is your first time choosing **Policies**, the **Welcome to Managed Policies** page appears\. Choose **Get Started**\.
+
+1. At the top of the page, choose **Create policy**\.
+
+1. Choose the **JSON** tab\.
+
+1. Enter the following JSON policy document:
+
+   ```
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Action": "iam:PassRole",
+               "Resource": [
+                   "arn:aws:iam::<aws_account_id>:role/<ecsTaskExecutionRole_or_TaskRole_name>"
+               ]
+           }
+       ]
+   }
+   ```
+
+1. Choose **Review policy**\.
 **Note**  
-Specify the full ARN of your task execution role or task role override\.
+You can switch between the **Visual editor** and **JSON** tabs any time\. However, if you make changes or choose **Review policy** in the **Visual editor** tab, IAM might restructure your policy to optimize it for the visual editor\. For more information, see [Policy restructuring](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_policies.html#troubleshoot_viseditor-restructure) in the *IAM User Guide*\.
 
-   1. Choose **Review policy**
+1. On the **Review policy** page, enter a **Name** and an optional **Description** for the policy that you are creating\. Review the policy **Summary** to see the permissions that are granted by your policy\. Then choose **Create policy** to save your work\.
 
-   1. For **Name**, type a name for the added policy and then choose **Create policy**\.
+After you create the policy, attach the policy to the `AWSCodeDeployRoleForECS` or `AWSCodeDeployRoleForECSLimited` role\. For information about how to attach the policy to the role, see [Modifying a role permission policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-managingrole-editing-console.html#roles-modify_permissions-policy) in the *AWS Identity and Access Management User Guide*\.

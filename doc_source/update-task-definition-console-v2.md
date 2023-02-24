@@ -12,6 +12,7 @@ When you create a revision, you can modify the following container properties an
 + Container size
 + Task role
 + Task execution role
++ Volumes and container mount points
 
 ## JSON validation<a name="json-validate-for-update"></a>
 

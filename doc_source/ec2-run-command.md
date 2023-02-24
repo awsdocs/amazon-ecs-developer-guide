@@ -35,7 +35,7 @@ Before you can send commands to your container instances with Run Command, you m
 
 1. To narrow the available policies to attach, for **Filter**, type `SSM`\.
 
-1. In the list of policies, select the box next **AmazonSSMManagedInstanceCore**\. This policy enables you to provide the minimum permissions that are necessary to use Systems Manager\.
+1. In the list of policies, select the box next **AmazonSSMManagedInstanceCore**\. Use this policy to provide the minimum permissions that are necessary to use Systems Manager\.
 
    For information about other policies you can provide for Systems Manager operations, see [Create an IAM Instance Profile for Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-profile.html) in the *AWS Systems Manager User Guide*\.
 

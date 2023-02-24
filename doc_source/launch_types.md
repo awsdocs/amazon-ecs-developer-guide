@@ -10,7 +10,7 @@ For information about the Regions that support Fargate, see [Supported Regions f
 
 The following diagram shows the general architecture\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-fargate.png)
+![\[Architecture overview of Amazon ECS.\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-fargate.png)
 
 For more information about Amazon ECS on Fargate, see [Amazon ECS on AWS Fargate](AWS_Fargate.md)\.
 
@@ -20,7 +20,7 @@ You can use the EC2 launch type to run your containerized applications on Amazon
 
 The following diagram shows the general architecture\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-standard.png)
+![\[Architecture overview of Amazon ECS.\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/overview-standard.png)
 
 ## External launch type<a name="launch-type-external"></a>
 

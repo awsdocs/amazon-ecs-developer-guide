@@ -1,11 +1,13 @@
 # What is Amazon Elastic Container Service?<a name="Welcome"></a>
 
-Amazon Elastic Container Service \(Amazon ECS\) is a highly scalable and fast container management service\. You can use it to run, stop, and manage containers on a cluster\. With Amazon ECS, your containers are defined in a task definition that you use to run an individual task or task within a service\. In this context, a service is a configuration that you can use to run and maintain a specified number of tasks simultaneously in a cluster\. You can run your tasks and services on a serverless infrastructure that's managed by AWS Fargate\. Alternatively, for more control over your infrastructure, you can run your tasks and services on a cluster of Amazon EC2 instances that you manage\.
+Amazon Elastic Container Service \(Amazon ECS\) is a fully managed container orchestration service that helps you easily deploy, manage, and scale containerized applications\. As a fully managed service, Amazon ECS comes with AWS configuration and operational best practices built\-in\. This also means that you don't need to manage control plane, nodes, or add\-ons\. It's integrated with both AWS and third\-party tools, such as Amazon Elastic Container Registry and Docker\. This integration makes it easier for teams to focus on building the applications, not the environment\. You can run and scale your container workloads across AWS Regions in the cloud, and on\-premises, without the complexity of managing a control plane or nodes\.
 
-Amazon ECS provides the following features:
+The following are key features of Amazon ECS:
 + A serverless option with AWS Fargate\. With AWS Fargate, you don't need to manage servers, handle capacity planning, or isolate container workloads for security\. Fargate handles the infrastructure management aspects of your workload for you\. You can schedule the placement of your containers across your cluster based on your resource needs, isolation policies, and availability requirements\.
++ An external instance option with ECS Anywhere\. With ECS Anywhere, you can use the Amazon ECS console and AWS CLI to manage your on\-premises container workloads\. 
++ An Amazon EC2 option\. With EC2, you can use the Amazon ECS console and AWS CLI to manage your EC2 instances\.
 + Integration with AWS Identity and Access Management \(IAM\)\. You can assign granular permissions for each of your containers\. This allows for a high level of isolation when building your applications\. In other words, you can launch your containers with the security and compliance levels that you've come to expect from AWS\.
-+ AWS managed container orchestration\. As a fully managed service, Amazon ECS comes with AWS configuration and operational best practices built\-in\. This also means that you don't need to manage control plane, nodes, or add\-ons\. It's integrated with both AWS and third\-party tools, such as Amazon Elastic Container Registry and Docker\. This integration makes it easier for teams to focus on building the applications, not the environment\.
++ AWS managed container orchestration\.
 + Continuous integration and continuous deployment \(CI/CD\)\. This is a common process for microservice architectures that are based on Docker containers\. You can create a CI/CD pipeline that takes the following actions: 
   + Monitors changes to a source code repository
   + Builds a new Docker image from that source
@@ -14,7 +16,7 @@ Amazon ECS provides the following features:
 + Support for service discovery\. This is a key component of most distributed systems and service\-oriented architectures\. With service discovery, your microservice components are automatically discovered as they're created and terminated on a given infrastructure\. 
 + Support for sending your container instance log information to CloudWatch Logs\. After you send this information to Amazon CloudWatch, you can view the logs from your container instances in one convenient location\. This prevents your container logs from taking up disk space on your container instances\.
 
-The AWS container services team maintains a public roadmap on GitHub\. The roadmap contains information about what the teams are working on and enables AWS customers to provide direct feedback\. For more information, see [AWS Containers Roadmap](https://github.com/aws/containers-roadmap) on the GitHub website\.
+The AWS container services team maintains a public roadmap on GitHub\. The roadmap contains information about what the teams are working on and allows AWS customers to provide direct feedback\. For more information, see [AWS Containers Roadmap](https://github.com/aws/containers-roadmap) on the GitHub website\.
 
 ## Launch types<a name="launch-types"></a>
 

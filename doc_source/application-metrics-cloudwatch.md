@@ -96,7 +96,7 @@ If you're not using the Amazon ECS console, you can add the AWS Distro for OpenT
 		},
 		{
 			"name": "aws-otel-collector",
-			"image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.25.0",
+			"image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.26.1",
 			"essential": true,
 			"command": [
 				"--config=/etc/ecs/ecs-cloudwatch.yaml"

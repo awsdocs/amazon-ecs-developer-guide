@@ -14,7 +14,7 @@ The trunk network interface is fully managed by Amazon ECS and is deleted when y
 There are several things to consider when using the ENI trunking feature\.
 + Only Linux variants of the Amazon ECS\-optimized AMI, or other Amazon Linux variants with version `1.28.1` or later of the container agent and version `1.28.1-2` or later of the ecs\-init package, support the increased ENI limits\. If you use the latest Linux variant of the Amazon ECS\-optimized AMI, these requirements will be met\. Windows containers are not supported at this time\.
 + Only new Amazon EC2 instances launched after opting in to `awsvpcTrunking` receive the increased ENI limits and the trunk network interface\. Previously launched instances do not receive these features regardless of the actions taken\.
-+ Amazon EC2 instances must have resource\-based IPv4 DNS requests disabled\. To disable this option, ensure the **Enable resource\-based IPV4 \(A record\) DNS requests** option is deselected when creating a new instance using the Amazon EC2 console\. To disable this option using the AWS CLI, use the following command\.
++ Amazon EC2 instances must have resource\-based IPv4 DNS requests turned off\. To disable this option, ensure the **Enable resource\-based IPV4 \(A record\) DNS requests** option is deselected when creating a new instance using the Amazon EC2 console\. To disable this option using the AWS CLI, use the following command\.
 
   ```
   aws ec2 modify-private-dns-name-options --instance-id i-xxxxxxx --no-enable-resource-name-dns-a-record --no-dry-run
@@ -46,7 +46,7 @@ Before you launch a container instance with the increased ENI limits, the follow
 Once the prerequisites are met, you can launch a new container instance using one of the supported Amazon EC2 instance types, and the instance will have the increased ENI limits\. For a list of supported instance types, see [Supported Amazon EC2 instance types](#eni-trunking-supported-instance-types)\. The container instance must have version `1.28.1` or later of the container agent and version `1.28.1-2` or later of the ecs\-init package\. If you use the latest Linux variant of the Amazon ECS\-optimized AMI, these requirements will be met\. For more information, see [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\.
 
 **Important**  
-Amazon EC2 instances must have resource\-based IPv4 DNS requests disabled\. To disable this option, ensure the **Enable resource\-based IPV4 \(A record\) DNS requests** option is deselected when creating a new instance using the Amazon EC2 console\. To disable this option using the AWS CLI, use the following command\.  
+Amazon EC2 instances must have resource\-based IPv4 DNS requests turned off\. To disable this option, ensure the **Enable resource\-based IPV4 \(A record\) DNS requests** option is deselected when creating a new instance using the Amazon EC2 console\. To disable this option using the AWS CLI, use the following command\.  
 
 ```
 aws ec2 modify-private-dns-name-options --instance-id i-xxxxxxx --no-enable-resource-name-dns-a-record --no-dry-run
@@ -267,6 +267,15 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | m6in\.16xlarge | 14 | 120 | 
 | m6in\.24xlarge | 14 | 120 | 
 | m6in\.32xlarge | 13 | 120 | 
+| m7g\.medium | 1 | 4 | 
+| m7g\.large | 2 | 10 | 
+| m7g\.xlarge | 3 | 20 | 
+| m7g\.2xlarge | 3 | 40 | 
+| m7g\.4xlarge | 7 | 60 | 
+| m7g\.8xlarge | 7 | 60 | 
+| m7g\.12xlarge | 7 | 60 | 
+| m7g\.16xlarge | 14 | 120 | 
+| m7g\.metal | 14 | 120 | 
 | mac2\.metal | 7 | 12 | 
 
 ### Compute optimized<a name="eni-branch-co"></a>
@@ -378,6 +387,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | c7g\.8xlarge | 7 | 60 | 
 | c7g\.12xlarge | 7 | 60 | 
 | c7g\.16xlarge | 14 | 120 | 
+| c7g\.metal | 14 | 120 | 
 | hpc6a\.48xlarge | 1 | 120 | 
 
 ### Memory optimized<a name="eni-branch-mo"></a>
@@ -484,6 +494,15 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | r6id\.24xlarge | 14 | 120 | 
 | r6id\.32xlarge | 14 | 120 | 
 | r6id\.metal | 14 | 120 | 
+| r7g\.medium | 1 | 4 | 
+| r7g\.large | 2 | 10 | 
+| r7g\.xlarge | 3 | 20 | 
+| r7g\.2xlarge | 3 | 40 | 
+| r7g\.4xlarge | 7 | 60 | 
+| r7g\.8xlarge | 7 | 60 | 
+| r7g\.12xlarge | 7 | 60 | 
+| r7g\.16xlarge | 14 | 120 | 
+| r7g\.metal | 14 | 120 | 
 | u\-3tb1\.56xlarge | 7 | 12 | 
 | u\-18tb1\.metal | 14 | 12 | 
 | u\-24tb1\.metal | 14 | 12 | 

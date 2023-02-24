@@ -98,7 +98,7 @@ The bash portion of the script must be run as root\. If the command isn't run as
        --region $REGION \
        --cluster $CLUSTER_NAME \
        --activation-id $ACTIVATION_ID \
-       --activation-code $ACTIVATION_CODE
+       --activation-code $ACTIVATION_CODE \
        --enable-gpu
    ```
 

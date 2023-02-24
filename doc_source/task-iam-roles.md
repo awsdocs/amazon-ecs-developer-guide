@@ -64,10 +64,10 @@ Your Amazon EC2 or external instances require at least version `1.11.0` of the c
 If you are not using the Amazon ECS\-optimized AMI for your container instances, be sure to add the `--net=host` option to your docker run command that starts the agent and the following agent configuration variables for your desired configuration \(for more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\):
 
 `ECS_ENABLE_TASK_IAM_ROLE=true`  
-Enables IAM roles for tasks for containers with the `bridge` and `default` network modes\.
+Uses IAM roles for tasks for containers with the `bridge` and `default` network modes\.
 
 `ECS_ENABLE_TASK_IAM_ROLE_NETWORK_HOST=true`  
-Enables IAM roles for tasks for containers with the `host` network mode\. This variable is only supported on agent versions 1\.12\.0 and later\.
+Uses IAM roles for tasks for containers with the `host` network mode\. This variable is only supported on agent versions 1\.12\.0 and later\.
 
 For an example run command, see [Manually updating the Amazon ECS container agent \(for non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\. You will also need to set the following networking commands on your container instance so that the containers in your tasks can retrieve their AWS credentials:
 

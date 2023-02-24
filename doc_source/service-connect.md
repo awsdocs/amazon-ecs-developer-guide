@@ -186,7 +186,7 @@ The only configuration for this container in the task definition is the task CPU
 
 The task definition must set the task memory limit to use Service Connect\. The additional CPU and memory in the task limits that you don't allocate in the container limits in your other containers are used by the Service Connect proxy container and other containers that don't set container limits\.
 
-We recommend adding 256 CPU units and at least 64 MiB of memory to your task CPU and memory for the Service Connect proxy container\. On AWS Fargate, the lowest amount of memory that you can set is 1024 MiB of memory\. On Amazon EC2, task memory is optional, but it is required for Service Connect\.
+We recommend adding 256 CPU units and at least 64 MiB of memory to your task CPU and memory for the Service Connect proxy container\. On AWS Fargate, the lowest amount of memory that you can set is 512 MiB of memory\. On Amazon EC2, task memory is optional, but it is required for Service Connect\.
 
 If you expect tasks in this service to receive more than 500 requests per second at their peak load, we recommend adding 512 CPU units to your task CPU in this task definition for the Service Connect proxy container\.
 
@@ -212,6 +212,7 @@ The following parameters have extra fields when using Service Connect\.
 ## Service Connect considerations<a name="service-connect-considerations"></a>
 + Windows containers aren't supported with Service Connect\.
 + Tasks that run in Fargate must use the Fargate Linux platform version 1\.4\.0 or higher to use Service Connect\.
++ The agent version on the container instance must be 1\.67\.2 or higher\.
 + Container instances must run the Amazon ECS\-optimized Amazon Linux 2 AMI version `2.0.20221115` or later to use Service Connect\. You can't use Service Connect on other AMIs or operating systems\. Additional software is required, which is only in this AMI\. 
 + Container instances must have the `ecs:Poll` permission for the resource `arn:aws:ecs:region:0123456789012:task-set/cluster/*`\. If you are using the `ecsInstanceRole`, you don't need to add additional permissions\. The `AmazonEC2ContainerServiceforEC2Role` managed policy has the necessary permissions\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 + You can't use capacity provider strategies to run services with Service Connect on Amazon EC2 instances\. Use the EC2 launch type for services with Service Connect\.

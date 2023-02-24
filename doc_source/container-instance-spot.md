@@ -13,7 +13,7 @@ Amazon ECS does not receive a notice from Amazon EC2 when instances are removed 
 
 When a container instance is set to `DRAINING`, Amazon ECS prevents new tasks from being scheduled for placement on the container instance\. Service tasks on the draining container instance that are in the `PENDING` state are stopped immediately\. If there are container instances in the cluster that are available, replacement service tasks are started on them\.
 
-Spot Instance draining is disabled by default and must be manually enabled\. To enable Spot Instance draining for a new container instance, when launching the container instance add the following script into the **User data** field, replacing *MyCluster* with the name of the cluster to register the container instance to\.
+Spot Instance draining is turned off by default and must be manually enabled\. To enable Spot Instance draining for a new container instance, when launching the container instance add the following script into the **User data** field, replacing *MyCluster* with the name of the cluster to register the container instance to\.
 
 ```
 #!/bin/bash

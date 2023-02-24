@@ -6,7 +6,7 @@ You can create a task definition by stepping through the console, or by editing 
 
 ## JSON validation<a name="json-validate-for-create"></a>
 
-The Amazon ECS console JON editor validates the following in the JSON file:
+The Amazon ECS console JSON editor validates the following in the JSON file:
 + The file is a valid JSON file
 + The file does not contain any extraneous keys
 + The file contains the `familyName` parameter
@@ -49,10 +49,21 @@ Task definitions created after January 12, 2023 will not have a CloudFormation s
 
    1. \(Optional\) To configure the commands that determine if a container is healthy, expand **HealthCheck**, and then configure the following items:
       + For **Command**, enter a comma\-separated list of commands\. You can start the commands with `CMD` to run the command arguments directly, or `CMD-SHELL` to run the command with the container's default shell\. If neither is specified, `CMD` is used\. 
-      + For** Interval**, enter the number of seconds between each health check\. The valid values are between 5 and 30\.
+      + For **Interval**, enter the number of seconds between each health check\. The valid values are between 5 and 30\.
       + For **Timeout**, enter the period of time \(in seconds\) to wait for a health check to succeed before it's considered a failure\. The valid values are between 2 and 60\.
       + For **Start period**, enter the period of time \(in seconds\) to wait for a container to bootstrap before the health check commands run\. The valid values are between 0 and 300\.
       + For **Retries**, enter the number of times to retry the health check commands when there is a failure\. The value values are between 1 and 10\.
+
+   1. \(Optional\) To override some of the values in a Dockerfile, expand **Docker configuration**, and then configure the following items:
+      + For **Command**, enter an executable command for a container\. 
+
+        This parameter maps to `Cmd` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the Docker Remote API and the `COMMAND` option to `docker run`\. This will override the `CMD` instruction in a [Dockerfile](https://docs.docker.com/engine/reference/builder/#workdir)\.
+      + For **Entry point**, enter the Docker ENTRYPOINT that is passed to the container\.
+
+        This parameter maps to `Entrypoint` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the Docker Remote API and the `--entrypoint` option to `docker run`\. This will override the `ENTRYPOINT` instruction in a [Dockerfile](https://docs.docker.com/engine/reference/builder/#workdir)\.
+      + For **Working directory**, enter the directory that the container will run any entry point and command instructions provided\. 
+
+        This parameter maps to `WorkingDir` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the Docker Remote API and the `--workdir` option to `docker run`\. This will override the `WORKDIR` instruction in a [Dockerfile](https://docs.docker.com/engine/reference/builder/#workdir)\.
 
    1. \(Optional\) Choose **Add more containers** to add additional containers to the task definition\. Choose **Next** once all containers have been defined\.
 

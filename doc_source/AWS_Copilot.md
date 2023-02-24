@@ -59,7 +59,7 @@ sudo curl -Lo /usr/local/bin/copilot https://github.com/aws/copilot-cli/releases
 Using Powershell, run the following command:
 
 ```
-PS C:\> New-Item -Path 'C:\copilot' -ItemType directory; `
+New-Item -Path 'C:\copilot' -ItemType directory; `
   Invoke-WebRequest -OutFile 'C:\copilot\copilot.exe' https://github.com/aws/copilot-cli/releases/latest/download/copilot-windows.exe
 ```
 
@@ -348,7 +348,7 @@ The AWS Copilot CLI executables are cryptographically signed using PGP signature
    Using Powershell, run the following command\.
 
    ```
-   PS C:\> Invoke-WebRequest -OutFile 'C:\copilot\copilot.asc' https://github.com/aws/copilot-cli/releases/latest/download/copilot-windows.exe.asc
+   Invoke-WebRequest -OutFile 'C:\copilot\copilot.asc' https://github.com/aws/copilot-cli/releases/latest/download/copilot-windows.exe.asc
    ```
 
 ------

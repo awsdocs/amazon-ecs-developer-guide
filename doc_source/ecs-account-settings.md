@@ -74,11 +74,4 @@ A resource ID takes the form of a unique combination of letters and numbers\. Ne
 
 ## ARN and resource ID format timeline<a name="ecs-resource-arn-timeline"></a>
 
-There's a timeline for the opt\-in and opt\-out periods for the new Amazon Resource Name \(ARN\) and resource ID format for Amazon ECS resources\. The ARN and resource ID is set when you create an account and doesn't change after that\. Therefore, opting in or out of the new format doesn't affect the ARN or resource ID of your existing resources\.
-
-The following are the important dates related to this change\.
-+ From now until September 30, 2020 – You can opt in to, and opt out of, the new Amazon Resource Name \(ARN\) and resource IDs by Region\. By default, any new accounts that you create are opted out of this format\.
-+ October 1, 2020 \- March 31, 2021 – By default, all new accounts are opted in to the new format\. Any existing accounts that didn't explicitly opt out of the new format are also opted in\. You can opt in or out by Region\.
-+ April 1, 2021 – By default, all accounts are opted in to the new format\. All new resources created receive the new format, and you can no longer opt out\.
-
-You can modify your opt\-in setting for the new Amazon Resource Name \(ARN\) and resource ID format at any time between now and April 1, 2021\. After you opted in, any new resources that you create use the new format\.
+The timeline for the opt\-in and opt\-out periods for the new Amazon Resource Name \(ARN\) and resource ID format for Amazon ECS resources ended on April 1, 2021\. By default, all accounts are opted in to the new format\. All new resources created receive the new format, and you can no longer opt out\.

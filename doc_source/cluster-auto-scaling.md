@@ -128,7 +128,7 @@ Amazon ECS monitors container instances for each capacity provider within cluste
  Consider the following for the scale\-in process:
 + When there are no running non\-daemon tasks, Amazon ECS container instances are considered available for scale in\.
 + CloudWatch scale\-in alarms require 15 data points \(15 minutes\) before the scale\-in process for the Auto Scaling group starts\. After the scale\-in process starts until Amazon ECS needs to reduce the number of registered container instances, the Auto Scaling group sets the `DesireCapacity` value to be greater than one instance and less than 50% each minute\.
-+ When Amazon ECS requests a scale\-out \(when `CapcityProviderReservation` is greater than 100\) while a scale\-in process is in progress, the scale\-in process is stopped and starts from the beginning if required\.
++ When Amazon ECS requests a scale\-out \(when `CapacityProviderReservation` is greater than 100\) while a scale\-in process is in progress, the scale\-in process is stopped and starts from the beginning if required\.
 
 ## Target tracking considerations<a name="target-tracking"></a>
 

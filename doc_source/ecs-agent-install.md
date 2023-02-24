@@ -18,7 +18,7 @@ To install the Amazon ECS container agent on an Amazon Linux 2 EC2 instance usin
 
 1. Connect to your instance\.
 
-1. Disable the `docker` Amazon Linux extra repository\. The `ecs` Amazon Linux extra repository ships with its own version of Docker, so the `docker` extra must be disabled to avoid any potential future conflicts\. This ensures that you are always using the Docker version that Amazon ECS intends for you to use with a particular version of the container agent\.
+1. Disable the `docker` Amazon Linux extra repository\. The `ecs` Amazon Linux extra repository ships with its own version of Docker, so the `docker` extra must be turned off to avoid any potential future conflicts\. This ensures that you are always using the Docker version that Amazon ECS intends for you to use with a particular version of the container agent\.
 
    ```
    [ec2-user ~]$ sudo amazon-linux-extras disable docker
@@ -166,6 +166,6 @@ You can optionally store your agent environment variables in Amazon S3 \(which c
 
 When running the Amazon ECS container agent, `ecs-init` will create the container agent container with the `host` network mode\. This is the only supported network mode for the container agent container\. 
 
-This enables you to block access to the [Amazon EC2 instance metadata service endpoint](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) \(`http://169.254.169.254`\) for the containers started by the container agent\. This ensures that containers cannot access IAM role credentials from the container instance profile and enforces that tasks use only the IAM task role credentials\. For more information, see [Task IAM role](task-iam-roles.md)\.
+This allows you to block access to the [Amazon EC2 instance metadata service endpoint](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) \(`http://169.254.169.254`\) for the containers started by the container agent\. This ensures that containers cannot access IAM role credentials from the container instance profile and enforces that tasks use only the IAM task role credentials\. For more information, see [Task IAM role](task-iam-roles.md)\.
 
 This also makes it so the container agent doesn't contend for connections and network traffic on the `docker0` bridge\.

@@ -144,7 +144,7 @@ Set `NO_PROXY` to `169.254.169.254,169.254.170.2,\\.\pipe\docker_engine` to filt
 
 **Example Windows HTTP proxy user data script**  
 The example user data PowerShell script below configures the Amazon ECS container agent and the Docker daemon to use an HTTP proxy that you specify\. You can also specify a cluster into which the container instance registers itself\.  
-To use this script when you launch a container instance, follow the steps in [Launching an Amazon ECS Linux container instance](launch_container_instance.md)\. Just copy and paste the PowerShell script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
+To use this script when you launch a container instance, follow the steps in [Launching an Amazon ECS Windows container instance](launch_window-container_instance.md)\. Just copy and paste the PowerShell script below into the **User data** field \(be sure to substitute the red example values with your own proxy and cluster information\)\.  
 The `-EnableTaskIAMRole` option is required to enable IAM roles for tasks\. For more information, see [Additional configuration for Windows IAM roles for tasks](windows_task_IAM_roles.md)\.
 
 ```

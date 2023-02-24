@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  Task definition deletion  |  You can delete a task definition using the Amazon ECS console, SDK, and AWS CLI\.For more information, see [Deleting a task definition revision using the console](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/delete-task-definition-v2.html) and [Task definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html)\.  |  24 February 2023  | 
 |  Amazon ECS console  |  The new Amazon ECS console is now the default console\. For more information, see [New Amazon ECS console](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/new-console.html)\.  |  19 January 2023  | 
 |  Updated `AmazonECS_FullAccess` IAM policy  |  The `AmazonECS_FullAccess` IAM policy is updated to include permissions to add tags to load balancers during creation\. For more information, see [AmazonECS\_FullAccess](security-iam-awsmanpol.md#security-iam-awsmanpol-AmazonECS_FullAccess)\.  |  4 January 2023  | 
 |  Use CloudWatch alarms to detect Amazon ECS service deployment failures  |  You can configure Amazon ECS to set the deployment to failed when it detects that a specified CloudWatch alarm has gone into the ALARM state\. For more information, see [Failure detection methods](deployment-type-ecs.md#deployment-failure-detection)\.  |  19 December 2022  | 

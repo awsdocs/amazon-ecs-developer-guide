@@ -32,4 +32,4 @@ Wavelength Zones aren't available in all AWS Regions\. For information about the
 
 ## AWS Outposts<a name="clusters-outposts"></a>
 
-AWS Outposts enables native AWS services, infrastructure, and operating models in on\-premises facilities\. In AWS Outposts environments, you can use the same AWS APIs, tools, and infrastructure that you use in the AWS Cloud\. Amazon ECS on AWS Outposts is suitable for low\-latency workloads that require to be run in close proximity to on\-premises data and applications\. For more information about AWS Outposts, see [Amazon Elastic Container Service on AWS Outposts](ecs-on-outposts.md)\.
+AWS Outposts uses native AWS services, infrastructure, and operating models in on\-premises facilities\. In AWS Outposts environments, you can use the same AWS APIs, tools, and infrastructure that you use in the AWS Cloud\. Amazon ECS on AWS Outposts is suitable for low\-latency workloads that require to be run in close proximity to on\-premises data and applications\. For more information about AWS Outposts, see [Amazon Elastic Container Service on AWS Outposts](ecs-on-outposts.md)\.

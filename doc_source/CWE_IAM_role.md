@@ -55,23 +55,23 @@ Specify the full ARN of your task execution role or task role override\.
 }
 ```
 
-You can use the following procedure to check that your account already has the CloudWatch Events IAM role, and manually create it if needed\.
+## Checking for the Amazon ECS CloudWatch Events \(`ecsEventsRole`\) in the IAM console<a name="cw-iam-role-verify"></a>
 
-**To check for the CloudWatch Events IAM role in the IAM console**
+The Amazon ECS instance role is automatically created for you when completing the Amazon ECS console first\-run experience\. However, you can manually create the role and attach the managed IAM policy for container instances to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. Use the following procedure to check and see if your account already has the Amazon ECS container instance IAM role and to attach the managed IAM policy if needed\.
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
 1. In the navigation pane, choose **Roles**\. 
 
-1. Search the list of roles for `ecsEventsRole`\. If the role does not exist, use the next procedure to create the role\. If the role does exist, select the role to view the attached policies\.
+1. In the search box, enter `ecsEventsRole`\. If the role does exist, choose the role to view the attached policies\.
 
-1. On the **Permissions** tab, ensure that the **AmazonEC2ContainerServiceEventsRole** managed policy is attached to the role\. If the policy is attached, your Amazon ECS task execution role is properly configured\. If not, follow the substeps below to attach the policy\.
+1. On the **Permissions** tab, verify that the **AmazonEC2ContainerServiceEventsRole** is attached to the role\.
 
    1. Choose **Add Permissions**, **Attach policies**\.
 
-   1. To narrow the available policies to attach, for **Filter**, type **AmazonEC2ContainerServiceEventsRole**\.
+   1. To narrow the available policies to attach, for **Filter**, enter **AmazonEC2ContainerServiceEventsRole**\.
 
-   1. Check the box to the left of the **AmazonEC2ContainerServiceEventsRole** policy and choose **Attach policy**\.
+   1. Check the box to the left of the **AmazonEC2ContainerServiceEventsRole** policy, and then choose **Attach policy**\.
 
 1. Choose **Trust relationships**\.
 
@@ -85,13 +85,15 @@ You can use the following procedure to check that your account already has the C
          "Sid": "",
          "Effect": "Allow",
          "Principal": {
-           "Service": "events.amazonaws.com"
+           "Service": "ecs-tasks.amazonaws.com"
          },
          "Action": "sts:AssumeRole"
        }
      ]
    }
    ```
+
+## Creating the Amazon ECS CloudWatch Events \(`ecsEventsRole`\) role<a name="cw-iam-role-create"></a>
 
 **To create an IAM role for CloudWatch Events**
 
@@ -101,11 +103,11 @@ You can use the following procedure to check that your account already has the C
 
 1. In the **Trusted entity type** section, choose **AWS service**, **Elastic Container Service**\.
 
-1. For **Use case**, choose **Elastic Container Service Task**, then choose **Next**\.
+1. For **Use case**, choose **Elastic Container Service Task**, and then choose **Next**\.
 
 1. In the **Attach permissions policy** section, do the following:
 
-   1. Search for **AmazonEC2ContainerServiceEventsRole**, then select the policy\.
+   1. In the search boc, enter `AmazonEC2ContainerServiceEventsRole`, and then select the policy\.
 
    1. Under **Set permissions boundary \- optional**, choose **Create role without a permissions boundary**\.
 
@@ -113,13 +115,13 @@ You can use the following procedure to check that your account already has the C
 
 1. Under **Role details**, do the following: 
 
-   1. For **Role name**, type `ecsEventsRole` \.
+   1. For **Role name**, enter `ecsEventsRole` \.
 
-   1. For **Add tags \(optional\)**, specify any custom tags to associate with the policy \.
+   1. For **Add tags \(optional\)**, enter any custom tags to associate with the policy\.
 
 1. Choose **Create role**\.
 
-1. Search the list of roles for `ecsEventsRole` and select the role you just created\.
+1. Search the list of roles for `ecsEventsRole` and select the role\.
 
 1. On the **Permissions** tab, choose **Add Permissions**, **Attach policies**\.
 
@@ -133,13 +135,15 @@ You can use the following procedure to check that your account already has the C
          "Sid": "",
          "Effect": "Allow",
          "Principal": {
-           "Service": "events.amazonaws.com"
+           "Service": "ecs-tasks.amazonaws.com"
          },
          "Action": "sts:AssumeRole"
        }
      ]
    }
    ```
+
+## Attaching a policy to the `ecsEventsRole` role<a name="cw-iam-role-attach"></a>
 
 **To add permissions for the task execution role to the CloudWatch Events IAM role**
 
@@ -164,12 +168,12 @@ You can use the following procedure to check that your account already has the C
    }
    ```
 
-1. For **Name**, type `AmazonECSEventsTaskExecutionRole`, optionally enter a description, and then choose **Create policy**\.
+1. For **Name**, enter `AmazonECSEventsTaskExecutionRole`, optionally enter a description, and then choose **Create policy**\.
 
 1. In the navigation pane, choose **Roles**\.
 
-1. Search the list of roles for `ecsEventsRole` and select the role to view the attached policies\.
+1. Search the list of roles for `ecsEventsRole`, and then select the role to view the attached policies\.
 
 1. Choose **Attach policy**\.
 
-1. In the **Attach policy** section, select the **AmazonECSEventsTaskExecutionRole** policy and choose **Attach policy**\.
+1. In the **Attach policy** section, select the **AmazonECSEventsTaskExecutionRole** policy, and then choose **Attach policy**\.

@@ -4,7 +4,7 @@
   
 If you are using Amazon ECS tasks hosted on AWS Fargate, see [Task scale\-in protection endpoint](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-scale-in-protection-endpoint.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
-Amazon ECS task scale\-in protection enables you to protect your tasks from being terminated by scale\-in events from either [Service Auto Scaling](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html) or [deployments](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)\. You can set and get the status of task scale\-in protection in the task container application code\.
+Use Amazon ECS task scale\-in protection to protect your tasks from being terminated by scale\-in events from either [Service Auto Scaling](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html) or [deployments](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html)\. You can set and get the status of task scale\-in protection in the task container application code\.
 
 The Amazon ECS container agent uses AWS APIs [GetTaskProtection](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_GetTaskProtection.html) and [UpdateTaskProtection](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateTaskProtection.html) to offer task scale\-in protection\. For a list of failure reasons, see [API failure reasons](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/api_failures_messages.html)\.
 

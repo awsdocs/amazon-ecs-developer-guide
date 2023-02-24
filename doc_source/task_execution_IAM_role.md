@@ -13,7 +13,7 @@ The following are common use cases for a task execution IAM role:
 **Note**  
 The task execution role is supported by Amazon ECS container agent version 1\.16\.0 and later\.
 
-Amazon ECS provides the managed policy named `AmazonECSTaskExecutionRolePolicy` which contains the permissions the common use cases described above require\. It may be necessary to add inline policies to your task execution role for special use cases which are outlined below\.
+Amazon ECS provides the managed policy named `AmazonECSTaskExecutionRolePolicy` which contains the permissions the common use cases described above require\. It might be necessary to add inline policies to your task execution role for special use cases which are outlined below\.
 
 ```
 {
@@ -35,23 +35,23 @@ Amazon ECS provides the managed policy named `AmazonECSTaskExecutionRolePolicy` 
 }
 ```
 
-An Amazon ECS task execution role can be created for you in the Amazon ECS console; however, you should manually attach the managed IAM policy for tasks to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS task execution role and to attach the managed IAM policy if needed\.<a name="procedure_check_execution_role"></a>
+An Amazon ECS task execution role can be created for you in the Amazon ECS console; however, you should manually attach the managed IAM policy for tasks to allow Amazon ECS to add permissions for future features and enhancements as they are introduced\. You can use the following procedure to check and see if your account already has the Amazon ECS task execution role and to attach the managed IAM policy if needed\.
 
-**To check for the `ecsTaskExecutionRole` in the IAM console**
+## Checking for the task execution \(`ecsTaskExecutionRole`\) role in the IAM console<a name="procedure_check_execution_role"></a>
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
 1. In the navigation pane, choose **Roles**\. 
 
-1. Search the list of roles for `ecsTaskExecutionRole`\. If the role does not exist, see [Creating the task execution IAM role](#create-task-execution-role)\. If the role does exist, select the role to view the attached policies\.
+1. In the search box, enter `ecsTaskExecutionRole`\. If the role does exist, choose the role to view the attached policies\.
 
-1. On the **Permissions** tab, ensure that the **AmazonECSTaskExecutionRolePolicy** managed policy is attached to the role\. If the policy is attached, your Amazon ECS task execution role is properly configured\. If not, follow the substeps below to attach the policy\.
+1. On the **Permissions** tab, verify that the **AmazonECSTaskExecutionRolePolicy** is attached to the role\.
 
    1. Choose **Add Permissions**, **Attach policies**\.
 
-   1. To narrow the available policies to attach, for **Filter**, type **AmazonECSTaskExecutionRolePolicy**\.
+   1. To narrow the available policies to attach, for **Filter**, enter **AmazonECSTaskExecutionRolePolicy**\.
 
-   1. Check the box to the left of the **AmazonECSTaskExecutionRolePolicy** policy and choose **Attach policy**\.
+   1. Check the box to the left of the **AmazonECSTaskExecutionRolePolicy** policy, and then choose **Attach policy**\.
 
 1. Choose **Trust relationships**\.
 
@@ -73,7 +73,7 @@ An Amazon ECS task execution role can be created for you in the Amazon ECS conso
    }
    ```
 
-## Creating the task execution IAM role<a name="create-task-execution-role"></a>
+## Creating the task execution \(`ecsTaskExecutionRole`\) role<a name="create-task-execution-role"></a>
 
 If your account does not already have a task execution role, use the following steps to create the role\.
 
@@ -85,7 +85,7 @@ If your account does not already have a task execution role, use the following s
 
 1. In the **Trusted entity type** section, choose **AWS service**, **Elastic Container Service**\.
 
-1. For **Use case**, choose **Elastic Container Service Task**, then choose **Next**\.
+1. For **Use case**, choose **Elastic Container Service Task**, and then choose **Next**\.
 
 1. In the **Attach permissions policy** section, do the following:
 
@@ -147,7 +147,7 @@ To provide access to the secrets that you create, manually add the following per
 + `secretsmanager:GetSecretValue`
 + `kms:Decrypt`—Required only if your key uses a custom KMS key and not the default key\. The ARN for your custom key should be added as a resource\.
 
-An example inline policy adding the permissions is shown below\.
+An example policy adding the permissions is shown below\.
 
 ```
 {
@@ -178,7 +178,7 @@ To provide access to the AWS Systems Manager Parameter Store parameters that you
 + `secretsmanager:GetSecretValue`—Required if you are referencing a Secrets Manager secret either directly or if your Systems Manager Parameter Store parameter is referencing a Secrets Manager secret in a task definition\.
 + `kms:Decrypt`—Required only if your secret uses a custom KMS key and not the default key\. The ARN for your custom key should be added as a resource\.
 
-The following example inline policy adds the required permissions:
+The following example policy adds the required permissions:
 
 ```
 {

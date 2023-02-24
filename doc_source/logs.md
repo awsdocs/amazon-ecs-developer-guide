@@ -103,6 +103,8 @@ For container agent versions 1\.35\.0 and earlier, the following is the format o
 
 The `ecs-init` process stores logs at `/var/log/ecs/ecs-init.log`\.
 
+You can use the following command to view the log files\.
+
 ```
 cat /var/log/ecs/ecs-init.log
 ```
@@ -136,6 +138,8 @@ The log entry format is as follows:
 + The container instance ARN
 
 An example log entry is shown below\.
+
+You can use the following command to view the log files\.
 
 ```
 cat /var/log/ecs/audit.log.2016-07-13-16

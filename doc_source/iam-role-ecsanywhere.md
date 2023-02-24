@@ -1,39 +1,36 @@
 # ECS Anywhere IAM role<a name="iam-role-ecsanywhere"></a>
 
-When registering an on\-premise server or virtual machine \(VM\) to your cluster, the server or VM requires an IAM role to communicate with AWS APIs\. You only need to create this IAM role once per AWS account\.<a name="procedure-check-ecsanywhere-role"></a>
+When registering an on\-premise server or virtual machine \(VM\) to your cluster, the server or VM requires an IAM role to communicate with AWS APIs\. You only need to create this IAM role once per AWS account\.
 
-**To check for the `ecsAnywhereRole` IAM role \(AWS Management Console\)**
+## Checking for the ECS Anywhere \(`ecsAnywhereRole`\) in the IAM console<a name="procedure-check-ecsanywhere-role"></a>
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
 1. In the navigation pane, choose **Roles**\. 
 
-1. Search the list of roles for `ecsAnywhereRole`\. If the role does not exist, use the procedure in the next section to create the role\. If the role does exist, select the role to view the attached policies\.
+1. In the search box, enter `ecsAnywhereRole`\. If the role does exist, choose the role to view the attached policies\.
 
-1. On the **Permissions** tab, ensure that the **AmazonEC2ContainerServiceforEC2Role** and **AmazonSSMManagedInstanceCore** managed policies are attached to the role\. If the policy is attached, your Amazon ECS Anywhere role is properly configured\. If not, follow the steps below to attach the policies\.
+1. On the **Permissions** tab, verify that the **AmazonEC2ContainerServiceforEC2Role** and **AmazonSSMManagedInstanceCore** is attached to the role\.
 
-   1. Choose **Attach policies**\.
+   1. Choose **Add Permissions**, **Attach policies**\.
 
-   1. In the **Filter** box, type **AmazonEC2ContainerServiceforEC2Role** to narrow the available policies to attach\.
+   1. To narrow the available policies to attach, for **Filter**, enter **AmazonEC2ContainerServiceforEC2Role** and **AmazonSSMManagedInstanceCore**\.
 
-   1. Check the box to the left of the **AmazonEC2ContainerServiceforEC2Role** policy and choose **Attach policy**\.
+   1. Check the box to the left of the **AmazonEC2ContainerServiceforEC2Role** and **AmazonSSMManagedInstanceCore** policy, and then choose **Attach policy**\.
 
-   1. In the **Filter** box, type **AmazonSSMManagedInstanceCore** to narrow the available policies to attach\.
+1. Choose **Trust relationships**\.
 
-   1. Check the box to the left of the **AmazonSSMManagedInstanceCore** policy and choose **Attach policy**\.
-
-1. Choose the **Trust relationships** tab, and **Edit trust relationship**\.
-
-1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, copy the policy into the **Policy Document** window and choose **Update Trust Policy**\.
+1. Verify that the trust relationship contains the following policy\. If the trust relationship matches the policy below, choose **Cancel**\. If the trust relationship does not match, choose **Edit trust policy**, copy the policy into the **Policy Document** window and choose **Update policy**\.
 
    ```
    {
      "Version": "2012-10-17",
      "Statement": [
        {
+         "Sid": "",
          "Effect": "Allow",
          "Principal": {
-           "Service": "ssm.amazonaws.com"
+           "Service": "ecs-tasks.amazonaws.com"
          },
          "Action": "sts:AssumeRole"
        }
@@ -41,7 +38,9 @@ When registering an on\-premise server or virtual machine \(VM\) to your cluster
    }
    ```
 
-**To create the `ecsAnywhereRole` IAM role \(AWS Management Console\)**
+## Creating the ECS Anywhere \(`ecsAnywhereRole`\) role<a name="ecs-anywhere-iam-role-create"></a>
+
+**To create the `ecsAnywhereRole` \(AWS Management Console\)**
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -53,7 +52,7 @@ When registering an on\-premise server or virtual machine \(VM\) to your cluster
 
 1. In the **Attached permissions policy** section, select **AmazonEC2ContainerServiceforEC2Role** and then choose **Next: Review**\.
 
-1. For **Role name**, type `ecsAnywhereRole` and optionally you can enter a description, for example **Allows on\-premises servers or virtual machine in an ECS cluster to access ECS\.**\.
+1. For **Role name**, enter `ecsAnywhereRole` and optionally you can enter a description, for example **Allows on\-premises servers or virtual machine in an ECS cluster to access ECS\.**\.
 
 1. Review your role information and then choose **Create role** to finish\.
 
@@ -61,7 +60,7 @@ When registering an on\-premise server or virtual machine \(VM\) to your cluster
 
 1. On the **Permissions** tab, choose **Attach policies**\.
 
-1. In the **Filter** box, type **AmazonSSMManagedInstanceCore** to narrow the available policies to attach\.
+1. In the **Filter** box, enter **AmazonSSMManagedInstanceCore** to narrow the available policies to attach\.
 
 1. Check the box to the left of the **AmazonSSMManagedInstanceCore** policy and choose **Attach policy**\.
 
@@ -84,7 +83,7 @@ When registering an on\-premise server or virtual machine \(VM\) to your cluster
    }
    ```
 
-**To create the `ecsAnywhereRole` IAM role \(AWS CLI\)**
+**To create the `ecsAnywhereRole` role \(AWS CLI\)**
 
 1. Create a local file named `ssm-trust-policy.json` with the following contents\.
 

@@ -156,7 +156,7 @@ The logging drivers available on the container instance\. The Amazon ECS contain
 Example values: `true` \| `false`  
 Default value on Linux: `false`  
 Default value on Windows: `false`  
-Whether launching privileged containers is disabled on the container instance\. If this value is set to `true`, privileged containers are not permitted\.
+Whether launching privileged containers is turned off on the container instance\. If this value is set to `true`, privileged containers are not permitted\.
 
 `ECS_SELINUX_CAPABLE`  
 Example values: `true` \| `false`  

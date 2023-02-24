@@ -6,3 +6,4 @@ Use the console to manage your Amazon ECS task definitions\.
 + [Creating a task definition using the console](create-task-definition.md)
 + [Updating a task definition using the console](update-task-definition-console-v2.md)
 + [Deregistering a task definition revision using the console](deregister-task-definition-v2.md)
++ [Deleting a task definition revision using the console](delete-task-definition-v2.md)

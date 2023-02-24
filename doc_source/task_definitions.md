@@ -20,6 +20,7 @@ After you create a task definition, you can run the task definition as a task or
 + An Amazon ECS *service* runs and maintains your desired number of tasks simultaneously in an Amazon ECS cluster\. How it works is that, if any of your tasks fail or stop for any reason, the Amazon ECS service scheduler launches another instance based on your task definition\. It does this to replace it and thereby maintain your desired number of tasks in the service\.
 
 **Topics**
++ [Task definition states](task-definition-state.md)
 + [Amazon EC2 Windows task definition considerations](windows_task_definitions.md)
 + [Application architecture](application_architecture.md)
 + [Task definition management in the Amazon ECS console](available-task-definition-actions.md)

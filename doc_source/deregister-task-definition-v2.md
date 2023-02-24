@@ -28,8 +28,8 @@ Task definitions created after January 12, 2023 will not have a CloudFormation s
 
 1. On the **Task definitions** page, choose the task definition family that contains one or more revisions that you want to deregister\.
 
-1. On the **task definition Name** page, choose the revisions to deregister, or choose **Task definition:revisions** to deregister the task definition family\.
+1. On the **Task definitions** page, choose the task definition family that contains one or more revisions that you want to deeregister\.
 
-1. In the upper\-right of the task definition revision detail page, choose **Deregister**\.
+1. On the **task definition Name** page, select the revisions to delete, and then choose **Actions**, **Deregister**\.
 
 1. Verify the information in the **Deregister** window, and then choose **Deregister** to finish\.

@@ -13,6 +13,8 @@ By specifying environment variables in a file, you can bulk inject environment v
 
 We don't enforce a size limit on the environment variables, but a large environment variables file might fill up the disk space\. Each task that uses an environment variables file causes a copy of the file to be downloaded to disk\. We remove the file as part of the task cleanup\. 
 
+For information about the supported environment variables, see [Advanced container definition parameters\- Environment](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definition_environment)\.
+
 The following is a snippet of a task definition showing how to specify individual environment variables\.
 
 ```

@@ -1,6 +1,6 @@
 # Blue/Green deployment with CodeDeploy<a name="deployment-type-bluegreen"></a>
 
-The *blue/green* deployment type uses the blue/green deployment model controlled by CodeDeploy\. This deployment type enables you to verify a new deployment of a service before sending production traffic to it\. For more information, see [What Is CodeDeploy?](https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html) in the *AWS CodeDeploy User Guide*\.
+The *blue/green* deployment type uses the blue/green deployment model controlled by CodeDeploy\. Use this deployment type to verify a new deployment of a service before sending production traffic to it\. For more information, see [What Is CodeDeploy?](https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html) in the *AWS CodeDeploy User Guide*\.
 
 There are three ways traﬃc can shift during a blue/green deployment:
 + **Canary** — Traﬃc is shifted in two increments\. You can choose from predeﬁned canary options that specify the percentage of traﬃc shifted to your updated task set in the ﬁrst increment and the interval, in minutes, before the remaining traﬃc is shifted in the second increment\.

@@ -5,7 +5,7 @@ Amazon ECS uses Docker images in task definitions to launch containers\. Docker 
 The purpose of the steps outlined here is to walk you through creating your first Docker image and pushing that image to Amazon ECR, which is a container registry, for use in your Amazon ECS task definitions\. This walkthrough assumes that you possess a basic understanding of what Docker is and how it works\. For more information about Docker, see [What is Docker?](http://aws.amazon.com/docker/) and the [Docker overview](https://docs.docker.com/engine/docker-overview/)\.
 
 **Important**  
-AWS and Docker have collaborated to make a simplified developer experience that enables you to deploy and manage containers on Amazon ECS directly using Docker tools\. You can now build and test your containers locally using Docker Desktop and Docker Compose, and then deploy them to Amazon ECS on Fargate\. To get started with the Amazon ECS and Docker integration, download Docker Desktop and optionally sign up for a Docker ID\. For more information, see [Docker Desktop](https://www.docker.com/products/docker-desktop) and [Docker ID signup](https://hub.docker.com/signup/awsedge?utm_source=awsedge)\.
+AWS and Docker have collaborated to make a simplified developer experience that allows you to deploy and manage containers on Amazon ECS directly using Docker tools\. You can now build and test your containers locally using Docker Desktop and Docker Compose, and then deploy them to Amazon ECS on Fargate\. To get started with the Amazon ECS and Docker integration, download Docker Desktop and optionally sign up for a Docker ID\. For more information, see [Docker Desktop](https://www.docker.com/products/docker-desktop) and [Docker ID signup](https://hub.docker.com/signup/awsedge?utm_source=awsedge)\.
 
 ## Prerequisites<a name="create-container-image-prerequisites"></a>
 
@@ -19,7 +19,7 @@ If you don't have or need a local development environment and you prefer to use 
 
 ### Installing Docker on Amazon Linux 2<a name="create-container-image-install-docker"></a>
 
-Docker Desktop is an easy\-to\-install application for your Mac or Windows environment that enables you to build and share containerized applications and microservices\. Docker Desktop includes Docker Engine, the Docker CLI client, Docker Compose, and other tools that are helpful when using Docker with Amazon ECS\. For more information about how to install Docker Desktop on your preferred operating system, see [Docker Desktop overview](https://docs.docker.com/desktop/)\.
+Docker Desktop is an easy\-to\-install application for your Mac or Windows environment that you can use to build and share containerized applications and microservices\. Docker Desktop includes Docker Engine, the Docker CLI client, Docker Compose, and other tools that are helpful when using Docker with Amazon ECS\. For more information about how to install Docker Desktop on your preferred operating system, see [Docker Desktop overview](https://docs.docker.com/desktop/)\.
 
 **To install Docker on an Amazon EC2 instance**
 

@@ -330,7 +330,7 @@ Windows containers on AWS Fargate supports the following operating systems:
 + Windows Server 2022 Full
 + Windows Server 2022 Core
 
-AWS handles the operating system license management, so you do not need any additional Microsoft licenses\.
+AWS handles the operating system license management, so you do not need any additional Microsoft Windows Server licenses\.
 
 Windows containers on AWS Fargate supports the awslogs driver\. For more information, see [Using the awslogs log driver](using_awslogs.md)\.
 

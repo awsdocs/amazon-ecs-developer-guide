@@ -160,7 +160,7 @@ The service is a web\-based application so you can view its containers with a we
 1. In the **Containers** section, expand the container details\. In the **Network bindings** section, for **External Link** you will see the **IPv4 Public IP** address to use to access the web application\.
 
 1. Enter the **IPv4 Public IP** address in your web browser and you should see a webpage that displays the **Amazon ECS sample** application\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ECS_Sample_Application.png)
+![\[Screenshot of the Amazon ECS sample application. The output indicates that "Your application is now running on Amazon ECS".\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/ECS_Sample_Application.png)
 
 ## Step 5: Clean Up<a name="getting-started-ec2-cleanup"></a>
 

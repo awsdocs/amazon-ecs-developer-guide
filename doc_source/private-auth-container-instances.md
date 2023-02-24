@@ -95,9 +95,9 @@ ECS_ENGINE_AUTH_TYPE=docker
 ECS_ENGINE_AUTH_DATA={"repo.example-01.com":{"username":"my_name","password":"my_password","email":"email@example-01.com"},"repo.example-02.com":{"username":"another_name","password":"another_password","email":"email@example-02.com"}}
 ```
 
-## Enabling private registries<a name="enabling-private-registry"></a>
+## Turning on private registries<a name="enabling-private-registry"></a>
 
-Use the following procedure to enable private registries for your container instances\.
+Use the following procedure to turn on private registries for your container instances\.
 
 **To enable private registries in the Amazon ECS\-optimized AMI**
 

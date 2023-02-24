@@ -20,7 +20,7 @@ If you aren't using the Amazon ECS optimized AMI \(with at least version 1\.9\.0
 ECS_AVAILABLE_LOGGING_DRIVERS='["json-file","awslogs"]'
 ```
 
-Your Amazon ECS container instances also require `logs:CreateLogStream` and `logs:PutLogEvents` permission on the IAM role that you can launch your container instances with\. If you created your Amazon ECS container instance role before `awslogs` log driver support was enabled in Amazon ECS, you might need to add this permission\. The `ecsTaskExecutionRole` is used when it's assigned to the task and likely contains the correct permissions\. For information about checking your task execution role, see [To check for the `ecsTaskExecutionRole` in the IAM console](task_execution_IAM_role.md#procedure_check_execution_role)\. If your container instances use the managed IAM policy for container instances, your container instances likely have the correct permissions\. For information about how to check your Amazon ECS container instance role and attach the managed IAM policy for container instances, see [To check for the `ecsInstanceRole` in the IAM console](instance_IAM_role.md#procedure_check_instance_role)\.
+Your Amazon ECS container instances also require `logs:CreateLogStream` and `logs:PutLogEvents` permission on the IAM role that you can launch your container instances with\. If you created your Amazon ECS container instance role before `awslogs` log driver support was enabled in Amazon ECS, you might need to add this permission\. The `ecsTaskExecutionRole` is used when it's assigned to the task and likely contains the correct permissions\. For information about checking your task execution role, see [Checking for the task execution \(`ecsTaskExecutionRole`\) role in the IAM console](task_execution_IAM_role.md#procedure_check_execution_role)\. If your container instances use the managed IAM policy for container instances, your container instances likely have the correct permissions\. For information about how to check your Amazon ECS container instance role and attach the managed IAM policy for container instances, see [Checking for the container instance \( `ecsInstanceRole`\) in the IAM console](instance_IAM_role.md#procedure_check_instance_role)\.
 
 ## Creating a log group<a name="create_awslogs_loggroups"></a>
 
@@ -199,8 +199,7 @@ For tasks using the EC2 launch type, after your container instance role has the 
 
 1. On the **Task: *task\_id*** page, expand the container view by choosing the arrow to the left of the container name\.
 
-1. In the **Log Configuration** section, choose **View logs in CloudWatch**, which opens the associated log stream in the CloudWatch console\.  
-![\[Task definition view of log configuration\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/view_logs_in_cw.png)
+1. In the **Log Configuration** section, choose **View logs in CloudWatch**, which opens the associated log stream in the CloudWatch console\.
 
 **To view your CloudWatch Logs data in the CloudWatch console**
 
@@ -208,8 +207,7 @@ For tasks using the EC2 launch type, after your container instance role has the 
 
 1. In the left navigation pane, choose **Logs**\.
 
-1. Select a log group to view\. You should see the log groups that you created in [Creating a log group](#create_awslogs_loggroups)\.  
-![\[awslogs console metrics view\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/awslogs-log-groups.png)
+1. Select a log group to view\. You should see the log groups that you created in [Creating a log group](#create_awslogs_loggroups)\.
 
 1. Choose a log stream to view\.  
 ![\[awslogs console metrics view\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/awslogs-log-stream.png)

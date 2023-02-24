@@ -76,8 +76,7 @@ These steps help you create step scaling policies and CloudWatch alarms that can
    + Choose whether to add to, subtract from, or set a specific desired count for your service\.
    + If you chose to add or subtract tasks, enter the number of tasks \(or percent of existing tasks\) to add or subtract when the scaling action is triggered\. If you chose to set the desired count, enter the desired count that your service should be set to when the scaling action is triggered\. 
    + \(Optional\) If you chose to add or subtract tasks, choose whether the previous value is used as an integer or a percent value of the existing desired count\.
-   + Enter the lower boundary of your step scaling adjustment\. By default, for your first scaling action, this value is the metric amount where your alarm is triggered\. For example, the following scaling action adds 100% of the existing desired count when the CPU utilization is greater than 75%\.  
-![\[Scaling activity example\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/scaling-activity.png)
+   + Enter the lower boundary of your step scaling adjustment\. By default, for your first scaling action, this value is the metric amount where your alarm is triggered\. For example, the following scaling action adds 100% of the existing desired count when the CPU utilization is greater than 75%\.
 
 1. \(Optional\) You can repeat [Step 5](#scaling-action-step-adjustment) to configure multiple scaling actions for a single alarm \(for example, to add one task if CPU utilization is between 75\-85%, and to add two tasks if CPU utilization is greater than 85%\)\.
 

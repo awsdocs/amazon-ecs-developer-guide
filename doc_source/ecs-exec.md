@@ -197,18 +197,18 @@ aws ecs create-cluster \
 ```
 
 The `logging` property determines the behavior of the logging capability of ECS Exec:
-+ `NONE`: logging is disabled
++ `NONE`: logging is turned off
 + `DEFAULT`: logs are sent to the configured `awslogs` driver \(If the driver isn't configured, then no log is saved\.\)
 + `OVERRIDE`: logs are sent to the provided Amazon CloudWatch Logs LogGroup, Amazon S3 bucket, or both
 
 ### IAM permissions required for Amazon CloudWatch Logs or Amazon S3 Logging<a name="ecs-exec-required-logging-permissions"></a>
 
-To enable logging, the Amazon ECS task role that's referenced in your task definition needs to have additional permissions\. These additional permissions can be added as an inline policy to the task role\. They are different depending on if you direct your logs to Amazon CloudWatch Logs or Amazon S3\.
+To enable logging, the Amazon ECS task role that's referenced in your task definition needs to have additional permissions\. These additional permissions can be added as a policy to the task role\. They are different depending on if you direct your logs to Amazon CloudWatch Logs or Amazon S3\.
 
 ------
 #### [ Amazon CloudWatch Logs ]
 
-The following example inline policy adds the required Amazon CloudWatch Logs permissions\.
+The following example policy adds the required Amazon CloudWatch Logs permissions\.
 
 ```
 {
@@ -237,7 +237,7 @@ The following example inline policy adds the required Amazon CloudWatch Logs per
 ------
 #### [ Amazon S3 ]
 
-The following example inline policy adds the required Amazon S3 permissions\.
+The following example policy adds the required Amazon S3 permissions\.
 
 ```
 {
@@ -367,7 +367,7 @@ With the following IAM policy example, users can't use the `execute-command` API
 }
 ```
 
-With the following IAM policy, users can only launch tasks when ECS Exec is disabled\.
+With the following IAM policy, users can only launch tasks when ECS Exec is turned off\.
 
 ```
 {

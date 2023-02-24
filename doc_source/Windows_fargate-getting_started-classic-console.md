@@ -181,7 +181,7 @@ It can take up to 15 minutes for your container instance to download and extract
 1. On the **Task** page, expand the `windows_fargate` container to view its information\.
 
 1. In the **Network bindings** of the container, you should see an **External Link** IP address and port combination link\. Choose that link to open the IIS test page in your browser\.  
-![\[Windows Fargate test page\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/windows-simple-iis.png)
+![\[Screenshot of the Amazon ECS sample application. The output indicates that "Your application is now running on Amazon ECS".\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/windows-simple-iis.png)
 
 ## Step 5: Clean Up<a name="first-fargate-run-cleanup"></a>
 

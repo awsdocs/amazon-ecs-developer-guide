@@ -23,7 +23,7 @@ The following parameter is allowed in a task definition\.
 Type: string array  
 Required: no  
 Valid Values: `EC2` \| `FARGATE` \| `EXTERNAL`  
-The launch type to validate the task definition against\. This enables a check to ensure that all of the parameters that are used in the task definition meet the requirements of the launch type\.
+The launch type to validate the task definition against\. This initiates a check to ensure that all of the parameters that are used in the task definition meet the requirements of the launch type\.
 
 ## Task role<a name="task_role_arn"></a>
 
