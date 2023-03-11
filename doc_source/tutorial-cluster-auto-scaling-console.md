@@ -38,7 +38,7 @@ Amazon ECS creates an Amazon EC2 Auto Scaling launch template and Auto Scaling g
 
 1. Add Amazon EC2 instances to your cluster, expand **Infrastructure**, and then select **Amazon EC2 instances**\. Next, configure the Auto Scaling group which acts as the capacity provider\.
 
-   1. Create a Auto Scaling group, from Auto Scaling group \(ASG\)\. Celect **Create new group**, and then provide the following details about the group:
+   1. Create a Auto Scaling group, from Auto Scaling group \(ASG\)\. Select **Create new group**, and then provide the following details about the group:
      + For **Operating system/Architecture**, choose **Amazon Linux 2**\.
      + For **EC2 instance type**, choose **t3\.nano**\.
      + For **Capacity**, enter **0** for the minimum number and the maximum number of instances to launch in the Auto Scaling group\. 
@@ -109,7 +109,7 @@ After you have registered a task definition for your account, you can run a task
 
 ## Step 4: Verify<a name="console-tutorial-verify"></a>
 
-At this point in the tutorial, you should have two Auto Scaling groups with one capacity provider for each of them\. The capacity providers have Amazon ECS managed scaling enabled\. A cluster was created and five tasks are running\.
+At this point in the tutorial, you should have one Auto Scaling group with one capacity provider\. The capacity provider has Amazon ECS managed scaling enabled\. A cluster was created and five tasks are running\.
 
 We can verify that everything is working properly by viewing the CloudWatch metrics, the Auto Scaling group settings, and finally the Amazon ECS cluster task count\.
 
@@ -130,8 +130,6 @@ We can verify that everything is working properly by viewing the CloudWatch metr
 1. On the **Graphed metrics** tab, change **Period** to **30 seconds** and **Statistic** to **Maximum**\.
 
    The value displayed in the graph shows the target capacity value for the capacity provider\. It should begin at `100`, which was the target capacity percent we set\. You should see it scale up to `200`, which will trigger an alarm for the target tracking scaling policy\. The alarm will then trigger the Auto Scaling group to scale out\.
-
-1. Steps 5 to 6 can be repeated for your **ConsoleTutorial\-capacityprovider\-burst** metric\.
 
 Use the following steps to view your Auto Scaling group details to confirm that the scale\-out action occurred\.
 
@@ -196,5 +194,3 @@ When you have finished this tutorial, clean up the resources associated with it 
    1. On the navigation pane, under **Auto Scaling**, choose **Auto Scaling Groups**\.
 
    1. Select your **ConsoleTutorial\-ASG** Auto Scaling group, then from the **Actions** menu choose **Delete\.**
-
-   1. Select your **ConsoleTutorial\-ASG\-burst** Auto Scaling group, then from the **Actions** menu choose **Delete\.**
