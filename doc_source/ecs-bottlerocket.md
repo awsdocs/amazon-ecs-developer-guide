@@ -1,14 +1,18 @@
-# Using Bottlerocket with Amazon ECS<a name="ecs-bottlerocket"></a>
+# Amazon ECS\-optimized Bottlerocket AMIs<a name="ecs-bottlerocket"></a>
 
-Bottlerocket is a Linux\-based open source operating system that is purpose\-built by AWS for running containers\. For more information, see [Bottlerocket OS](https://github.com/bottlerocket-os/bottlerocket) on GitHub\.
+The Amazon ECS\-optimized Bottlerocket AMI is built on top of [Bottlerocket](http://aws.amazon.com/bottlerocket/)\. Bottlerocket is a Linux based open\-source operating system that is purpose built by AWS for running containers on virtual machines or bare metal hosts\. The Amazon ECS\-optimized Bottlerocket AMI is secure and only includes the minimum number of packages that's required to run containers\. This improves resource usage, reduces security attack surface, and helps lower management overhead\. The Bottlerocket AMI is also integrated with Amazon ECS to help reduce the operational overhead involved in updating container instances in a cluster\. 
 
-An Amazon ECS\-optimized AMI variant of the Bottlerocket operating system is provided as an AMI you can use when launching Amazon ECS container instances\. For a detailed walkthrough of how to get started with the Bottlerocket operating system on Amazon ECS, see [Using a Bottlerocket AMI with Amazon ECS](https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-ECS.md) on GitHub\.
+Bottlerocket differs from Amazon Linux in the following ways:
++ Bottlerocket doesn't include a package manager, and its software can only be run as containers\. Updates to Bottlerocket are both applied and can be rolled back in a single step, which reduces the likelihood of update errors\.
++ The primary mechanism to manage Bottlerocket hosts is with a container scheduler\. Unlike Amazon Linux, logging into individual Bottlerocket instances is intended to be an infrequent operation for advanced debugging and troubleshooting purposes only\.
 
-You can request new features on the GitHub page\. For more information, see [Bottlerocket Issues](https://github.com/bottlerocket-os/bottlerocket/issues) on GitHub\.
+For more information about Bottlerocket, see the [documentation](https://github.com/bottlerocket-os/bottlerocket/blob/develop/README.md) and [releases](https://github.com/bottlerocket-os/bottlerocket/releases) on GitHub\.
+
+An Amazon ECS\-optimized AMI variant of the Bottlerocket operating system is provided as an AMI that you can use when launching Amazon ECS container instances\. 
 
 ## Amazon ECS\-optimized Bottlerocket AMI variants<a name="ecs-bottlerocket-variants"></a>
 
-You can use the following Amazon ECS\-optimized Bottlerocket AMI variants for your Amazon EC2 instances\.
+You can use the following Amazon ECS\-optimized Bottlerocket AMI variants for your Amazon EC2 instances:
 + `aws-ecs-1`
 + `aws-ecs-1-nvidia`
 
@@ -17,120 +21,114 @@ You can use the following Amazon ECS\-optimized Bottlerocket AMI variants for yo
 ## Considerations<a name="ecs-bottlerocket-considerations"></a>
 
 Consider the following when using a Bottlerocket AMI with Amazon ECS\.
-+ Bottlerocket is optimized for container workloads and has a focus on security\. It does not include a package manager and is immutable by default\. For information about the security features and guidance, see [Security Features](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_FEATURES.md) and [Security Guidance](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_GUIDANCE.md) on the GitHub website\.
-+ Amazon EC2 instances with x86 or arm64 processors are supported\.
-+ Amazon EC2 instances with Inferentia chips are not supported\.
-+ The `awsvpc` network mode is supported when using Bottlerocket AMI version `1.1.0` or later\.
-+ The `initProcessEnabled` task definition parameter is not supported\.
-+ The following features are not supported:
++ You can deploy to Amazon EC2 instances with x86 or Arm64 processors, but not to instances that have Inferentia chips\.
++ Bottlerocket images don't include an SSH server or a shell\. However, you can use out\-of\-band management tools to gain SSH administrator access and perform bootstrapping\. For more information, see these sections in the [bottlerocket README\.md](https://github.com/bottlerocket-os/bottlerocket) on GitHub:
+  + [Exploration](https://github.com/bottlerocket-os/bottlerocket#exploration)
+  + [Admin container](https://github.com/bottlerocket-os/bottlerocket#admin-container)
++ By default, Bottlerocket has a [control container](https://github.com/bottlerocket-os/bottlerocket-control-container) that's enabled\. This container runs the [AWS Systems Manager agent](https://github.com/aws/amazon-ssm-agent) that you can use to run commands or start shell sessions on Amazon EC2 Bottlerocket instances\. For more information, see [Setting up Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started.html) in the *AWS Systems Manager User Guide*\.
++ Bottlerocket is optimized for container workloads and has a focus on security\. Bottlerocket doesn't include a package manager and is immutable\. For information about the security features and guidance, see [Security Features](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_FEATURES.md) and [Security Guidance](https://github.com/bottlerocket-os/bottlerocket/blob/develop/SECURITY_GUIDANCE.md) on GitHub\.
++ The `awsvpc` network mode is supported for Bottlerocket AMI version `1.1.0` or later\.
++ The Bottlerocket AMIs don't support the `initProcessEnabled` task definition parameter\.
++ The Bottlerocket AMIs also don't support the following services and features:
   + App Mesh in task definitions
   + ECS Anywhere
   + ECS Exec
   + Amazon EFS file system volumes
   + Amazon EFS in encrypted mode and `awsvpc` network mode
   + Elastic Inference
-  + FireLens in task definitions
 
 ## Retrieving an Amazon ECS\-optimized Bottlerocket AMI<a name="ecs-bottlerocket-retrieve-ami"></a>
 
-You can use one of the following ways to retrieve an Amazon ECS\-optimized Bottlerocket AMI variant\.
-+ Use AWS Systems Manager parameters in a AWS CLI command
-+ Click the AMI link for a specific region, variant, and architecture in the tables on this page
+You can retrieve the Amazon Machine Image \(AMI\) ID for Amazon ECS\-optimized AMIs by querying the AWS Systems Manager Parameter Store API\. Using this parameter, you don't need to manually look up Amazon ECS\-optimized AMI IDs\. For more information about the Systems Manager Parameter Store API, see [GetParameter](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameter.html)\. The user that you use must have the `ssm:GetParameter` IAM permission to retrieve the Amazon ECS\-optimized AMI metadata\.
 
 ### Retrieving the `aws-ecs-1` Bottlerocket AMI variant<a name="ecs-bottlerocket-aws-ecs-1-variant"></a>
 
-#### Use AWS Systems Manager parameters in a AWS CLI command<a name="w193aac20c19c25c13b7b1b3"></a>
+You can retrieve the latest stable `aws-ecs-1` Bottlerocket AMI variant by AWS Region and architecture with the AWS CLI or the AWS Management Console\. 
++ **AWS CLI** – You can retrieve the image ID of the latest recommended Amazon ECS\-optimized Bottlerocket AMI with the following AWS CLI command by using the subparameter `image_id`\. Replace the `region` with the Region code that you want the AMI ID for\. For information about the supported AWS Regions, see [Finding an AMI](https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-ECS.md#finding-an-ami) on GitHub\. To retrieve a version other than the latest, replace `latest` with the version number\.
+  + For the 64\-bit \(`x86_64`\) architecture:
 
-Use AWS Systems Manager parameters in the following AWS CLI command to retrieve the latest stable `aws-ecs-1` Bottlerocket AMI variant by Region and architecture\. To retrieve a version other than the latest, replace `latest` with the version number\.
-+ For the 64\-bit \(`x86_64`\) architecture:
+    ```
+    aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id" --query Parameter.Value --output text
+    ```
+  + For the 64\-bit Arm \(`arm64`\) architecture:
 
-  ```
-  aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id" --query Parameter.Value --output text
-  ```
-+ For the 64\-bit ARM \(`arm64`\) architecture:
+    ```
+    aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id" --query Parameter.Value --output text
+    ```
++ **AWS Management Console** – You can query for the recommended Amazon ECS\-optimized AMI ID using a URL in the AWS Management Console\. The URL opens the Amazon EC2 Systems Manager console with the value of the ID for the parameter\. In the following URL, replace `region` with the Region code that you want the AMI ID for\. For information about the supported AWS Regions, see [Finding an AMI](https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-ECS.md#finding-an-ami) on GitHub\.
+  + For the 64\-bit \(`x86_64`\) architecture:
 
-  ```
-  aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id" --query Parameter.Value --output text
-  ```
+    ```
+    https://console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=region#
+    ```
+  + For the 64\-bit Arm \(`arm64`\) architecture:
 
-#### Click the AMI link<a name="w193aac20c19c25c13b7b1b5"></a>
-
-The following table provides a link to retrieve the latest Amazon ECS\-optimized Bottlerocket AMI variant `aws-ecs-1`, by Region and architecture\.
-
-
-|  Region Name  |  Region  |  x86\_64 AMI ID  |  arm64 AMI ID  | 
-| --- | --- | --- | --- | 
-|  US East \(N\. Virginia\)  |  `us-east-1`  |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=us-east-1#)  |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=us-east-1#)  | 
-|  US East \(Ohio\)  |  `us-east-2`  |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=us-east-2#)  |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=us-east-2#)  | 
-|  US West \(N\. California\)  |  `us-west-1`  |  [View AMI ID](https://us-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=us-west-1#)  |  [View AMI ID](https://us-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=us-west-1#)  | 
-|  US West \(Oregon\)  |  `us-west-2`  |  [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=us-west-2#)  |  [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=us-west-2#)  | 
-|  Africa \(Cape Town\)  |  `af-south-1`  |  [View AMI ID](https://af-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=af-south-1#)  |  [View AMI ID](https://af-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=af-south-1#)  | 
-|  Asia Pacific \(Hong Kong\)  |  `ap-east-1`  |  [View AMI ID](https://ap-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=ap-east-1#)  |  [View AMI ID](https://ap-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=ap-east-1#)  | 
-|  Asia Pacific \(Tokyo\)  |  `ap-northeast-1`  |  [View AMI ID](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=ap-northeast-1#)  |  [View AMI ID](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=ap-northeast-1#)  | 
-|  Asia Pacific \(Seoul\)  |  `ap-northeast-2`  |  [View AMI ID](https://ap-northeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=ap-northeast-2#)  |  [View AMI ID](https://ap-northeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=ap-northeast-2#)  | 
-|  Asia Pacific \(Osaka\)  |  `ap-northeast-3`  |  [View AMI ID](https://ap-northeast-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=ap-northeast-3#)  |  [View AMI ID](https://ap-northeast-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=ap-northeast-3#)  | 
-|  Asia Pacific \(Mumbai\)  |  `ap-south-1`  |  [View AMI ID](https://ap-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=ap-south-1#)  |  [View AMI ID](https://ap-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=ap-south-1#)  | 
-|  Asia Pacific \(Singapore\)  |  `ap-southeast-1`  |  [View AMI ID](https://ap-southeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=ap-southeast-1#)  |  [View AMI ID](https://ap-southeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=ap-southeast-1#)  | 
-|  Asia Pacific \(Sydney\)  |  `ap-southeast-2`  |  [View AMI ID](https://ap-southeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=ap-southeast-2#)  |  [View AMI ID](https://ap-southeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=ap-southeast-2#)  | 
-|  Asia Pacific \(Jakarta\)  |  `ap-southeast-3`  |  [View AMI ID](https://ap-southeast-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=ap-southeast-3#)  |  [View AMI ID](https://ap-southeast-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=ap-southeast-3#)  | 
-|  Canada \(Central\)  |  `ca-central-1`  |  [View AMI ID](https://ca-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=ca-central-1#)  |  [View AMI ID](https://ca-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=ca-central-1#)  | 
-|  Europe \(Frankfurt\)  |  `eu-central-1`  |  [View AMI ID](https://eu-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=eu-central-1#)  |  [View AMI ID](https://eu-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=eu-central-1#)  | 
-|  Europe \(Stockholm\)  |  `eu-north-1`  |  [View AMI ID](https://eu-north-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=eu-north-1#)  |  [View AMI ID](https://eu-north-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=eu-north-1#)  | 
-|  Europe \(Ireland\)  |  `eu-west-1`  |  [View AMI ID](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=eu-west-1#)  |  [View AMI ID](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=eu-west-1#)  | 
-|  Europe \(London\)  |  `eu-west-2`  |  [View AMI ID](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=eu-west-2#)  |  [View AMI ID](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=eu-west-2#)  | 
-|  Europe \(Paris\)  |  `eu-west-3`  |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=eu-west-3#)  |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=eu-west-3#)  | 
-|  Europe \(Milan\)  |  `eu-south-1`  |  [View AMI ID](https://eu-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=eu-south-1#)  |  [View AMI ID](https://eu-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=eu-south-1#)  | 
-|  Middle East \(Bahrain\)  |  `me-south-1`  |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=me-south-1#)  |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=me-south-1#)  | 
-|  Middle East \(UAE\)  |  `me-central-1`  |  [View AMI ID](https://me-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=me-central-1#)  |  [View AMI ID](https://me-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=me-central-1#)  | 
-|  South America \(São Paulo\)  |  `sa-east-1`  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=sa-east-1#)  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=sa-east-1#)  | 
-|  AWS GovCloud \(US\-East\)  |  `us-gov-east-1`  |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=us-gov-east-1#)  |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=us-gov-east-1#)  | 
-|  AWS GovCloud \(US\-West\)  |  `us-gov-west-1`  |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id/description?region=us-gov-west-1#)  |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=us-gov-west-1#)  | 
+    ```
+    https://console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1/arm64/latest/image_id/description?region=region#
+    ```
 
 ### Retrieving the `aws-ecs-1-nvidia` Bottlerocket AMI variant<a name="ecs-bottlerocket-aws-ecs-1-nvidia-variants"></a>
 
-#### Use AWS Systems Manager parameters a AWS CLI command<a name="w193aac20c19c25c13b7b3b3"></a>
+You can retrieve the latest stable `aws-ecs-1-nvdia` Bottlerocket AMI variant by Region and architecture with the AWS CLI or the AWS Management Console\. 
++ **AWS CLI** – You can retrieve the image ID of the latest recommended Amazon ECS\-optimized Bottlerocket AMI with the following AWS CLI command by using the subparameter `image_id`\. Replace the `region` with the Region code that you want the AMI ID for\. For information about the supported AWS Regions, see [Finding an AMI](https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-ECS.md#finding-an-ami) on GitHub\. To retrieve a version other than the latest, replace `latest` with the version number\.
+  + For the 64\-bit \(`x86_64`\) architecture:
 
-Use AWS Systems Manager parameters in the following AWS CLI command to retrieve the latest stable `aws-ecs-1-nvidia` Bottlerocket AMI variant by Region and architecture\. To retrieve a version other than the latest, replace `latest` with the version number\.
-+ For the 64\-bit \(`x86_64`\) architecture:
+    ```
+    aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id" --query Parameter.Value --output text
+    ```
+  + For the 64 bit Arm \(`arm64`\) architecture:
 
-  ```
-  aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id" --query Parameter.Value --output text
-  ```
-+ For the 64\-bit ARM \(`arm64`\) architecture:
+    ```
+    aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id" --query Parameter.Value --output text
+    ```
++ **AWS Management Console** – You can query for the recommended Amazon ECS optimized AMI ID using a URL in the AWS Management Console\. The URL opens the Amazon EC2 Systems Manager console with the value of the ID for the parameter\. In the following URL, replace `region` with the Region code that you want the AMI ID for\. For information about the supported AWS Regions, see [Finding an AMI](https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-ECS.md#finding-an-ami) on GitHub\.
+  + For the 64 bit \(`x86_64`\) architecture:
 
-  ```
-  aws ssm get-parameter --region us-east-1 --name "/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id" --query Parameter.Value --output text
-  ```
+    ```
+    https://console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=region#
+    ```
+  + For the 64 bit Arm \(`arm64`\) architecture:
 
-#### Click the AMI link<a name="w193aac20c19c25c13b7b3b5"></a>
+    ```
+    https://console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=region#
+    ```
 
-The following table provides a link to retrieve the latest Amazon ECS\-optimized Bottlerocket AMI variant `aws-ecs-1-nvidia`, by Region and architecture\.
+## Launch a Bottlerocket container instance<a name="bottlerocket-launch"></a>
 
+You can use the AWS CLI to launch the container instance\.
 
-|  Region Name  |  Region  |  x86\_64 AMI ID  |  arm64 AMI ID  | 
-| --- | --- | --- | --- | 
-|  US East \(N\. Virginia\)  |  `us-east-1`  |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=us-east-1#)  |  [View AMI ID](https://us-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=us-east-1#)  | 
-|  US East \(Ohio\)  |  `us-east-2`  |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=us-east-2#)  |  [View AMI ID](https://us-east-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=us-east-2#)  | 
-|  US West \(N\. California\)  |  `us-west-1`  |  [View AMI ID](https://us-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=us-west-1#)  |  [View AMI ID](https://us-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=us-west-1#)  | 
-|  US West \(Oregon\)  |  `us-west-2`  |  [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=us-west-2#)  |  [View AMI ID](https://us-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=us-west-2#)  | 
-|  Africa \(Cape Town\)  |  `af-south-1`  |  [View AMI ID](https://af-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=af-south-1#)  |  [View AMI ID](https://af-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=af-south-1#)  | 
-|  Asia Pacific \(Hong Kong\)  |  `ap-east-1`  |  [View AMI ID](https://ap-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=ap-east-1#)  |  [View AMI ID](https://ap-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=ap-east-1#)  | 
-|  Asia Pacific \(Tokyo\)  |  `ap-northeast-1`  |  [View AMI ID](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=ap-northeast-1#)  |  [View AMI ID](https://ap-northeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=ap-northeast-1#)  | 
-|  Asia Pacific \(Seoul\)  |  `ap-northeast-2`  |  [View AMI ID](https://ap-northeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=ap-northeast-2#)  |  [View AMI ID](https://ap-northeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=ap-northeast-2#)  | 
-|  Asia Pacific \(Osaka\)  |  `ap-northeast-3`  |  [View AMI ID](https://ap-northeast-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=ap-northeast-3#)  |  [View AMI ID](https://ap-northeast-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=ap-northeast-3#)  | 
-|  Asia Pacific \(Mumbai\)  |  `ap-south-1`  |  [View AMI ID](https://ap-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=ap-south-1#)  |  [View AMI ID](https://ap-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=ap-south-1#)  | 
-|  Asia Pacific \(Singapore\)  |  `ap-southeast-1`  |  [View AMI ID](https://ap-southeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=ap-southeast-1#)  |  [View AMI ID](https://ap-southeast-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=ap-southeast-1#)  | 
-|  Asia Pacific \(Sydney\)  |  `ap-southeast-2`  |  [View AMI ID](https://ap-southeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=ap-southeast-2#)  |  [View AMI ID](https://ap-southeast-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=ap-southeast-2#)  | 
-|  Asia Pacific \(Jakarta\)  |  `ap-southeast-3`  |  [View AMI ID](https://ap-southeast-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=ap-southeast-3#)  |  [View AMI ID](https://ap-southeast-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=ap-southeast-3#)  | 
-|  Canada \(Central\)  |  `ca-central-1`  |  [View AMI ID](https://ca-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=ca-central-1#)  |  [View AMI ID](https://ca-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=ca-central-1#)  | 
-|  Europe \(Frankfurt\)  |  `eu-central-1`  |  [View AMI ID](https://eu-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=eu-central-1#)  |  [View AMI ID](https://eu-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=eu-central-1#)  | 
-|  Europe \(Stockholm\)  |  `eu-north-1`  |  [View AMI ID](https://eu-north-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=eu-north-1#)  |  [View AMI ID](https://eu-north-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=eu-north-1#)  | 
-|  Europe \(Ireland\)  |  `eu-west-1`  |  [View AMI ID](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=eu-west-1#)  |  [View AMI ID](https://eu-west-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=eu-west-1#)  | 
-|  Europe \(London\)  |  `eu-west-2`  |  [View AMI ID](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=eu-west-2#)  |  [View AMI ID](https://eu-west-2.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=eu-west-2#)  | 
-|  Europe \(Paris\)  |  `eu-west-3`  |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=eu-west-3#)  |  [View AMI ID](https://eu-west-3.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=eu-west-3#)  | 
-|  Europe \(Milan\)  |  `eu-south-1`  |  [View AMI ID](https://eu-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=eu-south-1#)  |  [View AMI ID](https://eu-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=eu-south-1#)  | 
-|  Middle East \(Bahrain\)  |  `me-south-1`  |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=me-south-1#)  |  [View AMI ID](https://me-south-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=me-south-1#)  | 
-|  Middle East \(UAE\)  |  `me-central-1`  |  [View AMI ID](https://me-central.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=me-central-1#)  |  [View AMI ID](https://me-central-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=me-central-1#)  | 
-|  South America \(São Paulo\)  |  `sa-east-1`  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=sa-east-1#)  |  [View AMI ID](https://sa-east-1.console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=sa-east-1#)  | 
-|  AWS GovCloud \(US\-East\)  |  `us-gov-east-1`  |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=us-gov-east-1#)  |  [View AMI ID](https://us-gov-east-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=us-gov-east-1#)  | 
-|  AWS GovCloud \(US\-West\)  |  `us-gov-west-1`  |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/x86_64/latest/image_id/description?region=us-gov-west-1#)  |  [View AMI ID](https://us-gov-west-1.console.amazonaws-us-gov.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-1-nvidia/arm64/latest/image_id/description?region=us-gov-west-1#)  | 
+1. Create a file that's called `userdata.toml`\. This file is used for the instance user data\. Replace *cluster\-name* with the name of your cluster\.
+
+   ```
+   [settings.ecs]
+   cluster = "cluster-name"
+   ```
+
+1. Use one of the commands that are included in [Retrieving an Amazon ECS\-optimized Bottlerocket AMI](#ecs-bottlerocket-retrieve-ami) to get the Bottlerocket AMI ID\. You use this in the following step\.
+
+1. Run the following command to launch the Bottlerocket instance\. Remember to replace the following parameters:
+   + Replace *subnet* with the ID of the private or public subnet that your instance will launch in\.
+   + Replace *bottlerocket\_ami* with the AMI ID from the previous step\.
+   + Replace *t3\.large* with the instance type that you want to use\.
+   + Replace *region* with the Region code\.
+
+   ```
+   aws ec2 run-instances --key-name ecs-bottlerocket-example \
+      --subnet-id subnet \
+      --image-id bottlerocket_ami \
+      --instance-type t3.large \
+      --region region \
+      --tag-specifications 'ResourceType=instance,Tags=[{Key=bottlerocket,Value=example}]' \
+      --user-data file://userdata.toml \
+      --iam-instance-profile Name=ecsInstanceRole
+   ```
+
+1. Run the following command to verify that the container instance is registered to the cluster\. When you run this command, remember to replace the following parameters:
+   + Replace *cluster* with your cluster name\.
+   + Replace *region* with your Region code\.
+
+   ```
+   aws ecs list-container-instances --cluster cluster-name --region region
+   ```
+
+For a detailed walkthrough of how to get started with the Bottlerocket operating system on Amazon ECS, see [Using a Bottlerocket AMI with Amazon ECS](https://github.com/bottlerocket-os/bottlerocket/blob/develop/QUICKSTART-ECS.md) on GitHub and Getting started with [Bottlerocket and Amazon ECS](https://aws.amazon.com/blogs/containers/getting-started-with-bottlerocket-and-amazon-ecs/) on the AWS blog site\.

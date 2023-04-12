@@ -2,7 +2,7 @@
 
 You can manage your account settings using the Amazon ECS API, AWS CLI or SDKs\. 
 
-For information about the available API actions for task definitions see [Account setting actions actions](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/OperationList-query-account.html) in the *Amazon Elastic Container Service API Reference*\.
+For information about the available API actions for task definitions see [Account setting actions](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/OperationList-query-account.html) in the *Amazon Elastic Container Service API Reference*\.
 
 Use one of the following commands to modify the default account setting for all users or roles on your account\. These changes apply to the entire AWS account unless a user or role explicitly overrides these settings for themselves\.
 + [put\-account\-setting\-default](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting-default.html) \(AWS CLI\)

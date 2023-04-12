@@ -20,7 +20,7 @@ When deregistering a container instance, be aware of the following consideration
 + If you terminate a running container instance with a connected Amazon ECS container agent, the agent automatically deregisters the instance from your cluster\. Stopped container instances or instances with disconnected agents are not automatically deregistered when terminated\.
 + Deregistering a container instance removes the instance from a cluster, but it does not terminate the Amazon EC2 instance\. If you are finished using the instance, be sure to terminate it to stop billing\. For more information, see [Terminate your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, choose the Region in which your container instance is registered\.
 

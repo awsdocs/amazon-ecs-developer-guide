@@ -12,4 +12,5 @@ This documentation helps you understand how to apply the shared responsibility m
 + [Identity and Access Management for Amazon Elastic Container Service](security-iam.md)
 + [Logging and Monitoring in Amazon Elastic Container Service](ecs-logging-monitoring.md)
 + [Compliance validation for Amazon Elastic Container Service](ecs-compliance.md)
++ [AWS Fargate Federal Information Processing Standard \(FIPS\-140\)](ecs-fips-compliance.md)
 + [Infrastructure Security in Amazon Elastic Container Service](infrastructure-security.md)

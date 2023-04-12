@@ -116,20 +116,20 @@ To create a service using defined parameters, follow these steps\.
 
    1. For **Scaling policy type**, choose **Target tracking**\.
 
-   1. For **Policy name**, enter the name of the policy\.
+   1. For **Policy name**, enter the policy name\.
 
-   1. For **ECS service metric**, select one of the following metrics:
+   1. For **ECS service metric**, choose one of the following metrics:
       + **ECSServiceAverageCPUUtilization**: Average CPU utilization of the service\. 
       + **ECSServiceAverageMemoryUtilization**: Average memory utilization of the service\. 
       + **ALBRequestCountPerTarget**: Number of requests completed per target in an Application Load Balancer target group\. 
 
-        The metrics require an Application Load Balancer and a target group for the Application Load Balancer\.
+        The metrics requires an Application Load Balancer and a target group for the Application Load Balancer\.
 
    1. For **Target value**, enter the value in percent that the service maintains for the selected metric\.
 
-   1. For **Scale\-out cooldown period**, enter the time in seconds after a scale\-out activity that no other scale outs can happen\.
+   1. For **Scale\-out cooldown period**, enter the number of seconds after a scale\-out activity that no other scale outs can happen\.
 
-   1. For **Scale\-in cooldown period**, enter the time in seconds after a scale\-in activity that no other scale ins can happen\.
+   1. For **Scale\-in cooldown period**, enter the number of seconds after a scale\-in activity that no other scale ins can happen\.
 
    1. To prevent the policy from performing a scale\-in activity, select **Turn off scale\-in**\.
 
@@ -168,7 +168,7 @@ To create a service using defined parameters, follow these steps\.
    + Under **Strategy**, for **Type** and **Field**, choose the algorithm and the entity to use for the algorithm\.
 
      You can enter a maximum of 5 strategies\.
-   + Under **Constraint**, for **Type** and **Expression**, choose the rule and attribute to use for the constraint\.
+   + Under **Constraint**, for **Type** and **Expression**, choose the rule and attribute for the constraint\.
 
      When you enter the **Expression**, do not enter the double quotation marks \(`" "`\)\. For example, to set the constraint to place tasks on T2 instances, for the **Expression**, enter **attribute:ecs\.instance\-type =\~ t2\.\***\.
 

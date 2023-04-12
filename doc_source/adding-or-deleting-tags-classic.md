@@ -4,7 +4,7 @@ Amazon ECS allows you to add or delete tags that are associated with your cluste
 
 **To add a tag to an individual resource**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, select the AWS Region to use\.
 
@@ -16,7 +16,7 @@ Amazon ECS allows you to add or delete tags that are associated with your cluste
 
 **To delete a tag from an individual resource**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, select the Region to use\.
 

@@ -12,7 +12,7 @@ If your cluster is configured with a default capacity provider strategy, you can
 
 **To configure the basic service definition parameters**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. On the navigation bar, select the Region that your cluster is in\.
 

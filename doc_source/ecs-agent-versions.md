@@ -21,6 +21,11 @@ Amazon ECS agent versions 1\.20\.0 and later have deprecated support for Docker 
 
 |  Amazon ECS\-optimized Amazon Linux 2 AMI  |  Amazon ECS container agent version  |  Docker version  |  `ecs-init` version  | 
 | --- | --- | --- | --- | 
+| 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | 
+| 20230321 | `1.70.0` | `20.10.17` | `1.70.0-1` | 
+| 20230314 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
+| 20230301 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
+| 20230301 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
 | 20230214 | `1.68.2` | `20.10.17` | `1.68.2-1` | 
 |  20230127 | `1.68.1` | `20.10.17` | `1.68.1-1` | 
 | 20230109 | `1.68.0` | `20.10.17` | `1.68.0-1` | 
@@ -137,6 +142,8 @@ Amazon ECS agent versions 1\.20\.0 and later have deprecated support for Docker 
 
 | Amazon ECS\-optimized Amazon Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 2018\.03\.20230321 | `1.51.0` | `20.10.17` | `1.51.0-1` | 
+| 2018\.03\.20230314 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20230214 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20221115 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20221010 | `1.51.0` | `20.10.13` | `1.51.0-1` | 

@@ -24,7 +24,7 @@ You can create a new cluster called `windows`\.
 
 **To create a cluster with the AWS Management Console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Clusters**\.
 
@@ -56,7 +56,7 @@ Before you can run Windows containers in your Amazon ECS cluster, you must regis
 
 **To register the sample task definition with the AWS Management Console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Task Definitions**\.
 
@@ -170,7 +170,7 @@ It can take up to 15 minutes for your container instance to download and extract
 
 **To view your service**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. On the **Clusters** page, choose the **windows** cluster\.
 
@@ -189,7 +189,7 @@ When you are finished using an Amazon ECS cluster, you should clean up the resou
 
 Some Amazon ECS resources, such as tasks, services, clusters, and container instances, are cleaned up using the Amazon ECS console\. Other resources, such as Amazon EC2 instances, Elastic Load Balancing load balancers, and Auto Scaling groups, must be cleaned up manually in the Amazon EC2 console or by deleting the AWS CloudFormation stack that created them\.
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Clusters**\.
 

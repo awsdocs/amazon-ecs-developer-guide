@@ -8,7 +8,7 @@ After you create a Secrets Manager secret, update your application code to retri
 
 Review the following considerations before securing sensitive data in Secrets Manager\.
 + Only secrets that store text data, which are secrets created with the `SecretString` parameter of the [CreateSecret](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html) API, are supported\. Secrets that store binary data, which are secrets created with the SecretBinary parameter of the [CreateSecret](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html) API are not supported\.
-+ Use interface VPC endpoints to enhance security controls\. You must create the interface VPC endpoints for Secrets Manager\. For information about the VPC endpoint, see [Using Secrets Manager with VPC Endpoints](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html) in the *AWS Secrets Manager User Guide*\.
++ Use interface VPC endpoints to enhance security controls\. You must create the interface VPC endpoints for Secrets Manager\. For information about the VPC endpoint, see [Create VPC endpoints](https://docs.aws.amazon.com/secretsmanager/latest/userguide/setup-create-vpc.html) in the *AWS Secrets Manager User Guide*\.
 + The VPC your task uses must use DNS resolution\.
 
 ## Required IAM permissions<a name="secrets-app-secrets-manager-iam"></a>
@@ -16,7 +16,7 @@ Review the following considerations before securing sensitive data in Secrets Ma
 To use this feature, you must have the Amazon ECS task execution role and reference it in your task definition\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 To provide access to the Secrets Manager secrets that you create, manually add the following permission to the task execution role\. For information about how to manage permissions, see [Adding and Removing IAM identity permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) in the *IAM User Guide*\.
-+ `secretsmanager:GetSecretValue`– Required if you are referencing a Secrets Manager secret\.
++ `secretsmanager:GetSecretValue`– Required if you are referencing a Secrets Manager secret\. Adds the permission to retrieve the secret fom Secrets Manager\.
 
 The following example policy adds the required permissions\.
 

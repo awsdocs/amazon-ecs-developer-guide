@@ -9,7 +9,7 @@ A capacity provider can be updated to change its managed scaling and managed ter
 
 **To update an Auto Scaling group capacity provider \(classic AWS Management Console\)**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, select the Region the cluster the capacity provider is associated with exists in\.
 

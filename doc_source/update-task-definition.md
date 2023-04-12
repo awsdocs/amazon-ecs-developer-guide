@@ -11,7 +11,7 @@ To update a task definition, create a task definition revision\. If the task def
 
 **To create a task definition revision**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, choose the Region that contains your task definition\.
 

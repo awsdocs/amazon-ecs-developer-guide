@@ -13,7 +13,7 @@ The following should be considered when using an environment variable to inject 
   + To inject a secret using a specific JSON key or version of a secret, your container instance must have version `1.37.0` or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
     To inject the full contents of a secret as an environment variable or to inject a secret in a log configuration, your container instance must have version `1.22.0` or later of the container agent\.
-+ When using a task definition that references Secrets Manager secrets to retrieve sensitive data for your containers, if you are also using interface VPC endpoints, you must create the interface VPC endpoints for Secrets Manager\. For more information, see [Using Secrets Manager with VPC Endpoints](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html) in the *AWS Secrets Manager User Guide*\.
++ Use interface VPC endpoints to enhance security controls\. You must create the interface VPC endpoints for Secrets Manager\. For information about the VPC endpoint, see [Create VPC endpoints](https://docs.aws.amazon.com/secretsmanager/latest/userguide/setup-create-vpc.html) in the *AWS Secrets Manager User Guide*\.
 + For Windows tasks that are configured to use the `awslogs` logging driver, you must also set the `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE` environment variable on your container instance\. This can be done with User Data with the following syntax:
 
   ```
@@ -28,8 +28,8 @@ The following should be considered when using an environment variable to inject 
 To use this feature, you must have the Amazon ECS task execution role and reference it in your task definition\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 To provide access to the Secrets Manager secrets that you create, manually add the following permissions as an inline policy to the task execution role\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
-+ `secretsmanager:GetSecretValue`–Required if you are referencing a Secrets Manager secret\.
-+ `kms:Decrypt`–Required only if your secret uses a customer managed key and not the default key\. The ARN for your customer managed key should be added as a resource\.
++ `secretsmanager:GetSecretValue`–Required if you are referencing a Secrets Manager secret\. Adds the permission to retrieve the secret fom Secrets Manager\.
++ `kms:Decrypt`–Required only if your secret uses a customer managed key and not the default key\. The ARN for your customer managed key should be added as a resource\. Adds the permission to decrypt the customer managed key\.
 
 The following example policy adds the required permissions:
 

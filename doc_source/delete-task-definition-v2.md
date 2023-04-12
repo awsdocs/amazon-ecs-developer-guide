@@ -1,6 +1,6 @@
 # Deleting a task definition revision using the console<a name="delete-task-definition-v2"></a>
 
-If you decide that you no longer need a specific task definition revision in Amazon ECS, you can deelete the task definition revision so that it no longer displays in your `ListTaskDefinitions` API calls or in the console when you want to run a task or update a service\.
+If you decide that you no longer need a specific task definition revision in Amazon ECS, you can delete the task definition revision so that it no longer displays in your `ListTaskDefinitions` API calls or in the console when you want to run a task or update a service\.
 
 When you delete a task definition revision, it immediately transitions from the `INACTIVE` to `DELETE_IN_PROGRESS`\. Existing tasks and services that reference a `DELETE_IN_PROGRESS` task definition revision continue to run without disruption\. 
 

@@ -13,7 +13,7 @@ Before running Docker containers on Amazon ECS, you must first create a task def
 
 **To create a new task definition \(Classic Amazon ECS console\)**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **task definitions**, **Create new task definition**\.
 

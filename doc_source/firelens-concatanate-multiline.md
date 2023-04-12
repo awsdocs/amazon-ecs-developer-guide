@@ -414,19 +414,17 @@ When you run the task, the application simulates runs, then fails and creates a 
 
 1. Register the task definition file: `aws ecs register-task-definition --cli-input-json file://multiline-task-definition.json --region region` 
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Task Definitions** and then choose the `firelens-example-multiline` family because we registered the task definition to this family in the first line of the task definition above\.
 
 1. Choose the latest version\. 
 
-1. Choose the **Actions**, **Run Task**\. 
+1. Choose the **Deploy**, **Run task**\. 
 
-1. For **Launch type**, choose **Fargate**\. 
+1. On the **Run Task** page, For **Cluster**, choose the cluster, and then under **Networking**, for **Subnets**, choose the available subnets for your task\. 
 
-1. For **Subnets**, choose the available subnets for your task\. 
-
-1. Choose **Run Task**\. 
+1. Choose **Create**\. 
 
 **Verify that multiline log messages in Amazon CloudWatch appear concatenated**
 
@@ -764,19 +762,17 @@ This image will include a Python script file that runs the application and a sam
 
 1. Register the task definition file: `aws ecs register-task-definition --cli-input-json file://multiline-task-definition.json --region us-east-1` 
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. In the navigation pane, choose **Task Definitions** and then choose the `firelens-example-multiline` family because we registered the task definition to this family in the first line of the task definition above\.
 
 1. Choose the latest version\. 
 
-1. Choose the **Actions**, **Run Task**\. 
+1. Choose the **Deploy**, **Run task**\. 
 
-1. For **Launch type**, choose **Fargate**\. 
+1. On the **Run Task** page, For **Cluster**, choose the cluster, and then under **Networking**, for **Subnets**, choose the available subnets for your task\. 
 
-1. For **Subnets**, choose the available subnets for your task\. 
-
-1. Choose **Run Task**\. 
+1. Choose **Create**\. 
 
 **Verify that multiline log messages in Amazon CloudWatch appear concatenated**
 

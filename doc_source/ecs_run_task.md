@@ -14,7 +14,7 @@ To deploy your application to run continually or to place it behind a load balan
 
 To run a standalone task using the classic console
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Task Definitions** and select the task definition to run\.
    + To run the latest revision of a task definition, select the box to the left of the task definition to run\.
@@ -64,7 +64,7 @@ If you intend to use the parameter values from your task definition, you don't n
    1. For **Task Execution Role Override**, choose a task execution role to override the task execution role specified in the task definition\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 1. \(Optional\) To override the container commands and environment variables, expand **Container Overrides**, and then expand the container\.
-   +  For **Command override**, enter the Docker command that is sent to the container instead of the command specified in the task definition\.
+   +  To send a command to the container other than the task definition command, for **Command override**, enter the Docker command\.
 
      For more information about the Docker run command, see [Docker Run reference](https://docs.docker.com/engine/reference/run/) in the Docker Reference Manual\.
    + To add an environment variable, choose **Add Environment Variable**\. For **Key**, enter the name of your environment variable\. For **Value**, enter a string value for your environment value \(without the surrounding double quotation marks \(`" "`\)\)\.

@@ -13,7 +13,7 @@ The following should be considered when using an environment variable to inject 
   + To inject a secret using a specific JSON key or version of a secret, your container instance must have version `1.37.0` or later of the container agent\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
     To inject the full contents of a secret as an environment variable or to inject a secret in a log configuration, your container instance must have version `1.22.0` or later of the container agent\.
-+ When you use a task definition that references AWS Systems Manager secrets to retrieve sensitive data for your containers, if you also use interface VPC endpoints, you must create the interface VPC endpoints for AWS Systems Manager\. For more information, see [Using Secrets Manager with VPC Endpoints](https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html) in the *AWS Secrets Manager User Guide*\.
++ Use interface VPC endpoints to enhance security controls\. You must create the interface VPC endpoints for Secrets Manager\. For information about the VPC endpoint, see [Create VPC endpoints](https://docs.aws.amazon.com/secretsmanager/latest/userguide/setup-create-vpc.html) in the *AWS Secrets Manager User Guide*\.
 + For Windows tasks that are configured to use the `awslogs` logging driver, you must also set the `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE` environment variable on your container instance\. This can be done with User Data using the following syntax:
 
   ```
@@ -31,9 +31,9 @@ To use this feature, you must have the Amazon ECS task execution role and refere
 For tasks that use the EC2 launch type, you must use the ECS agent configuration variable `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE=true` to use this feature\. You can add it to the `./etc/ecs/ecs.config` file during container instance creation or you can add it to an existing instance and then restart the ECS agent\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 To provide access to the AWS Systems Manager Parameter Store parameters that you create, manually add the following permissions to the task execution role\. For information about how to manage permissions, see [Adding and Removing IAM identity permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) in the *IAM User Guide*\.
-+ `ssm:GetParameters`— Required if you are referencing a Systems Manager Parameter Store parameter in a task definition\.
-+ `secretsmanager:GetSecretValue`— Required if you are referencing a Secrets Manager secret either directly or if your Systems Manager Parameter Store parameter is referencing a Secrets Manager secret in a task definition\.
-+ `kms:Decrypt`— Required only if your secret uses a custom KMS key and not the default key\. The ARN for your custom key should be added as a resource\.
++ `ssm:GetParameters` — Required if you are referencing a Systems Manager Parameter Store parameter in a task definition\. Adds the permission to retrieve Systems Manager parameters\.
++ `secretsmanager:GetSecretValue` — Required if you are referencing a Secrets Manager secret either directly or if your Systems Manager Parameter Store parameter is referencing a Secrets Manager secret in a task definition\. Adds the permission to retrieve the secret fom Secrets Manager\.
++ `kms:Decrypt` — Required only if your secret uses a customer managed key and not the default key\. The ARN for your custom key should be added as a resource\. Adds the permission to decrypt the customer managed key \.
 
 The following example policy adds the required permissions:
 
@@ -64,7 +64,7 @@ You can use the Systems Manager console to create a Systems Manager Parameter St
 
 ## Add the environment variable to the container definition<a name="secrets-envvar-ssm-paramstore-update-container-definition"></a>
 
-Within your container definition, specify `secrets` with the name of the environment variable to set in the container and the full ARN of the Systems Manager Parameter Store parameter containing the sensitive data to present to the container\.
+Within your container definition, specify `secrets` with the name of the environment variable to set in the container and the full ARN of the Systems Manager Parameter Store parameter containing the sensitive data to present to the container\. For more information, see [secrets](task_definition_parameters.md#ContainerDefinition-secrets)\.
 
 The following is a snippet of a task definition showing the format when referencing a Systems Manager Parameter Store parameter\. If the Systems Manager Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the parameter\. If the parameter exists in a different Region, then the full ARN must be specified\.
 

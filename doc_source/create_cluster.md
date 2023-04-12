@@ -13,7 +13,7 @@ If you add or modify the underlying cluster resources directly after they are cr
 
 **To create a cluster \(AWS Management Console\)**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, select the Region to use\.
 

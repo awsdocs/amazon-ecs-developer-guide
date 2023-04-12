@@ -86,7 +86,7 @@ Amazon ECS task definitions for Linux containers on AWS Fargate support the `uli
 
 Amazon ECS task definitions for Windows on AWS Fargate do not support the `ulimits` parameter to define the resource limits to set for a container\.
 
-Amazon ECS tasks hosted on Fargate use the default resource limit values set by the operating system with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\.
+Amazon ECS tasks hosted on Fargate use the default resource limit values set by the operating system with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\. You can set the values of both limits up to `1048576`\.
 
 The following is an example task definition snippet that shows how to define a custom `nofile` limit that has been doubled:
 

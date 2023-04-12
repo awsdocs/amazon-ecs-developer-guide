@@ -23,7 +23,7 @@ For the best experience, we recommend the Docker version that ships with and is 
 
 **Topics**
 + [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)
-+ [Using Bottlerocket with Amazon ECS](ecs-bottlerocket.md)
++ [Amazon ECS\-optimized Bottlerocket AMIs](ecs-bottlerocket.md)
 + [Launching an Amazon ECS Linux container instance](launch_container_instance.md)
 + [Bootstrapping container instances with Amazon EC2 user data](bootstrap_container_instance.md)
 + [Starting a task at container instance launch time](start_task_at_launch.md)

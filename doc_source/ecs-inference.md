@@ -28,17 +28,17 @@ Applications that use other frameworks might not have improved performance on Tr
   ```
 + Neuron resource requirements can't be defined in a task definition\. Instead, you configure a container to use specific AWS Trainium or AWS Inferentia chips available on the host container instance\. Do this by using the `linuxParameters` parameter and specifying the device details\. For more information, see [Task definition requirements](#ecs-inference-requirements)\.
 
-## Using the Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI<a name="ecs-inference-ami"></a>
+## Using the Amazon ECS optimized Amazon Linux 2 \(Neuron\) AMI<a name="ecs-inference-ami"></a>
 
 Amazon ECS provides an Amazon ECS optimized AMI that's based on Amazon Linux 2 for AWS Trainium and AWS Inferentia workloads\. It comes with the AWS Neuron drivers and runtime for Docker\. This AMI makes running machine learning inference workloads easier on Amazon ECS\.
 
-We recommend using the Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI when launching your Amazon EC2 Trn1 and Inf1 instances\. You can retrieve the current Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI using the AWS CLI with the following command\.
+We recommend using the Amazon ECS optimized Amazon Linux 2 \(Neuron\) AMI when launching your Amazon EC2 Trn1 and Inf1 instances\. You can retrieve the current Amazon ECS optimized Amazon Linux 2 \(Neuron\) AMI using the AWS CLI with the following command\.
 
 ```
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended
 ```
 
-The following table provides a link to retrieve the current Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI IDs by Region\.
+The following table provides a link to retrieve the current Amazon ECS optimized Amazon Linux 2 \(Neuron\) AMI IDs by Region\.
 
 
 |  Region name  |  Region  |  AMI ID  | 

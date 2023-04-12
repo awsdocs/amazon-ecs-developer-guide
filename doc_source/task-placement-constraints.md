@@ -80,11 +80,11 @@ When specifying custom attributes, you must consider the following\.
 
 ## Adding an attribute using the classic console<a name="add-attribute"></a>
 
-You can add custom attributes at instance registration time using the container agent or manually, using the AWS Management Console\. For more information about using the container agent, see [Amazon ECS container agent configuration parameters](ecs-agent-config.md#ecs-instance-attributes)\.
+You can add custom attributes at instance registration time using the container agent or manually, using the AWS Management Console\. For more information about container agent attributes, [Amazon ECS container agent configuration](ecs-agent-config.md)
 
 **To add custom attributes using the classic console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Clusters** and select a cluster\.
 
@@ -123,7 +123,7 @@ You can apply a filter for your container instances, allowing you to see custom 
 
 **Filter container instances by attribute using the classic console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. Choose a cluster that has container instances\.
 

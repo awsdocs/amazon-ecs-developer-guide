@@ -12,7 +12,7 @@ You can connect to your Windows instances to perform basic administrative tasks,
 
 1. Find the public IP or DNS address for your container instance\.
 
-   1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+   1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
    1. Select the cluster that hosts your container instance\.
 

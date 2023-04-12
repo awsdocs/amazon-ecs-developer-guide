@@ -36,9 +36,15 @@ For tasks to receive an IPv6 address, the task must use the `awsvpc` network mod
 The `dualStackIPv6` account setting can only be changed using either the Amazon ECS API or the AWS CLI\. For more information, see [Modifying account settings](ecs-modifying-longer-id-settings.md)\.
 If you had a running task using the `awsvpc` network mode in an IPv6 enabled subnet between the dates of October 1, 2020 and November 2, 2020, the default `dualStackIPv6` account setting in the Region that the task was running in is `disabled`\. If that condition isn't met, the default `dualStackIPv6` setting in the Region is `enabled`\.
 
+**Fargate FIPS\-140 compliance**  
+Resource name: `fargateFIPSMode`  
+Fargate supports the Federal Information Processing Standard \(FIPS\-140\) which specifies the security requirements for cryptographic modules that protect sensitive information\. It is the current United States and Canadian government standard, and is applicable to systems that are required to be compliant with Federal Information Security Management Act \(FISMA\) or Federal Risk and Authorization Management Program \(FedRAMP\)\.  
+You must turn on FIPS\-140 compliance\. For more information, see [AWS Fargate Federal Information Processing Standard \(FIPS\-140\)](ecs-fips-compliance.md)\.
+
 **Topics**
 + [Amazon Resource Names \(ARNs\) and IDs](#ecs-resource-ids)
 + [ARN and resource ID format timeline](#ecs-resource-arn-timeline)
++ [AWS Fargate Federal Information Processing Standard \(FIPS\-140\) compliance](#fips-setting)
 + [Viewing account settings using the console](ecs-viewing-longer-id-settings.md)
 + [Modifying account settings](ecs-modifying-longer-id-settings.md)
 + [Reverting to the default account settings](ecs-reverting-account.md)
@@ -75,3 +81,32 @@ A resource ID takes the form of a unique combination of letters and numbers\. Ne
 ## ARN and resource ID format timeline<a name="ecs-resource-arn-timeline"></a>
 
 The timeline for the opt\-in and opt\-out periods for the new Amazon Resource Name \(ARN\) and resource ID format for Amazon ECS resources ended on April 1, 2021\. By default, all accounts are opted in to the new format\. All new resources created receive the new format, and you can no longer opt out\.
+
+## AWS Fargate Federal Information Processing Standard \(FIPS\-140\) compliance<a name="fips-setting"></a>
+
+You must turn on Federal Information Processing Standard \(FIPS\-140\) compliance on Fargate\. For more information, see [AWS Fargate Federal Information Processing Standard \(FIPS\-140\)](ecs-fips-compliance.md)\.
+
+ Run `put-account-setting-default` with the `fargateFIPSMode` option set to `enabled`\. For more information, see, [put\-account\-setting\-default](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting-default.html) in the *Amazon Elastic Container Service API Reference*\. 
++ Example to turn on FIPS\-140 compliance
+
+  ```
+  aws ecs put-account-setting-default --name fargateFIPSMode --value enabled
+  ```
+
+  Output
+
+  ```
+  {
+      "setting": {
+          "name": "fargateFIPSMode",
+          "value": "enabled",
+          "principalArn": "arn:aws:iam::123456789012:user"
+      }
+  }
+  ```
+
+You can run `list-account-settings` to view the current FIPS\-140 compliance status\. Use the `effective-settings` option to view the account level settings\.
+
+```
+aws ecs list-account-settings --effective-settings
+```

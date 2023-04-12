@@ -200,6 +200,18 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | m5d\.16xlarge | 14 | 120 | 
 | m5d\.24xlarge | 14 | 120 | 
 | m5d\.metal | 14 | 120 | 
+| m5n\.large | 2 | 10 | 
+| m5n\.xlarge | 3 | 20 | 
+| m5n\.2xlarge | 3 | 40 | 
+| m5n\.4xlarge | 7 | 60 | 
+| m5n\.8xlarge | 7 | 60 | 
+| m5n\.12xlarge | 7 | 60 | 
+| m5n\.16xlarge | 14 | 120 | 
+| m5zn\.large | 2 | 14 | 
+| m5zn\.xlarge | 3 | 31 | 
+| m5zn\.2xlarge | 3 | 64 | 
+| m5zn\.3xlarge | 7 | 98 | 
+| m5zn\.6xlarge | 7 | 120 | 
 | m6a\.large | 2 | 10 | 
 | m6a\.xlarge | 3 | 20 | 
 | m6a\.2xlarge | 3 | 40 | 
@@ -258,6 +270,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | m6idn\.16xlarge | 14 | 120 | 
 | m6idn\.24xlarge | 14 | 120 | 
 | m6idn\.32xlarge | 13 | 120 | 
+| m6idn\.metal | 13 | 120 | 
 | m6in\.large | 2 | 10 | 
 | m6in\.xlarge | 3 | 20 | 
 | m6in\.2xlarge | 3 | 40 | 
@@ -267,6 +280,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | m6in\.16xlarge | 14 | 120 | 
 | m6in\.24xlarge | 14 | 120 | 
 | m6in\.32xlarge | 13 | 120 | 
+| m6in\.metal | 13 | 120 | 
 | m7g\.medium | 1 | 4 | 
 | m7g\.large | 2 | 10 | 
 | m7g\.xlarge | 3 | 20 | 
@@ -295,6 +309,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | c5a\.xlarge | 3 | 20 | 
 | c5a\.2xlarge | 3 | 40 | 
 | c5a\.4xlarge | 7 | 60 | 
+| c5a\.8xlarge | 7 | 60 | 
 | c5a\.12xlarge | 7 | 60 | 
 | c5a\.16xlarge | 14 | 120 | 
 | c5a\.24xlarge | 14 | 120 | 
@@ -379,6 +394,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | c6in\.16xlarge | 14 | 120 | 
 | c6in\.24xlarge | 14 | 120 | 
 | c6in\.32xlarge | 13 | 120 | 
+| c6in\.metal | 13 | 120 | 
 | c7g\.medium | 1 | 4 | 
 | c7g\.large | 2 | 10 | 
 | c7g\.xlarge | 3 | 20 | 
@@ -419,6 +435,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | r5ad\.12xlarge | 7 | 60 | 
 | r5ad\.16xlarge | 14 | 120 | 
 | r5ad\.24xlarge | 14 | 120 | 
+| r5b\.16xlarge | 14 | 120 | 
 | r5d\.large | 2 | 10 | 
 | r5d\.xlarge | 3 | 20 | 
 | r5d\.2xlarge | 3 | 40 | 
@@ -427,6 +444,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | r5d\.12xlarge | 7 | 60 | 
 | r5d\.16xlarge | 14 | 120 | 
 | r5d\.24xlarge | 14 | 120 | 
+| r5dn\.16xlarge | 14 | 120 | 
 | r6a\.large | 2 | 10 | 
 | r6a\.xlarge | 3 | 20 | 
 | r6a\.2xlarge | 3 | 40 | 
@@ -475,6 +493,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | r6idn\.16xlarge | 14 | 120 | 
 | r6idn\.24xlarge | 14 | 120 | 
 | r6idn\.32xlarge | 13 | 120 | 
+| r6idn\.metal | 13 | 120 | 
 | r6in\.large | 2 | 10 | 
 | r6in\.xlarge | 3 | 20 | 
 | r6in\.2xlarge | 3 | 40 | 
@@ -484,6 +503,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | r6in\.16xlarge | 14 | 120 | 
 | r6in\.24xlarge | 14 | 120 | 
 | r6in\.32xlarge | 13 | 120 | 
+| r6in\.metal | 13 | 120 | 
 | r6id\.large | 2 | 10 | 
 | r6id\.xlarge | 3 | 20 | 
 | r6id\.2xlarge | 3 | 40 | 
@@ -504,6 +524,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | r7g\.16xlarge | 14 | 120 | 
 | r7g\.metal | 14 | 120 | 
 | u\-3tb1\.56xlarge | 7 | 12 | 
+| u\-6tb1\.56xlarge | 14 | 12 | 
 | u\-18tb1\.metal | 14 | 12 | 
 | u\-24tb1\.metal | 14 | 12 | 
 | x2gd\.medium | 1 | 10 | 

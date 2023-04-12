@@ -68,7 +68,7 @@ This tutorial assumes that the following prerequisites have been completed:
 
 Create the Amazon ECS IAM roles\.
 
-1.  Create the Amazon ECS container instance role\. For more information, see [Amazon ECS container instance IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html)\.
+1.  Create the Amazon ECS container instance role named "ecsInstanceRole"\. For more information, see [Amazon ECS container instance IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html)\.
 
 1. Create an IAM role for the Fluent Bit task named `fluentTaskRole`\. For more information, see [Task IAM role](task-iam-roles.md)\.
 
@@ -99,7 +99,7 @@ Create the Amazon ECS IAM roles\.
    1. Run the following command to attach the inline policy to `fluentTaskRole` IAM role\.
 
       ```
-      aws iam put-role-policy --role-name taskRole --policy-name fluentTaskRole --policy-document file://fluent-bit-policy.json
+      aws iam put-role-policy --role-name fluentTaskRole --policy-name fluentTaskPolicy --policy-document file://fluent-bit-policy.json
       ```
 
 ## Step 2: Create an Amazon ECS Windows container instance<a name="tutorial-deploy-fluentbit-on-windows-instance"></a>
@@ -155,7 +155,7 @@ Alternatively, you can use other default configurations provided by AWS\. For mo
 The default Amazon CloudWatch Fluent Bit configuration is shown below\.
 
 Replace the following variables:
-+ *region* with the Region where You want to send the Amazon CloudWatch logs\.
++ *region* with the Region where you want to send the Amazon CloudWatch logs\.
 
 ```
 [SERVICE]
@@ -229,7 +229,7 @@ This task definition exposes Fluent Bit container port 24224 to the host port 24
      "containerDefinitions": [
        {
          "name": "fluent-bit",
-         "image": "fluent-bit:windowsservercore-latest",
+         "image": "public.ecr.aws/aws-observability/aws-for-fluent-bit:windowsservercore-latest",
          "cpu": 512,
          "portMappings": [
            {

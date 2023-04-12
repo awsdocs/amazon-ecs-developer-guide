@@ -23,7 +23,7 @@ The following steps walk you through creating a task definition that will deploy
 
 **To register a task definition**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, select the Region you want to use\.
 
@@ -73,7 +73,7 @@ The following steps walk you through creating a cluster with one Amazon EC2 inst
 
 **To create a cluster**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, select the same Region you used in the previous step\.
 
@@ -105,7 +105,7 @@ An Amazon ECS service helps you to run and maintain a specified number of instan
 
 **To create a service**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, select the same Region you used in the previous step\.
 
@@ -143,7 +143,7 @@ The service is a web\-based application so you can view its containers with a we
 
 **To view the service details**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, select the same Region you used in the previous step\.
 
@@ -170,7 +170,7 @@ The Amazon ECS resources created in this getting started guide, such as the clus
 
 **To clean up the resources**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Clusters**\.
 

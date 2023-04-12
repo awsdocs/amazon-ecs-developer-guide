@@ -142,8 +142,6 @@ The Service Connect feature is intended for interconnecting multiple application
    1. Create a file that's named `service-connect-nginx.json` with the contents of the following task definition\.
 
       This task definition configures Service Connect by adding `name` and `appProtocol` parameters to the port mapping\. The port name makes this port more identifiable in the service configuration when multiple ports are used\. The port name is also used by default as the discoverable name for use by other applications in the namespace\.
-
-      This task definition uses the `ECSSCTaskRole` role for both the permissions of the Amazon ECS Fargate agent in the task execution role, and the AWS API permissions for the Service Connect proxy container in the task role\.
 **Important**  
 This task definition uses a `logConfiguration` to send the nginx output from `stdout` and `stderr` to Amazon CloudWatch Logs\. This task execution role doesn't have the extra permissions required to make the CloudWatch Logs log group\. Create the log group in CloudWatch Logs using the AWS Management Console or AWS CLI\. If you don't want to send the nginx logs to CloudWatch Logs you can remove the `logConfiguration`\.
 

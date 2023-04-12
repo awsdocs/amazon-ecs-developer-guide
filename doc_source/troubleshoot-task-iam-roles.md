@@ -35,17 +35,15 @@ The following procedure helps you to:
 
 1. Register a task definition that uses your new role\.
 
-   1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+   1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-   1. In the navigation pane, choose **Task Definitions**\.
+   1. In the navigation pane, choose **Task definitions**\.
 
-   1. On the **Task Definitions** page, choose **Create new Task Definition**\.
+   1. Choose **Create new task definition**, **Create new task definition with JSON**\.
 
-   1. On the **Select launch type compatibility** page, choose **EC2**, **Next step**\.
+   1. In the JSON editor box, edit your JSON file,
 
-   1. Scroll to the bottom of the page and choose **Configure via JSON**\.
-
-   1. Paste the sample task definition JSON below into the text area \(replacing the pre\-populated JSON there\) and choose **Save**\.
+      Paste the sample task definition JSON below into the text area \(replacing the pre\-populated JSON there\) and choose **Save**\.
 **Note**  
 Replace the `cluster-name` value with the name of your cluster\. Replace the `region` value withh the Region where you created your cluster\.  
 Replace the `awslogs-region` value with the Region where you created your CloudWatch Logs log group\.
@@ -92,9 +90,9 @@ Replace the `awslogs-region` value with the Region where you created your CloudW
 
 1. Run a task from your task definition\.
 
-   1. On the **Task Definition: iam\-role\-test** registration confirmation page, choose **Actions**, **Run Task**\.
+   1. On the **Task Definition: iam\-role\-test** registration confirmation page, choose **Deploy**, **Run task**\.
 
-   1. On the **Run Task** page, choose the **EC2** launch type, a cluster, and then choose **Run Task** to run your task\.
+   1. On the **Run Task** page, choose the cluster, and then choose **Deploy** to run your task\.
 
 1. View the container logs in the CloudWatch Logs console\.
 

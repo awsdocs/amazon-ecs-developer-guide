@@ -3,7 +3,7 @@
 You can use the AWS Management Console to view your account settings\.
 
 **Important**  
-The `dualStackIPv6` account setting can only be viewed or changed using the AWS CLI\.
+The `dualStackIPv6` and the `fargateFIPSMode` account settings can only be viewed or changed using the AWS CLI\.
 
 1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 

@@ -8,30 +8,42 @@ The `AmazonEC2ContainerServiceEventsRole` policy is shown below\.
 
 ```
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ecs:RunTask"
-            ],
-            "Resource": [
-                "*"
-            ]
-        },
-        {
-            "Effect": "Allow",
-            "Action": "iam:PassRole",
-            "Resource": [
-                "*"
-            ],
-            "Condition": {
-                "StringLike": {
-                    "iam:PassedToService": "ecs-tasks.amazonaws.com"
-                }
-            }
-        }
-    ]
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ecs:RunTask"
+			],
+			"Resource": [
+				"*"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": "iam:PassRole",
+			"Resource": [
+				"*"
+			],
+			"Condition": {
+				"StringLike": {
+					"iam:PassedToService": "ecs-tasks.amazonaws.com"
+				}
+			}
+		},
+		{
+			"Effect": "Allow",
+			"Action": "ecs:TagResource",
+			"Resource": "*",
+			"Condition": {
+				"StringEquals": {
+					"ecs:CreateAction": [
+						"RunTask"
+					]
+				}
+			}
+		}
+	]
 }
 ```
 
@@ -85,7 +97,7 @@ The Amazon ECS instance role is automatically created for you when completing th
          "Sid": "",
          "Effect": "Allow",
          "Principal": {
-           "Service": "ecs-tasks.amazonaws.com"
+           "Service": "events.amazonaws.com"
          },
          "Action": "sts:AssumeRole"
        }
@@ -135,7 +147,7 @@ The Amazon ECS instance role is automatically created for you when completing th
          "Sid": "",
          "Effect": "Allow",
          "Principal": {
-           "Service": "ecs-tasks.amazonaws.com"
+           "Service": "events.amazonaws.com"
          },
          "Action": "sts:AssumeRole"
        }

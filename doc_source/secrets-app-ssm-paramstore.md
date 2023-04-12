@@ -19,9 +19,9 @@ To use this feature, you must have the Amazon ECS task execution role and refere
 For tasks that use the EC2 launch type, you must use the ECS agent configuration variable `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE=true` to use this feature\. You can add it to the `./etc/ecs/ecs.config` file during container instance creation or you can add it to an existing instance and then restart the ECS agent\. For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 To provide access to the Systems Manager Parameter Store parameters that you create, manually add the following permissions as a policy to the task execution role\. For information about how to manage permissions, see [Adding and Removing IAM identity permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html) in the *IAM User Guide*\.
-+ `ssm:GetParameters` — Required if you are referencing a Systems Manager Parameter Store parameter in a task definition\.
-+ `secretsmanager:GetSecretValue` — Required if you are referencing a Secrets Manager secret either directly or if your Systems Manager Parameter Store parameter is referencing a Secrets Manager secret in a task definition\.
-+ `kms:Decrypt` — Required only if your secret uses a customer managed key and not the default key\. The ARN for your custom key should be added as a resource\.
++ `ssm:GetParameters` — Required if you are referencing a Systems Manager Parameter Store parameter in a task definition\. Adds the permission to retrieve Systems Manager parameters\.
++ `secretsmanager:GetSecretValue` — Required if you are referencing a Secrets Manager secret either directly or if your Systems Manager Parameter Store parameter is referencing a Secrets Manager secret in a task definition\. Adds the permission to retrieve the secret fom Secrets Manager\.
++ `kms:Decrypt` — Required only if your secret uses a customer managed key and not the default key\. The ARN for your custom key should be added as a resource\. Adds the permission to decrypt the customer managed key \.
 
 The following example policy adds the required permissions:
 

@@ -293,7 +293,7 @@ The following advanced container definition parameters provide extended capabili
 #### Health check<a name="container_definition_healthcheck"></a>
 
 `healthCheck`  
-The container health check command and the associated configuration parameters for the container\. This parameter maps to `HealthCheck` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `HEALTHCHECK` parameter of [docker run](https://docs.docker.com/engine/reference/run/)\.   
+The container health check command and the associated configuration parameters for the container\. This parameter maps to `HealthCheck` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `HEALTHCHECK` parameter of [docker run](https://docs.docker.com/engine/reference/run/)\.  
 The Amazon ECS container agent only monitors and reports on the health checks that are specified in the task definition\. Amazon ECS doesn't monitor Docker health checks that are embedded in a container image but aren't specified in the container definition\. Health check parameters that are specified in a container definition override any Docker health checks that exist in the container image\.
 You can view the health status of both individual containers and a task with the DescribeTasks API operation or when viewing the task details in the console\.  
 The following describes the possible `healthStatus` values for a container:  
@@ -303,7 +303,7 @@ The following describes the possible `healthStatus` values for a container:
 The following describes the possible `healthStatus` values for a task\. The container health check status of non\-essential containers don't have an effect on the health status of a task\.  
 + `HEALTHY`—All essential containers within the task have passed their health checks\.
 + `UNHEALTHY`—One or more essential containers have failed their health check\.
-+ `UNKNOWN`—The essential containers within the task are still having their health checks evaluated or there are no container health checks defined\.
++ `UNKNOWN`—The essential containers within the task are still having their health checks evaluated, there are only nonessential containers with health checks defined, or there are no container health checks defined\.
 If a task is run manually and not as part of a service, it continues its lifecycle regardless of its health status\. For tasks that are part of a service, if the task reports as unhealthy, then the task is stopped and the service scheduler replaces it\.  
 The following are notes about container health check support:  
 + Container health checks require version 1\.17\.0 or greater of the Amazon ECS container agent\. For more information, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
@@ -718,7 +718,7 @@ This parameter is not supported for Windows containers\.
 Type: string array  
 Valid values: "no\-new\-privileges" \| "apparmor:PROFILE" \| "label:*value*" \| "credentialspec:*CredentialSpecFilePath*"  
 Required: no  
-A list of strings to provide custom labels for SELinux and AppArmor multi\-level security systems\. For more information about valid values, see [Docker Run Security Configuration](https://docs.docker.com/engine/reference/run/#security-configuration)\. This field isn't valid for containers in tasks using the Fargate launch type\.  
+A list of strings to provide custom labels for SELinux and AppArmor multi\-level security systems\. For more information about valid values, see [Docker Run Security Configuration](https://docs.docker.com/engine/reference/run/#security-configuration)\. This field isn't valid for Linux containers in tasks using the Fargate launch type\.  
 With Windows containers, this parameter can be used to reference a credential spec file when configuring a container for Active Directory authentication\. For more information, see [Using gMSAs for Windows Containers](windows-gmsa.md)\.  
 This parameter maps to `SecurityOpt` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--security-opt` option to [https://docs.docker.com/engine/reference/run/#security-configuration](https://docs.docker.com/engine/reference/run/#security-configuration)\.  
 
@@ -733,7 +733,7 @@ The Amazon ECS container agent that run on a container instance must register wi
 Type: object array  
 Required: no  
 A list of `ulimit` values to define for a container\. This value overwrites the default resource quota setting for the operating system\. This parameter maps to `Ulimits` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--ulimit` option to [https://docs.docker.com/engine/reference/commandline/run/](https://docs.docker.com/engine/reference/commandline/run/)\.  
-Amazon ECS tasks hosted on Fargate use the default resource limit values set by the operating system with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\. For more information, see [Task resource limits](AWS_Fargate.md#fargate-resource-limits)\.  
+Amazon ECS tasks hosted on Fargate use the default resource limit values set by the operating system with the exception of the `nofile` resource limit parameter which Fargate overrides\. The `nofile` resource limit sets a restriction on the number of open files that a container can use\. The default `nofile` soft limit is `1024` and hard limit is `4096`\. You can set the values of both limits up to `1048576`\. For more information, see [Task resource limits](AWS_Fargate.md#fargate-resource-limits)\.  
 This parameter requires version 1\.18 of the Docker Remote API or greater on your container instance\.  
 This parameter is not supported for Windows containers\.
 

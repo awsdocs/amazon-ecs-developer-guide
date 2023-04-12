@@ -1,118 +1,131 @@
 # Scheduled tasks<a name="scheduled_tasks"></a>
 
-Amazon ECS supports creating scheduled tasks\. Scheduled tasks use Amazon EventBridge rules to run tasks either on a schedule or in a response to an EventBridge event\.
-
-If you want to run tasks at set intervals, such as a backup operation or a log scan, you can create a scheduled task that runs one or more tasks at specified times\. You can specify a regular interval \(run every *N* minutes, hours, or days\), or for more complicated scheduling, you can use a `cron` expression\. For more information, see [Cron expressions and rate expressions](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html) in the *Amazon EventBridge User Guide*\.
-
-If you want to run tasks that are started by an event, there are AWS managed events for services \(for example Amazon ECS task and container instance state change events\) or you can create a custom event pattern\. For more information, see [Event patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html) in the *Amazon EventBridge User Guide*\.
+Amazon ECS supports creating scheduled tasks\. Scheduled tasks use Amazon EventBridge Scheduler\.
 
 **Topics**
 + [Create a scheduled task](#scheduled-task-create)
-+ [View your scheduled tasks in the classic console](#scheduled-task-view)
++ [View your scheduled tasks in the console](#scheduled-task-view)
 + [Edit a scheduled task](#scheduled-task-edit)
 
 ## Create a scheduled task<a name="scheduled-task-create"></a>
 
-Scheduled tasks are started by Amazon EventBridge rules, which you can create using the EventBridge console\. Although you can create a scheduled task in the Amazon ECS console, currently the EventBridge console provides more functionality so the following steps walk you through creating an EventBridge rule that starts a scheduled task\.
+Scheduled tasks are started by Amazon EventBridge Scheduler schedule, which you can create using the EventBridge console\. Although you can create a scheduled task in the Amazon ECS console, currently the EventBridge console provides more functionality so the following steps walk you through creating an EventBridge Scheduler schedule that starts a scheduled task\.
 
-Before you can submit scheduled tasks with EventBridge rules and targets, the EventBridge service needs several permissions to run Amazon ECS tasks on your behalf\. For more information about the required service principal and IAM permissions for this role, see [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)\.
+The EventBridge Scheduler service needs several permissions to run Amazon ECS tasks on your behalf\. For more information about the required service principal and IAM permissions for this role, see [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)\.
 
-**Create a scheduled task \(EventBridge console\)**
+Complete the following steps before you schedule a task:
 
-1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
+1. Use the VPC console to get the subnet IDs where the tasks run and the security group IDs for the subnets\. For more information, see [View your subnets](https://docs.aws.amazon.com/vpc/latest/userguide/modify-subnets.html#view-subnet), and [View your security groups](https://docs.aws.amazon.com/vpc/latest/userguide/security-groups.html#viewing-security-groups) in the *Amazon VPC User Guide*\.
 
-1. In the navigation pane, choose **Rules**\.
+1. Configure the EventBridge Scheduler execution role\. For more information, see [Set up the execution role](https://docs.aws.amazon.com/scheduler/latest/UserGuide/setting-up.html#setting-up-execution-role) in the *Amazon EventBridge Scheduler User Guide*\. 
 
-1. Choose **Create rule**\.
+1. Configure the EventBridge Scheduler target\. For more information, see [Set up a target](https://docs.aws.amazon.com/scheduler/latest/UserGuide/setting-up.html#setting-up-target) in the *Amazon EventBridge Scheduler User Guide*\. 
 
-1. Enter a name and description for the rule\.
-**Note**  
-A rule can't have the same name as another rule in the same Region and on the same event bus\.
+**To create a new schedule using the console**
 
-1. For **Event bus**, choose the event bus that you want to associate with this rule\. If you want this rule to match events that come from your account, select ** AWS default event bus**\. When an AWS service in your account emits an event, it always goes to your account’s default event bus\.
+1. Open the Amazon EventBridge Scheduler console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/scheduler/)\.
 
-1. Choose how to schedule the task\.    
+1. In the navigation pane, choose **Scheduler**, **Schedule**\.
+
+1.  On the **Schedules** page, choose **Create schedule**\. 
+
+1.  On the **Specify schedule detail** page, in the **Schedule name and description** section, do the following: 
+
+   1. For **Schedule name**, enter a name for your schedule\. For example, **MyTestSchedule** 
+
+   1. \(Optional\) For **Description**, enter a description for your schedule\. For example, **My first schedule**\.
+
+   1. For **Schedule group**, choose a schedule group from the drop down options\. If you do not have a group, choose **default**\. To create a new schedule group, choose **create your own schedule**\. 
+
+      You use schedule groups to add tags to groups of schedules\. 
+
+1. 
+
+   1. Choose your schedule options\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/scheduled_tasks.html)
 
-1. Choose **Next**\.
+1. \(Optional\) If you chose **Recurring schedule** in the previous step, in the **Timeframe** section, do the following: 
 
-1. For **Target types**, choose **AWS service**\.
+   1. For **Timezone**, choose a timezone\. 
 
-1. For **Select a target**, select **ECS task**\.
+   1. For **Start date and time**, enter a valid date in `YYYY/MM/DD` format, then specify a timestamp in 24\-hour `hh:mm` format\. 
 
-1. For **Cluster**, select an Amazon ECS cluster\.
+   1. For **End date and time**, enter a valid date in `YYYY/MM/DD` format, then specify a timestamp in 24\-hour `hh:mm` format\. 
 
-1. For **Task definition**, select a task definition family\.
+1. Choose **Next**\. 
 
-1. For **Task definition revision**, select either **Latest** or **Revision** and select a specific task definition revision to use\.
+1. On the **Select target** page, choose the AWS API operation that EventBridge Scheduler invokes: 
 
-1. For **Count**, specify the desired number of tasks to run\.
+   1. Choose **All APIs**, and then in the search box enter **ECS**\. 
 
-1. Choose how your scheduled task is distributed across your cluster infrastructure\.    
+   1. Select **Amazon ECS**\.
+
+   1. In the search box, enter **RunTask**, and then choose **RunTask**\.
+
+   1. For **ECS cluster**, choose the cluster\.
+
+   1. For **ECS task**, choose the task definition to use for the task\.
+
+   1. To use a launch type, expand **Compute options**, and then select **Launch type**\. Then, choose the launch type\.
+
+      When the Fargate launch type is specified, for **Platform version**, enter the platform version to use\. If there is no platform specified, the `LATEST` platform version is used\.
+
+   1. For **Subnets**, enter the subnet IDs to run the task in\.
+
+   1. For **Security groups**, enter the security group IDs for the subnet\.
+
+   1. \(Optional\) To use a task placement strategy other than the default, expand **Placement constraint**, and then enter the constraints\.
+
+       For more information, see [Amazon ECS task placement](task-placement.md)\.
+
+   1. \(Optional\) To help identify your tasks, under **Tags** configure your tags\.
+
+      To have Amazon ECS automatically tag all newly launched tasks with the task definition tags, select **Enable Amazon ECS managed tags**\.
+
+1. Choose **Next**\. 
+
+1. On the **Settings** page, do the following: 
+
+   1. To turn on the schedule, under **Schedule state**, toggle **Enable schedule**\. 
+
+   1. To configure a retry policy for your schedule, under **Retry policy and dead\-letter queue \(DLQ\)**, do the following:
+      + Toggle **Retry**\.
+      + For **Maximum retention time of event**, enter the maximum **hour\(s\)** and **min\(s\)** that EventBridge Scheduler must keep an unprocessed event\.
+      + The maximum is 24 hours\.
+      + For **Maximum retries**, enter the maximum number of times EventBridge Scheduler retries the schedule if the target returns an error\. 
+
+         The maximum value is 185 retries\. 
+
+      With retry policies, if a schedule fails to invoke its target, EventBridge Scheduler re\-runs the schedule\. If configured, you must set the maximum retention time and retries for the schedule\.
+
+   1. Choose where EventBridge Scheduler stores undelivered events\.     
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/scheduled_tasks.html)
 
-1. If the task is hosted on Fargate or uses the `awsvpc` network mode, expand **Configure network configuration** and specify a network configuration\.
+   1. To use a customer managed KMS key to encrypt your target input, under **Encryption**, choose **Customize encryption settings \(advanced\)** \. 
 
-   1. For **Subnets**, specify one or more subnet IDs\.
+      If you choose this option, enter an existing KMS key ARN or choose **Create an AWS KMS key** to navigate to the AWS KMS console\. For more information about how EventBridge Scheduler encrypts your data at rest, see [Encryption at rest](https://docs.aws.amazon.com/scheduler/latest/UserGuide/encryption-rest.html) in the *Amazon EventBridge Scheduler User Guide*\. 
 
-   1. For **Security groups**, specify one or more security group IDs\.
+   1. For **Permissions**, choose **Use existing role**, then select the role\.
 
-   1. For **Auto\-assign public IP**, specify whether to assign a public IP address from your subnet to the task\.
+      To have EventBridge Scheduler create a new execution role for you, choose **Create new role for this schedule**\. Then, enter a name for **Role name**\. If you choose this option, EventBridge Scheduler attaches the required permissions necessary for your templated target to the role\. 
 
-1. \(Optional\) To specify additional parameters for your tasks, expand **Configure additional properties**\.
+1. Choose **Next**\. 
 
-   1. For **Task group**, specify a task group name\. The task group name is used to identify a set of related tasks and is used in conjunction with the `spread` task placement strategy to ensure tasks in the same task group are spread out evenly among the container instances in the cluster\.
+1.  In the **Review and create schedule** page, review the details of your schedule\. In each section, choose **Edit** to go back to that step and edit its details\. 
 
-   1. For **Placement constraint**, choose **Add placement constraint**\. Select the **Type** for the placement constraint and then enter an expression\. For more information, see [Amazon ECS task placement constraints](task-placement-constraints.md)\.
-**Note**  
-Task placement constraints aren't supported for tasks hosted on Fargate\.
+1. Choose **Create schedule**\. 
 
-   1. For **Placement strategy**, choose **Add placement strategy**\. Select the **Type** for the placement strategy and then enter an expression\. Repeat this process for each placement strategy to add\. For more information, see [Amazon ECS task placement strategies](task-placement-strategies.md)\.
-**Note**  
-Task placement strategies aren't supported for tasks hosted on Fargate\.
+   You can view a list of your new and existing schedules on the **Schedules** page\. Under the **Status** column, verify that your new schedule is **Enabled**\. 
 
-   1. For **Tags**, choose **Add tag** to associate key value pair tags for the task\.
+## View your scheduled tasks in the console<a name="scheduled-task-view"></a>
 
-   1. To add tags to use when reviewing cost allocation in your Cost and Usage Report, for **Configure managed tags**, choose **Enable managed tags**\. For more information, see [Tagging your resources for billing](ecs-using-tags.md#tag-resources-for-billing)\.
-
-   1. To use the ECS Exec functionality for the task, for **Configure execute command**, choose **Enable execute command**\. For more information, see [Using Amazon ECS Exec for debugging](ecs-exec.md)\.
-
-   1. To add the tags associated with the task definition to your task, for **Configure propagate tags**, choose **Propagate tags from task definition**\. For more information, see [How resources are tagged](ecs-using-tags.md#tag-resources)\.
-**Note**  
-If you specify a tag with the same key in the **Tags** section, that tag overrides the tag that is propagated from the task definition\.
-
-1. For many target types, EventBridge needs permissions to send events to the target\. In these cases, EventBridge can create the IAM role needed for your rule to run\. Do one of the following:
-   + To create an IAM role automatically, choose **Create a new role for this specific resource**\.
-   + To use an IAM role that you created earlier, choose **Use existing role** and select the existing role from the dropdown\.
-
-1. \(Optional\) For **Additional settings**, do the following:
-
-   1. For **Maximum age of event**, enter a value between one minute \(00:01\) and 24 hours \(24:00\)\.
-
-   1. For **Retry attempts**, enter a number between 0 and 185\.
-
-   1. For **Dead\-letter queue**, choose whether to use a standard Amazon SQS queue as a dead\-letter queue\. EventBridge sends events that match this rule to the dead\-letter queue if they are not successfully delivered to the target\. Do one of the following:
-      + Choose **None** to not use a dead\-letter queue\.
-      + Choose **Select an Amazon SQS queue in the current AWS account to use as the dead\-letter queue** and then select the queue to use from the dropdown\.
-      + Choose **Select an Amazon SQS queue in an other AWS account as a dead\-letter queue** and then enter the ARN of the queue to use\. You must attach a resource\-based policy to the queue that grants EventBridge permission to send messages to it\. For more information, see [Granting permissions to the dead\-letter queue](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rule-dlq.html#eb-dlq-perms) in the *Amazon EventBridge User Guide*\.
-
-1. Choose **Next**\.
-
-1. \(Optional\) Enter one or more tags for the rule\. For more information, see [Amazon EventBridge tags](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-tagging.html) in the *Amazon EventBridge User Guide*\.
-
-1. Choose **Next**\.
-
-1. Review the details of the rule and choose **Create rule**\.
-
-## View your scheduled tasks in the classic console<a name="scheduled-task-view"></a>
-
-Your scheduled tasks can be viewed in the classic Amazon ECS classic console\. You can also view the Amazon EventBridge rules that start the scheduled tasks in the EventBridge console\.
+Your scheduled tasks can be viewed in the Amazon ECS console\. You can also view the Amazon EventBridge Scheduler scheduler that start the scheduled tasks in the EventBridge Scheduler console\.
 
 **To view your scheduled tasks \(Amazon ECS console\)**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
-1. Choose the cluster your scheduled tasks are run in\.
+1. Choose **Clusters**, and then choose the cluster your scheduled tasks are run in\.
 
 1. On the **Cluster: *cluster\-name*** page, choose the **Scheduled Tasks** tab\.
 
@@ -120,11 +133,11 @@ Your scheduled tasks can be viewed in the classic Amazon ECS classic console\. Y
 
 ## Edit a scheduled task<a name="scheduled-task-edit"></a>
 
-You can edit your scheduled tasks in the classic Amazon ECS console\. You can also edit the Amazon EventBridge rules that start the scheduled tasks in the EventBridge console\.
+You can edit your scheduled tasks in the classic Amazon ECS console\. You can also edit the Amazon EventBridge Scheduler scheduler that start the scheduled tasks in the EventBridge Scheduler console\.
 
 **To edit a scheduled task \(Amazon ECS console\)**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. Choose the cluster in which to edit your scheduled task\.
 

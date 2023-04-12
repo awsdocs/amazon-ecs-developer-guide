@@ -29,7 +29,7 @@ When you choose to create a new Auto Scaling group, it is automatically configur
 You configure the following Auto Scaling group properties which determine the type and number of instances to launch for the group:
 + The Amazon ECS\-optimized AMI\. 
 + The instance type\.
-+ The SSH key pair that proves your identity when you connect to the instance\. For information about how to create SSH keys, see [Amazon EC2 key pairs and Linux instances](https://docs.aws.amazon.com/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
++ The SSH key pair that proves your identity when you connect to the instance\. For information about how to create SSH keys, see [Amazon EC2 key pairs and Linux instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 + The minimum number of instances to launch for the Auto Scaling group\. 
 + The maximum number of instances that are started for the Auto Scaling group\. 
 

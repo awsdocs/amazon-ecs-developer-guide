@@ -44,4 +44,3 @@ Use `RunTask` and `CreateService` actions to specify task placement constraints 
 + [Scheduled tasks](scheduled_tasks.md)
 + [Task lifecycle](task-lifecycle.md)
 + [AWS Fargate task maintenance](task-maintenance.md)
-+ [Creating a scheduled task using the AWS CLI](scheduled_tasks_cli_tutorial.md)

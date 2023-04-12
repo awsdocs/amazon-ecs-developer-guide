@@ -50,5 +50,3 @@ You can modify the following default options:
    + For **Value**, enter the key value\.
 
    \[Remove a tag\] Choose **Remove** to the right of the tag’s Key and Value\.
-
-1. Choose **Create**\.

@@ -7,7 +7,7 @@
 
 You can manage your account settings using the classic console\. 
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation bar at the top of the screen, select the Region for which to modify your account settings\.
 

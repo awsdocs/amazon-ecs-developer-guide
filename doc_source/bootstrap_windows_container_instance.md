@@ -25,12 +25,25 @@ In addition, the following options are available when you use the `awsvpc` netwo
 
   Replace `ip-address` with the IP Address for the additional routes, for example 172\.31\.42\.23/32\.
 
-You can use this script for your own container instances \(provided that they are launched from the Amazon ECS\-optimized Windows Server AMI\), but be sure to replace the `-Cluster windows` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
+You can use this script for your own container instances \(provided that they are launched from the Amazon ECS\-optimized Windows Server AMI\)\. 
+
+Rreplace the `-Cluster cluster-name` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
 
 ```
 <powershell>
-Initialize-ECSAgent -Cluster windows -EnableTaskIAMRole -LoggingDrivers '["json-file","awslogs"]' -EnableTaskENI -AwsvpcBlockIMDS -AwsvpcAdditionalLocalRoutes
+Initialize-ECSAgent -Cluster cluster-name -EnableTaskIAMRole -LoggingDrivers '["json-file","awslogs"]' -EnableTaskENI -AwsvpcBlockIMDS -AwsvpcAdditionalLocalRoutes
 '["ip-address"]'
+</powershell>
+```
+
+ For Windows tasks that are configured to use the `awslogs` logging driver, you must also set the `ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE` environment variable on your container instance\. Use the following syntax\. 
+
+Rreplace the `-Cluster cluster-name` line to specify your own cluster name \(if you are not using a cluster called `windows`\)\.
+
+```
+<powershell>
+[Environment]::SetEnvironmentVariable("ECS_ENABLE_AWSLOGS_EXECUTIONROLE_OVERRIDE", $TRUE, "Machine")
+Initialize-ECSAgent -Cluster cluster-name -EnableTaskIAMRole -LoggingDrivers '["json-file","awslogs"]'
 </powershell>
 ```
 

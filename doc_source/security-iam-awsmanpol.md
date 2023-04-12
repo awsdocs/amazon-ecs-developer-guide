@@ -307,6 +307,7 @@ The `AmazonEC2ContainerServiceforEC2Role` managed IAM policy includes the follow
 + `ecs:Poll` – Allows the Amazon ECS container agent to communicate with the Amazon ECS control plane to report task state changes\.
 + `ecs:RegisterContainerInstance` – Allows a principal to register a container instance with a cluster\. This permission is used by the Amazon ECS container agent to register the Amazon EC2 instance with a cluster as well as to support resource tag propagation\.
 + `ecs:StartTelemetrySession` – Allows the Amazon ECS container agent to communicate with the Amazon ECS control plane to report health information and metrics for each container and task\.
++ `ecs:TagResource` – Allows the Amazon ECS container agent to tag cluster on creation and to tag container instances when they are registered to a cluster\.
 + `ecs:UpdateContainerInstancesState` – Allows a principal to modify the status of an Amazon ECS container instance\. This permission is used by the Amazon ECS container agent for Spot Instance draining\. For more information, see [Spot Instance Draining](container-instance-spot.md#spot-instance-draining)\.
 + `ecs:Submit*` – This includes the `SubmitAttachmentStateChanges`, `SubmitContainerStateChange`, and `SubmitTaskStateChange` API actions\. They're used by the Amazon ECS container agent to report state changes for each resource to the Amazon ECS control plane\. The `SubmitContainerStateChange` permission is no longer used by the Amazon ECS container agent but remains to ensure backwards compatibility\.
 + `ecr:GetAuthorizationToken` – Allows a principal to retrieve an authorization token\. The authorization token represents your IAM authentication credentials and can be used to access any Amazon ECR registry that the IAM principal has access to\. The authorization token received is valid for 12 hours\.
@@ -320,30 +321,43 @@ The following is an example `AmazonEC2ContainerServiceforEC2Role` policy\.
 
 ```
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ec2:DescribeTags",
-                "ecs:CreateCluster",
-                "ecs:DeregisterContainerInstance",
-                "ecs:DiscoverPollEndpoint",
-                "ecs:Poll",
-                "ecs:RegisterContainerInstance",
-                "ecs:StartTelemetrySession",
-                "ecs:UpdateContainerInstancesState",
-                "ecs:Submit*",
-                "ecr:GetAuthorizationToken",
-                "ecr:BatchCheckLayerAvailability",
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage",
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-            ],
-            "Resource": "*"
-        }
-    ]
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:DescribeTags",
+				"ecs:CreateCluster",
+				"ecs:DeregisterContainerInstance",
+				"ecs:DiscoverPollEndpoint",
+				"ecs:Poll",
+				"ecs:RegisterContainerInstance",
+				"ecs:StartTelemetrySession",
+				"ecs:UpdateContainerInstancesState",
+				"ecs:Submit*",
+				"ecr:GetAuthorizationToken",
+				"ecr:BatchCheckLayerAvailability",
+				"ecr:GetDownloadUrlForLayer",
+				"ecr:BatchGetImage",
+				"logs:CreateLogStream",
+				"logs:PutLogEvents"
+			],
+			"Resource": "*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": "ecs:TagResource",
+			"Resource": "*",
+			"Condition": {
+				"StringEquals": {
+					"ecs:CreateAction": [
+						"CreateCluster",
+						"RegisterContainerInstance"
+					]
+				}
+			}
+		}
+	]
 }
 ```
 
@@ -354,37 +368,49 @@ This policy grants permissions that allow Amazon EventBridge \(formerly CloudWat
 **Permissions details**
 
 This policy includes the following permissions\.
-+ `ecs` – Allows a principal in a service to call the Amazon ECS RunTask API\.
++ `ecs` – Allows a principal in a service to call the Amazon ECS RunTask API\. Allows a prinicipal in a service to add tags \(`TagResource`\) when they call the Amazon ECS RunTask API\.
 + `iam` – Allows passing any IAM service role to any Amazon ECS tasks\.
 
 The following is an example `AmazonEC2ContainerServiceEventsRole` policy\.
 
 ```
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ecs:RunTask"
-            ],
-            "Resource": [
-                "*"
-            ]
-        },
-        {
-            "Effect": "Allow",
-            "Action": "iam:PassRole",
-            "Resource": [
-                "*"
-            ],
-            "Condition": {
-                "StringLike": {
-                    "iam:PassedToService": "ecs-tasks.amazonaws.com"
-                }
-            }
-        }
-    ]
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ecs:RunTask"
+			],
+			"Resource": [
+				"*"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": "iam:PassRole",
+			"Resource": [
+				"*"
+			],
+			"Condition": {
+				"StringLike": {
+					"iam:PassedToService": "ecs-tasks.amazonaws.com"
+				}
+			}
+		},
+		{
+			"Effect": "Allow",
+			"Action": "ecs:TagResource",
+			"Resource": "*",
+			"Condition": {
+				"StringEquals": {
+					"ecs:CreateAction": [
+						"RunTask"
+					]
+				}
+			}
+		}
+	]
 }
 ```
 
@@ -445,5 +471,7 @@ View details about updates to AWS managed policies for Amazon ECS since this ser
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  Add permissions to [AmazonEC2ContainerServiceEventsRole](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security-iam-awsmanpol.html#security-iam-awsmanpol-AmazonEC2ContainerServiceEventsRole)  | The AmazonEC2ContainerServiceEventsRole policy was modified to add the ecs:TagResource permission which allows a prinicipal in a service to add tags when they call the Amazon ECS RunTask API\. | March 6, 2023 | 
+|  Add permissions to [AmazonEC2ContainerServiceforEC2Role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security-iam-awsmanpol.html#security-iam-awsmanpol-AmazonEC2ContainerServiceforEC2Role)  | The AmazonEC2ContainerServiceforEC2Role policy was modified to add the ecs:TagResource permission which includes a condition which limits the permission only to newly created clusters and registered container instances\. | March 6, 2023 | 
 |  Add permissions to [AmazonECS\_FullAccess](#security-iam-awsmanpol-AmazonECS_FullAccess)  | The AmazonECS\_FullAccess policy was modified to add the elasticloadbalancing:AddTags permission which includes a condition which limits the permission only to newly created load balancers, target groups, rules, and listeners created\. This permission doesn't allow tags to be added to any already created Elastic Load Balancing resources\. | January 4, 2023 | 
 |  Amazon ECS started tracking changes  |  Amazon ECS started tracking changes for its AWS managed policies\.  | June 8, 2021 | 

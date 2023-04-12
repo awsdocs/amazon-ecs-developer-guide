@@ -60,7 +60,7 @@ The following is an example inline policy that adds the permissions\.
 }
 ```
 
-## Enabling private registry authentication<a name="private-auth-enable"></a>
+## Using private registry authentication<a name="private-auth-enable"></a>
 
 **To create a basic secret**
 
@@ -93,42 +93,4 @@ Use AWS Secrets Manager to create a secret for your private registry credentials
 
 1. Review your settings, and then choose **Store secret** to save everything that you entered as a new secret in Secrets Manager\.
 
-**To create a task definition that uses private registry authentication**
-
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
-
-1. In the navigation pane, choose **Task Definitions**\.
-
-1. On the **task definitions** page, choose **Create new task definition**\.
-
-1. On the **Select launch type compatibility** page, choose the launch type for your tasks and then **Next step**\.
-**Note**  
-This step only applies to Regions that support Amazon ECS using AWS Fargate\. For more information, see [Amazon ECS on AWS Fargate](AWS_Fargate.md)\.
-
-1. For **task definition Name**, enter a name for your task definition\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
-
-1. For **Task execution role**, either select your existing task execution role or choose **Create new role**\. This role authorizes Amazon ECS to pull private images for your task\. For more information, see [Required IAM permissions for private registry authentication](#private-auth-iam)\.
-**Important**  
-If the **Task execution role** field doesn't appear, choose **Configure via JSON** and add the `executionRoleArn` field to specify your task execution role\. The following shows the syntax:  
-
-   ```
-   "executionRoleArn": "arn:aws:iam::aws_account_id:role/ecsTaskExecutionRole"
-   ```
-
-1. For each container to create in your task definition, complete the following steps:
-
-   1. In the **Container Definitions** section, choose **Add container**\.
-
-   1. For **Container name**, type a name for your container\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
-
-   1. For **Image**, type the image name or path to your private image\. Up to 255 letters \(uppercase and lowercase\), numbers, hyphens, and underscores are allowed\.
-
-   1. Select the **Private repository authentication** option\.
-
-   1. For **Secrets manager ARN**, enter the full Amazon Resource Name \(ARN\) of the secret that you created earlier\. The value must be between 20 and 2048 characters\.
-
-   1. Fill out the remaining required fields and any optional fields to use in your container definitions\. More container definition parameters are available in the **Advanced container configuration** menu\. For more information, see [Task definition parameters](task_definition_parameters.md)\.
-
-   1. Choose **Add**\.
-
-1. When your containers are added, choose **Create**\.
+Register a task definition and under **Private registry**, turn on **Private registry authentication**\. Then, in **Secrets Manager ARN or name**, enter the Amazon Resource Name \(ARN\) of the secret\. You must use a For more information, see [Required IAM permissions for private registry authentication](#private-auth-iam)\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.

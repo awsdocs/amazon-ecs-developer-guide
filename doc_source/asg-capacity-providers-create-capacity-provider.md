@@ -14,7 +14,7 @@ Use the following steps to create a new capacity provider for an existing Amazon
 
 **To create an Auto Scaling group capacity provider \(classic AWS Management Console\)**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, select the Region your cluster exists in\.
 

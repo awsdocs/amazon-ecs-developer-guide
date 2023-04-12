@@ -21,7 +21,7 @@ You can create a new cluster for your Windows containers\. Amazon EC2 instances 
 
 **To create a cluster with the AWS Management Console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Clusters**\.
 
@@ -87,7 +87,7 @@ Before you can run Windows containers in your Amazon ECS cluster, you must regis
 
 **To register the sample task definition with the AWS Management Console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. In the navigation pane, choose **Task Definitions**\.
 
@@ -171,7 +171,7 @@ It can take up to 15 minutes for your container instance to download and extract
 
 **To view your service**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. On the **Clusters** page, choose the **windows** cluster\.
 

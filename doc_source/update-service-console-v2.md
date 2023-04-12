@@ -1,6 +1,6 @@
 # Updating a service using the console<a name="update-service-console-v2"></a>
 
-You can update an Amazon ECS service using the new Amazon ECS experience\. The current service configuration is pre\-populated\. You are able to update the task definition, desired task count, capacity provider strategy, platform version, and deployment configuration; or any combination of these\.
+You can update an Amazon ECS service using the Amazon ECS experience\. The current service configuration is pre\-populated\. You are able to update the task definition, desired task count, capacity provider strategy, platform version, and deployment configuration; or any combination of these\.
 
 Consider the following when you use the new console:
 + Only services using the **Rolling update** \(`ECS`\) deployment type can be updated using the new Amazon ECS experience\.
@@ -37,25 +37,17 @@ Amazon ECS does not automatically update the security groups associated with Ela
 
 1. On the **Cluster overview** page, select the service, and then choose **Update**\.
 
-1. For **Task definition**, choose the task definition family and revision to use\.
+1. To have your service start a new deployment, select **Force new deployment**\.
+
+1. For **Task definition**, choose the task definition family and revision\.
 **Important**  
 The console validates that the selected task definition family and revision is compatible with the defined compute configuration\. If you receive a warning, verify both your task definition compatibility and the compute configuration selected\.
 
-1. To change the compute options, expand **Deployment options**, **Compute configuration**, and then do the following: 
+1. For **Desired tasks**, enter the number of tasks you want to run for the service\.
 
-   1. For services on AWS Fargate, for **Platform version**, choose the new version\.
+1. For **Min running tasks**, enter the lower limit on the number of tasks in the service that must remain in the `RUNNING` state during a deployment, as a percentage of the desired number of tasks \(rounded up to the nearest integer\)\. For more information, see [Deployment configuration](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html#sd-deploymentconfiguration)\.
 
-   1. For services that use a capacity provider strategy, for **capacity provider strategy**, choose the new capacity provider\.
-
-      A service using an Auto Scaling group capacity provider can't be updated to use a Fargate capacity provider and vice versa\.
-
-   1. To have your service start a new deployment, select **Force new deployment**\.
-
-      The **Force new deployment** option stops all currently running tasks, and then launches new tasks using the updated configuration
-
-      1. For **Min running tasks**, enter the lower limit on the number of tasks in the service that must remain in the `RUNNING` state during a deployment, as a percentage of the desired number of tasks \(rounded up to the nearest integer\)\. For more information, see [Deployment configuration](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html#sd-deploymentconfiguration)\.
-
-      1. For **Max running tasks**, enter the upper limit on the number of tasks in the service that are allowed in the `RUNNING` or `PENDING` state during a deployment, as a percentage of the desired number of tasks \(rounded down to the nearest integer\)\.
+1. For **Max running tasks**, enter the upper limit on the number of tasks in the service that are allowed in the `RUNNING` or `PENDING` state during a deployment, as a percentage of the desired number of tasks \(rounded down to the nearest integer\)\.
 
 1. To configure how Amazon ECS detects and handles deployment failures, expand **Deployment failure detection**, and then choose your options\. 
 
@@ -67,6 +59,16 @@ The console validates that the selected task definition family and revision is c
 
       To have the software automatically roll back the deployment to the last completed deployment state when a CloudWatch alarm sets the deployment to a failed state, select **Rollback on failure**\.
 
+1. To change the compute options, expand **Deployment options**, **Compute configuration**, and then do the following: 
+
+   1. For services on AWS Fargate, for **Platform version**, choose the new version\.
+
+   1. For services that use a capacity provider strategy, for **capacity provider strategy**, do the following:
+      + To add an additional capacity provider, choose **Add more**\. Then, for **Capacity provider**, choose the capacity provider\.
+      + To remove a capacity provider, to the right of the capacity provider, choose **Remove**\.
+
+      A service using an Auto Scaling group capacity provider can't be updated to use a Fargate capacity provider and vice versa\.
+
 1. To configure service auto scaling, expand **Service auto scaling**, and then specify the following parameters\.
 
    1. To use service auto scaling, select **Service auto scaling**\.
@@ -77,20 +79,20 @@ The console validates that the selected task definition family and revision is c
 
    1. For **Scaling policy type**, choose **Target tracking**\.
 
-   1. For **Policy name**, enter the name of the policy\.
+   1. For **Policy name**, enter the policy name\.
 
-   1. For **ECS service metric**, select one of the following metrics:
+   1. For **ECS service metric**, choose one of the following metrics:
       + **ECSServiceAverageCPUUtilization**: Average CPU utilization of the service\. 
       + **ECSServiceAverageMemoryUtilization**: Average memory utilization of the service\. 
       + **ALBRequestCountPerTarget**: Number of requests completed per target in an Application Load Balancer target group\. 
 
-        The metrics require an Application Load Balancer and a target group for the Application Load Balancer\.
+        The metrics requires an Application Load Balancer and a target group for the Application Load Balancer\.
 
    1. For **Target value**, enter the value in percent that the service maintains for the selected metric\.
 
-   1. For **Scale\-out cooldown period**, enter the time in seconds after a scale\-out activity that no other scale outs can happen\.
+   1. For **Scale\-out cooldown period**, enter the number of seconds after a scale\-out activity that no other scale outs can happen\.
 
-   1. For **Scale\-in cooldown period**, enter the time in seconds after a scale\-in activity that no other scale ins can happen\.
+   1. For **Scale\-in cooldown period**, enter the number of seconds after a scale\-in activity that no other scale ins can happen\.
 
    1. To prevent the policy from performing a scale\-in activity, select **Turn off scale\-in**\.
 

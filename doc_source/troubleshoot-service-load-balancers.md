@@ -26,7 +26,7 @@ This is the number of times your health check can fail before your container ins
 
 Unable to update the service *servicename*: Load balancer container name or port changed in task definition  
 If your service uses a load balancer, the load balancer configuration defined for your service when it was created cannot be changed\. If you update the task definition for the service, the container name and container port that were specified when the service was created must remain in the task definition\.  
-To change the load balancer name, the container name, or the container port associated with a service load balancer configuration, you must create a new service\.
+To change the container name, or the container port associated with a service load balancer configuration, you must create a new service\.
 
 You've reached the limit on the number of tasks you can run concurrently\.  
 For a new account, your quotas might be lower that the service quotas\. The service quota for your account can be viewed in the Service Quotas console\. To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.

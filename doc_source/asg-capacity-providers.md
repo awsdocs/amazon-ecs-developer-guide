@@ -10,7 +10,7 @@ Consider the following when using Auto Scaling group capacity providers in the c
 To create an empty Auto Scaling group, set the desired count to zero\. After you created the capacity provider and associated it with a cluster, you can then scale it out\.  
 When you use the Amazon ECS console **Create Cluster** with the **Amazon EC2 instances** option under **Infrastructure**, Amazon ECS creates an Amazon EC2 Auto Scaling launch configuration and Auto Scaling group on your behalf as part of the AWS CloudFormation stack\. They are prefixed with `EC2ContainerService-<ClusterName>`, which makes them easy to identify\. That Auto Scaling group could then be used in a capacity provider for that cluster\.
 + An Auto Scaling group must have a `MaxSize` greater than zero to scale out\.
-+ If the Auto Scaling group can scale out to accommodate the number of tasks run, the tasks fails to transition beyond the `PROVISIONING` state\.
++ If the Auto Scaling group can't scale out to accommodate the number of tasks run, the tasks fails to transition beyond the `PROVISIONING` state\.
 + When you use managed termination protection, you must also use managed scaling\. Otherwise, managed termination protection won't work\.
 + When managed scaling is turned on, the Auto Scaling group capacity provider creates a scaling policy resource to manage the scaling of your Auto Scaling group\. You can identify these resources by the `ECSManaged` prefix\. 
 + Don't modify the scaling policy resource associated with your Auto Scaling groups that are managed by capacity providers\. 
@@ -41,4 +41,4 @@ ECS_WARM_POOLS_CHECK=true
 EOF
 ```
 
-The `ECS_WARM_POOLS_CHECK` variable is only supported on agent versions `1.59.0` and later\. For more information about the variable, see the [Available Parameters](ecs-agent-config.md#ecs-agent-availparam) page\.
+The `ECS_WARM_POOLS_CHECK` variable is only supported on agent versions `1.59.0` and later\. For more information about the variable, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.

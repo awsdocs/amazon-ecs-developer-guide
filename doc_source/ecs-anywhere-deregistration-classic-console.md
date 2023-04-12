@@ -11,7 +11,7 @@ If you have tasks that are running on the container instance when you deregister
 
 To register an external instance to a new cluster, after the external instance has been deregistered from both Amazon ECS and Systems Manager, you can clean up the remaining AWS resources on the instance and register it with a new cluster\.
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, choose the Region where your external instance is registered\.
 

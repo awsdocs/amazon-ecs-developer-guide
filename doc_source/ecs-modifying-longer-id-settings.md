@@ -10,7 +10,7 @@ You can use the AWS Management Console to modify your account settings\.
 
 1. Choose **Update**\.
 
-1.  To increase or descrease the number of tasks that you can run in the awsvpc network mode for each EC2 instance, under **AWSVPC Trunking**, select **AWSVPC Trunking**\.
+1.  To increase or decrease the number of tasks that you can run in the awsvpc network mode for each EC2 instance, under **AWSVPC Trunking**, select **AWSVPC Trunking**\.
 
 1.  To use or stop using CloudWatch Container Insights by default for clusters, under **CloudWatch Container Insights**, select or clear **CloudWatch Container Insights**\.
 

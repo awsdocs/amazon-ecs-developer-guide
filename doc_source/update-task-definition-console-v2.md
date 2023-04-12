@@ -13,10 +13,11 @@ When you create a revision, you can modify the following container properties an
 + Task role
 + Task execution role
 + Volumes and container mount points
++ Private registry
 
 ## JSON validation<a name="json-validate-for-update"></a>
 
-The Amazon ECS console JON editor validates the following in the JSON file:
+The Amazon ECS console JSON editor validates the following in the JSON file:
 + The file is a valid JSON file
 + The file does not contain any extraneous keys
 + The file contains the `familyName` parameter

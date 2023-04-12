@@ -20,6 +20,10 @@ The following is the workflow used for Amazon ECS cluster auto scaling\. For mor
 
 1. Associate the capacity provider with a cluster
 
+1. Create a capacity provider strategy that uses the capacity provider\.
+
+   The capacity provider strategy determines how the tasks are spread across the cluster's capacity providers\. When you run a standalone task or create a service, you either use the cluster's default capacity provider strategy or a capacity provider strategy that overrides the default one\.
+
 For each Auto Scaling group capacity provider that's associated with a cluster, Amazon ECS creates and manages the following resources:
 + A low metric value CloudWatch alarm
 + A high metric value CloudWatch alarm
@@ -31,7 +35,7 @@ When you turn off managed scaling or disassociate the capacity provider from a c
 
 The following metrics help to determine what actions to take:
 +  `CapacityProviderReservation` \- The percent of cluster container instances in use for a specific capacity provider\. Amazon ECS generates this metric\.
-+ `DesiredCapacity` \- The amount of capacity for the Auto Scaling group\. 
++ `DesiredCapacity` \- The amount of capacity for the Auto Scaling group\.
 
 Amazon ECS starts the cluster Auto Scaling process for each capacity provider that's associated with your cluster\. Every minute, Amazon ECS collects information, which determines whether the Auto Scaling group needs to scale in or out\. When launched tasks can't be placed on available instances, the Auto Scaling group scales out by launching new instances\. When there are running instances with no tasks, the Auto Scaling group scales in by terminating an instance with no running tasks\.
 
@@ -73,9 +77,16 @@ Consider the following when using managed termination protection with the new co
 
 When you have Auto Scaling group capacity providers that use managed scaling, Amazon ECS estimates the optimal number of instances to add to your cluster\. Then, Amazon ECS uses this value to determine how many instances to request\. The following describes the scale\-out behavior in more detail\.
 
-1. Group all of the provisioning tasks so that each group has the same exact resource requirements\.
+1. Amazon ECS selects a capacity provider for each task by following the capacity provider strategy from the service, from the standalone task, or from the cluster default\. Amazon ECS follows the rest of these steps for a single capacity provider\.
 
-1. When you use multiple instance types in a group, the instances in the Auto Scaling group are sorted by their parameters\. These parameters include vCPU, memory, elastic network interfaces \(ENIs\), ports, and GPUs\. The smallest and the largest instance types for each parameter are selected\. For more information about how to choose the instance type, see [Characterizing your application](https://docs.aws.amazon.com/AmazonECS/latest/bestpracticesguide/capacity-autoscaling.html#capacity-autoscaling-app) in the *Amazon ECS Best Practices Guide*\.
+   If a task doesn't have a capacity provider strategy, then that task is ignored by capacity providers\. A pending task that doesn't have a capacity provider strategy won't cause any capacity provider to scale out\. Tasks or services can't set a capacity provider strategy if that task or service sets a launch type\.
+
+1. Group all of the provisioning tasks for this capacity provider so that each group has the same exact resource requirements\.
+
+1. When you use multiple instance types in an AS; group, the instance types in the Auto Scaling group are sorted by their parameters\. These parameters include vCPU, memory, elastic network interfaces \(ENIs\), ports, and GPUs\. The smallest and the largest instance types for each parameter are selected\. For more information about how to choose the instance type, see [Characterizing your application](https://docs.aws.amazon.com/AmazonECS/latest/bestpracticesguide/capacity-autoscaling.html#capacity-autoscaling-app) in the *Amazon ECS Best Practices Guide*\.
+**Important**  
+If a group of tasks have resource requirements that are greater than the smallest instance type in the Auto Scaling group, then that group of tasks can’t run with this capacity provider\. The capacity provider doesn’t scale the Auto Scaling group\. The tasks remain in the `PENDING` state\.  
+To prevent tasks from staying in the `PENDING` state, we recommend that you create separate Auto Scaling groups and capacity providers for different minimum resource requirements\. When you run tasks or create services, only add capacity providers to the capacity provider strategy that can run the task on the smallest instance type in the Auto Scaling group\. For other parameters, you can use placement constraints
 
 1. For each group of tasks, Amazon ECS calculates the number of instances that are required to run the unplaced tasks\. This calculation uses a `binpack` strategy\. This strategy accounts for the vCPU, memory, elastic network interfaces \(ENI\), ports, and GPUs requirements of the tasks\. It also accounts for the resource availability of the Amazon EC2 instances\. The values for the largest instance types are treated as the maximum calculated instance count\. The values for the smallest instance type are used as protection\. If the smallest instance type can't run at least one instance of the task, the calculation considers the task as not compatible\. As a result, the task is excluded from scale\-out calculation\. When all the tasks aren't compatible with the smallest instance type, cluster Auto Scaling stops and the `CapacityProviderReservation` value remains at 100%\.
 
@@ -113,15 +124,15 @@ For more information, see [Deep dive on Amazon ECS cluster auto scaling](https:/
 
 ## Managed scale\-in behavior<a name="managed-scaling-scalein"></a>
 
-Amazon ECS monitors container instances for each capacity provider within cluster\. When one container instance doesn't have a running task, it considered as empty and Amazon ECS starts scale\-in process\. The following describes the scale\-in behavior in more detail\.
+Amazon ECS monitors container instances for each capacity provider within a cluster\. When a container instance isn't running any tasks, the container instance is considered empty and Amazon ECS starts the scale\-in process\. The following describes the scale\-in behavior in more detail:
 
-1. Amazon ECS calculates the number of empty container instances\. A container instance is considered empty when there are no no\-daemon tasks running\.
+1. Amazon ECS calculates the number of container instances that are empty\. A container instance is considered empty even when daemon tasks are running\.
 
-1. Amazon ECS sets the `CapacityProviderReservation` value to 100 minus the number of empty container instances\. For example, if the number of empty container instances is two, the value is set to 98%\. Then, Amazon ECS publishes the metric to CloudWatch\.
+1. Amazon ECS sets the `CapacityProviderReservation` value to 100 minus the number of container instances that are empty\. For example, if the number of empty container instances is two, the value is 98%\. Then, Amazon ECS publishes the metric to CloudWatch\.
 
 1. The `CapacityProviderReservation` metric generates a CloudWatch alarm\. This alarm updates the `DesiredCapacity` value for the Auto Scaling group\. Then, one of the following actions occurs:
    + If you don't use capacity provider managed termination, the Auto Scaling group selects EC2 instances using the Auto Scaling group termination policy and terminates the instances until the number of EC2 instances reaches the `DesiredCapacity`\. The container instances are then deregistered from the cluster\.
-   + If all the container instances use capacity provider managed termination protection, Amazon ECS removes the scale\-in protection on the container instances that do not have non\-daemon tasks running\. The Auto Scaling group will then be able to terminate the EC2 instances\. The container instances are then deregistered from the cluster\.
+   + If all the container instances use managed termination protection, Amazon ECS removes the scale\-in protection on the container instances that are empty\. The Auto Scaling group will then be able to terminate the EC2 instances\. The container instances are then deregistered from the cluster\.
 
 ### Scale\-in considerations<a name="scale-in-considerations"></a>
 
@@ -132,7 +143,7 @@ Amazon ECS monitors container instances for each capacity provider within cluste
 
 ## Target tracking considerations<a name="target-tracking"></a>
 
-When creating or updating a capacity provider with managed scaling turned on, you can set the `targetCapacity` value\. This way, future tasks can launch more quickly by not waiting for the Auto Scaling group to launch more instances\. Amazon ECS uses the target capacity value to manage the CloudWatch metric the service creates to facilitate cluster auto scaling\. Amazon ECS manages the CloudWatch metric\. This way, the Auto Scaling group is treated as a steady state so that no scaling action is required\. The values can be from 0\-100%\. For example, to configure Amazon ECS to keep 10% free capacity on top of that used by Amazon ECS tasks, set the target capacity value to 90%\.
+When creating or updating a capacity provider with managed scaling turned on, you can set the `targetCapacity` percentage\. This way, you can keep spare capacity so that future tasks can launch more quickly\. Spare capacity improves this by not waiting for the Auto Scaling group to launch more instances\. Amazon ECS uses the target capacity value to manage the CloudWatch metric that the service creates to facilitate cluster auto scaling\. Amazon ECS manages the CloudWatch metric\. This way, the Auto Scaling group is treated as a steady state so that no scaling action is required\. The values can be from 0\-100%\. For example, to configure Amazon ECS to keep 10% free capacity on top of that used by Amazon ECS tasks, set the target capacity value to 90%\.
 
 Consider the following when setting the `targetCapacity` value on a capacity provider\.
 + A `targetCapacity` value of less than 100% represents the amount of free capacity \(Amazon EC2 instances\) that need to be present in the cluster\. Free capacity means that there are no running tasks\.

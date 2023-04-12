@@ -16,7 +16,7 @@ When you use an Auto Scaling group as a capacity provider, you can modify the gr
 
    1. Under **Auto Scaling group**, under **Scaling policies**, configure the following options\.
      + To have Amazon ECS manage the scale\-in and scale\-out actions, select **Turn on managed scaling**\.
-     + To prevent EC2 instance with running Amazon ECS tasks from being terminated, select **Turn on scaling protection**\.
+     + To prevent EC2 instances with running Amazon ECS tasks from being terminated, select **Turn on scaling protection**\.
      + For **Set target capacity**, enter the target value for the CloudWatch metric used in the Amazon ECS\-managed target tracking scaling policy\.
 
 1. Choose **Update**\.

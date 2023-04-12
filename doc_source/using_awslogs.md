@@ -49,23 +49,7 @@ The following code shows how to set the `awslogs-create-group` option\.
 
 ### Using the auto\-configuration feature to create a log group<a name="create_awslogs_loggroups_auto"></a>
 
-When registering a task definition in the Amazon ECS console, you can allow Amazon ECS to auto\-configure your CloudWatch logs\. Doing this causes a log group to be created on your behalf using the task definition family name with `ecs` as the prefix\.
-
-**To use log group auto\-configuration option in the Amazon ECS console**
-
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
-
-1. In the left navigation pane, choose **Task Definitions**, **Create new Task Definition**\.
-
-1. Select your compatibility option and choose **Next Step**\.
-
-1. Choose **Add container**\.
-
-1. In the **Storage and Logging** section, for **Log configuration**, choose **Auto\-configure CloudWatch Logs**\.
-
-1. Enter your awslogs log driver options\. For more information, see [Specifying a log configuration in your task definition](#specify-log-config)\.
-
-1. Complete the rest of the task definition wizard\.
+When you register a task definition,in the Amazon ECS console, you can allow Amazon ECS to auto\-configure your CloudWatch logs\. Doing this causes a log group to be created on your behalf using the task definition family name with `ecs` as the prefix\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
 
 ## Available awslogs log driver options<a name="create_awslogs_logdriver_options"></a>
 
@@ -191,13 +175,13 @@ For tasks using the EC2 launch type, after your container instance role has the 
 
 **To view your CloudWatch Logs data for a container from the Amazon ECS console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the console at [https://console\.aws\.amazon\.com/ecs/v2](https://console.aws.amazon.com/ecs/v2)\.
 
 1. On the **Clusters** page, select the cluster that contains the task to view\.
 
-1. On the **Cluster: *cluster\_name*** page, choose **Tasks** and select the task to view\.
+1. On the **Cluster: *cluster\_name*** page, choose **Tasks**, and then select the task to view\.
 
-1. On the **Task: *task\_id*** page, expand the container view by choosing the arrow to the left of the container name\.
+1. On the **Task: *task\_id*** page, under **Container details**, choose **Log configuration** to view the logs\.
 
 1. In the **Log Configuration** section, choose **View logs in CloudWatch**, which opens the associated log stream in the CloudWatch console\.
 
@@ -209,5 +193,4 @@ For tasks using the EC2 launch type, after your container instance role has the 
 
 1. Select a log group to view\. You should see the log groups that you created in [Creating a log group](#create_awslogs_loggroups)\.
 
-1. Choose a log stream to view\.  
-![\[awslogs console metrics view\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/images/awslogs-log-stream.png)
+1. Choose a log stream to view\.

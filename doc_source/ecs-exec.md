@@ -53,7 +53,7 @@ Before you start using ECS Exec, make sure you that you have completed these act
 
 The ECS Exec feature requires a task IAM role to grant containers the permissions needed for communication between the managed SSM agent \(`execute-command` agent\) and the SSM service\. For more information, see [Amazon ECS task IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)\. You should add the following permissions to a task IAM role and include the task IAM role in your task definition\. For more information, see [Adding and Removing IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html)\.
 
-Use the following policy for your task IAM role to add the required SSM permissions\.
+Use the following policy for your task IAM role to add the required SSM permissions\. For information about the task IAM role, see [Task IAM role](task-iam-roles.md)\.
 
 ```
 {

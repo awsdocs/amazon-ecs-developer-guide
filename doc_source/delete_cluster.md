@@ -13,7 +13,7 @@ If your cluster was created with the AWS Management Console then the AWS CloudFo
 
 **To delete a cluster using the classic console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECS classic console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
 
 1. From the navigation bar, select the Region to use\.
 

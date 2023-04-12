@@ -38,17 +38,25 @@ The following is the format of the parameter name for each Amazon ECS\-optimized
   ```
   /aws/service/ecs/optimized-ami/amazon-linux-2/gpu/<version>
   ```
-+ Amazon Linux 2 \(Inferentia\) AMI metadata:
++ Amazon Linux 2 \(Neuron\) AMI metadata:
 
   ```
   /aws/service/ecs/optimized-ami/amazon-linux-2/inf/<version>
   ```
-+ Amazon Linux 2022 AMI metadata:
-**Important**  
-The Amazon ECS\-Optimized Amazon Linux 2022 AMI is in preview and subject to change\.
++ Amazon Linux 2023 AMI metadata:
 
   ```
-  /aws/service/ecs/optimized-ami/amazon-linux-2022/<version>
+  /aws/service/ecs/optimized-ami/amazon-linux-2023/<version>
+  ```
++ Amazon Linux 2023 \(arm64\) AMI metadata:
+
+  ```
+  /aws/service/ecs/optimized-ami/amazon-linux-2023/arm64/<version>
+  ```
++ Amazon Linux 2023 \(Neuron\) AMI metadata:
+
+  ```
+  /aws/service/ecs/optimized-ami/amazon-linux-2023/inf/<version>
   ```
 + Amazon Linux AMI metadata:
 
@@ -108,17 +116,15 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   ```
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/gpu/recommended --region us-east-1
   ```
-+ **For the Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMIs:**
++ **For the Amazon ECS optimized Amazon Linux 2 \(Neuron\) AMIs:**
 
   ```
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended --region us-east-1
   ```
-+ The Amazon ECS\-Optimized Amazon Linux 2022 AMI is in preview and subject to change\.
-
-  **For the Amazon ECS\-optimized Amazon Linux 2022 AMIs:**
++ **For the Amazon ECS\-optimized Amazon Linux 2023 AMIs:**
 
   ```
-  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2022/recommended --region us-east-1
+  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2023/recommended --region us-east-1
   ```
 + **For the Amazon ECS\-optimized Amazon Linux AMIs:**
 

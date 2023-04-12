@@ -4,8 +4,6 @@ We recommend that you deploy your application as a standalone task in some situa
 
 To deploy your application to run continually or to place it behind a load balancer, create an Amazon ECS service\. For more information, see [Amazon ECS services](ecs_services.md)\.
 
-To run a standalone task use one of the following procedures\.
-
 Consider the following when you use the new console;
 + Task definitions that use the `awsvpc` network mode or services configured to use a load balancer must have a networking configuration\. By default, the console selects the default Amazon VPC along with all subnets and the default security group within the default Amazon VPC\. 
 + For the EC2 launch type, the default task placement strategy is to distribute the tasks across Availability Zones and across container instances in the Availability Zone\.
@@ -27,9 +25,9 @@ Consider the following when you use the new console;
 
 1. For **Application type**, choose **Task**\.
 
-1. For **Task definition**, choose the task definition family and revision to use\.
+1. For **Task definition**, choose the task definition family and revision\.
 **Important**  
-The console validates the selection to ensure that the selected task definition family and revision is compatible with the defined compute configuration\.
+The console validates the selection to ensure that the selected task definition family and revision are compatible with the defined compute configuration\.
 
 1. For **Desired tasks**, enter the number of tasks to launch\.
 
@@ -41,9 +39,11 @@ The console validates the selection to ensure that the selected task definition 
 **Important**  
 Only private subnets are supported for the `awsvpc` network mode\. Tasks do not receive public IP addresses\. Therefore, a NAT gateway is required for outbound internet access, and inbound internet traffic is routed through a load balancer\.
 
-   1. For **Security group**, you can either select an existing security group or create a new one\. To use an existing security group, select the security group and move to the next step\. To create a new security group, choose **Create a new security group**\. You must specify a security group name, description, and then add one or more inbound rules for the security group\.
+   1. For **Security group**, you can either choose an existing security group or create a new one\. To use an existing security group, choose the security group and move to the next step\. To create a new security group, choose **Create a new security group**\. You must specify a security group name, description, and then add one or more inbound rules for the security group\.
 
-   1. For **Public IP**, choose whether to auto\-assign a public IP address to the elastic network interface \(ENI\) of the task\. AWS Fargate tasks can be assigned a public IP address when run in a public subnet so they have a route to the internet\. For more information, see [Fargate task networking](https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-task-networking.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
+   1. For **Public IP**, choose whether to auto\-assign a public IP address to the elastic network interface \(ENI\) of the task\. 
+
+      AWS Fargate tasks can be assigned a public IP address when run in a public subnet so they have a route to the internet\. For more information, see [Fargate task networking](https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-task-networking.html) in the *Amazon Elastic Container Service User Guide for AWS Fargate*\.
 
 1. \(Optional\) To use a task placement strategy other than the default, expand **Task Placement**, and then choose from the following options\.
 
@@ -58,7 +58,7 @@ Only private subnets are supported for the `awsvpc` network mode\. Tasks do not 
    + Under **Strategy**, for **Type** and **Field**, choose the algorithm and the entity to use for the algorithm\.
 
      You can enter a maximum of 5 strategies\.
-   + Under **Constraint**, for **Type** and **Expression**, choose the rule and attribute to use for the constraint\.
+   + Under **Constraint**, for **Type** and **Expression**, choose the rule and attribute for the constraint\.
 
      When you enter the **Expression**, do not enter the double quotation marks \(`" "`\)\. For example, to set the constraint to place tasks on T2 instances, for the **Expression**, enter **attribute:ecs\.instance\-type =\~ t2\.\***\.
 
@@ -66,14 +66,14 @@ Only private subnets are supported for the `awsvpc` network mode\. Tasks do not 
 
 1. \(Optional\) To override the task IAM role, or task execution role that is defined in your task definition, expand **Task overrides**, and then complete the following steps:
 
-   1. For **Task role**, choose an IAM role for this task to override the task IAM roles in the task definition\. For more information, see [Task IAM role](task-iam-roles.md)\.
+   1. For **Task role**, choose an IAM role for this task\. For more information, see [Task IAM role](task-iam-roles.md)\.
 
       Only roles with the `ecs-tasks.amazonaws.com` trust relationship are displayed\. For instructions on how to create an IAM role for your tasks, see [Creating an IAM role and policy for your tasks](task-iam-roles.md#create_task_iam_policy_and_role)\.
 
-   1. For **Task execution role**, choose a task execution role to override the task execution role specified in the task definition\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
+   1. For **Task execution role**, choose a task execution role\. For more information, see [Amazon ECS task execution IAM role](task_execution_IAM_role.md)\.
 
 1. \(Optional\) To override the container commands and environment variables, expand **Container Overrides**, and then expand the container\.
-   +  For **Command override**, enter the Docker command that is sent to the container instead of the command specified in the task definition\.
+   +  To send a command to the container other than the task definition command, for **Command override**, enter the Docker command\.
 
      For more information about the Docker run command, see [Docker Run reference](https://docs.docker.com/engine/reference/run/) in the Docker Reference Manual\.
    + To add an environment variable, choose **Add Environment Variable**\. For **Key**, enter the name of your environment variable\. For **Value**, enter a string value for your environment value \(without the surrounding double quotation marks \(`" "`\)\)\.

@@ -27,7 +27,7 @@ Amazon Linux
 + For tasks that are hosted on Fargate, Amazon EFS file systems are supported on platform version 1\.4\.0 or later \(Linux\)\. For more information, see [AWS Fargate platform versions](platform_versions.md)\.
 + When using Amazon EFS volumes for tasks that are hosted on Fargate, Fargate creates a supervisor container that's responsible for managing the Amazon EFS volume\. The supervisor container uses a small amount of the task's memory\. The supervisor container is visible when querying the task metadata version 4 endpoint\. Additionally, it is visible in CloudWatch Container Insights as the container name `aws-fargate-supervisor`\. For more information, see [Task metadata endpoint version 4](task-metadata-endpoint-v4.md)\.
 + Using Amazon EFS volumes or specifying an `EFSVolumeConfiguration` isn't supported on external instances\.
-+ We recommended that you set the `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` parameter in the agent configuration file to a value that is less than the default \(about 1 hour\)\. This change helps prevent EFS mount credential expiration and allows for cleanup of mounts that are not in use\.  For more information, see [Available Parameters](ecs-agent-config.md#ecs-agent-availparam)\.
++ We recommended that you set the `ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION` parameter in the agent configuration file to a value that is less than the default \(about 1 hour\)\. This change helps prevent EFS mount credential expiration and allows for cleanup of mounts that are not in use\.  For more information, see [Amazon ECS container agent configuration](ecs-agent-config.md)\.
 
 ## Using Amazon EFS access points<a name="efs-volume-accesspoints"></a>
 

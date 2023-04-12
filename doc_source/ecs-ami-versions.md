@@ -15,6 +15,11 @@ Each Amazon ECS\-optimized Amazon Linux 2 kernel 5\.10 AMI version has the same 
 
 |  Amazon ECS\-optimized Amazon Linux 2 AMI  |  Amazon ECS container agent version  |  Docker version  |  `ecs-init` version  | 
 | --- | --- | --- | --- | 
+| 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | 
+| 20230321 | `1.70.0` | `20.10.17` | `1.70.0-1` | 
+| 20230314 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
+| 20230301 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
+| 20230301 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
 | 20230214 | `1.68.2` | `20.10.17` | `1.68.2-1` | 
 |  20230127 | `1.68.1` | `20.10.17` | `1.68.1-1` | 
 | 20230109 | `1.68.0` | `20.10.17` | `1.68.0-1` | 
@@ -129,6 +134,10 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 |  Amazon ECS\-optimized Amazon Linux 2 kernel 5\.10 AMI  |  Amazon ECS container agent version  |  Docker version  |  `ecs-init` version  | 
 | --- | --- | --- | --- | 
+| 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | 
+| 20230321 | `1.70.0` | `20.10.17` | `1.70.0-1` | 
+| 20230314 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
+| 20230301 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
 | 20230214 | `1.68.2` | `20.10.17` | `1.68.2-1` | 
 | 20230127 | `1.68.1` | `20.10.17` | `1.68.1-1` | 
 | 20230109 | `1.68.0` | `20.10.17` | `1.68.0-1` | 
@@ -148,6 +157,10 @@ Each Amazon ECS\-optimized Amazon Linux 2 kernel 5\.10 \(arm64\) AMI version has
 
 | Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | 
+| 20230321 | `1.70.0` | `20.10.17` | `1.70.0-1` | 
+| 20230314 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
+| 20230301 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
 | 20230214 | `1.68.2` | `20.10.17` | `1.68.2-1` | 
 | 20230127 | `1.68.1` | `20.10.17` | `1.68.1-1` | 
 | 20230109 | `1.68.0` | `20.10.17` | `1.68.0-1` | 
@@ -259,6 +272,10 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux 2 kernel 5\.10 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | 
+| 20230321 | `1.70.0` | `20.10.17` | `1.70.0-1` | 
+| 20230314 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
+| 20230301 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
 | 20230214 | `1.68.2` | `20.10.17` | `1.68.2-1` | 
 | 20230127 | `1.68.1` | `20.10.17` | `1.68.1-1` | 
 | 20230109 | `1.68.0` | `20.10.17` | `1.68.0-1` | 
@@ -276,7 +293,11 @@ The table below lists the current and previous versions of the Amazon ECS GPU\-o
 
 | Amazon ECS GPU\-optimized AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | NVIDIA driver version | 
 | --- | --- | --- | --- | --- | 
-| 20230214 | `1.68.2` | `20.10.17` | `1.68.2-1` | 
+| 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | `470.161.03` | 
+| 20230321 | `1.70.0` | `20.10.17` | `1.70.0-1` | `470.161.03` | 
+| 20230314 | `1.69.0` | `20.10.17` | `1.69.0-1` | `470.57.02` | 
+| 20230301 | `1.69.0` | `20.10.17` | `1.69.0-1` | `470.57.02` | 
+| 20230214 | `1.68.2` | `20.10.17` | `1.68.2-1` | `470.57.02` | 
 |  20230127 | `1.68.1` | `20.10.17` | `1.68.1-1` | `470.57.02` | 
 |  20230109 | `1.68.0` | `20.10.17` | `1.68.0-1` | `470.57.02` | 
 | 20221230 | `1.67.2` | `20.10.17` | `1.67.2-1` | `470.57.02` | 
@@ -381,13 +402,17 @@ You can retrieve the current Amazon ECS GPU\-optimized AMI using the AWS CLI wit
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/gpu/recommended
 ```
 
-### Amazon Linux 2 \(Inferentia\) versions<a name="infami-versions"></a>
+### Amazon Linux 2 \(Neuron\) versions<a name="infami-versions"></a>
 
-The table below lists the current and previous versions of the Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+The table below lists the current and previous versions of the Amazon ECS optimized Amazon Linux 2 \(Neuron\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
 
 
-| Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| Amazon ECS optimized Amazon Linux 2 \(Neuron\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | 
+| 20230321 | `1.70.0` | `20.10.17` | `1.70.0-1` | 
+| 20230314 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
+| 20230301 | `1.69.0` | `20.10.17` | `1.69.0-1` | 
 | 20230214 | `1.68.2` | `20.10.17` | `1.68.2-1` | 
 |  20230127 | `1.68.1` | `20.10.17` | `1.68.1-1` | 
 |  20230109 | `1.68.0` | `20.10.17` | `1.68.0-1` | 
@@ -460,40 +485,55 @@ The table below lists the current and previous versions of the Amazon ECS optimi
 | 20200706 | `1.41.1` | `19.03.6-ce` | `1.41.1-1` | 
 | 20200623 | `1.41.0` | `19.03.6-ce` | `1.41.0-1` | 
 
-You can retrieve the current Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI using the AWS CLI with the following command:
+You can retrieve the current Amazon ECS optimized Amazon Linux 2 \(Neuron\) AMI using the AWS CLI with the following command:
 
 ```
 aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/inf/recommended
 ```
 
-### Amazon Linux 2022 AMI versions<a name="al2022ami-versions"></a>
+### Amazon Linux 2023 AMI<a name="al2023ami-versions"></a>
 
-**Important**  
-The Amazon ECS\-Optimized Amazon Linux 2022 AMI is in preview and subject to change\.
-
-The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2022 AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2023 AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
 
 
-| Amazon ECS optimized Amazon Linux 2 \(Inferentia\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| Amazon ECS\-optimized Amazon Linux 2023 AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
-| 20230127 | `1.68.1` | `20.10.17` | `1.68.1-1` | 
-| 20230109 | `1.68.0` | `20.10.17` | `1.68.0-1` | 
-| 20221230 | `1.67.2` | `20.10.17` | `1.67.2-1` | 
-| 20221213 | `1.67.2` | `20.10.17` | `1.67.2-1` | 
-| 20221207 | `1.67.1` | `20.10.17` | `1.67.1-1` | 
-| 20221102 | `1.65.1` | `20.10.17` | `1.65.1-1` | 
-| 20220630 | `1.61.3` | `20.10.13` | `1.61.3-1` | 
-| 20220627 | `1.61.3` | `20.10.13` | `1.61.3-1 ` | 
-| 20220607 | `1.61.2` | `20.10.13` | `1.61.2-1 ` | 
-| 20220520 | `1.61.1` | `20.10.13` | `1.61.1-1` | 
-| 20220509 | `1.61.1` | `20.10.7` | `1.61.1-1` | 
-| 20220421 | `1.61.0` | `20.10.7` | `1.61.0-1` | 
-| 20220411 | `1.61.0` | `20.10.7` | `1.61.0-1` | 
+| 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | 
 
-You can retrieve the current Amazon ECS\-optimized Amazon Linux 2022 AMI using the AWS CLI with the following command:
+You can retrieve the current Amazon ECS\-optimized Amazon Linux 2023 AMI using the AWS CLI with the following command:
 
 ```
-aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2022/recommended
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2023/recommended
+```
+
+### Amazon Linux 2023 \(arm64\) AMI versions<a name="al22023arm64ami-versions"></a>
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized AL2023 \(arm64\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+
+
+| Amazon ECS\-optimized AL2023 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| --- | --- | --- | --- | 
+| 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | 
+
+The current Amazon ECS\-optimized Amazon Linux 2 \(arm64\) AMI can be retrieved using the AWS CLI with the following command:
+
+```
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2023/arm64/recommended
+```
+
+### Amazon Linux 2023 \(Neuron\) versions<a name="2023infami-versions"></a>
+
+The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2023 AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+
+
+| Amazon ECS optimized AL2023 \(Neuron\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| --- | --- | --- | --- | 
+| 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | 
+
+You can retrieve the current Amazon ECS optimized Amazon Linux 2 \(Neuron\) AMI using the AWS CLI with the following command:
+
+```
+aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2023/inf/recommended
 ```
 
 ### Amazon Linux AMI<a name="alami-versions"></a>
@@ -506,6 +546,8 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
+| 2018\.03\.20230321 | `1.51.0` | `20.10.17` | `1.51.0-1` | 
+| 2018\.03\.20230314 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20230214 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20221115 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20221010 | `1.51.0` | `20.10.13` | `1.51.0-1` | 

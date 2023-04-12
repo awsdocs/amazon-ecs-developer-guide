@@ -5,7 +5,6 @@ The following parameters aren't supported for Amazon EC2 Windows task definition
   + `disableNetworking`
   + `dnsServers`
   + `dnsSearchDomains`
-  + `dockerSecurityOptions`
   + `extraHosts`
   + `links`
   + `linuxParameters`
