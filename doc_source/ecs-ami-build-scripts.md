@@ -46,12 +46,12 @@ For more information, see the Amazon ECS AMI repository at [aws/amazon\-ecs\-ami
      ```
      make al2023
      ```
-   + Amazon ECS\-optimized AL2023 \(arm64\) AMI
+   + Amazon ECS\-optimized Amazon Linux 2023 \(arm64\) AMI
 
      ```
      make al2023arm
      ```
-   + Amazon ECS optimized AL2023 \(Neuron\) AMI
+   + Amazon ECS optimized Amazon Linux 2023 \(Neuron\) AMI
 
      ```
      make al2023neu

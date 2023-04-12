@@ -5,6 +5,7 @@ The following table describes the major updates and new features for the *Amazon
 
 |  Change  |  Description  |  Date  | 
 | --- | --- | --- | 
+|  AWS Cost Management support for task\-level CUR data  |  You can turn on task\-level cost and resource usage in the Cost and Usage Reports\. This adds Split Cost Allocation Data for tasks that run on AWS Fargate and EC2\. For more information, see [Task\-level Cost and Usage Reports](usage-reports.md#task-cur)\.  |  12 April 2023  | 
 |  AL2023 Amazon ECS\-optimized AMI  |  You can deploy workloads on the AL2023 Amazon ECS\-optimized AMI\. For more information, see [Amazon ECS\-optimized AMI](ecs-optimized_AMI.md)\.  |  10 April 2023  | 
 |  AWS Fargate Federal Information Processing Standard \(FIPS\) 140  |  You can deploy workloads on Amazon ECS on AWS Fargate in a manner compliant with Federal Information Processing Standard \(FIPS\) 140\. For more information, see [AWS Fargate Federal Information Processing Standard \(FIPS\-140\)](ecs-fips-compliance.md)\.  |  10 April 2023  | 
 |  Task definition deletion  |  You can delete a task definition using the Amazon ECS console, SDK, and AWS CLI\. For more information, see [Deleting a task definition revision using the console](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/delete-task-definition-v2.html) and [Task definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html)\.  |  24 February 2023  | 

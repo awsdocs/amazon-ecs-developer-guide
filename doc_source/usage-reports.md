@@ -24,3 +24,29 @@ The following is an example of some of the fields that you can use to sort cost 
 + Usage type
 
 For more information about creating an AWS Cost and Usage Report, see [AWS Cost and Usage Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage.html) in the *AWS Billing User Guide*\.
+
+## Task\-level Cost and Usage Reports<a name="task-cur"></a>
+
+AWS Cost Management can provide CPU and memory usage data in the AWS Cost and Usage Report for the each task on Amazon ECS, including tasks on Fargate and tasks on EC2\. This data is called *Split Cost Allocation Data*\. You can use this data to analyze costs and usage for applications\. Additionally, you can split and allocate the costs to individual business units and teams with cost allocation tags and cost categories\. For more information about *Split Cost Allocation Data*, see [Understanding split cost allocation data](https://docs.aws.amazon.com/cur/latest/userguide/split-cost-allocation-data.html) in the *AWS Cost and Usage Report User Guide*\.
+
+You can opt in to task\-level *Split Cost Allocation Data* for the account in the AWS Cost Management Console\. If you have a management \(payer\) account, you can opt in from the payer account to apply this configuration to every linked account\.
+
+After you set up *Split Cost Allocation Data*, there will be additional columns under the **splitLineItem** header in the report\. For more information see [Split line item details](https://docs.aws.amazon.com/cur/latest/userguide/split-line-item-columns.html) in the *AWS Cost and Usage Report User Guide*\.
+
+For tasks on EC2, this data splits the cost of the EC2 instance based on the resource usage or reservations and the remaining resources on the instance\.
+
+### Prerequisites for Task\-level CURs<a name="task-cur-prereqs"></a>
++ To use *Split Cost Allocation Data*, you must create a report, and select **Split cost allocation data**\. For more information, see [Creating Cost and Usage Reports](https://docs.aws.amazon.com/cur/latest/userguide/cur-create.html) in the *AWS Cost and Usage Report User Guide*\.
++ The minimum Docker version for reliable metrics is Docker version v20\.10\.13 and newer, which is included in Amazon ECS\-optimized AMI 20220607 and newer\.
++ Ensure that the ECS agent has the `ECS_DISABLE_METRICS` configuration set to `false`\. When this setting is `false`, the ECS agent sends metrics to Amazon CloudWatch\. On Linux, this setting is `false` by default and metrics are sent to CloudWatch\. On Windows, this setting is `true` by default, so you must change the setting to `false` to send the metrics to CloudWatch for AWS Cost Management to use\. For more information about ECS agent configuration, see [Amazon ECS container agent configuration](ecs-agent-config.md)\. 
+
+**Note**  
+AWS Cost Management calculates the *Split Cost Allocation Data* with the task CPU and memory usage\. AWS Cost Management can use the task CPU and memory reservation instead of the usage, if the usage is unavailable\. If you see the CUR is using the reservations, check that your container instances meet the prerequisites and the task resource usage metrics appear in CloudWatch\.
+
+### Setting up Task\-level Cost and Usage Reports<a name="task-cur-setup"></a>
+
+You can turn on *Split Cost Allocation Data* for ECS in the Cost Management Console, AWS Command Line Interface, or the AWS SDKs\.
+
+There are two steps to use *Split Cost Allocation Data*\. First, you opt in to *Split Cost Allocation Data*\. Second, you include the data in a new or existing report\. For the steps in the Cost Management Console, see [Enabling split cost allocation data](https://docs.aws.amazon.com/cur/latest/userguide/enabling-split-cost-allocation-data.html) in the *AWS Cost and Usage Report User Guide*\.
+
+Then, you can view the report\. You can use the Billing and Cost Management console or view the report files in Amazon Simple Storage Service\.

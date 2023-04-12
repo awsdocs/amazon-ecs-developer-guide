@@ -1,6 +1,6 @@
 # Tagging your Amazon ECS resources<a name="ecs-using-tags"></a>
 
-To help you manage your Amazon ECS resources, you can optionally assign your own metadata to each resource using *tags*\. Each *tag* consists of a *key* and an optional *value*\. 
+To help you manage your Amazon ECS resources, you can optionally assign your own metadata to each resource using *tags*\. Each *tag* consists of a *key* and an optional *value*\.
 
 You can use tags to categorize your Amazon ECS resources in different ways, for example, by purpose, owner, or environment\. This is useful when you have many resources of the same type\. You can quickly identify a specific resource based on the tags that you assigned to it\. For example, you can define a set of tags for your account's Amazon ECS container instances\. This helps you track each instance's owner and stack level\.
 
@@ -24,7 +24,7 @@ There are multiple ways that Amazon ECS tasks, services, task definitions, and c
   Amazon ECS automatically tags all newly launched tasks\. For more information, see [Amazon ECS\-managed tags](#managed-tags)\.
 + A user creates a resource using the console\. The console automatically tags the resources\.
 
-  These tags are returned in the AWS CLI, and AWS SDK responses and are displayed inthe console\. You cannot modify or delete these tags\.
+  These tags are returned in the AWS CLI, and AWS SDK responses and are displayed in the console\. You cannot modify or delete these tags\.
 
   For information about the added tags, see the **Tags automatically added by the console** column in the **Tagging support for Amazon ECS resources** table\.
 
@@ -75,8 +75,10 @@ You can use Amazon ECS\-managed tags or user\-added tags for your Cost and Usage
 
 To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in the *AWS Billing User Guide*\.
 
+Additionally, you can turn on *Split Cost Allocation Data* to get task\-level CPU and memory usage data in your Cost and Usage Reports\. For more information, see [Task\-level Cost and Usage Reports](usage-reports.md#task-cur)\.
+
 **Note**  
-If you've turned on reporting, data for the current month is available for viewing after 24 hours\.
+If you've turned on reporting, it can take up to 24 hours before the data for the current month is available for viewing\.
 
 ## Working with tags using the console<a name="tag-resources-console"></a>
 

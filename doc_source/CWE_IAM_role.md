@@ -119,7 +119,7 @@ The Amazon ECS instance role is automatically created for you when completing th
 
 1. In the **Attach permissions policy** section, do the following:
 
-   1. In the search boc, enter `AmazonEC2ContainerServiceEventsRole`, and then select the policy\.
+   1. In the search box, enter `AmazonEC2ContainerServiceEventsRole`, and then select the policy\.
 
    1. Under **Set permissions boundary \- optional**, choose **Create role without a permissions boundary**\.
 
@@ -135,9 +135,7 @@ The Amazon ECS instance role is automatically created for you when completing th
 
 1. Search the list of roles for `ecsEventsRole` and select the role\.
 
-1. On the **Permissions** tab, choose **Add Permissions**, **Attach policies**\.
-
-1. Replace the existing trust relationship with the following text\. Choose **Edit trust policy**, copy the policy into the **Policy Document** window and choose **Update policy**\.
+1. Replace the existing trust relationship with the following text\. On the ** Trust relationships** tab, choose **Edit trust policy**, copy the policy into the **Policy Document** window, and then choose **Update policy**\.
 
    ```
    {

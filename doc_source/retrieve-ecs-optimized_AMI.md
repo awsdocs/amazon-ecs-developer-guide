@@ -126,6 +126,16 @@ You can retrieve the latest stable Amazon ECS\-optimized AMI using the AWS CLI w
   ```
   aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2023/recommended --region us-east-1
   ```
++ **For the Amazon ECS\-optimized Amazon Linux 2023 \(arm64\) AMIs:**
+
+  ```
+  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2023/arm64/recommended --region us-east-1
+  ```
++ **For the Amazon ECS optimized Amazon Linux 2023 \(Neuron\) AMIs:**
+
+  ```
+  aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2023/inf/recommended --region us-east-1
+  ```
 + **For the Amazon ECS\-optimized Amazon Linux AMIs:**
 
   ```

@@ -508,10 +508,10 @@ aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2023/
 
 ### Amazon Linux 2023 \(arm64\) AMI versions<a name="al22023arm64ami-versions"></a>
 
-The table below lists the current and previous versions of the Amazon ECS\-optimized AL2023 \(arm64\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
+The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2023 \(arm64\) AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
 
 
-| Amazon ECS\-optimized AL2023 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| Amazon ECS\-optimized Amazon Linux 2023 \(arm64\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
 | 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | 
 
@@ -526,7 +526,7 @@ aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2023/
 The table below lists the current and previous versions of the Amazon ECS\-optimized Amazon Linux 2023 AMI and their corresponding versions of the Amazon ECS container agent, Docker, and the `ecs-init` package\.
 
 
-| Amazon ECS optimized AL2023 \(Neuron\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
+| Amazon ECS optimized Amazon Linux 2023 \(Neuron\) AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
 | 20230406 | `1.70.1` | `20.10.17` | `1.70.1-1` | 
 
@@ -546,7 +546,8 @@ The table below lists the current and previous versions of the Amazon ECS\-optim
 
 | Amazon ECS\-optimized Amazon Linux AMI | Amazon ECS container agent version | Docker version | `ecs-init` version | 
 | --- | --- | --- | --- | 
-| 2018\.03\.20230321 | `1.51.0` | `20.10.17` | `1.51.0-1` | 
+| 2018\.03\.20230406 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
+| 2018\.03\.20230321 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20230314 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20230214 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
 | 2018\.03\.20221115 | `1.51.0` | `20.10.13` | `1.51.0-1` | 
