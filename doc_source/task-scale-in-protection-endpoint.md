@@ -18,7 +18,7 @@ A PUT request to this URI from within a container will set task scale\-in protec
 
 ## Task scale\-in protection endpoint request<a name="task-scale-in-protection-request"></a>
 
-You can set task scale\-in protection using the `(${ECS_AGENT_URI}/task-protection/v1/state)` endpoint with the following request parameters\.
+You can set task scale\-in protection using the \(`${ECS_AGENT_URI}/task-protection/v1/state`\) endpoint with the following request parameters\.
 
 ### Protect<a name="w241aac21c30c11c13b5"></a>
 
