@@ -718,8 +718,9 @@ This parameter is not supported for Windows containers\.
 Type: string array  
 Valid values: "no\-new\-privileges" \| "apparmor:PROFILE" \| "label:*value*" \| "credentialspec:*CredentialSpecFilePath*"  
 Required: no  
-A list of strings to provide custom labels for SELinux and AppArmor multi\-level security systems\. For more information about valid values, see [Docker Run Security Configuration](https://docs.docker.com/engine/reference/run/#security-configuration)\. This field isn't valid for Linux containers in tasks using the Fargate launch type\.  
-With Windows containers, this parameter can be used to reference a credential spec file when configuring a container for Active Directory authentication\. For more information, see [Using gMSAs for Windows Containers](windows-gmsa.md)\.  
+A list of strings to provide custom configuration for multiple security systems\. For more information about valid values, see [Docker Run Security Configuration](https://docs.docker.com/engine/reference/run/#security-configuration)\. This field isn't valid for containers in tasks using the Fargate launch type\.  
+For Linux tasks on EC2, this parameter can be used to reference custom labels for SELinux and AppArmor multi\-level security systems\.  
+For any tasks on EC2, this parameter can be used to reference a credential spec file that configures a container for Active Directory authentication\. For more information, see [Using gMSAs for Windows Containers](windows-gmsa.md) and [Using gMSAs for Linux Containers](linux-gmsa.md)\.  
 This parameter maps to `SecurityOpt` in the [Create a container](https://docs.docker.com/engine/api/v1.38/#operation/ContainerCreate) section of the [Docker Remote API](https://docs.docker.com/engine/api/v1.38/) and the `--security-opt` option to [https://docs.docker.com/engine/reference/run/#security-configuration](https://docs.docker.com/engine/reference/run/#security-configuration)\.  
 
 ```
@@ -848,6 +849,7 @@ Type: Integer
 `swappiness`  
 This allows you to tune a container's memory swappiness behavior\. A `swappiness` value of `0` prevents swapping from happening unless required\. A `swappiness` value of `100` causes pages to be swapped frequently\. Accepted values are whole numbers between `0` and `100`\. If you don't specify a value, the default value of `60` is used\. Moreover, if you don't specify a value for `maxSwap`, then this parameter is ignored\. This parameter maps to the `--memory-swappiness` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
 If you're using tasks that use the Fargate launch type, the `swappiness` parameter isn't supported\.  
+If you're using tasks on Amazon Linux 2023 the `swappiness` parameter isn't supported\.  
 `tmpfs`  
 The container path, mount options, and maximum size \(in MiB\) of the tmpfs mount\. This parameter maps to the `--tmpfs` option to [docker run](https://docs.docker.com/engine/reference/run/)\.  
 If you're using tasks that use the Fargate launch type, the `tmpfs` parameter isn't supported\.
@@ -1201,7 +1203,7 @@ The following task definition parameters can be used when registering task defin
 Type: Object  
 Required: No  
 The amount of ephemeral storage \(in GB\) to allocate for the task\. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks that are hosted on AWS Fargate\. For more information, see [Bind mounts](bind-mounts.md)\.  
-This parameter is only supported for tasks that are hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\)\. This isn't supported for Windows containers on Fargate\.
+This parameter is only supported for tasks that are hosted on AWS Fargate using platform version `1.4.0` or later \(Linux\) or `1.0.0` or later \(Windows\)\.
 
 ### IPC mode<a name="task_definition_ipcmode"></a>
 

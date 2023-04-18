@@ -12,7 +12,7 @@ This feature is not supported on Windows containers on Fargate\.
 **Topics**
 + [Considerations](#windows-gmsa-considerations)
 + [Prerequisites](#windows-gmsa-prerequisites)
-+ [Setting Up gMSA\-capable Windows Containers on Amazon ECS](#windows-gmsa-setup)
++ [Setting up gMSA\-capable Windows Containers on Amazon ECS](#windows-gmsa-setup)
 
 ## Considerations<a name="windows-gmsa-considerations"></a>
 
@@ -29,7 +29,7 @@ The following are prerequisites for using the gMSA for Windows containers featur
 + The Amazon ECS Windows container instance hosting the Amazon ECS task must be domain joined to the Active Directory and be a member of the Active Directory security group that has access to the gMSA account\.
 + Review the required IAM permissions\. For more information, see [IAM permissions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/secrets-envvar-ssm-paramstore.html#secrets-envvar-ssm-paramstore-iam)\.
 
-## Setting Up gMSA\-capable Windows Containers on Amazon ECS<a name="windows-gmsa-setup"></a>
+## Setting up gMSA\-capable Windows Containers on Amazon ECS<a name="windows-gmsa-setup"></a>
 
 Amazon ECS uses a credential spec file that contains the gMSA metadata used to propagate the gMSA account context to the Windows container\. You can generate the credential spec file and reference it in the `dockerSecurityOptions` field in your task definition\. The credential spec file does not contain any secrets\.
 

@@ -27,7 +27,7 @@ Your Amazon ECS container instances also require `logs:CreateLogStream` and `log
 The `awslogs` log driver can send log streams to an existing log group in CloudWatch Logs or create a new log group on your behalf\. The AWS Management Console provides an auto\-configure option, which creates a log group on your behalf using the task definition family name with `ecs` as the prefix\. Alternatively, you can manually specify your log configuration options and specify the `awslogs-create-group` option with a value of `true`, which creates the log groups on your behalf\.
 
 **Note**  
-To use the `awslogs-create-group` option to have your log group created, your IAM policy must include the `logs:CreateLogGroup` permission\.
+To use the `awslogs-create-group` option to have your log group created, your task execution IAM role policy or EC2 instance role policy must include the `logs:CreateLogGroup` permission\.
 
 The following code shows how to set the `awslogs-create-group` option\.
 

@@ -606,6 +606,10 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | g5g\.8xlarge | 7 | 60 | 
 | g5g\.16xlarge | 14 | 120 | 
 | g5g\.metal | 14 | 120 | 
+| inf2\.xlarge | 3 | 20 | 
+| inf2\.8xlarge | 7 | 90 | 
+| inf2\.24xlarge | 14 | 120 | 
+| inf2\.48xlarge | 14 | 120 | 
 | p3\.2xlarge | 3 | 40 | 
 | p3\.8xlarge | 7 | 60 | 
 | p3\.16xlarge | 7 | 120 | 
@@ -613,6 +617,7 @@ The `c5n`, `d3`, `d3en`, `g3`, `g3s`, `g4dn`, `i3`, `i3en`, `inf1`, `m5dn`, `m5n
 | p4de\.24xlarge | 59 | 120 | 
 | trn1\.2xlarge | 3 | 19 | 
 | trn1\.32xlarge | 39 | 120 | 
+| trn1n\.32xlarge | 79 | 242 | 
 | vt1\.3xlarge | 3 | 40 | 
 | vt1\.6xlarge | 7 | 60 | 
 | vt1\.24xlarge | 14 | 120 | 

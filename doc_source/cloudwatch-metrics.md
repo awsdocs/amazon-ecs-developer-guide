@@ -19,6 +19,8 @@ Any Amazon ECS service using the Fargate launch type has CloudWatch CPU and memo
 
 For any Amazon ECS task or service using the EC2 launch type, your Amazon ECS container instances require version 1\.4\.0 or later \(Linux\) or 1\.0\.0 or later \(Windows\) of the container agent for CloudWatch metrics\. However, we recommend using the latest container agent version\. For information about checking your agent version and updating to the latest version, see [Updating the Amazon ECS container agent](ecs-agent-update.md)\.
 
+The minimum Docker version for reliable metrics is Docker version v20\.10\.13 and newer, which is included in Amazon ECS\-optimized AMI 20220607 and newer\.
+
 If you're starting your agent manually \(for example, if you're not using the Amazon ECS\-optimized AMI for your container instances\), see [Manually updating the Amazon ECS container agent \(for non\-Amazon ECS\-Optimized AMIs\)](manually_update_agent.md)\.
 
 Your Amazon ECS container instances also require the `ecs:StartTelemetrySession` permission on the IAM role that you launch your container instances with\. If you created your Amazon ECS container instance role before CloudWatch metrics were available for Amazon ECS, you might need to add this permission\. For information about checking your Amazon ECS container instance role and attaching the managed IAM policy for container instances, see [Checking for the container instance \( `ecsInstanceRole`\) in the IAM console](instance_IAM_role.md#procedure_check_instance_role)\.

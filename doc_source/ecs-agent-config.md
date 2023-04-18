@@ -8,6 +8,8 @@ If your container instance was launched with a Windows variant of the Amazon ECS
 
 If you are manually starting the Amazon ECS container agent \(for non Amazon ECS\-optimized AMIs\), you can use these environment variables in the docker run command that you use to start the agent\. Use these variables with the syntax `--env=VARIABLE_NAME=VARIABLE_VALUE`\. For sensitive information, such as authentication credentials for private repositories, you should store your agent environment variables in a file and pass them all at one time with the `--env-file path_to_env_file` option\.
 
+## Available Parameters<a name="ecs-agent-availparam"></a>
+
 For information about the available Amazon ECS container agent configuration parameters, see [Amazon ECS Container Agent](https://github.com/aws/amazon-ecs-agent/blob/master/README.md) on GitHub\.
 
 ## Storing container instance configuration in Amazon S3<a name="ecs-config-s3"></a>

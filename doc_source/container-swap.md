@@ -31,3 +31,4 @@ Consider the following when you use a per\-container swap configuration\.
 + The swap space container definition parameters are only supported for task definitions that specify the EC2 launch type\. These parameters are not supported for task definitions intended only for Amazon ECS on Fargate use\.
 + This feature is only supported for Linux containers\. Windows containers are not supported currently\.
 + If the `maxSwap` and `swappiness` container definition parameters are omitted from a task definition, each container has a default `swappiness` value of `60`\. Moreover, the total swap usage is limited to two times the memory reservation of the container\.
++ If you're using tasks on Amazon Linux 2023 the `swappiness` parameter isn't supported\.

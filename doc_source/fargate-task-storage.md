@@ -4,9 +4,11 @@ When provisioned, each Amazon ECS task that are hosted on AWS Fargate receives t
 
 ## Fargate tasks using Windows platform version 1\.0\.0 or later<a name="fargate-task-storage-pvws1"></a>
 
-By default, Amazon ECS tasks that are hosted on Fargate using platform version `1.0.0` or later receive a minimum of 20 GiB of ephemeral storage\. 
+By default, Amazon ECS tasks that are hosted on Fargate using platform version `1.0.0` or later receive a minimum of 20 GiB of ephemeral storage\. You can increase the total amount of ephemeral storage, up to a maximum of 200 GiB\. You can do this by specifying the `ephemeralStorage` parameter in your task definition\. For more information, see [ephermalStorage](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_definition_ephemeralStorage)\.
 
-You cannot configure the ephemeral storage for Windows containers on Fargate\.
+The pulled, compressed, and the uncompressed container image for the task is stored on the ephemeral storage\. To determine the total amount of ephemeral storage your task has to use, you must subtract the amount of storage your container image uses from the total amount of ephemeral storage your task is allocated\. 
+
+For more information, see [Bind mounts](bind-mounts.md)\.
 
 ## Fargate tasks using Linux platform version 1\.4\.0 or later<a name="fargate-task-storage-pv14"></a>
 

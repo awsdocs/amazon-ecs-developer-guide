@@ -6,6 +6,9 @@ Although you can create your own Amazon EC2 instance AMI that meets the basic sp
 
 The Amazon ECS\-optimized AMI metadata, including the AMI name, Amazon ECS container agent version, and Amazon ECS runtime version which includes the Docker version, for each variant can be retrieved programmatically\. For more information, see [Retrieving Amazon ECS\-Optimized AMI metadata](retrieve-ecs-optimized_AMI.md)\.
 
+**Important**  
+The Amazon ECS\-optimized Amazon Linux 2023 AMI isn't supported with Service Connect\. This is because the Service Connect agent isn't available for Amazon Linux 2023\.
+
 The following variants of the Amazon ECS\-optimized AMI are available for your Amazon EC2 instances\.
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)

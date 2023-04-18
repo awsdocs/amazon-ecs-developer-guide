@@ -212,8 +212,9 @@ The following parameters have extra fields when using Service Connect\.
 ## Service Connect considerations<a name="service-connect-considerations"></a>
 + Windows containers aren't supported with Service Connect\.
 + Tasks that run in Fargate must use the Fargate Linux platform version 1\.4\.0 or higher to use Service Connect\.
-+ The agent version on the container instance must be 1\.67\.2 or higher\.
-+ Container instances must run the Amazon ECS\-optimized Amazon Linux 2 AMI version `2.0.20221115` or later to use Service Connect\. You can't use Service Connect on other AMIs or operating systems\. Additional software is required, which is only in this AMI\. 
++ The ECS agent version on the container instance must be 1\.67\.2 or higher\.
++ The Amazon ECS\-optimized Amazon Linux 2023 AMI isn't supported with Service Connect\. This is because the Service Connect agent isn't available for Amazon Linux 2023\.
++ Container instances must run the Amazon ECS\-optimized Amazon Linux 2 AMI version `2.0.20221115` or later to use Service Connect\. You can't use Service Connect on other AMIs or operating systems\. The Service Connect agent is required, which is only in this AMI\. For more information about the Service Connect agent, see [Amazon ECS Service Connect Agent](https://github.com/aws/amazon-ecs-service-connect-agent) on GitHub\.
 + Container instances must have the `ecs:Poll` permission for the resource `arn:aws:ecs:region:0123456789012:task-set/cluster/*`\. If you are using the `ecsInstanceRole`, you don't need to add additional permissions\. The `AmazonEC2ContainerServiceforEC2Role` managed policy has the necessary permissions\. For more information, see [Amazon ECS container instance IAM role](instance_IAM_role.md)\.
 + `External` container instance for Amazon ECS Anywhere aren't supported with Service Connect\.
 + Only services that use rolling deployments are supported with Service Connect\. Services that use the *blue/green* and *external* deployment types aren’t supported\.
