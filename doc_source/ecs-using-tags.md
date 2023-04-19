@@ -35,16 +35,31 @@ The following table describes the Amazon ECS resources that support tagging\.
 
 **Tagging support for Amazon ECS resources**  
 
-|  Resource  |  Supports tags  |  Supports tag propagation  |  Supports tagging on creation \(Amazon ECS API, AWS CLI, AWS SDK\)  | Tags automatically added by the console | 
-| --- | --- | --- | --- | --- | 
-|  Amazon ECS tasks  |  Yes  |  Yes, from the task definition\.  |  Yes  | Key: aws:ecs:clusterName *Value*: `cluster-name` | 
-|  Amazon ECS services  |  Yes  |  Yes, from either the task definition or the service to the tasks in the service\.  |  Yes  | Key: ecs:service:stackId *Value* `arn:aws:cloudformation:arn` | 
-|  Amazon ECS task sets  |  Yes  |  No  |  Yes  | N/A | 
-|  Amazon ECS task definitions  |  Yes  |  No  |  Yes  | Key: ecs:taskDefinition:createdFrom *Value*: `ecs-console-v2` | 
-|  Amazon ECS clusters  |  Yes  |  No  |  Yes  | Key: aws:cloudformation:logical\-id *Value*: `ECSCluster` Key: aws:cloudformation:stack\-id*Value*: `arn:aws:cloudformation:arn`*Key*: `aws:cloudformation:stack-name`*Value*: `ECS-Console-V2-Cluster-EXAMPLE` | 
-|  Amazon ECS container instances  |  Yes  |  Yes, from the Amazon EC2 instance\. For more information, see [Adding tags to an Amazon EC2 container instance](#instance-details-tags)\.   |  Yes  | N/A | 
-|  Amazon ECS External instances  |  Yes  |  No  |  No, you can add tags after the External instance is registered to a cluster using the AWS Management Console or by using the Amazon ECS API, AWS CLI, or AWS SDK\. For more information, see [Managing individual resource tags using the console](#adding-or-deleting-tags)\.  | N/A | 
-| Amazon ECS capacity provider |  Yes\. You cannot tag the predefined `FARGATE` and `FARGATE_SPOT` capacity providers\. | No | Yes | N/A | 
+|  Resource  |  Supports tags  |  Supports tag propagation  | Tags automatically added by the console | 
+| --- | --- | --- | --- | 
+|  Amazon ECS tasks  |  Yes  |  Yes, from the task definition\.  | Key: aws:ecs:clusterName *Value*: `cluster-name` | 
+|  Amazon ECS services  |  Yes  |  Yes, from either the task definition or the service to the tasks in the service\.  | Key: ecs:service:stackId *Value* `arn:aws:cloudformation:arn` | 
+|  Amazon ECS task sets  |  Yes  |  No  | N/A | 
+|  Amazon ECS task definitions  |  Yes  |  No  | Key: ecs:taskDefinition:createdFrom *Value*: `ecs-console-v2` | 
+|  Amazon ECS clusters  |  Yes  |  No  | Key: aws:cloudformation:logical\-id *Value*: `ECSCluster` Key: aws:cloudformation:stack\-id*Value*: `arn:aws:cloudformation:arn`*Key*: `aws:cloudformation:stack-name`*Value*: `ECS-Console-V2-Cluster-EXAMPLE` | 
+|  Amazon ECS container instances  |  Yes  |  Yes, from the Amazon EC2 instance\. For more information, see [Adding tags to an Amazon EC2 container instance](#instance-details-tags)\.   | N/A | 
+|  Amazon ECS External instances  |  Yes  |  No  | N/A | 
+| Amazon ECS capacity provider |  Yes\. You cannot tag the predefined `FARGATE` and `FARGATE_SPOT` capacity providers\. | No | N/A | 
+
+## Tagging resources on creation<a name="tags-on-creation"></a>
+
+The following resources support tagging on creation using the Amazon ECS API, AWS CLI, AWS SDK:
++ Amazon ECS tasks
++ Amazon ECS services
++ Amazon ECS task definitions
++ Amazon ECS task sets
++ Amazon ECS clusters
++ Amazon ECS container instances
++ Amazon ECS capacity providers
+
+Amazon ECS has the option to use tagging authorization for resource creation\. In order to use the feature, perform the following steps:
++ You must opt into the feature\. For more information, see [Tagging authorization](ecs-account-settings.md#tag-resources-setting)\.
++ After you opt in, users must have permissions for actions that creates the resource, such as `ecsCreateCluster`\. If tags are specified in the resource\-creating action, AWS performs additional authorization to verify if users or roles have permissions to create tags\. Therefore, you must grant explicit permissions to use the `ecs:TagResource` action\. For more information, see [Grant permission to tag resources on creation](supported-iam-actions-tagging.md)\.
 
 ## Tag restrictions<a name="tag-restrictions"></a>
 
@@ -212,6 +227,8 @@ Don't add personally identifiable information \(PII\) or other confidential or s
 |  Delete one or more tags\.  |  [untag\-resource](https://docs.aws.amazon.com/cli/latest/reference/untag-resource.html)  |  [UntagResource](https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UntagResource.html)  | 
 
 You can use some resource\-creating actions to specify tags when you create the resource\. The following actions support tagging on creation\.
+
+You must have the `ecsTagResource` permission\. For more information, see [Grant permission to tag resources on creation](supported-iam-actions-tagging.md)\.
 
 
 |  Task  |  AWS CLI  |  AWS Tools for Windows PowerShell  |  API Action  | 

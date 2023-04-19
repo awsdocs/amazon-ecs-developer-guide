@@ -21,6 +21,7 @@ AWS Identity and Access Management \(IAM\) is an AWS service that helps an admin
 + [ECS Anywhere IAM role](iam-role-ecsanywhere.md)
 + [Amazon ECS CodeDeploy IAM Role](codedeploy_IAM_role.md)
 + [Amazon ECS CloudWatch Events IAM Role](CWE_IAM_role.md)
++ [Grant permission to tag resources on creation](supported-iam-actions-tagging.md)
 + [Troubleshooting Amazon Elastic Container Service identity and access](security_iam_troubleshoot.md)
 
 ## Audience<a name="security_iam_audience"></a>

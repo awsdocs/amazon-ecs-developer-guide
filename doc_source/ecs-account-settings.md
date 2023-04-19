@@ -41,10 +41,17 @@ Resource name: `fargateFIPSMode`
 Fargate supports the Federal Information Processing Standard \(FIPS\-140\) which specifies the security requirements for cryptographic modules that protect sensitive information\. It is the current United States and Canadian government standard, and is applicable to systems that are required to be compliant with Federal Information Security Management Act \(FISMA\) or Federal Risk and Authorization Management Program \(FedRAMP\)\.  
 You must turn on FIPS\-140 compliance\. For more information, see [AWS Fargate Federal Information Processing Standard \(FIPS\-140\)](ecs-fips-compliance.md)\.
 
+**Tag Resource Authorization**  
+Resource name: `tagResourceAuthorization`  
+Some Amazon ECS API actions allow you to specify tags when you create the resource\.  
+Amazon ECS is introducing tagging authorization for resource creation\. Users must have permissions for action that creates the resource, such as `ecsCreateCluster`\. If tags are specified in the resource\-creating action, AWS performs additional authorization on the `ecs:TagResource` action to verify if users or roles have permissions to create tags\. Therefore, you must grant explicit permissions to use the `ecs:TagResource` action\. For more information, see [Grant permission to tag resources on creation](supported-iam-actions-tagging.md)\.
+
 **Topics**
 + [Amazon Resource Names \(ARNs\) and IDs](#ecs-resource-ids)
 + [ARN and resource ID format timeline](#ecs-resource-arn-timeline)
 + [AWS Fargate Federal Information Processing Standard \(FIPS\-140\) compliance](#fips-setting)
++ [Tagging authorization](#tag-resources-setting)
++ [Tagging authorization timeline](#tag-resources-timeline)
 + [Viewing account settings using the console](ecs-viewing-longer-id-settings.md)
 + [Modifying account settings](ecs-modifying-longer-id-settings.md)
 + [Reverting to the default account settings](ecs-reverting-account.md)
@@ -110,3 +117,47 @@ You can run `list-account-settings` to view the current FIPS\-140 compliance sta
 ```
 aws ecs list-account-settings --effective-settings
 ```
+
+## Tagging authorization<a name="tag-resources-setting"></a>
+
+Amazon ECS is introducing tagging authorization for resource creation\. Users must have permissions for actions that create the resource, such as `ecsCreateCluster`\. When you create a resource and specify tags for that resource, AWS performs additional authorization to verify that there are permissions to create tags\. Therefore, you must grant explicit permissions to use the `ecs:TagResource` action\. For more information, see [Grant permission to tag resources on creation](supported-iam-actions-tagging.md)\.
+
+ In order to opt in to tagging authorization, run `put-account-setting-default` with the `tagResourceAuthorization` option set to `enable`\. For more information, see, [put\-account\-setting\-default](https://docs.aws.amazon.com/cli/latest/reference/ecs/put-account-setting-default.html) in the *Amazon Elastic Container Service API Reference*\. You can run `list-account-settings` to view the current tagging authrization status\.
++ Example to turn on tagging authorization
+
+  ```
+  aws ecs put-account-setting-default --name tagResourceAuthorization --value enabled --region region
+  ```
+
+  Output
+
+  ```
+  {
+      "setting": {
+          "name": "tagResourceAuthorization",
+          "value": "enabled",
+          "principalArn": "arn:aws:iam::123456789012:user"
+      }
+  }
+  ```
+
+After you opt in, you must configure the appropriate permissions to allow users to tag resources on creation\. For more information, see [Grant permission to tag resources on creation](supported-iam-actions-tagging.md)\.
+
+You can run `list-account-settings` to view the current tagging authorization status\. Use the `effective-settings` option to view the account level settings\.
+
+```
+aws ecs list-account-settings --effective-settings
+```
+
+## Tagging authorization timeline<a name="tag-resources-timeline"></a>
+
+You can confirm whether tagging authorization is active by running `list-account-settings` to view the `tagResourceAuthorization` value\. When the value is `enabled`, it means that the tagging authorization is in use\. For more information, see, [list\-account\-settings](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-account-settings.html) in the *Amazon Elastic Container Service API Reference*\.
+
+The following are the important dates related to tagging authorization\.
++ April 18, 2023 – Tagging authorization is introduced\. You can opt in to using tagging authorization\. By opting in, you must grant the appropriate permissions\.
++ April 27, 2023 through July 16, 2023 – All new accounts and non\-impacted existing accounts are automatically migrated to tagging authorization\. 
+**Note**  
+To opt out, run `put-account-setting-default` with the `tagResourceAuthorization` option set to `disabled`\.  
+AWS has notified impacted accounts\.
++ July 16,2023 – The last day that you can remain opted out of tagging authorization\.
++ July 17\. 2023 – The opt\-out option ends and all accounts use tagging authorization\.

@@ -1,6 +1,6 @@
 # Reverting to the default account settings<a name="ecs-reverting-account"></a>
 
-You can use the new AWS Management Console to revert your account settings to the default\.
+You can use the AWS Management Console to revert your account settings to the default\.
 
 The **Revert to account default** option is only available when your account settings are no longer the default settings\.
 

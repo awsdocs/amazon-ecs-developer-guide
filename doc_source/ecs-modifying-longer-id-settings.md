@@ -14,6 +14,8 @@ You can use the AWS Management Console to modify your account settings\.
 
 1.  To use or stop using CloudWatch Container Insights by default for clusters, under **CloudWatch Container Insights**, select or clear **CloudWatch Container Insights**\.
 
+1.  To opt in or out of tagging authorization, under **Resource Tagging Authorization**, select or clear **Resource Tagging Authorization**\.
+
 1. Choose **Save changes**\.
 
 1. On the confirmation screen, choose **Confirm** to save the selection\.
