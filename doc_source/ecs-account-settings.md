@@ -126,7 +126,7 @@ Amazon ECS is introducing tagging authorization for resource creation\. Users mu
 + Example to turn on tagging authorization
 
   ```
-  aws ecs put-account-setting-default --name tagResourceAuthorization --value enabled --region region
+  aws ecs put-account-setting-default --name tagResourceAuthorization --value on --region region
   ```
 
   Output
@@ -135,7 +135,7 @@ Amazon ECS is introducing tagging authorization for resource creation\. Users mu
   {
       "setting": {
           "name": "tagResourceAuthorization",
-          "value": "enabled",
+          "value": "on",
           "principalArn": "arn:aws:iam::123456789012:user"
       }
   }
@@ -151,13 +151,13 @@ aws ecs list-account-settings --effective-settings
 
 ## Tagging authorization timeline<a name="tag-resources-timeline"></a>
 
-You can confirm whether tagging authorization is active by running `list-account-settings` to view the `tagResourceAuthorization` value\. When the value is `enabled`, it means that the tagging authorization is in use\. For more information, see, [list\-account\-settings](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-account-settings.html) in the *Amazon Elastic Container Service API Reference*\.
+You can confirm whether tagging authorization is active by running `list-account-settings` to view the `tagResourceAuthorization` value\. When the value is `on`, it means that the tagging authorization is in use\. For more information, see, [list\-account\-settings](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-account-settings.html) in the *Amazon Elastic Container Service API Reference*\.
 
 The following are the important dates related to tagging authorization\.
 + April 18, 2023 – Tagging authorization is introduced\. You can opt in to using tagging authorization\. By opting in, you must grant the appropriate permissions\.
 + April 27, 2023 through July 16, 2023 – All new accounts and non\-impacted existing accounts are automatically migrated to tagging authorization\. 
 **Note**  
-To opt out, run `put-account-setting-default` with the `tagResourceAuthorization` option set to `disabled`\.  
+To opt out, run `put-account-setting-default` with the `tagResourceAuthorization` option set to `off`\.  
 AWS has notified impacted accounts\.
 + July 16,2023 – The last day that you can remain opted out of tagging authorization\.
 + July 17\. 2023 – The opt\-out option ends and all accounts use tagging authorization\.

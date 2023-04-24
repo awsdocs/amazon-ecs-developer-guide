@@ -32,12 +32,14 @@ Storing configuration information in a private bucket in Amazon S3 and granting 
 
 **To store an `ecs.config` file in Amazon S3**
 
-1. Create an `ecs.config` file with valid environment variables and values from [Amazon ECS container agent configuration](#ecs-agent-config) using the following format\. This example configures private registry authentication\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
+1. Create an `ecs.config` file with valid Amazon ECS agent configuration variables using the following format\. This example configures private registry authentication\. For more information, see [Private registry authentication for tasks](private-auth.md)\.
 
    ```
    ECS_ENGINE_AUTH_TYPE=dockercfg
    ECS_ENGINE_AUTH_DATA={"https://index.docker.io/v1/":{"auth":"zq212MzEXAMPLE7o6T25Dk0i","email":"email@example.com"}}
    ```
+**Note**  
+For a full list of available Amazon ECS agent configuration variables, see [Amazon ECS Container Agent](https://github.com/aws/amazon-ecs-agent/blob/master/README.md) on GitHub\.
 
 1. To store your configuration file, create a private bucket in Amazon S3\. For more information, see [Create a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/CreatingaBucket.html) in the *Amazon Simple Storage Service User Guide*\. 
 

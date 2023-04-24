@@ -51,7 +51,7 @@ The following table describes the Amazon ECS resources that support tagging\.
 The following resources support tagging on creation using the Amazon ECS API, AWS CLI, AWS SDK:
 + Amazon ECS tasks
 + Amazon ECS services
-+ Amazon ECS task definitions
++ Amazon ECS task definition
 + Amazon ECS task sets
 + Amazon ECS clusters
 + Amazon ECS container instances

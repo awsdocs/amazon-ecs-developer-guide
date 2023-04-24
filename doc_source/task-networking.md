@@ -22,5 +22,5 @@ For more information about Docker networking on Windows, see [Windows container 
 
 **Topics**
 + [Task networking with the `awsvpc` network mode](task-networking-awsvpc.md)
-+ [Task networking with the `bridge` network mode](task-networking-bridge.md)
-+ [Task networking with the `host` network mode](task-networking-host.md)
++ [Host mode](networking-networkmode-host.md)
++ [Bridge mode](networking-networkmode-bridge.md)

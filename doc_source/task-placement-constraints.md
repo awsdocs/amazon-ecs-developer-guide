@@ -1,6 +1,8 @@
 # Amazon ECS task placement constraints<a name="task-placement-constraints"></a>
 
-A *task placement constraint* is a rule that's considered during task placement\. Task placement constraints can be specified when either running a task or creating a new service\. The task placement constraints can be updated for existing services as well\. For more information, see [Amazon ECS task placement](task-placement.md)\.
+A *task placement constraint* is a rule that's considered during task placement\. At least one container instance must match the constraint\. If there are no instances that match the constraint, the task remains in a `PENDING` state\. When you create a new service or update an existing one, you can specify task placement constraints for the service's tasks\. You can also specify task placement constraints for standalone tasks\. For more information, see [Amazon ECS task placement](task-placement.md)\.
+
+Constraints consists of a constraint type and a expression in the cluster query language\. The constraint type is required, but the expression is optional\.
 
 ## Constraint types<a name="constraint-types"></a>
 
@@ -12,15 +14,6 @@ Place each task on a different container instance\. This task placement constrai
 `memberOf`  
 Place tasks on container instances that satisfy an expression\. For more information about the expression syntax for constraints, see [Cluster query language](cluster-query-language.md)\.  
 The `memberOf` task placement constraint can be specified with the following actions:  
-+ Running a task
-+ Creating a new service
-+ Creating a new task definition
-+ Creating a new revision of an existing task definition
-
-`ecs.os-family`  
-LINUX or WINDOWS\_SERVER\_<OS\_Release>\_<FULL or CORE>\.  
-The valid values are `LINUX` or `WINDOWS_SERVER_<OS_Release>_<FULL or CORE>`\. For example, `WINDOWS_SERVER_2022_FULL`, `WINDOWS_SERVER_2022_CORE`, `WINDOWS_SERVER_20H2_CORE`, `WINDOWS_SERVER_2019_FULL`, `WINDOWS_SERVER_2019_CORE`, and `WINDOWS_SERVER_2016_FULL`\.  
-The `ecs.os-family` task placement constraint can be specified with the following actions:  
 + Running a task
 + Creating a new service
 + Creating a new task definition
@@ -47,6 +40,12 @@ The instance type for the instance\. An example value for this attribute is `g2.
 
 `ecs.os-type`  
 The operating system for the instance\. The possible values for this attribute are `linux` and `windows`\.
+
+`ecs.os-family`  
+The operating system version for the instance\.  
+For Linux instances, the valid value is `LINUX`\. For Windows instances, ECS sets the value in the `WINDOWS_SERVER_<OS_Release>_<FULL or CORE>` format\. The valid values are `WINDOWS_SERVER_2022_FULL`, `WINDOWS_SERVER_2022_CORE`, `WINDOWS_SERVER_20H2_CORE`, `WINDOWS_SERVER_2019_FULL`, `WINDOWS_SERVER_2019_CORE`, and `WINDOWS_SERVER_2016_FULL`\.  
+This is important for Windows containers and Windows containers on AWS Fargate because the OS version of every Windows container must match that of the host\. If the Windows version of the container image is different than the host, the container doesn't start\. For more information, see [Windows container version compatibility](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility?tabs=windows-server-2022%2Cwindows-10-21H1) on the Microsoft documentation website\.  
+If your cluster runs multiple Windows versions, you can ensure that a task is placed on an EC2 instance running on the same version by using the placement constraint: `memberOf(attribute:ecs.os-family == WINDOWS_SERVER_<OS_Release>_<FULL or CORE>)`\. For more information, see [Retrieving Amazon ECS\-Optimized AMI metadata](retrieve-ecs-optimized_windows_AMI.md)\.
 
 `ecs.cpu-architecture`  
 The CPU architecture for the instance\. Example values for this attribute are `x86_64` and `arm64`\.

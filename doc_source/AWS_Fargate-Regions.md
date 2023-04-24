@@ -65,6 +65,8 @@ Amazon ECS Windows containers on AWS Fargate are supported in the following AWS 
 |  Asia Pacific \(Melbourne\)  |  ap\-southeast\-4  | 
 |  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1 \(`apne1-az1`, `apne1-az2`, & `apne1-az4` only\)  | 
 |  Canada \(Central\)  |  ca\-central\-1 \(`cac1-az1` & `cac1-az2` only\)  | 
+|  China \(Beijing\)  |  cn\-north\-1 \(`cnn1-az1` & `cnn1-az2` only\)  | 
+|  China \(Ningxia\)  |  cn\-northwest\-1  | 
 |  Europe \(Frankfurt\)  |  eu\-central\-1  | 
 |  Europe \(Zurich\)  |  eu\-central\-2  | 
 |  Europe \(Ireland\)  |  eu\-west\-1  | 

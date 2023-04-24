@@ -23,19 +23,19 @@ Amazon ECS Service Connect is available in the following AWS Regions:
 
 | Region Name | Region | 
 | --- | --- | 
-|  US East \(N\. Virginia\)  |  us\-east\-1  | 
 |  US East \(Ohio\)  |  us\-east\-2  | 
+|  US East \(N\. Virginia\)  |  us\-east\-1  | 
 |  US West \(N\. California\)  |  us\-west\-1  | 
 |  US West \(Oregon\)  |  us\-west\-2  | 
 |  Africa \(Cape Town\)  |  af\-south\-1  | 
 |  Asia Pacific \(Hong Kong\)  |  ap\-east\-1  | 
+|  Asia Pacific \(Jakarta\)  |  ap\-southeast\-3  | 
 |  Asia Pacific \(Mumbai\)  |  ap\-south\-1  | 
-|  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1  | 
-|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
 |  Asia Pacific \(Osaka\)  |  ap\-northeast\-3  | 
+|  Asia Pacific \(Seoul\)  |  ap\-northeast\-2  | 
 |  Asia Pacific \(Singapore\)  |  ap\-southeast\-1  | 
 |  Asia Pacific \(Sydney\)  |  ap\-southeast\-2  | 
-|  Asia Pacific \(Jakarta\)  |  ap\-southeast\-3  | 
+|  Asia Pacific \(Tokyo\)  |  ap\-northeast\-1  | 
 |  Canada \(Central\)  |  ca\-central\-1  | 
 |  China \(Beijing\)  |  cn\-north\-1  | 
 |  China \(Ningxia\)  |  cn\-northwest\-1  | 
@@ -45,7 +45,9 @@ Amazon ECS Service Connect is available in the following AWS Regions:
 |  Europe \(Paris\)  |  eu\-west\-3  | 
 |  Europe \(Milan\)  |  eu\-south\-1  | 
 |  Europe \(Stockholm\)  |  eu\-north\-1  | 
+|  Europe \(Zurich\)  |  eu\-central\-2  | 
 |  Middle East \(Bahrain\)  |  me\-south\-1  | 
+|  Middle East \(UAE\)  |  me\-central\-1  | 
 |  South America \(São Paulo\)  |  sa\-east\-1  | 
 
 ## Service Connect concepts<a name="service-connect-concepts"></a>
@@ -166,7 +168,7 @@ Second, assume that a frontend service exists without Service Connect configurat
 
 ### Networking<a name="service-connect-concepts-network"></a>
 
-In the default configuration, you don't need to change your Amazon VPC security groups to use Service Connect\. The Service Connect proxy listens on the `containerPort` from the port mapping in the task definition\.
+In the default configuration, the Service Connect proxy listens on the `containerPort` from the port mapping in the task definition\. If you have rules in your security group to allow this port, then you don't need to change your Amazon VPC security groups to use Service Connect\.
 
 Even if you set a port number in the Service Connect service configuration, this doesn't change the port for the client\-server service that the Service Connect proxy listens on\. When you set this port number, Amazon ECS changes the port of the endpoint that the client services connect to, on the Service Connect proxy inside those tasks\. The proxy in the client service connects to the proxy in the client\-server service using the `containerPort`\.
 

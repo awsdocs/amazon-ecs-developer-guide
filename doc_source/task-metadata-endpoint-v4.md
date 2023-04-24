@@ -44,7 +44,7 @@ For Amazon ECS tasks that use the `awsvpc` or `bridge` network modes hosted on A
 The following information is returned from the task metadata endpoint \(`${ECS_CONTAINER_METADATA_URI_V4}/task`\) JSON response\. This includes metadata associated with the task in addition to the metadata for each container within the task\.
 
 `Cluster`  
-The Amazon Resource Name \(ARN\) or short name of the Amazon ECS cluster to which the task belongs\.
+The short name of the Amazon ECS cluster to which the task belongs\.
 
 `ServiceName`  
 The name of the service to which the task belongs\. ServiceName will appear for Amazon EC2 and Amazon ECS Anywhere container instances if the task is associated with a service\.  
