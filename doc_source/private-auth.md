@@ -93,4 +93,4 @@ Use AWS Secrets Manager to create a secret for your private registry credentials
 
 1. Review your settings, and then choose **Store secret** to save everything that you entered as a new secret in Secrets Manager\.
 
-Register a task definition and under **Private registry**, turn on **Private registry authentication**\. Then, in **Secrets Manager ARN or name**, enter the Amazon Resource Name \(ARN\) of the secret\. You must use a For more information, see [Required IAM permissions for private registry authentication](#private-auth-iam)\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
+Register a task definition and under **Private registry**, turn on **Private registry authentication**\. Then, in **Secrets Manager ARN or name**, enter the Amazon Resource Name \(ARN\) of the secret\. For more information, see [Required IAM permissions for private registry authentication](#private-auth-iam)\. For more information, see [Creating a task definition using the console](create-task-definition.md)\.
