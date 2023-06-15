@@ -1,6 +1,0 @@
-# Subscribing to Amazon ECS\-optimized AMI update notifications<a name="ECS-AMI-windows-SubscribeTopic"></a>
-
-AWS provides two Amazon SNS topic ARNs for notifications related to the Windows Server Amazon Machine Image \(AMIs\)\. One topic sends update notifications when new Windows Server AMIs are released\. The other topic sends notifications when previously released Windows Server AMIs are made private\. While these topics are not specific to the Amazon ECS\-optimized Windows AMIs, because the Amazon ECS\-optimized Windows AMIs follow the same release schedule, you can use these notifications for an indication for when new Amazon ECS\-optimized Windows AMIs are updated\. For more information on subscribing to Windows AMI notifications, see [Subscribing to Windows AMI notifications](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/aws-windows-ami.html#subscribe-notifications) in the *Amazon EC2 User Guide for Windows Instances*\.
-
-**Note**  
-Your user, or the role attached to your user must have the `sns::subscribe` IAM permission to subscribe to an Amazon SNS topic\.
